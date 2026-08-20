@@ -23,6 +23,10 @@
     {"id": "state:sailing-skiff", "kind": "account_flag", "label": "Skiff available"},
     {"id": "goal:great-conch", "kind": "location", "label": "Great Conch access"},
     {"id": "state:port-roberts", "kind": "account_flag", "label": "Port Roberts accessible"},
-    {"id": "activity:sailing-bounties", "kind": "activity", "label": "Sailing bounty tasks"}
+    {"id": "activity:sailing-bounties", "kind": "activity", "label": "Sailing bounty tasks"},
+    {"id": "goal:fletching-knife", "kind": "reward", "label": "Fletching Knife"},
+    {"id": "goal:bones-to-peaches", "kind": "reward", "label": "Bones to Peaches"},
+    {"id": "goal:barrows-gloves", "kind": "reward", "label": "Barrows gloves"},
+    {"id": "activity:vale-totems", "kind": "activity", "label": "Vale Totems"}
   ]
 }

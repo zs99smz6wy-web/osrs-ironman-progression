@@ -1,0 +1,50 @@
+{
+  "records": [
+    {
+      "id": "vale-totems",
+      "name": "Vale Totems",
+      "category": "minigame",
+      "status": "verified",
+      "verified_at": "2026-08-20",
+      "requirements": {"skills": {"Fletching": 50, "Construction": 1}},
+      "outputs": ["Fletching experience", "Vale offerings", "Vale Research Points", "Fletching Knife", "Bow string spool"],
+      "mechanics": {"research_points": "One research point and a random reward per 100 Vale offerings rummaged."},
+      "source_ids": ["wiki-vale-totems"],
+      "confidence": "high"
+    },
+    {
+      "id": "fletching-knife",
+      "name": "Fletching Knife",
+      "category": "reward",
+      "status": "verified",
+      "verified_at": "2026-08-20",
+      "requirements": {"activity": "Vale Totems", "research_points": 350, "alternative_drop_rate": "1 in 333.3 from rummaging Vale offerings"},
+      "outputs": ["equippable knife", "one-tick reduction on supported repeated Fletching actions after the first item"],
+      "mechanics": {"supported_actions": ["unstrung bows", "wooden shields", "crossbow stocks", "arrow shafts", "atlatl dart shafts", "javelin shafts", "battlestaves", "hunter's spears", "Vale totems", "bruma roots", "redwood hiking staves"]},
+      "source_ids": ["wiki-fletching-knife"],
+      "confidence": "high"
+    },
+    {
+      "id": "bones-to-peaches",
+      "name": "Bones to Peaches",
+      "category": "reward",
+      "status": "verified",
+      "verified_at": "2026-08-20",
+      "requirements": {"activity": "Mage Training Arena", "pizazz_points": {"telekinetic": 200, "graveyard": 200, "enchantment": 2000, "alchemist": 300}},
+      "outputs": ["Bones to Peaches spell"],
+      "source_ids": ["wiki-mta"],
+      "confidence": "high"
+    },
+    {
+      "id": "barrows-gloves",
+      "name": "Barrows gloves",
+      "category": "reward",
+      "status": "verified",
+      "verified_at": "2026-08-20",
+      "requirements": {"quest": "Recipe for Disaster completed", "coins": 130000},
+      "outputs": ["high all-style offensive glove bonuses"],
+      "source_ids": ["wiki-barrows-gloves", "wiki-rfd"],
+      "confidence": "high"
+    }
+  ]
+}

@@ -15,6 +15,9 @@
     {"from": "activity:wealthy-citizens", "to": "state:kingdom", "type": "alternative", "evidence": "Candidate cash pipeline for Kingdom funding; current yield validation remains pending."},
     {"from": "state:sailing-skiff", "to": "goal:great-conch", "type": "requires", "evidence": "The Great Conch requires Sailing 45, a higher Sailing milestone after skiff access."},
     {"from": "goal:great-conch", "to": "goal:belles-folly", "type": "unlocks", "evidence": "The Great Conch provides Gryphon and Shellbane Gryphon access."},
-    {"from": "activity:sailing-bounties", "to": "activity:sailing", "type": "produces", "evidence": "Bounty tasks provide Sailing experience and coins."}
+    {"from": "activity:sailing-bounties", "to": "activity:sailing", "type": "produces", "evidence": "Bounty tasks provide Sailing experience and coins."},
+    {"from": "activity:vale-totems", "to": "goal:fletching-knife", "type": "unlocks", "evidence": "Vale Totems provides Vale Research Points and a random-reward acquisition path."},
+    {"from": "goal:fletching-knife", "to": "activity:vale-totems", "type": "improves", "evidence": "The Fletching Knife affects Vale Totems and other supported repeated Fletching actions."},
+    {"from": "goal:barrows-gloves", "to": "goal:perilous-moons", "type": "improves", "evidence": "All-style offensive bonuses can improve account combat capability; readiness remains account-specific."}
   ]
 }

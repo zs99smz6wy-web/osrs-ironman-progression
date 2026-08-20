@@ -32,6 +32,10 @@
     {"id": "wiki-sailing-resources-2", "publisher": "Old School RuneScape Wiki", "url": "https://oldschool.runescape.wiki/w/Sailing_resources", "kind": "wiki", "checked_at": "2026-08-20", "use": "Sailing islands, monsters, and resource access"},
     {"id": "wiki-sailing-map", "publisher": "Old School RuneScape Wiki", "url": "https://oldschool.runescape.wiki/w/Map:Sailing", "kind": "wiki", "checked_at": "2026-08-20", "use": "Port and mooring-point Sailing thresholds"},
     {"id": "official-sailing-launch-guide", "publisher": "Jagex", "url": "https://oldschool.runescape.wiki/w/Update:Prepare_for_Sailing_-_Launching_November_19th!", "kind": "official_mirror", "checked_at": "2026-08-20", "use": "Official launch guidance and Troubled Tortugans requirements"},
-    {"id": "official-wyrmscraig-chisel-poll", "publisher": "Jagex", "url": "https://oldschool.runescape.com/polls/2026/1763", "kind": "official", "checked_at": "2026-08-20", "use": "Jeweller's Chisel proposal and proposed bolt-tip changes"}
+    {"id": "official-wyrmscraig-chisel-poll", "publisher": "Jagex", "url": "https://oldschool.runescape.com/polls/2026/1763", "kind": "official", "checked_at": "2026-08-20", "use": "Jeweller's Chisel proposal and proposed bolt-tip changes"},
+    {"id": "wiki-vale-totems", "publisher": "Old School RuneScape Wiki", "url": "https://oldschool.runescape.wiki/w/Vale_Totems", "kind": "wiki", "checked_at": "2026-08-20", "use": "Vale Totems requirements, offerings, and reward costs"},
+    {"id": "wiki-fletching-knife", "publisher": "Old School RuneScape Wiki", "url": "https://oldschool.runescape.wiki/w/Fletching_knife", "kind": "wiki", "checked_at": "2026-08-20", "use": "Fletching Knife acquisition and tick-reduction effect"},
+    {"id": "wiki-barrows-gloves", "publisher": "Old School RuneScape Wiki", "url": "https://oldschool.runescape.wiki/w/Barrows_gloves", "kind": "wiki", "checked_at": "2026-08-20", "use": "Barrows Gloves acquisition and price"},
+    {"id": "wiki-rfd", "publisher": "Old School RuneScape Wiki", "url": "https://oldschool.runescape.wiki/w/Recipe_for_Disaster", "kind": "wiki", "checked_at": "2026-08-20", "use": "Recipe for Disaster progression context"}
   ]
 }
