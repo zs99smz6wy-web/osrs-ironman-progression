@@ -1,0 +1,87 @@
+{
+  "records": [
+    {
+      "id": "fossil-island-access",
+      "name": "Fossil Island access",
+      "category": "transport",
+      "status": "verified",
+      "verified_at": "2026-08-20",
+      "requirements": {"quest": "Bone Voyage", "quest_prerequisites": ["The Dig Site", "100 Kudos"]},
+      "outputs": ["Fossil Island", "birdhouse trapping", "underwater seaweed patches", "additional transport and skilling content"],
+      "source_ids": ["wiki-fossil-island"],
+      "confidence": "high"
+    },
+    {
+      "id": "giant-seaweed",
+      "name": "Giant seaweed farming",
+      "category": "afk",
+      "status": "verified",
+      "verified_at": "2026-08-20",
+      "requirements": {"skills": {"Farming": 23}, "access": "Fossil Island underwater area", "input": "seaweed spores"},
+      "outputs": ["giant seaweed", "Crafting material when paired with buckets of sand"],
+      "mechanics": {"compost": "Compost affects yield.", "protection": "Numulite can protect the patch.", "spore_sustainability": "Nearby spore spawns can sustain a supply after an initial stock."},
+      "source_ids": ["wiki-ironman-farming"],
+      "confidence": "medium"
+    },
+    {
+      "id": "managing-miscellania",
+      "name": "Managing Miscellania",
+      "category": "afk",
+      "status": "verified",
+      "verified_at": "2026-08-20",
+      "requirements": {"quest": "Throne of Miscellania", "expansion_quest": "Royal Trouble"},
+      "outputs": ["daily resource collection", "herbs", "logs", "coal", "fish", "seeds", "hardwood after Royal Trouble"],
+      "mechanics": {"workers": "10 workers initially; 15 after Royal Trouble.", "royal_trouble": "Increases subject productivity by 50%.", "approval_decay": "Approval decays daily and needs maintenance."},
+      "source_ids": ["wiki-miscellania"],
+      "confidence": "high"
+    },
+    {
+      "id": "tempoross-fish-barrel",
+      "name": "Tempoross and Fish Barrel",
+      "category": "minigame",
+      "status": "verified",
+      "verified_at": "2026-08-20",
+      "requirements": {"skills": {"Fishing": 35}},
+      "outputs": ["Fishing experience", "Cooking, Construction, and Strength experience opportunities", "reward permits", "Fish Barrel"],
+      "mechanics": {"permits": "One permit at 2,000 points, then one per 700 points, with a fractional extra-roll chance.", "fish_barrel": "Fish Barrel is a 1 in 400 unique reward-pool roll.", "deferred_opening": "Reward-pool catch quality uses Fishing level when rewards are claimed."},
+      "source_ids": ["wiki-tempoross"],
+      "confidence": "high"
+    },
+    {
+      "id": "giants-foundry",
+      "name": "Giants' Foundry",
+      "category": "minigame",
+      "status": "verified",
+      "verified_at": "2026-08-20",
+      "requirements": {"quest": "Sleeping Giants", "skills": {"Smithing": 15}, "inputs": "Metal bars or equipment worth at least two bars"},
+      "outputs": ["Smithing experience", "GP based on sword quality", "Foundry Reputation", "utility rewards"],
+      "rewards": {"double_ammo_mould": 2000, "smiths_gloves": 3500, "smiths_tunic": 4000, "smiths_trousers": 4000, "smiths_boots": 3500, "colossal_blade": 5000},
+      "source_ids": ["wiki-giants-foundry"],
+      "confidence": "high"
+    },
+    {
+      "id": "perilous-moons",
+      "name": "Moons of Peril",
+      "category": "activity",
+      "status": "verified",
+      "verified_at": "2026-08-20",
+      "requirements": {"quest": "Perilous Moons"},
+      "outputs": ["Lunar Chest rewards", "mid-level armour sets", "resource rewards", "combat progression"],
+      "mechanics": {"combat": "The moons are mid-level content; good defensive bonuses reduce damage from their multi-hit basic attacks.", "prayer": "Protection prayers do not negate their attacks.", "styles": "Eclipse is weak to stab, Blue to crush, and Blood to slash.", "internal_supplies": "Food and potions can be gathered within Neypotzli."},
+      "source_ids": ["wiki-perilous-moons"],
+      "confidence": "high"
+    },
+    {
+      "id": "belles-folly",
+      "name": "Belle's Folly",
+      "category": "bypass",
+      "status": "verified",
+      "verified_at": "2026-08-20",
+      "requirements": {"monster": "Shellbane Gryphon", "access": ["51 Slayer", "45 Sailing", "Troubled Tortugans"], "repair_skill": {"Smithing": 70}},
+      "outputs": ["one-handed stab weapon comparable to the zombie axe after repair"],
+      "mechanics": {"drop_rate": "1 in 400"},
+      "source_ids": ["wiki-sailing-resources", "wiki-sailing-xp-review"],
+      "confidence": "high"
+    }
+  ]
+}

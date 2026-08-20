@@ -7,6 +7,14 @@
     {"id": "wiki-tithe-rewards", "publisher": "Old School RuneScape Wiki", "url": "https://oldschool.runescape.wiki/w/Farmer_Gricoller%27s_Rewards", "kind": "wiki", "checked_at": "2026-08-20", "use": "Tithe Farm permanent reward costs"},
     {"id": "wiki-gotr", "publisher": "Old School RuneScape Wiki", "url": "https://oldschool.runescape.wiki/w/Guardians_of_the_Rift", "kind": "wiki", "checked_at": "2026-08-20", "use": "Raiments of the Eye benefit and pearl costs"},
     {"id": "wiki-mta", "publisher": "Old School RuneScape Wiki", "url": "https://oldschool.runescape.wiki/w/Mage_Training_Arena", "kind": "wiki", "checked_at": "2026-08-20", "use": "Rune Pouch update and Mage Training Arena economy"},
-    {"id": "official-wyrmscraig-launch", "publisher": "Jagex", "url": "https://www.oldschool.runescape.com/", "kind": "official", "checked_at": "2026-08-20", "use": "Wyrmscraig live-release confirmation"}
+    {"id": "official-wyrmscraig-launch", "publisher": "Jagex", "url": "https://www.oldschool.runescape.com/", "kind": "official", "checked_at": "2026-08-20", "use": "Wyrmscraig live-release confirmation"},
+    {"id": "wiki-fossil-island", "publisher": "Old School RuneScape Wiki", "url": "https://oldschool.runescape.wiki/w/Fossil_Island", "kind": "wiki", "checked_at": "2026-08-20", "use": "Bone Voyage access and Fossil Island transport"},
+    {"id": "wiki-ironman-farming", "publisher": "Old School RuneScape Wiki", "url": "https://oldschool.runescape.wiki/w/Ironman_Guide/Farming", "kind": "community_guide", "checked_at": "2026-08-20", "use": "Giant seaweed requirements and supply context"},
+    {"id": "wiki-miscellania", "publisher": "Old School RuneScape Wiki", "url": "https://oldschool.runescape.wiki/w/Managing_Miscellania", "kind": "wiki", "checked_at": "2026-08-20", "use": "Kingdom labour, approval, and Royal Trouble effects"},
+    {"id": "wiki-tempoross", "publisher": "Old School RuneScape Wiki", "url": "https://oldschool.runescape.wiki/w/Tempoross", "kind": "wiki", "checked_at": "2026-08-20", "use": "Entry requirement, permits, Fish Barrel rate, and Sailing dock"},
+    {"id": "wiki-giants-foundry", "publisher": "Old School RuneScape Wiki", "url": "https://oldschool.runescape.wiki/w/Giants%27_Foundry", "kind": "wiki", "checked_at": "2026-08-20", "use": "Foundry reputation, GP output, and utility rewards"},
+    {"id": "wiki-perilous-moons", "publisher": "Old School RuneScape Wiki", "url": "https://oldschool.runescape.wiki/w/Moons_of_Peril", "kind": "wiki", "checked_at": "2026-08-20", "use": "Quest gate, fight mechanics, and reward utility"},
+    {"id": "wiki-sailing-resources", "publisher": "Old School RuneScape Wiki", "url": "https://oldschool.runescape.wiki/w/Sailing_resources", "kind": "wiki", "checked_at": "2026-08-20", "use": "Gryphon and Belle's Folly access and requirements"},
+    {"id": "wiki-sailing-xp-review", "publisher": "Old School RuneScape Wiki", "url": "https://oldschool.runescape.wiki/w/Update:Sailing_XP_Review_%26_Further_Fixes", "kind": "official_mirror", "checked_at": "2026-08-20", "use": "Official Shellbane Gryphon drop rate announcement"}
   ]
 }
