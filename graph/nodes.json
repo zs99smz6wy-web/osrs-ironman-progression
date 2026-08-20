@@ -31,6 +31,8 @@
     {"id": "activity:motherlode-mine", "kind": "activity", "label": "Motherlode Mine"},
     {"id": "state:tears-eligible", "kind": "passive_loop", "label": "Tears of Guthix eligible"},
     {"id": "goal:coal-bag", "kind": "reward", "label": "Coal bag"},
-    {"id": "goal:gem-bag", "kind": "reward", "label": "Gem bag"}
+    {"id": "goal:gem-bag", "kind": "reward", "label": "Gem bag"},
+    {"id": "state:rune-axe", "kind": "account_flag", "label": "Rune axe acquired"},
+    {"id": "goal:zombie-axe", "kind": "item", "label": "Zombie axe"}
   ]
 }

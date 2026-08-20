@@ -39,6 +39,9 @@
     {"id": "wiki-rfd", "publisher": "Old School RuneScape Wiki", "url": "https://oldschool.runescape.wiki/w/Recipe_for_Disaster", "kind": "wiki", "checked_at": "2026-08-20", "use": "Recipe for Disaster progression context"},
     {"id": "wiki-birdhouses", "publisher": "Old School RuneScape Wiki", "url": "https://oldschool.runescape.wiki/w/Bird_house_trapping", "kind": "wiki", "checked_at": "2026-08-20", "use": "Birdhouse requirements, duration, return loop, and outputs"},
     {"id": "wiki-tears", "publisher": "Old School RuneScape Wiki", "url": "https://oldschool.runescape.wiki/w/Tears_of_Guthix_(minigame)", "kind": "wiki", "checked_at": "2026-08-20", "use": "Tears of Guthix recurrence, eligibility, and lowest-skill rule"},
-    {"id": "wiki-motherlode", "publisher": "Old School RuneScape Wiki", "url": "https://oldschool.runescape.wiki/w/Motherlode_Mine", "kind": "wiki", "checked_at": "2026-08-20", "use": "Motherlode Mine requirements, reward costs, and upgrade order context"}
+    {"id": "wiki-motherlode", "publisher": "Old School RuneScape Wiki", "url": "https://oldschool.runescape.wiki/w/Motherlode_Mine", "kind": "wiki", "checked_at": "2026-08-20", "use": "Motherlode Mine requirements, reward costs, and upgrade order context"},
+    {"id": "wiki-ironman-guide", "publisher": "Old School RuneScape Wiki", "url": "https://oldschool.runescape.wiki/w/Ironman_Guide", "kind": "community_guide", "checked_at": "2026-08-20", "use": "Ironman-specific conventional and drop-based item acquisition alternatives"},
+    {"id": "reddit-tree-spirit-rune-axe", "publisher": "r/ironscape", "url": "https://www.reddit.com/r/ironscape/comments/1ij3wu6/", "kind": "community_discussion", "checked_at": "2026-08-20", "use": "Tree-spirit Rune axe route and reported drop-rate evidence"},
+    {"id": "wiki-zombie-axe", "publisher": "Old School RuneScape Wiki", "url": "https://oldschool.runescape.wiki/w/Zombie_axe", "kind": "wiki", "checked_at": "2026-08-20", "use": "Zombie Axe equipment and repair requirements"}
   ]
 }

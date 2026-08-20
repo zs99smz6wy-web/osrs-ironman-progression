@@ -5,7 +5,7 @@
     {"from": "state:birdhouse-loop", "to": "goal:hunters-rumours", "type": "produces", "evidence": "Passive Hunter experience contributes to Hunter level."},
     {"from": "activity:wintertodt", "to": "goal:perilous-moons", "type": "alternative", "evidence": "Supply outputs may contribute but do not independently establish combat readiness."},
     {"from": "activity:giants-foundry", "to": "goal:mta-rune-pouch", "type": "alternative", "evidence": "Potential GP pipeline; exact timing and amount are strategic."},
-    {"from": "item:rune-axe", "to": "activity:sailing", "type": "bypass", "evidence": "Category example: a drop can replace a conventional acquisition path. Exact source and requirements must be entered as a verified fact before use."},
+    {"from": "state:fairy-rings", "to": "state:rune-axe", "type": "unlocks", "evidence": "Fairy-ring access enables the Enchanted Valley tree-spirit acquisition path; rate validation remains pending."},
     {"from": "state:fossil-island", "to": "state:seaweed-loop", "type": "unlocks", "evidence": "Fossil Island access enables the underwater seaweed patches."},
     {"from": "activity:sailing", "to": "goal:belles-folly", "type": "alternative", "evidence": "Sailing and quest access are part of Shellbane Gryphon access; this is not an assumed farm target."},
     {"from": "goal:belles-folly", "to": "goal:perilous-moons", "type": "improves", "evidence": "A realised one-handed stab weapon can affect combat capability; readiness remains account-specific."},
@@ -20,6 +20,7 @@
     {"from": "goal:fletching-knife", "to": "activity:vale-totems", "type": "improves", "evidence": "The Fletching Knife affects Vale Totems and other supported repeated Fletching actions."},
     {"from": "goal:barrows-gloves", "to": "goal:perilous-moons", "type": "improves", "evidence": "All-style offensive bonuses can improve account combat capability; readiness remains account-specific."},
     {"from": "activity:motherlode-mine", "to": "goal:coal-bag", "type": "unlocks", "evidence": "The coal bag is a 100-golden-nugget Motherlode reward."},
-    {"from": "activity:motherlode-mine", "to": "goal:gem-bag", "type": "unlocks", "evidence": "The gem bag is a 100-golden-nugget Motherlode reward."}
+    {"from": "activity:motherlode-mine", "to": "goal:gem-bag", "type": "unlocks", "evidence": "The gem bag is a 100-golden-nugget Motherlode reward."},
+    {"from": "goal:zombie-axe", "to": "goal:perilous-moons", "type": "improves", "evidence": "A one-handed melee weapon with slash and crush capability can alter account combat readiness; exact timing is strategic."}
   ]
 }

@@ -1,0 +1,30 @@
+{
+  "records": [
+    {
+      "id": "rune-axe-tree-spirit-bypass",
+      "name": "Rune axe from an Enchanted Valley tree spirit",
+      "category": "bypass",
+      "status": "needs_revalidation",
+      "verified_at": "2026-08-20",
+      "normal_paths": [{"method": "Woodcutting Guild shop", "requirement": "60 Woodcutting"}],
+      "bypass_path": {"source": "Tree spirit in the Enchanted Valley", "access": "Fairy-ring access and an axe to cut the tree", "reported_drop_rate": "1 in 32", "combat": "Tree-spirit combat level scales with player combat level"},
+      "outputs": ["Rune axe", "nature runes", "herbs", "seeds"],
+      "notes": "The location and bypass role are supported by the current Ironman guide. The precise 1-in-32 rate comes from community evidence and needs a first-party or live wiki drop-table recheck before expected-time scoring.",
+      "source_ids": ["wiki-ironman-guide", "reddit-tree-spirit-rune-axe"],
+      "confidence": "medium"
+    },
+    {
+      "id": "zombie-axe-bypass",
+      "name": "Zombie axe from armoured zombies",
+      "category": "bypass",
+      "status": "needs_revalidation",
+      "verified_at": "2026-08-20",
+      "requirements": {"weapon": {"Attack": 65}, "repair": {"Smithing": 70}},
+      "bypass_path": {"source": "Broken zombie axe from armoured zombies", "action": "Repair at an anvil"},
+      "outputs": ["Zombie axe", "high slash and crush capability"],
+      "notes": "The item and repair requirement are verified. Exact drop rate, monster access, and expected acquisition time need separate validation before intentional-farm scoring.",
+      "source_ids": ["wiki-zombie-axe"],
+      "confidence": "medium"
+    }
+  ]
+}
