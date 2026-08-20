@@ -19,6 +19,10 @@
     {"id": "state:spirit-trees", "kind": "account_flag", "label": "Spirit trees usable"},
     {"id": "state:varlamore", "kind": "account_flag", "label": "Varlamore accessible"},
     {"id": "activity:agility-pyramid", "kind": "activity", "label": "Agility Pyramid"},
-    {"id": "activity:wealthy-citizens", "kind": "activity", "label": "Wealthy Varlamorians"}
+    {"id": "activity:wealthy-citizens", "kind": "activity", "label": "Wealthy Varlamorians"},
+    {"id": "state:sailing-skiff", "kind": "account_flag", "label": "Skiff available"},
+    {"id": "goal:great-conch", "kind": "location", "label": "Great Conch access"},
+    {"id": "state:port-roberts", "kind": "account_flag", "label": "Port Roberts accessible"},
+    {"id": "activity:sailing-bounties", "kind": "activity", "label": "Sailing bounty tasks"}
   ]
 }

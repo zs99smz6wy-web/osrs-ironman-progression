@@ -12,6 +12,9 @@
     {"from": "state:spirit-trees", "to": "state:fairy-rings", "type": "improves", "evidence": "Transport networks combine to reduce movement cost; neither is a hard requirement for the other."},
     {"from": "state:varlamore", "to": "goal:hunters-rumours", "type": "unlocks", "evidence": "Varlamore access is needed for the Hunters' Guild."},
     {"from": "activity:agility-pyramid", "to": "goal:mta-rune-pouch", "type": "alternative", "evidence": "A GP-producing activity can finance rune and shop needs without prescribing a universal cash grind."},
-    {"from": "activity:wealthy-citizens", "to": "state:kingdom", "type": "alternative", "evidence": "Candidate cash pipeline for Kingdom funding; current yield validation remains pending."}
+    {"from": "activity:wealthy-citizens", "to": "state:kingdom", "type": "alternative", "evidence": "Candidate cash pipeline for Kingdom funding; current yield validation remains pending."},
+    {"from": "state:sailing-skiff", "to": "goal:great-conch", "type": "requires", "evidence": "The Great Conch requires Sailing 45, a higher Sailing milestone after skiff access."},
+    {"from": "goal:great-conch", "to": "goal:belles-folly", "type": "unlocks", "evidence": "The Great Conch provides Gryphon and Shellbane Gryphon access."},
+    {"from": "activity:sailing-bounties", "to": "activity:sailing", "type": "produces", "evidence": "Bounty tasks provide Sailing experience and coins."}
   ]
 }

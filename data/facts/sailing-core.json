@@ -1,0 +1,72 @@
+{
+  "records": [
+    {
+      "id": "sailing-skiff",
+      "name": "Sailing Skiff",
+      "category": "sailing",
+      "status": "verified",
+      "verified_at": "2026-08-20",
+      "requirements": {"skills": {"Sailing": 15}},
+      "outputs": ["Skiff access", "two owned boats", "Port Piscarilius docking", "small shipwreck salvaging"],
+      "source_ids": ["wiki-sailing-level-table"],
+      "confidence": "high"
+    },
+    {
+      "id": "sailing-bounty-tasks",
+      "name": "Sailing bounty tasks",
+      "category": "sailing",
+      "status": "verified",
+      "verified_at": "2026-08-20",
+      "requirements": {"skills": {"Sailing": 30}},
+      "outputs": ["Sailing experience", "coins equal to base Sailing experience", "three concurrent port-task slots"],
+      "mechanics": {"items": "Bounty parts cannot be banked but can be stored in a ship cargo hold.", "acceptance": "The Sailing level to accept a bounty task is not boostable."},
+      "source_ids": ["wiki-sailing-level-table"],
+      "confidence": "high"
+    },
+    {
+      "id": "great-conch-access",
+      "name": "Great Conch access",
+      "category": "sailing",
+      "status": "verified",
+      "verified_at": "2026-08-20",
+      "requirements": {"skills": {"Sailing": 45}, "quest": "Troubled Tortugans", "quest_start_requirements": {"Slayer": 51, "Construction": 48, "Hunter": 45, "Woodcutting": 40, "Crafting": 34, "quest": "Pandemonium completed"}},
+      "outputs": ["Great Conch docking", "Gryphon access", "coral farming", "Great Conch resources and training methods"],
+      "source_ids": ["official-sailing-launch-guide", "wiki-sailing-resources-2"],
+      "confidence": "high"
+    },
+    {
+      "id": "port-roberts-access",
+      "name": "Port Roberts access",
+      "category": "sailing",
+      "status": "verified",
+      "verified_at": "2026-08-20",
+      "requirements": {"skills": {"Sailing": 50}},
+      "outputs": ["Port Roberts docking", "Port Roberts task board and content access"],
+      "source_ids": ["wiki-sailing-map"],
+      "confidence": "high"
+    },
+    {
+      "id": "charred-island-lava-strykewyrms",
+      "name": "Charred Island lava strykewyrms",
+      "category": "sailing",
+      "status": "verified",
+      "verified_at": "2026-08-20",
+      "requirements": {"skills": {"Sailing": 60, "Slayer": 62}},
+      "outputs": ["Lava strykewyrm access", "dragon metal sheets"],
+      "source_ids": ["wiki-sailing-resources-2"],
+      "confidence": "high"
+    },
+    {
+      "id": "jewellers-chisel",
+      "name": "Jeweller's Chisel",
+      "category": "sailing",
+      "status": "research_queue",
+      "verified_at": "2026-08-20",
+      "requirements": {"proposed_source": "Sunstone Golem Crafting on Wyrmscraig"},
+      "proposed_effect": "Two-tick bolt-tip cutting and a one-in-ten chance to process two gems at once.",
+      "notes": "The official source located is a recent poll. Do not use this record in route output until a live item page or release note confirms final acquisition and effect.",
+      "source_ids": ["official-wyrmscraig-chisel-poll"],
+      "confidence": "low"
+    }
+  ]
+}
