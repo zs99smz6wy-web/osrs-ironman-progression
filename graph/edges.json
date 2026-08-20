@@ -21,6 +21,9 @@
     {"from": "goal:barrows-gloves", "to": "goal:perilous-moons", "type": "improves", "evidence": "All-style offensive bonuses can improve account combat capability; readiness remains account-specific."},
     {"from": "activity:motherlode-mine", "to": "goal:coal-bag", "type": "unlocks", "evidence": "The coal bag is a 100-golden-nugget Motherlode reward."},
     {"from": "activity:motherlode-mine", "to": "goal:gem-bag", "type": "unlocks", "evidence": "The gem bag is a 100-golden-nugget Motherlode reward."},
-    {"from": "goal:zombie-axe", "to": "goal:perilous-moons", "type": "improves", "evidence": "A one-handed melee weapon with slash and crush capability can alter account combat readiness; exact timing is strategic."}
+    {"from": "goal:zombie-axe", "to": "goal:perilous-moons", "type": "improves", "evidence": "A one-handed melee weapon with slash and crush capability can alter account combat readiness; exact timing is strategic."},
+    {"from": "state:farming-contracts", "to": "activity:hespori", "type": "produces", "evidence": "Farming contracts can reward Hespori seeds."},
+    {"from": "activity:hespori", "to": "goal:bottomless-compost-bucket", "type": "unlocks", "evidence": "Hespori has a one-in-35 Bottomless compost bucket drop."},
+    {"from": "goal:herb-sack", "to": "goal:hunters-rumours", "type": "improves", "evidence": "Herb storage can reduce inventory friction in herb-gathering Hunter content; exact timing is strategic."}
   ]
 }

@@ -33,6 +33,10 @@
     {"id": "goal:coal-bag", "kind": "reward", "label": "Coal bag"},
     {"id": "goal:gem-bag", "kind": "reward", "label": "Gem bag"},
     {"id": "state:rune-axe", "kind": "account_flag", "label": "Rune axe acquired"},
-    {"id": "goal:zombie-axe", "kind": "item", "label": "Zombie axe"}
+    {"id": "goal:zombie-axe", "kind": "item", "label": "Zombie axe"},
+    {"id": "state:farming-contracts", "kind": "passive_loop", "label": "Farming contracts available"},
+    {"id": "activity:hespori", "kind": "activity", "label": "Hespori"},
+    {"id": "goal:herb-sack", "kind": "reward", "label": "Herb Sack"},
+    {"id": "goal:bottomless-compost-bucket", "kind": "reward", "label": "Bottomless compost bucket"}
   ]
 }

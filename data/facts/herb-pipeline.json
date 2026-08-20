@@ -1,0 +1,40 @@
+{
+  "records": [
+    {
+      "id": "farming-contracts",
+      "name": "Farming contracts",
+      "category": "afk",
+      "status": "verified",
+      "verified_at": "2026-08-20",
+      "requirements": {"skills": {"Farming": 45}, "location": "Farming Guild"},
+      "outputs": ["seed packs", "Farming experience", "Hespori seeds"],
+      "mechanics": {"tiers": {"easy": 45, "medium": 65, "hard": 85}, "completion": "Contracts are completed by growing the requested crop in the Farming Guild."},
+      "afk_profile": {"attention": "situational", "player_present": true, "death_risk": "none"},
+      "source_ids": ["wiki-farming-contracts"],
+      "confidence": "high"
+    },
+    {
+      "id": "hespori",
+      "name": "Hespori",
+      "category": "activity",
+      "status": "verified",
+      "verified_at": "2026-08-20",
+      "requirements": {"skills": {"Farming": 65}, "input": "Hespori seed"},
+      "outputs": ["12600 Farming experience", "seed rewards", "anima seeds", "Bottomless compost bucket"],
+      "mechanics": {"growth_time": "22-32 hours", "bottomless_bucket_rate": "1 in 35", "bucket_capacity": 10000, "bucket_effect": "Doubles compost added to it."},
+      "source_ids": ["wiki-hespori"],
+      "confidence": "high"
+    },
+    {
+      "id": "herb-sack",
+      "name": "Herb Sack",
+      "category": "reward",
+      "status": "verified",
+      "verified_at": "2026-08-20",
+      "requirements": {"acquisition_paths": [{"activity": "Tithe Farm", "points": 250}, {"activity": "Slayer rewards", "points": 750}], "use_skill": {"Herblore": 58}},
+      "outputs": ["storage for 30 of each grimy herb type", "420 total grimy-herb capacity"],
+      "source_ids": ["wiki-herb-sack"],
+      "confidence": "high"
+    }
+  ]
+}

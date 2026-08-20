@@ -42,6 +42,9 @@
     {"id": "wiki-motherlode", "publisher": "Old School RuneScape Wiki", "url": "https://oldschool.runescape.wiki/w/Motherlode_Mine", "kind": "wiki", "checked_at": "2026-08-20", "use": "Motherlode Mine requirements, reward costs, and upgrade order context"},
     {"id": "wiki-ironman-guide", "publisher": "Old School RuneScape Wiki", "url": "https://oldschool.runescape.wiki/w/Ironman_Guide", "kind": "community_guide", "checked_at": "2026-08-20", "use": "Ironman-specific conventional and drop-based item acquisition alternatives"},
     {"id": "reddit-tree-spirit-rune-axe", "publisher": "r/ironscape", "url": "https://www.reddit.com/r/ironscape/comments/1ij3wu6/", "kind": "community_discussion", "checked_at": "2026-08-20", "use": "Tree-spirit Rune axe route and reported drop-rate evidence"},
-    {"id": "wiki-zombie-axe", "publisher": "Old School RuneScape Wiki", "url": "https://oldschool.runescape.wiki/w/Zombie_axe", "kind": "wiki", "checked_at": "2026-08-20", "use": "Zombie Axe equipment and repair requirements"}
+    {"id": "wiki-zombie-axe", "publisher": "Old School RuneScape Wiki", "url": "https://oldschool.runescape.wiki/w/Zombie_axe", "kind": "wiki", "checked_at": "2026-08-20", "use": "Zombie Axe equipment and repair requirements"},
+    {"id": "wiki-farming-contracts", "publisher": "Old School RuneScape Wiki", "url": "https://oldschool.runescape.wiki/w/Farming_contracts", "kind": "wiki", "checked_at": "2026-08-20", "use": "Farming-contract tiers and seed-pack rewards"},
+    {"id": "wiki-hespori", "publisher": "Old School RuneScape Wiki", "url": "https://oldschool.runescape.wiki/w/Hespori", "kind": "wiki", "checked_at": "2026-08-20", "use": "Hespori requirements, duration, Farming XP, and bottomless bucket rate"},
+    {"id": "wiki-herb-sack", "publisher": "Old School RuneScape Wiki", "url": "https://oldschool.runescape.wiki/w/Herb_sack", "kind": "wiki", "checked_at": "2026-08-20", "use": "Herb Sack acquisition alternatives"}
   ]
 }
