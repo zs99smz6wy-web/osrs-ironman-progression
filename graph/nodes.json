@@ -1,0 +1,16 @@
+{
+  "nodes": [
+    {"id": "state:fairy-rings", "kind": "account_flag", "label": "Fairy-ring network usable"},
+    {"id": "state:fossil-island", "kind": "account_flag", "label": "Fossil Island access"},
+    {"id": "state:birdhouse-loop", "kind": "passive_loop", "label": "Birdhouse run available"},
+    {"id": "goal:hunters-rumours", "kind": "activity", "label": "Hunters' Rumours"},
+    {"id": "goal:perilous-moons", "kind": "boss", "label": "Perilous Moons readiness"},
+    {"id": "goal:raiments", "kind": "reward", "label": "Raiments of the Eye"},
+    {"id": "goal:mta-rune-pouch", "kind": "reward", "label": "Mage Training Arena Rune Pouch"},
+    {"id": "goal:auto-weed", "kind": "reward", "label": "Auto-weed"},
+    {"id": "activity:wintertodt", "kind": "activity", "label": "Wintertodt"},
+    {"id": "activity:giants-foundry", "kind": "activity", "label": "Giants' Foundry"},
+    {"id": "activity:sailing", "kind": "activity", "label": "Sailing"},
+    {"id": "item:rune-axe", "kind": "item", "label": "Rune axe"}
+  ]
+}

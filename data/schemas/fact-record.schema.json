@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "OSRS Ironman factual record",
+  "type": "object",
+  "required": ["id", "name", "category", "status", "verified_at", "source_ids"],
+  "properties": {
+    "id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9_-]*$"},
+    "name": {"type": "string", "minLength": 1},
+    "category": {"type": "string", "enum": ["quest", "transport", "activity", "minigame", "reward", "sailing", "afk", "bypass", "economy"]},
+    "status": {"type": "string", "enum": ["verified", "needs_revalidation", "research_queue"]},
+    "verified_at": {"type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$"},
+    "source_ids": {"type": "array", "minItems": 1, "items": {"type": "string"}}
+  },
+  "additionalProperties": true
+}

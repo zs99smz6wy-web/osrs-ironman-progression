@@ -1,0 +1,12 @@
+{
+  "sources": [
+    {"id": "wiki-fairytale-ii", "publisher": "Old School RuneScape Wiki", "url": "https://oldschool.runescape.wiki/w/Fairytale_II_-_Cure_a_Queen", "kind": "wiki", "checked_at": "2026-08-20", "use": "Fairy-ring access, quest chain, partial-completion rule"},
+    {"id": "wiki-wintertodt", "publisher": "Old School RuneScape Wiki", "url": "https://oldschool.runescape.wiki/w/Wintertodt", "kind": "wiki", "checked_at": "2026-08-20", "use": "Entry requirement, reward-cart mechanics"},
+    {"id": "wiki-reward-cart", "publisher": "Old School RuneScape Wiki", "url": "https://oldschool.runescape.wiki/w/Reward_Cart", "kind": "wiki", "checked_at": "2026-08-20", "use": "Material-quality scaling by associated skill"},
+    {"id": "wiki-hunter-rumours", "publisher": "Old School RuneScape Wiki", "url": "https://oldschool.runescape.wiki/w/Hunters%27_Rumours", "kind": "wiki", "checked_at": "2026-08-20", "use": "Rumour tiers, Hunter thresholds, rewards"},
+    {"id": "wiki-tithe-rewards", "publisher": "Old School RuneScape Wiki", "url": "https://oldschool.runescape.wiki/w/Farmer_Gricoller%27s_Rewards", "kind": "wiki", "checked_at": "2026-08-20", "use": "Tithe Farm permanent reward costs"},
+    {"id": "wiki-gotr", "publisher": "Old School RuneScape Wiki", "url": "https://oldschool.runescape.wiki/w/Guardians_of_the_Rift", "kind": "wiki", "checked_at": "2026-08-20", "use": "Raiments of the Eye benefit and pearl costs"},
+    {"id": "wiki-mta", "publisher": "Old School RuneScape Wiki", "url": "https://oldschool.runescape.wiki/w/Mage_Training_Arena", "kind": "wiki", "checked_at": "2026-08-20", "use": "Rune Pouch update and Mage Training Arena economy"},
+    {"id": "official-wyrmscraig-launch", "publisher": "Jagex", "url": "https://www.oldschool.runescape.com/", "kind": "official", "checked_at": "2026-08-20", "use": "Wyrmscraig live-release confirmation"}
+  ]
+}

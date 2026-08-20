@@ -1,0 +1,10 @@
+{
+  "edges": [
+    {"from": "state:fairy-rings", "to": "goal:hunters-rumours", "type": "improves", "evidence": "Transport reduces travel friction; timing is strategic, not a hard requirement."},
+    {"from": "state:fossil-island", "to": "state:birdhouse-loop", "type": "unlocks", "evidence": "Fossil Island contains birdhouse trapping."},
+    {"from": "state:birdhouse-loop", "to": "goal:hunters-rumours", "type": "produces", "evidence": "Passive Hunter experience contributes to Hunter level."},
+    {"from": "activity:wintertodt", "to": "goal:perilous-moons", "type": "alternative", "evidence": "Supply outputs may contribute but do not independently establish combat readiness."},
+    {"from": "activity:giants-foundry", "to": "goal:mta-rune-pouch", "type": "alternative", "evidence": "Potential GP pipeline; exact timing and amount are strategic."},
+    {"from": "item:rune-axe", "to": "activity:sailing", "type": "bypass", "evidence": "Category example: a drop can replace a conventional acquisition path. Exact source and requirements must be entered as a verified fact before use."}
+  ]
+}

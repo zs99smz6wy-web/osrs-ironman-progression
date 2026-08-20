@@ -1,0 +1,90 @@
+{
+  "records": [
+    {
+      "id": "fairy-rings",
+      "name": "Fairy rings",
+      "category": "transport",
+      "status": "verified",
+      "verified_at": "2026-08-20",
+      "requirements": {
+        "quests": ["The Restless Ghost", "Priest in Peril", "Nature Spirit", "Lost City", "Fairytale I - Growing Pains"],
+        "partial_quest": "Fairytale II - Cure a Queen: permission from the Fairy Godfather",
+        "item": "Dramen staff or Lunar staff until the elite Lumbridge & Draynor Diary removes the staff requirement"
+      },
+      "outputs": ["worldwide transport network", "access support for remote content and diary tasks"],
+      "source_ids": ["wiki-fairytale-ii"],
+      "confidence": "high"
+    },
+    {
+      "id": "wintertodt-reward-cart",
+      "name": "Wintertodt reward cart",
+      "category": "activity",
+      "status": "verified",
+      "verified_at": "2026-08-20",
+      "requirements": {"skills": {"Firemaking": 50}, "minimum_points_per_round": 500},
+      "outputs": ["Firemaking experience", "supply rolls", "unique rolls"],
+      "mechanics": {
+        "material_quality": "Material quality scales with the associated individual skill: Herblore, Mining, Fishing, Crafting, Farming, or Woodcutting.",
+        "deferred_opening": "Reward carts may be opened after raising those skills."
+      },
+      "source_ids": ["wiki-wintertodt", "wiki-reward-cart"],
+      "confidence": "high"
+    },
+    {
+      "id": "hunter-rumours",
+      "name": "Hunters' Rumours",
+      "category": "activity",
+      "status": "verified",
+      "verified_at": "2026-08-20",
+      "requirements": {"access_quest": "Children of the Sun", "tiers": {"novice": 46, "adept": 57, "expert": 72, "master": 91}},
+      "outputs": ["Hunter experience", "tiered hunters' loot sacks", "rare creature parts and guild rewards"],
+      "notes": "At First Light and its prerequisites are relevant to Master rumours; tier thresholds are factual access gates, not route timing recommendations.",
+      "source_ids": ["wiki-hunter-rumours"],
+      "confidence": "medium"
+    },
+    {
+      "id": "auto-weed",
+      "name": "Auto-weed",
+      "category": "reward",
+      "status": "verified",
+      "verified_at": "2026-08-20",
+      "requirements": {"activity": "Tithe Farm", "points": 50},
+      "outputs": ["permanent toggleable removal of weeds from farming patches"],
+      "source_ids": ["wiki-tithe-rewards"],
+      "confidence": "high"
+    },
+    {
+      "id": "raiments-of-the-eye",
+      "name": "Raiments of the Eye",
+      "category": "reward",
+      "status": "verified",
+      "verified_at": "2026-08-20",
+      "requirements": {"activity": "Guardians of the Rift", "abyssal_pearls_total": 1350},
+      "outputs": ["10% more runes per worn piece while Runecrafting", "additional 20% full-set bonus", "60% maximum rune bonus"],
+      "source_ids": ["wiki-gotr"],
+      "confidence": "high"
+    },
+    {
+      "id": "mta-rune-pouch",
+      "name": "Rune pouch from Mage Training Arena",
+      "category": "reward",
+      "status": "verified",
+      "verified_at": "2026-08-20",
+      "requirements": {"telekinetic_pizazz": 150, "graveyard_pizazz": 150, "enchantment_pizazz": 1500, "alchemist_pizazz": 200, "ownership_condition": "only if the player does not already own a rune pouch"},
+      "outputs": ["Rune pouch"],
+      "source_ids": ["wiki-mta"],
+      "confidence": "high"
+    },
+    {
+      "id": "wyrmscraig",
+      "name": "Wyrmscraig",
+      "category": "sailing",
+      "status": "needs_revalidation",
+      "verified_at": "2026-08-20",
+      "outputs": ["new Sailing island content"],
+      "notes": "Official homepage confirms the 29 July 2026 launch. Exact requirements, rewards, transport effects, and Ironman utility remain a dedicated validation queue before entering route logic.",
+      "source_ids": ["official-wyrmscraig-launch"],
+      "confidence": "low"
+    }
+  ]
+}
