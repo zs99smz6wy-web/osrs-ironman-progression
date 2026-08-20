@@ -18,6 +18,8 @@
     {"from": "activity:sailing-bounties", "to": "activity:sailing", "type": "produces", "evidence": "Bounty tasks provide Sailing experience and coins."},
     {"from": "activity:vale-totems", "to": "goal:fletching-knife", "type": "unlocks", "evidence": "Vale Totems provides Vale Research Points and a random-reward acquisition path."},
     {"from": "goal:fletching-knife", "to": "activity:vale-totems", "type": "improves", "evidence": "The Fletching Knife affects Vale Totems and other supported repeated Fletching actions."},
-    {"from": "goal:barrows-gloves", "to": "goal:perilous-moons", "type": "improves", "evidence": "All-style offensive bonuses can improve account combat capability; readiness remains account-specific."}
+    {"from": "goal:barrows-gloves", "to": "goal:perilous-moons", "type": "improves", "evidence": "All-style offensive bonuses can improve account combat capability; readiness remains account-specific."},
+    {"from": "activity:motherlode-mine", "to": "goal:coal-bag", "type": "unlocks", "evidence": "The coal bag is a 100-golden-nugget Motherlode reward."},
+    {"from": "activity:motherlode-mine", "to": "goal:gem-bag", "type": "unlocks", "evidence": "The gem bag is a 100-golden-nugget Motherlode reward."}
   ]
 }

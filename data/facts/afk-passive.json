@@ -1,0 +1,44 @@
+{
+  "records": [
+    {
+      "id": "birdhouse-loop",
+      "name": "Birdhouse run",
+      "category": "afk",
+      "status": "verified",
+      "verified_at": "2026-08-20",
+      "requirements": {"access": "Fossil Island", "initial_setup": ["four birdhouses or logs and four clockworks", "hammer", "chisel", "seeds"], "ironman_clockwork": {"Construction": 25}},
+      "outputs": ["Hunter experience", "Crafting experience", "bird nests", "seeds", "raw bird meat", "feathers"],
+      "afk_profile": {"attention": "low_attention", "maturation_minutes": 50, "active_run_seconds_approx": 70, "player_present": true, "death_risk": "low with prepared route"},
+      "mechanics": {"sites": 4, "clockwork": "Clockwork is returned when a birdhouse is dismantled.", "seed_consumption": "Rewards are available once seeds are fully depleted."},
+      "source_ids": ["wiki-birdhouses"],
+      "confidence": "high"
+    },
+    {
+      "id": "tears-of-guthix",
+      "name": "Tears of Guthix",
+      "category": "afk",
+      "status": "verified",
+      "verified_at": "2026-08-20",
+      "requirements": {"quest": "Tears of Guthix", "reentry": "100,000 total experience or one quest point since the prior play, except the first play"},
+      "outputs": ["experience in the lowest eligible skill"],
+      "afk_profile": {"attention": "active", "recurrence": "once per seven full days", "player_present": true, "death_risk": "none"},
+      "mechanics": {"excluded_skills": "Skills whose training unlock requirements are not met are excluded; Sailing is eligible after Pandemonium."},
+      "source_ids": ["wiki-tears"],
+      "confidence": "high"
+    },
+    {
+      "id": "motherlode-mine",
+      "name": "Motherlode Mine",
+      "category": "afk",
+      "status": "verified",
+      "verified_at": "2026-08-20",
+      "requirements": {"skills": {"Mining": 30}},
+      "outputs": ["Mining experience", "ores", "golden nuggets", "coal bag", "gem bag", "Prospector equipment"],
+      "afk_profile": {"attention": "low_attention", "player_present": true, "death_risk": "none"},
+      "rewards": {"upper_level": 100, "super_hopper": 50, "coal_bag": 100, "gem_bag": 100, "prospector_helmet": 40},
+      "mechanics": {"upper_level_requirement": {"Mining": 57}, "diary": "The Falador Hard Diary requires only the Prospector helmet."},
+      "source_ids": ["wiki-motherlode"],
+      "confidence": "high"
+    }
+  ]
+}

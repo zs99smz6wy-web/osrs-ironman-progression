@@ -44,9 +44,14 @@ def main() -> int:
                 if source_id not in sources:
                     errors.append(f"{path.name}:{record['id']} references unknown source {source_id}")
 
+    edge_signatures: set[tuple[str, str, str]] = set()
     for edge in load_json(GRAPH_DIR / "edges.json")["edges"]:
         if edge["from"] not in node_ids or edge["to"] not in node_ids:
             errors.append(f"graph edge has unknown endpoint: {edge}")
+        signature = (edge["from"], edge["to"], edge["type"])
+        if signature in edge_signatures:
+            errors.append(f"duplicate graph edge: {signature}")
+        edge_signatures.add(signature)
 
     if errors:
         print("Validation failed:")

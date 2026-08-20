@@ -27,6 +27,10 @@
     {"id": "goal:fletching-knife", "kind": "reward", "label": "Fletching Knife"},
     {"id": "goal:bones-to-peaches", "kind": "reward", "label": "Bones to Peaches"},
     {"id": "goal:barrows-gloves", "kind": "reward", "label": "Barrows gloves"},
-    {"id": "activity:vale-totems", "kind": "activity", "label": "Vale Totems"}
+    {"id": "activity:vale-totems", "kind": "activity", "label": "Vale Totems"},
+    {"id": "activity:motherlode-mine", "kind": "activity", "label": "Motherlode Mine"},
+    {"id": "state:tears-eligible", "kind": "passive_loop", "label": "Tears of Guthix eligible"},
+    {"id": "goal:coal-bag", "kind": "reward", "label": "Coal bag"},
+    {"id": "goal:gem-bag", "kind": "reward", "label": "Gem bag"}
   ]
 }
