@@ -6,5 +6,6 @@
   "resources": {"coins": 0, "law_runes": 0, "nature_runes": 0, "cosmic_runes": 0},
   "passive_loops": {"farming": false, "birdhouses": false, "seaweed": false, "kingdom": false, "tears_of_guthix": false},
   "attention_window": {"duration_minutes": 30, "mode": "low_attention", "player_present": true},
-  "notable_drops": []
+  "notable_drops": [],
+  "cash_commitments": []
 }

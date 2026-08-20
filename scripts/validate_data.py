@@ -14,6 +14,16 @@ GRAPH_DIR = ROOT / "graph"
 REQUIRED_FACT_KEYS = {"id", "name", "category", "status", "verified_at", "source_ids"}
 VALID_CATEGORIES = {"quest", "transport", "activity", "minigame", "reward", "sailing", "afk", "bypass", "economy"}
 VALID_STATUSES = {"verified", "needs_revalidation", "research_queue"}
+REQUIRED_ACCOUNT_STATE_KEYS = {
+    "skills",
+    "quests_completed",
+    "transport_flags",
+    "gear_thresholds",
+    "resources",
+    "passive_loops",
+    "attention_window",
+    "notable_drops",
+}
 
 
 def load_json(path: Path) -> dict:
@@ -25,6 +35,16 @@ def main() -> int:
     errors: list[str] = []
     sources = {source["id"] for source in load_json(RESEARCH_DIR / "sources.json")["sources"]}
     node_ids = {node["id"] for node in load_json(GRAPH_DIR / "nodes.json")["nodes"]}
+    account_state = load_json(GRAPH_DIR / "account-state.example.json")
+
+    missing_state_keys = REQUIRED_ACCOUNT_STATE_KEYS - account_state.keys()
+    if missing_state_keys:
+        errors.append(f"account-state.example.json missing {sorted(missing_state_keys)}")
+    attention = account_state.get("attention_window", {})
+    if not isinstance(attention.get("duration_minutes"), int) or attention.get("duration_minutes", 0) < 1:
+        errors.append("account-state.example.json has invalid attention duration")
+    if attention.get("mode") not in {"true_afk", "low_attention", "semi_afk", "active"}:
+        errors.append("account-state.example.json has invalid attention mode")
 
     for path in sorted(FACTS_DIR.glob("*.json")):
         for record in load_json(path).get("records", []):

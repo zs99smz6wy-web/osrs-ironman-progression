@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "OSRS Ironman account state",
+  "type": "object",
+  "required": ["skills", "quests_completed", "transport_flags", "gear_thresholds", "resources", "passive_loops", "attention_window", "notable_drops"],
+  "properties": {
+    "skills": {
+      "type": "object",
+      "additionalProperties": {"type": "integer", "minimum": 1, "maximum": 99}
+    },
+    "quests_completed": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "transport_flags": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "gear_thresholds": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "resources": {
+      "type": "object",
+      "additionalProperties": {"type": "integer", "minimum": 0}
+    },
+    "passive_loops": {
+      "type": "object",
+      "additionalProperties": {"type": "boolean"}
+    },
+    "attention_window": {
+      "type": "object",
+      "required": ["duration_minutes", "mode", "player_present"],
+      "properties": {
+        "duration_minutes": {"type": "integer", "minimum": 1},
+        "mode": {"type": "string", "enum": ["true_afk", "low_attention", "semi_afk", "active"]},
+        "player_present": {"type": "boolean"}
+      }
+    },
+    "notable_drops": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "cash_commitments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["purpose", "coins", "deadline"],
+        "properties": {
+          "purpose": {"type": "string"},
+          "coins": {"type": "integer", "minimum": 0},
+          "deadline": {"type": "string", "enum": ["now", "next_goal", "near_term", "later"]}
+        }
+      }
+    }
+  },
+  "additionalProperties": false
+}
