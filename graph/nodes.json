@@ -37,6 +37,8 @@
     {"id": "state:farming-contracts", "kind": "passive_loop", "label": "Farming contracts available"},
     {"id": "activity:hespori", "kind": "activity", "label": "Hespori"},
     {"id": "goal:herb-sack", "kind": "reward", "label": "Herb Sack"},
-    {"id": "goal:bottomless-compost-bucket", "kind": "reward", "label": "Bottomless compost bucket"}
+    {"id": "goal:bottomless-compost-bucket", "kind": "reward", "label": "Bottomless compost bucket"},
+    {"id":"goal:piety","kind":"reward","label":"Piety"},
+    {"id":"goal:dragon-defender","kind":"reward","label":"Dragon defender"}
   ]
 }
