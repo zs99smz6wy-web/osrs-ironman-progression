@@ -15,6 +15,10 @@
     {"id": "goal:fish-barrel", "kind": "reward", "label": "Fish Barrel"},
     {"id": "goal:belles-folly", "kind": "item", "label": "Belle's Folly"},
     {"id": "state:kingdom", "kind": "passive_loop", "label": "Managing Miscellania active"},
-    {"id": "state:seaweed-loop", "kind": "passive_loop", "label": "Giant seaweed loop available"}
+    {"id": "state:seaweed-loop", "kind": "passive_loop", "label": "Giant seaweed loop available"},
+    {"id": "state:spirit-trees", "kind": "account_flag", "label": "Spirit trees usable"},
+    {"id": "state:varlamore", "kind": "account_flag", "label": "Varlamore accessible"},
+    {"id": "activity:agility-pyramid", "kind": "activity", "label": "Agility Pyramid"},
+    {"id": "activity:wealthy-citizens", "kind": "activity", "label": "Wealthy Varlamorians"}
   ]
 }

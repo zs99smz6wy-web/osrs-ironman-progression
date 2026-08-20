@@ -8,6 +8,10 @@
     {"from": "item:rune-axe", "to": "activity:sailing", "type": "bypass", "evidence": "Category example: a drop can replace a conventional acquisition path. Exact source and requirements must be entered as a verified fact before use."},
     {"from": "state:fossil-island", "to": "state:seaweed-loop", "type": "unlocks", "evidence": "Fossil Island access enables the underwater seaweed patches."},
     {"from": "activity:sailing", "to": "goal:belles-folly", "type": "alternative", "evidence": "Sailing and quest access are part of Shellbane Gryphon access; this is not an assumed farm target."},
-    {"from": "goal:belles-folly", "to": "goal:perilous-moons", "type": "improves", "evidence": "A realised one-handed stab weapon can affect combat capability; readiness remains account-specific."}
+    {"from": "goal:belles-folly", "to": "goal:perilous-moons", "type": "improves", "evidence": "A realised one-handed stab weapon can affect combat capability; readiness remains account-specific."},
+    {"from": "state:spirit-trees", "to": "state:fairy-rings", "type": "improves", "evidence": "Transport networks combine to reduce movement cost; neither is a hard requirement for the other."},
+    {"from": "state:varlamore", "to": "goal:hunters-rumours", "type": "unlocks", "evidence": "Varlamore access is needed for the Hunters' Guild."},
+    {"from": "activity:agility-pyramid", "to": "goal:mta-rune-pouch", "type": "alternative", "evidence": "A GP-producing activity can finance rune and shop needs without prescribing a universal cash grind."},
+    {"from": "activity:wealthy-citizens", "to": "state:kingdom", "type": "alternative", "evidence": "Candidate cash pipeline for Kingdom funding; current yield validation remains pending."}
   ]
 }

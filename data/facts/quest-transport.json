@@ -1,0 +1,83 @@
+{
+  "records": [
+    {
+      "id": "waterfall-quest",
+      "name": "Waterfall Quest",
+      "category": "quest",
+      "status": "verified",
+      "verified_at": "2026-08-20",
+      "requirements": {"skill_requirements": "None", "level_three_completion": true},
+      "rewards": {"Attack_xp": 13750, "Strength_xp": 13750, "diamonds": 2, "gold_bars": 2, "mithril_seeds": 40},
+      "source_ids": ["wiki-waterfall-quest"],
+      "confidence": "high"
+    },
+    {
+      "id": "tree-gnome-village",
+      "name": "Tree Gnome Village",
+      "category": "quest",
+      "status": "verified",
+      "verified_at": "2026-08-20",
+      "rewards": {"Attack_xp": 11450, "transport": "Use of spirit trees"},
+      "source_ids": ["wiki-tree-gnome-village"],
+      "confidence": "high"
+    },
+    {
+      "id": "grand-tree",
+      "name": "The Grand Tree",
+      "category": "quest",
+      "status": "verified",
+      "verified_at": "2026-08-20",
+      "requirements": {"skills": {"Agility": 25}},
+      "rewards": {"Attack_xp": 18400, "Agility_xp": 7900, "Magic_xp": 2150, "transport": "Gnome glider system"},
+      "source_ids": ["wiki-grand-tree"],
+      "confidence": "high"
+    },
+    {
+      "id": "children-of-the-sun",
+      "name": "Children of the Sun",
+      "category": "quest",
+      "status": "verified",
+      "verified_at": "2026-08-20",
+      "requirements": {"skill_requirements": "None", "items_required": "None", "enemies": "None"},
+      "rewards": {"transport": ["Varlamore access", "Quetzal Transport System", "Varlamore fairy rings"]},
+      "source_ids": ["wiki-children-sun"],
+      "confidence": "high"
+    },
+    {
+      "id": "poh-relocation",
+      "name": "Player-owned house relocation",
+      "category": "transport",
+      "status": "verified",
+      "verified_at": "2026-08-20",
+      "requirements": {"initial_house": {"Construction": 1, "coins": 5000}, "teleport_to_house_spell": {"Magic": 40}},
+      "locations": {"Rimmington": {"Construction": 1, "coins": 5000}, "Taverley": {"Construction": 10, "coins": 5000}, "Pollnivneach": {"Construction": 20, "coins": 7500}, "Hosidius": {"Construction": 25, "coins": 8750}, "Rellekka": {"Construction": 30, "coins": 10000}, "Aldarin": {"Construction": 35, "coins": 12500}},
+      "source_ids": ["wiki-house-portal"],
+      "confidence": "high"
+    },
+    {
+      "id": "agility-pyramid",
+      "name": "Agility Pyramid",
+      "category": "economy",
+      "status": "verified",
+      "verified_at": "2026-08-20",
+      "requirements": {"skills": {"Agility": 30, "Magic": 20}, "recommended_agility": 60, "supplies": ["waterskins or desert amulet 4", "food"]},
+      "outputs": {"pyramid_top_value": 10000, "Agility_xp": "per lap; rate depends on success and routing"},
+      "mechanics": {"failure": "Obstacle failures are possible below 75 Agility and can deal damage.", "guaranteed_success": "At 75 Agility, obstacles cannot fail."},
+      "source_ids": ["wiki-agility-pyramid"],
+      "confidence": "high"
+    },
+    {
+      "id": "varlamore-wealthy-citizens",
+      "name": "Wealthy Varlamorians",
+      "category": "economy",
+      "status": "needs_revalidation",
+      "verified_at": "2026-08-20",
+      "requirements": {"quest": "Children of the Sun", "skills": {"Thieving": 50}},
+      "outputs": ["coin pouches", "house keys", "occasional blessed bone statuettes"],
+      "mechanics": {"distraction": "A distracted citizen can be auto-pickpocketed with 100% success."},
+      "notes": "Exact GP, XP, attention rating, and expected key value need a current dedicated validation before scoring.",
+      "source_ids": ["wiki-ironman-thieving"],
+      "confidence": "medium"
+    }
+  ]
+}
