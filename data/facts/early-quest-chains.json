@@ -1,0 +1,117 @@
+{
+  "records": [
+    {
+      "id": "the-restless-ghost",
+      "name": "The Restless Ghost",
+      "category": "quest",
+      "status": "verified",
+      "verified_at": "2026-08-20",
+      "requirements": {"skills": {}, "items_supplied_by_player": {}, "hazard": "A level 13 skeleton may be killed or avoided."},
+      "rewards": {"quest_points": 1, "Prayer_xp": 1125, "items": ["Ghostspeak amulet"]},
+      "outputs": ["The Restless Ghost completion", "Ghostspeak amulet for later ghost-related content"],
+      "source_ids": ["wiki-restless-ghost"],
+      "confidence": "high"
+    },
+    {
+      "id": "priest-in-peril",
+      "name": "Priest in Peril",
+      "category": "quest",
+      "status": "verified",
+      "verified_at": "2026-08-20",
+      "requirements": {"skills": {}, "items": {"unnoted_rune_or_pure_essence": 50, "bucket": 1}, "enemies": ["Temple guardian dog (level 30)", "Monk of Zamorak (level 30)"]},
+      "rewards": {"quest_points": 1, "Prayer_xp": 1406, "items": ["Wolfbane"], "kudos_claimable": 5},
+      "outputs": ["Route to Canifis and Morytania", "Priest in Peril completion"],
+      "mechanics": {"essence": "The 50 essence are handed over and are not a permanent requirement.", "combat": "The guardian is immune to Magic; both required enemies can be safespotted or flinched."},
+      "source_ids": ["wiki-priest-peril"],
+      "confidence": "high"
+    },
+    {
+      "id": "nature-spirit",
+      "name": "Nature Spirit",
+      "category": "quest",
+      "status": "verified",
+      "verified_at": "2026-08-20",
+      "requirements": {"quests": ["The Restless Ghost", "Priest in Peril"], "formal_skills": {}, "items": ["Ghostspeak amulet", "Silver sickle"], "enemies": ["Three ghasts (level 30)"]},
+      "rewards": {"quest_points": 2, "Crafting_xp": 3000, "Defence_xp": 2000, "Hitpoints_xp": 2000, "items": ["Silver sickle (b)", "Druid pouch"]},
+      "outputs": ["Mort Myre progression", "Nature altar access", "ability to interact with ghasts"],
+      "notes": "Self-making a silver sickle normally requires 18 Crafting, a silver bar, and a sickle mould, but 18 Crafting is not a formal quest requirement and must not be encoded as an unconditional hard gate.",
+      "source_ids": ["wiki-nature-spirit"],
+      "confidence": "high"
+    },
+    {
+      "id": "lost-city",
+      "name": "Lost City",
+      "category": "quest",
+      "status": "verified",
+      "verified_at": "2026-08-20",
+      "requirements": {"skills": {"Crafting": 31, "Woodcutting": 36}, "items": ["Axe before Entrana", "Knife"], "enemy": "Tree Spirit (level 101)"},
+      "rewards": {"quest_points": 3, "items": ["Self-made Dramen staff"]},
+      "outputs": ["Zanaris access", "Cosmic altar access", "permission to wield dragon daggers and dragon longswords"],
+      "mechanics": {"entrana": "Weapons and armour cannot be brought to Entrana; an axe can be obtained there from zombies.", "dramen_staff": "A Dramen branch is cut and converted with a knife at 31 Crafting. The untradeable staff is retained and supports later fairy-ring use."},
+      "source_ids": ["wiki-lost-city", "wiki-dramen-staff"],
+      "confidence": "high"
+    },
+    {
+      "id": "fairytale-i-growing-pains",
+      "name": "Fairytale I - Growing Pains",
+      "category": "quest",
+      "status": "verified",
+      "verified_at": "2026-08-20",
+      "requirements": {"quests": ["Lost City", "Nature Spirit"], "formal_skills": {}, "items": ["Secateurs", "Spade", "Ghostspeak amulet", "Dramen staff", "Draynor skull", "Three account-specific materials"], "enemy": "Tanglefoot (level 111), damaged only with Magic secateurs"},
+      "rewards": {"quest_points": 2, "Farming_xp": 3500, "Attack_xp": 2000, "Magic_xp": 1000, "items": ["Magic secateurs"]},
+      "outputs": ["Fairytale II access", "permanent Magic secateurs utility"],
+      "mechanics": {"random_materials": "The quest assigns one contiguous group of three materials from an ordered pool. Inputs vary by account and are consumed when the secateurs are blessed.", "combat": "The Tanglefoot can be flinched; Strength and Farming affect damage but are not formal requirements."},
+      "source_ids": ["wiki-fairytale-i"],
+      "confidence": "high"
+    },
+    {
+      "id": "the-dig-site",
+      "name": "The Dig Site",
+      "category": "quest",
+      "status": "verified",
+      "verified_at": "2026-08-20",
+      "requirements": {"skills": {"Agility": 10, "Herblore": 10, "Thieving": 25}, "items": ["Vial", "Pestle and mortar", "Tinderbox", "Cup of tea", "Two ropes", "Cut or uncut opal", "Charcoal"]},
+      "rewards": {"quest_points": 2, "Mining_xp": 15300, "Herblore_xp": 2000, "items": ["Two gold bars"]},
+      "outputs": ["Museum specimen-cleaning access", "Digsite pendant progression", "Bone Voyage prerequisite"],
+      "notes": "Druidic Ritual is normally needed to unlock Herblore training but is not itself a listed quest prerequisite if the account already has the required Herblore level.",
+      "source_ids": ["wiki-dig-site"],
+      "confidence": "high"
+    },
+    {
+      "id": "museum-kudos-100",
+      "name": "Reach 100 Museum Kudos",
+      "category": "reward",
+      "status": "verified",
+      "verified_at": "2026-08-20",
+      "requirements": {"counter": {"kudos": 100}, "bone_voyage_path": "The Dig Site must also be complete."},
+      "outputs": ["Bone Voyage access threshold"],
+      "mechanics": {"permanence": "Kudos can only be acquired and are never spent.", "pre_fossil_sources": {"natural_history_quiz": 28, "museum_cleaning_displays": 50, "historian_minas_quest_displays_max": 80}},
+      "source_ids": ["wiki-kudos"],
+      "confidence": "high"
+    },
+    {
+      "id": "bone-voyage",
+      "name": "Bone Voyage",
+      "category": "quest",
+      "status": "verified",
+      "verified_at": "2026-08-20",
+      "requirements": {"quest": "The Dig Site", "counter": {"kudos": 100}, "items_consumed": {"vodka": 2, "unfinished_marrentill_potion": 1}},
+      "rewards": {"quest_points": 1, "kudos": 5, "choice_lamp": {"xp": 1000, "minimum_skill_level": 20}, "items": ["Fossil Island notebook"]},
+      "outputs": ["Fossil Island access", "Digsite barge transport"],
+      "source_ids": ["wiki-bone-voyage", "wiki-fossil-island"],
+      "confidence": "high"
+    },
+    {
+      "id": "ironman-clockwork-setup",
+      "name": "Self-made clockwork setup",
+      "category": "activity",
+      "status": "verified",
+      "verified_at": "2026-08-20",
+      "requirements": {"skills": {"Crafting": 8, "Construction": 25}, "facility": "Crafting table 2 in the player-owned house workshop", "table_inputs": {"oak_plank": 4, "molten_glass": 1}, "per_clockwork_input": {"steel_bar": 1}},
+      "outputs": ["Reusable clockworks for birdhouses"],
+      "mechanics": {"birdhouses": "Four clockworks are needed for a four-plot cycle and are returned when completed birdhouses are collected."},
+      "source_ids": ["wiki-clockmaking-space", "wiki-birdhouses"],
+      "confidence": "high"
+    }
+  ]
+}

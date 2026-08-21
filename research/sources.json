@@ -51,6 +51,17 @@
     {"id":"wiki-xerics-talisman","publisher":"Old School RuneScape Wiki","url":"https://oldschool.runescape.wiki/w/Xeric%27s_talisman","kind":"wiki","checked_at":"2026-08-20","use":"Talisman acquisition and diary drop-rate effect"},
     {"id":"wiki-kings-ransom","publisher":"Old School RuneScape Wiki","url":"https://oldschool.runescape.wiki/w/King%27s_Ransom","kind":"wiki","checked_at":"2026-08-20","use":"Piety unlock requirements"},
     {"id":"wiki-dragon-defender","publisher":"Old School RuneScape Wiki","url":"https://oldschool.runescape.wiki/w/Dragon_defender","kind":"wiki","checked_at":"2026-08-20","use":"Dragon Defender acquisition"},
-    {"id":"wiki-warriors-guild","publisher":"Old School RuneScape Wiki","url":"https://oldschool.runescape.wiki/w/Warriors%27_Guild","kind":"wiki","checked_at":"2026-08-20","use":"Defender chain and token mechanics"}
+    {"id":"wiki-warriors-guild","publisher":"Old School RuneScape Wiki","url":"https://oldschool.runescape.wiki/w/Warriors%27_Guild","kind":"wiki","checked_at":"2026-08-20","use":"Defender chain and token mechanics"},
+    {"id":"wiki-restless-ghost","publisher":"Old School RuneScape Wiki","url":"https://oldschool.runescape.wiki/w/The_Restless_Ghost","kind":"wiki","checked_at":"2026-08-20","use":"Restless Ghost requirements, hazards, and Prayer reward"},
+    {"id":"wiki-priest-peril","publisher":"Old School RuneScape Wiki","url":"https://oldschool.runescape.wiki/w/Priest_in_Peril","kind":"wiki","checked_at":"2026-08-20","use":"Priest in Peril essence requirement, combat, rewards, and Morytania access"},
+    {"id":"wiki-nature-spirit","publisher":"Old School RuneScape Wiki","url":"https://oldschool.runescape.wiki/w/Nature_Spirit","kind":"wiki","checked_at":"2026-08-20","use":"Nature Spirit prerequisites, items, combat, XP, and Mort Myre outputs"},
+    {"id":"wiki-lost-city","publisher":"Old School RuneScape Wiki","url":"https://oldschool.runescape.wiki/w/Lost_City","kind":"wiki","checked_at":"2026-08-20","use":"Lost City skill gates, Entrana constraints, and Zanaris unlock"},
+    {"id":"wiki-dramen-staff","publisher":"Old School RuneScape Wiki","url":"https://oldschool.runescape.wiki/w/Dramen_staff","kind":"wiki","checked_at":"2026-08-20","use":"Dramen staff creation, Zanaris access, and fairy-ring equipment rule"},
+    {"id":"wiki-fairytale-i","publisher":"Old School RuneScape Wiki","url":"https://oldschool.runescape.wiki/w/Fairytale_I_-_Growing_Pains","kind":"wiki","checked_at":"2026-08-20","use":"Fairytale I prerequisites, variable materials, combat, XP, and Magic secateurs"},
+    {"id":"wiki-fairy-rings","publisher":"Old School RuneScape Wiki","url":"https://oldschool.runescape.wiki/w/Fairy_rings","kind":"wiki","checked_at":"2026-08-20","use":"Fairy-ring permission and conditional staff usability"},
+    {"id":"wiki-dig-site","publisher":"Old School RuneScape Wiki","url":"https://oldschool.runescape.wiki/w/The_Dig_Site","kind":"wiki","checked_at":"2026-08-20","use":"Dig Site skills, items, rewards, and museum progression"},
+    {"id":"wiki-kudos","publisher":"Old School RuneScape Wiki","url":"https://oldschool.runescape.wiki/w/Kudos","kind":"wiki","checked_at":"2026-08-20","use":"Permanent Kudos counter, sources, thresholds, and Bone Voyage access"},
+    {"id":"wiki-bone-voyage","publisher":"Old School RuneScape Wiki","url":"https://oldschool.runescape.wiki/w/Bone_Voyage","kind":"wiki","checked_at":"2026-08-20","use":"Bone Voyage requirements, consumed items, rewards, and Fossil Island unlock"},
+    {"id":"wiki-clockmaking-space","publisher":"Old School RuneScape Wiki","url":"https://oldschool.runescape.wiki/w/Clockmaking_space","kind":"wiki","checked_at":"2026-08-20","use":"Clockwork Crafting and Construction requirements"}
   ]
 }

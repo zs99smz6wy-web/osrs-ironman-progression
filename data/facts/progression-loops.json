@@ -6,7 +6,7 @@
       "category": "transport",
       "status": "verified",
       "verified_at": "2026-08-20",
-      "requirements": {"quest": "Bone Voyage", "quest_prerequisites": ["The Dig Site", "100 Kudos"]},
+      "requirements": {"quest": "Bone Voyage", "quest_prerequisites": ["The Dig Site", "100 Kudos"], "bone_voyage_consumed_items": {"vodka": 2, "unfinished_marrentill_potion": 1}},
       "outputs": ["Fossil Island", "birdhouse trapping", "underwater seaweed patches", "additional transport and skilling content"],
       "source_ids": ["wiki-fossil-island"],
       "confidence": "high"
