@@ -1,0 +1,286 @@
+{
+  "records": [
+    {
+      "id": "plague-city-ardougne-teleport-chain",
+      "name": "Plague City and Ardougne Teleport",
+      "category": "transport",
+      "status": "verified",
+      "verified_at": "2026-08-21",
+      "scope": "Factual quest, item, combat, reward, and spell-unlock record only. It does not assess the value of Ardougne access, rank teleports, or recommend route timing.",
+      "membership": true,
+      "quest_chain": [
+        {
+          "quest": "Plague City",
+          "hard_quest_prerequisites": [],
+          "hard_skill_gates": [],
+          "skill_gate_note": "Plague City has no listed skill requirement to start or complete.",
+          "required_combat": {
+            "enemies_required_to_defeat": [],
+            "fact": "No enemy defeat is listed as a completion requirement."
+          },
+          "player_supplied_inputs": {
+            "consumed_or_transformed": [
+              {
+                "item": "Dwellberries",
+                "quantity": "The current quest source lists dwellberries without a quantity; they are given to Alrena for the gas-mask step.",
+                "use": "Quest progression"
+              },
+              {
+                "item": "Hangover cure",
+                "quantity": 1,
+                "use": "Given to Bravek for quest progression",
+                "alternative_ingredients": ["Bucket of milk", "Chocolate dust", "Snape grass"]
+              },
+              {
+                "item": "Water",
+                "quantity": "4 uses",
+                "use": "Edmond's tunnel-digging step",
+                "supply_note": "The source lists one to four buckets of water because a water source and bucket spawn are nearby."
+              }
+            ],
+            "tools_or_reusable_items": [
+              {"item": "Rope", "use": "Tunnel access"},
+              {"item": "Spade", "use": "Tunnel-digging step"},
+              {"item": "Knife or pestle and mortar", "use": "Make chocolate dust when supplying hangover-cure ingredients"}
+            ],
+            "quest_supplied": ["Picture of Elena"],
+            "stability_note": "This record includes stable listed quest inputs only; travel aids and convenience supplies are intentionally omitted."
+          },
+          "fixed_outcomes": {
+            "quest_points": 1,
+            "experience": {"Mining": 2425},
+            "items": ["Gas mask", "Ardougne teleport scroll"],
+            "unlocks": ["West Ardougne access", "Eligibility to use Ardougne teleport tablets"]
+          },
+          "scroll_transition": {
+            "input": "Ardougne teleport scroll",
+            "action": "Read",
+            "no_magic_level_required_to_read": true,
+            "permanent_unlock": "Ardougne Teleport on the standard spellbook",
+            "item_result": "The scroll is consumed and converts to ashes when read.",
+            "tablet_distinction": "Completion of Plague City, rather than reading the scroll, is sufficient to use an Ardougne teleport tablet."
+          }
+        }
+      ],
+      "spell_transport": {
+        "spell": "Ardougne Teleport",
+        "spellbook": "Standard",
+        "destination": "East Ardougne market",
+        "hard_use_requirements": {
+          "quest": "Plague City completed",
+          "spell_unlock": "Read the Ardougne teleport scroll",
+          "Magic": 51
+        },
+        "magic_level_boostability": "Boostable for spell casting. This is a cast-time Magic requirement, not a quest-start or quest-completion requirement.",
+        "per_cast": {
+          "runes": {"Law rune": 2, "Water rune": 2},
+          "Magic_experience": 61
+        },
+        "recurring_cost_note": "The spell is a repeatable rune-consuming transport action, not a no-input permanent teleport."
+      },
+      "source_ids": ["wiki-plague-city", "wiki-ardougne-teleport-scroll", "wiki-ardougne-teleport"],
+      "confidence": "high"
+    },
+    {
+      "id": "druidic-ritual-to-eadgars-ruse-trollheim-chain",
+      "name": "Druidic Ritual through Eadgar's Ruse and Trollheim Teleport",
+      "category": "transport",
+      "status": "verified",
+      "verified_at": "2026-08-21",
+      "scope": "Factual prerequisite chain, stable player inputs, mandatory combat, fixed outcomes, and Trollheim Teleport mechanics only. It does not assess combat readiness, select a mountain route, or recommend route timing.",
+      "membership": true,
+      "quest_chain": [
+        {
+          "quest": "Druidic Ritual",
+          "hard_quest_prerequisites": [],
+          "hard_skill_gates": [],
+          "skill_gate_note": "Druidic Ritual has no listed skill requirement to start or complete.",
+          "player_supplied_inputs": {
+            "consumed_or_transformed": [
+              {"item": "Raw bear meat", "quantity": 1},
+              {"item": "Raw rat meat", "quantity": 1},
+              {"item": "Raw beef", "quantity": 1},
+              {"item": "Raw chicken", "quantity": 1}
+            ],
+            "transition": "Each raw meat is enchanted at the Cauldron of Thunder and the four enchanted meats are given to Sanfew."
+          },
+          "required_combat": {
+            "enemies_required_to_defeat": [],
+            "conditional_encounter": "At the Taverley Dungeon gate, suits of armour can attack. The current quest source states that one level-19 suit attacks a player below combat level 55; no enemy defeat is listed as mandatory."
+          },
+          "fixed_outcomes": {
+            "quest_points": 4,
+            "experience": {"Herblore": 250},
+            "unlocks": ["Ability to use the Herblore skill"]
+          }
+        },
+        {
+          "quest": "Death Plateau",
+          "hard_quest_prerequisites": [],
+          "hard_skill_gates": [],
+          "skill_gate_note": "Death Plateau has no listed skill requirement to start or complete.",
+          "player_supplied_inputs": {
+            "consumed": [
+              {"item": "Asgarnian ale", "quantity": 1, "use": "Harold dialogue/progression step"},
+              {"item": "Iron bar", "quantity": 1, "use": "Dunstan's spiked-boots exchange"},
+              {"item": "Bread", "quantity": 10, "use": "Tenzing's route-information exchange"},
+              {"item": "Cooked trout", "quantity": 10, "use": "Tenzing's route-information exchange"}
+            ],
+            "quest_state_items": ["Tenzing's climbing boots", "Spiked boots", "Combination", "Certificate", "Secret way map"],
+            "currency_and_optional_inputs": {
+              "coins": "The current source lists 60+ coins during the Harold step; the exact amount can vary with the selected dialogue or drink route.",
+              "optional": ["Blurberry special or premade blurb' sp"]
+            },
+            "stability_note": "Climbing boots are obtained during the quest and exchanged into the quest's spiked-boots state; they are not modeled here as an externally supplied input."
+          },
+          "required_combat": {
+            "enemies_required_to_defeat": [],
+            "fact": "No enemy defeat is listed as a completion requirement."
+          },
+          "fixed_outcomes": {
+            "quest_points": 1,
+            "experience": {"Attack": 3000},
+            "items": ["Steel claws"],
+            "unlocks": ["Ability to make steel claws", "Ability to purchase and wear climbing boots from Tenzing", "Prerequisite state for Troll Stronghold"]
+          }
+        },
+        {
+          "quest": "Troll Stronghold",
+          "hard_quest_prerequisites": ["Death Plateau completed"],
+          "hard_skill_gates": [
+            {
+              "skill": "Agility",
+              "level": 15,
+              "boostable": true,
+              "start_requirement": false,
+              "use": "Mountain traversal during the quest"
+            }
+          ],
+          "player_supplied_inputs": {
+            "tools_or_reusable_items": [
+              {"item": "Climbing boots", "alternative": "12 coins to buy a pair from Tenzing", "use": "Mountain access"}
+            ],
+            "stability_note": "Food, armour, prayer, and ranged or Magic equipment are listed as recommendations rather than fixed hard item gates."
+          },
+          "required_combat": {
+            "mandatory_encounters": [
+              {"enemy": "Dad", "combat_level": 101, "source_note": "The quest lists Dad among enemies to defeat; he can be safespotted."},
+              {"enemy": "Troll General", "combat_level": 113, "source_note": "The formal requirements explicitly require the ability to defeat a level-113 Troll General; the enemy can be safespotted."}
+            ],
+            "conditional_encounter": "Twig and Berry, both level 71, can be pickpocketed with 30 Thieving (boostable). Players below that threshold or who fail the pickpocket can fight them instead; this is not a mandatory combat gate."
+          },
+          "fixed_outcomes": {
+            "quest_points": 1,
+            "items": ["Law talisman"],
+            "unlocks": ["Ability to craft law runes", "Trollheim and Troll Stronghold access", "God Wars Dungeon access", "Prerequisite state for Eadgar's Ruse"],
+            "replacement_rule": "A lost law talisman can be repurchased from Dunstan for 1,000 coins."
+          }
+        },
+        {
+          "quest": "Eadgar's Ruse",
+          "hard_quest_prerequisites": ["Druidic Ritual completed", "Troll Stronghold completed"],
+          "transitive_quest_prerequisites": ["Death Plateau completed through Troll Stronghold"],
+          "hard_skill_gates": [
+            {
+              "skill": "Herblore",
+              "level": 31,
+              "boostable": true,
+              "start_requirement": true,
+              "use": "Quest start and troll truth-potion creation"
+            }
+          ],
+          "player_supplied_inputs": {
+            "consumed_or_transformed": [
+              {"item": "Vodka", "quantity": 1, "use": "Alco-chunks preparation"},
+              {"item": "Pineapple chunks", "quantity": 1, "use": "Alco-chunks preparation"},
+              {"item": "Log", "quantity": 1, "use": "Cook troll thistle into dried thistle"},
+              {"item": "Raw chicken", "quantity": 5, "use": "Troll-cook progression step"},
+              {"item": "Ranarr potion (unf)", "quantity": 1, "use": "Troll truth-potion preparation"}
+            ],
+            "tools_or_reusable_items": [
+              {"item": "Climbing boots", "alternative": "12 coins to buy a pair from Tenzing", "use": "Mountain route"},
+              {"item": "Pestle and mortar", "use": "Grind dried troll thistle"}
+            ],
+            "quest_area_supplied_or_gathered": ["10 grain", "Troll thistle"],
+            "stability_note": "The source notes extra logs and a tinderbox as helpful travel/backup supplies. They are not additional hard item gates."
+          },
+          "required_combat": {
+            "enemies_required_to_defeat": [],
+            "fact": "No enemy defeat is listed as a completion requirement. Traversal can expose the player to mountain trolls and thrower trolls, but this does not create a stated kill requirement."
+          },
+          "fixed_outcomes": {
+            "quest_points": 1,
+            "experience": {"Herblore": 11000},
+            "items": ["Burnt meat"],
+            "unlocks": ["Ability to grow and steal goutweed", "Ability to trade goutweed to Sanfew for herbs", "Trollheim Teleport", "Ability to redirect a Teleport to House tablet to Trollheim with a scroll of redirection"]
+          }
+        }
+      ],
+      "spell_transport": {
+        "spell": "Trollheim Teleport",
+        "spellbook": "Standard",
+        "destination": "Top of Trollheim, outside Eadgar's cave",
+        "hard_use_requirements": {
+          "quest": "Eadgar's Ruse completed",
+          "Magic": 61
+        },
+        "magic_level_boostability": "Boostable for spell casting. This is a cast-time Magic requirement, not a quest-start or quest-completion requirement.",
+        "per_cast": {
+          "runes": {"Law rune": 2, "Fire rune": 2},
+          "Magic_experience": 68
+        },
+        "tablet_extension": {
+          "item": "Teleport to House tablet",
+          "additional_requirement": "Scroll of redirection",
+          "outcome": "The tablet can be redirected to Trollheim after Eadgar's Ruse.",
+          "cost_classification": "A redirected tablet remains a consumable teleport item."
+        },
+        "recurring_cost_note": "The spell is a repeatable rune-consuming transport action, not a no-input permanent teleport."
+      },
+      "source_ids": ["wiki-druidic-ritual", "wiki-death-plateau", "wiki-troll-stronghold", "wiki-eadgars-ruse", "wiki-trollheim-teleport"],
+      "confidence": "high for listed requirements and deterministic rewards; route traversal hazards and optional supplies are explicitly not treated as gates."
+    }
+  ],
+  "source_registry": [
+    {
+      "id": "wiki-plague-city",
+      "url": "https://oldschool.runescape.wiki/w/Plague_City",
+      "use": "Plague City requirements, listed quest items, mandatory combat, rewards, and unlocks."
+    },
+    {
+      "id": "wiki-ardougne-teleport-scroll",
+      "url": "https://oldschool.runescape.wiki/w/Ardougne_teleport_scroll",
+      "use": "Scroll-reading behavior and distinction from teleport-tablet use."
+    },
+    {
+      "id": "wiki-ardougne-teleport",
+      "url": "https://oldschool.runescape.wiki/w/Ardougne_Teleport",
+      "use": "Ardougne Teleport level, rune cost, experience, and destination."
+    },
+    {
+      "id": "wiki-druidic-ritual",
+      "url": "https://oldschool.runescape.wiki/w/Druidic_Ritual",
+      "use": "Druidic Ritual requirements, raw-meat inputs, encounter condition, rewards, and Herblore unlock."
+    },
+    {
+      "id": "wiki-death-plateau",
+      "url": "https://oldschool.runescape.wiki/w/Death_Plateau",
+      "use": "Death Plateau inputs, rewards, and follow-on prerequisite relationship."
+    },
+    {
+      "id": "wiki-troll-stronghold",
+      "url": "https://oldschool.runescape.wiki/w/Troll_Stronghold",
+      "use": "Troll Stronghold prerequisite, boostable Agility check, combat encounters, rewards, and unlocks."
+    },
+    {
+      "id": "wiki-eadgars-ruse",
+      "url": "https://oldschool.runescape.wiki/w/Eadgar%27s_Ruse",
+      "use": "Eadgar's Ruse prerequisites, boostable Herblore gate, listed inputs, no-kill condition, rewards, and transport unlock."
+    },
+    {
+      "id": "wiki-trollheim-teleport",
+      "url": "https://oldschool.runescape.wiki/w/Trollheim_Teleport",
+      "use": "Trollheim Teleport level, rune cost, experience, and destination."
+    }
+  ]
+}

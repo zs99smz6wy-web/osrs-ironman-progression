@@ -1,0 +1,205 @@
+{
+  "scope": "Current factual requirements and deterministic outcomes for Enlightened Journey and the Balloon Transport System, plus Eagles' Peak and the Eagle Transport System. Base quest unlocks, post-quest destination extensions, and repeat-use conditions are separated. This record contains no utility valuation, route ordering, or strategy.",
+  "source_catalog": [
+    {
+      "id": "wiki-enlightened-journey",
+      "url": "https://oldschool.runescape.wiki/w/Enlightened_Journey",
+      "used_for": "Quest start gates, required inputs, fixed rewards, and base transport unlock.",
+      "verified_at": "2026-08-21"
+    },
+    {
+      "id": "wiki-balloon-transport-system",
+      "url": "https://oldschool.runescape.wiki/w/Balloon_transport_system",
+      "used_for": "Route-specific unlock requirements, repeat-use costs, storage, weight limit, and route-unlock Firemaking XP.",
+      "verified_at": "2026-08-21"
+    },
+    {
+      "id": "wiki-eagles-peak",
+      "url": "https://oldschool.runescape.wiki/w/Eagles%27_Peak",
+      "used_for": "Quest start gates, required and quest-sourced inputs, fixed rewards, and base eagle-network unlock.",
+      "verified_at": "2026-08-21"
+    },
+    {
+      "id": "wiki-eagle-transport-system",
+      "url": "https://oldschool.runescape.wiki/w/Eagle_transport_system",
+      "used_for": "Eyrie locations, per-flight rope condition, and external destination-entry requirements.",
+      "verified_at": "2026-08-21"
+    }
+  ],
+  "records": [
+    {
+      "id": "enlightened-journey-and-balloon-transport",
+      "name": "Enlightened Journey and Balloon Transport System",
+      "category": "transport",
+      "status": "verified",
+      "verified_at": "2026-08-21",
+      "membership": true,
+      "base_unlock": {
+        "quest": "Enlightened Journey",
+        "quest_start_gates": {
+          "quest_points": 20,
+          "quest_prerequisites": [],
+          "skills": {
+            "Firemaking": {"level": 20, "boostable": true},
+            "Farming": {"level": 30, "boostable": true},
+            "Crafting": {"level": 36, "boostable": true}
+          }
+        },
+        "quest_required_inputs": {
+          "initial_supplied_items": {
+            "papyrus": 3,
+            "ball_of_wool": 1,
+            "potatoes_10_sack": 1,
+            "empty_sack": 8,
+            "unlit_candle_or_black_candle": 1,
+            "yellow_dye": 1,
+            "red_dye": 1,
+            "silk": 10,
+            "bowl": 1
+          },
+          "final_balloon_inputs": {
+            "normal_logs": 10,
+            "tinderbox": 1,
+            "willow_branches": 12
+          },
+          "quest_sourced_or_alternative_inputs": {
+            "bowl": "A bowl is obtainable during the quest.",
+            "candle": "An unlit or black candle can be obtained during the quest by stealing candles in Entrana church.",
+            "potatoes": "Potatoes can be picked on Entrana; an additional empty sack is needed when using that source.",
+            "willow_branches": "Auguste gives a willow sapling and a basket of apples for protection. A player may instead supply willow branches by another available method. Growing the supplied sapling requires the stated Farming gate; harvesting its branches additionally requires secateurs, and planting it requires a rake and spade."
+          },
+          "consumed_or_transformed_during_quest": {
+            "all_initial_supplied_items": "The quest walkthrough directs the player to fill the eight empty sacks into sandbags and give Auguste all remaining supplied items.",
+            "normal_logs": "Ten normal logs are required for the quest's Taverley balloon flight.",
+            "willow_branches": "Twelve willow branches are supplied to construct the final balloon.",
+            "tinderbox": "Required to operate the ballooning sequence; it is not identified as consumed."
+          }
+        },
+        "fixed_outcomes": {
+          "quest_points": 1,
+          "experience": {
+            "Crafting": 2000,
+            "Farming": 3000,
+            "Woodcutting": 1500,
+            "Firemaking": 4000
+          },
+          "items": ["Bomber jacket", "Bomber cap"],
+          "unlocks": [
+            "Balloon Transport System",
+            "Ability to make origami balloons",
+            "Entrana and Taverley balloon routes"
+          ]
+        },
+        "base_route_repeat_use": {
+          "Entrana": {"Firemaking": {"level": 20, "boostable": true}, "consumed_logs_per_trip": {"normal_logs": 1}},
+          "Taverley": {"Firemaking": {"level": 20, "boostable": true}, "consumed_logs_per_trip": {"normal_logs": 1}}
+        }
+      },
+      "destination_extensions": {
+        "unlock_process": "Each extension is unlocked from Entrana by repeating the ballooning mechanics. The player must return to Entrana before unlocking another destination. A completed route unlock does not require replaying the ballooning mechanics for later trips.",
+        "fixed_outcome_per_extension_unlock": {"Firemaking_xp": 2000},
+        "routes": {
+          "Crafting_Guild": {
+            "unlock_gates": {"Firemaking": {"level": 30, "boostable": true}, "consumed_logs": {"oak_logs": 10}},
+            "repeat_use_cost": {"consumed_logs_per_trip": {"oak_logs": 1}}
+          },
+          "Varrock_south_of_Lumber_Yard": {
+            "unlock_gates": {"Firemaking": {"level": 40, "boostable": true}, "consumed_logs": {"willow_logs": 10}},
+            "repeat_use_cost": {"consumed_logs_per_trip": {"willow_logs": 1}}
+          },
+          "Castle_Wars": {
+            "unlock_gates": {"Firemaking": {"level": 50, "boostable": true}, "consumed_logs": {"yew_logs": 10}},
+            "repeat_use_cost": {"consumed_logs_per_trip": {"yew_logs": 1}}
+          },
+          "Grand_Tree": {
+            "unlock_gates": {"Firemaking": {"level": 60, "boostable": true}, "consumed_logs": {"magic_logs": 3}},
+            "repeat_use_cost": {"consumed_logs_per_trip": {"magic_logs": 1}}
+          }
+        }
+      },
+      "post_quest_system_conditions": {
+        "weight_limit_kg": 40,
+        "weight_limit_note": "The log used for the journey does not count toward the 40 kg limit.",
+        "log_storage": {
+          "capacity": "100 of each balloon-usable log type",
+          "accepts_noted_logs": true,
+          "shared_between_locations": true,
+          "may_pay_trip_cost_automatically": true,
+          "withdrawal": "Stored logs cannot be withdrawn and remain permanently stored.",
+          "availability": "Storage can be used before the relevant route is unlocked and before its Firemaking gate is met."
+        },
+        "failure_or_logout": "Logging out during ballooning loses the logs committed to that flight and requires new logs to start again."
+      },
+      "strategic_judgments": [],
+      "source_ids": ["wiki-enlightened-journey", "wiki-balloon-transport-system"],
+      "confidence": "high"
+    },
+    {
+      "id": "eagles-peak-and-eagle-transport",
+      "name": "Eagles' Peak and Eagle Transport System",
+      "category": "transport",
+      "status": "verified",
+      "verified_at": "2026-08-21",
+      "membership": true,
+      "base_unlock": {
+        "quest": "Eagles' Peak",
+        "quest_start_gates": {
+          "quest_points": 0,
+          "quest_prerequisites": [],
+          "skills": {"Hunter": {"level": 27, "boostable": true}}
+        },
+        "quest_required_inputs": {
+          "externally_supplied_and_consumed": {
+            "yellow_dye": 1,
+            "swamp_tar": 1,
+            "coins": 50
+          },
+          "quest_sourced_and_consumed": {
+            "giant_eagle_feathers": 10,
+            "use": "The Fancy Dress Shop uses the feathers, yellow dye, swamp tar, and 50 coins to make two eagle disguises."
+          },
+          "combat_requirement": "A level 13 kebbit encounter is optional; the player can decline combat experience."
+        },
+        "fixed_outcomes": {
+          "quest_points": 2,
+          "experience": {"Hunter": 2500},
+          "items": ["Box trap"],
+          "unlocks": [
+            "Ability to use box traps",
+            "Ability to catch ferrets and use captured ferrets to flush white rabbits",
+            "Eagle Transport System"
+          ]
+        },
+        "network_shape": "The completed quest makes the Eagles' Peak Dungeon hub available. Three giant eagles at the hub connect it with the Rellekka Hunter area, Feldip Hills, and Uzer.",
+        "repeat_use_condition": {
+          "required_item": {"rope": 1},
+          "operation": "Use a rope on an eagle to lasso it and travel.",
+          "per_flight_consumption": "The current source identifies rope as required for travel and does not list a per-flight rope consumption."
+        }
+      },
+      "destination_extensions": {
+        "interpretation": "These are the factual conditions for entering an external eyrie and using it as a network point. They are distinct from the completed quest's hub-to-destination eagle flights.",
+        "Rellekka_Hunter_area_polar_eagle": {
+          "external_eyrie_access": {"Agility": {"level": 35, "condition": "Ascend the cliffside into the eyrie."}},
+          "available_rope_source": "Ropes spawn inside the eyrie."
+        },
+        "Feldip_Hills_jungle_eagle": {
+          "external_eyrie_access": {
+            "one_of_required_items": ["Garden cane", "Thatching spar", "Teasing stick"],
+            "condition": "Use one listed item on the young vine near the entrance; it takes around 40 minutes to grow strong enough to support the player."
+          },
+          "post_growth_condition": "The player may climb down before the vine matures, but cannot climb back up until it is mature."
+        },
+        "Uzer_desert_eagle": {
+          "external_eyrie_access": {
+            "Strength": {"level": 45, "boostable": true, "condition": "Push away the boulder blocking the outside entrance."}
+          },
+          "available_rope_source": "A rope spawns inside the cave."
+        }
+      },
+      "strategic_judgments": [],
+      "source_ids": ["wiki-eagles-peak", "wiki-eagle-transport-system"],
+      "confidence": "high"
+    }
+  ]
+}

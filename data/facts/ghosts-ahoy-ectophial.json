@@ -1,0 +1,226 @@
+{
+  "records": [
+    {
+      "id": "ghosts-ahoy-ectophial-acquisition",
+      "name": "Ghosts Ahoy and Ectophial acquisition",
+      "category": "quest",
+      "status": "verified",
+      "verified_at": "2026-08-21",
+      "scope": "Current factual quest-completion, Ectophial acquisition, refill, and replacement mechanics for an Ironman. This record does not assess route timing, travel value, combat readiness, or preparation efficiency.",
+      "hard_access_gates": {
+        "membership": true,
+        "completed_quests": [
+          "Priest in Peril",
+          "The Restless Ghost"
+        ],
+        "explicit_non_requirement": "Nature Spirit is not listed as a Ghosts Ahoy prerequisite by the registered current quest source.",
+        "skills_required_to_complete_but_not_to_start": {
+          "Agility": {
+            "level": 25,
+            "boostable": true,
+            "required_for": "Crossing the rocks for the shipwreck/map section."
+          },
+          "Cooking": {
+            "level": 20,
+            "boostable": true,
+            "required_for": "Preparing nettle tea during the Old Crone section."
+          }
+        }
+      },
+      "player_supplied_items_and_transitions": {
+        "required_to_hold_or_use": [
+          {
+            "item": "Ghostspeak amulet",
+            "quantity": 1,
+            "use": "Required to communicate with quest ghosts and is presented for the Old Crone enchantment sequence.",
+            "final_state": "The quest uses an enchanted Ghostspeak amulet state; this record does not model it as a separately acquired non-quest reward."
+          },
+          {
+            "item": "Bucket of milk",
+            "quantity": 1,
+            "use": "Combined with the prepared nettle tea for the Old Crone.",
+            "transition": "Consumed or transformed during the tea sequence."
+          },
+          {
+            "item": "Silk",
+            "quantity": 1,
+            "use": "Repairs the quest-provided model ship.",
+            "transition": "Consumed."
+          },
+          {
+            "item": "Thread",
+            "quantity": 1,
+            "use": "Repairs the quest-provided model ship with a needle.",
+            "transition": "Consumed."
+          },
+          {
+            "item": "Needle or costume needle",
+            "quantity": 1,
+            "use": "Repairs the model ship.",
+            "transition": "Tool; not consumed by the stated repair step."
+          },
+          {
+            "item": "Knife",
+            "quantity": 1,
+            "use": "Used in the model-ship repair step.",
+            "transition": "Tool; not consumed by the stated repair step."
+          },
+          {
+            "item": "Spade",
+            "quantity": 1,
+            "use": "Digs up the Book of Haricanto on Dragontooth Island.",
+            "transition": "Tool; not consumed by the stated dig step."
+          },
+          {
+            "item": "Oak longbow",
+            "quantity": 1,
+            "use": "Robin signs it after the Rune-Draw debt is cleared; the resulting signed oak bow is traded to Ak-Haranu for the translation manual.",
+            "transition": "The player-supplied bow is transformed into the signed quest bow, then surrendered for the translation manual."
+          },
+          {
+            "item": "Bucket of slime",
+            "quantity": 1,
+            "use": "Colours the quest-provided bedsheet for the ghost disguise.",
+            "transition": "Used in the bedsheet-to-ectoplasm-bedsheet quest-item transition."
+          }
+        ],
+        "nettle_tea_route": {
+          "preprepared_option": "Bring one nettle tea in a bowl of water.",
+          "make_during_quest_option": {
+            "items": [
+              "Closed-finger gloves",
+              "Nettles",
+              "Bowl of water",
+              "Tinderbox",
+              "A log the player can light"
+            ],
+            "skill": {
+              "Cooking": 20,
+              "boostable": true
+            },
+            "not_hard_firemaking_gate": "The required log can be any log for which the player has the Firemaking level to light it; Ghosts Ahoy has no separately listed fixed Firemaking level."
+          },
+          "fixed_quest_use": "The prepared tea is put into the Old Crone's porcelain cup and combined with the one bucket of milk."
+        },
+        "dye_requirement": {
+          "random_variable": "The three model-ship flag components reveal three dye colours at the shipwreck. Each required colour may be a primary or secondary standard dye, and the three outcomes can include duplicates.",
+          "fixed_use_after_reveal": "Exactly one dye is applied to each of the three flag components; three required dye applications occur.",
+          "valid_colours": [
+            "red",
+            "yellow",
+            "blue",
+            "orange",
+            "green",
+            "purple"
+          ],
+          "conservative_preparation_bundle_not_a_hard_gate": "Three red, three yellow, and three blue dyes can be carried to make any revealed three-colour result without another dye trip. This is preparation coverage, not the deterministic amount consumed."
+        },
+        "ecto_token_access_options": {
+          "standard_quest_route": {
+            "tokens_required": 31,
+            "with_ring_of_charos_a": 20,
+            "description": "The current quest guide's listed Ecto-token route without using charter ships."
+          },
+          "charter_ship_route": {
+            "tokens_required": 25,
+            "with_ring_of_charos_a": 10,
+            "description": "The current quest guide's listed Ecto-token route when using charter ships. Charter-ship coin fare is a separate variable travel choice."
+          },
+          "token_creation_inputs": {
+            "per_5_ecto_tokens": {
+              "bones": 1,
+              "empty_pots": 1,
+              "empty_buckets": 1
+            },
+            "process": "A bone is ground into bonemeal, a bucket is filled with slime, and the pair is worshipped at the Ectofuntus before claiming Ecto-tokens from a Ghost disciple while wearing the Ghostspeak amulet.",
+            "container_state_limit": "The registered guide specifies the required starting pots and buckets but does not provide a formal container-retention ledger. This record does not infer that pots or buckets are permanently consumed."
+          },
+          "optional_permanent_boat_access": {
+            "cost": {
+              "Ecto-tokens": 500
+            },
+            "effect": "Removes the per-trip Dragontooth Island Ecto-token fee.",
+            "classification": "Optional and not required to complete Ghosts Ahoy."
+          }
+        },
+        "coins": {
+          "published_preparation_estimate": "Approximately 400 coins.",
+          "deterministic_per_rune_draw_round": 25,
+          "required_rune_draw_wins": 4,
+          "exact_total_is_variable": "Rune-Draw losses can require additional paid rounds before the four wins. The source's approximately 400-coin figure is a preparation estimate, not a hard fixed consumption total."
+        }
+      },
+      "required_combat": {
+        "enemy": "Giant lobster",
+        "combat_level": 32,
+        "quest_requirement": "One Giant lobster must be defeated during the shipwreck chest search to obtain a map scrap.",
+        "formal_player_combat_gate": "No player combat level, weapon, armour, prayer, or combat-skill requirement is listed as a formal quest gate.",
+        "encounter_fact": "The current quest guide states that the Giant lobster can be safespotted."
+      },
+      "fixed_completion_outcomes": {
+        "quest_points": 2,
+        "experience": {
+          "Prayer": 2400
+        },
+        "items": {
+          "Ectophial": 1
+        },
+        "unlocks": [
+          "Free passage through Port Phasmatys's Energy Barrier",
+          "Direct Ectophial teleport destination at the Ectofuntus outside Port Phasmatys"
+        ],
+        "not_modeled": "No GP, Ecto-token, or other quest-item balance is treated as a completion reward."
+      },
+      "ectophial_mechanics": {
+        "item_properties": {
+          "members": true,
+          "tradeable": false,
+          "stackable": false,
+          "equipable": false
+        },
+        "teleport_and_refill": {
+          "activation": "Emptying a full Ectophial teleports the player to the Ectofuntus outside Port Phasmatys.",
+          "post_teleport_state": "The player automatically refills it from the Ectofuntus after teleporting.",
+          "cost": "No rune, charge, or coin cost is stated for an ordinary teleport/refill cycle.",
+          "refill_animation": "The player cannot interrupt the refill animation and is immune to damage for its duration. On PvP worlds, a successful attacker can still receive experience but does no damage.",
+          "wilderness_restriction": "The teleport does not work past level 20 Wilderness."
+        },
+        "replacement_and_duplicates": {
+          "velorina": {
+            "location": "Port Phasmatys",
+            "claim_condition": "Wear a Ghostspeak amulet or Morytania legs 2 or better.",
+            "replacement_when_no_ectophial_is_owned": "A replacement claimed from Velorina is full.",
+            "additional_claim_when_an_ectophial_is_already_owned": "Velorina gives an empty Ectophial; it must be filled at the Ectofuntus before use."
+          },
+          "perdu": {
+            "coin_cost": 4600,
+            "classification": "Alternate replacement purchase."
+          },
+          "multiple_ownership": "Multiple Ectophials are supported; this is why Velorina has a separate empty-duplicate outcome."
+        }
+      },
+      "preparation_recommendations_not_hard_gates": [
+        "The quest guide suggests food and weapons for the level-32 Giant lobster, but neither is a named formal entry requirement.",
+        "Level 58 Agility, which is boostable, is suggested for the Ectofuntus shortcut; it is not required for Ghosts Ahoy completion.",
+        "Stamina potions and faster travel options are guide recommendations rather than access gates."
+      ],
+      "source_ids": [
+        "wiki-ghosts-ahoy",
+        "wiki-ectophial"
+      ],
+      "sources": [
+        {
+          "id": "wiki-ghosts-ahoy",
+          "url": "https://oldschool.runescape.wiki/w/Ghosts_Ahoy",
+          "use": "Quest requirements, item paths, combat encounter, rewards, and Port Phasmatys unlock."
+        },
+        {
+          "id": "wiki-ectophial",
+          "url": "https://oldschool.runescape.wiki/w/Ectophial",
+          "use": "Ectophial teleport, automatic refill, Wilderness restriction, replacement, and duplicate mechanics."
+        }
+      ],
+      "confidence": "high for published requirements, rewards, and Ectophial mechanics; exact Rune-Draw coin expenditure and dye colours are correctly retained as variable states."
+    }
+  ]
+}
