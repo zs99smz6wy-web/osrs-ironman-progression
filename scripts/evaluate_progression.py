@@ -14,7 +14,7 @@ DEFAULT_STATE = ROOT / "graph" / "account-state.example.json"
 REQUIRED_STATE_KEYS = {
     "skills", "skill_xp", "quests_completed", "completed_actions", "transport_flags", "milestones",
     "gear_thresholds", "items", "resources", "counters", "passive_loops",
-    "attention_window", "notable_drops", "preferences",
+    "attention_window", "notable_drops", "preferences", "cash_commitments",
 }
 LIST_STATE_KEYS = {
     "quests_completed", "completed_actions", "transport_flags", "milestones",
@@ -87,6 +87,21 @@ def validate_account_state(state: dict[str, Any]) -> None:
         value = preferences.get(key) if isinstance(preferences, dict) else None
         if isinstance(value, bool) or not isinstance(value, int) or not 0 <= value <= 4:
             raise ValueError(f"Account state preferences.{key} must be an integer from 0 to 4")
+
+    commitments = state["cash_commitments"]
+    if not isinstance(commitments, list):
+        raise ValueError("Account state cash_commitments must be an array")
+    valid_deadlines = {"now", "next_goal", "near_term", "later"}
+    for index, commitment in enumerate(commitments):
+        if not isinstance(commitment, dict) or set(commitment) != {"purpose", "coins", "deadline"}:
+            raise ValueError(f"Account state cash_commitments[{index}] has invalid fields")
+        if not isinstance(commitment["purpose"], str) or not commitment["purpose"].strip():
+            raise ValueError(f"Account state cash_commitments[{index}].purpose must be non-empty")
+        coins = commitment["coins"]
+        if isinstance(coins, bool) or not isinstance(coins, int) or coins < 0:
+            raise ValueError(f"Account state cash_commitments[{index}].coins has an invalid value")
+        if commitment["deadline"] not in valid_deadlines:
+            raise ValueError(f"Account state cash_commitments[{index}].deadline is invalid")
 
 
 def _predicate_result(predicate: dict[str, Any], state: dict[str, Any]) -> tuple[bool, str]:

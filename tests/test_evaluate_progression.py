@@ -126,6 +126,21 @@ class EvaluateProgressionScenarioTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "every supported skill exactly"):
             validate_account_state(state)
 
+    def test_cash_commitments_are_required_and_validated(self) -> None:
+        state = copy.deepcopy(load_json(FIXTURES / "fresh-account.json"))
+        del state["cash_commitments"]
+        with self.assertRaisesRegex(ValueError, "missing required keys"):
+            validate_account_state(state)
+
+        state = copy.deepcopy(load_json(FIXTURES / "fresh-account.json"))
+        state["cash_commitments"] = [{"purpose": "Sailing skiff", "coins": 15000, "deadline": "soon"}]
+        with self.assertRaisesRegex(ValueError, "deadline is invalid"):
+            validate_account_state(state)
+
+        state["cash_commitments"] = [{"purpose": "", "coins": -1, "deadline": "now"}]
+        with self.assertRaisesRegex(ValueError, "purpose must be non-empty"):
+            validate_account_state(state)
+
 
 if __name__ == "__main__":
     unittest.main()

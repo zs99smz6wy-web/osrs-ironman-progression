@@ -36,6 +36,7 @@ REQUIRED_ACCOUNT_STATE_KEYS = {
     "attention_window",
     "notable_drops",
     "preferences",
+    "cash_commitments",
 }
 VALID_PREDICATE_TYPES = {
     "skill_at_least",

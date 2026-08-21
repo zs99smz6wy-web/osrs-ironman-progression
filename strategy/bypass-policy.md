@@ -9,4 +9,4 @@ A bypass is a route-changing alternative, not automatically a target.
 - Do not build a route around a rare drop solely because it can technically bypass a grind.
 - Record the normal path, alternative paths, drop rate, access cost, displaced requirement, and downstream effect for each bypass candidate.
 
-Belle's Folly illustrates the policy: it can materially change one-handed stab capability after a 70 Smithing repair, but its 1-in-400 source remains an uncertain acquisition path rather than a baseline requirement.
+Belle's Folly illustrates the policy: it can materially change one-handed stab capability after a 70 Smithing repair, but its 1-in-256 source remains an uncertain acquisition path rather than a baseline requirement.
