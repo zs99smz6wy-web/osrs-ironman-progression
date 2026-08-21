@@ -1,0 +1,323 @@
+{
+  "scope": "Factual inputs for a future utility-minigame stop-condition scorer. This file intentionally does not assign values, thresholds, priorities, or stop decisions.",
+  "source_registry": {
+    "reused_ids": [
+      "wiki-mta",
+      "wiki-giants-foundry",
+      "official-giants-foundry-launch",
+      "wiki-smiths-uniform",
+      "wiki-tempoross",
+      "official-tempoross-launch",
+      "wiki-fish-barrel",
+      "wiki-tithe-farm",
+      "wiki-tithe-rewards",
+      "wiki-gotr",
+      "wiki-rewards-guardian",
+      "wiki-temple-supplies",
+      "wiki-raiments-of-the-eye",
+      "wiki-ring-of-the-elements",
+      "wiki-colossal-pouch",
+      "wiki-abyssal-lantern",
+      "wiki-abyssal-lantern-transcript"
+    ],
+    "needed_ids": [
+      {
+        "id": "wiki-rune-pouch",
+        "needed_for": "Direct registry provenance for rune-pouch capacity, ownership limit, and storage utility."
+      },
+      {
+        "id": "wiki-bones-to-peaches",
+        "needed_for": "Direct registry provenance for the Bones to Peaches casting requirement and item-conversion restrictions."
+      }
+    ]
+  },
+  "records": [
+    {
+      "id": "utility-stop-mage-training-arena",
+      "name": "Mage Training Arena utility-reward inputs",
+      "category": "minigame",
+      "status": "verified",
+      "verified_at": "2026-08-21",
+      "hard_gates": {
+        "membership": true,
+        "minimum_magic_to_begin": 7,
+        "minimum_magic_for_all_four_rooms": 33,
+        "bones_to_peaches_casting_magic": {
+          "level": 60,
+          "boostable": true
+        },
+        "room_inputs": "Participation consumes the spells and runes selected for the four rooms. The exact rune expenditure depends on the room, spell tier, and completed room actions."
+      },
+      "deterministic_reward_costs": {
+        "rune_pouch": {
+          "telekinetic_pizazz": 150,
+          "graveyard_pizazz": 150,
+          "enchantment_pizazz": 1500,
+          "alchemist_pizazz": 200
+        },
+        "bones_to_peaches_spell": {
+          "telekinetic_pizazz": 200,
+          "graveyard_pizazz": 200,
+          "enchantment_pizazz": 2000,
+          "alchemist_pizazz": 300
+        }
+      },
+      "random_reward_behavior": {
+        "shop_purchase": "Neither utility reward is a reward-pool roll: each is a fixed shop purchase after the required pizazz point balances have been earned.",
+        "point_acquisition": "This snapshot does not model actions, time, or exact rune expenditure needed to earn pizazz; those depend on selected spells and room execution rather than a random reward roll."
+      },
+      "fixed_utility_effects": {
+        "rune_pouch": {
+          "storage": "Stores up to 16,000 each of three rune types, excluding Nightmare Zone runes.",
+          "spellcasting": "Spells can consume runes stored in the pouch.",
+          "ownership": "A player cannot own more than one rune pouch; the MTA purchase is available only when the player does not already own one.",
+          "degradation_or_charges": "No charge or degradation mechanic is listed for the ordinary rune pouch."
+        },
+        "bones_to_peaches": {
+          "effect": "Unlocks the spell. When cast, it converts eligible bones in the player's inventory into peaches.",
+          "known_restrictions": "Demonic ashes cannot be converted, and bones above big bones are not suitable for the spell."
+        }
+      },
+      "uncertainties": [
+        "The source registry does not yet contain direct item-page records for the rune pouch and Bones to Peaches; their proposed IDs are listed at the document root.",
+        "Per-cast Bones to Peaches rune consumption is deliberately not recorded here until that dedicated spell source is registered."
+      ],
+      "source_ids": ["wiki-mta", "wiki-rune-pouch", "wiki-bones-to-peaches"],
+      "confidence": "high"
+    },
+    {
+      "id": "utility-stop-giants-foundry",
+      "name": "Giants' Foundry utility-reward inputs",
+      "category": "minigame",
+      "status": "verified",
+      "verified_at": "2026-08-21",
+      "hard_gates": {
+        "membership": true,
+        "quest": {
+          "name": "Sleeping Giants",
+          "Smithing_requirement": 15
+        },
+        "commission_inputs": "Each commission requires metal bars or Smithing-made equipment worth at least two bars, plus a bucket or ice gloves to pick up a moulded weapon."
+      },
+      "deterministic_reward_costs": {
+        "currency": "Foundry Reputation",
+        "double_ammo_mould": {
+          "reputation": 2000,
+          "additional_quest": "Dwarf Cannon"
+        },
+        "smiths_uniform": {
+          "reputation_total": 15000,
+          "pieces": {
+            "tunic": 4000,
+            "trousers": 4000,
+            "boots": 3500,
+            "gloves": 3500
+          }
+        },
+        "purchasable_mould_library": {
+          "reputation_total": 5400,
+          "scope": "All purchasable permanent mould options; individual mould purchases are separate fixed-price choices."
+        },
+        "other_current_shop_items": {
+          "kovacs_grog": 300,
+          "smithing_catalyst": 15,
+          "ore_pack": 200,
+          "colossal_blade": 5000
+        }
+      },
+      "random_reward_behavior": {
+        "shop_purchase": "Foundry shop purchases are guaranteed after their reputation and stated prerequisite are met; they are not reward-pool rolls.",
+        "reputation_generation": "A completed commission's reputation depends on final sword quality, which is determined by metal score, mould score, and mistakes. Therefore no single number of commissions or consumed inputs is deterministic across configurations and execution."
+      },
+      "fixed_utility_effects": {
+        "double_ammo_mould": "At a furnace, processes two bars into eight cannonballs in the same time that a regular ammo mould processes one bar into four.",
+        "smiths_uniform": "Each worn piece has a 20% chance to reduce an anvil Smithing action by one tick and a 20% chance to increase Foundry preform progress; a complete worn set guarantees both effects. Smiths gloves can be combined with ice gloves into smiths gloves (i).",
+        "purchasable_mould_library": "Adds permanent mould-score options for future Foundry commissions."
+      },
+      "uncertainties": [
+        "The utility of an individual Foundry mould outside its commission score is not asserted here.",
+        "Kovac's grog, Smithing catalyst, ore packs, and the Colossal blade have fixed listed shop costs but are not classified here as durable utility unlocks."
+      ],
+      "source_ids": ["wiki-giants-foundry", "official-giants-foundry-launch", "wiki-smiths-uniform"],
+      "confidence": "high"
+    },
+    {
+      "id": "utility-stop-tempoross-fish-barrel",
+      "name": "Tempoross Fish Barrel utility inputs",
+      "category": "minigame",
+      "status": "verified",
+      "verified_at": "2026-08-21",
+      "hard_gates": {
+        "membership": true,
+        "Fishing": 35,
+        "reward_claiming_item": "A small or big fishing net is required to claim rewards; one can be obtained from the nearby Spirit Angler."
+      },
+      "deterministic_reward_costs": {
+        "currency": "Reward permits",
+        "permit_formula": "One permit at 2,000 points, then one additional permit for each full 700 points above 2,000. Remaining points supply a linearly scaling chance of one further permit.",
+        "fish_barrel_shop_cost": null,
+        "interpretation": "The Fish Barrel has no permit-price purchase path; permits buy searches rather than a selected reward."
+      },
+      "random_reward_behavior": {
+        "fish_barrel": {
+          "source": "Tempoross reward-pool search",
+          "rate_per_search": "1 in 400",
+          "guaranteed_after_any_number_of_permits": false
+        },
+        "permit_acquisition": "Whole permit thresholds after a successful encounter are guaranteed; the fractional final permit is variable. Points from a failed encounter are lost."
+      },
+      "fixed_utility_effects": {
+        "storage": "Stores a combined total of 28 eligible raw fish and automatically fills with eligible raw fish while open.",
+        "excluded_fish": [
+          "Harpoonfish",
+          "Stackable fish",
+          "Trophy fish",
+          "Fish from Chambers of Xeric",
+          "Fish from Ruins of Camdozaal",
+          "Fish from Neypotzli"
+        ],
+        "emptying": "A full barrel can be emptied only at a bank or bank deposit box.",
+        "degradation_or_charges": "No charge or degradation mechanic is listed."
+      },
+      "uncertainties": [
+        "This record does not infer a permit count, point total, or encounter count for acquisition from the 1-in-400 reward rate.",
+        "Fish Sack Barrel conversion is excluded because this input focuses on the Fish Barrel's utility state; its separate Molch-pearl requirement is recorded elsewhere."
+      ],
+      "source_ids": ["wiki-tempoross", "official-tempoross-launch", "wiki-fish-barrel"],
+      "confidence": "high"
+    },
+    {
+      "id": "utility-stop-tithe-farm",
+      "name": "Tithe Farm utility-unlock inputs",
+      "category": "minigame",
+      "status": "verified",
+      "verified_at": "2026-08-21",
+      "hard_gates": {
+        "membership": true,
+        "Farming": 34,
+        "required_items": ["Spade", "Seed dibber unless bare-handed planting is unlocked", "One or more watering cans"]
+      },
+      "deterministic_reward_costs": {
+        "currency": "Tithe Farm points",
+        "point_award": "One point for every three deposited fruit, plus two bonus points on the 100th deposited fruit.",
+        "point_cap": 16000,
+        "durable_utility_rewards": {
+          "auto_weed": 50,
+          "farmers_outfit": {
+            "total": 400,
+            "pieces": {"strawhat": 75, "jacket_or_shirt": 150, "boro_trousers": 125, "boots": 50}
+          },
+          "gricollers_can": 200,
+          "seed_box": 250,
+          "herb_sack": 250
+        },
+        "all_listed_durable_utility_rewards_total": 1150
+      },
+      "random_reward_behavior": {
+        "utility_unlock_purchase": "The listed durable rewards are deterministic point purchases; no reward-roll RNG applies.",
+        "point_acquisition": "Deposited fruit award the stated points deterministically. Fruit deposited after reaching the point cap still award Farming experience but no points."
+      },
+      "fixed_utility_effects": {
+        "auto_weed": "Permanent, toggleable prevention of new weeds in Farming patches; it does not remove existing weeds and does not affect Managing Miscellania patches.",
+        "farmers_outfit": "A complete worn set grants 2.5% additional Farming experience.",
+        "gricollers_can": "A watering can holding 1,000 water doses; it can be refilled by using it on a water source.",
+        "seed_box": "Stores an unlimited quantity of up to six seed types.",
+        "herb_sack": {
+          "effect": "Stores up to 30 of each grimy herb type, 420 grimy herbs in total.",
+          "Herblore_requirement_to_use": 58
+        }
+      },
+      "uncertainties": [
+        "The 1,150-point total covers the listed durable utility rewards only; it excludes consumable shop stock and any future reward additions.",
+        "This record does not estimate fruit, time, or attention required to obtain a given point balance."
+      ],
+      "source_ids": ["wiki-tithe-farm", "wiki-tithe-rewards"],
+      "confidence": "high"
+    },
+    {
+      "id": "utility-stop-guardians-of-the-rift",
+      "name": "Guardians of the Rift utility-reward inputs",
+      "category": "minigame",
+      "status": "verified",
+      "verified_at": "2026-08-21",
+      "hard_gates": {
+        "membership": true,
+        "quest": "Temple of the Eye completed",
+        "Runecraft": 27,
+        "required_items": ["Any pickaxe"],
+        "conditional_items": "A chisel is required only to craft rift guardians; a permanent chisel spawn exists in the minigame."
+      },
+      "deterministic_reward_costs": {
+        "reward_search": "One elemental point and one catalytic point are consumed per Rewards Guardian search.",
+        "abyssal_pearl_shop": {
+          "raiments_of_the_eye": {
+            "hat": 400,
+            "top": 350,
+            "bottoms": 350,
+            "boots": 250,
+            "full_set_total": 1350
+          },
+          "ring_of_the_elements": 400,
+          "abyssal_needle": 750,
+          "abyssal_lantern": 1500
+        },
+        "ring_of_the_elements_charge": {
+          "air_rune": 1,
+          "water_rune": 1,
+          "earth_rune": 1,
+          "fire_rune": 1,
+          "law_rune": 1,
+          "maximum_charges": 10000
+        }
+      },
+      "random_reward_behavior": {
+        "point_award": "At game end, each full 100 elemental energy awards one elemental point and each full 100 catalytic energy awards one catalytic point; each fractional hundred has a matching chance to round up.",
+        "abyssal_pearls": {
+          "source": "Rewards Guardian search",
+          "rate_per_search": "1 in 7",
+          "quantity_when_rolled": "14-16",
+          "guaranteed_per_search": false
+        },
+        "abyssal_needle": {
+          "random_source": "Rewards Guardian search",
+          "rate_per_search": "1 in 300",
+          "alternative": "Guaranteed Temple Supplies purchase after 750 Abyssal pearls."
+        },
+        "abyssal_lantern": {
+          "random_source": "Rewards Guardian search",
+          "rate_per_search": "1 in 700",
+          "alternative": "Guaranteed Temple Supplies purchase after 1,500 Abyssal pearls."
+        },
+        "talismans": "Elemental and catalytic talismans are potential Rewards Guardian outcomes. Their exact current rates are not asserted in this stop-input snapshot."
+      },
+      "fixed_utility_effects": {
+        "raiments_of_the_eye": "Each worn piece grants 10% more runes while Runecrafting; a complete worn set adds a further 20%, for a 60% total rune-output bonus. It grants no Runecraft experience bonus.",
+        "ring_of_the_elements": "Teleports near the Air, Water, Earth, and Fire altars when charged.",
+        "abyssal_needle_and_colossal_pouch": {
+          "creation_gates": {"Crafting": 56, "Runecraft": 25},
+          "inputs_combined": ["Abyssal needle", "Small pouch", "Medium pouch", "Large pouch", "Giant pouch"],
+          "capacity_by_Runecraft_level": {"25": 8, "50": 16, "75": 27, "85": 40},
+          "decay": "Degrades after approximately eight uses and can be repaired through normal essence-pouch repair methods."
+        },
+        "abyssal_lantern": "A shield-slot lantern lit with six matching logs, a tinderbox, and the unboosted Firemaking level for those logs. Log choice selects its documented runecrafting or in-minigame utility effect.",
+        "talismans": "An elemental talisman grants access to elemental altars. A catalytic talisman grants access to catalytic altars when any separate quest access requirements for those altars are met."
+      },
+      "uncertainties": [
+        "Abyssal-pearl shop costs are deterministic only after the player has accumulated the required RNG currency; this file does not convert pearl totals into searches, games, time, or value.",
+        "Only the utility rewards relevant to later state evaluation are enumerated. Cosmetic rewards, pets, dyes, and general loot are outside this record's scope.",
+        "The exact current talisman drop rates are intentionally omitted pending a dedicated rate-focused source pass."
+      ],
+      "source_ids": [
+        "wiki-gotr",
+        "wiki-rewards-guardian",
+        "wiki-temple-supplies",
+        "wiki-raiments-of-the-eye",
+        "wiki-ring-of-the-elements",
+        "wiki-colossal-pouch",
+        "wiki-abyssal-lantern",
+        "wiki-abyssal-lantern-transcript"
+      ],
+      "confidence": "high"
+    }
+  ]
+}

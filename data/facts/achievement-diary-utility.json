@@ -1,0 +1,521 @@
+{
+  "dataset": "achievement-diary-utility",
+  "scope": "Factual audit of the existing achievement-diary and PvM-foundation records. Covers permanent or repeatable Ironman-useful diary rewards, claim gates, quest dependencies, and fixed tier lamps. It does not rank diaries, recommend an order, or generate a route.",
+  "audited_at": "2026-08-21",
+  "facts_strategy_boundary": {
+    "facts_included": [
+      "claimed-tier requirements, including preceding-tier completion",
+      "documented quest, skill, item, currency, and encounter gates",
+      "fixed lamps and permanent/repeatable reward mechanics",
+      "explicit corrections and omissions in the prior four-record foundation"
+    ],
+    "strategy_excluded": [
+      "diary priority",
+      "training method selection",
+      "account readiness conclusions",
+      "route timing",
+      "value scoring"
+    ],
+    "community_strategy_sources_used": []
+  },
+  "existing_foundation_audit": {
+    "audited_file": "data/facts/diary-pvm-foundations.json",
+    "finding": "The four original records are directionally correct but are not sufficient to model diary or PvM dependencies. They omit several durable rewards, exact tier gates, task-specific quest dependencies, and two important PvM access conditions.",
+    "record_findings": [
+      {
+        "existing_record_id": "lumbridge-diary-utility",
+        "retained_claims": [
+          "Explorer's Ring restores run energy.",
+          "Easy tier grants daily rune-free low-alchemy casts.",
+          "Hard tier increases Tears of Guthix experience.",
+          "Elite tier removes the Dramen/Lunar staff requirement at fairy rings."
+        ],
+        "missing_factual_coverage": [
+          "the exact per-tier restore, teleport, and alchemy quantities",
+          "the hard-tier Bones to Peaches, Lost City, and skill gates",
+          "the elite Slayer-block-slot and Culinomancer's Chest effects"
+        ],
+        "covered_by_records": [
+          "diary-lumbridge-draynor-hard-elite-utility",
+          "achievement-diary-fixed-tier-lamps"
+        ]
+      },
+      {
+        "existing_record_id": "kourend-diary-utility",
+        "retained_claims": [
+          "Easy tier doubles the stated Xeric's talisman drop chance from qualifying lizardmen.",
+          "Easy tier makes the Hosidius herb patches disease-free.",
+          "Hard tier adds a 5% chance to save a harvest life at the Hosidius and Farming Guild herb patches."
+        ],
+        "missing_factual_coverage": [
+          "the Ash sanctifier",
+          "Mount Karuulm teleports and hard-tier quest/combat gates",
+          "the exact Rada's blessing fishing chance"
+        ],
+        "covered_by_records": [
+          "diary-kourend-kebos-hard-utility",
+          "achievement-diary-fixed-tier-lamps"
+        ]
+      },
+      {
+        "existing_record_id": "piety",
+        "retained_claims": [
+          "Piety is obtained through King's Ransom and the Knight Waves Training Grounds.",
+          "70 Prayer is required."
+        ],
+        "missing_factual_coverage": [
+          "Knight Waves Training Grounds also requires 70 Defence; both stated combat-skill requirements are not boostable.",
+          "King's Ransom and its prerequisite chain remain hard quest dependencies."
+        ],
+        "covered_by_records": [
+          "pvm-piety-foundation-audit"
+        ]
+      },
+      {
+        "existing_record_id": "dragon-defender",
+        "retained_claims": [
+          "A Rune defender must be shown to Lorelai before basement Cyclopes can drop the Dragon defender.",
+          "The stated Dragon defender rate is 1 in 100 from the level-106 basement Cyclopes.",
+          "60 Defence is required to equip it."
+        ],
+        "missing_factual_coverage": [
+          "Warriors' Guild entry requires either 130 combined Attack and Strength or level 99 in either skill.",
+          "The original record does not distinguish the deterministic access chain from the variable defender drops."
+        ],
+        "covered_by_records": [
+          "pvm-dragon-defender-foundation-audit"
+        ]
+      }
+    ]
+  },
+  "records": [
+    {
+      "id": "achievement-diary-universal-claim-and-fixed-lamps",
+      "name": "Achievement Diary tier claim rule and fixed lamps",
+      "category": "reward",
+      "status": "verified",
+      "verified_at": "2026-08-21",
+      "requirements": {
+        "membership": true,
+        "claim_rule": "A tier's reward is claimable only after every task in that tier and all preceding tiers of that diary are complete. Tasks themselves may be completed out of order.",
+        "boosting_rule": "Temporary skill boosts are permitted unless an individual task explicitly marks its requirement as not boostable."
+      },
+      "fixed_rewards": {
+        "standard_diaries": {
+          "easy": {"xp": 2500, "recipient_skill_minimum": 30},
+          "medium": {"xp": 7500, "recipient_skill_minimum": 40},
+          "hard": {"xp": 15000, "recipient_skill_minimum": 50},
+          "elite": {"xp": 50000, "recipient_skill_minimum": 70}
+        },
+        "karamja_exception": {
+          "easy": {"xp": 1000, "recipient_skill_minimum": 1},
+          "medium": {"xp": 5000, "recipient_skill_minimum": 30},
+          "hard": {"xp": 10000, "recipient_skill_minimum": 40},
+          "elite": {"xp": 50000, "recipient_skill_minimum": 70}
+        }
+      },
+      "guarantee": "Each lamp is a fixed reward once its tier is validly claimed; it is not a drop-roll result.",
+      "source_ids": ["wiki-achievement-diary", "wiki-achievement-diary-rewards", "official-achievement-diaries-release"],
+      "confidence": "high"
+    },
+    {
+      "id": "diary-lumbridge-draynor-hard-elite-utility",
+      "name": "Lumbridge & Draynor hard and elite utility",
+      "category": "reward",
+      "status": "verified",
+      "verified_at": "2026-08-21",
+      "requirements": {
+        "hard_claim": "All Lumbridge & Draynor easy, medium, and hard tasks.",
+        "hard_dependency_highlights": {
+          "quests": ["Lost City"],
+          "unlocks": ["Bones to Peaches from the Mage Training Arena"],
+          "skills": {"Agility": 46, "Runecraft": 59, "Farming": 63, "Firemaking": 65, "Prayer": 52, "Crafting": 70, "Magic": 60},
+          "items_or_inputs": ["cosmic-runecrafting access and essence", "belladonna seed", "mining helmet", "gold bar", "cut diamond", "amulet mould", "ball of wool"]
+        },
+        "elite_claim": "All Lumbridge & Draynor elite tasks in addition to the claimed hard tier; see the diary task table for its full late-game quest and skill requirements."
+      },
+      "fixed_rewards": {
+        "hard": {
+          "lamp": {"xp": 15000, "recipient_skill_minimum": 50},
+          "explorers_ring_3": {"run_energy_restore": "50% up to four times per day", "teleport": "unlimited teleports to South Falador Farm cabbage patch"},
+          "tears_of_guthix": "10% more experience"
+        },
+        "elite": {
+          "lamp": {"xp": 50000, "recipient_skill_minimum": 70},
+          "explorers_ring_4": {"run_energy_restore": "100% up to three times per day", "rune_free_high_alchemy": "30 casts per day"},
+          "permanent_effects": ["Fairy rings no longer require a Dramen staff or Lunar staff.", "An additional Slayer task block slot is unlocked.", "Culinomancer's Chest prices are reduced by 20%."]
+        }
+      },
+      "source_ids": ["wiki-lumbridge-diary", "wiki-achievement-diary-rewards", "official-achievement-diary-rewards"],
+      "confidence": "high"
+    },
+    {
+      "id": "diary-kourend-kebos-hard-utility",
+      "name": "Kourend & Kebos hard utility",
+      "category": "reward",
+      "status": "verified",
+      "verified_at": "2026-08-21",
+      "requirements": {
+        "hard_claim": "All Kourend & Kebos easy, medium, and hard tasks.",
+        "hard_dependency_highlights": {
+          "quests": ["The Forsaken Tower", "Dream Mentor"],
+          "skills": {"Woodcutting": 60, "Smithing": 70, "Mining": 65, "Farming": 74, "Thieving": 49, "Slayer": 62, "Magic": 66},
+          "combat_or_access": ["Kill a Lizardman shaman.", "Kill a wyrm in the Karuulm Slayer Dungeon while using suitable boots.", "Teleport to Xeric's Heart with a charged Xeric's talisman or a mounted talisman."]
+        }
+      },
+      "fixed_rewards": {
+        "lamp": {"xp": 15000, "recipient_skill_minimum": 50},
+        "radas_blessing_3": {"teleports": "unlimited Kourend Woodland teleports and three daily Mount Karuulm teleports", "fishing": "6% chance to catch two fish at once when equipped, excluding Tempoross; the extra fish grants no experience", "prayer_bonus": 1},
+        "ash_sanctifier": "Claimable from Tyss. When carried, it automatically scatters demonic ashes for half of their normal scattering Prayer experience; it uses death runes as charges.",
+        "farming": "5% chance to save a harvest life at the Hosidius and Farming Guild herb patches.",
+        "other_permanent_effects": ["Any Slayer helmet may substitute for Shayzien helm (5) against Lizardman shaman acid after speaking to Captain Cleive, provided that helm is in the collection log.", "Thirus gives 40 dynamite daily."]
+      },
+      "source_ids": ["wiki-kourend-diary", "wiki-xerics-talisman", "wiki-achievement-diary-rewards"],
+      "confidence": "high"
+    },
+    {
+      "id": "diary-ardougne-hard-elite-utility",
+      "name": "Ardougne hard and elite utility",
+      "category": "reward",
+      "status": "verified",
+      "verified_at": "2026-08-21",
+      "requirements": {
+        "hard_claim": "All Ardougne easy, medium, and hard tasks.",
+        "hard_dependency_highlights": {
+          "quests": ["Legends' Quest", "Monkey Madness I (partial)", "Watchtower", "Plague City (partial)", "Mourning's End Part II"],
+          "skills": {"Magic": 66, "Thieving": 72, "Hunter": 59, "Construction": "50, not boostable", "Smithing": 60, "Runecraft": 65},
+          "notable_inputs": ["Karamjan monkey greegree", "25,000 coins to relocate a house to Yanille", "dragon square shield components", "pure or daeyalt essence and Death Altar access"]
+        },
+        "elite_claim": "All Ardougne elite tasks in addition to the claimed hard tier; see the diary task table for its full late-game task requirements."
+      },
+      "fixed_rewards": {
+        "hard": {
+          "lamp": {"xp": 15000, "recipient_skill_minimum": 50},
+          "ardougne_cloak_3": "Five daily teleports to the Ardougne farming patch.",
+          "daily_input": "Wizard Cromperty provides 150 noted pure essence daily.",
+          "permanent_effects": ["Watchtower Teleport can target Yanille.", "10% increased pickpocket-success chance throughout Gielinor.", "Coin-pouch capacity is 84."]
+        },
+        "elite": {
+          "lamp": {"xp": 50000, "recipient_skill_minimum": 70},
+          "ardougne_cloak_4": "Unlimited teleports to the Ardougne farming patch.",
+          "daily_inputs": ["Bert deposits 84 buckets of sand into the bank on login, unless disabled; Ultimate Ironmen are ineligible.", "Wizard Cromperty provides 250 noted pure essence daily."],
+          "permanent_effects": ["Fishing Trawler gives 50% more fish.", "Ardougne Rooftop Course has 25% more marks of grace.", "Coin-pouch capacity is 140."]
+        }
+      },
+      "source_ids": ["wiki-ardougne-diary", "wiki-achievement-diary-rewards"],
+      "confidence": "high"
+    },
+    {
+      "id": "diary-kandarin-hard-utility",
+      "name": "Kandarin hard utility",
+      "category": "reward",
+      "status": "verified",
+      "verified_at": "2026-08-21",
+      "requirements": {
+        "hard_claim": "All Kandarin easy, medium, and hard tasks.",
+        "hard_dependency_highlights": {
+          "unlocks": ["Barbarian Fishing", "Barbarian Smithing"],
+          "skills": {"Fishing": 70, "Agility": 60, "Strength": 45, "Fletching": 70, "Woodcutting": 60, "Construction": "50, not boostable", "Smithing": 75},
+          "notable_inputs": ["25,000 coins for the house-style task", "yew logs, bow string, adamantite bar, and a hammer"]
+        }
+      },
+      "fixed_rewards": {
+        "lamp": {"xp": 15000, "recipient_skill_minimum": 50},
+        "kandarin_headgear_3": "One daily teleport to Sherlock.",
+        "farming": "10% increased chance to save a harvest life at the Catherby herb patch.",
+        "transport": "Camelot Teleport can target the Seers' Village bank.",
+        "other_permanent_effects": ["15% more marks of grace from the Seers' Village Rooftop Course.", "10% additional enchanted-bolt special-effect chance.", "10% more Barbarian Assault honour points."]
+      },
+      "source_ids": ["wiki-kandarin-diary", "wiki-achievement-diary-rewards", "wiki-herb-patch"],
+      "confidence": "high"
+    },
+    {
+      "id": "diary-falador-hard-utility",
+      "name": "Falador hard utility",
+      "category": "reward",
+      "status": "verified",
+      "verified_at": "2026-08-21",
+      "requirements": {
+        "hard_claim": "All Falador easy, medium, and hard tasks.",
+        "hard_dependency_highlights": {
+          "non_skill_dependency": "A Prospector helmet is required for one hard task.",
+          "skills": {"Prayer": 70},
+          "full_task_table": "The complete hard task list and its item/quest requirements remain in the regional diary source."
+        }
+      },
+      "fixed_rewards": {
+        "lamp": {"xp": 15000, "recipient_skill_minimum": 50},
+        "falador_shield_3": "Restores 100% of Prayer once per day.",
+        "banking": "A bank deposit box becomes available in the Crafting Guild.",
+        "pvm_effects": ["The Giant Mole drops noted skins and claws.", "The Giant Mole is easier to locate."],
+        "other_permanent_effects": ["10% more experience from mining pay-dirt at Motherlode Mine.", "Access to the Heroes' Guild fountain shortcut."]
+      },
+      "source_ids": ["wiki-falador-diary", "wiki-achievement-diary-rewards", "wiki-prospector-nugget-shop"],
+      "confidence": "high"
+    },
+    {
+      "id": "diary-morytania-hard-elite-utility",
+      "name": "Morytania hard and elite utility",
+      "category": "reward",
+      "status": "verified",
+      "verified_at": "2026-08-21",
+      "requirements": {
+        "global_diary_dependency": "Priest in Peril is required for every Morytania diary task.",
+        "hard_claim": "All Morytania easy, medium, and hard tasks.",
+        "hard_dependency_highlights": {
+          "quests": ["Desert Treasure I", "In Aid of the Myreque", "Cabin Fever", "Nature Spirit", "King's Ransom and Knight Waves Training Grounds", "Haunted Mine"],
+          "skills": {"Magic": 66, "Construction": 50, "Slayer": 58, "Farming": 53, "Prayer": "70, not boostable", "Defence": "70, not boostable", "Agility": 65, "Mining": 55},
+          "notable_inputs": ["100,000 coins, limestone bricks, teak planks, law runes, and blood runes for the Kharyrll POH portal if not already built", "witchwood icon", "mushroom spore"]
+        },
+        "elite_claim": "All Morytania elite tasks in addition to the claimed hard tier; its task table includes the Harmony Island herb-patch unlock gate."
+      },
+      "fixed_rewards": {
+        "hard": {
+          "lamp": {"xp": 15000, "recipient_skill_minimum": 50},
+          "morytania_legs_3": "Unlimited teleports to Burgh de Rott.",
+          "bonecrusher": "Claimable from a ghost disciple while wearing a ghostspeak amulet or Morytania legs 3+. When carried, it automatically buries monster-dropped bones for half of normal manual-burying Prayer experience; it uses ecto-tokens as charges.",
+          "pvm_and_resource_effects": ["50% more runes from the Barrows chest.", "7.5% more Slayer experience while on task in the Slayer Tower.", "Double Mort myre fungi from Bloom.", "50% more Prayer experience from burning shade remains."]
+        },
+        "elite": {
+          "lamp": {"xp": 50000, "recipient_skill_minimum": 70},
+          "permanent_effects": ["Bonecrusher burials grant full Prayer experience.", "A disease-free herb patch is available on Harmony Island.", "Slayer Tower on-task Slayer experience becomes 10% higher.", "Morytania legs 4 prevent ghasts from rotting food while worn and provide unlimited Slime Pit teleports."]
+        }
+      },
+      "source_ids": ["wiki-morytania-diary", "wiki-priest-peril", "wiki-kings-ransom", "wiki-knight-waves-training-grounds", "wiki-achievement-diary-rewards"],
+      "confidence": "high"
+    },
+    {
+      "id": "diary-varrock-hard-utility",
+      "name": "Varrock hard utility",
+      "category": "reward",
+      "status": "verified",
+      "verified_at": "2026-08-21",
+      "requirements": {
+        "hard_claim": "All Varrock easy, medium, and hard tasks.",
+        "hard_dependency_highlights": {
+          "quests": ["Desert Treasure I"],
+          "skills": {"Hunter": "66, or 69 for the Ironman dashing-kebbit-fur route", "Woodcutting": 60, "Farming": 68, "Magic": 54, "Prayer": 52, "Agility": 51},
+          "notable_inputs": ["800 coins and two dashing kebbit furs", "skull sceptre", "yew sapling", "cactus spines"]
+        }
+      },
+      "fixed_rewards": {
+        "lamp": {"xp": 15000, "recipient_skill_minimum": 50},
+        "varrock_armour_3": ["10% chance to mine double eligible ores while worn, up to and including adamantite and stated minerals; both ores grant experience.", "10% chance to smelt two eligible bars at the Edgeville furnace while worn, up to and including adamantite; both bars grant experience."],
+        "daily_purchase": "Zaff sells 60 noted battlestaves daily as one stack for 420,000 coins.",
+        "banking": "The Cooks' Guild bank and nearby range are available.",
+        "other_permanent_effects": ["Skull sceptre charge capacity becomes 22.", "Crushing individual skull-sceptre components yields three additional bone fragments per component."]
+      },
+      "source_ids": ["wiki-varrock-diary", "wiki-achievement-diary-rewards"],
+      "confidence": "high"
+    },
+    {
+      "id": "diary-western-provinces-hard-elite-utility",
+      "name": "Western Provinces hard and elite utility",
+      "category": "reward",
+      "status": "verified",
+      "verified_at": "2026-08-21",
+      "requirements": {
+        "hard_claim": "All Western Provinces easy, medium, and hard tasks.",
+        "hard_dependency_highlights": {
+          "notable_task_gates": ["Claim a chompy-bird hat after 300 registered kills.", "Use the private red-chinchompa hunting area requirements in the diary task table."],
+          "full_task_table": "The regional diary source is the authoritative full requirement list."
+        },
+        "elite_claim": "All Western Provinces elite tasks in addition to the claimed hard tier; documented gates include 85 Agility, 85 Thieving, a complete Void set, and 1,000 registered chompy or jubbly kills."
+      },
+      "fixed_rewards": {
+        "hard": {
+          "lamp": {"xp": 15000, "recipient_skill_minimum": 50},
+          "elite_void_upgrade": "The Void knight top and robe can each be upgraded by the Elite Void Knight for 200 Pest Control points; each upgrade adds +3 Prayer and +2.5% Ranged and Magic damage.",
+          "transport": "One daily teleport to Piscatoris Fishing Colony.",
+          "other_permanent_effects": ["Access to a private red-chinchompa hunting ground.", "Teleport crystals hold up to five charges."]
+        },
+        "elite": {
+          "lamp": {"xp": 50000, "recipient_skill_minimum": 70},
+          "pvm_effect": "Once daily at Zulrah, reaching 0 Hitpoints resurrects the player with full health and restored stats; it is recorded as a safe death for Hardcore Ironmen.",
+          "other_permanent_effects": ["Unlimited teleports to Piscatoris Fishing Colony.", "Nieve and Steve award Slayer points at Duradel/Kuradal rates."]
+        }
+      },
+      "source_ids": ["wiki-western-provinces-diary", "wiki-achievement-diary-rewards"],
+      "confidence": "high"
+    },
+    {
+      "id": "diary-fremennik-hard-utility",
+      "name": "Fremennik hard utility",
+      "category": "reward",
+      "status": "verified",
+      "verified_at": "2026-08-21",
+      "requirements": {
+        "hard_claim": "All Fremennik easy, medium, and hard tasks.",
+        "hard_dependency_highlights": {
+          "quests": ["Eadgar's Ruse", "The Giant Dwarf (started)", "The Fremennik Isles (partial)"],
+          "skills": {"Magic": 61, "Hunter": 55, "Herblore": 66, "Thieving": 75, "Woodcutting": 56, "Smithing": "60, not boostable"},
+          "notable_inputs": ["cadantine potion (unf) and white berries", "arctic pine logs, bronze nails, hammer, rope"]
+        }
+      },
+      "fixed_rewards": {
+        "lamp": {"xp": 15000, "recipient_skill_minimum": 50},
+        "fremennik_sea_boots_3": "Five daily teleports to the Rellekka marketplace.",
+        "pvm_and_transport_effects": ["Aviansie adamantite-bar drops in God Wars Dungeon are noted.", "Enchanted lyre and its imbued form gain a Waterbirth Island destination.", "Stony basalt targets the Troll Stronghold rooftop, beyond the rocky shortcut; 73 Agility is still required."],
+        "permanent_service_unlocks": ["Tan Leather and Recharge Dragonstone become available on the Lunar spellbook.", "Fossegrimen can give an enchanted lyre infinite charges for 400 of each required fish."]
+      },
+      "source_ids": ["wiki-fremennik-diary", "wiki-achievement-diary-rewards"],
+      "confidence": "high"
+    },
+    {
+      "id": "diary-desert-hard-elite-utility",
+      "name": "Desert hard and elite utility",
+      "category": "reward",
+      "status": "verified",
+      "verified_at": "2026-08-21",
+      "requirements": {
+        "hard_claim": "All Desert easy, medium, and hard tasks.",
+        "hard_dependency_highlights": {
+          "skill_example": "One hard task requires 68 Smithing and five mithril bars.",
+          "full_task_table": "The regional diary source is the authoritative full requirement list."
+        },
+        "elite_claim": "All Desert elite tasks in addition to the claimed hard tier; its documented requirements include high Thieving, Prayer, Construction, and Kalphite Queen access."
+      },
+      "fixed_rewards": {
+        "hard": {
+          "lamp": {"xp": 15000, "recipient_skill_minimum": 50},
+          "permanent_effects": ["Carpet rides throughout the Kharidian Desert are free.", "Ropes placed at the Kalphite Lair and Kalphite Queen's Lair entrances remain permanently secured.", "Camulet gains an Enakhra's Temple entrance destination.", "Zahur cleans noted grimy herbs and provides potion-making services."],
+          "pharaohs_sceptre_capacity": 50
+        },
+        "elite": {
+          "lamp": {"xp": 50000, "recipient_skill_minimum": 70},
+          "desert_amulet_4": ["Unlimited teleports to Nardah.", "Unlimited teleports to the Kalphite Cave entrance.", "Full desert-heat protection while worn."],
+          "other_permanent_effects": ["Free access through Shantay Pass and the Ruins of Unkah pass.", "Access to the Kalphite Lair crevice shortcut with 86 Agility."]
+        }
+      },
+      "source_ids": ["wiki-desert-diary", "wiki-achievement-diary-rewards", "official-achievement-diary-rewards"],
+      "confidence": "high"
+    },
+    {
+      "id": "diary-karamja-hard-elite-utility",
+      "name": "Karamja hard and elite utility",
+      "category": "reward",
+      "status": "verified",
+      "verified_at": "2026-08-21",
+      "requirements": {
+        "hard_claim": "All Karamja easy, medium, and hard tasks.",
+        "hard_dependency_highlights": {
+          "quests": ["Shilo Village", "Legends' Quest (partial)"],
+          "skills_or_account_gates": ["The Shilo Village Slayer-master task requires 100 Combat and 50 Slayer, unless the player has a Slayer cape.", "Ironmen need either Ancient Cavern access or 59 Smithing and 59 Fletching for the mith grapple route."],
+          "combat": ["Kill a metal dragon in Brimhaven Dungeon with dragonfire protection."]
+        },
+        "elite_claim": "All Karamja elite tasks in addition to the claimed hard tier; the diary source provides the full task and boss requirements."
+      },
+      "fixed_rewards": {
+        "hard": {
+          "lamp": {"xp": 10000, "recipient_skill_minimum": 40},
+          "karamja_gloves_3": "Unlimited teleports to the underground Shilo Village mine.",
+          "permanent_effect": "The Karamja Gloves shop-price effects apply at Jiminua's Jungle Store and the Karamja General Store while worn."
+        },
+        "elite": {
+          "lamp": {"xp": 50000, "recipient_skill_minimum": 70},
+          "karamja_gloves_4": "Unlimited teleports to Duradel/Kuradal.",
+          "pvm_and_resource_effects": ["One free resurrection per day in the Fight Caves.", "Fight Caves and Inferno award double Tokkul.", "Brimhaven Dungeon metal dragons drop noted bars, toggleable with Pirate Jackie.", "Brimhaven Dungeon red dragonhide is noted."]
+        }
+      },
+      "source_ids": ["wiki-karamja-diary", "wiki-achievement-diary-rewards"],
+      "confidence": "high"
+    },
+    {
+      "id": "diary-wilderness-hard-elite-utility",
+      "name": "Wilderness hard and elite utility",
+      "category": "reward",
+      "status": "verified",
+      "verified_at": "2026-08-21",
+      "requirements": {
+        "hard_claim": "All Wilderness easy, medium, and hard tasks.",
+        "hard_dependency_highlights": {
+          "quests": ["Mage Arena I"],
+          "skills": {"Magic": 66, "Hunter": 67, "Smithing": 75},
+          "combat_or_access": ["Successfully cast a god spell on another player in the Wilderness.", "Enter the Wilderness God Wars Dungeon through its stated Agility or Strength gate."]
+        },
+        "elite_claim": "All Wilderness elite tasks in addition to the claimed hard tier; the diary source provides the complete high-level and Wilderness-PvM task list."
+      },
+      "fixed_rewards": {
+        "hard": {
+          "lamp": {"xp": 15000, "recipient_skill_minimum": 50},
+          "wilderness_sword_3": "One daily teleport to the Fountain of Rune.",
+          "pvm_access": "Access to Artio, Spindel, and Calvar'ion is granted by the hard diary reward.",
+          "permanent_effects": ["Wilderness obelisks allow destination selection.", "Revenant Caves teleport delay is removed.", "Lundail provides 120 random runes daily.", "Unwanted ecumenical keys can be sold to the Lesser Fanatic for 61,500 coins each."]
+        },
+        "elite": {
+          "lamp": {"xp": 50000, "recipient_skill_minimum": 70},
+          "wilderness_sword_4": "Unlimited teleports to the Fountain of Rune.",
+          "permanent_effects": ["Resource Area access is free.", "Lundail provides 200 random runes daily.", "Wilderness dragon bones are noted except King Black Dragon bones, whose lair is outside the Wilderness.", "Dark-crab catch rate is increased by 112.5%."]
+        }
+      },
+      "source_ids": ["wiki-wilderness-diary", "wiki-achievement-diary-rewards"],
+      "confidence": "high"
+    },
+    {
+      "id": "pvm-piety-foundation-audit",
+      "name": "Piety foundation correction",
+      "category": "reward",
+      "status": "verified",
+      "verified_at": "2026-08-21",
+      "requirements": {
+        "quest_chain": ["King's Ransom completed", "Knight Waves Training Grounds completed"],
+        "skills": {"Prayer": "70, not boostable", "Defence": "70, not boostable"},
+        "dependency_note": "King's Ransom has its own quest and skill prerequisite chain; this record does not collapse it into a single route recommendation."
+      },
+      "fixed_rewards": {"unlocks": ["Piety prayer"]},
+      "guarantee": "Piety is a fixed unlock on successful completion of the stated training grounds; it is not an RNG reward.",
+      "source_ids": ["wiki-kings-ransom", "wiki-knight-waves-training-grounds"],
+      "confidence": "high"
+    },
+    {
+      "id": "pvm-dragon-defender-foundation-audit",
+      "name": "Dragon defender access and RNG distinction",
+      "category": "reward",
+      "status": "verified",
+      "verified_at": "2026-08-21",
+      "requirements": {
+        "warriors_guild_entry": "Either 130 combined Attack and Strength, or level 99 in Attack or Strength.",
+        "basement_access": "Show a Rune defender to Lorelai.",
+        "equip_skill": {"Defence": 60}
+      },
+      "mechanics": {
+        "deterministic_access_chain": "Warriors' Guild entry and Lorelai's basement permission are deterministic once their requirements are met.",
+        "variable_acquisition": "Dragon defenders are a 1 in 100 drop from the level-106 basement Cyclopes. The preceding Bronze-through-Rune defender drops are each 1 in 50 from top-floor Cyclopes.",
+        "token_consumption": "Warriors' Guild tokens are consumed while inside unless an Attack cape is worn."
+      },
+      "outputs": ["Dragon defender", "melee attack and strength bonuses"],
+      "source_ids": ["wiki-dragon-defender", "wiki-warriors-guild"],
+      "confidence": "high"
+    }
+  ],
+  "source_registry_ids": {
+    "reused_existing_ids": [
+      "wiki-lumbridge-diary",
+      "wiki-kourend-diary",
+      "wiki-xerics-talisman",
+      "wiki-kings-ransom",
+      "wiki-dragon-defender",
+      "wiki-warriors-guild",
+      "wiki-priest-peril",
+      "wiki-prospector-nugget-shop"
+    ],
+    "new_registry_entries_needed": [
+      {"id": "wiki-achievement-diary", "publisher": "Old School RuneScape Wiki", "url": "https://oldschool.runescape.wiki/w/Achievement_Diary", "kind": "wiki", "use": "Global diary claim rules, tier structure, and task-table index."},
+      {"id": "wiki-achievement-diary-rewards", "publisher": "Old School RuneScape Wiki", "url": "https://oldschool.runescape.wiki/w/Achievement_Diary/Rewards", "kind": "wiki", "use": "Cross-region fixed tier lamps and reward comparison."},
+      {"id": "official-achievement-diaries-release", "publisher": "Jagex", "url": "https://oldschool.runescape.wiki/w/Update:Achievement_Diaries", "kind": "official_mirror", "use": "Mirror of Jagex's Achievement Diaries release announcement and fixed lamp policy."},
+      {"id": "official-achievement-diary-rewards", "publisher": "Jagex", "url": "https://oldschool.runescape.wiki/w/Update:Dev_Blog:Achievement_Diary_Rewards", "kind": "official_mirror", "use": "Mirror of Jagex's diary-reward detail post."},
+      {"id": "wiki-ardougne-diary", "publisher": "Old School RuneScape Wiki", "url": "https://oldschool.runescape.wiki/w/Ardougne_Diary", "kind": "wiki", "use": "Ardougne task gates and current rewards."},
+      {"id": "wiki-desert-diary", "publisher": "Old School RuneScape Wiki", "url": "https://oldschool.runescape.wiki/w/Desert_Diary", "kind": "wiki", "use": "Desert task gates and current rewards."},
+      {"id": "wiki-falador-diary", "publisher": "Old School RuneScape Wiki", "url": "https://oldschool.runescape.wiki/w/Falador_Diary", "kind": "wiki", "use": "Falador task gates and current rewards."},
+      {"id": "wiki-fremennik-diary", "publisher": "Old School RuneScape Wiki", "url": "https://oldschool.runescape.wiki/w/Fremennik_Diary", "kind": "wiki", "use": "Fremennik task gates and current rewards."},
+      {"id": "wiki-kandarin-diary", "publisher": "Old School RuneScape Wiki", "url": "https://oldschool.runescape.wiki/w/Kandarin_Diary", "kind": "wiki", "use": "Kandarin task gates and current rewards."},
+      {"id": "wiki-karamja-diary", "publisher": "Old School RuneScape Wiki", "url": "https://oldschool.runescape.wiki/w/Karamja_Diary", "kind": "wiki", "use": "Karamja task gates and current rewards."},
+      {"id": "wiki-morytania-diary", "publisher": "Old School RuneScape Wiki", "url": "https://oldschool.runescape.wiki/w/Morytania_Diary", "kind": "wiki", "use": "Morytania task gates, Bonecrusher, and current rewards."},
+      {"id": "wiki-varrock-diary", "publisher": "Old School RuneScape Wiki", "url": "https://oldschool.runescape.wiki/w/Varrock_Diary", "kind": "wiki", "use": "Varrock task gates and current rewards."},
+      {"id": "wiki-western-provinces-diary", "publisher": "Old School RuneScape Wiki", "url": "https://oldschool.runescape.wiki/w/Western_Provinces_Diary", "kind": "wiki", "use": "Western Provinces task gates and current rewards."},
+      {"id": "wiki-wilderness-diary", "publisher": "Old School RuneScape Wiki", "url": "https://oldschool.runescape.wiki/w/Wilderness_Diary", "kind": "wiki", "use": "Wilderness task gates and the 2026 boss-lair reward changes."},
+      {"id": "wiki-knight-waves-training-grounds", "publisher": "Old School RuneScape Wiki", "url": "https://oldschool.runescape.wiki/w/Knight_Waves_Training_Grounds", "kind": "wiki", "use": "Piety's 70 Prayer and 70 Defence training-ground requirements."},
+      {"id": "wiki-herb-patch", "publisher": "Old School RuneScape Wiki", "url": "https://oldschool.runescape.wiki/w/Herb_patch", "kind": "wiki", "use": "Diary-related herb-patch harvest-life effects."}
+    ]
+  }
+}

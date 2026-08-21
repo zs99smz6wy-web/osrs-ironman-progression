@@ -1,0 +1,204 @@
+{
+  "records": [
+    {
+      "id": "transport-network-audit",
+      "name": "Early permanent transport network audit",
+      "category": "transport",
+      "status": "verified",
+      "verified_at": "2026-08-21",
+      "scope": "Factual audit of selected permanent travel unlocks and their quest-chain gates. It records access conditions, fixed quest rewards, consumable or usage conditions where sourced, and existing repository coverage. It does not score utility, estimate travel time, or recommend route order.",
+      "representation_summary": {
+        "already_represented": [
+          "Fairy rings",
+          "Tree Gnome Village spirit-tree access",
+          "The Grand Tree gnome gliders",
+          "The Dig Site, 100 Museum Kudos, and Bone Voyage / Fossil Island access",
+          "Children of the Sun Quetzal Transport System",
+          "Player-owned-house relocation"
+        ],
+        "clearly_missing_from_factual_records": [
+          "Ghosts Ahoy and the Ectophial",
+          "Ardougne Diary cloak teleports",
+          "The Forsaken Tower and the Lovakengj Minecart Network",
+          "Enlightened Journey and the Balloon Transport System",
+          "Eagles' Peak and the Eagle Transport System",
+          "Eadgar's Ruse and Trollheim Teleport",
+          "Plague City and Ardougne Teleport",
+          "Kharedst's memoirs / Book of the Dead quest-teleport expansion"
+        ],
+        "represented_but_not_repeated_here": [
+          "Sailing transport and island access are maintained in the Sailing facts.",
+          "Diary transport beyond the Ardougne cloak, item-drop teleports, spellbook-wide teleport analysis, and charged teleport jewellery require their own factual records."
+        ]
+      },
+      "networks": [
+        {
+          "id": "fairy-rings-audit",
+          "representation": "already_represented",
+          "existing_fact_ids": ["fairy-rings", "the-restless-ghost", "priest-in-peril", "nature-spirit", "lost-city", "fairytale-i-growing-pains"],
+          "hard_gates": {
+            "quest_chain": ["The Restless Ghost", "Priest in Peril", "Nature Spirit", "Lost City", "Fairytale I - Growing Pains"],
+            "partial_quest_gate": "Progress Fairytale II - Cure a Queen through Fairy Godfather permission, the Co-ordinator, and Fairy Fixit. Full Fairytale II completion is not required to use the network.",
+            "equipment_condition": "A Dramen staff or Lunar staff must be wielded to use a ring unless an in-game exemption has been unlocked; the elite Lumbridge & Draynor Diary removes the staff requirement."
+          },
+          "fixed_quest_rewards": {
+            "Fairytale I - Growing Pains": {"Farming_xp": 3500, "Attack_xp": 2000, "Magic_xp": 1000, "items": ["Magic secateurs"]},
+            "Fairytale II - Cure a Queen, completion only": {"Herblore_xp": 3500, "Thieving_xp": 2500, "choice_lamp_xp": 2500, "choice_lamp_minimum_skill_level": 30}
+          },
+          "permanent_transport_output": "Usable fairy-ring network after the partial Fairytale II permission state, subject to the stated staff or exemption condition.",
+          "audit_note": "The current repository correctly separates the partial-unlock condition from Fairytale II completion rewards."
+        },
+        {
+          "id": "spirit-trees-audit",
+          "representation": "already_represented",
+          "existing_fact_ids": ["tree-gnome-village"],
+          "hard_gates": {
+            "quest": "Tree Gnome Village completion",
+            "network_condition": "The Grand Tree spirit tree is additionally usable after both Tree Gnome Village and The Grand Tree are complete."
+          },
+          "fixed_quest_rewards": {"Tree Gnome Village": {"Attack_xp": 11450}},
+          "permanent_transport_output": "Access to spirit-tree transport as the Tree Gnome Village quest reward.",
+          "audit_note": "Player-grown spirit trees, their Farming requirements, and POH spirit-tree construction are separate transport extensions and are not fixed rewards of Tree Gnome Village."
+        },
+        {
+          "id": "gnome-gliders-audit",
+          "representation": "already_represented",
+          "existing_fact_ids": ["grand-tree"],
+          "hard_gates": {"quest": "The Grand Tree completion", "skills": {"Agility": 25}},
+          "fixed_quest_rewards": {"The Grand Tree": {"Attack_xp": 18400, "Agility_xp": 7900, "Magic_xp": 2150, "kudos_claimable": 5}},
+          "permanent_transport_output": "Access to the Gnome glider transportation system.",
+          "audit_note": "Monkey Madness I activates military gliders; it is an extension of the network rather than a prerequisite for the base post-quest glider system."
+        },
+        {
+          "id": "fossil-island-audit",
+          "representation": "already_represented",
+          "existing_fact_ids": ["the-dig-site", "museum-kudos-100", "bone-voyage"],
+          "hard_gates": {
+            "The Dig Site": {"skills": {"Agility": 10, "Herblore": 10, "Thieving": 25}, "skill_checks": "All three listed quest checks are boostable."},
+            "Museum Kudos": 100,
+            "Bone Voyage": "The Dig Site complete and 100 Museum Kudos; no skill or combat requirement is listed for the quest itself.",
+            "quest_consumed_inputs": {"vodka": 2, "unfinished_marrentill_potion": 1}
+          },
+          "fixed_quest_and_threshold_rewards": {
+            "The Dig Site": {"Mining_xp": 15300, "Herblore_xp": 2000, "gold_bars": 2},
+            "Museum Kudos at 51": {"Mining_xp": 1000},
+            "Museum Kudos at 101": {"Crafting_xp": 2500, "Mining_xp": 2500},
+            "Bone Voyage": {"items": ["Fossil Island notebook"]}
+          },
+          "permanent_transport_output": ["Fossil Island access", "Digsite barge quick-travel to Fossil Island", "Fossil Island magic-mushtree network after each mushtree is individually discovered"],
+          "conditional_transport_extension": "After Bone Voyage, using a Digsite pendant on the House on the Hill Strange Machine unlocks that pendant's Fossil Island destination. Digsite pendants are charged consumables and are therefore not treated as a permanent, no-input teleport.",
+          "audit_note": "The existing model already captures the quest chain and distinguishes post-quest optional bank-chest construction from the access gate."
+        },
+        {
+          "id": "ectophial-audit",
+          "representation": "missing_factual_record",
+          "hard_gates": {
+            "quests": ["Priest in Peril", "The Restless Ghost"],
+            "skills_needed_to_complete": {"Agility": 25, "Cooking": 20},
+            "skill_check_note": "The listed Agility and Cooking checks are boostable and are not required to start Ghosts Ahoy.",
+            "required_combat": "Defeat or otherwise handle a level 32 giant lobster during the quest.",
+            "variable_or_account_specific_items": "The required dye colours are random; the quest also requires Ecto-token acquisition or its documented alternatives, coins, and several listed tools and ingredients."
+          },
+          "fixed_quest_rewards": {"Ghosts Ahoy": {"Prayer_xp": 2400, "items": ["Ectophial"], "access": ["Free passage into Port Phasmatys"]}},
+          "permanent_transport_output": "The Ectophial is refillable at the Ectofuntus and provides repeatable direct teleportation to it. A replacement can be obtained from Velorina under the source's stated condition if the item is lost.",
+          "source_registry_ids_needed": ["wiki-ghosts-ahoy", "wiki-ectophial"]
+        },
+        {
+          "id": "ardougne-cloak-audit",
+          "representation": "missing_factual_record",
+          "hard_gates": {
+            "easy_diary": "Complete every Easy Ardougne Diary task. The task set includes Rune Mysteries completion, 5 Thieving, a silk sale, Fishing Trawler start, Biohazard completion, a rusty sword and 100 coins for Tindel Marchant, and the other listed easy tasks.",
+            "medium_to_elite_extension": "Higher cloak tiers require completion of all prior Ardougne Diary tiers and the corresponding task requirements; those tiers are not prerequisites for the cloak 1 monastery teleport."
+          },
+          "fixed_rewards": {
+            "Easy Ardougne Diary": {"choice_lamp_xp": 2500, "choice_lamp_minimum_skill_level": 30, "items": ["Ardougne cloak 1"]},
+            "Cloak teleport allowances": {"monastery": "Unlimited at cloak 1 or better", "Ardougne_farm": "3 per day at cloak 2, 5 per day at cloak 3, unlimited at cloak 4"}
+          },
+          "permanent_transport_output": "Unlimited Ardougne Monastery teleport while the cloak is worn or held; later diary tiers add the stated farm-patch teleports.",
+          "source_registry_ids_needed": ["wiki-ardougne-diary", "wiki-ardougne-cloak-1"]
+        },
+        {
+          "id": "lovakengj-minecarts-audit",
+          "representation": "missing_factual_record",
+          "hard_gates": {
+            "quest_chain": ["X Marks the Spot", "Client of Kourend", "The Forsaken Tower"],
+            "The Forsaken Tower_formal_requirements": "Completion of Client of Kourend, which requires X Marks the Spot. No skill gate is listed on The Forsaken Tower itself.",
+            "usage_cost": "The source lists 80 coins to use the Lovakengj Minecart Network during the quest; the network is not modeled as a no-input teleport."
+          },
+          "fixed_quest_rewards": {"The Forsaken Tower": {"Mining_xp": 5000}},
+          "permanent_transport_output": "Access to the Lovakengj Minecart Network after The Forsaken Tower completion.",
+          "source_registry_ids_needed": ["wiki-x-marks-the-spot", "wiki-client-of-kourend", "wiki-the-forsaken-tower", "wiki-lovakengj-minecart-network"]
+        },
+        {
+          "id": "balloon-transport-audit",
+          "representation": "missing_factual_record",
+          "hard_gates": {
+            "quest": "Enlightened Journey completion",
+            "quest_point_requirement": 20,
+            "skills": {"Firemaking": 20, "Farming": 30, "Crafting": 36},
+            "post_quest_route_gates": "Individual destinations have their own Firemaking requirement and first-use route-unlock condition; those must be modeled per destination rather than inferred from quest completion."
+          },
+          "fixed_quest_rewards": {"Enlightened Journey": {"Woodcutting_xp": 1500, "Crafting_xp": 2000, "Farming_xp": 3000, "Firemaking_xp": 4000, "items": ["Bomber jacket", "Bomber cap", "Origami balloons"]}},
+          "permanent_transport_output": "Access to the Balloon Transport System; subsequent balloon trips consume the source-specified log charge.",
+          "source_registry_ids_needed": ["wiki-enlightened-journey", "wiki-balloon-transport-system"]
+        },
+        {
+          "id": "eagle-transport-audit",
+          "representation": "missing_factual_record",
+          "hard_gates": {"quest": "Eagles' Peak completion", "skills": {"Hunter": 27}, "items": {"coins": 50, "yellow_dye": 1, "swamp_paste": 1}},
+          "fixed_quest_rewards": {"Eagles' Peak": {"Hunter_xp": 2500}},
+          "permanent_transport_output": "Access to the Eagle Transport System.",
+          "source_registry_ids_needed": ["wiki-eagles-peak", "wiki-eagle-transport-system"]
+        },
+        {
+          "id": "trollheim-teleport-audit",
+          "representation": "missing_factual_record",
+          "hard_gates": {
+            "quest_chain": ["Druidic Ritual", "Death Plateau", "Troll Stronghold", "Eadgar's Ruse"],
+            "skills": {"Herblore": 31},
+            "skill_check_note": "The Eadgar's Ruse Herblore check is boostable and required to start.",
+            "spell_use": {"Magic": 61, "runes_per_cast": {"Law": 2, "Fire": 2}}
+          },
+          "fixed_quest_rewards": {"Eadgar's Ruse": {"Herblore_xp": 11000, "items": ["Burnt meat"], "other": ["Ability to grow and steal goutweed"]}},
+          "permanent_transport_output": "Ability to cast Trollheim Teleport and redirect a Teleport to House tablet to Trollheim using a scroll of redirection; individual casts still consume runes or a redirected tablet.",
+          "source_registry_ids_needed": ["wiki-druidic-ritual", "wiki-death-plateau", "wiki-troll-stronghold", "wiki-eadgars-ruse", "wiki-trollheim-teleport"]
+        },
+        {
+          "id": "ardougne-teleport-audit",
+          "representation": "missing_factual_record",
+          "hard_gates": {"quest": "Plague City completion", "spell_use": {"Magic": 51, "runes_per_cast": {"Law": 2, "Water": 2}}},
+          "fixed_quest_rewards": {"Plague City": {"Magic_xp": 2425}},
+          "permanent_transport_output": "Ability to cast Ardougne Teleport on the standard spellbook; casts consume runes.",
+          "source_registry_ids_needed": ["wiki-plague-city", "wiki-ardougne-teleport"]
+        }
+      ],
+      "source_registry": {
+        "reused_ids": ["wiki-fairytale-ii", "wiki-fairy-rings", "wiki-dramen-staff", "wiki-tree-gnome-village", "wiki-grand-tree", "wiki-dig-site", "wiki-kudos", "wiki-bone-voyage", "wiki-fossil-island"],
+        "needed_entries": [
+          {"id": "wiki-ghosts-ahoy", "url": "https://oldschool.runescape.wiki/w/Ghosts_Ahoy", "use": "Ghosts Ahoy hard gates, fixed Prayer XP, Ectophial, and Port Phasmatys access."},
+          {"id": "wiki-ectophial", "url": "https://oldschool.runescape.wiki/w/Ectophial", "use": "Ectophial refill, replacement, and transport behavior."},
+          {"id": "wiki-ardougne-diary", "url": "https://oldschool.runescape.wiki/w/Ardougne_Diary", "use": "Ardougne Diary task gates, cloak tiers, lamps, and teleport allowances."},
+          {"id": "wiki-ardougne-cloak-1", "url": "https://oldschool.runescape.wiki/w/Ardougne_cloak_1", "use": "Cloak 1 retrieval and monastery-teleport behavior."},
+          {"id": "wiki-x-marks-the-spot", "url": "https://oldschool.runescape.wiki/w/X_Marks_the_Spot", "use": "Client of Kourend prerequisite."},
+          {"id": "wiki-client-of-kourend", "url": "https://oldschool.runescape.wiki/w/Client_of_Kourend", "use": "The Forsaken Tower prerequisite and memoirs context."},
+          {"id": "wiki-the-forsaken-tower", "url": "https://oldschool.runescape.wiki/w/The_Forsaken_Tower", "use": "Minecart unlock and fixed Mining XP."},
+          {"id": "wiki-lovakengj-minecart-network", "url": "https://oldschool.runescape.wiki/w/Lovakengj_Minecart_Network", "use": "Minecart destinations and coin-use rules."},
+          {"id": "wiki-enlightened-journey", "url": "https://oldschool.runescape.wiki/w/Enlightened_Journey", "use": "Quest gates and fixed XP or item rewards."},
+          {"id": "wiki-balloon-transport-system", "url": "https://oldschool.runescape.wiki/w/Balloon_transport_system", "use": "Route-specific unlocks, Firemaking gates, and log charges."},
+          {"id": "wiki-eagles-peak", "url": "https://oldschool.runescape.wiki/w/Eagles%27_Peak", "use": "Quest gates, fixed Hunter XP, and Eagle Transport unlock."},
+          {"id": "wiki-eagle-transport-system", "url": "https://oldschool.runescape.wiki/w/Eagle_transport_system", "use": "Eagle-network destinations and follow-up gate details."},
+          {"id": "wiki-druidic-ritual", "url": "https://oldschool.runescape.wiki/w/Druidic_Ritual", "use": "Eadgar's Ruse prerequisite."},
+          {"id": "wiki-death-plateau", "url": "https://oldschool.runescape.wiki/w/Death_Plateau", "use": "Troll Stronghold and Eadgar's Ruse chain prerequisite."},
+          {"id": "wiki-troll-stronghold", "url": "https://oldschool.runescape.wiki/w/Troll_Stronghold", "use": "Eadgar's Ruse prerequisite."},
+          {"id": "wiki-eadgars-ruse", "url": "https://oldschool.runescape.wiki/w/Egars_ruse", "use": "Quest gates, fixed Herblore XP, and Trollheim Teleport unlock."},
+          {"id": "wiki-trollheim-teleport", "url": "https://oldschool.runescape.wiki/w/Trollheim_Teleport", "use": "Trollheim Teleport cast requirements and rune cost."},
+          {"id": "wiki-plague-city", "url": "https://oldschool.runescape.wiki/w/Plague_City", "use": "Plague City fixed Magic XP and Ardougne Teleport unlock."},
+          {"id": "wiki-ardougne-teleport", "url": "https://oldschool.runescape.wiki/w/Ardougne_Teleport", "use": "Ardougne Teleport cast requirements and rune cost."},
+          {"id": "wiki-kharedsts-memoirs", "url": "https://oldschool.runescape.wiki/w/Kharedst%27s_memoirs", "use": "Future factual audit of Kourend quest-teleport expansion."}
+        ]
+      },
+      "source_ids": ["wiki-fairytale-ii", "wiki-fairy-rings", "wiki-dramen-staff", "wiki-tree-gnome-village", "wiki-grand-tree", "wiki-dig-site", "wiki-kudos", "wiki-bone-voyage", "wiki-fossil-island", "wiki-ghosts-ahoy", "wiki-ectophial", "wiki-ardougne-diary", "wiki-ardougne-cloak-1", "wiki-x-marks-the-spot", "wiki-client-of-kourend", "wiki-the-forsaken-tower", "wiki-lovakengj-minecart-network", "wiki-enlightened-journey", "wiki-balloon-transport-system", "wiki-eagles-peak", "wiki-eagle-transport-system", "wiki-druidic-ritual", "wiki-death-plateau", "wiki-troll-stronghold", "wiki-eadgars-ruse", "wiki-trollheim-teleport", "wiki-plague-city", "wiki-ardougne-teleport", "wiki-kharedsts-memoirs"],
+      "confidence": "high"
+    }
+  ]
+}
