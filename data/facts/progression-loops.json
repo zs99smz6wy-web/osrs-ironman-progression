@@ -29,10 +29,29 @@
       "category": "afk",
       "status": "verified",
       "verified_at": "2026-08-20",
-      "requirements": {"quest": "Throne of Miscellania", "expansion_quest": "Royal Trouble"},
-      "outputs": ["daily resource collection", "herbs", "logs", "coal", "fish", "seeds", "hardwood after Royal Trouble"],
-      "mechanics": {"workers": "10 workers initially; 15 after Royal Trouble.", "royal_trouble": "Increases subject productivity by 50%.", "approval_decay": "Approval decays daily and needs maintenance."},
-      "source_ids": ["wiki-miscellania"],
+      "requirements": {"quest": "Throne of Miscellania", "royal_trouble_effects_require": "Royal Trouble"},
+      "outputs": ["daily resource collection", "herbs or flax", "maple logs", "coal", "tuna and swordfish", "hardwood after Royal Trouble", "seeds after Royal Trouble"],
+      "mechanics": {
+        "processing_time": "Resource collection and coffer deduction occur at midnight UTC each day.",
+        "coffer_capacity": {"after_throne_of_miscellania": 5000000, "after_royal_trouble": 7500000},
+        "daily_withdrawal": {
+          "rule": "10% of the current coffer balance",
+          "cap_after_throne_of_miscellania": 50000,
+          "cap_after_royal_trouble": 75000,
+          "balance_needed_to_reach_cap_after_throne_of_miscellania": 500000,
+          "balance_needed_to_reach_cap_after_royal_trouble": 750000
+        },
+        "workers": {"after_throne_of_miscellania": 10, "after_royal_trouble": 15, "per_resource_type_maximum": 10},
+        "royal_trouble": {"subject_productivity_increase_percent": 50, "additional_labour_types": ["hardwood woodcutting", "farming"]},
+        "approval": {
+          "range_percent": {"minimum": 25, "maximum": 100},
+          "daily_decay_percent_before_royal_trouble": 2.5,
+          "daily_decay_percent_after_royal_trouble": 1,
+          "yield_is_influenced_by_approval": true,
+          "lowering_actions": ["killing Miscellania subjects", "stealing from Miscellania market stalls"]
+        }
+      },
+      "source_ids": ["wiki-managing-miscellania", "official-dmm-tweaks-2023"],
       "confidence": "high"
     },
     {

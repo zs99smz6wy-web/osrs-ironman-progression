@@ -1,0 +1,62 @@
+{
+  "records": [
+    {
+      "id": "throne-of-miscellania",
+      "name": "Throne of Miscellania",
+      "category": "quest",
+      "status": "verified",
+      "verified_at": "2026-08-20",
+      "requirements": {
+        "quests": ["Heroes' Quest", "The Fremennik Trials"],
+        "heroes_quest_prerequisites_listed_by_source": ["Shield of Arrav", "Lost City", "Merlin's Crystal", "Dragon Slayer I"],
+        "fixed_skill_requirements": {},
+        "public_support_requirement": "75% approval to finish the quest",
+        "public_support_options": [
+          {"method": "buy mixed flowers", "gp": 1875},
+          {"method": "chop maple trees", "tool": "axe", "skills": {"Woodcutting": 45}},
+          {"method": "rake flax", "tool": "rake", "skills": {"Farming": 10}},
+          {"method": "mine coal", "tool": "pickaxe", "skills": {"Mining": 35}},
+          {"method": "fish tuna, lobster, or swordfish", "tool": "harpoon or lobster pot", "skills": {"Fishing": 35}}
+        ],
+        "items": [
+          {"item": "iron bar", "required": true},
+          {"item": "common non-silver ring", "required": true, "consumed": true},
+          {"item": "logs", "required": true, "may_be_obtained_during_quest": true}
+        ]
+      },
+      "rewards": {
+        "quest_points": 1,
+        "experience": {},
+        "coffer_coins": 10000,
+        "unlocks": ["Managing Miscellania", "Ring of wealth teleport to Miscellania"]
+      },
+      "source_ids": ["wiki-throne-of-miscellania", "wiki-quest-experience-rewards"],
+      "confidence": "high"
+    },
+    {
+      "id": "royal-trouble",
+      "name": "Royal Trouble",
+      "category": "quest",
+      "status": "verified",
+      "verified_at": "2026-08-20",
+      "requirements": {
+        "quests": ["Throne of Miscellania"],
+        "skills": {"Agility": 40, "Slayer": 40},
+        "items": [
+          {"item": "coal", "quantity": 5, "may_be_obtained_during_quest": true},
+          {"item": "pickaxe", "required_if_mining_quest_coal": true},
+          {"item": "rope", "quantity": 2, "may_be_obtained_during_quest": true}
+        ],
+        "combat": {"enemy": "Giant Sea Snake", "combat_level": 149}
+      },
+      "rewards": {
+        "quest_points": 1,
+        "coins": 20000,
+        "experience": {"Agility": 5000, "Slayer": 5000, "Hitpoints": 5000},
+        "unlocks": ["enhanced Managing Miscellania", "Miscellania and Etceteria Dungeon access"]
+      },
+      "source_ids": ["wiki-royal-trouble", "wiki-quest-experience-rewards", "wiki-hitpoints", "wiki-slayer"],
+      "confidence": "high"
+    }
+  ]
+}

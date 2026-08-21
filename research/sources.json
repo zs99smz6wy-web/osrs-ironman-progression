@@ -63,5 +63,12 @@
     {"id":"wiki-kudos","publisher":"Old School RuneScape Wiki","url":"https://oldschool.runescape.wiki/w/Kudos","kind":"wiki","checked_at":"2026-08-20","use":"Permanent Kudos counter, sources, thresholds, and Bone Voyage access"},
     {"id":"wiki-bone-voyage","publisher":"Old School RuneScape Wiki","url":"https://oldschool.runescape.wiki/w/Bone_Voyage","kind":"wiki","checked_at":"2026-08-20","use":"Bone Voyage requirements, consumed items, rewards, and Fossil Island unlock"},
     {"id":"wiki-clockmaking-space","publisher":"Old School RuneScape Wiki","url":"https://oldschool.runescape.wiki/w/Clockmaking_space","kind":"wiki","checked_at":"2026-08-20","use":"Clockwork Crafting and Construction requirements"}
+    ,{"id":"wiki-throne-of-miscellania","publisher":"Old School RuneScape Wiki","url":"https://oldschool.runescape.wiki/w/Throne_of_Miscellania","kind":"wiki","checked_at":"2026-08-20","use":"Throne of Miscellania quest prerequisites, support alternatives, items, and rewards"}
+    ,{"id":"wiki-royal-trouble","publisher":"Old School RuneScape Wiki","url":"https://oldschool.runescape.wiki/w/Royal_Trouble","kind":"wiki","checked_at":"2026-08-20","use":"Royal Trouble quest prerequisites, items, combat gate, rewards, and managing-Kingdom upgrade"}
+    ,{"id":"wiki-quest-experience-rewards","publisher":"Old School RuneScape Wiki","url":"https://oldschool.runescape.wiki/w/Quest_experience_rewards","kind":"wiki","checked_at":"2026-08-20","use":"Throne of Miscellania no-XP reward confirmation and Royal Trouble Agility and Slayer XP"}
+    ,{"id":"wiki-hitpoints","publisher":"Old School RuneScape Wiki","url":"https://oldschool.runescape.wiki/w/Hitpoints","kind":"wiki","checked_at":"2026-08-20","use":"Royal Trouble Hitpoints XP reward"}
+    ,{"id":"wiki-slayer","publisher":"Old School RuneScape Wiki","url":"https://oldschool.runescape.wiki/w/Slayer","kind":"wiki","checked_at":"2026-08-20","use":"Royal Trouble Slayer requirement and XP reward"}
+    ,{"id":"wiki-managing-miscellania","publisher":"Old School RuneScape Wiki","url":"https://oldschool.runescape.wiki/w/Managing_Miscellania","kind":"wiki","checked_at":"2026-08-20","use":"Kingdom coffer, daily withdrawal, worker, approval, and Royal Trouble productivity mechanics"}
+    ,{"id":"official-dmm-tweaks-2023","publisher":"Jagex","url":"https://secure.runescape.com/m=news/dmm-tweaks-upcoming-launcher-changes--more?oldschool=1","kind":"official","checked_at":"2026-08-20","use":"Official confirmation that Kingdom resource collection and coffer deduction occur at midnight"}
   ]
 }
