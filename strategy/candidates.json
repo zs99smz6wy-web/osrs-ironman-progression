@@ -1,0 +1,89 @@
+{
+  "purpose": "Strategic annotations for the current normalized pilot. These values are judgements, not game facts or eligibility rules.",
+  "dimension_scale": {
+    "range": "0-4",
+    "positive_dimensions": [
+      "lifetime_utility",
+      "content_unlock",
+      "economic_infrastructure",
+      "multi_output",
+      "diversity",
+      "afk_fit"
+    ],
+    "cost_dimensions": ["detour_cost", "burnout_risk"]
+  },
+  "candidates": [
+    {
+      "action_id": "action:waterfall-quest",
+      "dimensions": {"lifetime_utility": 2, "content_unlock": 1, "economic_infrastructure": 0, "multi_output": 2, "diversity": 2, "afk_fit": 0, "detour_cost": 1, "burnout_risk": 0},
+      "stop_condition": "Stop after the quest is complete; it is a one-time early combat foundation, not a repeated training method.",
+      "reentry_condition": "Do not re-enter; let the completed quest reward stand while the evaluator considers later unlocked actions."
+    },
+    {
+      "action_id": "action:tree-gnome-village",
+      "dimensions": {"lifetime_utility": 3, "content_unlock": 2, "economic_infrastructure": 0, "multi_output": 2, "diversity": 3, "afk_fit": 0, "detour_cost": 1, "burnout_risk": 0},
+      "stop_condition": "Stop after the spirit-tree transport outcome is secured.",
+      "reentry_condition": "Do not re-enter; revisit the Gnome Stronghold only when another eligible action makes it convenient."
+    },
+    {
+      "action_id": "action:grand-tree",
+      "dimensions": {"lifetime_utility": 3, "content_unlock": 3, "economic_infrastructure": 0, "multi_output": 2, "diversity": 3, "afk_fit": 0, "detour_cost": 1, "burnout_risk": 0},
+      "stop_condition": "Stop after the quest and gnome-glider transport outcome are complete.",
+      "reentry_condition": "Re-enter once 25 Agility is met and the action becomes eligible, especially when its transport supports nearby work."
+    },
+    {
+      "action_id": "action:children-of-the-sun",
+      "dimensions": {"lifetime_utility": 3, "content_unlock": 3, "economic_infrastructure": 1, "multi_output": 2, "diversity": 3, "afk_fit": 0, "detour_cost": 1, "burnout_risk": 0},
+      "stop_condition": "Stop after Varlamore and quetzal transport are unlocked.",
+      "reentry_condition": "Do not re-enter; use the resulting access when Varlamore activities become eligible."
+    },
+    {
+      "action_id": "action:fairy-rings",
+      "dimensions": {"lifetime_utility": 4, "content_unlock": 4, "economic_infrastructure": 1, "multi_output": 3, "diversity": 3, "afk_fit": 0, "detour_cost": 2, "burnout_risk": 1},
+      "stop_condition": "Stop once Fairy Godfather permission and fairy-ring transport are recorded by the evaluator.",
+      "reentry_condition": "Re-enter when its prerequisite quest chain is complete; afterward use fairy rings to reduce travel across other eligible actions."
+    },
+    {
+      "action_id": "action:fossil-island-access",
+      "dimensions": {"lifetime_utility": 4, "content_unlock": 4, "economic_infrastructure": 4, "multi_output": 4, "diversity": 3, "afk_fit": 0, "detour_cost": 2, "burnout_risk": 1},
+      "stop_condition": "Stop after Fossil Island access is unlocked; establish its individual loops separately when ready.",
+      "reentry_condition": "Re-enter when The Dig Site and 100 kudos make the action eligible, particularly before pursuing birdhouse or seaweed setups."
+    },
+    {
+      "action_id": "action:birdhouse-loop",
+      "dimensions": {"lifetime_utility": 4, "content_unlock": 1, "economic_infrastructure": 3, "multi_output": 3, "diversity": 3, "afk_fit": 3, "detour_cost": 1, "burnout_risk": 0},
+      "stop_condition": "Stop after the loop is established; do not turn the setup itself into a long session.",
+      "reentry_condition": "Re-enter as a short recurring passive task when Fossil Island access, 25 Construction, and a suitable attention window are available."
+    },
+    {
+      "action_id": "action:giant-seaweed-loop",
+      "dimensions": {"lifetime_utility": 4, "content_unlock": 1, "economic_infrastructure": 4, "multi_output": 3, "diversity": 3, "afk_fit": 3, "detour_cost": 1, "burnout_risk": 0},
+      "stop_condition": "Stop after the seaweed setup is established; harvests belong in the passive lane.",
+      "reentry_condition": "Re-enter as a short recurring passive task when Fossil Island, 23 Farming, and a seaweed spore are available."
+    },
+    {
+      "action_id": "action:wintertodt",
+      "dimensions": {"lifetime_utility": 2, "content_unlock": 1, "economic_infrastructure": 2, "multi_output": 3, "diversity": 2, "afk_fit": 1, "detour_cost": 1, "burnout_risk": 3},
+      "stop_condition": "Stop when the immediate reward, Firemaking, or supply objective has been met, or when repetition outweighs its current value.",
+      "reentry_condition": "Re-enter for a defined near-term objective at 50 Firemaking or above; avoid treating it as a mandatory default grind."
+    },
+    {
+      "action_id": "action:tempoross",
+      "dimensions": {"lifetime_utility": 2, "content_unlock": 1, "economic_infrastructure": 2, "multi_output": 3, "diversity": 3, "afk_fit": 1, "detour_cost": 1, "burnout_risk": 2},
+      "stop_condition": "Stop when the current Fishing, food, or reward objective is met rather than committing to an open-ended session.",
+      "reentry_condition": "Re-enter at 35 Fishing or above when its rewards serve a concrete account need or offer a desired content change."
+    },
+    {
+      "action_id": "action:hunter-rumours-novice",
+      "dimensions": {"lifetime_utility": 2, "content_unlock": 2, "economic_infrastructure": 2, "multi_output": 3, "diversity": 4, "afk_fit": 1, "detour_cost": 1, "burnout_risk": 1},
+      "stop_condition": "Stop after the immediate Hunter or reward goal, and switch if the current rumour loop stops being enjoyable or useful.",
+      "reentry_condition": "Re-enter after Varlamore access and 46 Hunter when a varied active task fits the account's next objective."
+    },
+    {
+      "action_id": "action:agility-pyramid",
+      "dimensions": {"lifetime_utility": 1, "content_unlock": 0, "economic_infrastructure": 3, "multi_output": 1, "diversity": 2, "afk_fit": 0, "detour_cost": 2, "burnout_risk": 3},
+      "stop_condition": "Stop when the identified GP commitment is funded or the short cash objective is reached.",
+      "reentry_condition": "Re-enter at 30 Agility and 20 Magic only when it is a named way to meet a specific cash deadline, not as a generic cash target."
+    }
+  ]
+}

@@ -1,0 +1,161 @@
+from __future__ import annotations
+
+import argparse
+import json
+from pathlib import Path
+from typing import Any
+
+from evaluate_progression import DEFAULT_ACTIONS, DEFAULT_STATE, evaluate_actions, load_json
+
+
+ROOT = Path(__file__).resolve().parents[1]
+DEFAULT_CANDIDATES = ROOT / "strategy" / "candidates.json"
+POSITIVE_DIMENSIONS = (
+    "lifetime_utility",
+    "content_unlock",
+    "economic_infrastructure",
+    "multi_output",
+    "diversity",
+    "afk_fit",
+)
+COST_DIMENSIONS = ("detour_cost", "burnout_risk")
+ALL_DIMENSIONS = POSITIVE_DIMENSIONS + COST_DIMENSIONS
+
+
+def _score_dimension_breakdown(dimensions: dict[str, Any]) -> dict[str, int]:
+    if set(dimensions) != set(ALL_DIMENSIONS):
+        missing = sorted(set(ALL_DIMENSIONS) - set(dimensions))
+        unexpected = sorted(set(dimensions) - set(ALL_DIMENSIONS))
+        raise ValueError(f"Candidate dimensions must be exactly {ALL_DIMENSIONS}; missing={missing}, unexpected={unexpected}")
+
+    breakdown: dict[str, int] = {}
+    for dimension in POSITIVE_DIMENSIONS:
+        value = dimensions[dimension]
+        if not isinstance(value, int) or not 0 <= value <= 4:
+            raise ValueError(f"{dimension} must be an integer from 0 to 4")
+        breakdown[dimension] = value
+    for dimension in COST_DIMENSIONS:
+        value = dimensions[dimension]
+        if not isinstance(value, int) or not 0 <= value <= 4:
+            raise ValueError(f"{dimension} must be an integer from 0 to 4")
+        breakdown[dimension] = -value
+    return breakdown
+
+
+def _preference_adjustments(dimensions: dict[str, Any], account_state: dict[str, Any]) -> dict[str, int]:
+    preferences = account_state.get("preferences", {})
+    attention_mode = account_state.get("attention_window", {}).get("mode", "active")
+    diversity_preference = preferences.get("diversity_preference", 0)
+    intensity_tolerance = preferences.get("intensity_tolerance", 0)
+
+    if not isinstance(diversity_preference, int) or not 0 <= diversity_preference <= 4:
+        raise ValueError("preferences.diversity_preference must be an integer from 0 to 4")
+    if not isinstance(intensity_tolerance, int) or not 0 <= intensity_tolerance <= 4:
+        raise ValueError("preferences.intensity_tolerance must be an integer from 0 to 4")
+
+    afk_fit = dimensions["afk_fit"]
+    attention_adjustment = {
+        "true_afk": afk_fit,
+        "low_attention": afk_fit // 2,
+        "semi_afk": 0,
+        "active": 0,
+    }.get(attention_mode)
+    if attention_adjustment is None:
+        raise ValueError(f"Unknown attention_window.mode: {attention_mode}")
+
+    return {
+        "attention_window": attention_adjustment,
+        "diversity_preference": (diversity_preference * dimensions["diversity"]) // 4,
+        "intensity_tolerance": min(intensity_tolerance, dimensions["burnout_risk"]),
+    }
+
+
+def score_candidates(
+    candidates_document: dict[str, Any], actions_document: dict[str, Any], account_state: dict[str, Any]
+) -> list[dict[str, Any]]:
+    """Rank strategic annotations after the factual evaluator identifies eligible actions."""
+    evaluated = evaluate_actions(actions_document, account_state)
+    eligible = {result["id"]: result for result in evaluated if result["status"] == "eligible"}
+    evaluated_ids = {result["id"] for result in evaluated}
+
+    annotations = candidates_document["candidates"]
+    annotation_ids = [annotation["action_id"] for annotation in annotations]
+    if len(annotation_ids) != len(set(annotation_ids)):
+        raise ValueError("Candidate action_id values must be unique")
+    if set(annotation_ids) != evaluated_ids:
+        missing = sorted(evaluated_ids - set(annotation_ids))
+        unexpected = sorted(set(annotation_ids) - evaluated_ids)
+        raise ValueError(f"Candidate annotations must match current pilot actions; missing={missing}, unexpected={unexpected}")
+
+    ranked: list[dict[str, Any]] = []
+    for annotation in annotations:
+        action_id = annotation["action_id"]
+        if action_id not in eligible:
+            continue
+
+        dimensions = annotation["dimensions"]
+        dimension_breakdown = _score_dimension_breakdown(dimensions)
+        adjustments = _preference_adjustments(dimensions, account_state)
+        base_score = sum(dimension_breakdown.values())
+        total_score = base_score + sum(adjustments.values())
+        evaluated_action = eligible[action_id]
+        ranked.append(
+            {
+                "action_id": action_id,
+                "name": evaluated_action["name"],
+                "kind": evaluated_action["kind"],
+                "fact_ids": evaluated_action["fact_ids"],
+                "dimension_breakdown": dimension_breakdown,
+                "adjustments": adjustments,
+                "base_score": base_score,
+                "total_score": total_score,
+                "stop_condition": annotation["stop_condition"],
+                "reentry_condition": annotation["reentry_condition"],
+            }
+        )
+    return sorted(ranked, key=lambda candidate: (-candidate["total_score"], candidate["name"]))
+
+
+def _result_document(
+    candidates_document: dict[str, Any], actions_document: dict[str, Any], account_state: dict[str, Any]
+) -> dict[str, Any]:
+    ranked = score_candidates(candidates_document, actions_document, account_state)
+    return {
+        "formula": {
+            "base_score": "sum(lifetime_utility, content_unlock, economic_infrastructure, multi_output, diversity, afk_fit) - detour_cost - burnout_risk",
+            "attention_window": "true_afk adds afk_fit; low_attention adds floor(afk_fit / 2); semi_afk and active add 0",
+            "diversity_preference": "floor(preferences.diversity_preference * diversity / 4)",
+            "intensity_tolerance": "min(preferences.intensity_tolerance, burnout_risk), reducing the practical penalty of a tolerated repetitive activity",
+        },
+        "ranked_eligible_candidates": ranked,
+    }
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(
+        description="Rank eligible progression pilot actions using transparent strategic annotations."
+    )
+    parser.add_argument("state", nargs="?", default=DEFAULT_STATE, type=Path)
+    parser.add_argument("--actions", default=DEFAULT_ACTIONS, type=Path)
+    parser.add_argument("--candidates", default=DEFAULT_CANDIDATES, type=Path)
+    parser.add_argument("--json", action="store_true", help="Emit machine-readable JSON.")
+    args = parser.parse_args()
+
+    result = _result_document(load_json(args.candidates), load_json(args.actions), load_json(args.state))
+    if args.json:
+        print(json.dumps(result, indent=2))
+        return 0
+
+    print("Strategic ranking of evaluator-eligible actions only.")
+    print("Hard requirements remain in scripts/evaluate_progression.py and are not rescored here.")
+    for candidate in result["ranked_eligible_candidates"]:
+        print(f"\n[{candidate['total_score']}] {candidate['name']} ({candidate['action_id']})")
+        print(f"  base: {candidate['base_score']}; adjustments: {candidate['adjustments']}")
+        print(f"  dimensions: {candidate['dimension_breakdown']}")
+        print(f"  stop: {candidate['stop_condition']}")
+        print(f"  re-entry: {candidate['reentry_condition']}")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
