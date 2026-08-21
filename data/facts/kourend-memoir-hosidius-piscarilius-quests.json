@@ -1,0 +1,200 @@
+{
+  "scope": "Current factual requirements, inputs, mandatory quest events, fixed outcomes, and Kharedst's memoirs page effects for The Depths of Despair and The Queen of Thieves. This record deliberately excludes route order, utility valuation, and account-specific strategy.",
+  "source_catalog": [
+    {
+      "id": "wiki-depths-of-despair",
+      "url": "https://oldschool.runescape.wiki/w/The_Depths_of_Despair",
+      "used_for": "Current quest prerequisite, non-boostable Agility gate, no-item requirement, mandatory Sand Snake encounter, quest-sourced items, and fixed rewards.",
+      "verified_at": "2026-08-21",
+      "confidence": "high"
+    },
+    {
+      "id": "wiki-queen-of-thieves",
+      "url": "https://oldschool.runescape.wiki/w/The_Queen_of_Thieves",
+      "used_for": "Current quest prerequisite, non-boostable Thieving gate, stew requirement and in-quest acquisition, scripted Conrad King event, quest-sourced letter, and fixed rewards.",
+      "verified_at": "2026-08-21",
+      "confidence": "high"
+    },
+    {
+      "id": "wiki-kharedsts-memoirs",
+      "url": "https://oldschool.runescape.wiki/w/Kharedst%27s_memoirs",
+      "used_for": "Current ordinary-page application rule and the 20 initial charges and 20 capacity added by each of these pages.",
+      "verified_at": "2026-08-21",
+      "confidence": "high"
+    },
+    {
+      "id": "wiki-kourend-favour",
+      "url": "https://oldschool.runescape.wiki/w/Kourend_Favour",
+      "used_for": "Confirmation that the former Kourend favour system, including its former quest start thresholds and favour-certificate rewards, was removed on 10 January 2024.",
+      "verified_at": "2026-08-21",
+      "confidence": "high"
+    },
+    {
+      "id": "official-osrs-content-poll-57",
+      "url": "https://oldschool.runescape.com/polls/2017/1463",
+      "used_for": "Official Jagex provenance for both quests and their memoir-page rewards. Its eight-charge wording is historical and is not used for the current charge values in this record.",
+      "verified_at": "2026-08-21",
+      "confidence": "high"
+    }
+  ],
+  "records": [
+    {
+      "id": "the-depths-of-despair",
+      "name": "The Depths of Despair",
+      "category": "quest",
+      "status": "verified",
+      "verified_at": "2026-08-21",
+      "membership": true,
+      "quest_start": {
+        "quest_prerequisites": ["Client of Kourend"],
+        "inherited_quest_prerequisites": ["X Marks the Spot"],
+        "skills": {
+          "Agility": {
+            "level": 18,
+            "boostable": false,
+            "required_to_start": true,
+            "required_to_complete": true
+          }
+        },
+        "former_removed_requirement": "20% Hosidius favour was formerly required to start; Kourend favour was removed on 10 January 2024 and is not a current gate."
+      },
+      "required_player_provided_inputs": {
+        "items": {},
+        "coins": 0,
+        "statement": "No player-provided item is required to start or complete the quest."
+      },
+      "quest_sourced_items": [
+        {
+          "item": "Varlamore envoy",
+          "quantity": 1,
+          "acquisition": "Found in the Arceuus Library and read during the investigation.",
+          "role": "Required quest document",
+          "retention_after_completion": "Not a listed completion reward."
+        },
+        {
+          "item": "Royal accord of twill",
+          "quantity": 1,
+          "acquisition": "Obtained by searching the chest in Crabclaw Caves after the Sand Snake encounter.",
+          "role": "Required quest document",
+          "retention_after_completion": "Not a listed completion reward."
+        }
+      ],
+      "input_lifecycle": {
+        "player_supplied_consumed": {},
+        "player_supplied_reusable": {},
+        "player_supplied_transformed": {},
+        "quest_sourced_required_items": ["Varlamore envoy", "Royal accord of twill"]
+      },
+      "mandatory_combat": {
+        "formal_enemy_to_defeat": {
+          "name": "Sand Snake",
+          "combat_level": 36,
+          "required": true
+        },
+        "other_combat_requirements": []
+      },
+      "fixed_completion_outcomes": {
+        "quest_points": 1,
+        "experience": {"Agility": 1500},
+        "coins": 4000,
+        "items": ["Lunch by the lancalliums"],
+        "current_unlocks": ["The Depths of Despair completion"],
+        "former_removed_reward": "A 10% Hosidius favour certificate was a historical reward and is not a current outcome."
+      },
+      "memoir_page_outcome": {
+        "page": "Lunch by the lancalliums",
+        "application_target": "Kharedst's memoirs or Book of the dead",
+        "unlock": "Reminisce teleport to Hosidius, by the River Hos near the lancallium patch and north-east of the Forthos Ruin/Dungeon entrances.",
+        "initial_charges_added": 20,
+        "maximum_charge_capacity_added": 20,
+        "page_is_consumed_on_application": true
+      },
+      "strategic_judgments": [],
+      "source_ids": [
+        "wiki-depths-of-despair",
+        "wiki-kharedsts-memoirs",
+        "wiki-kourend-favour",
+        "official-osrs-content-poll-57"
+      ],
+      "confidence": "high"
+    },
+    {
+      "id": "the-queen-of-thieves",
+      "name": "The Queen of Thieves",
+      "category": "quest",
+      "status": "verified",
+      "verified_at": "2026-08-21",
+      "membership": true,
+      "quest_start": {
+        "quest_prerequisites": ["Client of Kourend"],
+        "inherited_quest_prerequisites": ["X Marks the Spot"],
+        "skills": {
+          "Thieving": {
+            "level": 20,
+            "boostable": false,
+            "required_to_start": true,
+            "required_to_complete": true
+          }
+        },
+        "former_removed_requirement": "20% Piscarilius favour was formerly required to start; Kourend favour was removed on 10 January 2024 and is not a current gate."
+      },
+      "required_player_provided_inputs": {
+        "items": {
+          "stew": {
+            "quantity": 1,
+            "required_to_progress": true,
+            "can_be_obtained_during_quest": true,
+            "in_quest_acquisition": "Ingredients can be purchased in Port Piscarilius and made into stew during the quest; a servery stew is not accepted."
+          }
+        },
+        "coins": 0,
+        "statement": "A stew must be handed to Robert O'Reilly, but no item must be brought before starting because a valid stew can be made from items acquired during the quest."
+      },
+      "quest_sourced_items": [
+        {
+          "item": "Letter",
+          "quantity": 1,
+          "acquisition": "Retrieved from the locked chest in Councillor Hughes' house.",
+          "role": "Required quest evidence",
+          "retention_after_completion": "Not a listed completion reward."
+        }
+      ],
+      "input_lifecycle": {
+        "player_supplied_consumed": {"stew": 1},
+        "player_supplied_reusable": {},
+        "player_supplied_transformed": {},
+        "quest_sourced_required_items": ["Letter"]
+      },
+      "mandatory_combat": {
+        "formal_enemy_to_defeat": null,
+        "scripted_required_action": "The player must choose to kill Conrad King to progress. This is a scripted interaction rather than a listed combat encounter or combat-stat gate.",
+        "other_combat_requirements": []
+      },
+      "fixed_completion_outcomes": {
+        "quest_points": 1,
+        "experience": {"Thieving": 2000},
+        "coins": 2000,
+        "items": ["The fisher's flute"],
+        "current_unlocks": ["The Queen of Thieves completion", "Access to The Warrens"],
+        "former_removed_reward": "A 10% Piscarilius favour certificate was a historical reward and is not a current outcome."
+      },
+      "memoir_page_outcome": {
+        "page": "The fisher's flute",
+        "application_target": "Kharedst's memoirs or Book of the dead",
+        "unlock": "Reminisce teleport to Port Piscarilius.",
+        "initial_charges_added": 20,
+        "maximum_charge_capacity_added": 20,
+        "page_is_consumed_on_application": true
+      },
+      "strategic_judgments": [],
+      "source_ids": [
+        "wiki-queen-of-thieves",
+        "wiki-kharedsts-memoirs",
+        "wiki-kourend-favour",
+        "official-osrs-content-poll-57"
+      ],
+      "confidence": "high"
+    }
+  ],
+  "strategic_judgments": []
+}

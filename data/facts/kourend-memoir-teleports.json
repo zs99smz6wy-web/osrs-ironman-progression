@@ -208,7 +208,8 @@
           "items": ["any axe", "defence potion (3) or (4)", "volcanic sulphur", "molten glass"],
           "one_of": ["dark essence block", "pickaxe and chisel to obtain a dark essence block at the mine"]
         },
-        "mandatory_combat": ["Judge of Yama (level 168; can only be damaged with Melee)", "two Assassins (level 132)", "Lizardman brute (level 75)", "Xamphur (level 239)", "Barbarian Warlord (level 91)"],
+        "mandatory_combat": ["Judge of Yama (level 168; can only be damaged with Melee)", "two Assassins (level 132)", "Xamphur (level 239)", "Barbarian Warlord (level 91)"],
+        "encountered_but_not_mandatory_to_defeat": ["Lizardman brute (level 75)"],
         "current_charge_change": {
           "additional_charges_on_obtaining_book": 150,
           "resulting_capacity": 250,

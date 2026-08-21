@@ -1,0 +1,286 @@
+{
+  "scope": "Current factual requirements, mandatory interactions, fixed rewards, and Kharedst's memoir page outcomes for Tale of the Righteous and The Ascent of Arceuus. This record does not rank, sequence, or recommend either quest.",
+  "source_catalog": [
+    {
+      "id": "wiki-tale-of-the-righteous",
+      "url": "https://oldschool.runescape.wiki/w/Tale_of_the_Righteous",
+      "used_for": "Current prerequisites, non-boostable skill gates, required equipment, mandatory three-style puzzle, Corrupt Lizardman encounter, fixed rewards, and current Shayzien unlocks.",
+      "verified_at": "2026-08-21",
+      "confidence": "high"
+    },
+    {
+      "id": "wiki-ascent-of-arceuus",
+      "url": "https://oldschool.runescape.wiki/w/The_Ascent_of_Arceuus",
+      "used_for": "Current prerequisite, non-boostable Hunter gate, no-required-item status, mandatory encounters, fixed rewards, and current Arceuus unlocks.",
+      "verified_at": "2026-08-21",
+      "confidence": "high"
+    },
+    {
+      "id": "wiki-kharedsts-memoirs",
+      "url": "https://oldschool.runescape.wiki/w/Kharedst%27s_memoirs",
+      "used_for": "Torn-page application rule and the current 20 initial charges and 20 capacity contributed by each ordinary page.",
+      "verified_at": "2026-08-21",
+      "confidence": "high"
+    },
+    {
+      "id": "official-old-school-content-poll-58",
+      "url": "https://oldschool.runescape.com/polls/2018/1491",
+      "used_for": "Jagex's original published Tale of the Righteous poll specification. Its historical Shayzien favour requirement and favour reward are not current and are not modelled as requirements or rewards in this record.",
+      "verified_at": "2026-08-21",
+      "confidence": "high for the original proposal; not a current-requirements source"
+    },
+    {
+      "id": "official-kebos-lowlands-poll",
+      "url": "https://oldschool.runescape.com/polls/2018/1528",
+      "used_for": "Jagex's official poll record for adding The Ascent of Arceuus with the Kebos Lowlands release.",
+      "verified_at": "2026-08-21",
+      "confidence": "high for release provenance; current quest details are taken from the Wiki"
+    },
+    {
+      "id": "official-varlamore-activities-kourend-changes-poll",
+      "url": "https://oldschool.runescape.com/polls/2023/1682",
+      "used_for": "Jagex's approved Kourend-change record stating that the favour system would be removed. The current Wiki quest pages confirm the resulting removal from these two quests.",
+      "verified_at": "2026-08-21",
+      "confidence": "high"
+    }
+  ],
+  "records": [
+    {
+      "id": "tale-of-the-righteous",
+      "name": "Tale of the Righteous",
+      "category": "quest",
+      "status": "verified",
+      "verified_at": "2026-08-21",
+      "membership": true,
+      "factual_boundary": "The old 20% Shayzien favour start requirement and 10% favour reward were removed with the Kourend favour-system removal. They are intentionally excluded from current requirements and fixed outcomes.",
+      "prerequisites": {
+        "completed_quests": [
+          "Client of Kourend"
+        ],
+        "inherited_quest_prerequisites": [
+          "X Marks the Spot, through Client of Kourend"
+        ],
+        "skill_gates": {
+          "Strength": {
+            "level": 16,
+            "boostable": false,
+            "required_to_start": true
+          },
+          "Mining": {
+            "level": 10,
+            "boostable": false,
+            "required_to_start": true
+          }
+        },
+        "boostable_skill_gates": {}
+      },
+      "player_provided_inputs": {
+        "required_items": [
+          {
+            "item": "pickaxe",
+            "quantity": 1,
+            "purpose": "Mine the first boulder in Quidamortem Cave; it can also satisfy the required melee-weapon role.",
+            "input_fate": "reusable"
+          },
+          {
+            "item": "melee weapon",
+            "quantity": 1,
+            "accepted_substitution": "The required pickaxe is sufficient.",
+            "purpose": "Attack the Strange Device with melee; unarmed attacks do not work.",
+            "input_fate": "reusable"
+          },
+          {
+            "item": "ranged weapon and compatible ammunition",
+            "quantity": "one usable ranged attack; exact ammunition quantity is not fixed by the source",
+            "accepted_variants": [
+              "darts",
+              "throwing knives"
+            ],
+            "purpose": "Attack the Strange Device with Ranged.",
+            "input_fate": "ammunition is consumed by its normal attack mechanics; the weapon is reusable"
+          },
+          {
+            "item": "runes for a Magic combat spell",
+            "quantity": "resources for 2-3 casts",
+            "purpose": "Attack the Strange Device with Magic. More than one cast may be needed because the attack can fail.",
+            "input_fate": "consumed by normal spellcasting"
+          },
+          {
+            "item": "rope",
+            "quantity": 1,
+            "purpose": "Use on the Quidamortem Cave crevice to enter.",
+            "input_fate": "consumed or transformed into the fixed crevice access; it is not a reusable inventory item after use"
+          }
+        ],
+        "fixed_gp_requirement": 0,
+        "non_required_optional_costs": [
+          {
+            "item": "coins",
+            "quantity": 20,
+            "condition": "Only when choosing the Lovakengj Minecart Network trip to Mount Quidamortem before The Forsaken Tower makes that network free. This is a travel choice, not a quest requirement."
+          }
+        ]
+      },
+      "quest_sourced_items": [
+        {
+          "item": "Dusty note",
+          "quantity": 1,
+          "acquisition": "Optional: search the skeleton by the Yellow Crystal in the Tower of Magic prison.",
+          "required_for_completion": false,
+          "input_fate": "informational quest item; no player-provided copy is required"
+        }
+      ],
+      "mandatory_interactions_and_combat": {
+        "three_style_puzzle": {
+          "required": true,
+          "target": "Strange Device in the Tower of Magic prison",
+          "required_attack_styles": [
+            "Magic",
+            "Melee",
+            "Ranged"
+          ],
+          "constraint": "All three attack capabilities must be present at the same time; leaving with the puzzle only partially completed resets this segment."
+        },
+        "enemies_to_defeat": [
+          {
+            "enemy": "Corrupt Lizardman",
+            "combat_level": 46,
+            "quantity": 1,
+            "mandatory": true,
+            "notable_mechanic": "Deals poison. Antipoison, food, and protective gear are recommended supplies, not listed quest inputs."
+          }
+        ]
+      },
+      "fixed_completion_outcomes": {
+        "quest_points": 1,
+        "experience": {},
+        "coins": 8000,
+        "items": [
+          {
+            "item": "History and hearsay",
+            "quantity": 1,
+            "type": "Kharedst's memoirs torn page"
+          },
+          {
+            "item": "Xerician fabric",
+            "quantity": 3,
+            "source": "The Corrupt Lizardman defeated during the quest"
+          }
+        ],
+        "unlocks": [
+          "Ability to recolour graceful outfit pieces to Shayzien colours",
+          "Ability to fight the Corrupt Lizardman in the Nightmare Zone",
+          "Completion requirement for A Kingdom Divided"
+        ]
+      },
+      "memoir_page_outcome": {
+        "page": "History and hearsay",
+        "quest_completion_grants": "An unapplied torn page; quest completion does not itself spend a memoir charge or teleport the player.",
+        "application_requirement": "Use the page on Kharedst's memoirs or Book of the dead.",
+        "teleport_unlocked": "Graveyard of Heroes, south-west of the Shayzien bank.",
+        "page_application_effect": {
+          "initial_charges_added": 20,
+          "maximum_charge_capacity_added": 20
+        }
+      },
+      "source_ids": [
+        "wiki-tale-of-the-righteous",
+        "wiki-kharedsts-memoirs",
+        "official-old-school-content-poll-58",
+        "official-varlamore-activities-kourend-changes-poll"
+      ],
+      "confidence": "high",
+      "strategic_judgments": []
+    },
+    {
+      "id": "the-ascent-of-arceuus",
+      "name": "The Ascent of Arceuus",
+      "category": "quest",
+      "status": "verified",
+      "verified_at": "2026-08-21",
+      "membership": true,
+      "factual_boundary": "The old Arceuus favour start requirement and favour certificate reward were removed with the Kourend favour-system removal. They are intentionally excluded from current requirements and fixed outcomes.",
+      "prerequisites": {
+        "completed_quests": [
+          "Client of Kourend"
+        ],
+        "inherited_quest_prerequisites": [
+          "X Marks the Spot, through Client of Kourend"
+        ],
+        "skill_gates": {
+          "Hunter": {
+            "level": 12,
+            "boostable": false,
+            "required_to_start": true
+          }
+        },
+        "boostable_skill_gates": {}
+      },
+      "player_provided_inputs": {
+        "required_items": [],
+        "fixed_gp_requirement": 0,
+        "source_statement": "The current quest page lists no required items. Weapons, runes for Crumble Undead, teleports, stamina restoration, and food are recommendations rather than hard listed inputs."
+      },
+      "quest_sourced_items": [],
+      "mandatory_interactions_and_combat": {
+        "enemies_to_defeat": [
+          {
+            "enemy": "Tormented Soul",
+            "combat_level": 16,
+            "quantity": 5,
+            "mandatory": true,
+            "notable_mechanic": "The five souls are encountered in the Tower of Magic. Crumble Undead is recommended, not a listed requirement."
+          },
+          {
+            "enemy": "Trapped Soul",
+            "combat_level": 30,
+            "quantity": 1,
+            "mandatory": true,
+            "notable_mechanic": "Appears after the player follows and inspects every plant on the trail from the Ancient Grave. It disappears if the player takes too long to defeat it."
+          }
+        ],
+        "required_noncombat_interaction": "Inspect rocks around the Dark Altar until the strange device is found, then smash it."
+      },
+      "fixed_completion_outcomes": {
+        "quest_points": 1,
+        "experience": {
+          "Hunter": 1500,
+          "Runecraft": 500
+        },
+        "coins": 2000,
+        "items": [
+          {
+            "item": "A dark disposition",
+            "quantity": 1,
+            "type": "Kharedst's memoirs torn page"
+          }
+        ],
+        "unlocks": [
+          "Ability to recolour graceful outfit pieces to Arceuus colours",
+          "Ability to receive Arceuus signets from Tyss",
+          "Ability to fight the Trapped Soul in the Nightmare Zone",
+          "Completion requirement for A Kingdom Divided"
+        ]
+      },
+      "memoir_page_outcome": {
+        "page": "A dark disposition",
+        "quest_completion_grants": "An unapplied torn page; quest completion does not itself spend a memoir charge or teleport the player.",
+        "application_requirement": "Use the page on Kharedst's memoirs or Book of the dead.",
+        "teleport_unlocked": "Centre of Arceuus.",
+        "page_application_effect": {
+          "initial_charges_added": 20,
+          "maximum_charge_capacity_added": 20
+        }
+      },
+      "source_ids": [
+        "wiki-ascent-of-arceuus",
+        "wiki-kharedsts-memoirs",
+        "official-kebos-lowlands-poll",
+        "official-varlamore-activities-kourend-changes-poll"
+      ],
+      "confidence": "high",
+      "strategic_judgments": []
+    }
+  ],
+  "strategic_judgments": []
+}

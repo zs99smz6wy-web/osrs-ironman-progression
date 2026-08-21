@@ -1741,7 +1741,7 @@
       "completion": {"all": [{"type": "quest_completed", "key": "The Forsaken Tower"}]},
       "outcomes": [{"type": "quest_completed", "key": "The Forsaken Tower"}, {"type": "transport_flag", "key": "lovakengj_minecart_free"}],
       "repeatable": false,
-      "transition": {"effects": [{"op": "set_add", "state": "quests_completed", "key": "The Forsaken Tower", "fact_id": "lovakengj-minecart-network"}, {"op": "set_add", "state": "transport_flags", "key": "lovakengj_minecart_free", "fact_id": "lovakengj-minecart-network"}, {"op": "delta", "state": "resources", "key": "coins", "amount": 6000, "fact_id": "lovakengj-minecart-network"}, {"op": "gain_xp", "state": "skill_xp", "key": "Mining", "amount": 500, "fact_id": "lovakengj-minecart-network"}, {"op": "gain_xp", "state": "skill_xp", "key": "Smithing", "amount": 500, "fact_id": "lovakengj-minecart-network"}], "options": [], "reported_effects": [{"type": "recorded_progress", "description": "The quest-earned Jewellery of jubilation page can now be reclaimed and applied to the memoirs; page application is represented by its separate action.", "fact_id": "kharedsts-memoirs-and-book-of-the-dead"}]}
+      "transition": {"effects": [{"op": "set_add", "state": "quests_completed", "key": "The Forsaken Tower", "fact_id": "lovakengj-minecart-network"}, {"op": "set_add", "state": "transport_flags", "key": "lovakengj_minecart_free", "fact_id": "lovakengj-minecart-network"}, {"op": "delta", "state": "resources", "key": "coins", "amount": 6000, "fact_id": "lovakengj-minecart-network"}, {"op": "ensure_min", "state": "items", "key": "jewellery_of_jubilation_page", "value": 1, "fact_id": "kharedsts-memoirs-and-book-of-the-dead"}, {"op": "gain_xp", "state": "skill_xp", "key": "Mining", "amount": 500, "fact_id": "lovakengj-minecart-network"}, {"op": "gain_xp", "state": "skill_xp", "key": "Smithing", "amount": 500, "fact_id": "lovakengj-minecart-network"}], "options": [], "reported_effects": []}
     },
     {
       "id": "action:lovakengj-minecart-free-trip",
@@ -1757,43 +1757,95 @@
       "transition": {"effects": [], "options": [], "reported_effects": [{"type": "recorded_progress", "description": "The selected station changes location only and the permanent post-quest network consumes no coins.", "fact_id": "lovakengj-minecart-network"}]}
     },
     {
+      "id": "action:the-depths-of-despair",
+      "name": "Complete The Depths of Despair",
+      "kind": "quest",
+      "status": "verified",
+      "fact_ids": ["the-depths-of-despair"],
+      "requirements": {"all": [{"type": "quest_completed", "key": "Client of Kourend"}, {"type": "skill_at_least", "key": "Agility", "value": 18}]},
+      "preparation": {"all": []},
+      "completion": {"all": [{"type": "quest_completed", "key": "The Depths of Despair"}]},
+      "outcomes": [{"type": "quest_completed", "key": "The Depths of Despair"}],
+      "repeatable": false,
+      "transition": {"effects": [{"op": "set_add", "state": "quests_completed", "key": "The Depths of Despair", "fact_id": "the-depths-of-despair"}, {"op": "delta", "state": "resources", "key": "coins", "amount": 4000, "fact_id": "the-depths-of-despair"}, {"op": "ensure_min", "state": "items", "key": "lunch_by_the_lancalliums_page", "value": 1, "fact_id": "the-depths-of-despair"}, {"op": "gain_xp", "state": "skill_xp", "key": "Agility", "amount": 1500, "fact_id": "the-depths-of-despair"}], "options": [], "reported_effects": []}
+    },
+    {
+      "id": "action:the-queen-of-thieves",
+      "name": "Complete The Queen of Thieves",
+      "kind": "quest",
+      "status": "verified",
+      "fact_ids": ["the-queen-of-thieves"],
+      "requirements": {"all": [{"type": "quest_completed", "key": "Client of Kourend"}, {"type": "skill_at_least", "key": "Thieving", "value": 20}]},
+      "preparation": {"all": [{"type": "item_at_least", "key": "stew", "value": 1}]},
+      "completion": {"all": [{"type": "quest_completed", "key": "The Queen of Thieves"}]},
+      "outcomes": [{"type": "quest_completed", "key": "The Queen of Thieves"}, {"type": "transport_flag", "key": "the_warrens_access"}],
+      "repeatable": false,
+      "transition": {"effects": [{"op": "set_add", "state": "quests_completed", "key": "The Queen of Thieves", "fact_id": "the-queen-of-thieves"}, {"op": "delta", "state": "items", "key": "stew", "amount": -1, "fact_id": "the-queen-of-thieves"}, {"op": "delta", "state": "resources", "key": "coins", "amount": 2000, "fact_id": "the-queen-of-thieves"}, {"op": "ensure_min", "state": "items", "key": "the_fishers_flute_page", "value": 1, "fact_id": "the-queen-of-thieves"}, {"op": "set_add", "state": "transport_flags", "key": "the_warrens_access", "fact_id": "the-queen-of-thieves"}, {"op": "gain_xp", "state": "skill_xp", "key": "Thieving", "amount": 2000, "fact_id": "the-queen-of-thieves"}], "options": [], "reported_effects": []}
+    },
+    {
+      "id": "action:tale-of-the-righteous",
+      "name": "Complete Tale of the Righteous",
+      "kind": "quest",
+      "status": "verified",
+      "fact_ids": ["tale-of-the-righteous"],
+      "requirements": {"all": [{"type": "quest_completed", "key": "Client of Kourend"}, {"type": "skill_at_least", "key": "Strength", "value": 16}, {"type": "skill_at_least", "key": "Mining", "value": 10}]},
+      "preparation": {"all": [{"type": "item_at_least", "key": "pickaxe", "value": 1}, {"type": "item_at_least", "key": "rope", "value": 1}, {"type": "milestone", "key": "tale_of_righteous_combat_styles_ready"}]},
+      "completion": {"all": [{"type": "quest_completed", "key": "Tale of the Righteous"}]},
+      "outcomes": [{"type": "quest_completed", "key": "Tale of the Righteous"}],
+      "repeatable": false,
+      "transition": {"effects": [{"op": "set_add", "state": "quests_completed", "key": "Tale of the Righteous", "fact_id": "tale-of-the-righteous"}, {"op": "delta", "state": "items", "key": "rope", "amount": -1, "fact_id": "tale-of-the-righteous"}, {"op": "delta", "state": "resources", "key": "coins", "amount": 8000, "fact_id": "tale-of-the-righteous"}, {"op": "ensure_min", "state": "items", "key": "history_and_hearsay_page", "value": 1, "fact_id": "tale-of-the-righteous"}, {"op": "delta", "state": "items", "key": "xerician_fabric", "amount": 3, "fact_id": "tale-of-the-righteous"}], "options": [], "reported_effects": [{"type": "recorded_progress", "description": "The preparation milestone confirms one usable Melee attack, one usable Ranged attack, and resources for the variable two-to-three Magic combat casts without inventing exact ammunition or rune consumption.", "fact_id": "tale-of-the-righteous"}]}
+    },
+    {
+      "id": "action:the-ascent-of-arceuus",
+      "name": "Complete The Ascent of Arceuus",
+      "kind": "quest",
+      "status": "verified",
+      "fact_ids": ["the-ascent-of-arceuus"],
+      "requirements": {"all": [{"type": "quest_completed", "key": "Client of Kourend"}, {"type": "skill_at_least", "key": "Hunter", "value": 12}]},
+      "preparation": {"all": []},
+      "completion": {"all": [{"type": "quest_completed", "key": "The Ascent of Arceuus"}]},
+      "outcomes": [{"type": "quest_completed", "key": "The Ascent of Arceuus"}, {"type": "milestone", "key": "arceuus_signets_unlocked"}],
+      "repeatable": false,
+      "transition": {"effects": [{"op": "set_add", "state": "quests_completed", "key": "The Ascent of Arceuus", "fact_id": "the-ascent-of-arceuus"}, {"op": "delta", "state": "resources", "key": "coins", "amount": 2000, "fact_id": "the-ascent-of-arceuus"}, {"op": "ensure_min", "state": "items", "key": "a_dark_disposition_page", "value": 1, "fact_id": "the-ascent-of-arceuus"}, {"op": "set_add", "state": "milestones", "key": "arceuus_signets_unlocked", "fact_id": "the-ascent-of-arceuus"}, {"op": "gain_xp", "state": "skill_xp", "key": "Hunter", "amount": 1500, "fact_id": "the-ascent-of-arceuus"}, {"op": "gain_xp", "state": "skill_xp", "key": "Runecraft", "amount": 500, "fact_id": "the-ascent-of-arceuus"}], "options": [], "reported_effects": []}
+    },
+    {
       "id": "action:apply-lunch-by-the-lancalliums-page",
       "name": "Apply Lunch by the lancalliums",
       "kind": "unlock",
       "status": "verified",
-      "fact_ids": ["kharedsts-memoirs-and-book-of-the-dead"],
+      "fact_ids": ["kharedsts-memoirs-and-book-of-the-dead", "the-depths-of-despair"],
       "requirements": {"all": [{"type": "quest_completed", "key": "The Depths of Despair"}, {"type": "kourend_memoir_owned", "key": "kourend_memoir"}]},
-      "preparation": {"all": []},
+      "preparation": {"all": [{"type": "item_at_least", "key": "lunch_by_the_lancalliums_page", "value": 1}]},
       "completion": {"all": [{"type": "kourend_memoir_page", "key": "lunch_by_the_lancalliums"}]},
       "outcomes": [],
       "repeatable": false,
-      "transition": {"effects": [{"op": "add_kourend_memoir_page", "state": "kourend_memoir", "key": "lunch_by_the_lancalliums", "fact_id": "kharedsts-memoirs-and-book-of-the-dead"}], "options": [], "reported_effects": []}
+      "transition": {"effects": [{"op": "delta", "state": "items", "key": "lunch_by_the_lancalliums_page", "amount": -1, "fact_id": "the-depths-of-despair"}, {"op": "add_kourend_memoir_page", "state": "kourend_memoir", "key": "lunch_by_the_lancalliums", "fact_id": "kharedsts-memoirs-and-book-of-the-dead"}], "options": [], "reported_effects": []}
     },
     {
       "id": "action:apply-the-fishers-flute-page",
       "name": "Apply The fisher's flute",
       "kind": "unlock",
       "status": "verified",
-      "fact_ids": ["kharedsts-memoirs-and-book-of-the-dead"],
+      "fact_ids": ["kharedsts-memoirs-and-book-of-the-dead", "the-queen-of-thieves"],
       "requirements": {"all": [{"type": "quest_completed", "key": "The Queen of Thieves"}, {"type": "kourend_memoir_owned", "key": "kourend_memoir"}]},
-      "preparation": {"all": []},
+      "preparation": {"all": [{"type": "item_at_least", "key": "the_fishers_flute_page", "value": 1}]},
       "completion": {"all": [{"type": "kourend_memoir_page", "key": "the_fishers_flute"}]},
       "outcomes": [],
       "repeatable": false,
-      "transition": {"effects": [{"op": "add_kourend_memoir_page", "state": "kourend_memoir", "key": "the_fishers_flute", "fact_id": "kharedsts-memoirs-and-book-of-the-dead"}], "options": [], "reported_effects": []}
+      "transition": {"effects": [{"op": "delta", "state": "items", "key": "the_fishers_flute_page", "amount": -1, "fact_id": "the-queen-of-thieves"}, {"op": "add_kourend_memoir_page", "state": "kourend_memoir", "key": "the_fishers_flute", "fact_id": "kharedsts-memoirs-and-book-of-the-dead"}], "options": [], "reported_effects": []}
     },
     {
       "id": "action:apply-history-and-hearsay-page",
       "name": "Apply History and hearsay",
       "kind": "unlock",
       "status": "verified",
-      "fact_ids": ["kharedsts-memoirs-and-book-of-the-dead"],
+      "fact_ids": ["kharedsts-memoirs-and-book-of-the-dead", "tale-of-the-righteous"],
       "requirements": {"all": [{"type": "quest_completed", "key": "Tale of the Righteous"}, {"type": "kourend_memoir_owned", "key": "kourend_memoir"}]},
-      "preparation": {"all": []},
+      "preparation": {"all": [{"type": "item_at_least", "key": "history_and_hearsay_page", "value": 1}]},
       "completion": {"all": [{"type": "kourend_memoir_page", "key": "history_and_hearsay"}]},
       "outcomes": [],
       "repeatable": false,
-      "transition": {"effects": [{"op": "add_kourend_memoir_page", "state": "kourend_memoir", "key": "history_and_hearsay", "fact_id": "kharedsts-memoirs-and-book-of-the-dead"}], "options": [], "reported_effects": []}
+      "transition": {"effects": [{"op": "delta", "state": "items", "key": "history_and_hearsay_page", "amount": -1, "fact_id": "tale-of-the-righteous"}, {"op": "add_kourend_memoir_page", "state": "kourend_memoir", "key": "history_and_hearsay", "fact_id": "kharedsts-memoirs-and-book-of-the-dead"}], "options": [], "reported_effects": []}
     },
     {
       "id": "action:apply-jewellery-of-jubilation-page",
@@ -1802,24 +1854,24 @@
       "status": "verified",
       "fact_ids": ["kharedsts-memoirs-and-book-of-the-dead"],
       "requirements": {"all": [{"type": "quest_completed", "key": "The Forsaken Tower"}, {"type": "kourend_memoir_owned", "key": "kourend_memoir"}]},
-      "preparation": {"all": []},
+      "preparation": {"all": [{"type": "item_at_least", "key": "jewellery_of_jubilation_page", "value": 1}]},
       "completion": {"all": [{"type": "kourend_memoir_page", "key": "jewellery_of_jubilation"}]},
       "outcomes": [],
       "repeatable": false,
-      "transition": {"effects": [{"op": "add_kourend_memoir_page", "state": "kourend_memoir", "key": "jewellery_of_jubilation", "fact_id": "kharedsts-memoirs-and-book-of-the-dead"}], "options": [], "reported_effects": []}
+      "transition": {"effects": [{"op": "delta", "state": "items", "key": "jewellery_of_jubilation_page", "amount": -1, "fact_id": "kharedsts-memoirs-and-book-of-the-dead"}, {"op": "add_kourend_memoir_page", "state": "kourend_memoir", "key": "jewellery_of_jubilation", "fact_id": "kharedsts-memoirs-and-book-of-the-dead"}], "options": [], "reported_effects": []}
     },
     {
       "id": "action:apply-a-dark-disposition-page",
       "name": "Apply A dark disposition",
       "kind": "unlock",
       "status": "verified",
-      "fact_ids": ["kharedsts-memoirs-and-book-of-the-dead"],
+      "fact_ids": ["kharedsts-memoirs-and-book-of-the-dead", "the-ascent-of-arceuus"],
       "requirements": {"all": [{"type": "quest_completed", "key": "The Ascent of Arceuus"}, {"type": "kourend_memoir_owned", "key": "kourend_memoir"}]},
-      "preparation": {"all": []},
+      "preparation": {"all": [{"type": "item_at_least", "key": "a_dark_disposition_page", "value": 1}]},
       "completion": {"all": [{"type": "kourend_memoir_page", "key": "a_dark_disposition"}]},
       "outcomes": [],
       "repeatable": false,
-      "transition": {"effects": [{"op": "add_kourend_memoir_page", "state": "kourend_memoir", "key": "a_dark_disposition", "fact_id": "kharedsts-memoirs-and-book-of-the-dead"}], "options": [], "reported_effects": []}
+      "transition": {"effects": [{"op": "delta", "state": "items", "key": "a_dark_disposition_page", "amount": -1, "fact_id": "the-ascent-of-arceuus"}, {"op": "add_kourend_memoir_page", "state": "kourend_memoir", "key": "a_dark_disposition", "fact_id": "kharedsts-memoirs-and-book-of-the-dead"}], "options": [], "reported_effects": []}
     },
     {
       "id": "action:recharge-kourend-memoir-one-charge",
@@ -1848,17 +1900,17 @@
       "transition": {"effects": [{"op": "spend_kourend_memoir_charges", "state": "kourend_memoir", "key": "charges", "amount": 1, "fact_id": "kharedsts-memoirs-and-book-of-the-dead"}], "options": [{"id": "hosidius", "requires": {"all": [{"type": "kourend_memoir_page", "key": "lunch_by_the_lancalliums"}]}, "effects": [], "reported_effects": [{"type": "recorded_progress", "description": "Teleport to Hosidius near the River Hos lancallium patch.", "fact_id": "kharedsts-memoirs-and-book-of-the-dead"}]}, {"id": "port-piscarilius", "requires": {"all": [{"type": "kourend_memoir_page", "key": "the_fishers_flute"}]}, "effects": [], "reported_effects": [{"type": "recorded_progress", "description": "Teleport to Port Piscarilius.", "fact_id": "kharedsts-memoirs-and-book-of-the-dead"}]}, {"id": "shayzien", "requires": {"all": [{"type": "kourend_memoir_page", "key": "history_and_hearsay"}]}, "effects": [], "reported_effects": [{"type": "recorded_progress", "description": "Teleport to the Graveyard of Heroes south-west of Shayzien bank.", "fact_id": "kharedsts-memoirs-and-book-of-the-dead"}]}, {"id": "lovakengj", "requires": {"all": [{"type": "kourend_memoir_page", "key": "jewellery_of_jubilation"}]}, "effects": [], "reported_effects": [{"type": "recorded_progress", "description": "Teleport north-east of the Lovakengj bank.", "fact_id": "kharedsts-memoirs-and-book-of-the-dead"}]}, {"id": "arceuus", "requires": {"all": [{"type": "kourend_memoir_page", "key": "a_dark_disposition"}]}, "effects": [], "reported_effects": [{"type": "recorded_progress", "description": "Teleport to the centre of Arceuus.", "fact_id": "kharedsts-memoirs-and-book-of-the-dead"}]}], "reported_effects": []}
     },
     {
-      "id": "action:upgrade-kourend-memoir-to-book",
-      "name": "Upgrade Kharedst's memoirs to Book of the dead",
-      "kind": "unlock",
+      "id": "action:a-kingdom-divided",
+      "name": "Complete A Kingdom Divided",
+      "kind": "quest",
       "status": "verified",
-      "fact_ids": ["kharedsts-memoirs-and-book-of-the-dead"],
-      "requirements": {"all": [{"type": "quest_completed", "key": "A Kingdom Divided"}, {"type": "kourend_memoir_form", "key": "memoirs"}, {"type": "kourend_memoir_page", "key": "lunch_by_the_lancalliums"}, {"type": "kourend_memoir_page", "key": "the_fishers_flute"}, {"type": "kourend_memoir_page", "key": "history_and_hearsay"}, {"type": "kourend_memoir_page", "key": "jewellery_of_jubilation"}, {"type": "kourend_memoir_page", "key": "a_dark_disposition"}]},
-      "preparation": {"all": []},
-      "completion": {"all": [{"type": "kourend_memoir_form", "key": "book_of_the_dead"}]},
-      "outcomes": [],
+      "fact_ids": ["a-kingdom-divided", "kharedsts-memoirs-and-book-of-the-dead"],
+      "requirements": {"all": [{"type": "quest_completed", "key": "The Depths of Despair"}, {"type": "quest_completed", "key": "The Queen of Thieves"}, {"type": "quest_completed", "key": "The Ascent of Arceuus"}, {"type": "quest_completed", "key": "The Forsaken Tower"}, {"type": "quest_completed", "key": "Tale of the Righteous"}, {"type": "skill_at_least", "key": "Agility", "value": 54}, {"type": "skill_at_least", "key": "Thieving", "value": 52}, {"type": "skill_at_least", "key": "Woodcutting", "value": 52}, {"type": "skill_at_least", "key": "Herblore", "value": 50}, {"type": "skill_at_least", "key": "Mining", "value": 42}, {"type": "skill_at_least", "key": "Crafting", "value": 38}, {"type": "skill_at_least", "key": "Magic", "value": 35}, {"type": "kourend_memoir_form", "key": "memoirs"}, {"type": "kourend_memoir_page", "key": "lunch_by_the_lancalliums"}, {"type": "kourend_memoir_page", "key": "the_fishers_flute"}, {"type": "kourend_memoir_page", "key": "history_and_hearsay"}, {"type": "kourend_memoir_page", "key": "jewellery_of_jubilation"}, {"type": "kourend_memoir_page", "key": "a_dark_disposition"}]},
+      "preparation": {"all": [{"type": "item_at_least", "key": "axe", "value": 1}, {"type": "item_at_least", "key": "defence_potion_3plus", "value": 1}, {"type": "item_at_least", "key": "volcanic_sulphur", "value": 1}, {"type": "item_at_least", "key": "molten_glass", "value": 1}, {"type": "milestone", "key": "a_kingdom_divided_fire_spell_ready"}, {"type": "milestone", "key": "a_kingdom_divided_dark_essence_ready"}]},
+      "completion": {"all": [{"type": "quest_completed", "key": "A Kingdom Divided"}, {"type": "kourend_memoir_form", "key": "book_of_the_dead"}]},
+      "outcomes": [{"type": "quest_completed", "key": "A Kingdom Divided"}, {"type": "milestone", "key": "kourend_castle_respawn_unlocked"}, {"type": "milestone", "key": "a_kingdom_divided_arceuus_spells_unlocked"}, {"type": "milestone", "key": "yama_access"}],
       "repeatable": false,
-      "transition": {"effects": [{"op": "upgrade_kourend_memoir_to_book", "state": "kourend_memoir", "key": "book_of_the_dead", "fact_id": "kharedsts-memoirs-and-book-of-the-dead"}], "options": [], "reported_effects": []}
+      "transition": {"effects": [{"op": "set_add", "state": "quests_completed", "key": "A Kingdom Divided", "fact_id": "a-kingdom-divided"}, {"op": "delta", "state": "items", "key": "defence_potion_3plus", "amount": -1, "fact_id": "a-kingdom-divided"}, {"op": "delta", "state": "items", "key": "volcanic_sulphur", "amount": -1, "fact_id": "a-kingdom-divided"}, {"op": "delta", "state": "items", "key": "molten_glass", "amount": -1, "fact_id": "a-kingdom-divided"}, {"op": "upgrade_kourend_memoir_to_book", "state": "kourend_memoir", "key": "book_of_the_dead", "fact_id": "a-kingdom-divided"}, {"op": "set_add", "state": "milestones", "key": "kourend_castle_respawn_unlocked", "fact_id": "a-kingdom-divided"}, {"op": "set_add", "state": "milestones", "key": "a_kingdom_divided_arceuus_spells_unlocked", "fact_id": "a-kingdom-divided"}, {"op": "set_add", "state": "milestones", "key": "yama_access", "fact_id": "a-kingdom-divided"}], "options": [], "reported_effects": [{"type": "xp_choice_award", "description": "Two antique lamps each award 10,000 experience in a player-chosen skill at level 40 or above; no target skill is selected automatically.", "fact_id": "a-kingdom-divided"}, {"type": "recorded_progress", "description": "The observed fire-spell milestone covers the selected spell's variable rune or equipment cost, and the dark-essence milestone covers either a supplied block or the reusable pickaxe-and-chisel acquisition path without inventing consumption.", "fact_id": "a-kingdom-divided"}]}
     }
   ]
 }

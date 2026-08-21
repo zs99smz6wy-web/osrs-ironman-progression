@@ -908,6 +908,107 @@ class ApplyActionTests(unittest.TestCase):
         result = apply_action(self.actions_document, state, "action:apply-jewellery-of-jubilation-page")
         self.assertEqual(20, result["next_state"]["kourend_memoir"]["charges"])
         self.assertIn("jewellery_of_jubilation", result["next_state"]["kourend_memoir"]["pages"])
+        self.assertEqual(0, result["next_state"]["items"]["jewellery_of_jubilation_page"])
+
+    def test_four_kourend_page_quests_award_unapplied_pages_and_fixed_rewards(self) -> None:
+        self.state["quests_completed"].append("Client of Kourend")
+        self.state["kourend_memoir"] = {"form": "memoirs", "pages": [], "charges": 0}
+        for skill, level in (("Agility", 18), ("Thieving", 20), ("Strength", 16), ("Mining", 10), ("Hunter", 12)):
+            self.state["skill_xp"][skill] = minimum_xp_for_level(level)
+            self.state["skills"][skill] = level
+        self.state["items"] = {"stew": 1, "pickaxe": 1, "rope": 1}
+        self.state["milestones"].append("tale_of_righteous_combat_styles_ready")
+
+        state = self.state
+        for action_id in (
+            "action:the-depths-of-despair",
+            "action:the-queen-of-thieves",
+            "action:tale-of-the-righteous",
+            "action:the-ascent-of-arceuus",
+        ):
+            result = apply_action(self.actions_document, state, action_id)
+            self.assertEqual("applied", result["status"])
+            state = result["next_state"]
+
+        self.assertEqual(16000, state["resources"]["coins"])
+        self.assertEqual(1, state["items"]["pickaxe"])
+        self.assertEqual(0, state["items"]["rope"])
+        self.assertEqual(0, state["items"]["stew"])
+        self.assertEqual(3, state["items"]["xerician_fabric"])
+        for page_item in (
+            "lunch_by_the_lancalliums_page",
+            "the_fishers_flute_page",
+            "history_and_hearsay_page",
+            "a_dark_disposition_page",
+        ):
+            self.assertEqual(1, state["items"][page_item])
+        self.assertEqual([], state["kourend_memoir"]["pages"])
+
+        for action_id in (
+            "action:apply-lunch-by-the-lancalliums-page",
+            "action:apply-the-fishers-flute-page",
+            "action:apply-history-and-hearsay-page",
+            "action:apply-a-dark-disposition-page",
+        ):
+            state = apply_action(self.actions_document, state, action_id)["next_state"]
+        self.assertEqual(80, state["kourend_memoir"]["charges"])
+        self.assertEqual(4, len(state["kourend_memoir"]["pages"]))
+
+    def test_a_kingdom_divided_upgrades_book_and_defers_choice_lamps(self) -> None:
+        self.state["quests_completed"] = [
+            "The Depths of Despair",
+            "The Queen of Thieves",
+            "The Ascent of Arceuus",
+            "The Forsaken Tower",
+            "Tale of the Righteous",
+        ]
+        for skill, level in (
+            ("Agility", 54),
+            ("Thieving", 52),
+            ("Woodcutting", 52),
+            ("Herblore", 50),
+            ("Mining", 42),
+            ("Crafting", 38),
+            ("Magic", 35),
+        ):
+            self.state["skill_xp"][skill] = minimum_xp_for_level(level)
+            self.state["skills"][skill] = level
+        self.state["kourend_memoir"] = {
+            "form": "memoirs",
+            "pages": [
+                "lunch_by_the_lancalliums",
+                "the_fishers_flute",
+                "history_and_hearsay",
+                "jewellery_of_jubilation",
+                "a_dark_disposition",
+            ],
+            "charges": 100,
+        }
+        self.state["items"] = {
+            "axe": 1,
+            "defence_potion_3plus": 1,
+            "volcanic_sulphur": 1,
+            "molten_glass": 1,
+        }
+        self.state["milestones"].extend(
+            ["a_kingdom_divided_fire_spell_ready", "a_kingdom_divided_dark_essence_ready"]
+        )
+        starting_xp = dict(self.state["skill_xp"])
+
+        result = apply_action(self.actions_document, self.state, "action:a-kingdom-divided")
+        state = result["next_state"]
+
+        self.assertEqual("applied", result["status"])
+        self.assertIn("A Kingdom Divided", state["quests_completed"])
+        self.assertEqual("book_of_the_dead", state["kourend_memoir"]["form"])
+        self.assertEqual(250, state["kourend_memoir"]["charges"])
+        self.assertEqual(1, state["items"]["axe"])
+        for item in ("defence_potion_3plus", "volcanic_sulphur", "molten_glass"):
+            self.assertEqual(0, state["items"][item])
+        self.assertEqual(starting_xp, state["skill_xp"])
+        self.assertEqual("xp_choice_award", result["reported_effects"][0]["type"])
+        for milestone in ("kourend_castle_respawn_unlocked", "a_kingdom_divided_arceuus_spells_unlocked", "yama_access"):
+            self.assertIn(milestone, state["milestones"])
 
     def test_kourend_memoir_teleport_and_recharge_are_exact_and_atomic(self) -> None:
         self.state["kourend_memoir"] = {
