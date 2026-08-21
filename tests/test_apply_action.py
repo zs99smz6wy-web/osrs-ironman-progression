@@ -760,6 +760,31 @@ class ApplyActionTests(unittest.TestCase):
         self.assertEqual(0, cast["next_state"]["items"]["water_rune"])
         self.assertEqual(starting_xp + 61, cast["next_state"]["skill_xp"]["Magic"])
 
+    def test_balloon_route_unlock_and_repeat_trip_have_separate_log_costs(self) -> None:
+        self.state["transport_flags"].append("balloon_transport")
+        self.state["skills"]["Firemaking"] = 30
+        self.state["skill_xp"]["Firemaking"] = minimum_xp_for_level(30)
+        self.state["items"]["oak_logs"] = 11
+        starting_xp = self.state["skill_xp"]["Firemaking"]
+
+        unlocked = apply_action(self.actions_document, self.state, "action:unlock-balloon-crafting-guild")
+        trip = apply_action(self.actions_document, unlocked["next_state"], "action:balloon-trip-crafting-guild")
+
+        self.assertIn("balloon_crafting_guild_route", unlocked["next_state"]["transport_flags"])
+        self.assertEqual(starting_xp + 2000, unlocked["next_state"]["skill_xp"]["Firemaking"])
+        self.assertEqual(1, unlocked["next_state"]["items"]["oak_logs"])
+        self.assertEqual(0, trip["next_state"]["items"]["oak_logs"])
+
+    def test_ardougne_cloak_claim_uses_confirmed_diary_tier(self) -> None:
+        self.state["diary_tiers"]["Ardougne"] = "easy"
+
+        claimed = apply_action(self.actions_document, self.state, "action:claim-ardougne-cloak")
+        teleported = apply_action(self.actions_document, claimed["next_state"], "action:ardougne-monastery-teleport")
+
+        self.assertEqual(1, claimed["next_state"]["items"]["ardougne_cloak_current"])
+        self.assertEqual("applied", teleported["status"])
+        self.assertEqual(claimed["next_state"]["items"], teleported["next_state"]["items"])
+
     def test_set_diary_tier_advances_a_confirmed_claim_without_inferring_readiness(self) -> None:
         record_claim = action(
             "action:record-ardougne-hard",

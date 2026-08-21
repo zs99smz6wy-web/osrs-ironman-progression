@@ -1,0 +1,241 @@
+{
+  "scope": "Current factual acquisition, page-unlock, teleport, recharge, upgrade, and replacement rules for Kharedst's memoirs and Book of the dead. This record deliberately excludes route ordering, utility scoring, and account-specific recommendations.",
+  "source_catalog": [
+    {
+      "id": "wiki-kharedsts-memoirs",
+      "url": "https://oldschool.runescape.wiki/w/Kharedst%27s_memoirs",
+      "used_for": "Memoirs acquisition and replacement, page effects, recharge location and inputs, charge limits, teleport consumption, Wilderness restriction, and current 2024 changes.",
+      "verified_at": "2026-08-21"
+    },
+    {
+      "id": "wiki-book-of-the-dead",
+      "url": "https://oldschool.runescape.wiki/w/Book_of_the_dead",
+      "used_for": "Book upgrade result, 250-charge capacity, identical recharge rule, and Book replacement or duplicate behavior.",
+      "verified_at": "2026-08-21"
+    },
+    {
+      "id": "wiki-client-of-kourend",
+      "url": "https://oldschool.runescape.wiki/w/Client_of_Kourend",
+      "used_for": "Current memoir acquisition quest, prerequisite, required feather, fixed rewards, and Kourend Castle Teleport unlock.",
+      "verified_at": "2026-08-21"
+    },
+    {
+      "id": "wiki-depths-of-despair",
+      "url": "https://oldschool.runescape.wiki/w/The_Depths_of_Despair",
+      "used_for": "Lunch by the lancalliums page quest and current 18 Agility gate.",
+      "verified_at": "2026-08-21"
+    },
+    {
+      "id": "wiki-queen-of-thieves",
+      "url": "https://oldschool.runescape.wiki/w/The_Queen_of_Thieves",
+      "used_for": "The fisher's flute page quest and current 20 Thieving gate.",
+      "verified_at": "2026-08-21"
+    },
+    {
+      "id": "wiki-tale-of-the-righteous",
+      "url": "https://oldschool.runescape.wiki/w/Tale_of_the_Righteous",
+      "used_for": "History and hearsay page quest, start gates, required combat supplies, enemy, and precise Shayzien destination.",
+      "verified_at": "2026-08-21"
+    },
+    {
+      "id": "wiki-the-forsaken-tower",
+      "url": "https://oldschool.runescape.wiki/w/The_Forsaken_Tower",
+      "used_for": "Jewellery of jubilation page quest, no-skill requirement, and precise Lovakengj destination.",
+      "verified_at": "2026-08-21"
+    },
+    {
+      "id": "wiki-ascent-of-arceuus",
+      "url": "https://oldschool.runescape.wiki/w/The_Ascent_of_Arceuus",
+      "used_for": "A dark disposition page quest, 12 Hunter start gate, required encounters, and precise Arceuus destination.",
+      "verified_at": "2026-08-21"
+    },
+    {
+      "id": "wiki-a-kingdom-divided",
+      "url": "https://oldschool.runescape.wiki/w/A_Kingdom_Divided",
+      "used_for": "Book of the dead upgrade quest, prerequisite quests, non-boostable skill gates, required inputs, and Commander Fullore claim behavior.",
+      "verified_at": "2026-08-21"
+    },
+    {
+      "id": "wiki-secret-page",
+      "url": "https://oldschool.runescape.wiki/w/Secret_page",
+      "used_for": "Optional sixth page acquisition and its explicit lack of teleport or charge effects.",
+      "verified_at": "2026-08-21"
+    },
+    {
+      "id": "official-mirror-varlamore-kourend-changes",
+      "url": "https://oldschool.runescape.wiki/w/Update:Varlamore_Activities_%26_Kourend_Changes",
+      "used_for": "Jagex-published 2024 change note mirrored by the Wiki: 20 charges per ordinary page and 150 additional charges on Book of the dead acquisition.",
+      "verified_at": "2026-08-21"
+    }
+  ],
+  "records": [
+    {
+      "id": "kharedsts-memoirs-and-book-of-the-dead",
+      "name": "Kharedst's memoirs and Book of the dead Kourend teleports",
+      "category": "transport",
+      "status": "verified",
+      "verified_at": "2026-08-21",
+      "membership": true,
+      "factual_boundary": "All requirements below are current requirements. Historical Kourend favour and Architectural Alliance requirements are intentionally excluded because Kourend favour was removed on 10 January 2024.",
+      "base_item_acquisition": {
+        "item": "Kharedst's memoirs",
+        "quest": "Client of Kourend",
+        "quest_start_and_completion_gates": {
+          "quest_prerequisite": "X Marks the Spot",
+          "skill_requirements": {},
+          "required_item": {
+            "feather": 1,
+            "accepted_variants": ["ordinary feather", "stripy feather", "coloured feather"],
+            "not_accepted": ["magic gold feather"],
+            "consumed_or_transformed": "The feather is used with Veos's enchanted scroll to make the enchanted quill."
+          },
+          "combat_requirement": "None."
+        },
+        "fixed_quest_outcomes_relevant_to_this_record": {
+          "items": ["Kharedst's memoirs"],
+          "teleport_unlock": "Kourend Castle Teleport spell",
+          "choice_experience": {
+            "antique_lamps": 2,
+            "experience_per_lamp": 500,
+            "eligible_skills": "Any skill"
+          }
+        },
+        "initial_transport_state": "The unpaged memoirs have no usable city teleport. At least one ordinary memoir page must be added before Old Memorial recharge dialogue is available."
+      },
+      "ordinary_memoir_pages": [
+        {
+          "page": "Lunch by the lancalliums",
+          "quest": "The Depths of Despair",
+          "current_quest_gates": {
+            "quest_prerequisite": "Client of Kourend (and therefore X Marks the Spot)",
+            "skills": {
+              "Agility": {"level": 18, "boostable": false, "required_to_start": true}
+            },
+            "mandatory_combat": "Sand Snake (level 36)"
+          },
+          "unlocked_teleport_destination": "Hosidius, by the River Hos near the lancallium patch; this is north-east of the Forthos Ruin/Dungeon entrances.",
+          "page_application_effect": {"initial_charges_added": 20, "maximum_charge_capacity_added": 20}
+        },
+        {
+          "page": "The fisher's flute",
+          "quest": "The Queen of Thieves",
+          "current_quest_gates": {
+            "quest_prerequisite": "Client of Kourend (and therefore X Marks the Spot)",
+            "skills": {
+              "Thieving": {"level": 20, "boostable": false, "required_to_start": true}
+            },
+            "required_quest_item": "Stew is given to Robert O'Reilly during the quest.",
+            "mandatory_combat": "None listed."
+          },
+          "unlocked_teleport_destination": "Port Piscarilius.",
+          "page_application_effect": {"initial_charges_added": 20, "maximum_charge_capacity_added": 20}
+        },
+        {
+          "page": "History and hearsay",
+          "quest": "Tale of the Righteous",
+          "current_quest_gates": {
+            "quest_prerequisite": "Client of Kourend (and therefore X Marks the Spot)",
+            "skills": {
+              "Strength": {"level": 16, "boostable": false, "required_to_start": true},
+              "Mining": {"level": 10, "boostable": false, "required_to_start": true}
+            },
+            "required_items": ["pickaxe", "ranged weapon and ammunition", "runes for 2-3 casts of any Magic combat spell", "melee weapon of any kind (a pickaxe is sufficient)", "rope"],
+            "mandatory_combat": "Corrupt Lizardman (level 46)"
+          },
+          "unlocked_teleport_destination": "Graveyard of Heroes, south-west of the Shayzien bank.",
+          "page_application_effect": {"initial_charges_added": 20, "maximum_charge_capacity_added": 20}
+        },
+        {
+          "page": "Jewellery of jubilation",
+          "quest": "The Forsaken Tower",
+          "current_quest_gates": {
+            "quest_prerequisite": "Client of Kourend (and therefore X Marks the Spot)",
+            "skills": {},
+            "required_item": "Tinderbox; one is obtainable during the quest.",
+            "mandatory_combat": "None."
+          },
+          "unlocked_teleport_destination": "North-east of the bank in Lovakengj.",
+          "page_application_effect": {"initial_charges_added": 20, "maximum_charge_capacity_added": 20}
+        },
+        {
+          "page": "A dark disposition",
+          "quest": "The Ascent of Arceuus",
+          "current_quest_gates": {
+            "quest_prerequisite": "Client of Kourend (and therefore X Marks the Spot)",
+            "skills": {
+              "Hunter": {"level": 12, "boostable": false, "required_to_start": true}
+            },
+            "mandatory_combat": ["five Tormented Souls (level 16)", "Trapped Soul (level 30)"]
+          },
+          "unlocked_teleport_destination": "Centre of Arceuus.",
+          "page_application_effect": {"initial_charges_added": 20, "maximum_charge_capacity_added": 20}
+        }
+      ],
+      "page_and_teleport_rules": {
+        "application": "Use a quest-earned torn page on the memoirs to unlock its corresponding Reminisce teleport.",
+        "ordinary_page_count": 5,
+        "memoirs_maximum_capacity_with_all_ordinary_pages": 100,
+        "teleport_cost": {"memoir_or_book_charges": 1, "additional_runes_or_coins": "None at teleport time."},
+        "wilderness_restriction": "Neither item can teleport the player beyond level 20 Wilderness."
+      },
+      "recharging": {
+        "location": "Old Memorial, north of Land's End on Great Kourend.",
+        "access_condition": "The memoirs or Book of the dead must contain at least one ordinary teleport page; the secret page alone does not enable the recharge dialogue.",
+        "recharge_unit": {
+          "charges_added": 1,
+          "consumed_inputs": {"law_rune": 1, "body_rune": 1, "mind_rune": 1, "soul_rune": 1},
+          "Magic_xp_per_charge": 10
+        },
+        "same_rule_after_upgrade": true,
+        "free_recharge_alternative": "None listed; every manual charge adds the stated Magic experience."
+      },
+      "book_of_the_dead_upgrade": {
+        "quest": "A Kingdom Divided",
+        "result": "Kharedst's memoirs is upgraded to Book of the dead. It retains the five possible Kourend teleport destinations and additionally serves as the required equipped-or-inventory item for resurrection spells.",
+        "required_completed_quests": ["The Depths of Despair", "The Queen of Thieves", "The Ascent of Arceuus", "The Forsaken Tower", "Tale of the Righteous"],
+        "inherited_quest_chain": "Each listed quest requires Client of Kourend, which requires X Marks the Spot.",
+        "skill_requirements": {
+          "Agility": {"level": 54, "boostable": false, "required_to_start": true},
+          "Thieving": {"level": 52, "boostable": false, "required_to_start": true},
+          "Woodcutting": {"level": 52, "boostable": false, "required_to_start": true},
+          "Herblore": {"level": 50, "boostable": false, "required_to_start": true},
+          "Mining": {"level": 42, "boostable": false, "required_to_start": true},
+          "Crafting": {"level": 38, "boostable": false, "required_to_start": true},
+          "Magic": {"level": 35, "boostable": false, "required_to_start": true}
+        },
+        "required_inputs": {
+          "spellbook_and_spell": "Normal spellbook and runes to cast a fire spell of Fire Bolt or higher.",
+          "items": ["any axe", "defence potion (3) or (4)", "volcanic sulphur", "molten glass"],
+          "one_of": ["dark essence block", "pickaxe and chisel to obtain a dark essence block at the mine"]
+        },
+        "mandatory_combat": ["Judge of Yama (level 168; can only be damaged with Melee)", "two Assassins (level 132)", "Lizardman brute (level 75)", "Xamphur (level 239)", "Barbarian Warlord (level 91)"],
+        "current_charge_change": {
+          "additional_charges_on_obtaining_book": 150,
+          "resulting_capacity": 250,
+          "explanation": "The five prerequisite page quests already give the fully completed memoirs 100 charges; the current 2024 change supplies 150 additional charges when Book of the dead is obtained, for 250 total."
+        }
+      },
+      "replacement_and_page_recovery": {
+        "before_A_Kingdom_Divided_completion": {
+          "memoirs_reclaim": "Speak to Veos on the Port Piscarilius docks. After partial completion of A Kingdom Divided, Cabin Boy Herbert there can also reclaim it.",
+          "charge_retention_on_destroy": "Any stored charges are retained when the memoirs are destroyed.",
+          "unapplied_torn_pages": "A page lost before it is added can be reclaimed from the lord of its respective Kourend house."
+        },
+        "after_A_Kingdom_Divided_completion": {
+          "replacement_item": "Book of the dead",
+          "free_reclaim": "Commander Fullore on the ground floor of Kourend Castle.",
+          "duplicate_purchase": {"vendor": "Perdu", "coins": 9500, "multiple_copies_supported": true}
+        }
+      },
+      "optional_non_transport_secret_page": {
+        "acquisition": "Use a knife on Kharedst's memoirs.",
+        "effect": "Adds the readable chapter 'Tread Carefully'.",
+        "does_not_add": ["a teleport destination", "initial charges", "maximum charge capacity"],
+        "replacement": "Use a knife on the memoirs again if the secret page is lost before it is added."
+      },
+      "route_priority_judgments": [],
+      "source_ids": ["wiki-kharedsts-memoirs", "wiki-book-of-the-dead", "wiki-client-of-kourend", "wiki-depths-of-despair", "wiki-queen-of-thieves", "wiki-tale-of-the-righteous", "wiki-the-forsaken-tower", "wiki-ascent-of-arceuus", "wiki-a-kingdom-divided", "wiki-secret-page", "official-mirror-varlamore-kourend-changes"],
+      "confidence": "high for item mechanics, costs, capacities, current quest/skill gates, and replacements; destinations are stated at the source's level of geographic precision."
+    }
+  ]
+}

@@ -1,0 +1,219 @@
+{
+  "scope": "Current factual requirements, deterministic quest outcomes, and repeat-use costs for the Lovakengj Minecart Network. This record covers the X Marks the Spot -> Client of Kourend -> The Forsaken Tower chain. It contains no route ordering, utility valuation, or strategy.",
+  "source_catalog": [
+    {
+      "id": "wiki-x-marks-the-spot",
+      "url": "https://oldschool.runescape.wiki/w/X_Marks_the_Spot",
+      "used_for": "X Marks the Spot start requirements, required spade, fixed rewards, and Client of Kourend prerequisite.",
+      "verified_at": "2026-08-21"
+    },
+    {
+      "id": "wiki-client-of-kourend",
+      "url": "https://oldschool.runescape.wiki/w/Client_of_Kourend",
+      "used_for": "Client of Kourend quest gate, feather transformation, fixed rewards, and Kharedst's memoirs acquisition.",
+      "verified_at": "2026-08-21"
+    },
+    {
+      "id": "wiki-the-forsaken-tower",
+      "url": "https://oldschool.runescape.wiki/w/The_Forsaken_Tower",
+      "used_for": "The Forsaken Tower gate, quest inputs, fixed rewards, permanent free minecart use, and Jewellery of jubilation memoir page.",
+      "verified_at": "2026-08-21"
+    },
+    {
+      "id": "wiki-lovakengj-minecart-network",
+      "url": "https://oldschool.runescape.wiki/w/Lovakengj_Minecart_Network",
+      "used_for": "Current per-trip price and the complete list of network destinations.",
+      "verified_at": "2026-08-21"
+    },
+    {
+      "id": "wiki-kharedsts-memoirs",
+      "url": "https://oldschool.runescape.wiki/w/Kharedst%27s_memoirs",
+      "used_for": "Memoirs page model and its relationship to Kourend quest rewards.",
+      "verified_at": "2026-08-21"
+    }
+  ],
+  "records": [
+    {
+      "id": "lovakengj-minecart-network",
+      "name": "Lovakengj Minecart Network",
+      "category": "transport",
+      "status": "verified",
+      "verified_at": "2026-08-21",
+      "membership": true,
+      "quest_chain": [
+        {
+          "quest": "X Marks the Spot",
+          "quest_start_gates": {
+            "quest_prerequisites": [],
+            "skills": {},
+            "quest_points": 0
+          },
+          "stable_player_inputs": {
+            "required": {
+              "spade": 1
+            },
+            "consumption_or_transformation": {
+              "spade": "Required to dig at clue locations; not consumed. The Eastfloor spade does not work."
+            },
+            "quest_sourced": [
+              "Treasure scroll",
+              "Mysterious orb",
+              "Ancient casket"
+            ]
+          },
+          "fixed_outcomes": {
+            "quest_points": 1,
+            "coins": 200,
+            "experience_choice": {
+              "antique_lamp": 1,
+              "experience_per_lamp": 300,
+              "eligible_skill": "player choice"
+            },
+            "items_or_capabilities": [
+              "Ability to receive scroll boxes",
+              "Beginner scroll box if the player does not already possess one; it can be claimed later when one was already possessed",
+              "+1 cap on all clue-scroll tiers"
+            ]
+          },
+          "unlocks": [
+            "Eligibility to start Client of Kourend"
+          ]
+        },
+        {
+          "quest": "Client of Kourend",
+          "quest_start_gates": {
+            "quest_prerequisites": [
+              "X Marks the Spot"
+            ],
+            "skills": {},
+            "quest_points": 0
+          },
+          "stable_player_inputs": {
+            "required": {
+              "feather": 1
+            },
+            "accepted_variants": [
+              "ordinary feather",
+              "stripy feather",
+              "coloured feather"
+            ],
+            "excluded_variants": [
+              "magic gold feather"
+            ],
+            "consumption_or_transformation": {
+              "feather": "Used on Veos's quest-supplied enchanted scroll to create an enchanted quill. The quill and scroll are handed to Veos during the quest; the original feather is therefore not retained."
+            },
+            "quest_sourced": [
+              "Enchanted scroll",
+              "Mysterious orb",
+              "Broken glass"
+            ]
+          },
+          "fixed_outcomes": {
+            "quest_points": 1,
+            "experience_choice": {
+              "antique_lamps": 2,
+              "experience_per_lamp": 500,
+              "eligible_skill": "player choice"
+            },
+            "items": [
+              "Kharedst's memoirs"
+            ],
+            "spells": [
+              "Kourend Castle Teleport"
+            ]
+          },
+          "unlocks": [
+            "Eligibility to start The Forsaken Tower"
+          ]
+        },
+        {
+          "quest": "The Forsaken Tower",
+          "quest_start_gates": {
+            "quest_prerequisites": [
+              "Client of Kourend",
+              "X Marks the Spot"
+            ],
+            "skills": {},
+            "quest_points": 0
+          },
+          "stable_player_inputs": {
+            "required": {
+              "tinderbox": 1
+            },
+            "consumption_or_transformation": {
+              "tinderbox": "Required during the quest but not identified as consumed; one can be obtained during the quest."
+            },
+            "quest_sourced": [
+              "Ancient letter",
+              "Generator crank",
+              "5-gallon jug",
+              "8-gallon jug",
+              "Unknown fluid",
+              "Old notes",
+              "Energy disk",
+              "Dinh's hammer"
+            ],
+            "combat_requirement": "None."
+          },
+          "fixed_outcomes": {
+            "quest_points": 1,
+            "experience": {
+              "Mining": 500,
+              "Smithing": 500
+            },
+            "coins": 6000,
+            "memoirs_page": {
+              "name": "Jewellery of jubilation",
+              "effect": "Adds the Lovakengj memoir teleport, which lands north-east of the Lovakengj bank."
+            },
+            "other_capability": "Ability to recolour graceful outfit pieces in Lovakengj colours."
+          },
+          "unlocks": [
+            "Permanent free use of the Lovakengj Minecart Network"
+          ]
+        }
+      ],
+      "network_access_and_repeat_cost": {
+        "base_access": "The current network has no quest, favour, skill, or one-time-payment requirement to use it before The Forsaken Tower; stations charge per ride until that quest is completed.",
+        "before_the_forsaken_tower": {
+          "coins_consumed_per_trip": 20,
+          "other_repeat_cost": null,
+          "coin_condition": "The player must have 20 coins in inventory to open the destination interface."
+        },
+        "after_the_forsaken_tower": {
+          "coins_consumed_per_trip": 0,
+          "other_repeat_cost": null,
+          "duration": "permanent"
+        },
+        "legacy_context": "A historical 100,000-coin unlimited-ride purchase is not a current requirement. Players who made that purchase before the January 2024 change can obtain a 100,000-coin refund from a minecart operator."
+      },
+      "destinations": [
+        "Arceuus",
+        "Farming Guild",
+        "Hosidius South",
+        "Hosidius West",
+        "Kingstown",
+        "Kourend Woodland",
+        "Lovakengj",
+        "Mount Quidamortem",
+        "Northern Tundras",
+        "Port Piscarilius",
+        "Shayzien East",
+        "Shayzien West"
+      ],
+      "kharedsts_memoirs_interaction": {
+        "direct_relevance": "Client of Kourend gives the base Kharedst's memoirs, and The Forsaken Tower adds its Jewellery of jubilation page. The memoir teleport and minecart network are separate transport capabilities: neither is a prerequisite, charge, or replacement for the other."
+      },
+      "strategic_judgments": [],
+      "source_ids": [
+        "wiki-x-marks-the-spot",
+        "wiki-client-of-kourend",
+        "wiki-the-forsaken-tower",
+        "wiki-lovakengj-minecart-network",
+        "wiki-kharedsts-memoirs"
+      ],
+      "confidence": "high"
+    }
+  ]
+}

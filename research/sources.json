@@ -181,5 +181,13 @@
     ,{"id":"wiki-rune-pouch","publisher":"Old School RuneScape Wiki","url":"https://oldschool.runescape.wiki/w/Rune_pouch","kind":"wiki","checked_at":"2026-08-21","use":"Rune pouch capacity, ownership limit, and storage utility"}
     ,{"id":"wiki-bones-to-peaches","publisher":"Old School RuneScape Wiki","url":"https://oldschool.runescape.wiki/w/Bones_to_Peaches","kind":"wiki","checked_at":"2026-08-21","use":"Bones to Peaches casting requirement and conversion restrictions"}
     ,{"id":"wiki-ardougne-teleport-scroll","publisher":"Old School RuneScape Wiki","url":"https://oldschool.runescape.wiki/w/Ardougne_teleport_scroll","kind":"wiki","checked_at":"2026-08-21","use":"Ardougne teleport scroll consumption, spell unlock, and tablet-use distinction"}
+    ,{"id":"wiki-book-of-the-dead","publisher":"Old School RuneScape Wiki","url":"https://oldschool.runescape.wiki/w/Book_of_the_dead","kind":"wiki","checked_at":"2026-08-21","use":"Book of the dead upgrade, charge capacity, recharge, and replacement behavior"}
+    ,{"id":"wiki-depths-of-despair","publisher":"Old School RuneScape Wiki","url":"https://oldschool.runescape.wiki/w/The_Depths_of_Despair","kind":"wiki","checked_at":"2026-08-21","use":"Lunch by the lancalliums memoir page and quest gate"}
+    ,{"id":"wiki-queen-of-thieves","publisher":"Old School RuneScape Wiki","url":"https://oldschool.runescape.wiki/w/The_Queen_of_Thieves","kind":"wiki","checked_at":"2026-08-21","use":"The fisher's flute memoir page and quest gate"}
+    ,{"id":"wiki-tale-of-the-righteous","publisher":"Old School RuneScape Wiki","url":"https://oldschool.runescape.wiki/w/Tale_of_the_Righteous","kind":"wiki","checked_at":"2026-08-21","use":"History and hearsay memoir page, gates, and destination"}
+    ,{"id":"wiki-ascent-of-arceuus","publisher":"Old School RuneScape Wiki","url":"https://oldschool.runescape.wiki/w/The_Ascent_of_Arceuus","kind":"wiki","checked_at":"2026-08-21","use":"A dark disposition memoir page, gates, and destination"}
+    ,{"id":"wiki-a-kingdom-divided","publisher":"Old School RuneScape Wiki","url":"https://oldschool.runescape.wiki/w/A_Kingdom_Divided","kind":"wiki","checked_at":"2026-08-21","use":"Book of the dead upgrade quest gates and fixed outcome"}
+    ,{"id":"wiki-secret-page","publisher":"Old School RuneScape Wiki","url":"https://oldschool.runescape.wiki/w/Secret_page","kind":"wiki","checked_at":"2026-08-21","use":"Optional memoir secret page with no teleport or charge effect"}
+    ,{"id":"official-mirror-varlamore-kourend-changes","publisher":"Jagex","url":"https://oldschool.runescape.wiki/w/Update:Varlamore_Activities_%26_Kourend_Changes","kind":"official_mirror","checked_at":"2026-08-21","use":"Jagex 2024 memoir-page and Book of the dead charge changes"}
   ]
 }

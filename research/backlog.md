@@ -42,6 +42,8 @@
 - Completed: audited all 12 achievement-diary regions for material permanent or repeatable utility and added exact claimed-tier account state with forward-only transitions. Full task-by-task diary normalization remains pending.
 - Completed: audited major early transport networks and identified missing Ectophial, Ardougne cloak, minecart, balloon, eagle, Trollheim, Ardougne spell, and Kourend memoir branches without assigning route priority.
 - Completed: normalized Ghosts Ahoy/Ectophial, Enlightened Journey's base balloon unlock, Eagles' Peak, Plague City/Ardougne Teleport, and the Druidic Ritual through Eadgar's Ruse/Trollheim chain, including exact repeat spell costs. Balloon destination-extension actions, minecarts, Ardougne cloak claims, and Kourend memoir teleports remain pending.
+- Completed: normalized all four post-quest balloon destination unlocks and six exact-cost repeat trips, plus Ardougne cloak reclaim and unlimited monastery teleport from confirmed diary state.
+- Completed: verified current Lovakengj minecart access/free-travel behavior and Kharedst's memoirs/Book of the dead page, charge, recharge, upgrade, and replacement mechanics. Their stateful actions remain pending.
 - Perilous Moons: evaluate account-specific combat readiness and strategic stop conditions without converting community recommendations into hard gates.
 - Giants' Foundry: reward costs, Smithing/GP/resource outputs, and natural stop candidates.
 - Tempoross/Fish Barrel, Tithe Farm, Guardians of the Rift, and MTA: utility-first stop points.
