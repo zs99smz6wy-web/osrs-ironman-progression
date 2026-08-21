@@ -1,0 +1,298 @@
+{
+  "scope": "Current factual requirements, stage-bound inputs, mandatory encounters, rewards, and account-state effects of A Kingdom Divided. This record deliberately contains no route ordering, optimisation, or account-specific recommendation.",
+  "source_catalog": [
+    {
+      "id": "wiki-a-kingdom-divided",
+      "url": "https://oldschool.runescape.wiki/w/A_Kingdom_Divided",
+      "used_for": "Current quest prerequisites, non-boostable skill gates, required inputs, walkthrough transformations, encounters, rewards, and spell/capability unlocks.",
+      "verified_at": "2026-08-21"
+    },
+    {
+      "id": "wiki-book-of-the-dead",
+      "url": "https://oldschool.runescape.wiki/w/Book_of_the_dead",
+      "used_for": "Current Book of the dead teleport capacity, recharge cost, Magic experience, resurrection-spell requirement, and replacement behavior.",
+      "verified_at": "2026-08-21"
+    },
+    {
+      "id": "wiki-kharedsts-memoirs",
+      "url": "https://oldschool.runescape.wiki/w/Kharedst%27s_memoirs",
+      "used_for": "Memoirs page capacity, shared recharge rule, and the current upgrade relationship to Book of the dead.",
+      "verified_at": "2026-08-21"
+    },
+    {
+      "id": "wiki-dark-essence-block",
+      "url": "https://oldschool.runescape.wiki/w/Dark_essence_block",
+      "used_for": "Dark essence block creation path and the one-block use in A Kingdom Divided.",
+      "verified_at": "2026-08-21"
+    },
+    {
+      "id": "wiki-potions",
+      "url": "https://oldschool.runescape.wiki/w/Potions",
+      "used_for": "Exact defence-potion variants accepted when creating the sulphur potion.",
+      "verified_at": "2026-08-21"
+    },
+    {
+      "id": "wiki-quest-experience-rewards",
+      "url": "https://oldschool.runescape.wiki/w/Quest_experience_rewards",
+      "used_for": "Antique-lamp quantity, experience amount, and level-40 choice condition.",
+      "verified_at": "2026-08-21"
+    },
+    {
+      "id": "official-a-kingdom-divided-poll",
+      "url": "https://oldschool.runescape.com/polls/2020/1614",
+      "used_for": "Jagex's official confirmation that the quest and its Arceuus spellbook additions were polled, including the Book of the dead as the memoir upgrade.",
+      "verified_at": "2026-08-21"
+    },
+    {
+      "id": "official-mirror-varlamore-kourend-changes",
+      "url": "https://oldschool.runescape.wiki/w/Update:Varlamore_Activities_%26_Kourend_Changes",
+      "used_for": "Jagex-published 2024 change note mirrored by the Wiki: 20 charges per ordinary memoir page and 150 additional charges when obtaining Book of the dead.",
+      "verified_at": "2026-08-21"
+    },
+    {
+      "id": "wiki-arceuus-spellbook",
+      "url": "https://oldschool.runescape.wiki/w/Arceuus_spellbook",
+      "used_for": "Current scope of the quest-gated Arceuus combat and utility spells, and the Book of the dead requirement for resurrection spells.",
+      "verified_at": "2026-08-21"
+    }
+  ],
+  "records": [
+    {
+      "id": "a-kingdom-divided",
+      "name": "A Kingdom Divided",
+      "category": "quest",
+      "status": "verified",
+      "verified_at": "2026-08-21",
+      "membership": true,
+      "official_difficulty": "Experienced",
+      "start": {
+        "npc": "Martin Holt",
+        "location": "Entrance to Kourend Castle in Kingstown"
+      },
+      "requirements": {
+        "quest_prerequisites": {
+          "direct": [
+            "The Depths of Despair",
+            "The Queen of Thieves",
+            "The Ascent of Arceuus",
+            "The Forsaken Tower",
+            "Tale of the Righteous"
+          ],
+          "shared_transitive_chain": [
+            "Client of Kourend",
+            "X Marks the Spot"
+          ],
+          "notes": "Each of the five direct prerequisites requires Client of Kourend; Client of Kourend requires X Marks the Spot. Architectural Alliance was present in the 2020 proposal but is not a current quest requirement."
+        },
+        "formal_skill_gates": {
+          "non_boostable_required_to_start": {
+            "Agility": 54,
+            "Thieving": 52,
+            "Woodcutting": 52,
+            "Herblore": 50,
+            "Mining": 42,
+            "Crafting": 38,
+            "Magic": 35
+          },
+          "boostable": {},
+          "notes": "The current quest source labels every listed formal skill gate non-boostable and required to start. It lists no boostable formal skill gate. The level-35 Magic gate also permits Fire Bolt, the lowest accepted fire spell."
+        },
+        "stable_player_provided_inputs": {
+          "normal_spellbook_and_fire_spell": {
+            "quantity": 1,
+            "stage_bound_requirement": "Normal spellbook, plus runes sufficient to cast a fire spell of Fire Bolt or higher on the ice chunks.",
+            "accepted_alternatives": "Any normal-spellbook fire spell at least as strong as Fire Bolt. Exact rune quantities vary with the selected spell and any rune-providing equipment, so no fixed rune vector is asserted.",
+            "consumption": "The selected spell consumes its normal casting runes unless supplied by equipped rune-providing equipment; the spellbook itself is not consumed."
+          },
+          "axe": {
+            "quantity": 1,
+            "accepted_alternatives": "Any axe.",
+            "use": "Used to chop vines during the Rose investigation.",
+            "consumption": "Reusable; not consumed or transformed by the quest."
+          },
+          "defence_potion": {
+            "quantity": 1,
+            "accepted_variants": ["Defence potion(3)", "Defence potion(4)"],
+            "minimum_doses": 3,
+            "consumption": "Combined with one volcanic sulphur to create a sulphur potion, then enchanted into a shielding potion and used on the Doors of Dinh. It is transformed and not retained."
+          },
+          "volcanic_sulphur": {
+            "quantity": 1,
+            "consumption": "Combined with the required defence potion to create the sulphur potion; it is transformed and not retained."
+          },
+          "molten_glass": {
+            "quantity": 1,
+            "consumption": "Given with one dark essence block to Mori to create the quest dark nullifier; it is transformed and not retained."
+          },
+          "dark_essence_block_path": {
+            "choose_one": [
+              {
+                "input": "Dark essence block",
+                "quantity": 1,
+                "consumption": "Given with molten glass to Mori to create the dark nullifier; it is transformed and not retained."
+              },
+              {
+                "inputs": {
+                  "pickaxe": 1,
+                  "chisel": 1
+                },
+                "result": "Obtain one dark essence block at the mine, then use that one block with molten glass.",
+                "consumption": "The pickaxe and chisel are reusable. Mining dense essence and imbuing it at the Dark Altar produces the block; the resulting block is consumed in the quest."
+              }
+            ],
+            "creation_detail": "A dark essence block is made from one dense essence block at the Dark Altar. The block-creation source lists Runecraft level 1 and awards 2.5 Runecraft experience; this is not an additional formal A Kingdom Divided gate."
+          }
+        },
+        "quest_sourced_or_temporary_items": {
+          "player_does_not_need_to_bring": [
+            "Protest banner",
+            "Rose's diary and Rose's note",
+            "Tatty note and research notes",
+            "Bluish key and cold key",
+            "Lizardman egg and damp key",
+            "Broken redirector",
+            "Sulphur potion and shielding potion",
+            "Dark nullifier",
+            "Investigation documents, including the declaration, journals, receipts, and related evidence"
+          ],
+          "state_model_note": "These are obtained, produced, or consumed inside quest progression. They are temporary quest state rather than stable account inventory requirements. The sulphur potion, shielding potion, and dark nullifier are deterministic intermediates from the player-provided inputs described above."
+        }
+      },
+      "combat": {
+        "mandatory_defeats": [
+          {
+            "enemy": "Judge of Yama",
+            "combat_level": 168,
+            "combat_constraint": "Immune to Magic and Ranged; can only be damaged with Melee."
+          },
+          {
+            "enemy": "Assassin",
+            "combat_level": 132,
+            "quantity": 2,
+            "combat_constraint": "Two separate mandatory encounters."
+          },
+          {
+            "enemy": "Xamphur",
+            "combat_level": 239,
+            "combat_constraint": "Immune to Magic; must be defeated with a non-Magic combat style."
+          },
+          {
+            "enemy": "Barbarian Warlord",
+            "combat_level": 91,
+            "combat_constraint": "Mandatory quest encounter."
+          }
+        ],
+        "encountered_but_not_mandatory_to_defeat": [
+          {
+            "enemy": "Lizardman brute",
+            "combat_level": 75,
+            "reason": "The quest's enemy summary lists it, but the walkthrough explicitly states that the player does not need to kill it when retrieving the lizardman egg."
+          }
+        ],
+        "not_formal_requirements": [
+          "Combat level 70",
+          "Prayer level 43",
+          "Specific weapons, armour, food, potions, transportation, or protection prayers"
+        ],
+        "notes": "The Wiki recommends combat and supplies appropriate to the Judge of Yama and Xamphur, but those recommendations are not encoded as formal hard gates."
+      },
+      "fixed_completion_rewards": {
+        "quest_points": 2,
+        "coins": 0,
+        "fixed_skill_experience": {},
+        "item": {
+          "name": "Book of the dead",
+          "quantity": 1,
+          "account_state_effect": "The quest reward is the upgraded memoir item. The formal current requirements do not state that an unbroken physical copy of Kharedst's memoirs must be carried into completion; completion should therefore be modeled as granting the Book of the dead account item/state, with normal reclaim behavior available afterward."
+        }
+      },
+      "choice_or_variable_rewards": {
+        "antique_lamps": {
+          "quantity": 2,
+          "experience_per_lamp": 10000,
+          "eligible_target": "Any one skill at level 40 or above for each lamp.",
+          "auto_apply": false,
+          "reason_not_auto_applied": "The player independently chooses the target skill for each lamp."
+        },
+        "historical_exception": "Players who claimed the Architectural Alliance antique lamp before 10 January 2024 receive one A Kingdom Divided lamp instead of two. This is a historical account-state exception and must not be assumed for a current account."
+      },
+      "permanent_capability_unlocks": {
+        "kourend_castle_respawn": {
+          "unlocked": true,
+          "configuration": "Asteros Arceuus on the upper floor of Kourend Castle can set the player's respawn point there."
+        },
+        "arceuus_spellbook": {
+          "new_spells_available": 24,
+          "scope": "All Arceuus combat spells except Ghostly Grasp and Inferior Demonbane, plus all Arceuus utility spells except Resurrect Crops and reanimation spells.",
+          "spellbook_constraint": "The Arceuus spellbook must be selected to cast these spells; quest completion does not itself switch the active spellbook.",
+          "resurrection_spell_constraint": "Resurrection spells additionally require Book of the dead equipped or in inventory and consume their normal rune and Prayer-point costs."
+        },
+        "yama": "Unlocks the ability to fight Yama."
+      },
+      "book_of_the_dead_upgrade_and_charges": {
+        "upgrade_relationship": "Book of the dead is the upgrade of Kharedst's memoirs awarded by A Kingdom Divided. It retains the ordinary memoir teleport destinations and adds the Book's resurrection-spell item function.",
+        "ordinary_page_state": {
+          "possible_pages": 5,
+          "pages_required_by_quest_chain": [
+            "Lunch by the lancalliums",
+            "The fisher's flute",
+            "History and hearsay",
+            "Jewellery of jubilation",
+            "A dark disposition"
+          ],
+          "memoirs_capacity": "20 charges per ordinary page, up to 100 with all five pages."
+        },
+        "current_upgrade_capacity_effect": {
+          "additional_capacity_when_book_obtained": 150,
+          "charges_granted_when_book_obtained": 150,
+          "book_maximum_capacity": 250,
+          "formula": "150 plus 20 for each of the five ordinary memoir pages.",
+          "historical_note": "The 250-charge behavior is current after the 2024 Kourend changes; it supersedes the original lower capacity. The published change explicitly says obtaining the Book grants an extra 150 charges rather than an extra 20. With all five prerequisite pages and no spent charges, this yields 250 charges. The source does not separately specify the arithmetic for a memoir whose existing charges were already spent."
+        },
+        "recharge_rule": {
+          "location": "Inspect the Old Memorial north of Land's End.",
+          "per_charge_consumed_inputs": {
+            "law_rune": 1,
+            "body_rune": 1,
+            "mind_rune": 1,
+            "soul_rune": 1
+          },
+          "per_charge_magic_experience": 10,
+          "teleport_charge_cost": 1,
+          "recharge_rule_after_upgrade": "Unchanged from Kharedst's memoirs; only maximum capacity increases.",
+          "charge_persistence": "Charges are not lost on death."
+        }
+      },
+      "factual_modeling_notes": {
+        "no_route_recommendation": true,
+        "stable_account_outputs": [
+          "A Kingdom Divided completion",
+          "Book of the dead state/item",
+          "250 maximum memoir/book teleport-charge capacity with five ordinary pages",
+          "Kourend Castle respawn capability",
+          "Quest-gated Arceuus spell availability",
+          "Yama fight access",
+          "Two deferred 10,000-XP lamp claims for normal current accounts"
+        ],
+        "do_not_auto_mutate": [
+          "Antique-lamp experience target skills",
+          "Book recharge Magic experience until the player explicitly recharges",
+          "Optional Lizardman brute kill"
+        ]
+      },
+      "strategic_judgments": [],
+      "source_ids": [
+        "wiki-a-kingdom-divided",
+        "wiki-book-of-the-dead",
+        "wiki-kharedsts-memoirs",
+        "wiki-dark-essence-block",
+        "wiki-potions",
+        "wiki-quest-experience-rewards",
+        "official-a-kingdom-divided-poll",
+        "official-mirror-varlamore-kourend-changes",
+        "wiki-arceuus-spellbook"
+      ],
+      "confidence": "high for formal gates, item transformations, mandatory encounters, fixed rewards, lamp choice behavior, and current Book capacity/recharge rules; medium for the exact transient cleanup timing of individual quest documents, which is intentionally modeled only as temporary quest state."
+    }
+  ]
+}
