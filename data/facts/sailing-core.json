@@ -1,14 +1,28 @@
 {
   "records": [
     {
+      "id": "sailing-entry-pandemonium",
+      "name": "Pandemonium and Sailing entry",
+      "category": "sailing",
+      "status": "verified",
+      "verified_at": "2026-08-20",
+      "requirements": {"membership": true, "quest_start": "Speak to Will or Anne at Port Sarim", "quest_requirements": "None"},
+      "rewards": {"quest_points": 1, "sailing_xp": 300, "items": ["Raft", "Captain's log", "25 sawmill coupons"]},
+      "outputs": ["Sailing skill access", "The Pandemonium access", "Raft ownership", "Captain's log for port-task and sea-charting tracking"],
+      "notes": "This is the factual entry gate for Sailing. It does not assert that starting Sailing at any particular account stage is strategically preferred.",
+      "source_ids": ["official-sailing-launch-guide", "wiki-sailing", "wiki-pandemonium"],
+      "confidence": "high"
+    },
+    {
       "id": "sailing-skiff",
       "name": "Sailing Skiff",
       "category": "sailing",
       "status": "verified",
       "verified_at": "2026-08-20",
-      "requirements": {"skills": {"Sailing": 15}},
-      "outputs": ["Skiff access", "two owned boats", "Port Piscarilius docking", "small shipwreck salvaging"],
-      "source_ids": ["wiki-sailing-level-table"],
+      "requirements": {"skills": {"Sailing": 15}, "boat_purchase_cost": 15000},
+      "outputs": ["Skiff ownership and use", "two owned boats", "Port Piscarilius docking", "small shipwreck salvaging"],
+      "mechanics": {"capacity": {"facility_hotspots": 7, "player_capacity": 5, "crew_slots": 2}, "boat_parts": ["Hull", "Helm", "Mast and sails", "Keel"]},
+      "source_ids": ["wiki-sailing", "wiki-sailing-level-table"],
       "confidence": "high"
     },
     {
@@ -20,7 +34,7 @@
       "requirements": {"skills": {"Sailing": 30}},
       "outputs": ["Sailing experience", "coins equal to base Sailing experience", "three concurrent port-task slots"],
       "mechanics": {"items": "Bounty parts cannot be banked but can be stored in a ship cargo hold.", "acceptance": "The Sailing level to accept a bounty task is not boostable."},
-      "source_ids": ["wiki-sailing-level-table"],
+      "source_ids": ["wiki-bounty-tasks", "wiki-sailing"],
       "confidence": "high"
     },
     {
@@ -29,9 +43,10 @@
       "category": "sailing",
       "status": "verified",
       "verified_at": "2026-08-20",
-      "requirements": {"skills": {"Sailing": 45}, "quest": "Troubled Tortugans", "quest_start_requirements": {"Slayer": 51, "Construction": 48, "Hunter": 45, "Woodcutting": 40, "Crafting": 34, "quest": "Pandemonium completed"}},
-      "outputs": ["Great Conch docking", "Gryphon access", "coral farming", "Great Conch resources and training methods"],
-      "source_ids": ["official-sailing-launch-guide", "wiki-sailing-resources-2"],
+      "requirements": {"skills": {"Sailing": 45}, "quest": "Troubled Tortugans"},
+      "outputs": ["Great Conch docking", "Gryphon access", "Shellbane Gryphon cave access", "coral farming", "Great Conch resources and training methods"],
+      "mechanics": {"gryphons": {"slayer_requirement": 51, "quest_and_sailing_gate": "Troubled Tortugans completed and 45 Sailing"}},
+      "source_ids": ["official-sailing-launch-guide", "wiki-troubled-tortugans", "wiki-sailing-resources-2"],
       "confidence": "high"
     },
     {
@@ -41,8 +56,9 @@
       "status": "verified",
       "verified_at": "2026-08-20",
       "requirements": {"skills": {"Sailing": 50}},
-      "outputs": ["Port Roberts docking", "Port Roberts task board and content access"],
-      "source_ids": ["wiki-sailing-map"],
+      "outputs": ["Port Roberts docking", "Port Roberts task board", "shipwright, salvaging station, and crew registrar", "bank", "Port Roberts stalls"],
+      "mechanics": {"charter_requirement_after_first_visit": "Visited once with 50 Sailing", "stalls": {"nondepletable": true, "skill_gates": {"vegetable": 2, "silk": 20, "fur": 35, "fish": 42, "silver": 50, "spice": 65, "gem": 75, "ore": 82, "cannonball": 87}}},
+      "source_ids": ["wiki-sailing-map", "wiki-sailing-resources-2", "wiki-charter-ship"],
       "confidence": "high"
     },
     {
@@ -60,13 +76,23 @@
       "id": "jewellers-chisel",
       "name": "Jeweller's Chisel",
       "category": "sailing",
-      "status": "research_queue",
+      "status": "verified",
       "verified_at": "2026-08-20",
-      "requirements": {"proposed_source": "Sunstone Golem Crafting on Wyrmscraig"},
-      "proposed_effect": "Two-tick bolt-tip cutting and a one-in-ten chance to process two gems at once.",
-      "notes": "The official source located is a recent poll. Do not use this record in route output until a live item page or release note confirms final acquisition and effect.",
-      "source_ids": ["official-wyrmscraig-chisel-poll"],
-      "confidence": "low"
+      "requirements": {"acquisition": "Earned from Sunstone Golem Crafting", "drop_rate": "1 in 300"},
+      "effects": {"gem_cutting": {"opal_jade_topaz_success_chance_increase_percent": 20, "double_gem_cut_chance_percent": 10, "guaranteed_success_levels": {"Opal": 62, "Jade": 71, "Topaz": 76}}, "bolt_tips": {"ticks_per_gem": 2, "double_gem_chance_percent": 10}, "tool_behavior": "Also functions as a regular chisel", "high_alchemy_value": 60000},
+      "source_ids": ["official-wyrmscraig-launch", "official-wyrmscraig-drop-rates", "official-summer-sweep-up-hunter-skilling"],
+      "confidence": "high"
+    },
+    {
+      "id": "jewellers-chisel-bolt-tip-buff",
+      "name": "Jeweller's Chisel bolt-tip buff",
+      "category": "sailing",
+      "status": "verified",
+      "verified_at": "2026-08-20",
+      "effect": "Cuts bolt tips from gems at two ticks instead of five, with a 10% chance to process two gems into bolt tips at once.",
+      "notes": "The poll proposal was implemented in the 19 August 2026 game update.",
+      "source_ids": ["official-wyrmscraig-chisel-poll", "official-summer-sweep-up-hunter-skilling"],
+      "confidence": "high"
     }
   ]
 }

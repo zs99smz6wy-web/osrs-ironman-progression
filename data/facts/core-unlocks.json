@@ -79,12 +79,26 @@
       "id": "wyrmscraig",
       "name": "Wyrmscraig",
       "category": "sailing",
-      "status": "needs_revalidation",
+      "status": "verified",
       "verified_at": "2026-08-20",
-      "outputs": ["new Sailing island content"],
-      "notes": "Official homepage confirms the 29 July 2026 launch. Exact requirements, rewards, transport effects, and Ironman utility remain a dedicated validation queue before entering route logic.",
+      "requirements": {"skills": {"Sailing": 62}},
+      "outputs": ["Wyrmscraig island access", "Goat Hunting access subject to its own requirements", "Fallen From Grace quest start", "Mortimer access subject to his own requirements"],
+      "mechanics": {"fallen_from_grace": {"requirements": {"Sailing": 62, "Crafting": 60, "Runecraft": 47, "Mining": 53}, "rewards": {"Crafting_xp": 10000, "Sailing_xp": 12500, "Mining_xp": 5000, "Runecraft_xp": 5000}, "unlocks": ["Repeatable Mad Angel encounter", "Sunstone Golem Crafting and Mining", "Slayer ring teleport to Wyrmscraig's cavern", "Necklace of Passage teleport south of the Sunstone mine"]}},
+      "notes": "Records access and released mechanics only; it makes no claim about the optimal timing of this branch.",
       "source_ids": ["official-wyrmscraig-launch"],
-      "confidence": "low"
+      "confidence": "high"
+    },
+    {
+      "id": "sunstone-golem-crafting",
+      "name": "Sunstone Golem Crafting",
+      "category": "sailing",
+      "status": "verified",
+      "verified_at": "2026-08-20",
+      "requirements": {"skills": {"Crafting": 60}, "quest": "Fallen From Grace completed", "tools": ["Chisel", "Hammer"], "inputs": ["Sunstone", "Hunter fur"]},
+      "outputs": ["Crafting experience", "possible Jeweller's Chisel acquisition", "uncut sapphire, emerald, ruby, and diamond rewards"],
+      "mechanics": {"sunstone": {"mining_requirement": 53, "alternative": "Sunstone Monolith is a slower, lower-attention acquisition method"}, "golem": "Shape four sides, create and insert a Sunstone core, then clothe the golem with one Hunter fur."},
+      "source_ids": ["official-wyrmscraig-launch"],
+      "confidence": "high"
     }
   ]
 }

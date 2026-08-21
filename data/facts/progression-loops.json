@@ -96,10 +96,11 @@
       "category": "bypass",
       "status": "verified",
       "verified_at": "2026-08-20",
-      "requirements": {"monster": "Shellbane Gryphon", "access": ["51 Slayer", "45 Sailing", "Troubled Tortugans"], "repair_skill": {"Smithing": 70}},
-      "outputs": ["one-handed stab weapon comparable to the zombie axe after repair"],
-      "mechanics": {"drop_rate": "1 in 400"},
-      "source_ids": ["wiki-sailing-resources", "wiki-sailing-xp-review"],
+      "requirements": {"monster": "Shellbane Gryphon", "access": ["51 Slayer", "45 Sailing", "Troubled Tortugans completed", "Gryphon Slayer task and 60 Combat"], "alternative_single_kill_access": "Elite clue directing a Shellbane Gryphon kill", "repair_skill": {"Smithing": 70}, "repair_input": "Belle's folly (tarnished)", "repair_facility": "Giants' Foundry polishing wheel"},
+      "outputs": ["Belle's Folly, a one-handed stab weapon after repair"],
+      "mechanics": {"drop_rate": "1 in 256", "drop_source": "Shellbane Gryphon", "repeat_kill_gate": "A Gryphon Slayer task is required after Troubled Tortugans; an Elite-clue direction permits one kill.", "repair": {"smithing_xp": 500}},
+      "notes": "Weapon comparisons and the strategic value of pursuing the drop are intentionally excluded from this factual record.",
+      "source_ids": ["wiki-sailing-resources", "wiki-shellbane-gryphon-strategies", "wiki-smithing-experience-table", "official-shellbane-gryphon-changes"],
       "confidence": "high"
     }
   ]
