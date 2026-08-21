@@ -711,6 +711,55 @@ class ApplyActionTests(unittest.TestCase):
         self.assertNotIn("rune_pouch", result["next_state"]["items"])
         self.assertEqual(self.state["skill_xp"], result["next_state"]["skill_xp"])
 
+    def test_enlightened_journey_retains_the_twenty_quest_point_gate(self) -> None:
+        self.state["counters"]["quest_points"] = 19
+        for skill, level in (("Firemaking", 20), ("Farming", 30), ("Crafting", 36)):
+            self.state["skills"][skill] = level
+            self.state["skill_xp"][skill] = minimum_xp_for_level(level)
+
+        result = apply_action(self.actions_document, self.state, "action:enlightened-journey")
+
+        self.assertEqual("not_eligible", result["status"])
+        self.assertEqual(self.state, result["next_state"])
+
+    def test_ghosts_ahoy_uses_observed_variable_preparation_without_guessing_costs(self) -> None:
+        self.state["quests_completed"].extend(["Priest in Peril", "The Restless Ghost"])
+        for skill, level in (("Agility", 25), ("Cooking", 20)):
+            self.state["skills"][skill] = level
+            self.state["skill_xp"][skill] = minimum_xp_for_level(level)
+        self.state["milestones"].append("ghosts_ahoy_variable_preparation_ready")
+        self.state["items"].update({
+            "ghostspeak_amulet": 1, "bucket_of_milk": 1, "silk": 1, "thread": 1,
+            "needle": 1, "knife": 1, "spade": 1, "oak_longbow": 1, "bucket_of_slime": 1,
+        })
+
+        result = apply_action(self.actions_document, self.state, "action:ghosts-ahoy")
+
+        self.assertEqual("applied", result["status"])
+        self.assertEqual(1, result["next_state"]["items"]["ectophial"])
+        self.assertIn("ectophial_teleport", result["next_state"]["transport_flags"])
+        self.assertIn("ghosts_ahoy_variable_preparation_ready", result["next_state"]["milestones"])
+        self.assertEqual("recorded_progress", result["reported_effects"][0]["type"])
+
+    def test_ardougne_scroll_and_cast_are_separate_transitions(self) -> None:
+        self.state["quests_completed"].append("Plague City")
+        self.state["items"]["ardougne_teleport_scroll"] = 1
+
+        unlocked = apply_action(self.actions_document, self.state, "action:read-ardougne-teleport-scroll")
+        cast_state = unlocked["next_state"]
+        cast_state["skills"]["Magic"] = 51
+        cast_state["skill_xp"]["Magic"] = minimum_xp_for_level(51)
+        cast_state["items"].update({"law_rune": 2, "water_rune": 2})
+        starting_xp = cast_state["skill_xp"]["Magic"]
+
+        cast = apply_action(self.actions_document, cast_state, "action:cast-ardougne-teleport")
+
+        self.assertEqual(0, unlocked["next_state"]["items"]["ardougne_teleport_scroll"])
+        self.assertIn("ardougne_teleport_spell_unlocked", cast_state["milestones"])
+        self.assertEqual(0, cast["next_state"]["items"]["law_rune"])
+        self.assertEqual(0, cast["next_state"]["items"]["water_rune"])
+        self.assertEqual(starting_xp + 61, cast["next_state"]["skill_xp"]["Magic"])
+
     def test_set_diary_tier_advances_a_confirmed_claim_without_inferring_readiness(self) -> None:
         record_claim = action(
             "action:record-ardougne-hard",
