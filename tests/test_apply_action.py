@@ -378,6 +378,150 @@ class ApplyActionTests(unittest.TestCase):
         self.assertEqual("not_eligible", result["status"])
         self.assertEqual(0, result["next_state"]["resources"]["coins"])
 
+    def test_enter_the_abyss_and_temple_of_the_eye_apply_verified_runecraft_xp(self) -> None:
+        self.state["quests_completed"].append("Rune Mysteries")
+        self.state["skill_xp"]["Runecraft"] = minimum_xp_for_level(10)
+        self.state["skills"]["Runecraft"] = 10
+
+        abyss = apply_action(self.actions_document, self.state, "action:enter-the-abyss")
+        temple = apply_action(self.actions_document, abyss["next_state"], "action:temple-of-the-eye")
+
+        self.assertEqual("applied", temple["status"])
+        self.assertEqual(minimum_xp_for_level(10) + 1000 + 9210, temple["next_state"]["skill_xp"]["Runecraft"])
+        self.assertIn("Temple of the Eye", temple["next_state"]["quests_completed"])
+        self.assertIn("guardians_of_the_rift_access", temple["next_state"]["milestones"])
+        self.assertEqual(1, temple["next_state"]["items"]["medium_pouch"])
+
+    def test_guardians_of_the_rift_reports_variable_rewards_without_adding_pearls(self) -> None:
+        self.state["quests_completed"].append("Temple of the Eye")
+        self.state["skill_xp"]["Runecraft"] = minimum_xp_for_level(27)
+        self.state["skills"]["Runecraft"] = 27
+        self.state["items"] = {"pickaxe": 1}
+
+        result = apply_action(self.actions_document, self.state, "action:guardians-of-the-rift")
+
+        self.assertEqual("applied", result["status"])
+        self.assertNotIn("abyssal_pearls", result["next_state"]["resources"])
+        self.assertEqual("variable_activity_output", result["reported_effects"][0]["type"])
+
+    def test_raiments_purchase_requires_and_spends_abyssal_pearls(self) -> None:
+        self.state["quests_completed"].append("Temple of the Eye")
+        self.state["resources"]["abyssal_pearls"] = 1349
+
+        blocked = apply_action(self.actions_document, self.state, "action:buy-full-raiments-of-the-eye")
+        self.assertEqual("not_eligible", blocked["status"])
+        self.assertEqual(1349, blocked["next_state"]["resources"]["abyssal_pearls"])
+
+        self.state["resources"]["abyssal_pearls"] = 1350
+        result = apply_action(self.actions_document, self.state, "action:buy-full-raiments-of-the-eye")
+
+        self.assertEqual("applied", result["status"])
+        self.assertEqual(0, result["next_state"]["resources"]["abyssal_pearls"])
+        for item in ("hat_of_the_eye", "robe_top_of_the_eye", "robe_bottoms_of_the_eye", "boots_of_the_eye"):
+            self.assertEqual(1, result["next_state"]["items"][item])
+
+    def test_colossal_pouch_requires_skills_and_consumes_component_pouches(self) -> None:
+        self.state["skill_xp"]["Runecraft"] = minimum_xp_for_level(25)
+        self.state["skills"]["Runecraft"] = 25
+        self.state["skill_xp"]["Crafting"] = minimum_xp_for_level(55)
+        self.state["skills"]["Crafting"] = 55
+        self.state["items"] = {
+            "abyssal_needle": 1,
+            "small_pouch": 1,
+            "medium_pouch": 1,
+            "large_pouch": 1,
+            "giant_pouch": 1,
+        }
+
+        blocked = apply_action(self.actions_document, self.state, "action:create-colossal-pouch")
+        self.assertEqual("not_eligible", blocked["status"])
+        self.assertEqual(1, blocked["next_state"]["items"]["abyssal_needle"])
+
+        self.state["skill_xp"]["Crafting"] = minimum_xp_for_level(56)
+        self.state["skills"]["Crafting"] = 56
+        result = apply_action(self.actions_document, self.state, "action:create-colossal-pouch")
+
+        self.assertEqual("applied", result["status"])
+        self.assertEqual(1, result["next_state"]["items"]["colossal_pouch"])
+        for item in ("abyssal_needle", "small_pouch", "medium_pouch", "large_pouch", "giant_pouch"):
+            self.assertEqual(0, result["next_state"]["items"][item])
+
+    def test_sleeping_giants_fixed_xp_unlocks_foundry_without_granting_reputation(self) -> None:
+        self.state["skill_xp"]["Smithing"] = minimum_xp_for_level(15)
+        self.state["skills"]["Smithing"] = 15
+
+        quest = apply_action(self.actions_document, self.state, "action:sleeping-giants")
+        foundry_state = quest["next_state"]
+        foundry_state["items"] = {"bucket": 1}
+        foundry_state["resources"]["foundry_metal_value_bars"] = 2
+        activity = apply_action(self.actions_document, foundry_state, "action:giants-foundry")
+
+        self.assertEqual("applied", quest["status"])
+        self.assertEqual(minimum_xp_for_level(15) + 6000, quest["next_state"]["skill_xp"]["Smithing"])
+        self.assertIn("giants_foundry_access", quest["next_state"]["milestones"])
+        self.assertEqual("applied", activity["status"])
+        self.assertNotIn("foundry_reputation", activity["next_state"]["resources"])
+
+    def test_motherlode_upgrades_require_nuggets_and_upper_level_for_super_hopper(self) -> None:
+        self.state["skill_xp"]["Mining"] = minimum_xp_for_level(57)
+        self.state["skills"]["Mining"] = 57
+        self.state["resources"]["golden_nuggets"] = 100
+
+        upper = apply_action(self.actions_document, self.state, "action:unlock-motherlode-upper-level")
+        blocked_hopper = apply_action(self.actions_document, upper["next_state"], "action:buy-motherlode-super-hopper")
+
+        self.assertEqual("applied", upper["status"])
+        self.assertEqual(0, upper["next_state"]["resources"]["golden_nuggets"])
+        self.assertEqual("not_eligible", blocked_hopper["status"])
+
+        hopper_state = upper["next_state"]
+        hopper_state["resources"]["golden_nuggets"] = 50
+        hopper = apply_action(self.actions_document, hopper_state, "action:buy-motherlode-super-hopper")
+
+        self.assertEqual("applied", hopper["status"])
+        self.assertEqual(0, hopper["next_state"]["resources"]["golden_nuggets"])
+        self.assertIn("motherlode_super_hopper", hopper["next_state"]["milestones"])
+
+    def test_motherlode_mine_does_not_guarantee_golden_nuggets(self) -> None:
+        self.state["skill_xp"]["Mining"] = minimum_xp_for_level(30)
+        self.state["skills"]["Mining"] = 30
+
+        result = apply_action(self.actions_document, self.state, "action:motherlode-mine")
+
+        self.assertEqual("applied", result["status"])
+        self.assertNotIn("golden_nuggets", result["next_state"]["resources"])
+        self.assertEqual("variable_activity_output", result["reported_effects"][0]["type"])
+
+    def test_tithe_and_foundry_purchases_spend_their_accumulated_currencies(self) -> None:
+        self.state["skill_xp"]["Farming"] = minimum_xp_for_level(34)
+        self.state["skills"]["Farming"] = 34
+        self.state["resources"]["tithe_farm_points"] = 50
+
+        auto_weed = apply_action(self.actions_document, self.state, "action:buy-auto-weed")
+
+        self.assertEqual("applied", auto_weed["status"])
+        self.assertEqual(0, auto_weed["next_state"]["resources"]["tithe_farm_points"])
+        self.assertIn("auto_weed", auto_weed["next_state"]["milestones"])
+
+        foundry_state = load_json(FRESH_ACCOUNT)
+        foundry_state["quests_completed"] = ["Sleeping Giants", "Dwarf Cannon"]
+        foundry_state["resources"]["foundry_reputation"] = 2000
+        mould = apply_action(self.actions_document, foundry_state, "action:buy-double-ammo-mould")
+
+        self.assertEqual("applied", mould["status"])
+        self.assertEqual(0, mould["next_state"]["resources"]["foundry_reputation"])
+        self.assertEqual(1, mould["next_state"]["items"]["double_ammo_mould"])
+
+    def test_tempoross_does_not_guarantee_a_fish_barrel(self) -> None:
+        self.state["skill_xp"]["Fishing"] = minimum_xp_for_level(35)
+        self.state["skills"]["Fishing"] = 35
+
+        result = apply_action(self.actions_document, self.state, "action:tempoross")
+
+        self.assertEqual("applied", result["status"])
+        self.assertNotIn("fish_barrel", result["next_state"]["items"])
+        self.assertEqual("variable_activity_output", result["reported_effects"][0]["type"])
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -1,0 +1,344 @@
+{
+  "records": [
+    {
+      "id": "enter-abyss-temple-eye-prerequisite",
+      "name": "Enter the Abyss prerequisite for Temple of the Eye",
+      "category": "quest",
+      "status": "verified",
+      "verified_at": "2026-08-20",
+      "requirements": {
+        "quest": "Rune Mysteries"
+      },
+      "rewards": {
+        "Runecraft_xp": 1000,
+        "unlocks": [
+          "Temple of the Eye quest prerequisite"
+        ]
+      },
+      "notes": "Enter the Abyss is a miniquest. Its 1,000 Runecraft XP is a fixed reward from the prerequisite, not a Temple of the Eye completion reward.",
+      "source_ids": [
+        "wiki-quest-experience-rewards",
+        "wiki-temple-of-the-eye"
+      ],
+      "confidence": "high"
+    },
+    {
+      "id": "temple-of-the-eye-access-and-rewards",
+      "name": "Temple of the Eye access and fixed rewards",
+      "category": "quest",
+      "status": "verified",
+      "verified_at": "2026-08-20",
+      "requirements": {
+        "membership": true,
+        "quest": "Enter the Abyss miniquest completed",
+        "skills": {
+          "Runecraft": 10
+        },
+        "items_required": "None"
+      },
+      "rewards": {
+        "quest_points": 1,
+        "Runecraft_xp_completion_reward": 5000,
+        "Runecraft_xp_earned_during_quest": 4210,
+        "Runecraft_xp_total_for_a_complete_quest": 9210,
+        "items": [
+          "Medium pouch, if not already acquired"
+        ],
+        "unlocks": [
+          "Guardians of the Rift access"
+        ]
+      },
+      "notes": "The 5,000 XP entry is the completion reward. The Wiki's quest-XP material separately reports 4,210 Runecraft XP earned during the quest, for 9,210 total Runecraft XP from a full completion.",
+      "source_ids": [
+        "wiki-temple-of-the-eye",
+        "wiki-quest-experience-rewards"
+      ],
+      "confidence": "high"
+    },
+    {
+      "id": "guardians-of-the-rift-minigame-access",
+      "name": "Guardians of the Rift minigame access",
+      "category": "minigame",
+      "status": "verified",
+      "verified_at": "2026-08-20",
+      "requirements": {
+        "membership": true,
+        "quest": "Temple of the Eye completed",
+        "skills": {
+          "Runecraft": 27
+        },
+        "items": [
+          "Any pickaxe"
+        ],
+        "conditional_items": {
+          "Chisel": "Required only to craft rift guardians; a permanent chisel spawn is present in the minigame."
+        }
+      },
+      "outputs": [
+        "Runecraft minigame participation",
+        "Elemental and catalytic reward points",
+        "Rewards Guardian searches"
+      ],
+      "notes": "Temple of the Eye's total Runecraft XP normally takes a player meeting its level-10 requirement to at least level 27, but the 27 Runecraft requirement remains the minigame gate.",
+      "source_ids": [
+        "wiki-gotr"
+      ],
+      "confidence": "high"
+    },
+    {
+      "id": "guardians-of-the-rift-reward-currency",
+      "name": "Guardians of the Rift reward points and Abyssal pearls",
+      "category": "reward",
+      "status": "verified",
+      "verified_at": "2026-08-20",
+      "requirements": {
+        "reward_search": "One elemental point and one catalytic point"
+      },
+      "mechanics": {
+        "point_award": "At game end, one elemental point is awarded for each 100 elemental energy and one catalytic point for each 100 catalytic energy; fractional hundreds have a matching chance to round up.",
+        "reward_search": "One point of each type is consumed per Rewards Guardian search.",
+        "abyssal_pearls": {
+          "source": "Random Rewards Guardian outcome",
+          "rarity_per_search": "1 in 7",
+          "quantity_when_rolled": "14-16",
+          "guaranteed_per_search": false
+        },
+        "extra_search": {
+          "abyssal_pearl_cost": 25,
+          "effect": "Exchanges 25 abyssal pearls for one elemental point and one catalytic point, enough for one additional search."
+        }
+      },
+      "notes": "Abyssal pearls are the shop currency, but their acquisition is RNG; a stated pearl cost is therefore deterministic only after the account has accumulated the required pearls.",
+      "source_ids": [
+        "wiki-gotr",
+        "wiki-rewards-guardian"
+      ],
+      "confidence": "high"
+    },
+    {
+      "id": "guardians-raiments-of-the-eye",
+      "name": "Raiments of the Eye",
+      "category": "reward",
+      "status": "verified",
+      "verified_at": "2026-08-20",
+      "requirements": {
+        "currency": "Abyssal pearls"
+      },
+      "costs": {
+        "abyssal_pearls": {
+          "Hat of the eye": 400,
+          "Robe top of the eye": 350,
+          "Robe bottoms of the eye": 350,
+          "Boots of the eye": 250,
+          "full_set_total": 1350
+        }
+      },
+      "effects": {
+        "per_piece": "10% more runes when worn while Runecrafting",
+        "full_set_bonus": "An additional 20% more runes",
+        "full_set_total": "60% more runes",
+        "Runecraft_xp_bonus": "None"
+      },
+      "acquisition": {
+        "method": "Temple Supplies purchase",
+        "guaranteed_after_required_currency": true,
+        "direct_rng_item_drop": false
+      },
+      "source_ids": [
+        "wiki-temple-supplies",
+        "wiki-raiments-of-the-eye"
+      ],
+      "confidence": "high"
+    },
+    {
+      "id": "ring-of-the-elements",
+      "name": "Ring of the elements",
+      "category": "transport",
+      "status": "verified",
+      "verified_at": "2026-08-20",
+      "requirements": {
+        "currency": "400 Abyssal pearls"
+      },
+      "costs": {
+        "purchase_abyssal_pearls": 400,
+        "per_teleport_charge": {
+          "air_rune": 1,
+          "water_rune": 1,
+          "earth_rune": 1,
+          "fire_rune": 1,
+          "law_rune": 1
+        },
+        "maximum_charges": 10000
+      },
+      "outputs": {
+        "teleport_destinations": [
+          "South of the Air Altar",
+          "West of the Water Altar",
+          "West of the Earth Altar",
+          "North of the Fire Altar"
+        ]
+      },
+      "acquisition": {
+        "method": "Temple Supplies purchase",
+        "guaranteed_after_required_currency": true,
+        "direct_rng_item_drop": false
+      },
+      "source_ids": [
+        "wiki-temple-supplies",
+        "wiki-ring-of-the-elements"
+      ],
+      "confidence": "high"
+    },
+    {
+      "id": "abyssal-needle-and-colossal-pouch",
+      "name": "Abyssal needle and colossal pouch",
+      "category": "reward",
+      "status": "verified",
+      "verified_at": "2026-08-20",
+      "acquisition": {
+        "abyssal_needle": {
+          "rng_method": {
+            "source": "Rewards Guardian",
+            "rarity_per_search": "1 in 300",
+            "guaranteed": false
+          },
+          "currency_method": {
+            "source": "Temple Supplies",
+            "abyssal_pearl_cost": 750,
+            "guaranteed_after_required_currency": true,
+            "introduced_live": "2026-08-19"
+          }
+        }
+      },
+      "requirements": {
+        "colossal_pouch_creation": {
+          "skills_unboosted": {
+            "Runecraft": 25,
+            "Crafting": 56
+          },
+          "items_consumed_or_combined": [
+            "Abyssal needle",
+            "Small pouch",
+            "Medium pouch",
+            "Large pouch",
+            "Giant pouch"
+          ]
+        }
+      },
+      "outputs": {
+        "item": "Colossal pouch",
+        "essence_capacity_by_Runecraft_level": {
+          "25": 8,
+          "50": 16,
+          "75": 27,
+          "85": 40
+        },
+        "decay": "Degrades after approximately eight uses and can be repaired through normal essence-pouch repair methods."
+      },
+      "recovery": "If the colossal pouch is lost, using an ordinary needle on the Rewards Guardian provides another abyssal needle.",
+      "notes": "The current pouch scales before 85 Runecraft; 85 is the threshold for its full 40-essence capacity, not a requirement to create or use the scaled pouch.",
+      "source_ids": [
+        "wiki-rewards-guardian",
+        "wiki-temple-supplies",
+        "wiki-colossal-pouch",
+        "official-summer-sweep-up-hunter-skilling"
+      ],
+      "confidence": "high"
+    },
+    {
+      "id": "abyssal-lantern",
+      "name": "Abyssal lantern",
+      "category": "reward",
+      "status": "verified",
+      "verified_at": "2026-08-20",
+      "acquisition": {
+        "rng_method": {
+          "source": "Rewards Guardian",
+          "rarity_per_search": "1 in 700",
+          "guaranteed": false
+        },
+        "currency_method": {
+          "source": "Temple Supplies",
+          "abyssal_pearl_cost": 1500,
+          "guaranteed_after_required_currency": true
+        }
+      },
+      "requirements": {
+        "lighting": "Six matching logs, a tinderbox, and the unboosted Firemaking level for the selected logs",
+        "equipment_slot": "Shield"
+      },
+      "effects": {
+        "Willow": {
+          "Firemaking": 30,
+          "effect": "5% more runes crafted",
+          "works_outside_Guardians_of_the_Rift_as_of_2026-08-19": true
+        },
+        "Blisterwood": {
+          "Firemaking": 62,
+          "effect": "20% more blood runes crafted",
+          "works_outside_Guardians_of_the_Rift_as_of_2026-08-19": true
+        },
+        "Magic": {
+          "Firemaking": 75,
+          "effect": "10% more runes crafted",
+          "works_outside_Guardians_of_the_Rift_as_of_2026-08-19": true
+        },
+        "Redwood": {
+          "Firemaking": 90,
+          "effect": "5% more elemental and catalytic energy, 5% more runes crafted, and essence pouches do not degrade",
+          "works_outside_Guardians_of_the_Rift_as_of_2026-08-19": true
+        },
+        "Oak": {
+          "Firemaking": 15,
+          "effect": "5% more elemental and catalytic energy",
+          "works_outside_Guardians_of_the_Rift": false
+        },
+        "Yew": {
+          "Firemaking": 60,
+          "effect": "10% more elemental and catalytic energy",
+          "works_outside_Guardians_of_the_Rift": false
+        },
+        "Normal_and_coloured_logs": {
+          "effect": "10% increased chance to find portal talismans within Guardians of the Rift",
+          "works_outside_Guardians_of_the_Rift": false
+        },
+        "Maple": {
+          "Firemaking": 45,
+          "effect": "20% increased chance to find portal talismans within Guardians of the Rift",
+          "works_outside_Guardians_of_the_Rift": false
+        }
+      },
+      "notes": "The August 2026 expansion applies only to log effects that have an effect beyond the minigame: Willow, Blisterwood, Magic, and Redwood. It does not make Normal, Oak, Maple, or Yew lantern effects function outside Guardians of the Rift.",
+      "source_ids": [
+        "wiki-abyssal-lantern",
+        "wiki-abyssal-lantern-transcript",
+        "wiki-temple-supplies",
+        "official-summer-sweep-up-hunter-skilling"
+      ],
+      "confidence": "high"
+    },
+    {
+      "id": "guardians-eye-permanent-pet-metamorphosis",
+      "name": "Guardian's Eye permanent pet metamorphosis",
+      "category": "reward",
+      "status": "verified",
+      "verified_at": "2026-08-20",
+      "requirements": {
+        "currency": "3000 Abyssal pearls",
+        "item": "Rift guardian pet"
+      },
+      "costs": {
+        "abyssal_pearls": 3000
+      },
+      "outputs": [
+        "Permanent Greatish guardian metamorphosis unlock for the Rift guardian pet"
+      ],
+      "notes": "This is a cosmetic account unlock, not a Runecraft utility effect. The permanent-unlock behavior replaced the former banked-item behavior on 19 August 2026.",
+      "source_ids": [
+        "wiki-temple-supplies",
+        "official-summer-sweep-up-hunter-skilling"
+      ],
+      "confidence": "high"
+    }
+  ]
+}

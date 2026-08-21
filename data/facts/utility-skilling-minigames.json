@@ -1,0 +1,149 @@
+{
+  "records": [
+    {
+      "id": "utility-tithe-farm-access-and-currency",
+      "name": "Tithe Farm access and point currency",
+      "category": "minigame",
+      "status": "verified",
+      "verified_at": "2026-08-20",
+      "requirements": {
+        "membership": true,
+        "skills": {"Farming": 34},
+        "required_items": ["spade", "seed dibber unless bare-handed planting is unlocked", "one or more watering cans"]
+      },
+      "mechanics": {
+        "seed_tiers": {"Golovanova": 34, "Bologano": 54, "Logavano": 74},
+        "currency": "Tithe Farm points",
+        "point_award": "1 point per 3 deposited plants, plus 2 additional points per 100 deposited plants.",
+        "point_cap": 16000,
+        "acquisition_type": "Points are earned deterministically from deposited plants; there is no reward-roll RNG for shop purchases."
+      },
+      "source_ids": ["wiki-tithe-rewards", "wiki-tithe-farm"],
+      "confidence": "high"
+    },
+    {
+      "id": "utility-tithe-farm-durable-rewards",
+      "name": "Tithe Farm durable utility rewards",
+      "category": "reward",
+      "status": "verified",
+      "verified_at": "2026-08-20",
+      "requirements": {"activity": "Tithe Farm", "currency": "Tithe Farm points"},
+      "rewards": {
+        "auto_weed": {"cost": 50, "effect": "Permanent toggleable prevention of new weeds in Farming patches; it does not remove existing weeds and does not affect Managing Miscellania patches."},
+        "farmers_outfit": {"cost_total": 400, "pieces": {"strawhat": 75, "jacket_or_shirt": 150, "boro_trousers": 125, "boots": 50}, "effect": "A complete worn set grants 2.5% additional Farming experience."},
+        "gricollers_can": {"cost": 200, "effect": "Watering can with 1,000 water doses; it is refilled by using it on a water source."},
+        "seed_box": {"cost": 250, "effect": "Stores an unlimited quantity of up to six seed types."},
+        "herb_sack": {"cost": 250, "additional_requirement": {"Herblore": 58}, "effect": "Stores up to 30 of each grimy herb type, 420 grimy herbs in total."}
+      },
+      "guarantee": "Each listed reward is a guaranteed purchase once its exact point cost and any stated use requirement are met.",
+      "source_ids": ["wiki-tithe-rewards", "wiki-tithe-farm"],
+      "confidence": "high"
+    },
+    {
+      "id": "utility-sleeping-giants-fixed-rewards",
+      "name": "Sleeping Giants quest access and fixed rewards",
+      "category": "quest",
+      "status": "verified",
+      "verified_at": "2026-08-20",
+      "requirements": {"membership": true, "skills": {"Smithing": 15}, "quest_prerequisites": []},
+      "fixed_rewards": {"Smithing_xp": 6000, "quest_points": 1, "unlocks": ["Giants' Foundry access"]},
+      "guarantee": "All listed rewards are fixed on quest completion; no RNG applies.",
+      "source_ids": ["wiki-giants-foundry", "official-giants-foundry-launch"],
+      "confidence": "high"
+    },
+    {
+      "id": "utility-giants-foundry-currency-and-unlocks",
+      "name": "Giants' Foundry reputation and durable unlocks",
+      "category": "minigame",
+      "status": "verified",
+      "verified_at": "2026-08-20",
+      "requirements": {
+        "membership": true,
+        "quest": "Sleeping Giants",
+        "inputs": "Metal bars or Smithing-made metal equipment worth at least two bars; a bucket or ice gloves is needed to pick up the moulded weapon."
+      },
+      "mechanics": {
+        "currency": "Foundry Reputation",
+        "currency_award": "A completed commission awards reputation equal to final sword quality: metal score plus mould score minus 5 for each mistake.",
+        "other_completion_rewards": "A completed commission also awards Smithing experience and coins; the coin reward equals twice the experience reward.",
+        "acquisition_type": "Reputation and listed shop purchases are deterministic. No reward-shop items are random drops."
+      },
+      "durable_rewards": {
+        "double_ammo_mould": {"cost": 2000, "additional_requirement": "Dwarf Cannon completed", "effect": "At a furnace, processes two bars into eight cannonballs in the same time a regular ammo mould processes one bar into four."},
+        "smiths_uniform": {"cost_total": 15000, "pieces": {"tunic": 4000, "trousers": 4000, "boots": 3500, "gloves": 3500}, "effect": "Each worn piece has a 20% chance to reduce anvil Smithing actions by one tick and a 20% chance to increase Foundry preform progress; the complete set guarantees each effect. Smiths gloves can be combined with ice gloves to create smiths gloves (i)."},
+        "mould_library": {"cost_total": 5400, "effect": "Additional permanent moulds are purchased with reputation and provide mould-score options for commissions."}
+      },
+      "source_ids": ["wiki-giants-foundry", "official-giants-foundry-launch", "wiki-smiths-uniform"],
+      "confidence": "high"
+    },
+    {
+      "id": "utility-motherlode-mine-access-and-nuggets",
+      "name": "Motherlode Mine access and golden nuggets",
+      "category": "minigame",
+      "status": "verified",
+      "verified_at": "2026-08-20",
+      "requirements": {"membership": true, "lower_level_skills": {"Mining": 30}, "upper_level_skills": {"Mining": 57}},
+      "mechanics": {
+        "currency": "Golden nuggets",
+        "currency_source": "Golden nuggets are obtained from the sack after cleaned pay-dirt.",
+        "golden_nugget_rate": "3.13% per cleaned pay-dirt, independent of Mining level (an average of one per 32 pay-dirt).",
+        "acquisition_type": "Golden nuggets are RNG drops; purchases and upgrades made with accumulated nuggets are guaranteed."
+      },
+      "source_ids": ["wiki-motherlode", "wiki-prospector-nugget-shop"],
+      "confidence": "high"
+    },
+    {
+      "id": "utility-motherlode-mine-reward-milestones",
+      "name": "Motherlode Mine reward milestones",
+      "category": "reward",
+      "status": "verified",
+      "verified_at": "2026-08-20",
+      "requirements": {"activity": "Motherlode Mine", "currency": "Golden nuggets"},
+      "rewards": {
+        "upper_level": {"cost": 100, "additional_requirement": {"Mining": 57}, "effect": "Permanent access to the upper level."},
+        "super_hopper": {"cost": 50, "additional_requirement": "Upper level unlocked", "effect": "Permanent ability to deposit pay-dirt from the upper level."},
+        "pay_dirt_sack_upgrade": {"cost": 200, "effect": "Permanently increases sack capacity from 108 to 189 pay-dirt."},
+        "prospector_kit": {"cost_total": 180, "pieces": {"helmet": 40, "jacket": 60, "legs": 50, "boots": 30}, "effect": "A complete worn set grants 2.5% additional Mining experience."},
+        "coal_bag": {"cost": 100, "effect": "Non-degrading storage for 27 coal, or 36 while a Smithing cape is equipped."},
+        "gem_bag": {"cost": 100, "effect": "Storage for uncut sapphire, emerald, ruby, diamond, and dragonstone."}
+      },
+      "cost_totals": {"all_non_consumable_shop_items": 380, "all_permanent_mine_upgrades": 350, "all_listed_unique_non_consumable_items_and_upgrades": 730},
+      "guarantee": "Every listed milestone is a guaranteed purchase or permanent upgrade once its exact golden-nugget cost and any stated requirement are met.",
+      "source_ids": ["wiki-motherlode", "wiki-prospector-nugget-shop", "wiki-coal-bag"],
+      "confidence": "high"
+    },
+    {
+      "id": "utility-tempoross-reward-permits",
+      "name": "Tempoross access and reward permits",
+      "category": "minigame",
+      "status": "verified",
+      "verified_at": "2026-08-20",
+      "requirements": {"membership": true, "skills": {"Fishing": 35}, "quest_prerequisites": []},
+      "mechanics": {
+        "currency": "Reward permits",
+        "permit_formula": "One permit at 2,000 points, then one additional permit for each full 700 points above 2,000; remaining points provide a linearly scaling chance of one further permit.",
+        "failed_encounter": "Points earned in a failed encounter are lost.",
+        "storage_cap": 8000,
+        "claiming": "One permit gives one reward-pool roll. A small or big fishing net is required to claim rewards; one can be obtained from the nearby Spirit Angler.",
+        "reward_scaling": "Reward-pool catch quality is determined by Fishing level when the reward is claimed.",
+        "acquisition_type": "Permits earned at the stated full thresholds are guaranteed after a successful encounter; the fractional final permit and every reward-pool result are variable."
+      },
+      "source_ids": ["wiki-tempoross", "official-tempoross-launch"],
+      "confidence": "high"
+    },
+    {
+      "id": "utility-tempoross-fish-barrel",
+      "name": "Tempoross Fish Barrel and Fish Sack Barrel",
+      "category": "reward",
+      "status": "verified",
+      "verified_at": "2026-08-20",
+      "requirements": {"activity": "Tempoross reward pool"},
+      "rewards": {
+        "fish_barrel": {"rarity": "1 in 400 per reward-pool roll", "acquisition_type": "RNG; it is not a guaranteed result after any number of permits.", "effect": "Stores a combined total of 28 raw fish and automatically fills with eligible raw fish while open. Harpoonfish, stackable fish, trophy fish, and fish from Chambers of Xeric, Ruins of Camdozaal, or Neypotzli are excluded. A full barrel can be emptied only at a bank or bank deposit box."},
+        "fish_sack_barrel": {"requirements": {"fish_barrel": 1, "fish_sack": 1}, "fish_sack_cost": {"currency": "Molch pearls", "amount": 1000, "vendor": "Alry the Angler"}, "effect": "Combining the Fish Barrel with a Fish Sack creates an equipable cape-slot Fish Sack Barrel; it can be dismantled back into its components."}
+      },
+      "source_ids": ["wiki-tempoross", "official-tempoross-launch", "wiki-fish-barrel"],
+      "confidence": "high"
+    }
+  ]
+}

@@ -685,6 +685,390 @@
           {"type": "variable_activity_output", "description": "Crafting experience, gem rewards, and the Jeweller's Chisel roll are variable and are not applied as guaranteed state.", "fact_id": "sunstone-golem-crafting"}
         ]
       }
+    },
+    {
+      "id": "action:enter-the-abyss",
+      "name": "Complete Enter the Abyss",
+      "kind": "quest",
+      "status": "verified",
+      "fact_ids": ["enter-abyss-temple-eye-prerequisite"],
+      "requirements": {"all": [{"type": "quest_completed", "key": "Rune Mysteries"}]},
+      "preparation": {"all": []},
+      "completion": {"all": [{"type": "quest_completed", "key": "Enter the Abyss"}]},
+      "outcomes": [
+        {"type": "quest_completed", "key": "Enter the Abyss"},
+        {"type": "milestone", "key": "temple_of_the_eye_prerequisite"}
+      ],
+      "repeatable": false,
+      "transition": {
+        "effects": [
+          {"op": "set_add", "state": "quests_completed", "key": "Enter the Abyss", "fact_id": "enter-abyss-temple-eye-prerequisite"},
+          {"op": "set_add", "state": "milestones", "key": "temple_of_the_eye_prerequisite", "fact_id": "enter-abyss-temple-eye-prerequisite"},
+          {"op": "gain_xp", "state": "skill_xp", "key": "Runecraft", "amount": 1000, "fact_id": "enter-abyss-temple-eye-prerequisite"}
+        ],
+        "options": [],
+        "reported_effects": []
+      }
+    },
+    {
+      "id": "action:temple-of-the-eye",
+      "name": "Complete Temple of the Eye",
+      "kind": "quest",
+      "status": "verified",
+      "fact_ids": ["temple-of-the-eye-access-and-rewards"],
+      "requirements": {"all": [{"type": "quest_completed", "key": "Enter the Abyss"}, {"type": "skill_at_least", "key": "Runecraft", "value": 10}]},
+      "preparation": {"all": []},
+      "completion": {"all": [{"type": "quest_completed", "key": "Temple of the Eye"}]},
+      "outcomes": [
+        {"type": "quest_completed", "key": "Temple of the Eye"},
+        {"type": "milestone", "key": "guardians_of_the_rift_access"}
+      ],
+      "repeatable": false,
+      "transition": {
+        "effects": [
+          {"op": "set_add", "state": "quests_completed", "key": "Temple of the Eye", "fact_id": "temple-of-the-eye-access-and-rewards"},
+          {"op": "set_add", "state": "milestones", "key": "guardians_of_the_rift_access", "fact_id": "temple-of-the-eye-access-and-rewards"},
+          {"op": "ensure_min", "state": "items", "key": "medium_pouch", "value": 1, "fact_id": "temple-of-the-eye-access-and-rewards"},
+          {"op": "gain_xp", "state": "skill_xp", "key": "Runecraft", "amount": 9210, "fact_id": "temple-of-the-eye-access-and-rewards"}
+        ],
+        "options": [],
+        "reported_effects": []
+      }
+    },
+    {
+      "id": "action:guardians-of-the-rift",
+      "name": "Play Guardians of the Rift",
+      "kind": "activity",
+      "status": "verified",
+      "fact_ids": ["guardians-of-the-rift-minigame-access", "guardians-of-the-rift-reward-currency"],
+      "requirements": {"all": [{"type": "quest_completed", "key": "Temple of the Eye"}, {"type": "skill_at_least", "key": "Runecraft", "value": 27}]},
+      "preparation": {"all": [{"type": "item_at_least", "key": "pickaxe", "value": 1}]},
+      "completion": {"all": []},
+      "outcomes": [],
+      "repeatable": true,
+      "transition": {
+        "effects": [],
+        "options": [],
+        "reported_effects": [
+          {"type": "variable_activity_output", "description": "Runecraft experience, energy-derived reward points, Rewards Guardian searches, and abyssal pearls vary by participation and reward rolls; no pearls or unique rewards are applied as guaranteed state.", "fact_id": "guardians-of-the-rift-reward-currency"}
+        ]
+      }
+    },
+    {
+      "id": "action:buy-full-raiments-of-the-eye",
+      "name": "Buy the full Raiments of the Eye",
+      "kind": "unlock",
+      "status": "verified",
+      "fact_ids": ["guardians-raiments-of-the-eye"],
+      "requirements": {"all": [{"type": "quest_completed", "key": "Temple of the Eye"}, {"type": "resource_at_least", "key": "abyssal_pearls", "value": 1350}]},
+      "preparation": {"all": []},
+      "completion": {"all": [{"type": "item_at_least", "key": "hat_of_the_eye", "value": 1}, {"type": "item_at_least", "key": "robe_top_of_the_eye", "value": 1}, {"type": "item_at_least", "key": "robe_bottoms_of_the_eye", "value": 1}, {"type": "item_at_least", "key": "boots_of_the_eye", "value": 1}]},
+      "outcomes": [],
+      "repeatable": false,
+      "transition": {
+        "effects": [
+          {"op": "delta", "state": "resources", "key": "abyssal_pearls", "amount": -1350, "fact_id": "guardians-raiments-of-the-eye"},
+          {"op": "ensure_min", "state": "items", "key": "hat_of_the_eye", "value": 1, "fact_id": "guardians-raiments-of-the-eye"},
+          {"op": "ensure_min", "state": "items", "key": "robe_top_of_the_eye", "value": 1, "fact_id": "guardians-raiments-of-the-eye"},
+          {"op": "ensure_min", "state": "items", "key": "robe_bottoms_of_the_eye", "value": 1, "fact_id": "guardians-raiments-of-the-eye"},
+          {"op": "ensure_min", "state": "items", "key": "boots_of_the_eye", "value": 1, "fact_id": "guardians-raiments-of-the-eye"}
+        ],
+        "options": [],
+        "reported_effects": []
+      }
+    },
+    {
+      "id": "action:buy-ring-of-the-elements",
+      "name": "Buy a Ring of the elements",
+      "kind": "unlock",
+      "status": "verified",
+      "fact_ids": ["ring-of-the-elements"],
+      "requirements": {"all": [{"type": "quest_completed", "key": "Temple of the Eye"}, {"type": "resource_at_least", "key": "abyssal_pearls", "value": 400}]},
+      "preparation": {"all": []},
+      "completion": {"all": [{"type": "item_at_least", "key": "ring_of_the_elements", "value": 1}]},
+      "outcomes": [],
+      "repeatable": false,
+      "transition": {
+        "effects": [
+          {"op": "delta", "state": "resources", "key": "abyssal_pearls", "amount": -400, "fact_id": "ring-of-the-elements"},
+          {"op": "ensure_min", "state": "items", "key": "ring_of_the_elements", "value": 1, "fact_id": "ring-of-the-elements"}
+        ],
+        "options": [],
+        "reported_effects": []
+      }
+    },
+    {
+      "id": "action:buy-abyssal-needle",
+      "name": "Buy an abyssal needle",
+      "kind": "unlock",
+      "status": "verified",
+      "fact_ids": ["abyssal-needle-and-colossal-pouch"],
+      "requirements": {"all": [{"type": "quest_completed", "key": "Temple of the Eye"}, {"type": "resource_at_least", "key": "abyssal_pearls", "value": 750}]},
+      "preparation": {"all": []},
+      "completion": {"all": [{"type": "item_at_least", "key": "abyssal_needle", "value": 1}]},
+      "outcomes": [],
+      "repeatable": false,
+      "transition": {
+        "effects": [
+          {"op": "delta", "state": "resources", "key": "abyssal_pearls", "amount": -750, "fact_id": "abyssal-needle-and-colossal-pouch"},
+          {"op": "ensure_min", "state": "items", "key": "abyssal_needle", "value": 1, "fact_id": "abyssal-needle-and-colossal-pouch"}
+        ],
+        "options": [],
+        "reported_effects": []
+      }
+    },
+    {
+      "id": "action:create-colossal-pouch",
+      "name": "Create a colossal pouch",
+      "kind": "unlock",
+      "status": "verified",
+      "fact_ids": ["abyssal-needle-and-colossal-pouch"],
+      "requirements": {"all": [{"type": "skill_at_least", "key": "Runecraft", "value": 25}, {"type": "skill_at_least", "key": "Crafting", "value": 56}]},
+      "preparation": {"all": [{"type": "item_at_least", "key": "abyssal_needle", "value": 1}, {"type": "item_at_least", "key": "small_pouch", "value": 1}, {"type": "item_at_least", "key": "medium_pouch", "value": 1}, {"type": "item_at_least", "key": "large_pouch", "value": 1}, {"type": "item_at_least", "key": "giant_pouch", "value": 1}]},
+      "completion": {"all": [{"type": "item_at_least", "key": "colossal_pouch", "value": 1}]},
+      "outcomes": [],
+      "repeatable": false,
+      "transition": {
+        "effects": [
+          {"op": "delta", "state": "items", "key": "abyssal_needle", "amount": -1, "fact_id": "abyssal-needle-and-colossal-pouch"},
+          {"op": "delta", "state": "items", "key": "small_pouch", "amount": -1, "fact_id": "abyssal-needle-and-colossal-pouch"},
+          {"op": "delta", "state": "items", "key": "medium_pouch", "amount": -1, "fact_id": "abyssal-needle-and-colossal-pouch"},
+          {"op": "delta", "state": "items", "key": "large_pouch", "amount": -1, "fact_id": "abyssal-needle-and-colossal-pouch"},
+          {"op": "delta", "state": "items", "key": "giant_pouch", "amount": -1, "fact_id": "abyssal-needle-and-colossal-pouch"},
+          {"op": "ensure_min", "state": "items", "key": "colossal_pouch", "value": 1, "fact_id": "abyssal-needle-and-colossal-pouch"}
+        ],
+        "options": [],
+        "reported_effects": []
+      }
+    },
+    {
+      "id": "action:buy-abyssal-lantern",
+      "name": "Buy an abyssal lantern",
+      "kind": "unlock",
+      "status": "verified",
+      "fact_ids": ["abyssal-lantern"],
+      "requirements": {"all": [{"type": "quest_completed", "key": "Temple of the Eye"}, {"type": "resource_at_least", "key": "abyssal_pearls", "value": 1500}]},
+      "preparation": {"all": []},
+      "completion": {"all": [{"type": "item_at_least", "key": "abyssal_lantern", "value": 1}]},
+      "outcomes": [],
+      "repeatable": false,
+      "transition": {
+        "effects": [
+          {"op": "delta", "state": "resources", "key": "abyssal_pearls", "amount": -1500, "fact_id": "abyssal-lantern"},
+          {"op": "ensure_min", "state": "items", "key": "abyssal_lantern", "value": 1, "fact_id": "abyssal-lantern"}
+        ],
+        "options": [],
+        "reported_effects": []
+      }
+    },
+    {
+      "id": "action:tithe-farm",
+      "name": "Play Tithe Farm",
+      "kind": "activity",
+      "status": "verified",
+      "fact_ids": ["utility-tithe-farm-access-and-currency"],
+      "requirements": {"all": [{"type": "skill_at_least", "key": "Farming", "value": 34}]},
+      "preparation": {"all": [{"type": "item_at_least", "key": "spade", "value": 1}, {"any": [{"type": "item_at_least", "key": "seed_dibber", "value": 1}, {"type": "milestone", "key": "bare_handed_tithe_planting"}]}, {"any": [{"type": "item_at_least", "key": "watering_can", "value": 1}, {"type": "item_at_least", "key": "gricollers_can", "value": 1}]}]},
+      "completion": {"all": []},
+      "outcomes": [],
+      "repeatable": true,
+      "transition": {
+        "effects": [],
+        "options": [],
+        "reported_effects": [
+          {"type": "variable_activity_output", "description": "Tithe Farm points are deterministic from the deposited-plant total, but that total and Farming experience are session-dependent and are not applied automatically.", "fact_id": "utility-tithe-farm-access-and-currency"}
+        ]
+      }
+    },
+    {
+      "id": "action:buy-auto-weed",
+      "name": "Buy Auto-weed",
+      "kind": "unlock",
+      "status": "verified",
+      "fact_ids": ["utility-tithe-farm-durable-rewards"],
+      "requirements": {"all": [{"type": "skill_at_least", "key": "Farming", "value": 34}, {"type": "resource_at_least", "key": "tithe_farm_points", "value": 50}]},
+      "preparation": {"all": []},
+      "completion": {"all": [{"type": "milestone", "key": "auto_weed"}]},
+      "outcomes": [{"type": "milestone", "key": "auto_weed"}],
+      "repeatable": false,
+      "transition": {
+        "effects": [
+          {"op": "delta", "state": "resources", "key": "tithe_farm_points", "amount": -50, "fact_id": "utility-tithe-farm-durable-rewards"},
+          {"op": "set_add", "state": "milestones", "key": "auto_weed", "fact_id": "utility-tithe-farm-durable-rewards"}
+        ],
+        "options": [],
+        "reported_effects": []
+      }
+    },
+    {
+      "id": "action:sleeping-giants",
+      "name": "Complete Sleeping Giants",
+      "kind": "quest",
+      "status": "verified",
+      "fact_ids": ["utility-sleeping-giants-fixed-rewards"],
+      "requirements": {"all": [{"type": "skill_at_least", "key": "Smithing", "value": 15}]},
+      "preparation": {"all": []},
+      "completion": {"all": [{"type": "quest_completed", "key": "Sleeping Giants"}]},
+      "outcomes": [
+        {"type": "quest_completed", "key": "Sleeping Giants"},
+        {"type": "milestone", "key": "giants_foundry_access"}
+      ],
+      "repeatable": false,
+      "transition": {
+        "effects": [
+          {"op": "set_add", "state": "quests_completed", "key": "Sleeping Giants", "fact_id": "utility-sleeping-giants-fixed-rewards"},
+          {"op": "set_add", "state": "milestones", "key": "giants_foundry_access", "fact_id": "utility-sleeping-giants-fixed-rewards"},
+          {"op": "gain_xp", "state": "skill_xp", "key": "Smithing", "amount": 6000, "fact_id": "utility-sleeping-giants-fixed-rewards"}
+        ],
+        "options": [],
+        "reported_effects": []
+      }
+    },
+    {
+      "id": "action:giants-foundry",
+      "name": "Play Giants' Foundry",
+      "kind": "activity",
+      "status": "verified",
+      "fact_ids": ["utility-giants-foundry-currency-and-unlocks"],
+      "requirements": {"all": [{"type": "quest_completed", "key": "Sleeping Giants"}]},
+      "preparation": {"all": [{"type": "resource_at_least", "key": "foundry_metal_value_bars", "value": 2}, {"any": [{"type": "item_at_least", "key": "bucket", "value": 1}, {"type": "item_at_least", "key": "ice_gloves", "value": 1}]}]},
+      "completion": {"all": []},
+      "outcomes": [],
+      "repeatable": true,
+      "transition": {
+        "effects": [],
+        "options": [],
+        "reported_effects": [
+          {"type": "variable_activity_output", "description": "Commission inputs, sword quality, reputation, Smithing experience, and coins depend on the submitted sword and performance; no Foundry reputation or rewards are applied automatically.", "fact_id": "utility-giants-foundry-currency-and-unlocks"}
+        ]
+      }
+    },
+    {
+      "id": "action:buy-double-ammo-mould",
+      "name": "Buy the double ammo mould",
+      "kind": "unlock",
+      "status": "verified",
+      "fact_ids": ["utility-giants-foundry-currency-and-unlocks"],
+      "requirements": {"all": [{"type": "quest_completed", "key": "Sleeping Giants"}, {"type": "quest_completed", "key": "Dwarf Cannon"}, {"type": "resource_at_least", "key": "foundry_reputation", "value": 2000}]},
+      "preparation": {"all": []},
+      "completion": {"all": [{"type": "item_at_least", "key": "double_ammo_mould", "value": 1}]},
+      "outcomes": [],
+      "repeatable": false,
+      "transition": {
+        "effects": [
+          {"op": "delta", "state": "resources", "key": "foundry_reputation", "amount": -2000, "fact_id": "utility-giants-foundry-currency-and-unlocks"},
+          {"op": "ensure_min", "state": "items", "key": "double_ammo_mould", "value": 1, "fact_id": "utility-giants-foundry-currency-and-unlocks"}
+        ],
+        "options": [],
+        "reported_effects": []
+      }
+    },
+    {
+      "id": "action:buy-full-smiths-uniform",
+      "name": "Buy the full Smiths' Uniform",
+      "kind": "unlock",
+      "status": "verified",
+      "fact_ids": ["utility-giants-foundry-currency-and-unlocks"],
+      "requirements": {"all": [{"type": "quest_completed", "key": "Sleeping Giants"}, {"type": "resource_at_least", "key": "foundry_reputation", "value": 15000}]},
+      "preparation": {"all": []},
+      "completion": {"all": [{"type": "item_at_least", "key": "smiths_tunic", "value": 1}, {"type": "item_at_least", "key": "smiths_trousers", "value": 1}, {"type": "item_at_least", "key": "smiths_boots", "value": 1}, {"type": "item_at_least", "key": "smiths_gloves", "value": 1}]},
+      "outcomes": [],
+      "repeatable": false,
+      "transition": {
+        "effects": [
+          {"op": "delta", "state": "resources", "key": "foundry_reputation", "amount": -15000, "fact_id": "utility-giants-foundry-currency-and-unlocks"},
+          {"op": "ensure_min", "state": "items", "key": "smiths_tunic", "value": 1, "fact_id": "utility-giants-foundry-currency-and-unlocks"},
+          {"op": "ensure_min", "state": "items", "key": "smiths_trousers", "value": 1, "fact_id": "utility-giants-foundry-currency-and-unlocks"},
+          {"op": "ensure_min", "state": "items", "key": "smiths_boots", "value": 1, "fact_id": "utility-giants-foundry-currency-and-unlocks"},
+          {"op": "ensure_min", "state": "items", "key": "smiths_gloves", "value": 1, "fact_id": "utility-giants-foundry-currency-and-unlocks"}
+        ],
+        "options": [],
+        "reported_effects": []
+      }
+    },
+    {
+      "id": "action:motherlode-mine",
+      "name": "Play Motherlode Mine",
+      "kind": "activity",
+      "status": "verified",
+      "fact_ids": ["utility-motherlode-mine-access-and-nuggets"],
+      "requirements": {"all": [{"type": "skill_at_least", "key": "Mining", "value": 30}]},
+      "preparation": {"all": []},
+      "completion": {"all": []},
+      "outcomes": [],
+      "repeatable": true,
+      "transition": {
+        "effects": [],
+        "options": [],
+        "reported_effects": [
+          {"type": "variable_activity_output", "description": "Pay-dirt yields, Mining experience, and golden nuggets remain variable; golden nuggets are not applied as guaranteed resources.", "fact_id": "utility-motherlode-mine-access-and-nuggets"}
+        ]
+      }
+    },
+    {
+      "id": "action:buy-coal-bag",
+      "name": "Buy a coal bag",
+      "kind": "unlock",
+      "status": "verified",
+      "fact_ids": ["utility-motherlode-mine-reward-milestones"],
+      "requirements": {"all": [{"type": "skill_at_least", "key": "Mining", "value": 30}, {"type": "resource_at_least", "key": "golden_nuggets", "value": 100}]},
+      "preparation": {"all": []},
+      "completion": {"all": [{"type": "item_at_least", "key": "coal_bag", "value": 1}]},
+      "outcomes": [],
+      "repeatable": false,
+      "transition": {"effects": [{"op": "delta", "state": "resources", "key": "golden_nuggets", "amount": -100, "fact_id": "utility-motherlode-mine-reward-milestones"}, {"op": "ensure_min", "state": "items", "key": "coal_bag", "value": 1, "fact_id": "utility-motherlode-mine-reward-milestones"}], "options": [], "reported_effects": []}
+    },
+    {
+      "id": "action:buy-gem-bag",
+      "name": "Buy a gem bag",
+      "kind": "unlock",
+      "status": "verified",
+      "fact_ids": ["utility-motherlode-mine-reward-milestones"],
+      "requirements": {"all": [{"type": "skill_at_least", "key": "Mining", "value": 30}, {"type": "resource_at_least", "key": "golden_nuggets", "value": 100}]},
+      "preparation": {"all": []},
+      "completion": {"all": [{"type": "item_at_least", "key": "gem_bag", "value": 1}]},
+      "outcomes": [],
+      "repeatable": false,
+      "transition": {"effects": [{"op": "delta", "state": "resources", "key": "golden_nuggets", "amount": -100, "fact_id": "utility-motherlode-mine-reward-milestones"}, {"op": "ensure_min", "state": "items", "key": "gem_bag", "value": 1, "fact_id": "utility-motherlode-mine-reward-milestones"}], "options": [], "reported_effects": []}
+    },
+    {
+      "id": "action:unlock-motherlode-upper-level",
+      "name": "Unlock the Motherlode Mine upper level",
+      "kind": "unlock",
+      "status": "verified",
+      "fact_ids": ["utility-motherlode-mine-reward-milestones"],
+      "requirements": {"all": [{"type": "skill_at_least", "key": "Mining", "value": 57}, {"type": "resource_at_least", "key": "golden_nuggets", "value": 100}]},
+      "preparation": {"all": []},
+      "completion": {"all": [{"type": "milestone", "key": "motherlode_upper_level"}]},
+      "outcomes": [{"type": "milestone", "key": "motherlode_upper_level"}],
+      "repeatable": false,
+      "transition": {"effects": [{"op": "delta", "state": "resources", "key": "golden_nuggets", "amount": -100, "fact_id": "utility-motherlode-mine-reward-milestones"}, {"op": "set_add", "state": "milestones", "key": "motherlode_upper_level", "fact_id": "utility-motherlode-mine-reward-milestones"}], "options": [], "reported_effects": []}
+    },
+    {
+      "id": "action:buy-motherlode-super-hopper",
+      "name": "Buy the Motherlode Mine super hopper",
+      "kind": "unlock",
+      "status": "verified",
+      "fact_ids": ["utility-motherlode-mine-reward-milestones"],
+      "requirements": {"all": [{"type": "milestone", "key": "motherlode_upper_level"}, {"type": "resource_at_least", "key": "golden_nuggets", "value": 50}]},
+      "preparation": {"all": []},
+      "completion": {"all": [{"type": "milestone", "key": "motherlode_super_hopper"}]},
+      "outcomes": [{"type": "milestone", "key": "motherlode_super_hopper"}],
+      "repeatable": false,
+      "transition": {"effects": [{"op": "delta", "state": "resources", "key": "golden_nuggets", "amount": -50, "fact_id": "utility-motherlode-mine-reward-milestones"}, {"op": "set_add", "state": "milestones", "key": "motherlode_super_hopper", "fact_id": "utility-motherlode-mine-reward-milestones"}], "options": [], "reported_effects": []}
+    },
+    {
+      "id": "action:upgrade-motherlode-pay-dirt-sack",
+      "name": "Upgrade the Motherlode Mine pay-dirt sack",
+      "kind": "unlock",
+      "status": "verified",
+      "fact_ids": ["utility-motherlode-mine-reward-milestones"],
+      "requirements": {"all": [{"type": "skill_at_least", "key": "Mining", "value": 30}, {"type": "resource_at_least", "key": "golden_nuggets", "value": 200}]},
+      "preparation": {"all": []},
+      "completion": {"all": [{"type": "milestone", "key": "motherlode_pay_dirt_sack_upgrade"}]},
+      "outcomes": [{"type": "milestone", "key": "motherlode_pay_dirt_sack_upgrade"}],
+      "repeatable": false,
+      "transition": {"effects": [{"op": "delta", "state": "resources", "key": "golden_nuggets", "amount": -200, "fact_id": "utility-motherlode-mine-reward-milestones"}, {"op": "set_add", "state": "milestones", "key": "motherlode_pay_dirt_sack_upgrade", "fact_id": "utility-motherlode-mine-reward-milestones"}], "options": [], "reported_effects": []}
     }
   ]
 }

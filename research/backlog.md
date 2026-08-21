@@ -17,9 +17,10 @@
 
 ### 3. Utility-minigame closure
 
-- Normalize `Temple of the Eye` into Guardians of the Rift and its durable utility rewards.
-- Normalize Tithe Farm access and utility rewards, `Sleeping Giants` into Giants' Foundry, and Motherlode reward milestones.
-- Strengthen Tempoross/Fish Barrel access and reward modeling without treating variable rewards as guaranteed.
+- Completed: normalized `Enter the Abyss` and `Temple of the Eye` into Guardians of the Rift, reward searches, deterministic pearl purchases, and random unique-reward paths.
+- Completed: normalized Tithe Farm and Auto-weed, `Sleeping Giants` and Giants' Foundry utility purchases, and Motherlode Mine reward milestones with spendable currencies separated from random acquisition.
+- Completed: strengthened Tempoross and Fish Barrel modeling so permits support reward searches while the barrel remains `makes_obtainable`, never guaranteed.
+- Pending: add strategic scores and account-specific stop conditions only after comparing these verified unlocks with alternative uses of their currencies and time.
 
 ## Continuing validation queue
 

@@ -229,6 +229,90 @@ class AnalyzeDependenciesTests(unittest.TestCase):
         self.assertEqual(["hammer", "chisel", "sunstone", "hunter_fur"], keys)
         self.assertFalse(any("jeweller" in str(node).lower() for node in analysis["closure"]["actions"]))
 
+    def test_rng_reward_reports_do_not_produce_guaranteed_closure_inputs(self) -> None:
+        actions = copy.deepcopy(self.actions_document)
+        actions["actions"].append(
+            {
+                "id": "action:fish-barrel-consumer",
+                "name": "Use a Fish Barrel",
+                "kind": "activity",
+                "status": "verified",
+                "fact_ids": ["tempoross-fish-barrel"],
+                "requirements": {"all": [{"type": "item_at_least", "key": "fish_barrel", "value": 1}]},
+                "preparation": {"all": []},
+                "completion": {"all": []},
+                "outcomes": [],
+                "repeatable": True,
+                "transition": {"effects": [], "options": [], "reported_effects": []},
+            }
+        )
+
+        analysis = analyze_dependency_closure(
+            actions,
+            copy.deepcopy(self.fresh_state),
+            "action:fish-barrel-consumer",
+        )
+
+        consumer = self._action_node(analysis, "action:fish-barrel-consumer")
+        fish_barrel = self._predicate(consumer, "requirements", "item_at_least", "fish_barrel")
+        self.assertEqual([], fish_barrel["producer_actions"])
+        self.assertTrue(any(entry["predicate"] == fish_barrel["predicate"] for entry in analysis["external_inputs"]))
+        self.assertNotIn("action:tempoross", [node["action_id"] for node in analysis["closure"]["actions"]])
+
+    def test_deterministic_purchase_can_produce_item_while_rng_currency_remains_external(self) -> None:
+        def action(action_id: str, requirements: dict, effects: list[dict], reports: list[dict]) -> dict:
+            return {
+                "id": action_id,
+                "name": action_id,
+                "kind": "activity",
+                "status": "verified",
+                "fact_ids": ["synthetic"],
+                "requirements": requirements,
+                "preparation": {"all": []},
+                "completion": {"all": []},
+                "outcomes": [],
+                "repeatable": True,
+                "transition": {"effects": effects, "options": [], "reported_effects": reports},
+            }
+
+        actions = {
+            "actions": [
+                action(
+                    "action:rewards-guardian-search",
+                    {"all": []},
+                    [],
+                    [{"type": "variable_activity_output", "fact_id": "synthetic"}],
+                ),
+                action(
+                    "action:pearl-purchase",
+                    {"all": [{"type": "resource_at_least", "key": "abyssal_pearls", "value": 750}]},
+                    [{"op": "ensure_min", "state": "items", "key": "abyssal_needle", "value": 1, "fact_id": "synthetic"}],
+                    [],
+                ),
+                action(
+                    "action:colossal-pouch",
+                    {"all": [{"type": "item_at_least", "key": "abyssal_needle", "value": 1}]},
+                    [],
+                    [],
+                ),
+            ]
+        }
+
+        analysis = analyze_dependency_closure(
+            actions,
+            copy.deepcopy(self.fresh_state),
+            "action:colossal-pouch",
+        )
+
+        pouch = self._action_node(analysis, "action:colossal-pouch")
+        needle = self._predicate(pouch, "requirements", "item_at_least", "abyssal_needle")
+        self.assertEqual(["action:pearl-purchase"], needle["producer_actions"])
+        purchase = self._action_node(analysis, "action:pearl-purchase")
+        pearls = self._predicate(purchase, "requirements", "resource_at_least", "abyssal_pearls")
+        self.assertEqual([], pearls["producer_actions"])
+        self.assertTrue(any(entry["predicate"] == pearls["predicate"] for entry in analysis["external_inputs"]))
+        self.assertNotIn("action:rewards-guardian-search", [node["action_id"] for node in analysis["closure"]["actions"]])
+
     def test_synthetic_dependency_cycle_is_reported(self) -> None:
         def action(action_id: str, requires_quest: str, completed_quest: str) -> dict:
             return {
