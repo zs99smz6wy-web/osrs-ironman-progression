@@ -73,7 +73,9 @@ class EvaluateProgressionScenarioTests(unittest.TestCase):
         self.assertEqual("blocked", seaweed["status"])
         self.assert_missing(seaweed, "unlock transport: fossil_island")
         self.assert_missing(seaweed, "Farming 23 (current: 1)")
-        self.assertIn("1 x seaweed_spore (current: 0)", seaweed["missing_preparation"])
+        self.assertIn("2 x seaweed_spore (current: 0)", seaweed["missing_preparation"])
+        self.assertIn("1 x fishbowl_helmet (current: 0)", seaweed["missing_preparation"])
+        self.assertIn("1 x diving_apparatus (current: 0)", seaweed["missing_preparation"])
 
         ready_results = self.evaluate_fixture("passive-loops-ready.json")
         self.assertEqual("eligible", ready_results["action:birdhouse-loop"]["status"])

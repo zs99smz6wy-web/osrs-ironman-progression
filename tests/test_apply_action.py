@@ -86,8 +86,9 @@ class ApplyActionTests(unittest.TestCase):
 
         self.assertEqual("applied", result["status"])
         self.assertEqual(0, result["next_state"]["items"]["vodka"])
-        self.assertEqual(105, result["next_state"]["counters"]["kudos"])
+        self.assertEqual(100, result["next_state"]["counters"]["kudos"])
         self.assertIn("fossil_island", result["next_state"]["transport_flags"])
+        self.assertEqual([], result["reported_effects"])
 
     def test_pandemonium_unlocks_sailing_with_only_fixed_rewards(self) -> None:
         result = apply_action(self.actions_document, self.state, "action:pandemonium")
@@ -182,6 +183,18 @@ class ApplyActionTests(unittest.TestCase):
 
         self.assertEqual("choice_required", result["status"])
         self.assertFalse(result["next_state"]["passive_loops"]["birdhouses"])
+
+    def test_giant_seaweed_setup_consumes_two_spores_and_keeps_diving_gear(self) -> None:
+        state = load_json(REPOSITORY_ROOT / "tests" / "fixtures" / "passive-loops-ready.json")
+
+        result = apply_action(self.actions_document, state, "action:giant-seaweed-loop")
+
+        self.assertEqual("applied", result["status"])
+        self.assertTrue(result["next_state"]["passive_loops"]["seaweed"])
+        self.assertEqual(0, result["next_state"]["items"]["seaweed_spore"])
+        self.assertEqual(1, result["next_state"]["items"]["fishbowl_helmet"])
+        self.assertEqual(1, result["next_state"]["items"]["diving_apparatus"])
+        self.assertEqual("variable_activity_output", result["reported_effects"][0]["type"])
 
     def test_one_time_action_is_atomic_and_does_not_mutate_original(self) -> None:
         quest = action(

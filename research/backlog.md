@@ -32,7 +32,8 @@
 ## Continuing validation queue
 
 - Quest XP, item, combat, and GP requirement records for early transport and Fossil Island chains.
-- Birdhouse, farming, seaweed, and Tears passive-loop requirements and outputs.
+- Completed: revalidated birdhouse, giant-seaweed, farming-contract, and Tears passive-loop requirements, reusable and consumed inputs, offline waiting, active interaction, recurrence gates, and fixed-versus-variable outputs.
+- Pending: add observed recurring-system readiness without inferring elapsed-time completion from the permanent loop flags.
 - Perilous Moons and Belle's Folly: exact current hard gates, readiness thresholds, and reward utility.
 - Giants' Foundry: reward costs, Smithing/GP/resource outputs, and natural stop candidates.
 - Tempoross/Fish Barrel, Tithe Farm, Guardians of the Rift, and MTA: utility-first stop points.

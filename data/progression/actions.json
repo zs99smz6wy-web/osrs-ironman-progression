@@ -266,7 +266,7 @@
         {"type": "transport_flag", "key": "fossil_island"}
       ],
       "repeatable": false,
-      "transition": {"effects": [{"op": "set_add", "state": "quests_completed", "key": "Bone Voyage", "fact_id": "bone-voyage"}, {"op": "set_add", "state": "transport_flags", "key": "fossil_island", "fact_id": "bone-voyage"}, {"op": "delta", "state": "items", "key": "vodka", "amount": -2, "fact_id": "bone-voyage"}, {"op": "delta", "state": "items", "key": "unfinished_marrentill_potion", "amount": -1, "fact_id": "bone-voyage"}, {"op": "delta", "state": "counters", "key": "kudos", "amount": 5, "fact_id": "bone-voyage"}, {"op": "ensure_min", "state": "items", "key": "fossil_island_notebook", "value": 1, "fact_id": "bone-voyage"}], "options": [], "reported_effects": [{"type": "xp_choice_award", "description": "One 1,000-XP lamp for a skill at least level 20; player choice is not simulated.", "amount": 1000, "fact_id": "bone-voyage"}]}
+      "transition": {"effects": [{"op": "set_add", "state": "quests_completed", "key": "Bone Voyage", "fact_id": "bone-voyage"}, {"op": "set_add", "state": "transport_flags", "key": "fossil_island", "fact_id": "bone-voyage"}, {"op": "delta", "state": "items", "key": "vodka", "amount": -2, "fact_id": "bone-voyage"}, {"op": "delta", "state": "items", "key": "unfinished_marrentill_potion", "amount": -1, "fact_id": "bone-voyage"}, {"op": "ensure_min", "state": "items", "key": "fossil_island_notebook", "value": 1, "fact_id": "bone-voyage"}], "options": [], "reported_effects": []}
     },
     {
       "id": "action:birdhouse-loop",
@@ -299,18 +299,18 @@
       "name": "Establish giant seaweed farming",
       "kind": "passive_setup",
       "status": "verified",
-      "fact_ids": ["giant-seaweed"],
+      "fact_ids": ["giant-seaweed", "giant-seaweed-passive-loop"],
       "requirements": {
         "all": [
           {"type": "transport_flag", "key": "fossil_island"},
           {"type": "skill_at_least", "key": "Farming", "value": 23}
         ]
       },
-      "preparation": {"all": [{"type": "item_at_least", "key": "seaweed_spore", "value": 1}]},
+      "preparation": {"all": [{"type": "item_at_least", "key": "seaweed_spore", "value": 2}, {"type": "item_at_least", "key": "fishbowl_helmet", "value": 1}, {"type": "item_at_least", "key": "diving_apparatus", "value": 1}]},
       "completion": {"all": [{"type": "passive_loop", "key": "seaweed", "value": true}]},
       "outcomes": [{"type": "passive_loop", "key": "seaweed", "value": true}],
       "repeatable": false,
-      "transition": {"effects": [{"op": "set", "state": "passive_loops", "key": "seaweed", "value": true, "fact_id": "giant-seaweed"}, {"op": "delta", "state": "items", "key": "seaweed_spore", "amount": -1, "fact_id": "giant-seaweed"}], "options": [], "reported_effects": [{"type": "variable_activity_output", "description": "Harvest quantity and resulting soda ash are variable; no experience or inventory state is assumed.", "fact_id": "giant-seaweed"}]}
+      "transition": {"effects": [{"op": "set", "state": "passive_loops", "key": "seaweed", "value": true, "fact_id": "giant-seaweed-passive-loop"}, {"op": "delta", "state": "items", "key": "seaweed_spore", "amount": -2, "fact_id": "giant-seaweed-passive-loop"}], "options": [], "reported_effects": [{"type": "variable_activity_output", "description": "Both patches are planted, but survival, harvest quantity, Farming experience, and later soda-ash conversion remain variable and are not applied automatically.", "fact_id": "giant-seaweed-passive-loop"}]}
     },
     {
       "id": "action:wintertodt",

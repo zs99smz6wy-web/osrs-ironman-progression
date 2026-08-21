@@ -2,15 +2,79 @@
   "records": [
     {
       "id": "birdhouse-loop",
-      "name": "Birdhouse run",
+      "name": "Bird house trapping loop",
       "category": "afk",
       "status": "verified",
       "verified_at": "2026-08-20",
-      "requirements": {"access": "Fossil Island", "skills": {"Crafting": 5, "Hunter": 5}, "initial_setup": ["four birdhouses or logs and four clockworks", "hammer", "chisel", "40 low-level seeds or 20 high-level seeds"], "ironman_clockwork": {"Construction": 25}},
-      "outputs": ["Hunter experience", "Crafting experience", "bird nests", "seeds", "raw bird meat", "feathers"],
-      "afk_profile": {"attention": "low_attention", "maturation_minutes": 50, "active_run_seconds_approx": 70, "player_present": true, "death_risk": "low with prepared route"},
-      "mechanics": {"sites": 4, "clockwork": "Clockwork is returned when a birdhouse is dismantled.", "seed_consumption": "Rewards are available once seeds are fully depleted."},
+      "requirements": {
+        "membership": true,
+        "access": "Fossil Island",
+        "skills": {"Crafting": 5, "Hunter": 5},
+        "tier_gate": "Crafting is required to make a bird house; Hunter is required to place its tier. A temporary Hunter boost is needed only when placing a higher tier, not when dismantling it.",
+        "ironman_clockwork": {"Construction": 25, "purpose": "Build a Crafting table 2 to make clockwork."}
+      },
+      "inputs": {
+        "reusable": ["hammer", "chisel", "four clockworks for four sites"],
+        "per_four_site_cycle_consumed": {
+          "logs": 4,
+          "suitable_seeds": "40 low-level seeds, 20 high-level seeds, or an equivalent mix; each site takes 10 low-level or 5 high-level seeds."
+        },
+        "optional_reusable_or_setup": "A fifth clockwork or pre-made bird house can reduce rebuild friction, but is not a hard requirement."
+      },
+      "outputs": {
+        "deterministic": ["Clockwork is returned from each completed bird house.", "Crafting experience is awarded when replacement bird houses are made.", "Hunter experience is awarded when completed bird houses are dismantled; both XP amounts depend on the bird-house tier."],
+        "variable": ["Bird nests and their contents", "raw bird meat", "feathers"],
+        "loot_rules": "Nest quantity varies by bird-house tier and Hunter level. Seed choice does not change nest quantity or rewards."
+      },
+      "afk_profile": {
+        "between_interactions": {"attention": "none", "player_present": false, "maturation": "Birds are captured passively at random intervals averaging five minutes, up to ten catches."},
+        "collection_and_reset": {"attention": "active", "player_present": true, "activity": "Travel to, dismantle, rebuild, and reseed all four sites."},
+        "death_risk": "No activity-intrinsic combat or damage requirement."
+      },
+      "reentry_conditions": {
+        "normal_collection": "All seeds must be depleted before rewards can be claimed, which is approximately 50 minutes after setup.",
+        "early_empty": "Emptying before completion returns the clockwork but destroys the bird house, remaining seeds, and accumulated loot.",
+        "reset": "A completed bird house has a Reset option that dismantles it and reuses its clockwork to build and place a replacement; seeds must still be added manually."
+      },
+      "mechanics": {"sites": 4, "offline_progression": true},
       "source_ids": ["wiki-birdhouses"],
+      "confidence": "high"
+    },
+    {
+      "id": "giant-seaweed-passive-loop",
+      "name": "Giant seaweed passive loop mechanics",
+      "category": "afk",
+      "status": "verified",
+      "verified_at": "2026-08-20",
+      "requirements": {
+        "membership": true,
+        "access": "Fossil Island underwater area after Bone Voyage; diving access requires a fishbowl helmet and diving apparatus.",
+        "skills": {"Farming": 23},
+        "patches": 2
+      },
+      "inputs": {
+        "reusable": ["seed dibber", "fishbowl helmet", "diving apparatus"],
+        "per_patch_consumed": {"seaweed_spore": 1},
+        "optional_per_patch_consumed": {"compost": "One compost treatment affects that planting only.", "numulite_protection": 200},
+        "protection_rule": "Paying Mernia 200 numulite per patch makes that planted seaweed disease-free. Compost improves yield mechanics but is not a substitute for guaranteed protection."
+      },
+      "outputs": {
+        "deterministic": ["19 Farming experience for planting", "21 Farming experience for each giant seaweed harvested", "at least three giant seaweed from a successfully grown patch"],
+        "variable": ["Total harvest quantity, which depends on Farming level and yield modifiers", "Whether an unprotected crop survives disease"],
+        "processing_note": "One giant seaweed normally produces six soda ash when cooked; at Cooking 51 or higher this conversion cannot fail."
+      },
+      "afk_profile": {
+        "growth": {"attention": "none", "player_present": false, "maturation_minutes_approx": 40},
+        "planting_and_harvest": {"attention": "active", "player_present": true, "activity": "Travel underwater, treat the patch if desired, plant, and later harvest."},
+        "death_risk": "No crop-harvest combat requirement; crop disease is the relevant failure state."
+      },
+      "reentry_conditions": {
+        "harvest": "A planted seaweed spore must finish growing before its crop can be harvested.",
+        "repeat": "Each harvested or lost patch requires another seaweed spore to restart.",
+        "spore_supply": "Seaweed spores are obtainable in the Fossil Island underwater area, but their acquisition quantity and time are variable and are not applied as a fixed loop output."
+      },
+      "mechanics": {"offline_progression": true, "magic_secateurs": "Magic secateurs do not increase giant-seaweed yield."},
+      "source_ids": ["wiki-fossil-island", "wiki-giant-seaweed", "wiki-underwater"],
       "confidence": "high"
     },
     {
@@ -19,11 +83,66 @@
       "category": "afk",
       "status": "verified",
       "verified_at": "2026-08-20",
-      "requirements": {"quest": "Tears of Guthix", "reentry": "100,000 total experience or one quest point since the prior play, except the first play"},
-      "outputs": ["experience in the lowest eligible skill"],
-      "afk_profile": {"attention": "active", "recurrence": "once per seven full days", "player_present": true, "death_risk": "none"},
-      "mechanics": {"excluded_skills": "Skills whose training unlock requirements are not met are excluded; Sailing is eligible after Pandemonium."},
+      "requirements": {
+        "membership": true,
+        "quest": "Tears of Guthix",
+        "reentry": {
+          "time": "Seven full days since the prior completed game.",
+          "progress": "At least 100,000 total experience or one quest point earned since the prior completed game.",
+          "first_play_exception": "The progress gate does not apply before the first play."
+        },
+        "session_equipment": "Juna supplies a bowl for the session; it requires two free hands."
+      },
+      "outputs": {
+        "targeting": "Experience goes to the lowest eligible skill. Ties use the lowest experience total, then the fixed skill-order tie-breaker.",
+        "variable": "Experience quantity depends on quest points, lowest eligible skill level, tears collected, and player movement during the session.",
+        "hard_diary_modifier": "The Hard Lumbridge & Draynor Diary adds 10% to the experience award.",
+        "excluded_skills": "Construction, Herblore, and Runecraft are excluded until their respective training unlock is obtained; Sailing is eligible after Pandemonium."
+      },
+      "afk_profile": {
+        "between_sessions": {"attention": "none", "player_present": false, "recurrence": "Eligibility is time- and progress-gated rather than an always-ready passive timer."},
+        "session": {"attention": "active", "player_present": true, "mechanics": "Three blue and three green streams are active among nine walls. Streams move every 16 game ticks (9.6 seconds), so collecting blue tears and avoiding green tears requires monitoring and movement."},
+        "death_risk": "The minigame itself deals no damage."
+      },
+      "reentry_conditions": {"completion": "The player automatically exits and receives experience when the session timer ends.", "retry": "Leaving through death before experience is received permits another attempt; this is not an output guarantee."},
       "source_ids": ["wiki-tears"],
+      "confidence": "high"
+    },
+    {
+      "id": "farming-contracts-passive-loop",
+      "name": "Farming contract passive loop mechanics",
+      "category": "afk",
+      "status": "verified",
+      "verified_at": "2026-08-20",
+      "requirements": {
+        "membership": true,
+        "location": "Farming Guild",
+        "tier_access": {"easy": 45, "medium": 65, "hard": 85},
+        "assignment_rule": "The player must meet the assigned crop's Farming requirement. Temporary boosts can be used when accepting a contract below the normal tier level."
+      },
+      "inputs": {
+        "per_contract_consumed": "The requested crop's seed or sapling; the required item varies by assignment.",
+        "optional_per_contract_consumed": ["compost", "crop-specific farmer-protection payment or protection items"],
+        "reusable": "Normal Farming tools required by the assigned crop and patch, such as a seed dibber, rake, spade, and secateurs."
+      },
+      "outputs": {
+        "deterministic": "Completing a contract awards one seed pack. The normal plant, health-check, and harvest interactions award their usual Farming experience; the contract does not define a separate fixed XP award.",
+        "variable": ["Assigned crop", "seed-pack tier as determined by the assigned task", "contents of the resulting seed pack", "crop survival when disease protection is not used"],
+        "possible_seed_pack_contents": ["Hespori seeds", "celastrus seeds", "redwood seeds"]
+      },
+      "afk_profile": {
+        "growth": {"attention": "none", "player_present": false, "duration": "Crop-specific. Current contract tables range from 20 minutes to 4 days 10 hours 40 minutes, depending on the assigned crop and Farming level."},
+        "assignment_and_completion": {"attention": "active", "player_present": true, "mechanics": "Speak with Guildmaster Jane, plant or resolve the assigned crop, then check health or fully harvest it as appropriate."},
+        "death_risk": "No activity-intrinsic combat or damage requirement; crop disease is the relevant failure state."
+      },
+      "reentry_conditions": {
+        "completion": "Health-check crops complete on health check; other crop types complete after full harvest.",
+        "already_grown_crop": "A crop that was planted but not health-checked or harvested before assignment can complete the matching contract.",
+        "next_assignment": "After completion, Jane can offer another contract and the player can choose the same tier. Eligible crop entries are equally weighted, and the same crop is not assigned consecutively.",
+        "cancellation": "Medium and hard contracts can be changed to a lower-tier contract by asking for something easier; easy contracts cannot be cancelled."
+      },
+      "mechanics": {"offline_progression": true, "one_active_contract": true},
+      "source_ids": ["wiki-farming-contracts"],
       "confidence": "high"
     },
     {
