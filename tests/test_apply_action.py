@@ -65,7 +65,7 @@ class ApplyActionTests(unittest.TestCase):
         self.state = load_json(FRESH_ACCOUNT)
         self.actions_document = load_json(ACTIONS)
 
-    def test_current_waterfall_transition_applies_only_declared_effects(self) -> None:
+    def test_current_waterfall_transition_applies_fixed_quest_xp(self) -> None:
         self.state["items"] = {"rope": 1, "air_rune": 6, "earth_rune": 6, "water_rune": 6}
 
         result = apply_action(self.actions_document, self.state, "action:waterfall-quest")
@@ -73,8 +73,10 @@ class ApplyActionTests(unittest.TestCase):
         self.assertEqual("applied", result["status"])
         self.assertIn("Waterfall Quest", result["next_state"]["quests_completed"])
         self.assertEqual(2, result["next_state"]["items"]["diamond"])
-        self.assertEqual(1, result["next_state"]["skills"].get("Attack", 1))
-        self.assertEqual(13750, result["reported_effects"][0]["amount"])
+        self.assertEqual(30, result["next_state"]["skills"]["Attack"])
+        self.assertEqual(13750, result["next_state"]["skill_xp"]["Attack"])
+        self.assertEqual(30, result["next_state"]["skills"]["Strength"])
+        self.assertEqual([], result["reported_effects"])
 
     def test_current_bone_voyage_transition_consumes_verified_items(self) -> None:
         state = load_json(REPOSITORY_ROOT / "tests" / "fixtures" / "fossil-island-ready.json")
@@ -102,8 +104,8 @@ class ApplyActionTests(unittest.TestCase):
             effects=[
                 {"op": "set_add", "state": "quests_completed", "key": "Waterfall Quest"},
                 {"op": "ensure_min", "state": "resources", "key": "coins", "value": 10},
+                {"op": "gain_xp", "state": "skill_xp", "key": "Attack", "amount": 13750},
             ],
-            reported_effects=[{"kind": "xp_award", "skill": "Attack", "amount": 13750}],
         )
         original = copy.deepcopy(self.state)
 
@@ -114,6 +116,8 @@ class ApplyActionTests(unittest.TestCase):
         self.assertIn("Waterfall Quest", result["next_state"]["quests_completed"])
         self.assertIn(quest["id"], result["next_state"]["completed_actions"])
         self.assertEqual(10, result["next_state"]["resources"]["coins"])
+        self.assertEqual(13750, result["next_state"]["skill_xp"]["Attack"])
+        self.assertEqual(30, result["next_state"]["skills"]["Attack"])
 
     def test_reapplying_a_completed_one_time_action_returns_already_completed(self) -> None:
         quest = action(
@@ -220,16 +224,30 @@ class ApplyActionTests(unittest.TestCase):
         self.assertEqual(0, result["next_state"]["resources"]["coins"])
         self.assertNotIn(spend["id"], result["next_state"]["completed_actions"])
 
-    def test_reported_xp_does_not_mutate_a_skill_level(self) -> None:
+    def test_choice_xp_report_does_not_mutate_a_skill_level(self) -> None:
         quest = action(
             "action:xp-report",
-            reported_effects=[{"kind": "xp_award", "skill": "Attack", "amount": 13750}],
+            reported_effects=[{"type": "xp_choice_award", "description": "Choose one skill"}],
         )
 
         result = apply_action(document(quest), self.state, quest["id"])
 
         self.assertEqual(1, result["next_state"]["skills"].get("Attack", 1))
         self.assertEqual(quest["transition"]["reported_effects"], result["reported_effects"])
+
+    def test_fixed_xp_caps_at_200m_and_receipt_records_actual_gain(self) -> None:
+        self.state["skill_xp"]["Attack"] = 199_999_995
+        self.state["skills"]["Attack"] = 99
+        quest = action(
+            "action:xp-cap",
+            effects=[{"op": "gain_xp", "state": "skill_xp", "key": "Attack", "amount": 10}],
+        )
+
+        result = apply_action(document(quest), self.state, quest["id"])
+
+        self.assertEqual(200_000_000, result["next_state"]["skill_xp"]["Attack"])
+        receipt = next(effect for effect in result["applied_effects"] if effect["op"] == "gain_xp")
+        self.assertEqual(5, receipt["amount"])
 
     def test_repeatable_action_never_records_completion_or_invents_rewards(self) -> None:
         activity = action(

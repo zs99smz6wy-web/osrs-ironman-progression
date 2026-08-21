@@ -1,17 +1,6 @@
 {
-  "skills": {
-    "Agility": 25,
-    "Construction": 25,
-    "Farming": 23,
-    "Firemaking": 50,
-    "Fishing": 35,
-    "Hunter": 5,
-    "Crafting": 5,
-    "Magic": 1,
-    "Runecraft": 1,
-    "Sailing": 1,
-    "Thieving": 1
-  },
+  "skills": {"Agility": 25, "Attack": 1, "Construction": 25, "Cooking": 1, "Crafting": 5, "Defence": 1, "Farming": 23, "Firemaking": 50, "Fishing": 35, "Fletching": 1, "Herblore": 1, "Hitpoints": 10, "Hunter": 5, "Magic": 1, "Mining": 1, "Prayer": 1, "Ranged": 1, "Runecraft": 1, "Sailing": 1, "Slayer": 1, "Smithing": 1, "Strength": 1, "Thieving": 1, "Woodcutting": 1},
+  "skill_xp": {"Agility": 7842, "Attack": 0, "Construction": 7842, "Cooking": 0, "Crafting": 388, "Defence": 0, "Farming": 6291, "Firemaking": 101333, "Fishing": 22406, "Fletching": 0, "Herblore": 0, "Hitpoints": 1154, "Hunter": 388, "Magic": 0, "Mining": 0, "Prayer": 0, "Ranged": 0, "Runecraft": 0, "Sailing": 0, "Slayer": 0, "Smithing": 0, "Strength": 0, "Thieving": 0, "Woodcutting": 0},
   "quests_completed": ["The Dig Site", "Bone Voyage"],
   "completed_actions": ["action:fossil-island-access"],
   "transport_flags": ["fossil_island"],

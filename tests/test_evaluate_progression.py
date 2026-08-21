@@ -11,7 +11,7 @@ from pathlib import Path
 REPOSITORY_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPOSITORY_ROOT / "scripts"))
 
-from evaluate_progression import evaluate_actions, load_json  # noqa: E402
+from evaluate_progression import evaluate_actions, load_json, validate_account_state  # noqa: E402
 
 
 FIXTURES = Path(__file__).parent / "fixtures"
@@ -111,6 +111,20 @@ class EvaluateProgressionScenarioTests(unittest.TestCase):
 
         with self.assertRaisesRegex(ValueError, "missing required keys"):
             evaluate_actions(self.actions_document, state)
+
+    def test_skill_level_must_match_exact_xp(self) -> None:
+        state = copy.deepcopy(load_json(FIXTURES / "fresh-account.json"))
+        state["skill_xp"]["Agility"] = 83
+
+        with self.assertRaisesRegex(ValueError, "XP-derived level 2"):
+            validate_account_state(state)
+
+    def test_every_supported_skill_is_required(self) -> None:
+        state = copy.deepcopy(load_json(FIXTURES / "fresh-account.json"))
+        del state["skill_xp"]["Sailing"]
+
+        with self.assertRaisesRegex(ValueError, "every supported skill exactly"):
+            validate_account_state(state)
 
 
 if __name__ == "__main__":

@@ -5,6 +5,7 @@ Future route output is a recommendation for a declared account state, never a ge
 ## Required input
 
 - Account state conforming to `data/schemas/account-state.schema.json`.
+- Exact per-skill XP for imported player snapshots. Never infer current XP from displayed levels; minimum-level XP is used only in declared synthetic fixtures.
 - A goal or set of allowed goals.
 - Available attention window.
 - Cash commitments with an explicit purpose and deadline.
@@ -16,7 +17,7 @@ Future route output is a recommendation for a declared account state, never a ge
 - Hard requirements currently satisfied and missing.
 - Required inventory, consumables, and setup still needing preparation.
 - Factual sources and graph relationships used.
-- Guaranteed state changes separated from reported XP, variable outputs, and unresolved effects.
+- Guaranteed state changes, including fixed XP awards, separated from choice XP, variable outputs, and unresolved effects.
 - Strategic rationale, including why the timing is appropriate.
 - Alternatives and bypasses, including any account-changing drops.
 - Active and passive/AFK companion options suitable for the stated attention window.

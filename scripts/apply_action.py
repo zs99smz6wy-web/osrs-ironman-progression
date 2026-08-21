@@ -17,6 +17,7 @@ from evaluate_progression import (
     load_json,
     validate_account_state,
 )
+from osrs_xp import add_xp, level_from_xp
 
 
 MUTABLE_COUNTER_STATES = {"items", "resources", "counters"}
@@ -104,6 +105,12 @@ def _validate_effect(effect: dict[str, Any]) -> None:
             raise ValueError("counter deltas must be positive")
         return
 
+    if operation == "gain_xp":
+        amount = effect.get("amount")
+        if state_key != "skill_xp" or isinstance(amount, bool) or not isinstance(amount, int) or amount <= 0:
+            raise ValueError("gain_xp requires a positive integer amount for skill_xp")
+        return
+
     if operation == "ensure_min":
         value = effect.get("value")
         if state_key not in MUTABLE_COUNTER_STATES or isinstance(value, bool) or not isinstance(value, int) or value < 0:
@@ -127,6 +134,15 @@ def _apply_effect(effect: dict[str, Any], state: dict[str, Any]) -> None:
 
     if operation == "set":
         state[state_key][key] = effect["value"]
+        return
+
+
+    if operation == "gain_xp":
+        if key not in state["skill_xp"]:
+            raise ValueError(f"XP award references unknown skill: {key}")
+        next_xp = add_xp(state["skill_xp"][key], effect["amount"])
+        state["skill_xp"][key] = next_xp
+        state["skills"][key] = level_from_xp(next_xp)
         return
 
     current = state[state_key].get(key, 0)
@@ -202,13 +218,21 @@ def apply_action(
         return _result("not_eligible", state)
 
     effects = list(transition["effects"])
+    reports = list(transition["reported_effects"])
     if selected_option is not None:
         effects.extend(selected_option["effects"])
+        reports.extend(selected_option.get("reported_effects", []))
 
     next_state = copy.deepcopy(state)
+    applied_effects: list[dict[str, Any]] = []
     try:
         for effect in effects:
+            previous_xp = next_state["skill_xp"].get(effect["key"]) if effect.get("op") == "gain_xp" else None
             _apply_effect(effect, next_state)
+            receipt = copy.deepcopy(effect)
+            if effect.get("op") == "gain_xp":
+                receipt["amount"] = next_state["skill_xp"][effect["key"]] - previous_xp
+            applied_effects.append(receipt)
         if not repeatable:
             next_state["completed_actions"].append(action_id)
     except ValueError as error:
@@ -217,14 +241,13 @@ def apply_action(
         raise
 
     validate_account_state(next_state)
-    applied_effects = copy.deepcopy(effects)
     if not repeatable:
         applied_effects.append({"op": "set_add", "state": "completed_actions", "key": action_id})
     return _result(
         "applied",
         next_state,
         applied_effects,
-        transition["reported_effects"],
+        reports,
         selected_option["id"] if selected_option is not None else None,
     )
 

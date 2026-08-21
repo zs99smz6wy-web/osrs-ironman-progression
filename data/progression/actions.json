@@ -18,7 +18,7 @@
       "completion": {"all": [{"type": "quest_completed", "key": "Waterfall Quest"}]},
       "outcomes": [{"type": "quest_completed", "key": "Waterfall Quest"}],
       "repeatable": false,
-      "transition": {"effects": [{"op": "set_add", "state": "quests_completed", "key": "Waterfall Quest", "fact_id": "waterfall-quest"}, {"op": "delta", "state": "items", "key": "diamond", "amount": 2, "fact_id": "waterfall-quest"}, {"op": "delta", "state": "items", "key": "gold_bar", "amount": 2, "fact_id": "waterfall-quest"}, {"op": "delta", "state": "items", "key": "mithril_seed", "amount": 40, "fact_id": "waterfall-quest"}], "options": [], "reported_effects": [{"type": "xp_award", "skill": "Attack", "amount": 13750, "fact_id": "waterfall-quest"}, {"type": "xp_award", "skill": "Strength", "amount": 13750, "fact_id": "waterfall-quest"}]}
+      "transition": {"effects": [{"op": "set_add", "state": "quests_completed", "key": "Waterfall Quest", "fact_id": "waterfall-quest"}, {"op": "delta", "state": "items", "key": "diamond", "amount": 2, "fact_id": "waterfall-quest"}, {"op": "delta", "state": "items", "key": "gold_bar", "amount": 2, "fact_id": "waterfall-quest"}, {"op": "delta", "state": "items", "key": "mithril_seed", "amount": 40, "fact_id": "waterfall-quest"}, {"op": "gain_xp", "state": "skill_xp", "key": "Attack", "amount": 13750, "fact_id": "waterfall-quest"}, {"op": "gain_xp", "state": "skill_xp", "key": "Strength", "amount": 13750, "fact_id": "waterfall-quest"}], "options": [], "reported_effects": []}
     },
     {
       "id": "action:tree-gnome-village",
@@ -34,7 +34,7 @@
         {"type": "transport_flag", "key": "spirit_trees"}
       ],
       "repeatable": false,
-      "transition": {"effects": [{"op": "set_add", "state": "quests_completed", "key": "Tree Gnome Village", "fact_id": "tree-gnome-village"}, {"op": "set_add", "state": "transport_flags", "key": "spirit_trees", "fact_id": "tree-gnome-village"}], "options": [], "reported_effects": [{"type": "xp_award", "skill": "Attack", "amount": 11450, "fact_id": "tree-gnome-village"}]}
+      "transition": {"effects": [{"op": "set_add", "state": "quests_completed", "key": "Tree Gnome Village", "fact_id": "tree-gnome-village"}, {"op": "set_add", "state": "transport_flags", "key": "spirit_trees", "fact_id": "tree-gnome-village"}, {"op": "gain_xp", "state": "skill_xp", "key": "Attack", "amount": 11450, "fact_id": "tree-gnome-village"}], "options": [], "reported_effects": []}
     },
     {
       "id": "action:grand-tree",
@@ -50,7 +50,7 @@
         {"type": "transport_flag", "key": "gnome_gliders"}
       ],
       "repeatable": false,
-      "transition": {"effects": [{"op": "set_add", "state": "quests_completed", "key": "The Grand Tree", "fact_id": "grand-tree"}, {"op": "set_add", "state": "transport_flags", "key": "gnome_gliders", "fact_id": "grand-tree"}], "options": [], "reported_effects": [{"type": "xp_award", "skill": "Attack", "amount": 18400, "fact_id": "grand-tree"}, {"type": "xp_award", "skill": "Agility", "amount": 7900, "fact_id": "grand-tree"}, {"type": "xp_award", "skill": "Magic", "amount": 2150, "fact_id": "grand-tree"}]}
+      "transition": {"effects": [{"op": "set_add", "state": "quests_completed", "key": "The Grand Tree", "fact_id": "grand-tree"}, {"op": "set_add", "state": "transport_flags", "key": "gnome_gliders", "fact_id": "grand-tree"}, {"op": "gain_xp", "state": "skill_xp", "key": "Attack", "amount": 18400, "fact_id": "grand-tree"}, {"op": "gain_xp", "state": "skill_xp", "key": "Agility", "amount": 7900, "fact_id": "grand-tree"}, {"op": "gain_xp", "state": "skill_xp", "key": "Magic", "amount": 2150, "fact_id": "grand-tree"}], "options": [], "reported_effects": []}
     },
     {
       "id": "action:children-of-the-sun",
@@ -83,10 +83,11 @@
       "transition": {
         "effects": [
           {"op": "set_add", "state": "quests_completed", "key": "The Restless Ghost", "fact_id": "the-restless-ghost"},
-          {"op": "ensure_min", "state": "items", "key": "ghostspeak_amulet", "value": 1, "fact_id": "the-restless-ghost"}
+          {"op": "ensure_min", "state": "items", "key": "ghostspeak_amulet", "value": 1, "fact_id": "the-restless-ghost"},
+          {"op": "gain_xp", "state": "skill_xp", "key": "Prayer", "amount": 1125, "fact_id": "the-restless-ghost"}
         ],
         "options": [],
-        "reported_effects": [{"type": "xp_award", "skill": "Prayer", "amount": 1125, "fact_id": "the-restless-ghost"}]
+        "reported_effects": []
       }
     },
     {
@@ -109,13 +110,14 @@
         "effects": [
           {"op": "set_add", "state": "quests_completed", "key": "Priest in Peril", "fact_id": "priest-in-peril"},
           {"op": "set_add", "state": "transport_flags", "key": "morytania", "fact_id": "priest-in-peril"},
-          {"op": "ensure_min", "state": "items", "key": "wolfbane", "value": 1, "fact_id": "priest-in-peril"}
+          {"op": "ensure_min", "state": "items", "key": "wolfbane", "value": 1, "fact_id": "priest-in-peril"},
+          {"op": "gain_xp", "state": "skill_xp", "key": "Prayer", "amount": 1406, "fact_id": "priest-in-peril"}
         ],
         "options": [
           {"id": "rune-essence", "requires": {"all": [{"type": "item_at_least", "key": "rune_essence", "value": 50}]}, "effects": [{"op": "delta", "state": "items", "key": "rune_essence", "amount": -50, "fact_id": "priest-in-peril"}], "reported_effects": []},
           {"id": "pure-essence", "requires": {"all": [{"type": "item_at_least", "key": "pure_essence", "value": 50}]}, "effects": [{"op": "delta", "state": "items", "key": "pure_essence", "amount": -50, "fact_id": "priest-in-peril"}], "reported_effects": []}
         ],
-        "reported_effects": [{"type": "xp_award", "skill": "Prayer", "amount": 1406, "fact_id": "priest-in-peril"}]
+        "reported_effects": []
       }
     },
     {
@@ -135,14 +137,13 @@
           {"op": "set_add", "state": "milestones", "key": "nature_spirit_utility", "fact_id": "nature-spirit"},
           {"op": "delta", "state": "items", "key": "silver_sickle", "amount": -1, "fact_id": "nature-spirit"},
           {"op": "ensure_min", "state": "items", "key": "silver_sickle_b", "value": 1, "fact_id": "nature-spirit"},
-          {"op": "ensure_min", "state": "items", "key": "druid_pouch", "value": 1, "fact_id": "nature-spirit"}
+          {"op": "ensure_min", "state": "items", "key": "druid_pouch", "value": 1, "fact_id": "nature-spirit"},
+          {"op": "gain_xp", "state": "skill_xp", "key": "Crafting", "amount": 3000, "fact_id": "nature-spirit"},
+          {"op": "gain_xp", "state": "skill_xp", "key": "Defence", "amount": 2000, "fact_id": "nature-spirit"},
+          {"op": "gain_xp", "state": "skill_xp", "key": "Hitpoints", "amount": 2000, "fact_id": "nature-spirit"}
         ],
         "options": [],
-        "reported_effects": [
-          {"type": "xp_award", "skill": "Crafting", "amount": 3000, "fact_id": "nature-spirit"},
-          {"type": "xp_award", "skill": "Defence", "amount": 2000, "fact_id": "nature-spirit"},
-          {"type": "xp_award", "skill": "Hitpoints", "amount": 2000, "fact_id": "nature-spirit"}
-        ]
+        "reported_effects": []
       }
     },
     {
@@ -180,13 +181,13 @@
       "transition": {
         "effects": [
           {"op": "set_add", "state": "quests_completed", "key": "Fairytale I - Growing Pains", "fact_id": "fairytale-i-growing-pains"},
-          {"op": "ensure_min", "state": "items", "key": "magic_secateurs", "value": 1, "fact_id": "fairytale-i-growing-pains"}
+          {"op": "ensure_min", "state": "items", "key": "magic_secateurs", "value": 1, "fact_id": "fairytale-i-growing-pains"},
+          {"op": "gain_xp", "state": "skill_xp", "key": "Farming", "amount": 3500, "fact_id": "fairytale-i-growing-pains"},
+          {"op": "gain_xp", "state": "skill_xp", "key": "Attack", "amount": 2000, "fact_id": "fairytale-i-growing-pains"},
+          {"op": "gain_xp", "state": "skill_xp", "key": "Magic", "amount": 1000, "fact_id": "fairytale-i-growing-pains"}
         ],
         "options": [],
         "reported_effects": [
-          {"type": "xp_award", "skill": "Farming", "amount": 3500, "fact_id": "fairytale-i-growing-pains"},
-          {"type": "xp_award", "skill": "Attack", "amount": 2000, "fact_id": "fairytale-i-growing-pains"},
-          {"type": "xp_award", "skill": "Magic", "amount": 1000, "fact_id": "fairytale-i-growing-pains"},
           {"type": "recorded_progress", "description": "The account-specific three-item blessing input is confirmed ready but not automatically consumed because the selected materials are not represented individually.", "fact_id": "fairytale-i-growing-pains"}
         ]
       }
@@ -203,9 +204,9 @@
       "outcomes": [{"type": "quest_completed", "key": "The Dig Site"}],
       "repeatable": false,
       "transition": {
-        "effects": [{"op": "set_add", "state": "quests_completed", "key": "The Dig Site", "fact_id": "the-dig-site"}, {"op": "delta", "state": "items", "key": "gold_bar", "amount": 2, "fact_id": "the-dig-site"}],
+        "effects": [{"op": "set_add", "state": "quests_completed", "key": "The Dig Site", "fact_id": "the-dig-site"}, {"op": "delta", "state": "items", "key": "gold_bar", "amount": 2, "fact_id": "the-dig-site"}, {"op": "gain_xp", "state": "skill_xp", "key": "Mining", "amount": 15300, "fact_id": "the-dig-site"}, {"op": "gain_xp", "state": "skill_xp", "key": "Herblore", "amount": 2000, "fact_id": "the-dig-site"}],
         "options": [],
-        "reported_effects": [{"type": "xp_award", "skill": "Mining", "amount": 15300, "fact_id": "the-dig-site"}, {"type": "xp_award", "skill": "Herblore", "amount": 2000, "fact_id": "the-dig-site"}]
+        "reported_effects": []
       }
     },
     {

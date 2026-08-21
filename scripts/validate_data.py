@@ -8,6 +8,7 @@ from pathlib import Path
 from evaluate_progression import validate_account_state
 from score_candidates import score_candidates
 from apply_action import _validate_effect
+from osrs_xp import SKILLS
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -15,12 +16,14 @@ FACTS_DIR = ROOT / "data" / "facts"
 RESEARCH_DIR = ROOT / "research"
 GRAPH_DIR = ROOT / "graph"
 PROGRESSION_DIR = ROOT / "data" / "progression"
+FIXTURES_DIR = ROOT / "tests" / "fixtures"
 
 REQUIRED_FACT_KEYS = {"id", "name", "category", "status", "verified_at", "source_ids"}
 VALID_CATEGORIES = {"quest", "transport", "activity", "minigame", "reward", "sailing", "afk", "bypass", "economy"}
 VALID_STATUSES = {"verified", "needs_revalidation", "research_queue"}
 REQUIRED_ACCOUNT_STATE_KEYS = {
     "skills",
+    "skill_xp",
     "quests_completed",
     "completed_actions",
     "transport_flags",
@@ -50,14 +53,6 @@ VALID_OUTCOME_TYPES = {"quest_completed", "transport_flag", "milestone", "passiv
 VALID_EDGE_TYPES = {"requires", "unlocks", "makes_obtainable", "alternative", "bypass", "produces", "improves"}
 VALID_ACTION_KINDS = {"quest", "unlock", "activity", "passive_setup"}
 REQUIRED_ACTION_KEYS = {"id", "name", "kind", "status", "fact_ids", "requirements", "preparation", "completion", "outcomes", "transition", "repeatable"}
-SKILLS = {
-    "Agility", "Attack", "Construction", "Cooking", "Crafting", "Defence", "Farming",
-    "Firemaking", "Fishing", "Fletching", "Herblore", "Hitpoints", "Hunter", "Magic",
-    "Mining", "Prayer", "Ranged", "Runecraft", "Sailing", "Slayer", "Smithing",
-    "Strength", "Thieving", "Woodcutting",
-}
-
-
 def validate_condition(condition: dict, context: str, errors: list[str]) -> None:
     groups = [name for name in ("all", "any") if name in condition]
     if groups:
@@ -106,6 +101,12 @@ def main() -> int:
         validate_account_state(account_state)
     except ValueError as exc:
         errors.append(f"account-state.example.json: {exc}")
+
+    for fixture_path in sorted(FIXTURES_DIR.glob("*.json")):
+        try:
+            validate_account_state(load_json(fixture_path))
+        except ValueError as exc:
+            errors.append(f"tests/fixtures/{fixture_path.name}: {exc}")
 
     missing_state_keys = REQUIRED_ACCOUNT_STATE_KEYS - account_state.keys()
     if missing_state_keys:
@@ -228,6 +229,8 @@ def main() -> int:
                     except ValueError as exc:
                         errors.append(f"{action_id}.{group_name}: {exc}")
                         continue
+                    if effect.get("op") == "gain_xp" and effect.get("key") not in SKILLS:
+                        errors.append(f"{action_id}.{group_name} XP effect references unknown skill {effect.get('key')}")
                     if effect.get("fact_id") not in linked_facts:
                         errors.append(f"{action_id}.{group_name} effect cites unlinked fact {effect.get('fact_id')}")
             reports = transition.get("reported_effects")
@@ -237,6 +240,8 @@ def main() -> int:
                 for report in reports:
                     if not isinstance(report, dict) or not isinstance(report.get("type"), str):
                         errors.append(f"{action_id} has invalid reported effect")
+                    elif report.get("type") == "xp_award":
+                        errors.append(f"{action_id} fixed XP must use a gain_xp transition effect")
                     elif report.get("fact_id") not in linked_facts:
                         errors.append(f"{action_id} reported effect cites unlinked fact {report.get('fact_id')}")
 

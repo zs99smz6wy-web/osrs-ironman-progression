@@ -2,12 +2,28 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "OSRS Ironman account state",
   "type": "object",
-  "required": ["skills", "quests_completed", "completed_actions", "transport_flags", "milestones", "gear_thresholds", "items", "resources", "counters", "passive_loops", "attention_window", "notable_drops", "preferences"],
-  "properties": {
-    "skills": {
+  "$defs": {
+    "skillLevels": {
       "type": "object",
-      "additionalProperties": {"type": "integer", "minimum": 1, "maximum": 99}
+      "required": ["Agility", "Attack", "Construction", "Cooking", "Crafting", "Defence", "Farming", "Firemaking", "Fishing", "Fletching", "Herblore", "Hitpoints", "Hunter", "Magic", "Mining", "Prayer", "Ranged", "Runecraft", "Sailing", "Slayer", "Smithing", "Strength", "Thieving", "Woodcutting"],
+      "properties": {
+        "Agility": {"type": "integer", "minimum": 1, "maximum": 99}, "Attack": {"type": "integer", "minimum": 1, "maximum": 99}, "Construction": {"type": "integer", "minimum": 1, "maximum": 99}, "Cooking": {"type": "integer", "minimum": 1, "maximum": 99}, "Crafting": {"type": "integer", "minimum": 1, "maximum": 99}, "Defence": {"type": "integer", "minimum": 1, "maximum": 99}, "Farming": {"type": "integer", "minimum": 1, "maximum": 99}, "Firemaking": {"type": "integer", "minimum": 1, "maximum": 99}, "Fishing": {"type": "integer", "minimum": 1, "maximum": 99}, "Fletching": {"type": "integer", "minimum": 1, "maximum": 99}, "Herblore": {"type": "integer", "minimum": 1, "maximum": 99}, "Hitpoints": {"type": "integer", "minimum": 1, "maximum": 99}, "Hunter": {"type": "integer", "minimum": 1, "maximum": 99}, "Magic": {"type": "integer", "minimum": 1, "maximum": 99}, "Mining": {"type": "integer", "minimum": 1, "maximum": 99}, "Prayer": {"type": "integer", "minimum": 1, "maximum": 99}, "Ranged": {"type": "integer", "minimum": 1, "maximum": 99}, "Runecraft": {"type": "integer", "minimum": 1, "maximum": 99}, "Sailing": {"type": "integer", "minimum": 1, "maximum": 99}, "Slayer": {"type": "integer", "minimum": 1, "maximum": 99}, "Smithing": {"type": "integer", "minimum": 1, "maximum": 99}, "Strength": {"type": "integer", "minimum": 1, "maximum": 99}, "Thieving": {"type": "integer", "minimum": 1, "maximum": 99}, "Woodcutting": {"type": "integer", "minimum": 1, "maximum": 99}
+      },
+      "additionalProperties": false
     },
+    "skillXp": {
+      "type": "object",
+      "required": ["Agility", "Attack", "Construction", "Cooking", "Crafting", "Defence", "Farming", "Firemaking", "Fishing", "Fletching", "Herblore", "Hitpoints", "Hunter", "Magic", "Mining", "Prayer", "Ranged", "Runecraft", "Sailing", "Slayer", "Smithing", "Strength", "Thieving", "Woodcutting"],
+      "properties": {
+        "Agility": {"type": "integer", "minimum": 0, "maximum": 200000000}, "Attack": {"type": "integer", "minimum": 0, "maximum": 200000000}, "Construction": {"type": "integer", "minimum": 0, "maximum": 200000000}, "Cooking": {"type": "integer", "minimum": 0, "maximum": 200000000}, "Crafting": {"type": "integer", "minimum": 0, "maximum": 200000000}, "Defence": {"type": "integer", "minimum": 0, "maximum": 200000000}, "Farming": {"type": "integer", "minimum": 0, "maximum": 200000000}, "Firemaking": {"type": "integer", "minimum": 0, "maximum": 200000000}, "Fishing": {"type": "integer", "minimum": 0, "maximum": 200000000}, "Fletching": {"type": "integer", "minimum": 0, "maximum": 200000000}, "Herblore": {"type": "integer", "minimum": 0, "maximum": 200000000}, "Hitpoints": {"type": "integer", "minimum": 0, "maximum": 200000000}, "Hunter": {"type": "integer", "minimum": 0, "maximum": 200000000}, "Magic": {"type": "integer", "minimum": 0, "maximum": 200000000}, "Mining": {"type": "integer", "minimum": 0, "maximum": 200000000}, "Prayer": {"type": "integer", "minimum": 0, "maximum": 200000000}, "Ranged": {"type": "integer", "minimum": 0, "maximum": 200000000}, "Runecraft": {"type": "integer", "minimum": 0, "maximum": 200000000}, "Sailing": {"type": "integer", "minimum": 0, "maximum": 200000000}, "Slayer": {"type": "integer", "minimum": 0, "maximum": 200000000}, "Smithing": {"type": "integer", "minimum": 0, "maximum": 200000000}, "Strength": {"type": "integer", "minimum": 0, "maximum": 200000000}, "Thieving": {"type": "integer", "minimum": 0, "maximum": 200000000}, "Woodcutting": {"type": "integer", "minimum": 0, "maximum": 200000000}
+      },
+      "additionalProperties": false
+    }
+  },
+  "required": ["skills", "skill_xp", "quests_completed", "completed_actions", "transport_flags", "milestones", "gear_thresholds", "items", "resources", "counters", "passive_loops", "attention_window", "notable_drops", "preferences"],
+  "properties": {
+    "skills": {"$ref": "#/$defs/skillLevels"},
+    "skill_xp": {"$ref": "#/$defs/skillXp"},
     "quests_completed": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
     "completed_actions": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
     "transport_flags": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},

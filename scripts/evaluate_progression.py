@@ -5,12 +5,14 @@ import json
 from pathlib import Path
 from typing import Any
 
+from osrs_xp import MAX_XP, SKILLS, level_from_xp
+
 
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_ACTIONS = ROOT / "data" / "progression" / "actions.json"
 DEFAULT_STATE = ROOT / "graph" / "account-state.example.json"
 REQUIRED_STATE_KEYS = {
-    "skills", "quests_completed", "completed_actions", "transport_flags", "milestones",
+    "skills", "skill_xp", "quests_completed", "completed_actions", "transport_flags", "milestones",
     "gear_thresholds", "items", "resources", "counters", "passive_loops",
     "attention_window", "notable_drops", "preferences",
 }
@@ -37,17 +39,35 @@ def validate_account_state(state: dict[str, Any]) -> None:
         if len(values) != len(set(values)):
             raise ValueError(f"Account state {key} must not contain duplicates")
 
-    for key in ("skills", "items", "resources", "counters"):
+    for key in ("skills", "skill_xp", "items", "resources", "counters"):
         values = state[key]
         if not isinstance(values, dict):
             raise ValueError(f"Account state {key} must be an object")
         for name, value in values.items():
             minimum = 1 if key == "skills" else 0
-            maximum = 99 if key == "skills" else None
+            maximum = 99 if key == "skills" else MAX_XP if key == "skill_xp" else None
             if isinstance(value, bool) or not isinstance(value, int) or value < minimum:
                 raise ValueError(f"Account state {key}.{name} has an invalid value")
             if maximum is not None and value > maximum:
                 raise ValueError(f"Account state {key}.{name} has an invalid value")
+
+    expected_skills = set(SKILLS)
+    for key in ("skills", "skill_xp"):
+        actual_skills = set(state[key])
+        if actual_skills != expected_skills:
+            missing_skills = sorted(expected_skills - actual_skills)
+            unknown_skills = sorted(actual_skills - expected_skills)
+            raise ValueError(
+                f"Account state {key} must contain every supported skill exactly; "
+                f"missing={missing_skills}, unknown={unknown_skills}"
+            )
+    for skill in SKILLS:
+        derived_level = level_from_xp(state["skill_xp"][skill])
+        if state["skills"][skill] != derived_level:
+            raise ValueError(
+                f"Account state {skill} level {state['skills'][skill]} does not match "
+                f"XP-derived level {derived_level}"
+            )
 
     passive_loops = state["passive_loops"]
     if not isinstance(passive_loops, dict) or any(not isinstance(value, bool) for value in passive_loops.values()):
