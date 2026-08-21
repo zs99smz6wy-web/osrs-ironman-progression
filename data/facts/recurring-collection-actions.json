@@ -1,0 +1,130 @@
+{
+  "records": [
+    {
+      "id": "birdhouse-collection-and-reset",
+      "name": "Bird house collection and reset",
+      "category": "afk",
+      "status": "verified",
+      "verified_at": "2026-08-21",
+      "hard_gates": {
+        "access": "Fossil Island and an established bird house at a Fossil Island bird-house site.",
+        "collection": "Rewards can be claimed only after the bird house is completely depleted of seeds, approximately 50 minutes after it is filled.",
+        "reset": "The Reset option is available only on a full bird house."
+      },
+      "mechanics": {
+        "sites": 4,
+        "completed_collection": "Emptying and dismantling a full bird house returns its clockwork. The placed bird house is lost. Hunter experience and loot are awarded at dismantling.",
+        "early_empty": "Emptying before completion returns the clockwork but destroys the bird house, its remaining seeds, and any accumulated loot.",
+        "reset": "Reset empties a full bird house, dismantles it, then automatically builds and places a replacement using the returned clockwork. It still requires seeds to be added manually.",
+        "rearming": "A replacement requires either a pre-made compatible bird house or a compatible log, clockwork, hammer, and chisel. One site takes 10 low-level seeds or 5 high-level seeds; equivalent mixed seed quantities are permitted. Seed choice does not change the reward table."
+      },
+      "inputs": {
+        "reusable": ["clockwork returned from a completed or early-emptied bird house", "hammer", "chisel"],
+        "consumed_per_rearmed_site": ["one compatible log when building from materials", "10 low-level seeds or 5 high-level seeds, or an equivalent mix"],
+        "alternative_consumed_input": "One pre-made compatible bird house replaces the log-and-construction step; seeds are still consumed."
+      },
+      "state_after_player_report": {
+        "report_required": ["which of the four sites were collected, early-emptied, or successfully reset", "whether each reset was reseeded", "the exact item quantities observed from collection", "the exact Hunter experience shown, if account experience is being updated"],
+        "safe_deterministic_mutations_after_report": ["For every site reported as collected, early-emptied, or successfully reset, return one clockwork to the available-equipment count if that clockwork was previously modeled as committed to the site.", "For every site reported as successfully reset and reseeded, record that site as in progress; do not set a readiness timestamp from the approximate 50-minute duration.", "For every site reported as collected or early-emptied without a successful reset, record that site as needing a replacement and seeds before it can progress again."],
+        "reported_effects_only": ["bird nests and their contents", "raw bird meat", "feathers", "the number of nests", "Hunter experience when the bird-house tier or observed award is not supplied", "any seed or ring items obtained from nests"],
+        "not_safe_to_infer": ["that all four sites were collected because a bird-house observation is ready", "loot quantity or composition", "a future readiness time", "that a reset was reseeded"]
+      },
+      "source_ids": ["wiki-birdhouses"],
+      "confidence": "high"
+    },
+    {
+      "id": "giant-seaweed-collection-and-replant",
+      "name": "Two-patch giant seaweed collection and replant",
+      "category": "afk",
+      "status": "verified",
+      "verified_at": "2026-08-21",
+      "hard_gates": {
+        "access": "The two giant-seaweed patches are in the Fossil Island underwater area.",
+        "skills": {"Farming": 23},
+        "planting": "Each patch requires one seaweed spore and a seed dibber.",
+        "harvest": "A planted patch must have finished growing and not be dead before it can be harvested."
+      },
+      "mechanics": {
+        "patches": 2,
+        "growth": "Giant seaweed takes approximately 40 minutes to fully grow.",
+        "protection": "Mernia can be paid 200 numulite per planted patch to make that crop disease-free. Compost affects yield mechanics but is not guaranteed disease protection.",
+        "harvest_formula": "Planting grants 19 Farming experience. Harvesting grants 21 Farming experience for each giant seaweed picked. A successfully grown patch yields at least three giant seaweed, while its total yield is variable.",
+        "replant": "A harvested or dead patch needs a new seaweed spore before it can grow again."
+      },
+      "inputs": {
+        "reusable": ["seed dibber", "underwater-access equipment used by the player's chosen access method"],
+        "consumed_per_planted_patch": ["one seaweed spore"],
+        "optional_consumed_per_planted_patch": ["one compost treatment", "200 numulite paid to Mernia for disease-free protection"]
+      },
+      "state_after_player_report": {
+        "report_required": ["the outcome of each of the two patches: planted, harvested, diseased/dead, or unchanged", "whether a seaweed spore, compost treatment, and 200-numulite protection payment were actually used for each newly planted patch", "the exact giant-seaweed quantity harvested from each successful patch", "the exact Farming experience shown, if account experience is being updated"],
+        "safe_deterministic_mutations_after_report": ["Subtract one seaweed spore for every planting the player confirms.", "Subtract 200 numulite only for every Mernia protection payment the player confirms.", "Subtract a compost item only when the player confirms that specific treatment.", "After a confirmed harvest quantity N, add N giant seaweed and apply 21 times N Farming experience; N is a player-reported quantity, not a predicted yield.", "After a confirmed planting, record that patch as in progress. After a confirmed death or harvest without replanting, record that patch as needing inputs."],
+        "reported_effects_only": ["total harvest quantity before the player reports it", "crop survival for an unprotected patch", "any resulting soda ash, because cooking is a separate player action"],
+        "not_safe_to_infer": ["that both patches share the same state", "that a planted patch is ready solely because approximately 40 minutes elapsed", "that a protected patch was paid for", "the number of giant seaweed harvested"]
+      },
+      "source_ids": ["wiki-giant-seaweed", "wiki-underwater"],
+      "confidence": "high"
+    },
+    {
+      "id": "tears-of-guthix-completion-and-cooldown",
+      "name": "Tears of Guthix completion and cooldown recording",
+      "category": "afk",
+      "status": "verified",
+      "verified_at": "2026-08-21",
+      "hard_gates": {
+        "entry": "Completion of the Tears of Guthix quest.",
+        "repeat_entry": "Seven full days since the prior completed game and, except for the first game, at least 100,000 total experience or one quest point earned since that game.",
+        "session_equipment": "Juna supplies the bowl used for the session; it requires two free hands."
+      },
+      "mechanics": {
+        "completion": "The player automatically exits at the end of the session and receives experience in the lowest eligible skill.",
+        "reward_formula": "The experience amount depends on the number of tears collected, quest points, and the recipient skill level. The Hard Lumbridge & Draynor Diary adds 10 percent to the award.",
+        "recipient_rule": "Ties use lowest experience, then the fixed eligible-skill order. Construction, Herblore, and Runecraft remain excluded until their respective training unlocks are obtained."
+      },
+      "inputs": {
+        "reusable": ["access to Juna", "two free hands for the supplied bowl"],
+        "consumed": [],
+        "session_only": "The bowl is supplied by Juna and is not a persistent player inventory item."
+      },
+      "state_after_player_report": {
+        "report_required": ["that the session completed and its completion time", "the recipient skill and exact experience award if account experience is being updated", "the player's observed future eligibility, if a readiness timestamp is to be stored"],
+        "safe_deterministic_mutations_after_report": ["After a reported completed game, record Tears of Guthix as cooldown with the reported completion time.", "Set a readiness timestamp only when the player explicitly reports it; otherwise retain null. The model must not advance the seven-day or progress gates by itself.", "Apply experience only when the player reports the actual recipient skill and award."],
+        "reported_effects_only": ["number of tears collected", "recipient skill when ties or eligibility unlocks are not explicitly reported", "experience award", "future eligibility after the time and progress gates"],
+        "not_safe_to_infer": ["that seven days alone makes the player eligible", "that the lowest currently modeled skill will receive the award", "an experience award from quest points or estimated player movement"]
+      },
+      "source_ids": ["wiki-tears"],
+      "confidence": "high"
+    },
+    {
+      "id": "kingdom-collection-and-coffer-transfer",
+      "name": "Managing Miscellania collection and coffer transfer",
+      "category": "afk",
+      "status": "verified",
+      "verified_at": "2026-08-21",
+      "hard_gates": {
+        "management": "Completion of Throne of Miscellania unlocks Managing Miscellania.",
+        "advisor_actions": "Advisor Ghrim can collect gathered resources, change worker assignments, and deposit or withdraw coffer coins. NPC Contact can collect resources and change assignments but cannot adjust the coffer.",
+        "royal_trouble": "Royal Trouble changes worker capacity, productivity, wage cap, and available labour categories; it is not required for the base collection or coffer-transfer mechanics."
+      },
+      "mechanics": {
+        "collection": "Workers gather resources and coffer wages are deducted at midnight UTC. Resources can be collected as often as once per day and are deposited directly into the player's bank when there is sufficient space; seed rewards go to the seed vault when applicable.",
+        "variable_outputs": "Collected resource types and quantities depend on assignments, approval, daily wage, and elapsed collection history.",
+        "coffer_transfers": "Advisor Ghrim can deposit coins into or withdraw coins from the coffer. These are exact player-chosen transfers once confirmed, unlike worker output.",
+        "automatic_changes": "Approval falls daily by 2.5 percent before Royal Trouble and 1 percent after it. If the player has not visited the islands for 30 days, resource collection and GP expenditure pause until the next visit."
+      },
+      "inputs": {
+        "reusable": ["Advisor Ghrim access or NPC Contact for the limited remote actions"],
+        "consumed_by_confirmed_deposit": ["the exact player-reported coin amount transferred from the account to the coffer"],
+        "consumed_automatically": "Worker wages are deducted over time from the coffer, but the model must not calculate or apply them without a player-reported coffer result."
+      },
+      "state_after_player_report": {
+        "report_required": ["the exact coffer amount deposited or withdrawn", "the exact item quantities shown by a collection", "the observed coffer balance and approval after interacting with the kingdom", "any worker-assignment change", "whether the player visited after a 30-day pause"],
+        "safe_deterministic_mutations_after_report": ["For a confirmed coffer deposit or withdrawal amount N, move exactly N coins between account coins and kingdom coffer coins after confirming that the transaction succeeded.", "Record a reported worker-assignment change as an observed configuration; it does not create resources.", "Record a reported collection as completed without creating inventory entries until its exact item quantities are supplied."],
+        "reported_effects_only": ["resource types and quantities from collection", "bank or seed-vault placement outcome", "worker wages deducted since the prior observation", "approval value after elapsed time", "whether a 30-day pause changed the accumulation period"],
+        "not_safe_to_infer": ["daily resource output", "coffer balance after midnight", "approval decay", "a collection becoming available from elapsed time", "that a remote NPC Contact interaction changed the coffer"]
+      },
+      "source_ids": ["wiki-managing-miscellania", "wiki-throne-of-miscellania"],
+      "confidence": "high"
+    }
+  ]
+}

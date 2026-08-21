@@ -306,11 +306,63 @@
           {"type": "skill_at_least", "key": "Farming", "value": 23}
         ]
       },
-      "preparation": {"all": [{"type": "item_at_least", "key": "seaweed_spore", "value": 2}, {"type": "item_at_least", "key": "fishbowl_helmet", "value": 1}, {"type": "item_at_least", "key": "diving_apparatus", "value": 1}]},
+      "preparation": {"all": [{"type": "item_at_least", "key": "seaweed_spore", "value": 2}, {"type": "item_at_least", "key": "seed_dibber", "value": 1}, {"type": "item_at_least", "key": "fishbowl_helmet", "value": 1}, {"type": "item_at_least", "key": "diving_apparatus", "value": 1}]},
       "completion": {"all": [{"type": "passive_loop", "key": "seaweed", "value": true}]},
       "outcomes": [{"type": "passive_loop", "key": "seaweed", "value": true}],
       "repeatable": false,
       "transition": {"effects": [{"op": "set", "state": "passive_loops", "key": "seaweed", "value": true, "fact_id": "giant-seaweed-passive-loop"}, {"op": "delta", "state": "items", "key": "seaweed_spore", "amount": -2, "fact_id": "giant-seaweed-passive-loop"}], "options": [], "reported_effects": [{"type": "variable_activity_output", "description": "Both patches are planted, but survival, harvest quantity, Farming experience, and later soda-ash conversion remain variable and are not applied automatically.", "fact_id": "giant-seaweed-passive-loop"}]}
+    },
+    {
+      "id": "action:collect-reset-birdhouses",
+      "name": "Confirm and reset a full four-site birdhouse run",
+      "kind": "activity",
+      "status": "verified",
+      "fact_ids": ["birdhouse-loop", "birdhouse-collection-and-reset"],
+      "requirements": {"all": [{"type": "passive_loop", "key": "birdhouses", "value": true}, {"type": "recurring_state", "key": "birdhouses", "value": "ready"}]},
+      "preparation": {"all": [{"type": "item_at_least", "key": "hammer", "value": 1}, {"type": "item_at_least", "key": "chisel", "value": 1}, {"type": "item_at_least", "key": "logs", "value": 4}]},
+      "completion": {"all": []},
+      "outcomes": [],
+      "repeatable": true,
+      "transition": {"effects": [{"op": "delta", "state": "items", "key": "logs", "amount": -4, "fact_id": "birdhouse-collection-and-reset"}, {"op": "clear_observation", "state": "recurring_observations", "key": "birdhouses", "fact_id": "birdhouse-collection-and-reset"}], "options": [{"id": "low-level-seeds", "requires": {"all": [{"type": "item_at_least", "key": "low_level_birdhouse_seed", "value": 40}]}, "effects": [{"op": "delta", "state": "items", "key": "low_level_birdhouse_seed", "amount": -40, "fact_id": "birdhouse-collection-and-reset"}], "reported_effects": []}, {"id": "high-level-seeds", "requires": {"all": [{"type": "item_at_least", "key": "high_level_birdhouse_seed", "value": 20}]}, "effects": [{"op": "delta", "state": "items", "key": "high_level_birdhouse_seed", "amount": -20, "fact_id": "birdhouse-collection-and-reset"}], "reported_effects": []}], "reported_effects": [{"type": "variable_activity_output", "description": "The confirmed run returns its committed clockworks and awards tier-dependent Hunter experience plus variable loot; exact observed outputs must be imported separately and are not invented here.", "fact_id": "birdhouse-collection-and-reset"}]}
+    },
+    {
+      "id": "action:harvest-replant-giant-seaweed",
+      "name": "Confirm harvest and replant both giant-seaweed patches",
+      "kind": "activity",
+      "status": "verified",
+      "fact_ids": ["giant-seaweed-passive-loop", "giant-seaweed-collection-and-replant"],
+      "requirements": {"all": [{"type": "passive_loop", "key": "seaweed", "value": true}, {"type": "recurring_state", "key": "seaweed", "value": "ready"}]},
+      "preparation": {"all": [{"type": "item_at_least", "key": "seaweed_spore", "value": 2}, {"type": "item_at_least", "key": "seed_dibber", "value": 1}, {"type": "item_at_least", "key": "fishbowl_helmet", "value": 1}, {"type": "item_at_least", "key": "diving_apparatus", "value": 1}]},
+      "completion": {"all": []},
+      "outcomes": [],
+      "repeatable": true,
+      "transition": {"effects": [{"op": "delta", "state": "items", "key": "seaweed_spore", "amount": -2, "fact_id": "giant-seaweed-collection-and-replant"}, {"op": "clear_observation", "state": "recurring_observations", "key": "seaweed", "fact_id": "giant-seaweed-collection-and-replant"}], "options": [], "reported_effects": [{"type": "variable_activity_output", "description": "Exact giant-seaweed harvest quantity, crop survival, and Farming experience must be reported by the player; no harvest or experience is added automatically.", "fact_id": "giant-seaweed-collection-and-replant"}]}
+    },
+    {
+      "id": "action:complete-tears-of-guthix-session",
+      "name": "Confirm a completed Tears of Guthix session",
+      "kind": "activity",
+      "status": "verified",
+      "fact_ids": ["tears-of-guthix", "tears-of-guthix-completion-and-cooldown"],
+      "requirements": {"all": [{"type": "passive_loop", "key": "tears_of_guthix", "value": true}, {"type": "recurring_state", "key": "tears_of_guthix", "value": "ready"}]},
+      "preparation": {"all": []},
+      "completion": {"all": []},
+      "outcomes": [],
+      "repeatable": true,
+      "transition": {"effects": [{"op": "clear_observation", "state": "recurring_observations", "key": "tears_of_guthix", "fact_id": "tears-of-guthix-completion-and-cooldown"}], "options": [], "reported_effects": [{"type": "variable_activity_output", "description": "The recipient skill, tears collected, exact experience award, completion time, and future eligibility remain player-reported; no XP or cooldown timestamp is inferred.", "fact_id": "tears-of-guthix-completion-and-cooldown"}]}
+    },
+    {
+      "id": "action:collect-kingdom-resources",
+      "name": "Confirm a Managing Miscellania collection",
+      "kind": "activity",
+      "status": "verified",
+      "fact_ids": ["managing-miscellania", "kingdom-collection-and-coffer-transfer"],
+      "requirements": {"all": [{"type": "passive_loop", "key": "kingdom", "value": true}, {"type": "recurring_state", "key": "kingdom", "value": "ready"}]},
+      "preparation": {"all": []},
+      "completion": {"all": []},
+      "outcomes": [],
+      "repeatable": true,
+      "transition": {"effects": [{"op": "clear_observation", "state": "recurring_observations", "key": "kingdom", "fact_id": "kingdom-collection-and-coffer-transfer"}], "options": [], "reported_effects": [{"type": "variable_activity_output", "description": "Collected resources, coffer balance, approval, worker assignments, and bank or seed-vault placement remain player-reported; elapsed days produce no automatic state changes.", "fact_id": "kingdom-collection-and-coffer-transfer"}]}
     },
     {
       "id": "action:wintertodt",
@@ -413,6 +465,7 @@
           {"op": "set_add", "state": "quests_completed", "key": "Throne of Miscellania", "fact_id": "throne-of-miscellania"},
           {"op": "set_add", "state": "milestones", "key": "kingdom_management_unlocked", "fact_id": "throne-of-miscellania"},
           {"op": "set_add", "state": "transport_flags", "key": "ring_of_wealth_miscellania", "fact_id": "throne-of-miscellania"},
+          {"op": "set", "state": "passive_loops", "key": "kingdom", "value": true, "fact_id": "throne-of-miscellania"},
           {"op": "ensure_min", "state": "resources", "key": "kingdom_coffer_coins", "value": 10000, "fact_id": "throne-of-miscellania"},
           {"op": "delta", "state": "items", "key": "common_non_silver_ring", "amount": -1, "fact_id": "throne-of-miscellania"}
         ],

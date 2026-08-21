@@ -157,6 +157,7 @@ class ApplyActionTests(unittest.TestCase):
         self.assertIn("Throne of Miscellania", result["next_state"]["quests_completed"])
         self.assertIn("kingdom_management_unlocked", result["next_state"]["milestones"])
         self.assertIn("ring_of_wealth_miscellania", result["next_state"]["transport_flags"])
+        self.assertTrue(result["next_state"]["passive_loops"]["kingdom"])
         self.assertEqual(10000, result["next_state"]["resources"]["kingdom_coffer_coins"])
         self.assertEqual(0, result["next_state"]["items"]["common_non_silver_ring"])
 
@@ -195,6 +196,73 @@ class ApplyActionTests(unittest.TestCase):
         self.assertEqual(1, result["next_state"]["items"]["fishbowl_helmet"])
         self.assertEqual(1, result["next_state"]["items"]["diving_apparatus"])
         self.assertEqual("variable_activity_output", result["reported_effects"][0]["type"])
+
+    def test_confirmed_recurring_collection_requires_ready_and_clears_observation(self) -> None:
+        collection = action(
+            "action:collect-birdhouses",
+            requirements={"all": [{"type": "recurring_state", "key": "birdhouses", "value": "ready"}]},
+            completion={"all": []},
+            effects=[{"op": "clear_observation", "state": "recurring_observations", "key": "birdhouses"}],
+            reported_effects=[{"type": "variable_activity_output", "description": "Player reports actual loot."}],
+            repeatable=True,
+        )
+
+        blocked = apply_action(document(collection), self.state, collection["id"])
+        self.assertEqual("not_eligible", blocked["status"])
+
+        self.state["recurring_observations"]["birdhouses"] = {
+            "state": "ready",
+            "observed_at": "2026-08-21T09:30:00-07:00",
+            "ready_at": "2026-08-21T09:30:00-07:00",
+        }
+        applied = apply_action(document(collection), self.state, collection["id"])
+        self.assertEqual("applied", applied["status"])
+        self.assertNotIn("birdhouses", applied["next_state"]["recurring_observations"])
+        self.assertIn("birdhouses", self.state["recurring_observations"])
+
+    def test_normalized_recurring_actions_never_invent_variable_outputs(self) -> None:
+        state = load_json(REPOSITORY_ROOT / "tests" / "fixtures" / "passive-loops-ready.json")
+        state["passive_loops"]["birdhouses"] = True
+        state["recurring_observations"]["birdhouses"] = {
+            "state": "ready",
+            "observed_at": "2026-08-21T09:30:00-07:00",
+            "ready_at": "2026-08-21T09:30:00-07:00",
+        }
+        birdhouses = apply_action(self.actions_document, state, "action:collect-reset-birdhouses")
+        self.assertEqual("applied", birdhouses["status"])
+        self.assertEqual(0, birdhouses["next_state"]["items"]["logs"])
+        self.assertEqual(0, birdhouses["next_state"]["items"]["low_level_birdhouse_seed"])
+        self.assertNotIn("birdhouses", birdhouses["next_state"]["recurring_observations"])
+
+        state["passive_loops"]["seaweed"] = True
+        state["recurring_observations"]["seaweed"] = {
+            "state": "ready",
+            "observed_at": "2026-08-21T09:30:00-07:00",
+            "ready_at": "2026-08-21T09:30:00-07:00",
+        }
+        seaweed = apply_action(self.actions_document, state, "action:harvest-replant-giant-seaweed")
+        self.assertEqual("applied", seaweed["status"])
+        self.assertEqual(0, seaweed["next_state"]["items"]["seaweed_spore"])
+        self.assertNotIn("giant_seaweed", seaweed["next_state"]["items"])
+        self.assertNotIn("seaweed", seaweed["next_state"]["recurring_observations"])
+
+        for loop_key, action_id in (
+            ("tears_of_guthix", "action:complete-tears-of-guthix-session"),
+            ("kingdom", "action:collect-kingdom-resources"),
+        ):
+            observed = load_json(FRESH_ACCOUNT)
+            observed["passive_loops"][loop_key] = True
+            observed["recurring_observations"][loop_key] = {
+                "state": "ready",
+                "observed_at": "2026-08-21T09:30:00-07:00",
+                "ready_at": "2026-08-21T09:30:00-07:00",
+            }
+            result = apply_action(self.actions_document, observed, action_id)
+            self.assertEqual("applied", result["status"])
+            self.assertNotIn(loop_key, result["next_state"]["recurring_observations"])
+            self.assertEqual(observed["items"], result["next_state"]["items"])
+            self.assertEqual(observed["skill_xp"], result["next_state"]["skill_xp"])
+            self.assertEqual("variable_activity_output", result["reported_effects"][0]["type"])
 
     def test_one_time_action_is_atomic_and_does_not_mutate_original(self) -> None:
         quest = action(

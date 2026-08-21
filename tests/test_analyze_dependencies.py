@@ -85,6 +85,22 @@ class AnalyzeDependenciesTests(unittest.TestCase):
         )
         self.assertEqual([child["id"] for child in preparation["children"]], alternative["branch_ids"])
 
+    def test_recurring_readiness_remains_an_external_observation(self) -> None:
+        analysis = analyze_dependency_closure(
+            self.actions_document,
+            copy.deepcopy(self.fresh_state),
+            "action:collect-reset-birdhouses",
+        )
+
+        action_node = self._action_node(analysis, "action:collect-reset-birdhouses")
+        readiness = self._predicate(action_node, "requirements", "recurring_state", "birdhouses")
+        self.assertEqual("unobserved", readiness["current_value"])
+        self.assertEqual([], readiness["producer_actions"])
+        self.assertTrue(any(entry["predicate"] == readiness["predicate"] for entry in analysis["external_inputs"]))
+        self.assertFalse(
+            any(entry["predicate"] == readiness["predicate"] for entry in analysis["missing_modeled_producers"])
+        )
+
     def test_analysis_has_no_route_or_ranking_fields(self) -> None:
         analysis = analyze_dependency_closure(
             self.actions_document,

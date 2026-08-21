@@ -163,6 +163,9 @@ def _predicate_result(predicate: dict[str, Any], state: dict[str, Any]) -> tuple
         expected = value if value is not None else True
         current = state.get("passive_loops", {}).get(key, False)
         return current is expected, f"passive loop {key} = {str(expected).lower()}"
+    if predicate_type == "recurring_state":
+        current = state.get("recurring_observations", {}).get(key, {}).get("state", "unobserved")
+        return current == value, f"recurring state {key} = {value} (current: {current})"
     if predicate_type == "notable_drop":
         return key in state.get("notable_drops", []), f"obtain notable drop: {key}"
     if predicate_type == "gear_threshold":

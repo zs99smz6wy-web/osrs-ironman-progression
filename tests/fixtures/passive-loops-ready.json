@@ -6,7 +6,7 @@
   "transport_flags": ["fossil_island"],
   "milestones": [],
   "gear_thresholds": [],
-  "items": {"hammer": 1, "chisel": 1, "logs": 4, "clockwork": 4, "low_level_birdhouse_seed": 40, "seaweed_spore": 2, "fishbowl_helmet": 1, "diving_apparatus": 1},
+  "items": {"hammer": 1, "chisel": 1, "logs": 4, "clockwork": 4, "low_level_birdhouse_seed": 40, "seaweed_spore": 2, "seed_dibber": 1, "fishbowl_helmet": 1, "diving_apparatus": 1},
   "resources": {
     "coins": 0,
     "law_runes": 0,

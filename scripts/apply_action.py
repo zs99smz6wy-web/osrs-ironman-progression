@@ -65,6 +65,8 @@ def _effect_is_satisfied(effect: dict[str, Any], state: dict[str, Any]) -> bool:
         return isinstance(state.get(state_key), list) and key in state[state_key]
     if operation == "set":
         return state.get(state_key, {}).get(key) == effect.get("value")
+    if operation == "clear_observation":
+        return key not in state.get("recurring_observations", {})
     if operation == "ensure_min":
         return state.get(state_key, {}).get(key, 0) >= effect.get("value")
     # A delta has no reconstructable target value in an imported snapshot.
@@ -95,6 +97,11 @@ def _validate_effect(effect: dict[str, Any]) -> None:
     if operation == "set":
         if state_key != "passive_loops" or not isinstance(effect.get("value"), bool):
             raise ValueError("set only supports boolean passive_loops values")
+        return
+
+    if operation == "clear_observation":
+        if state_key != "recurring_observations" or "value" in effect or "amount" in effect:
+            raise ValueError("clear_observation only supports recurring_observations without a value")
         return
 
     if operation == "delta":
@@ -134,6 +141,10 @@ def _apply_effect(effect: dict[str, Any], state: dict[str, Any]) -> None:
 
     if operation == "set":
         state[state_key][key] = effect["value"]
+        return
+
+    if operation == "clear_observation":
+        state[state_key].pop(key, None)
         return
 
 

@@ -11,7 +11,7 @@ from pathlib import Path
 REPOSITORY_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPOSITORY_ROOT / "scripts"))
 
-from evaluate_progression import evaluate_actions, load_json, validate_account_state  # noqa: E402
+from evaluate_progression import evaluate_actions, evaluate_condition, load_json, validate_account_state  # noqa: E402
 
 
 FIXTURES = Path(__file__).parent / "fixtures"
@@ -74,6 +74,7 @@ class EvaluateProgressionScenarioTests(unittest.TestCase):
         self.assert_missing(seaweed, "unlock transport: fossil_island")
         self.assert_missing(seaweed, "Farming 23 (current: 1)")
         self.assertIn("2 x seaweed_spore (current: 0)", seaweed["missing_preparation"])
+        self.assertIn("1 x seed_dibber (current: 0)", seaweed["missing_preparation"])
         self.assertIn("1 x fishbowl_helmet (current: 0)", seaweed["missing_preparation"])
         self.assertIn("1 x diving_apparatus (current: 0)", seaweed["missing_preparation"])
 
@@ -218,6 +219,23 @@ class EvaluateProgressionScenarioTests(unittest.TestCase):
         state["recurring_observations"]["birdhouses"]["ready_at"] = "not-a-timestamp"
         with self.assertRaisesRegex(ValueError, "ready_at must be RFC 3339 or null"):
             validate_account_state(state)
+
+    def test_recurring_state_predicate_uses_only_explicit_observations(self) -> None:
+        state = copy.deepcopy(load_json(FIXTURES / "fresh-account.json"))
+        condition = {"type": "recurring_state", "key": "birdhouses", "value": "ready"}
+
+        satisfied, missing = evaluate_condition(condition, state)
+        self.assertFalse(satisfied)
+        self.assertIn("current: unobserved", missing[0])
+
+        state["recurring_observations"]["birdhouses"] = {
+            "state": "ready",
+            "observed_at": "2026-08-21T09:30:00-07:00",
+            "ready_at": "2026-08-21T09:30:00-07:00",
+        }
+        satisfied, missing = evaluate_condition(condition, state)
+        self.assertTrue(satisfied)
+        self.assertEqual([], missing)
 
 
 if __name__ == "__main__":

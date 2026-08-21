@@ -176,6 +176,14 @@
     {"from": "condition:defence-60", "to": "capability:dragon-defender-offence", "type": "requires", "evidence": "Equipping the Dragon defender requires at least 60 Defence."},
     {"from": "item:damaged-dragon-defender", "to": "activity:perdu-dragon-defender-repair", "type": "requires", "evidence": "An unprotected Dragon defender surviving a death below level-20 Wilderness is unusable until repaired by Perdu."},
     {"from": "currency:coins", "to": "activity:perdu-dragon-defender-repair", "type": "requires", "evidence": "Perdu's listed repair cost for the applicable unusable Dragon defender is a fixed 240,000 coins."},
-    {"from": "activity:perdu-dragon-defender-repair", "to": "goal:dragon-defender", "type": "produces", "evidence": "Perdu's paid repair deterministically restores the applicable unusable Dragon defender."}
+    {"from": "activity:perdu-dragon-defender-repair", "to": "goal:dragon-defender", "type": "produces", "evidence": "Perdu's paid repair deterministically restores the applicable unusable Dragon defender."},
+    {"from": "state:birdhouse-loop", "to": "activity:birdhouse-collection-reset", "type": "unlocks", "evidence": "An established Fossil Island birdhouse loop enables later player-confirmed collection and reset cycles."},
+    {"from": "condition:birdhouses-observed-ready", "to": "activity:birdhouse-collection-reset", "type": "requires", "evidence": "The normalized collection action requires an explicit ready observation; approximate elapsed time alone is not treated as readiness."},
+    {"from": "state:seaweed-loop", "to": "activity:giant-seaweed-harvest-replant", "type": "unlocks", "evidence": "An established two-patch giant-seaweed loop enables later player-confirmed harvest and replant cycles."},
+    {"from": "condition:seaweed-observed-ready", "to": "activity:giant-seaweed-harvest-replant", "type": "requires", "evidence": "The normalized harvest action requires an explicit ready observation; approximate elapsed time alone is not treated as readiness."},
+    {"from": "state:tears-eligible", "to": "activity:tears-of-guthix-session", "type": "unlocks", "evidence": "A player-observed eligible Tears of Guthix state enables a confirmed session; time and progress gates are not inferred."},
+    {"from": "condition:tears-observed-ready", "to": "activity:tears-of-guthix-session", "type": "requires", "evidence": "The normalized session action requires explicit ready observation rather than calculating the seven-day and progress gates."},
+    {"from": "state:kingdom", "to": "activity:kingdom-resource-collection", "type": "unlocks", "evidence": "Managing Miscellania access enables player-confirmed resource collection."},
+    {"from": "condition:kingdom-observed-ready", "to": "activity:kingdom-resource-collection", "type": "requires", "evidence": "The normalized Kingdom collection action requires an explicit ready observation and never calculates daily output or coffer deductions."}
   ]
 }

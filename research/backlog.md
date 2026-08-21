@@ -27,18 +27,19 @@
 - Completed: verified the hard gates, fixed payouts, variable outputs, attention notes, and guide-estimate boundaries for Agility Pyramid, wealthy-citizen valuables, Giants' Foundry commissions, silk stalls, blackjacking, Sailing bounties, shipwreck salvaging, and Port Roberts stalls.
 - Completed: normalized concrete cash commitments and added a deadline-aware account-state analyzer that reports funding shortfalls without choosing a money-making method or route.
 - Completed: verified and graphed Rune axe, Zombie axe, Warped sceptre, Rune scimitar, and Dragon defender acquisition paths; random drops use `makes_obtainable`, while purchases, smithing, and repairs remain deterministic.
-- Pending: estimate expected combat time and readiness for each drop route, then score the verified economic methods and bypasses against an actual account snapshot in the strategy layer.
+- Completed: added transparent expected-kill and cumulative-drop probability inputs plus sourced encounter facts for the selected bypasses without inventing kills per hour or declaring account readiness.
+- Pending: supply an actual account combat snapshot and measured or sourced encounter throughput before estimating time, then score the verified economic methods and bypasses in the strategy layer.
 
 ## Continuing validation queue
 
 - Quest XP, item, combat, and GP requirement records for early transport and Fossil Island chains.
 - Completed: revalidated birdhouse, giant-seaweed, farming-contract, and Tears passive-loop requirements, reusable and consumed inputs, offline waiting, active interaction, recurrence gates, and fixed-versus-variable outputs.
 - Completed: added observed recurring-system readiness separately from permanent loop flags; timestamps are preserved but never advance timers, grant outputs, or infer completion.
-- Pending: normalize player-confirmed collection/reset actions for individual recurring systems after their exact state transitions and variable outputs are specified.
+- Completed: normalized player-confirmed birdhouse, giant-seaweed, Tears, and Kingdom collection/reset actions; explicit ready observations are consumed, while timers and variable rewards remain uninferred.
 - Perilous Moons and Belle's Folly: exact current hard gates, readiness thresholds, and reward utility.
 - Giants' Foundry: reward costs, Smithing/GP/resource outputs, and natural stop candidates.
 - Tempoross/Fish Barrel, Tithe Farm, Guardians of the Rift, and MTA: utility-first stop points.
-- Monster-drop bypass expected-time, combat-readiness, and opportunity-cost analysis using the now-verified acquisition facts.
+- Monster-drop bypass measured throughput and account-specific combat-readiness analysis using the now-verified encounter and probability inputs.
 - Modern Sailing: economic inputs, repeatable-activity yields, Slayer-task state, combat readiness, and strategy-layer valuation of verified utility unlocks.
 
 ## Source mix

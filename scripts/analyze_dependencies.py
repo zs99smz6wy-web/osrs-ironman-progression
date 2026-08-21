@@ -17,12 +17,13 @@ PREDICATE_STATE = {
     "gear_threshold": "gear_thresholds",
     "notable_drop": "notable_drops",
     "passive_loop": "passive_loops",
+    "recurring_state": "recurring_observations",
     "item_at_least": "items",
     "resource_at_least": "resources",
     "counter_at_least": "counters",
 }
 FLOOR_PREDICATES = {"item_at_least", "resource_at_least", "counter_at_least"}
-EXTERNAL_INPUT_PREDICATES = {"skill_at_least", "item_at_least", "resource_at_least"}
+EXTERNAL_INPUT_PREDICATES = {"skill_at_least", "item_at_least", "resource_at_least", "recurring_state"}
 
 
 def _predicate_view(predicate: dict[str, Any]) -> dict[str, Any]:
@@ -45,6 +46,8 @@ def _current_value(predicate: dict[str, Any], state: dict[str, Any]) -> Any:
         return state[PREDICATE_STATE[predicate_type]].get(key, 0)
     if predicate_type == "passive_loop":
         return state["passive_loops"].get(key, False)
+    if predicate_type == "recurring_state":
+        return state["recurring_observations"].get(key, {}).get("state", "unobserved")
     return key in state[PREDICATE_STATE[predicate_type]]
 
 

@@ -1,0 +1,230 @@
+{
+  "records": [
+    {
+      "id": "drop-bypass-readiness",
+      "name": "Drop-bypass probability and combat-readiness inputs",
+      "category": "bypass",
+      "status": "verified",
+      "verified_at": "2026-08-21",
+      "scope": "Factual access, encounter, and probability inputs for the selected bypasses. This record does not estimate kills per hour, determine account readiness, rank methods, or recommend timing.",
+      "probability_model": {
+        "assumption": "Each eligible kill is treated as an independent Bernoulli trial at the listed per-kill drop probability. The listed rates may be Wiki Drop Rate Project estimates where identified by the source, rather than Jagex-published rates.",
+        "formula": "P(at least one drop in n eligible kills) = 1 - (1 - p)^n, where p is the listed per-kill drop probability.",
+        "interpretation": "Expected kills equals 1/p and is not a guarantee. Selected kill counts are the smallest whole numbers whose calculated cumulative chance meets or exceeds the stated threshold.",
+        "thresholds": ["50 percent", "75 percent", "90 percent"]
+      },
+      "paths": [
+        {
+          "id": "tree-spirit-rune-axe-readiness",
+          "target": "Rune axe",
+          "hard_gates": [
+            "Members account.",
+            "Fairy-ring access and a dramen or lunar staff equipped unless an in-game fairy-ring exemption has been unlocked.",
+            "Travel to Enchanted Valley through fairy ring BKQ.",
+            "An axe in inventory to attempt the tree-cutting action that spawns the tree spirit. No Woodcutting level is required to trigger it."
+          ],
+          "required_combat_method": "Defeat the spawned tree spirit; no player combat style or player-level threshold is listed as a hard access requirement.",
+          "encounter": {
+            "monster": "Tree spirit",
+            "combat_level": "Scales with player combat level: 14 at player combat 3-10, 29 at 11-20, 49 at 21-40, 79 at 41-60, 120 at 61-90, and 159 at 91+.",
+            "attack_style": "Crush",
+            "attack_speed": "4 ticks (2.4 seconds)",
+            "max_hit": "2, 3, 5, 7, 11, or 14 across the six listed scaling variants.",
+            "weakness_and_defence": "35% fire elemental weakness; source describes low Magic level and says fire spells are effective. Tree spirits are not undead, so Crumble Undead and Salve amulet undead effects do not apply.",
+            "damage_avoidance_where_sourced": "The source describes safespots using plants close to the spawn trees and says ranged or magic can be used from those safespots."
+          },
+          "drop_probability": {
+            "listed_rate": "4/128 (1/32)",
+            "rate_provenance": "Wiki Drop Rate Project estimate.",
+            "expected_kills": 32,
+            "cumulative_chance_kills": {"50_percent": 22, "75_percent": 44, "90_percent": 73},
+            "chance_at_expected_kills": "63.79 percent"
+          },
+          "deterministic_outputs_and_costs": ["No item is consumed by the combat encounter itself beyond the axe needed to initiate a spawn."],
+          "variable_or_rng_outputs": ["Rune axe acquisition is RNG; the source also lists other monster drops, which are not modeled as guaranteed supplies."],
+          "time_estimate_unknowns": ["Player combat level, because it selects the tree-spirit scaling tier.", "Chosen attack style, weapon or spell, accuracy, maximum hit, and attack speed.", "Food, prayer, runes, ammunition, and use of the documented safespot.", "Spawn initiation, travel, banking, and interruption time."]
+        },
+        {
+          "id": "armoured-zombie-zombie-axe-readiness",
+          "target": "Zombie axe",
+          "hard_gates": [
+            "Access to armoured zombies in Zemouregal's Base through Defender of Varrock completion, or the distinct pre-completion quest-instance state documented by the source.",
+            "One broken zombie axe drop.",
+            "70 Smithing and an anvil to repair the broken axe; repair grants 500 Smithing XP.",
+            "65 Attack to equip the completed zombie axe."
+          ],
+          "recommendations_not_hard_gates": ["The Defender of Varrock source lists combat level 65 and 43 Prayer as recommendations for the quest, not hard requirements."],
+          "required_combat_method": "Defeat armoured zombies. No specific player attack style is listed as a hard requirement.",
+          "encounter": {
+            "monster": "Armoured zombie in Zemouregal's Base",
+            "combat_level": 85,
+            "hitpoints": 85,
+            "attack_styles": "Crush or Ranged by variant",
+            "attack_speed": "4 ticks (2.4 seconds)",
+            "max_hit": 8,
+            "defences_and_weaknesses": "Melee defence is +20 stab, +20 slash, and +0 crush; Magic defence is +0 with no elemental weakness; Ranged defence is +10 for light, standard, and heavy. The monster is undead, so Salve amulet undead bonuses apply.",
+            "encounter_context": "The source identifies a multicombat area and 41 post-quest base spawns."
+          },
+          "drop_probability": {
+            "listed_rate": "1/800",
+            "rate_provenance": "Wiki Drop Rate Project estimate.",
+            "expected_kills": 800,
+            "cumulative_chance_kills": {"50_percent": 555, "75_percent": 1109, "90_percent": 1841},
+            "chance_at_expected_kills": "63.24 percent"
+          },
+          "deterministic_outputs_and_costs": ["Repairing one broken zombie axe consumes that broken axe and produces one zombie axe."],
+          "variable_or_rng_outputs": ["Broken zombie axe acquisition is RNG. Ordinary monster drops are variable and are not treated as a funding or supply guarantee."],
+          "time_estimate_unknowns": ["Quest-completion state and chosen access state.", "Player combat levels, chosen combat style, gear, accuracy, maximum hit, and attack speed.", "Food, prayer, runes or ammunition, and multicombat interaction.", "Travel, banking, death recovery, respawn availability, and interruption time."]
+        },
+        {
+          "id": "warped-creatures-warped-sceptre-readiness",
+          "target": "Warped sceptre (uncharged)",
+          "hard_gates": [
+            "Partial completion of The Path of Glouphrie to kill warped or mutated terrorbirds and tortoises.",
+            "56 Slayer.",
+            "For warped tortoises specifically, the crystal chime must be in inventory or they are invulnerable.",
+            "62 Magic to wield the sceptre after acquisition."
+          ],
+          "required_combat_method": "Defeat an eligible warped or mutated terrorbird or tortoise. No player combat style is stated as a hard source requirement.",
+          "encounters": [
+            {
+              "monster": "Warped terrorbird",
+              "combat_levels": [96, 138],
+              "hitpoints": [150, 200],
+              "attack_styles": "Ranged and Crush",
+              "max_hits": [10, 16],
+              "attack_speed": "4 ticks (2.4 seconds)",
+              "defences_and_weaknesses": "Melee defence +50 stab, +50 slash, +0 crush; Magic defence +0 with no elemental weakness; Ranged defence +62.",
+              "other_sourced_combat_facts": "Not immune to poison, venom, cannons, or thralls."
+            },
+            {
+              "monster": "Warped tortoise",
+              "combat_level": 121,
+              "hitpoints": 200,
+              "attack_style": "Crush",
+              "max_hit": 12,
+              "attack_speed": "4 ticks (2.4 seconds)",
+              "defences_and_weaknesses": "Melee defence +50 stab, +50 slash, +0 crush; Magic defence +0 with no elemental weakness; Ranged defence +60.",
+              "damage_avoidance_where_sourced": "The source says they only attack with melee, and documents Protect from Melee or ranged/magic safespots behind pillars.",
+              "other_sourced_combat_facts": "Not immune to poison, venom, cannons, or thralls."
+            }
+          ],
+          "drop_probability": {
+            "listed_rate": "1/320 from each listed warped or mutated terrorbird or tortoise source",
+            "rate_provenance": "Jagex-confirmed rate, cited by the Wiki.",
+            "expected_kills": 320,
+            "cumulative_chance_kills": {"50_percent": 222, "75_percent": 443, "90_percent": 736},
+            "chance_at_expected_kills": "63.27 percent"
+          },
+          "deterministic_outputs_and_costs": ["The charged sceptre consumes 2 chaos runes and 5 earth runes per cast; those casting costs are separate from the acquisition drop."],
+          "variable_or_rng_outputs": ["Warped sceptre acquisition is RNG; monster-drop side outputs are variable."],
+          "time_estimate_unknowns": ["Exact chosen monster, including whether a superior variant is eligible and encountered.", "Player combat levels, chosen style, gear, accuracy, maximum hit, and attack speed.", "Crystal-chime possession when fighting warped tortoises, plus food, prayer, runes, or ammunition.", "Safespot use, travel, banking, respawn availability, and interruptions."]
+        },
+        {
+          "id": "zamorak-warrior-rune-scimitar-readiness",
+          "target": "Rune scimitar",
+          "hard_gates": ["Members account.", "Access to the Ourania Cave location with the level-84 or level-85 Zamorak warriors.", "40 Attack to equip the rune scimitar after acquisition."],
+          "required_combat_method": "Defeat Zamorak warriors. No player combat style is listed as a hard source requirement.",
+          "encounters": [
+            {
+              "monster": "Zamorak warrior",
+              "combat_levels": [84, 85],
+              "hitpoints": 45,
+              "attack_styles": "Slash at level 84; Crush at level 85",
+              "max_hit": 8,
+              "attack_speed": "4 ticks (2.4 seconds)",
+              "defences_and_weaknesses": "Melee, Magic, and Ranged defence are all +0; Magic has no elemental weakness.",
+              "other_sourced_combat_facts": "Not immune to poison, venom, cannons, or thralls; three warriors are listed at the cave location."
+            }
+          ],
+          "drop_probability": {
+            "listed_rate": "1/50",
+            "rate_provenance": "Jagex Mod Ash statement cited by the Wiki.",
+            "expected_kills": 50,
+            "cumulative_chance_kills": {"50_percent": 35, "75_percent": 69, "90_percent": 114},
+            "chance_at_expected_kills": "63.58 percent"
+          },
+          "deterministic_outputs_and_costs": ["No repair or charge cost is listed for the rune scimitar."],
+          "variable_or_rng_outputs": ["Rune scimitar acquisition is RNG; other drops are variable."],
+          "time_estimate_unknowns": ["Player combat levels, chosen style, gear, accuracy, maximum hit, and attack speed.", "Food, prayer, runes, ammunition, travel, banking, respawn availability, and interruptions."]
+        },
+        {
+          "id": "fire-giant-rune-scimitar-readiness",
+          "target": "Rune scimitar",
+          "hard_gates": ["Members account.", "Access to a chosen fire-giant location; location-specific travel or quest conditions are not universal item-source requirements.", "40 Attack to equip the rune scimitar after acquisition."],
+          "required_combat_method": "Defeat fire giants. No Slayer level or Slayer-task assignment is required.",
+          "encounter": {
+            "monster": "Fire giant base variant",
+            "combat_level": 86,
+            "hitpoints": 111,
+            "attack_style": "Slash",
+            "max_hit": 11,
+            "attack_speed": "5 ticks (3.0 seconds)",
+            "defences_and_weaknesses": "Melee defence +0 stab, +3 slash, +2 crush; Magic defence +0 with 100% water elemental weakness; Ranged defence +0. The monster has the Fiery attribute.",
+            "damage_avoidance_where_sourced": "The source describes numerous safespots at fire-giant locations, without making a safespot a requirement."
+          },
+          "drop_probability": {
+            "listed_rate": "1/128",
+            "rate_provenance": "Wiki Drop Rate Project estimate.",
+            "expected_kills": 128,
+            "cumulative_chance_kills": {"50_percent": 89, "75_percent": 177, "90_percent": 294},
+            "chance_at_expected_kills": "63.36 percent"
+          },
+          "deterministic_outputs_and_costs": ["No repair or charge cost is listed for the rune scimitar."],
+          "variable_or_rng_outputs": ["Rune scimitar acquisition is RNG; other drops are variable."],
+          "time_estimate_unknowns": ["Chosen location and its exact access, travel, spawn count, and safespot layout.", "Player combat levels, chosen style, gear, accuracy, maximum hit, and attack speed.", "Food, prayer, runes, ammunition, banking, respawn availability, and interruptions."]
+        },
+        {
+          "id": "warriors-guild-dragon-defender-readiness",
+          "target": "Dragon defender",
+          "hard_gates": [
+            "Warriors' Guild entry: combined Attack and Strength of at least 130, or 99 in either skill.",
+            "At least 100 Warrior Guild tokens carried to enter a cyclops room; entry spends 10 tokens and then 10 per minute, unless a worn level-99 Attack cape provides the documented exemption.",
+            "Obtain defenders from bronze through rune in order from top-floor cyclopes, showing each tier to Kamfreena before the next can drop.",
+            "Show the rune defender to Lorelai to permanently unlock the basement; the rune defender need not be retained after that unlock.",
+            "Fight the level-106 basement cyclopes using melee attacks.",
+            "60 Defence to equip the dragon defender after acquisition; the drop itself does not require 60 Defence."
+          ],
+          "required_combat_method": "Melee attacks against Warriors' Guild cyclopes; this is an explicit requirement of the source.",
+          "encounter": {
+            "monster": "Warriors' Guild basement cyclops",
+            "combat_level": 106,
+            "combat_stats_source_limit": "The currently registered Dragon defender and Warriors' Guild sources confirm the level-106 basement variant and melee-only requirement, but do not provide a registered dedicated cyclops-page extract for hitpoints, max hit, attack style, defences, or elemental weakness."
+          },
+          "drop_probability": {
+            "staged_rates": "Bronze through rune defenders each have a listed 1/50 chance after their predecessor has been shown to Kamfreena; dragon defender has a listed 1/100 chance in the basement.",
+            "rate_provenance": "Wiki-listed rates; no Jagex-published rate was identified in the registered sources.",
+            "expected_kills": "450 total eligible cyclops kills: 7 x 50 expected kills for bronze through rune, plus 100 for dragon.",
+            "cumulative_chance_note": "A single-rate cumulative calculation is not applicable because this is an ordered eight-stage chain. Any full-chain cumulative distribution must model seven independent geometric stages at 1/50 and one at 1/100, plus the required hand-ins and token availability."
+          },
+          "deterministic_outputs_and_costs": ["The stated token entry and per-minute costs are deterministic once time spent in the rooms is known. Showing rune defender to Lorelai permanently unlocks basement access."],
+          "variable_or_rng_outputs": ["Every defender in the chain is RNG; token needs beyond the initial entry vary with time spent and combat throughput."],
+          "time_estimate_unknowns": ["Player melee levels, weapon, gear, accuracy, maximum hit, attack speed, food, prayer, and damage taken.", "Token-generation method and its duration, plus actual cyclops-room time and therefore token consumption.", "Each staged drop result, required hand-in and re-entry actions, travel, banking, respawns, and interruptions.", "Dedicated current cyclops combat-stat source record for numeric encounter inputs."]
+        }
+      ],
+      "source_registry_gaps": [
+        "Dedicated current Wiki source record for Warriors' Guild cyclops combat statistics, attack styles, defences, and weaknesses.",
+        "Dedicated current Wiki source record for the exact access requirements of each selected Fire giant location, if a later model needs location-specific readiness."
+      ],
+      "source_ids": [
+        "wiki-enchanted-valley",
+        "wiki-tree-spirit",
+        "wiki-fairytale-ii",
+        "wiki-rune-axe",
+        "wiki-defender-varrock",
+        "wiki-armoured-zombie",
+        "wiki-zombie-axe",
+        "wiki-warped-sceptre",
+        "wiki-warped-terrorbird",
+        "wiki-warped-tortoise",
+        "wiki-path-of-glouphrie-requirements",
+        "official-summer-summit-2023",
+        "wiki-rune-scimitar",
+        "wiki-zamorak-warrior",
+        "wiki-fire-giant",
+        "wiki-warriors-guild",
+        "wiki-dragon-defender"
+      ]
+    }
+  ]
+}

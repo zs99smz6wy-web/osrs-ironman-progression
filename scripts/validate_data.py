@@ -5,7 +5,7 @@ import sys
 from datetime import date
 from pathlib import Path
 
-from evaluate_progression import validate_account_state
+from evaluate_progression import RECURRING_OBSERVATION_STATES, validate_account_state
 from score_candidates import score_candidates
 from apply_action import _validate_effect
 from osrs_xp import SKILLS
@@ -33,6 +33,7 @@ REQUIRED_ACCOUNT_STATE_KEYS = {
     "resources",
     "counters",
     "passive_loops",
+    "recurring_observations",
     "attention_window",
     "notable_drops",
     "preferences",
@@ -47,6 +48,7 @@ VALID_PREDICATE_TYPES = {
     "item_at_least",
     "counter_at_least",
     "passive_loop",
+    "recurring_state",
     "notable_drop",
     "gear_threshold",
 }
@@ -83,6 +85,8 @@ def validate_condition(condition: dict, context: str, errors: list[str]) -> None
         errors.append(f"{context} references unknown skill {condition.get('key')}")
     if predicate_type == "passive_loop" and "value" in condition and not isinstance(condition["value"], bool):
         errors.append(f"{context} passive_loop value must be boolean")
+    if predicate_type == "recurring_state" and condition.get("value") not in RECURRING_OBSERVATION_STATES:
+        errors.append(f"{context} recurring_state value is invalid")
 
 
 def load_json(path: Path) -> dict:
