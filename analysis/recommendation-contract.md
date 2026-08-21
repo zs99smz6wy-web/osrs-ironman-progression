@@ -14,6 +14,7 @@ Future route output is a recommendation for a declared account state, never a ge
 
 - The proposed action and stop condition.
 - Hard requirements currently satisfied and missing.
+- Required inventory, consumables, and setup still needing preparation.
 - Factual sources and graph relationships used.
 - Strategic rationale, including why the timing is appropriate.
 - Alternatives and bypasses, including any account-changing drops.

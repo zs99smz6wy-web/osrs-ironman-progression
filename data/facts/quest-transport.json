@@ -6,7 +6,7 @@
       "category": "quest",
       "status": "verified",
       "verified_at": "2026-08-20",
-      "requirements": {"skill_requirements": "None", "level_three_completion": true},
+      "requirements": {"skill_requirements": "None", "items": {"rope": 1, "air_runes": 6, "earth_runes": 6, "water_runes": 6}, "level_three_completion": true, "hazard": "Must withstand or evade attacks from level 86 Fire Giants and a level 84 Moss Guardian without equipment in Glarial's Tomb."},
       "rewards": {"Attack_xp": 13750, "Strength_xp": 13750, "diamonds": 2, "gold_bars": 2, "mithril_seeds": 40},
       "source_ids": ["wiki-waterfall-quest"],
       "confidence": "high"
@@ -60,7 +60,7 @@
       "category": "economy",
       "status": "verified",
       "verified_at": "2026-08-20",
-      "requirements": {"skills": {"Agility": 30, "Magic": 20}, "recommended_agility": 60, "supplies": ["waterskins or desert amulet 4", "food"]},
+      "requirements": {"skills": {"Agility": 30}, "recommended": {"Agility": 60, "Magic": 20}, "supplies": ["waterskins or desert amulet 4", "food"]},
       "outputs": {"pyramid_top_value": 10000, "Agility_xp": "per lap; rate depends on success and routing"},
       "mechanics": {"failure": "Obstacle failures are possible below 75 Agility and can deal damage.", "guaranteed_success": "At 75 Agility, obstacles cannot fail."},
       "source_ids": ["wiki-agility-pyramid"],

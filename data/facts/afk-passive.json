@@ -6,7 +6,7 @@
       "category": "afk",
       "status": "verified",
       "verified_at": "2026-08-20",
-      "requirements": {"access": "Fossil Island", "initial_setup": ["four birdhouses or logs and four clockworks", "hammer", "chisel", "seeds"], "ironman_clockwork": {"Construction": 25}},
+      "requirements": {"access": "Fossil Island", "skills": {"Crafting": 5, "Hunter": 5}, "initial_setup": ["four birdhouses or logs and four clockworks", "hammer", "chisel", "40 low-level seeds or 20 high-level seeds"], "ironman_clockwork": {"Construction": 25}},
       "outputs": ["Hunter experience", "Crafting experience", "bird nests", "seeds", "raw bird meat", "feathers"],
       "afk_profile": {"attention": "low_attention", "maturation_minutes": 50, "active_run_seconds_approx": 70, "player_present": true, "death_risk": "low with prepared route"},
       "mechanics": {"sites": 4, "clockwork": "Clockwork is returned when a birdhouse is dismantled.", "seed_consumption": "Rewards are available once seeds are fully depleted."},

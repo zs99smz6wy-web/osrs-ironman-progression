@@ -1,0 +1,223 @@
+{
+  "actions": [
+    {
+      "id": "action:waterfall-quest",
+      "name": "Complete Waterfall Quest",
+      "kind": "quest",
+      "status": "verified",
+      "fact_ids": ["waterfall-quest"],
+      "requirements": {"all": []},
+      "preparation": {
+        "all": [
+          {"type": "item_at_least", "key": "rope", "value": 1},
+          {"type": "item_at_least", "key": "air_rune", "value": 6},
+          {"type": "item_at_least", "key": "earth_rune", "value": 6},
+          {"type": "item_at_least", "key": "water_rune", "value": 6}
+        ]
+      },
+      "completion": {"all": [{"type": "quest_completed", "key": "Waterfall Quest"}]},
+      "outcomes": [{"type": "quest_completed", "key": "Waterfall Quest"}],
+      "repeatable": false
+    },
+    {
+      "id": "action:tree-gnome-village",
+      "name": "Complete Tree Gnome Village",
+      "kind": "quest",
+      "status": "verified",
+      "fact_ids": ["tree-gnome-village"],
+      "requirements": {"all": []},
+      "preparation": {"all": []},
+      "completion": {"all": [{"type": "quest_completed", "key": "Tree Gnome Village"}]},
+      "outcomes": [
+        {"type": "quest_completed", "key": "Tree Gnome Village"},
+        {"type": "transport_flag", "key": "spirit_trees"}
+      ],
+      "repeatable": false
+    },
+    {
+      "id": "action:grand-tree",
+      "name": "Complete The Grand Tree",
+      "kind": "quest",
+      "status": "verified",
+      "fact_ids": ["grand-tree"],
+      "requirements": {"all": [{"type": "skill_at_least", "key": "Agility", "value": 25}]},
+      "preparation": {"all": []},
+      "completion": {"all": [{"type": "quest_completed", "key": "The Grand Tree"}]},
+      "outcomes": [
+        {"type": "quest_completed", "key": "The Grand Tree"},
+        {"type": "transport_flag", "key": "gnome_gliders"}
+      ],
+      "repeatable": false
+    },
+    {
+      "id": "action:children-of-the-sun",
+      "name": "Complete Children of the Sun",
+      "kind": "quest",
+      "status": "verified",
+      "fact_ids": ["children-of-the-sun"],
+      "requirements": {"all": []},
+      "preparation": {"all": []},
+      "completion": {"all": [{"type": "quest_completed", "key": "Children of the Sun"}]},
+      "outcomes": [
+        {"type": "quest_completed", "key": "Children of the Sun"},
+        {"type": "transport_flag", "key": "varlamore"},
+        {"type": "transport_flag", "key": "quetzal_transport"}
+      ],
+      "repeatable": false
+    },
+    {
+      "id": "action:fairy-ring-permission",
+      "name": "Gain fairy-ring permission during Fairytale II",
+      "kind": "unlock",
+      "status": "verified",
+      "fact_ids": ["fairy-rings"],
+      "requirements": {
+        "all": [
+          {"type": "quest_completed", "key": "The Restless Ghost"},
+          {"type": "quest_completed", "key": "Priest in Peril"},
+          {"type": "quest_completed", "key": "Nature Spirit"},
+          {"type": "quest_completed", "key": "Lost City"},
+          {"type": "quest_completed", "key": "Fairytale I - Growing Pains"}
+        ]
+      },
+      "preparation": {
+        "any": [
+          {"type": "item_at_least", "key": "dramen_staff", "value": 1},
+          {"type": "item_at_least", "key": "lunar_staff", "value": 1},
+          {"type": "milestone", "key": "lumbridge_draynor_elite_diary"}
+        ]
+      },
+      "completion": {"all": [{"type": "milestone", "key": "fairytale_ii_fairy_godfather_permission"}]},
+      "outcomes": [
+        {"type": "milestone", "key": "fairytale_ii_fairy_godfather_permission"}
+      ],
+      "repeatable": false
+    },
+    {
+      "id": "action:fossil-island-access",
+      "name": "Complete Bone Voyage and unlock Fossil Island",
+      "kind": "unlock",
+      "status": "verified",
+      "fact_ids": ["fossil-island-access"],
+      "requirements": {
+        "all": [
+          {"type": "quest_completed", "key": "The Dig Site"},
+          {"type": "counter_at_least", "key": "kudos", "value": 100}
+        ]
+      },
+      "preparation": {"all": []},
+      "completion": {"all": [{"type": "transport_flag", "key": "fossil_island"}]},
+      "outcomes": [
+        {"type": "quest_completed", "key": "Bone Voyage"},
+        {"type": "transport_flag", "key": "fossil_island"}
+      ],
+      "repeatable": false
+    },
+    {
+      "id": "action:birdhouse-loop",
+      "name": "Establish birdhouse runs",
+      "kind": "passive_setup",
+      "status": "verified",
+      "fact_ids": ["birdhouse-loop"],
+      "requirements": {
+        "all": [
+          {"type": "transport_flag", "key": "fossil_island"},
+          {"type": "skill_at_least", "key": "Construction", "value": 25},
+          {"type": "skill_at_least", "key": "Crafting", "value": 5},
+          {"type": "skill_at_least", "key": "Hunter", "value": 5}
+        ]
+      },
+      "preparation": {
+        "all": [
+          {"type": "item_at_least", "key": "hammer", "value": 1},
+          {"type": "item_at_least", "key": "chisel", "value": 1},
+          {"type": "item_at_least", "key": "logs", "value": 4},
+          {"type": "item_at_least", "key": "clockwork", "value": 4},
+          {
+            "any": [
+              {"type": "item_at_least", "key": "low_level_birdhouse_seed", "value": 40},
+              {"type": "item_at_least", "key": "high_level_birdhouse_seed", "value": 20}
+            ]
+          }
+        ]
+      },
+      "completion": {"all": [{"type": "passive_loop", "key": "birdhouses", "value": true}]},
+      "outcomes": [{"type": "passive_loop", "key": "birdhouses", "value": true}],
+      "repeatable": false
+    },
+    {
+      "id": "action:giant-seaweed-loop",
+      "name": "Establish giant seaweed farming",
+      "kind": "passive_setup",
+      "status": "verified",
+      "fact_ids": ["giant-seaweed"],
+      "requirements": {
+        "all": [
+          {"type": "transport_flag", "key": "fossil_island"},
+          {"type": "skill_at_least", "key": "Farming", "value": 23}
+        ]
+      },
+      "preparation": {"all": [{"type": "item_at_least", "key": "seaweed_spore", "value": 1}]},
+      "completion": {"all": [{"type": "passive_loop", "key": "seaweed", "value": true}]},
+      "outcomes": [{"type": "passive_loop", "key": "seaweed", "value": true}],
+      "repeatable": false
+    },
+    {
+      "id": "action:wintertodt",
+      "name": "Play Wintertodt",
+      "kind": "activity",
+      "status": "verified",
+      "fact_ids": ["wintertodt-reward-cart"],
+      "requirements": {"all": [{"type": "skill_at_least", "key": "Firemaking", "value": 50}]},
+      "preparation": {"all": []},
+      "completion": {"all": []},
+      "outcomes": [],
+      "repeatable": true
+    },
+    {
+      "id": "action:tempoross",
+      "name": "Play Tempoross",
+      "kind": "activity",
+      "status": "verified",
+      "fact_ids": ["tempoross-fish-barrel"],
+      "requirements": {"all": [{"type": "skill_at_least", "key": "Fishing", "value": 35}]},
+      "preparation": {"all": []},
+      "completion": {"all": []},
+      "outcomes": [],
+      "repeatable": true
+    },
+    {
+      "id": "action:hunter-rumours-novice",
+      "name": "Complete novice Hunters' Rumours",
+      "kind": "activity",
+      "status": "verified",
+      "fact_ids": ["hunter-rumours", "children-of-the-sun"],
+      "requirements": {
+        "all": [
+          {"type": "transport_flag", "key": "varlamore"},
+          {"type": "skill_at_least", "key": "Hunter", "value": 46}
+        ]
+      },
+      "preparation": {"all": []},
+      "completion": {"all": []},
+      "outcomes": [],
+      "repeatable": true
+    },
+    {
+      "id": "action:agility-pyramid",
+      "name": "Run the Agility Pyramid",
+      "kind": "activity",
+      "status": "verified",
+      "fact_ids": ["agility-pyramid"],
+      "requirements": {
+        "all": [
+          {"type": "skill_at_least", "key": "Agility", "value": 30}
+        ]
+      },
+      "preparation": {"all": []},
+      "completion": {"all": []},
+      "outcomes": [],
+      "repeatable": true
+    }
+  ]
+}

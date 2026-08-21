@@ -1,0 +1,47 @@
+{
+  "skills": {
+    "Agility": 25,
+    "Construction": 25,
+    "Farming": 23,
+    "Firemaking": 50,
+    "Fishing": 35,
+    "Hunter": 5,
+    "Crafting": 5,
+    "Magic": 1,
+    "Runecraft": 1,
+    "Sailing": 1,
+    "Thieving": 1
+  },
+  "quests_completed": ["The Dig Site", "Bone Voyage"],
+  "completed_actions": ["action:fossil-island-access"],
+  "transport_flags": ["fossil_island"],
+  "milestones": [],
+  "gear_thresholds": [],
+  "items": {"hammer": 1, "chisel": 1, "logs": 4, "clockwork": 4, "low_level_birdhouse_seed": 40, "seaweed_spore": 1},
+  "resources": {
+    "coins": 0,
+    "law_runes": 0,
+    "nature_runes": 0,
+    "cosmic_runes": 0
+  },
+  "counters": {"kudos": 100},
+  "passive_loops": {
+    "farming": false,
+    "birdhouses": false,
+    "seaweed": false,
+    "kingdom": false,
+    "tears_of_guthix": false
+  },
+  "attention_window": {
+    "duration_minutes": 30,
+    "mode": "low_attention",
+    "player_present": true
+  },
+  "notable_drops": [],
+  "preferences": {
+    "risk_tolerance": 2,
+    "intensity_tolerance": 2,
+    "diversity_preference": 3
+  },
+  "cash_commitments": []
+}

@@ -11,7 +11,6 @@
     {"id": "activity:wintertodt", "kind": "activity", "label": "Wintertodt"},
     {"id": "activity:giants-foundry", "kind": "activity", "label": "Giants' Foundry"},
     {"id": "activity:sailing", "kind": "activity", "label": "Sailing"},
-    {"id": "item:rune-axe", "kind": "item", "label": "Rune axe"},
     {"id": "goal:fish-barrel", "kind": "reward", "label": "Fish Barrel"},
     {"id": "goal:belles-folly", "kind": "item", "label": "Belle's Folly"},
     {"id": "state:kingdom", "kind": "passive_loop", "label": "Managing Miscellania active"},

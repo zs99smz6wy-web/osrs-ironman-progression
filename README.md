@@ -19,6 +19,7 @@ This repository does **not** begin by prescribing a single linear route. It firs
 | --- | --- |
 | `data/facts/` | Source-backed facts only: requirements, rewards, rates, access, and mechanics. |
 | `data/schemas/` | JSON schemas and controlled vocabularies for factual records. |
+| `data/progression/` | Normalized, source-linked hard requirements and account outcomes. |
 | `graph/` | Dependency, alternative, bypass, and account-state graph records. |
 | `strategy/` | Explicitly subjective scoring, timing, diversity, and route-generation rules. |
 | `research/` | Source registry, validation status, and acquisition backlog. |
@@ -27,7 +28,7 @@ This repository does **not** begin by prescribing a single linear route. It firs
 
 ## Current status
 
-The initial foundation is in place with a small, validated factual seed covering transportation, Hunter Rumours, Wintertodt, Tithe Farm, Guardians of the Rift, Mage Training Arena, and Sailing/Wyrmscraig research status. It is a starting dataset, not a final route or exhaustive fact database.
+The research foundation and first executable pilot are in place. The pilot can evaluate a small verified set of quests, transport unlocks, passive loops, and activities against an account snapshot. It is a starting dataset, not a final route or exhaustive fact database.
 
 ## Validation
 
@@ -35,6 +36,8 @@ Run:
 
 ```powershell
 python scripts/validate_data.py
+python scripts/evaluate_progression.py graph/account-state.example.json
+python scripts/score_candidates.py graph/account-state.example.json
 ```
 
-The validator checks factual record shape, source references, graph endpoints, and the firewall between factual and strategic directories.
+The validator checks factual record shape, source references, normalized action links and predicates, graph endpoints, and the firewall between factual and strategic directories. The evaluator separates blocked gates, missing preparation, eligible actions, and completed actions. The scorer compares only eligible actions with a visible breakdown; neither tool generates a route.

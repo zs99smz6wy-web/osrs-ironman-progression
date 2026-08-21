@@ -2,16 +2,26 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "OSRS Ironman account state",
   "type": "object",
-  "required": ["skills", "quests_completed", "transport_flags", "gear_thresholds", "resources", "passive_loops", "attention_window", "notable_drops"],
+  "required": ["skills", "quests_completed", "completed_actions", "transport_flags", "milestones", "gear_thresholds", "items", "resources", "counters", "passive_loops", "attention_window", "notable_drops", "preferences"],
   "properties": {
     "skills": {
       "type": "object",
       "additionalProperties": {"type": "integer", "minimum": 1, "maximum": 99}
     },
     "quests_completed": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "completed_actions": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
     "transport_flags": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "milestones": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
     "gear_thresholds": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "items": {
+      "type": "object",
+      "additionalProperties": {"type": "integer", "minimum": 0}
+    },
     "resources": {
+      "type": "object",
+      "additionalProperties": {"type": "integer", "minimum": 0}
+    },
+    "counters": {
       "type": "object",
       "additionalProperties": {"type": "integer", "minimum": 0}
     },
@@ -29,6 +39,16 @@
       }
     },
     "notable_drops": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "preferences": {
+      "type": "object",
+      "required": ["risk_tolerance", "intensity_tolerance", "diversity_preference"],
+      "properties": {
+        "risk_tolerance": {"type": "integer", "minimum": 0, "maximum": 4},
+        "intensity_tolerance": {"type": "integer", "minimum": 0, "maximum": 4},
+        "diversity_preference": {"type": "integer", "minimum": 0, "maximum": 4}
+      },
+      "additionalProperties": false
+    },
     "cash_commitments": {
       "type": "array",
       "items": {

@@ -18,7 +18,7 @@ POSITIVE_DIMENSIONS = (
     "diversity",
     "afk_fit",
 )
-COST_DIMENSIONS = ("detour_cost", "burnout_risk")
+COST_DIMENSIONS = ("detour_cost", "burnout_risk", "danger_risk")
 ALL_DIMENSIONS = POSITIVE_DIMENSIONS + COST_DIMENSIONS
 
 
@@ -47,11 +47,14 @@ def _preference_adjustments(dimensions: dict[str, Any], account_state: dict[str,
     attention_mode = account_state.get("attention_window", {}).get("mode", "active")
     diversity_preference = preferences.get("diversity_preference", 0)
     intensity_tolerance = preferences.get("intensity_tolerance", 0)
+    risk_tolerance = preferences.get("risk_tolerance", 0)
 
     if not isinstance(diversity_preference, int) or not 0 <= diversity_preference <= 4:
         raise ValueError("preferences.diversity_preference must be an integer from 0 to 4")
     if not isinstance(intensity_tolerance, int) or not 0 <= intensity_tolerance <= 4:
         raise ValueError("preferences.intensity_tolerance must be an integer from 0 to 4")
+    if not isinstance(risk_tolerance, int) or not 0 <= risk_tolerance <= 4:
+        raise ValueError("preferences.risk_tolerance must be an integer from 0 to 4")
 
     afk_fit = dimensions["afk_fit"]
     attention_adjustment = {
@@ -67,6 +70,7 @@ def _preference_adjustments(dimensions: dict[str, Any], account_state: dict[str,
         "attention_window": attention_adjustment,
         "diversity_preference": (diversity_preference * dimensions["diversity"]) // 4,
         "intensity_tolerance": min(intensity_tolerance, dimensions["burnout_risk"]),
+        "risk_tolerance": min(risk_tolerance, dimensions["danger_risk"]),
     }
 
 
@@ -96,7 +100,7 @@ def score_candidates(
         dimensions = annotation["dimensions"]
         dimension_breakdown = _score_dimension_breakdown(dimensions)
         adjustments = _preference_adjustments(dimensions, account_state)
-        base_score = sum(dimension_breakdown.values())
+        base_score = sum(value for key, value in dimension_breakdown.items() if key != "afk_fit")
         total_score = base_score + sum(adjustments.values())
         evaluated_action = eligible[action_id]
         ranked.append(
@@ -122,10 +126,11 @@ def _result_document(
     ranked = score_candidates(candidates_document, actions_document, account_state)
     return {
         "formula": {
-            "base_score": "sum(lifetime_utility, content_unlock, economic_infrastructure, multi_output, diversity, afk_fit) - detour_cost - burnout_risk",
+            "base_score": "sum(lifetime_utility, content_unlock, economic_infrastructure, multi_output, diversity) - detour_cost - burnout_risk - danger_risk; afk_fit is applied only by attention_window",
             "attention_window": "true_afk adds afk_fit; low_attention adds floor(afk_fit / 2); semi_afk and active add 0",
             "diversity_preference": "floor(preferences.diversity_preference * diversity / 4)",
             "intensity_tolerance": "min(preferences.intensity_tolerance, burnout_risk), reducing the practical penalty of a tolerated repetitive activity",
+            "risk_tolerance": "min(preferences.risk_tolerance, danger_risk), reducing the practical penalty of danger the player explicitly accepts",
         },
         "ranked_eligible_candidates": ranked,
     }

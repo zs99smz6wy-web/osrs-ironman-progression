@@ -1,11 +1,16 @@
 {
   "skills": {"Agility": 1, "Construction": 1, "Farming": 1, "Firemaking": 1, "Fishing": 1, "Hunter": 1, "Magic": 1, "Runecraft": 1, "Sailing": 1, "Thieving": 1},
   "quests_completed": [],
+  "completed_actions": [],
   "transport_flags": [],
+  "milestones": [],
   "gear_thresholds": [],
+  "items": {},
   "resources": {"coins": 0, "law_runes": 0, "nature_runes": 0, "cosmic_runes": 0},
+  "counters": {"kudos": 0},
   "passive_loops": {"farming": false, "birdhouses": false, "seaweed": false, "kingdom": false, "tears_of_guthix": false},
   "attention_window": {"duration_minutes": 30, "mode": "low_attention", "player_present": true},
   "notable_drops": [],
+  "preferences": {"risk_tolerance": 2, "intensity_tolerance": 2, "diversity_preference": 3},
   "cash_commitments": []
 }
