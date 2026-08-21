@@ -55,10 +55,37 @@
         "value": {"type": "boolean"}
       },
       "additionalProperties": false
+    },
+    "effect": {
+      "oneOf": [
+        {"type": "object", "required": ["op", "state", "key", "fact_id"], "properties": {"op": {"const": "set_add"}, "state": {"enum": ["quests_completed", "transport_flags", "milestones", "gear_thresholds", "notable_drops"]}, "key": {"type": "string", "minLength": 1}, "fact_id": {"type": "string", "minLength": 1}}, "additionalProperties": false},
+        {"type": "object", "required": ["op", "state", "key", "value", "fact_id"], "properties": {"op": {"const": "set"}, "state": {"const": "passive_loops"}, "key": {"type": "string", "minLength": 1}, "value": {"type": "boolean"}, "fact_id": {"type": "string", "minLength": 1}}, "additionalProperties": false},
+        {"type": "object", "required": ["op", "state", "key", "amount", "fact_id"], "properties": {"op": {"const": "delta"}, "state": {"enum": ["items", "resources", "counters"]}, "key": {"type": "string", "minLength": 1}, "amount": {"type": "integer", "not": {"const": 0}}, "fact_id": {"type": "string", "minLength": 1}}, "additionalProperties": false},
+        {"type": "object", "required": ["op", "state", "key", "value", "fact_id"], "properties": {"op": {"const": "ensure_min"}, "state": {"enum": ["items", "resources", "counters"]}, "key": {"type": "string", "minLength": 1}, "value": {"type": "integer", "minimum": 0}, "fact_id": {"type": "string", "minLength": 1}}, "additionalProperties": false}
+      ]
+    },
+    "reportedEffect": {
+      "type": "object",
+      "required": ["type", "fact_id"],
+      "properties": {"type": {"enum": ["xp_award", "xp_choice_award", "claimable_reward", "recorded_progress", "variable_activity_output"]}, "skill": {"type": "string", "minLength": 1}, "amount": {"type": "integer", "minimum": 0}, "description": {"type": "string", "minLength": 1}, "fact_id": {"type": "string", "minLength": 1}},
+      "allOf": [{"if": {"properties": {"type": {"const": "xp_award"}}}, "then": {"required": ["skill", "amount"]}}],
+      "additionalProperties": false
+    },
+    "option": {
+      "type": "object",
+      "required": ["id", "requires", "effects", "reported_effects"],
+      "properties": {"id": {"type": "string", "minLength": 1}, "requires": {"$ref": "#/$defs/condition"}, "effects": {"type": "array", "items": {"$ref": "#/$defs/effect"}}, "reported_effects": {"type": "array", "items": {"$ref": "#/$defs/reportedEffect"}}},
+      "additionalProperties": false
+    },
+    "transition": {
+      "type": "object",
+      "required": ["effects", "options", "reported_effects"],
+      "properties": {"effects": {"type": "array", "items": {"$ref": "#/$defs/effect"}}, "options": {"type": "array", "items": {"$ref": "#/$defs/option"}, "uniqueItems": true}, "reported_effects": {"type": "array", "items": {"$ref": "#/$defs/reportedEffect"}}},
+      "additionalProperties": false
     }
   },
   "type": "object",
-  "required": ["id", "name", "kind", "status", "fact_ids", "requirements", "preparation", "completion", "outcomes", "repeatable"],
+  "required": ["id", "name", "kind", "status", "fact_ids", "requirements", "preparation", "completion", "outcomes", "repeatable", "transition"],
   "properties": {
     "id": {"type": "string", "pattern": "^action:"},
     "name": {"type": "string", "minLength": 1},
@@ -69,7 +96,8 @@
     "preparation": {"$ref": "#/$defs/condition"},
     "completion": {"$ref": "#/$defs/condition"},
     "outcomes": {"type": "array", "items": {"$ref": "#/$defs/outcome"}},
-    "repeatable": {"type": "boolean"}
+    "repeatable": {"type": "boolean"},
+    "transition": {"$ref": "#/$defs/transition"}
   },
   "additionalProperties": false
 }

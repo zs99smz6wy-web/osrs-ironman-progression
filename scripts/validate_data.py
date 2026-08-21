@@ -7,6 +7,7 @@ from pathlib import Path
 
 from evaluate_progression import validate_account_state
 from score_candidates import score_candidates
+from apply_action import _validate_effect
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -48,7 +49,7 @@ VALID_PREDICATE_TYPES = {
 VALID_OUTCOME_TYPES = {"quest_completed", "transport_flag", "milestone", "passive_loop"}
 VALID_EDGE_TYPES = {"requires", "unlocks", "makes_obtainable", "alternative", "bypass", "produces", "improves"}
 VALID_ACTION_KINDS = {"quest", "unlock", "activity", "passive_setup"}
-REQUIRED_ACTION_KEYS = {"id", "name", "kind", "status", "fact_ids", "requirements", "preparation", "completion", "outcomes", "repeatable"}
+REQUIRED_ACTION_KEYS = {"id", "name", "kind", "status", "fact_ids", "requirements", "preparation", "completion", "outcomes", "transition", "repeatable"}
 SKILLS = {
     "Agility", "Attack", "Construction", "Cooking", "Crafting", "Defence", "Farming",
     "Firemaking", "Fishing", "Fletching", "Herblore", "Hitpoints", "Hunter", "Magic",
@@ -196,6 +197,48 @@ def main() -> int:
                     errors.append(f"{action_id} outcome has unexpected keys")
                 if outcome["type"] == "passive_loop" and "value" in outcome and not isinstance(outcome["value"], bool):
                     errors.append(f"{action_id} passive_loop outcome value must be boolean")
+
+        transition = action.get("transition")
+        if not isinstance(transition, dict) or set(transition) != {"effects", "options", "reported_effects"}:
+            errors.append(f"{action_id} has invalid transition wrapper")
+        else:
+            option_ids: set[str] = set()
+            effect_groups = [("transition", transition.get("effects", []))]
+            for option in transition.get("options", []):
+                option_id = option.get("id") if isinstance(option, dict) else None
+                if not isinstance(option_id, str) or not option_id or option_id in option_ids:
+                    errors.append(f"{action_id} has invalid or duplicate transition option")
+                    continue
+                option_ids.add(option_id)
+                option_requires = option.get("requires")
+                if not isinstance(option_requires, dict):
+                    errors.append(f"{action_id}.{option_id} has invalid requirements")
+                else:
+                    validate_condition(option_requires, f"{action_id}.{option_id}.requires", errors)
+                effect_groups.append((option_id, option.get("effects", [])))
+                if not isinstance(option.get("reported_effects"), list):
+                    errors.append(f"{action_id}.{option_id} reported_effects must be an array")
+            for group_name, effects in effect_groups:
+                if not isinstance(effects, list):
+                    errors.append(f"{action_id}.{group_name} effects must be an array")
+                    continue
+                for effect in effects:
+                    try:
+                        _validate_effect(effect)
+                    except ValueError as exc:
+                        errors.append(f"{action_id}.{group_name}: {exc}")
+                        continue
+                    if effect.get("fact_id") not in linked_facts:
+                        errors.append(f"{action_id}.{group_name} effect cites unlinked fact {effect.get('fact_id')}")
+            reports = transition.get("reported_effects")
+            if not isinstance(reports, list):
+                errors.append(f"{action_id} reported_effects must be an array")
+            else:
+                for report in reports:
+                    if not isinstance(report, dict) or not isinstance(report.get("type"), str):
+                        errors.append(f"{action_id} has invalid reported effect")
+                    elif report.get("fact_id") not in linked_facts:
+                        errors.append(f"{action_id} reported effect cites unlinked fact {report.get('fact_id')}")
 
     for completed_action in account_state.get("completed_actions", []):
         if completed_action not in action_ids:

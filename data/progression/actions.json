@@ -17,7 +17,8 @@
       },
       "completion": {"all": [{"type": "quest_completed", "key": "Waterfall Quest"}]},
       "outcomes": [{"type": "quest_completed", "key": "Waterfall Quest"}],
-      "repeatable": false
+      "repeatable": false,
+      "transition": {"effects": [{"op": "set_add", "state": "quests_completed", "key": "Waterfall Quest", "fact_id": "waterfall-quest"}, {"op": "delta", "state": "items", "key": "diamond", "amount": 2, "fact_id": "waterfall-quest"}, {"op": "delta", "state": "items", "key": "gold_bar", "amount": 2, "fact_id": "waterfall-quest"}, {"op": "delta", "state": "items", "key": "mithril_seed", "amount": 40, "fact_id": "waterfall-quest"}], "options": [], "reported_effects": [{"type": "xp_award", "skill": "Attack", "amount": 13750, "fact_id": "waterfall-quest"}, {"type": "xp_award", "skill": "Strength", "amount": 13750, "fact_id": "waterfall-quest"}]}
     },
     {
       "id": "action:tree-gnome-village",
@@ -32,7 +33,8 @@
         {"type": "quest_completed", "key": "Tree Gnome Village"},
         {"type": "transport_flag", "key": "spirit_trees"}
       ],
-      "repeatable": false
+      "repeatable": false,
+      "transition": {"effects": [{"op": "set_add", "state": "quests_completed", "key": "Tree Gnome Village", "fact_id": "tree-gnome-village"}, {"op": "set_add", "state": "transport_flags", "key": "spirit_trees", "fact_id": "tree-gnome-village"}], "options": [], "reported_effects": [{"type": "xp_award", "skill": "Attack", "amount": 11450, "fact_id": "tree-gnome-village"}]}
     },
     {
       "id": "action:grand-tree",
@@ -47,7 +49,8 @@
         {"type": "quest_completed", "key": "The Grand Tree"},
         {"type": "transport_flag", "key": "gnome_gliders"}
       ],
-      "repeatable": false
+      "repeatable": false,
+      "transition": {"effects": [{"op": "set_add", "state": "quests_completed", "key": "The Grand Tree", "fact_id": "grand-tree"}, {"op": "set_add", "state": "transport_flags", "key": "gnome_gliders", "fact_id": "grand-tree"}], "options": [], "reported_effects": [{"type": "xp_award", "skill": "Attack", "amount": 18400, "fact_id": "grand-tree"}, {"type": "xp_award", "skill": "Agility", "amount": 7900, "fact_id": "grand-tree"}, {"type": "xp_award", "skill": "Magic", "amount": 2150, "fact_id": "grand-tree"}]}
     },
     {
       "id": "action:children-of-the-sun",
@@ -63,7 +66,164 @@
         {"type": "transport_flag", "key": "varlamore"},
         {"type": "transport_flag", "key": "quetzal_transport"}
       ],
-      "repeatable": false
+      "repeatable": false,
+      "transition": {"effects": [{"op": "set_add", "state": "quests_completed", "key": "Children of the Sun", "fact_id": "children-of-the-sun"}, {"op": "set_add", "state": "transport_flags", "key": "varlamore", "fact_id": "children-of-the-sun"}, {"op": "set_add", "state": "transport_flags", "key": "quetzal_transport", "fact_id": "children-of-the-sun"}], "options": [], "reported_effects": []}
+    },
+    {
+      "id": "action:the-restless-ghost",
+      "name": "Complete The Restless Ghost",
+      "kind": "quest",
+      "status": "verified",
+      "fact_ids": ["the-restless-ghost"],
+      "requirements": {"all": []},
+      "preparation": {"all": []},
+      "completion": {"all": [{"type": "quest_completed", "key": "The Restless Ghost"}]},
+      "outcomes": [{"type": "quest_completed", "key": "The Restless Ghost"}],
+      "repeatable": false,
+      "transition": {
+        "effects": [
+          {"op": "set_add", "state": "quests_completed", "key": "The Restless Ghost", "fact_id": "the-restless-ghost"},
+          {"op": "ensure_min", "state": "items", "key": "ghostspeak_amulet", "value": 1, "fact_id": "the-restless-ghost"}
+        ],
+        "options": [],
+        "reported_effects": [{"type": "xp_award", "skill": "Prayer", "amount": 1125, "fact_id": "the-restless-ghost"}]
+      }
+    },
+    {
+      "id": "action:priest-in-peril",
+      "name": "Complete Priest in Peril",
+      "kind": "quest",
+      "status": "verified",
+      "fact_ids": ["priest-in-peril"],
+      "requirements": {"all": []},
+      "preparation": {
+        "all": [
+          {"type": "item_at_least", "key": "bucket", "value": 1},
+          {"any": [{"type": "item_at_least", "key": "rune_essence", "value": 50}, {"type": "item_at_least", "key": "pure_essence", "value": 50}]}
+        ]
+      },
+      "completion": {"all": [{"type": "quest_completed", "key": "Priest in Peril"}]},
+      "outcomes": [{"type": "quest_completed", "key": "Priest in Peril"}, {"type": "transport_flag", "key": "morytania"}],
+      "repeatable": false,
+      "transition": {
+        "effects": [
+          {"op": "set_add", "state": "quests_completed", "key": "Priest in Peril", "fact_id": "priest-in-peril"},
+          {"op": "set_add", "state": "transport_flags", "key": "morytania", "fact_id": "priest-in-peril"},
+          {"op": "ensure_min", "state": "items", "key": "wolfbane", "value": 1, "fact_id": "priest-in-peril"}
+        ],
+        "options": [
+          {"id": "rune-essence", "requires": {"all": [{"type": "item_at_least", "key": "rune_essence", "value": 50}]}, "effects": [{"op": "delta", "state": "items", "key": "rune_essence", "amount": -50, "fact_id": "priest-in-peril"}], "reported_effects": []},
+          {"id": "pure-essence", "requires": {"all": [{"type": "item_at_least", "key": "pure_essence", "value": 50}]}, "effects": [{"op": "delta", "state": "items", "key": "pure_essence", "amount": -50, "fact_id": "priest-in-peril"}], "reported_effects": []}
+        ],
+        "reported_effects": [{"type": "xp_award", "skill": "Prayer", "amount": 1406, "fact_id": "priest-in-peril"}]
+      }
+    },
+    {
+      "id": "action:nature-spirit",
+      "name": "Complete Nature Spirit",
+      "kind": "quest",
+      "status": "verified",
+      "fact_ids": ["nature-spirit"],
+      "requirements": {"all": [{"type": "quest_completed", "key": "The Restless Ghost"}, {"type": "quest_completed", "key": "Priest in Peril"}]},
+      "preparation": {"all": [{"type": "item_at_least", "key": "ghostspeak_amulet", "value": 1}, {"type": "item_at_least", "key": "silver_sickle", "value": 1}]},
+      "completion": {"all": [{"type": "quest_completed", "key": "Nature Spirit"}]},
+      "outcomes": [{"type": "quest_completed", "key": "Nature Spirit"}, {"type": "milestone", "key": "nature_spirit_utility"}],
+      "repeatable": false,
+      "transition": {
+        "effects": [
+          {"op": "set_add", "state": "quests_completed", "key": "Nature Spirit", "fact_id": "nature-spirit"},
+          {"op": "set_add", "state": "milestones", "key": "nature_spirit_utility", "fact_id": "nature-spirit"},
+          {"op": "delta", "state": "items", "key": "silver_sickle", "amount": -1, "fact_id": "nature-spirit"},
+          {"op": "ensure_min", "state": "items", "key": "silver_sickle_b", "value": 1, "fact_id": "nature-spirit"},
+          {"op": "ensure_min", "state": "items", "key": "druid_pouch", "value": 1, "fact_id": "nature-spirit"}
+        ],
+        "options": [],
+        "reported_effects": [
+          {"type": "xp_award", "skill": "Crafting", "amount": 3000, "fact_id": "nature-spirit"},
+          {"type": "xp_award", "skill": "Defence", "amount": 2000, "fact_id": "nature-spirit"},
+          {"type": "xp_award", "skill": "Hitpoints", "amount": 2000, "fact_id": "nature-spirit"}
+        ]
+      }
+    },
+    {
+      "id": "action:lost-city",
+      "name": "Complete Lost City",
+      "kind": "quest",
+      "status": "verified",
+      "fact_ids": ["lost-city"],
+      "requirements": {"all": [{"type": "skill_at_least", "key": "Crafting", "value": 31}, {"type": "skill_at_least", "key": "Woodcutting", "value": 36}]},
+      "preparation": {"all": [{"type": "item_at_least", "key": "axe", "value": 1}, {"type": "item_at_least", "key": "knife", "value": 1}]},
+      "completion": {"all": [{"type": "quest_completed", "key": "Lost City"}]},
+      "outcomes": [{"type": "quest_completed", "key": "Lost City"}, {"type": "transport_flag", "key": "zanaris"}],
+      "repeatable": false,
+      "transition": {
+        "effects": [
+          {"op": "set_add", "state": "quests_completed", "key": "Lost City", "fact_id": "lost-city"},
+          {"op": "set_add", "state": "transport_flags", "key": "zanaris", "fact_id": "lost-city"},
+          {"op": "ensure_min", "state": "items", "key": "dramen_staff", "value": 1, "fact_id": "lost-city"}
+        ],
+        "options": [],
+        "reported_effects": []
+      }
+    },
+    {
+      "id": "action:fairytale-i-growing-pains",
+      "name": "Complete Fairytale I - Growing Pains",
+      "kind": "quest",
+      "status": "verified",
+      "fact_ids": ["fairytale-i-growing-pains"],
+      "requirements": {"all": [{"type": "quest_completed", "key": "Lost City"}, {"type": "quest_completed", "key": "Nature Spirit"}]},
+      "preparation": {"all": [{"type": "item_at_least", "key": "secateurs", "value": 1}, {"type": "item_at_least", "key": "spade", "value": 1}, {"type": "item_at_least", "key": "ghostspeak_amulet", "value": 1}, {"type": "item_at_least", "key": "dramen_staff", "value": 1}, {"type": "milestone", "key": "fairytale_i_materials_ready"}]},
+      "completion": {"all": [{"type": "quest_completed", "key": "Fairytale I - Growing Pains"}]},
+      "outcomes": [{"type": "quest_completed", "key": "Fairytale I - Growing Pains"}],
+      "repeatable": false,
+      "transition": {
+        "effects": [
+          {"op": "set_add", "state": "quests_completed", "key": "Fairytale I - Growing Pains", "fact_id": "fairytale-i-growing-pains"},
+          {"op": "ensure_min", "state": "items", "key": "magic_secateurs", "value": 1, "fact_id": "fairytale-i-growing-pains"}
+        ],
+        "options": [],
+        "reported_effects": [
+          {"type": "xp_award", "skill": "Farming", "amount": 3500, "fact_id": "fairytale-i-growing-pains"},
+          {"type": "xp_award", "skill": "Attack", "amount": 2000, "fact_id": "fairytale-i-growing-pains"},
+          {"type": "xp_award", "skill": "Magic", "amount": 1000, "fact_id": "fairytale-i-growing-pains"},
+          {"type": "recorded_progress", "description": "The account-specific three-item blessing input is confirmed ready but not automatically consumed because the selected materials are not represented individually.", "fact_id": "fairytale-i-growing-pains"}
+        ]
+      }
+    },
+    {
+      "id": "action:the-dig-site",
+      "name": "Complete The Dig Site",
+      "kind": "quest",
+      "status": "verified",
+      "fact_ids": ["the-dig-site"],
+      "requirements": {"all": [{"type": "skill_at_least", "key": "Agility", "value": 10}, {"type": "skill_at_least", "key": "Herblore", "value": 10}, {"type": "skill_at_least", "key": "Thieving", "value": 25}]},
+      "preparation": {"all": [{"type": "item_at_least", "key": "vial", "value": 1}, {"type": "item_at_least", "key": "pestle_and_mortar", "value": 1}, {"type": "item_at_least", "key": "tinderbox", "value": 1}, {"type": "item_at_least", "key": "cup_of_tea", "value": 1}, {"type": "item_at_least", "key": "rope", "value": 2}, {"type": "item_at_least", "key": "opal", "value": 1}, {"type": "item_at_least", "key": "charcoal", "value": 1}]},
+      "completion": {"all": [{"type": "quest_completed", "key": "The Dig Site"}]},
+      "outcomes": [{"type": "quest_completed", "key": "The Dig Site"}],
+      "repeatable": false,
+      "transition": {
+        "effects": [{"op": "set_add", "state": "quests_completed", "key": "The Dig Site", "fact_id": "the-dig-site"}, {"op": "delta", "state": "items", "key": "gold_bar", "amount": 2, "fact_id": "the-dig-site"}],
+        "options": [],
+        "reported_effects": [{"type": "xp_award", "skill": "Mining", "amount": 15300, "fact_id": "the-dig-site"}, {"type": "xp_award", "skill": "Herblore", "amount": 2000, "fact_id": "the-dig-site"}]
+      }
+    },
+    {
+      "id": "action:museum-kudos-100",
+      "name": "Reach 100 Museum Kudos",
+      "kind": "unlock",
+      "status": "verified",
+      "fact_ids": ["museum-kudos-100", "the-dig-site"],
+      "requirements": {"all": [{"type": "quest_completed", "key": "The Dig Site"}]},
+      "preparation": {"all": []},
+      "completion": {"all": [{"type": "counter_at_least", "key": "kudos", "value": 100}]},
+      "outcomes": [],
+      "repeatable": false,
+      "transition": {
+        "effects": [{"op": "ensure_min", "state": "counters", "key": "kudos", "value": 100, "fact_id": "museum-kudos-100"}],
+        "options": [],
+        "reported_effects": [{"type": "recorded_progress", "description": "The player completes a chosen combination of verified Museum contributions; the engine records only the resulting permanent 100-Kudos floor.", "fact_id": "museum-kudos-100"}]
+      }
     },
     {
       "id": "action:fairy-ring-permission",
@@ -71,15 +231,7 @@
       "kind": "unlock",
       "status": "verified",
       "fact_ids": ["fairy-rings"],
-      "requirements": {
-        "all": [
-          {"type": "quest_completed", "key": "The Restless Ghost"},
-          {"type": "quest_completed", "key": "Priest in Peril"},
-          {"type": "quest_completed", "key": "Nature Spirit"},
-          {"type": "quest_completed", "key": "Lost City"},
-          {"type": "quest_completed", "key": "Fairytale I - Growing Pains"}
-        ]
-      },
+      "requirements": {"all": [{"type": "quest_completed", "key": "Fairytale I - Growing Pains"}]},
       "preparation": {
         "any": [
           {"type": "item_at_least", "key": "dramen_staff", "value": 1},
@@ -91,27 +243,29 @@
       "outcomes": [
         {"type": "milestone", "key": "fairytale_ii_fairy_godfather_permission"}
       ],
-      "repeatable": false
+      "repeatable": false,
+      "transition": {"effects": [{"op": "set_add", "state": "milestones", "key": "fairytale_ii_fairy_godfather_permission", "fact_id": "fairy-rings"}], "options": [], "reported_effects": []}
     },
     {
       "id": "action:fossil-island-access",
       "name": "Complete Bone Voyage and unlock Fossil Island",
-      "kind": "unlock",
+      "kind": "quest",
       "status": "verified",
-      "fact_ids": ["fossil-island-access"],
+      "fact_ids": ["bone-voyage"],
       "requirements": {
         "all": [
           {"type": "quest_completed", "key": "The Dig Site"},
           {"type": "counter_at_least", "key": "kudos", "value": 100}
         ]
       },
-      "preparation": {"all": []},
-      "completion": {"all": [{"type": "transport_flag", "key": "fossil_island"}]},
+      "preparation": {"all": [{"type": "item_at_least", "key": "vodka", "value": 2}, {"type": "item_at_least", "key": "unfinished_marrentill_potion", "value": 1}]},
+      "completion": {"all": [{"type": "quest_completed", "key": "Bone Voyage"}]},
       "outcomes": [
         {"type": "quest_completed", "key": "Bone Voyage"},
         {"type": "transport_flag", "key": "fossil_island"}
       ],
-      "repeatable": false
+      "repeatable": false,
+      "transition": {"effects": [{"op": "set_add", "state": "quests_completed", "key": "Bone Voyage", "fact_id": "bone-voyage"}, {"op": "set_add", "state": "transport_flags", "key": "fossil_island", "fact_id": "bone-voyage"}, {"op": "delta", "state": "items", "key": "vodka", "amount": -2, "fact_id": "bone-voyage"}, {"op": "delta", "state": "items", "key": "unfinished_marrentill_potion", "amount": -1, "fact_id": "bone-voyage"}, {"op": "delta", "state": "counters", "key": "kudos", "amount": 5, "fact_id": "bone-voyage"}, {"op": "ensure_min", "state": "items", "key": "fossil_island_notebook", "value": 1, "fact_id": "bone-voyage"}], "options": [], "reported_effects": [{"type": "xp_choice_award", "description": "One 1,000-XP lamp for a skill at least level 20; player choice is not simulated.", "amount": 1000, "fact_id": "bone-voyage"}]}
     },
     {
       "id": "action:birdhouse-loop",
@@ -122,7 +276,6 @@
       "requirements": {
         "all": [
           {"type": "transport_flag", "key": "fossil_island"},
-          {"type": "skill_at_least", "key": "Construction", "value": 25},
           {"type": "skill_at_least", "key": "Crafting", "value": 5},
           {"type": "skill_at_least", "key": "Hunter", "value": 5}
         ]
@@ -132,18 +285,13 @@
           {"type": "item_at_least", "key": "hammer", "value": 1},
           {"type": "item_at_least", "key": "chisel", "value": 1},
           {"type": "item_at_least", "key": "logs", "value": 4},
-          {"type": "item_at_least", "key": "clockwork", "value": 4},
-          {
-            "any": [
-              {"type": "item_at_least", "key": "low_level_birdhouse_seed", "value": 40},
-              {"type": "item_at_least", "key": "high_level_birdhouse_seed", "value": 20}
-            ]
-          }
+          {"type": "item_at_least", "key": "clockwork", "value": 4}
         ]
       },
       "completion": {"all": [{"type": "passive_loop", "key": "birdhouses", "value": true}]},
       "outcomes": [{"type": "passive_loop", "key": "birdhouses", "value": true}],
-      "repeatable": false
+      "repeatable": false,
+      "transition": {"effects": [{"op": "set", "state": "passive_loops", "key": "birdhouses", "value": true, "fact_id": "birdhouse-loop"}, {"op": "delta", "state": "items", "key": "logs", "amount": -4, "fact_id": "birdhouse-loop"}], "options": [{"id": "low-level-seeds", "requires": {"all": [{"type": "item_at_least", "key": "low_level_birdhouse_seed", "value": 40}]}, "effects": [{"op": "delta", "state": "items", "key": "low_level_birdhouse_seed", "amount": -40, "fact_id": "birdhouse-loop"}], "reported_effects": []}, {"id": "high-level-seeds", "requires": {"all": [{"type": "item_at_least", "key": "high_level_birdhouse_seed", "value": 20}]}, "effects": [{"op": "delta", "state": "items", "key": "high_level_birdhouse_seed", "amount": -20, "fact_id": "birdhouse-loop"}], "reported_effects": []}], "reported_effects": [{"type": "variable_activity_output", "description": "Completed runs return clockworks and have variable nests, seeds, rings, and Hunter experience by birdhouse tier.", "fact_id": "birdhouse-loop"}]}
     },
     {
       "id": "action:giant-seaweed-loop",
@@ -160,7 +308,8 @@
       "preparation": {"all": [{"type": "item_at_least", "key": "seaweed_spore", "value": 1}]},
       "completion": {"all": [{"type": "passive_loop", "key": "seaweed", "value": true}]},
       "outcomes": [{"type": "passive_loop", "key": "seaweed", "value": true}],
-      "repeatable": false
+      "repeatable": false,
+      "transition": {"effects": [{"op": "set", "state": "passive_loops", "key": "seaweed", "value": true, "fact_id": "giant-seaweed"}, {"op": "delta", "state": "items", "key": "seaweed_spore", "amount": -1, "fact_id": "giant-seaweed"}], "options": [], "reported_effects": [{"type": "variable_activity_output", "description": "Harvest quantity and resulting soda ash are variable; no experience or inventory state is assumed.", "fact_id": "giant-seaweed"}]}
     },
     {
       "id": "action:wintertodt",
@@ -172,7 +321,8 @@
       "preparation": {"all": []},
       "completion": {"all": []},
       "outcomes": [],
-      "repeatable": true
+      "repeatable": true,
+      "transition": {"effects": [], "options": [], "reported_effects": [{"type": "variable_activity_output", "description": "Reward-cart contents and experience depend on participation and account state; no completion or reward is assumed.", "fact_id": "wintertodt-reward-cart"}]}
     },
     {
       "id": "action:tempoross",
@@ -184,7 +334,8 @@
       "preparation": {"all": []},
       "completion": {"all": []},
       "outcomes": [],
-      "repeatable": true
+      "repeatable": true,
+      "transition": {"effects": [], "options": [], "reported_effects": [{"type": "variable_activity_output", "description": "Reward permits, experience, fish, and the Fish Barrel roll remain variable and are not applied as guaranteed state.", "fact_id": "tempoross-fish-barrel"}]}
     },
     {
       "id": "action:hunter-rumours-novice",
@@ -201,7 +352,8 @@
       "preparation": {"all": []},
       "completion": {"all": []},
       "outcomes": [],
-      "repeatable": true
+      "repeatable": true,
+      "transition": {"effects": [], "options": [], "reported_effects": [{"type": "variable_activity_output", "description": "Assigned rumours, supplies, experience, and reward outcomes vary by task and are not assumed.", "fact_id": "hunter-rumours"}]}
     },
     {
       "id": "action:agility-pyramid",
@@ -217,7 +369,8 @@
       "preparation": {"all": []},
       "completion": {"all": []},
       "outcomes": [],
-      "repeatable": true
+      "repeatable": true,
+      "transition": {"effects": [], "options": [], "reported_effects": [{"type": "variable_activity_output", "description": "Course success, experience, and GP per visit vary and are not applied as guaranteed account state.", "fact_id": "agility-pyramid"}]}
     }
   ]
 }

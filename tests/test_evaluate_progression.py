@@ -67,7 +67,8 @@ class EvaluateProgressionScenarioTests(unittest.TestCase):
 
         self.assertEqual("blocked", birdhouses["status"])
         self.assert_missing(birdhouses, "unlock transport: fossil_island")
-        self.assert_missing(birdhouses, "Construction 25 (current: 1)")
+        self.assert_missing(birdhouses, "Crafting 5 (current: 1)")
+        self.assert_missing(birdhouses, "Hunter 5 (current: 1)")
 
         self.assertEqual("blocked", seaweed["status"])
         self.assert_missing(seaweed, "unlock transport: fossil_island")

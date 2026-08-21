@@ -38,6 +38,48 @@
       "reentry_condition": "Do not re-enter; use the resulting access when Varlamore activities become eligible."
     },
     {
+      "action_id": "action:the-restless-ghost",
+      "dimensions": {"lifetime_utility": 2, "content_unlock": 2, "economic_infrastructure": 0, "multi_output": 1, "diversity": 2, "afk_fit": 0, "detour_cost": 1, "burnout_risk": 0, "danger_risk": 1},
+      "stop_condition": "Stop when the quest is complete and the Ghostspeak amulet is secured.",
+      "reentry_condition": "Do not re-enter; its quest flag and amulet feed later ghost and Morytania dependencies."
+    },
+    {
+      "action_id": "action:priest-in-peril",
+      "dimensions": {"lifetime_utility": 4, "content_unlock": 4, "economic_infrastructure": 1, "multi_output": 2, "diversity": 3, "afk_fit": 0, "detour_cost": 1, "burnout_risk": 0, "danger_risk": 2},
+      "stop_condition": "Stop after the quest, Morytania route, and Wolfbane are secured.",
+      "reentry_condition": "Re-enter when one verified 50-essence preparation option is ready."
+    },
+    {
+      "action_id": "action:nature-spirit",
+      "dimensions": {"lifetime_utility": 4, "content_unlock": 4, "economic_infrastructure": 2, "multi_output": 3, "diversity": 3, "afk_fit": 0, "detour_cost": 2, "burnout_risk": 0, "danger_risk": 2},
+      "stop_condition": "Stop after completion, retaining the blessed sickle and druid pouch.",
+      "reentry_condition": "Re-enter after both prerequisite quests and the silver-sickle preparation are complete."
+    },
+    {
+      "action_id": "action:lost-city",
+      "dimensions": {"lifetime_utility": 4, "content_unlock": 4, "economic_infrastructure": 1, "multi_output": 2, "diversity": 3, "afk_fit": 0, "detour_cost": 2, "burnout_risk": 0, "danger_risk": 2},
+      "stop_condition": "Stop after Zanaris access and at least one Dramen staff are secured.",
+      "reentry_condition": "Re-enter at 31 Crafting and 36 Woodcutting with the listed tools prepared."
+    },
+    {
+      "action_id": "action:fairytale-i-growing-pains",
+      "dimensions": {"lifetime_utility": 4, "content_unlock": 4, "economic_infrastructure": 3, "multi_output": 4, "diversity": 3, "afk_fit": 0, "detour_cost": 3, "burnout_risk": 1, "danger_risk": 3},
+      "stop_condition": "Stop after quest completion and Magic secateurs acquisition.",
+      "reentry_condition": "Re-enter when Lost City, Nature Spirit, core tools, and the account-specific three-material assignment are ready."
+    },
+    {
+      "action_id": "action:the-dig-site",
+      "dimensions": {"lifetime_utility": 3, "content_unlock": 4, "economic_infrastructure": 3, "multi_output": 4, "diversity": 3, "afk_fit": 0, "detour_cost": 2, "burnout_risk": 1, "danger_risk": 1},
+      "stop_condition": "Stop after quest completion and its fixed rewards are secured.",
+      "reentry_condition": "Re-enter when all three skill gates and the verified preparation inventory are ready."
+    },
+    {
+      "action_id": "action:museum-kudos-100",
+      "dimensions": {"lifetime_utility": 4, "content_unlock": 4, "economic_infrastructure": 3, "multi_output": 3, "diversity": 2, "afk_fit": 0, "detour_cost": 2, "burnout_risk": 2, "danger_risk": 0},
+      "stop_condition": "Stop exactly at the permanent 100-Kudos Bone Voyage threshold unless another named reward justifies continuing.",
+      "reentry_condition": "Re-enter after The Dig Site when a verified mix of Museum contributions can reach the remaining Kudos gap."
+    },
+    {
       "action_id": "action:fairy-ring-permission",
       "dimensions": {"lifetime_utility": 4, "content_unlock": 4, "economic_infrastructure": 1, "multi_output": 3, "diversity": 3, "afk_fit": 0, "detour_cost": 2, "burnout_risk": 1, "danger_risk": 1},
       "stop_condition": "Stop once Fairy Godfather permission is recorded; actual ring use still requires a Dramen or Lunar staff unless the elite diary waives it.",

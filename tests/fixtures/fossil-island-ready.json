@@ -16,7 +16,7 @@
   "transport_flags": [],
   "milestones": [],
   "gear_thresholds": [],
-  "items": {},
+  "items": {"vodka": 2, "unfinished_marrentill_potion": 1},
   "resources": {
     "coins": 0,
     "law_runes": 0,

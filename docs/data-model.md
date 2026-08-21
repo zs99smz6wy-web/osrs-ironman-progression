@@ -30,6 +30,12 @@ An account state holds skill levels, completed quests and actions, transport fla
 
 The evaluator classifies actions as `blocked`, `needs_preparation`, `eligible`, or `completed`. Hard access gates and item preparation are reported separately. Explicit completed-action IDs prevent a partially imported account snapshot from recommending an unrepeatable quest again. The evaluator does not rank eligible actions; ranking belongs to the strategic scoring layer.
 
+## State transitions
+
+An action transition may apply only sourced, guaranteed effects to a copied account state. Set-like quest, transport, milestone, and item-capability outcomes are deterministic. Named options are required when more than one consumable path is valid so the engine never chooses what to spend on the player's behalf.
+
+Quest XP is reported but does not mutate skill levels because a level-only account snapshot does not reveal the exact XP already held within that level. RNG rewards, variable activity XP, farming yields, timers, and unknown item consumption are also reported or deferred. Applying one action is not route traversal and does not imply that the action was strategically preferred.
+
 ## Data maturity
 
 - `verified`: current source checked and entered.

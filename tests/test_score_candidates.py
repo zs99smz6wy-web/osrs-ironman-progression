@@ -47,7 +47,7 @@ class ScoreCandidatesTests(unittest.TestCase):
         ranked_ids = {candidate["action_id"] for candidate in ranked}
 
         self.assertEqual(
-            {"action:tree-gnome-village", "action:children-of-the-sun"},
+            {"action:tree-gnome-village", "action:children-of-the-sun", "action:the-restless-ghost"},
             ranked_ids,
         )
         self.assertNotIn("action:waterfall-quest", ranked_ids)  # needs_preparation

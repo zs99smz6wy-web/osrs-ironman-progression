@@ -16,6 +16,7 @@ Future route output is a recommendation for a declared account state, never a ge
 - Hard requirements currently satisfied and missing.
 - Required inventory, consumables, and setup still needing preparation.
 - Factual sources and graph relationships used.
+- Guaranteed state changes separated from reported XP, variable outputs, and unresolved effects.
 - Strategic rationale, including why the timing is appropriate.
 - Alternatives and bypasses, including any account-changing drops.
 - Active and passive/AFK companion options suitable for the stated attention window.
