@@ -34,6 +34,7 @@ REQUIRED_ACCOUNT_STATE_KEYS = {
     "counters",
     "passive_loops",
     "recurring_observations",
+    "kingdom_observation",
     "attention_window",
     "notable_drops",
     "preferences",

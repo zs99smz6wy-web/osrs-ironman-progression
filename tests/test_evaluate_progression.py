@@ -144,6 +144,87 @@ class EvaluateProgressionScenarioTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "purpose must be non-empty"):
             validate_account_state(state)
 
+    def test_kingdom_observation_accepts_explicit_values_without_affecting_actions(self) -> None:
+        state = copy.deepcopy(load_json(FIXTURES / "fresh-account.json"))
+        state["passive_loops"]["kingdom"] = True
+        state["kingdom_observation"] = {
+            "approval_percent": 100,
+            "worker_assignments": {"maple": 5, "herb": 5},
+            "collection_paused": False,
+            "observed_at": "2026-08-21T09:30:00Z",
+        }
+
+        validate_account_state(state)
+        original_state = copy.deepcopy(state)
+        results = {result["id"]: result for result in evaluate_actions(self.actions_document, state)}
+        self.assertEqual("eligible", results["action:tree-gnome-village"]["status"])
+        self.assertEqual(original_state, state)
+
+    def test_kingdom_observation_is_required_and_strictly_validated(self) -> None:
+        state = copy.deepcopy(load_json(FIXTURES / "fresh-account.json"))
+        del state["kingdom_observation"]
+        with self.assertRaisesRegex(ValueError, "missing required keys"):
+            validate_account_state(state)
+
+        state = copy.deepcopy(load_json(FIXTURES / "fresh-account.json"))
+        state["kingdom_observation"] = {}
+        with self.assertRaisesRegex(ValueError, "requires passive_loops.kingdom"):
+            validate_account_state(state)
+
+        state["passive_loops"]["kingdom"] = True
+        with self.assertRaisesRegex(ValueError, "invalid fields"):
+            validate_account_state(state)
+
+        state["kingdom_observation"] = {
+            "approval_percent": 24,
+            "worker_assignments": {"maple": 10},
+            "collection_paused": False,
+            "observed_at": "2026-08-21T09:30:00Z",
+        }
+        with self.assertRaisesRegex(ValueError, "approval_percent"):
+            validate_account_state(state)
+
+        state["kingdom_observation"]["approval_percent"] = 100
+        state["kingdom_observation"]["worker_assignments"] = {"maple": 11}
+        with self.assertRaisesRegex(ValueError, "integer from 0 to 10"):
+            validate_account_state(state)
+
+        state["kingdom_observation"]["worker_assignments"] = {"maple": -1}
+        with self.assertRaisesRegex(ValueError, "integer from 0 to 10"):
+            validate_account_state(state)
+
+        state["kingdom_observation"]["worker_assignments"] = {"maple": 10, "herb": 1}
+        with self.assertRaisesRegex(ValueError, "must not exceed 10"):
+            validate_account_state(state)
+
+        state["quests_completed"].append("Royal Trouble")
+        state["kingdom_observation"]["worker_assignments"] = {"maple": 10, "herb": 5}
+        validate_account_state(state)
+
+        state["kingdom_observation"]["worker_assignments"] = {"maple": 10, "herb": 6}
+        with self.assertRaisesRegex(ValueError, "must not exceed 15"):
+            validate_account_state(state)
+
+        state["kingdom_observation"]["worker_assignments"] = {"": 1}
+        with self.assertRaisesRegex(ValueError, "invalid category"):
+            validate_account_state(state)
+
+    def test_kingdom_observation_requires_boolean_pause_and_rfc_3339_timestamp(self) -> None:
+        state = copy.deepcopy(load_json(FIXTURES / "fresh-account.json"))
+        state["passive_loops"]["kingdom"] = True
+        state["kingdom_observation"] = {
+            "approval_percent": 25,
+            "worker_assignments": {},
+            "collection_paused": "false",
+            "observed_at": "2026-08-21 09:30:00",
+        }
+        with self.assertRaisesRegex(ValueError, "collection_paused must be boolean"):
+            validate_account_state(state)
+
+        state["kingdom_observation"]["collection_paused"] = False
+        with self.assertRaisesRegex(ValueError, "observed_at must be RFC 3339"):
+            validate_account_state(state)
+
     def test_recurring_observations_accept_explicit_observation_without_affecting_actions(self) -> None:
         state = copy.deepcopy(load_json(FIXTURES / "fresh-account.json"))
         state["recurring_observations"] = {

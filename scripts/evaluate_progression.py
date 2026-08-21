@@ -16,6 +16,7 @@ DEFAULT_STATE = ROOT / "graph" / "account-state.example.json"
 REQUIRED_STATE_KEYS = {
     "skills", "skill_xp", "quests_completed", "completed_actions", "transport_flags", "milestones",
     "gear_thresholds", "items", "resources", "counters", "passive_loops", "recurring_observations",
+    "kingdom_observation",
     "attention_window", "notable_drops", "preferences", "cash_commitments",
 }
 LIST_STATE_KEYS = {
@@ -24,6 +25,9 @@ LIST_STATE_KEYS = {
 }
 RECURRING_OBSERVATION_FIELDS = {"state", "observed_at", "ready_at"}
 RECURRING_OBSERVATION_STATES = {"needs_inputs", "in_progress", "ready", "cooldown", "unknown"}
+KINGDOM_OBSERVATION_FIELDS = {
+    "approval_percent", "worker_assignments", "collection_paused", "observed_at",
+}
 RFC_3339_TIMESTAMP = re.compile(
     r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?(?:Z|[+-]\d{2}:\d{2})$"
 )
@@ -104,6 +108,40 @@ def validate_account_state(state: dict[str, Any]) -> None:
             raise ValueError(f"Account state recurring_observations.{system_id}.observed_at must be RFC 3339")
         if observation["ready_at"] is not None and not _is_rfc_3339_timestamp(observation["ready_at"]):
             raise ValueError(f"Account state recurring_observations.{system_id}.ready_at must be RFC 3339 or null")
+
+    kingdom_observation = state["kingdom_observation"]
+    if kingdom_observation is not None:
+        if not passive_loops.get("kingdom", False):
+            raise ValueError("Account state kingdom_observation requires passive_loops.kingdom to be true")
+        if not isinstance(kingdom_observation, dict) or set(kingdom_observation) != KINGDOM_OBSERVATION_FIELDS:
+            raise ValueError("Account state kingdom_observation has invalid fields")
+
+        approval = kingdom_observation["approval_percent"]
+        if isinstance(approval, bool) or not isinstance(approval, int) or not 25 <= approval <= 100:
+            raise ValueError("Account state kingdom_observation.approval_percent must be an integer from 25 to 100")
+
+        assignments = kingdom_observation["worker_assignments"]
+        if not isinstance(assignments, dict):
+            raise ValueError("Account state kingdom_observation.worker_assignments must be an object")
+        worker_total = 0
+        for category, workers in assignments.items():
+            if not isinstance(category, str) or not category.strip():
+                raise ValueError("Account state kingdom_observation.worker_assignments has an invalid category")
+            if isinstance(workers, bool) or not isinstance(workers, int) or workers < 0 or workers > 10:
+                raise ValueError(
+                    f"Account state kingdom_observation.worker_assignments.{category} must be an integer from 0 to 10"
+                )
+            worker_total += workers
+        worker_limit = 15 if "Royal Trouble" in state["quests_completed"] else 10
+        if worker_total > worker_limit:
+            raise ValueError(
+                f"Account state kingdom_observation.worker_assignments total must not exceed {worker_limit}"
+            )
+
+        if not isinstance(kingdom_observation["collection_paused"], bool):
+            raise ValueError("Account state kingdom_observation.collection_paused must be boolean")
+        if not _is_rfc_3339_timestamp(kingdom_observation["observed_at"]):
+            raise ValueError("Account state kingdom_observation.observed_at must be RFC 3339")
 
     attention = state["attention_window"]
     if not isinstance(attention, dict) or attention.get("mode") not in {"true_afk", "low_attention", "semi_afk", "active"}:

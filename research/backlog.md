@@ -6,7 +6,7 @@
 
 - Completed: verified and normalized `Throne of Miscellania` and `Royal Trouble` prerequisites, items, skills, rewards, fixed XP, and unlock relationships.
 - Completed: verified coffer caps, daily withdrawal rules, worker counts, approval decay, and midnight processing without prescribing worker allocation or rush timing.
-- Pending: design an observed Kingdom-status snapshot and parameterized coffer transfers; do not infer approval, daily deductions, or collection output from elapsed time.
+- Completed: added an optional, player-observed Kingdom snapshot for approval, worker assignments, collection-pause status, and observation time, plus exact parameterized coffer deposits and withdrawals with quest-appropriate caps. Neither path infers wages, approval decay, resource output, or elapsed time.
 
 ### 2. Current Sailing access and utility closure
 
