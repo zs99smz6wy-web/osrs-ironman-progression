@@ -199,6 +199,36 @@ class AnalyzeDependenciesTests(unittest.TestCase):
         self.assertEqual("action:royal-trouble", coins["cyclic_producer_evidence"][0]["action_id"])
         self.assertTrue(analysis["cycles"])
 
+    def test_fallen_from_grace_closure_resolves_wyrmscraig_and_preserves_skill_inputs(self) -> None:
+        analysis = analyze_dependency_closure(
+            self.actions_document,
+            copy.deepcopy(self.fresh_state),
+            "action:fallen-from-grace",
+        )
+
+        fallen = self._action_node(analysis, "action:fallen-from-grace")
+        wyrmscraig = self._predicate(fallen, "requirements", "transport_flag", "wyrmscraig")
+        sailing = self._predicate(fallen, "requirements", "skill_at_least", "Sailing")
+
+        self.assertEqual(["action:wyrmscraig-access"], wyrmscraig["producer_actions"])
+        self.assertEqual([], sailing["producer_actions"])
+        self.assertTrue(any(entry["predicate"] == sailing["predicate"] for entry in analysis["external_inputs"]))
+
+    def test_sunstone_golem_keeps_tools_and_inputs_as_preparation_not_guaranteed_rewards(self) -> None:
+        analysis = analyze_dependency_closure(
+            self.actions_document,
+            copy.deepcopy(self.fresh_state),
+            "action:sunstone-golem-crafting",
+            include_preparation=True,
+        )
+
+        golem = self._action_node(analysis, "action:sunstone-golem-crafting")
+        preparation = next(entry["condition"] for entry in golem["conditions"] if entry["phase"] == "preparation")
+        keys = [predicate["predicate"]["key"] for predicate in self._predicates(preparation)]
+
+        self.assertEqual(["hammer", "chisel", "sunstone", "hunter_fur"], keys)
+        self.assertFalse(any("jeweller" in str(node).lower() for node in analysis["closure"]["actions"]))
+
     def test_synthetic_dependency_cycle_is_reported(self) -> None:
         def action(action_id: str, requires_quest: str, completed_quest: str) -> dict:
             return {

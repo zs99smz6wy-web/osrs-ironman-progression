@@ -455,6 +455,236 @@
           {"type": "recorded_progress", "description": "The Giant Sea Snake combat encounter (combat level 149) is verified; combat readiness is not modeled as a gear threshold.", "fact_id": "royal-trouble"}
         ]
       }
+    },
+    {
+      "id": "action:pandemonium",
+      "name": "Complete Pandemonium and unlock Sailing",
+      "kind": "quest",
+      "status": "verified",
+      "fact_ids": ["sailing-entry-pandemonium"],
+      "requirements": {"all": []},
+      "preparation": {"all": []},
+      "completion": {"all": [{"type": "quest_completed", "key": "Pandemonium"}]},
+      "outcomes": [
+        {"type": "quest_completed", "key": "Pandemonium"},
+        {"type": "milestone", "key": "sailing_access"}
+      ],
+      "repeatable": false,
+      "transition": {
+        "effects": [
+          {"op": "set_add", "state": "quests_completed", "key": "Pandemonium", "fact_id": "sailing-entry-pandemonium"},
+          {"op": "set_add", "state": "milestones", "key": "sailing_access", "fact_id": "sailing-entry-pandemonium"},
+          {"op": "ensure_min", "state": "items", "key": "sailing_raft", "value": 1, "fact_id": "sailing-entry-pandemonium"},
+          {"op": "ensure_min", "state": "items", "key": "captains_log", "value": 1, "fact_id": "sailing-entry-pandemonium"},
+          {"op": "delta", "state": "items", "key": "sawmill_coupon", "amount": 25, "fact_id": "sailing-entry-pandemonium"},
+          {"op": "gain_xp", "state": "skill_xp", "key": "Sailing", "amount": 300, "fact_id": "sailing-entry-pandemonium"}
+        ],
+        "options": [],
+        "reported_effects": []
+      }
+    },
+    {
+      "id": "action:buy-sailing-skiff",
+      "name": "Buy a Sailing Skiff",
+      "kind": "unlock",
+      "status": "verified",
+      "fact_ids": ["sailing-skiff", "sailing-entry-pandemonium"],
+      "requirements": {
+        "all": [
+          {"type": "quest_completed", "key": "Pandemonium"},
+          {"type": "skill_at_least", "key": "Sailing", "value": 15},
+          {"type": "resource_at_least", "key": "coins", "value": 15000}
+        ]
+      },
+      "preparation": {"all": []},
+      "completion": {"all": [{"type": "item_at_least", "key": "sailing_skiff", "value": 1}]},
+      "outcomes": [],
+      "repeatable": false,
+      "transition": {
+        "effects": [
+          {"op": "delta", "state": "resources", "key": "coins", "amount": -15000, "fact_id": "sailing-skiff"},
+          {"op": "ensure_min", "state": "items", "key": "sailing_skiff", "value": 1, "fact_id": "sailing-skiff"}
+        ],
+        "options": [],
+        "reported_effects": []
+      }
+    },
+    {
+      "id": "action:sailing-bounty-task",
+      "name": "Complete a Sailing bounty task",
+      "kind": "activity",
+      "status": "verified",
+      "fact_ids": ["sailing-bounty-tasks", "sailing-entry-pandemonium"],
+      "requirements": {
+        "all": [
+          {"type": "quest_completed", "key": "Pandemonium"},
+          {"type": "skill_at_least", "key": "Sailing", "value": 30}
+        ]
+      },
+      "preparation": {"all": []},
+      "completion": {"all": []},
+      "outcomes": [],
+      "repeatable": true,
+      "transition": {
+        "effects": [],
+        "options": [],
+        "reported_effects": [
+          {"type": "variable_activity_output", "description": "Assigned bounty, Sailing experience, coins, and bounty-part output vary by the accepted task and are not applied as guaranteed state.", "fact_id": "sailing-bounty-tasks"}
+        ]
+      }
+    },
+    {
+      "id": "action:troubled-tortugans",
+      "name": "Complete Troubled Tortugans",
+      "kind": "quest",
+      "status": "verified",
+      "fact_ids": ["great-conch-access", "sailing-entry-pandemonium"],
+      "requirements": {
+        "all": [
+          {"type": "quest_completed", "key": "Pandemonium"},
+          {"type": "skill_at_least", "key": "Sailing", "value": 45},
+          {"type": "skill_at_least", "key": "Slayer", "value": 51},
+          {"type": "skill_at_least", "key": "Construction", "value": 48},
+          {"type": "skill_at_least", "key": "Hunter", "value": 45},
+          {"type": "skill_at_least", "key": "Woodcutting", "value": 40},
+          {"type": "skill_at_least", "key": "Crafting", "value": 34}
+        ]
+      },
+      "preparation": {"all": []},
+      "completion": {"all": [{"type": "quest_completed", "key": "Troubled Tortugans"}]},
+      "outcomes": [
+        {"type": "quest_completed", "key": "Troubled Tortugans"},
+        {"type": "transport_flag", "key": "great_conch"}
+      ],
+      "repeatable": false,
+      "transition": {
+        "effects": [
+          {"op": "set_add", "state": "quests_completed", "key": "Troubled Tortugans", "fact_id": "great-conch-access"},
+          {"op": "set_add", "state": "transport_flags", "key": "great_conch", "fact_id": "great-conch-access"},
+          {"op": "gain_xp", "state": "skill_xp", "key": "Sailing", "amount": 10000, "fact_id": "great-conch-access"},
+          {"op": "gain_xp", "state": "skill_xp", "key": "Slayer", "amount": 8000, "fact_id": "great-conch-access"}
+        ],
+        "options": [],
+        "reported_effects": []
+      }
+    },
+    {
+      "id": "action:port-roberts-first-access",
+      "name": "Reach Port Roberts for the first time",
+      "kind": "unlock",
+      "status": "verified",
+      "fact_ids": ["port-roberts-access", "sailing-entry-pandemonium"],
+      "requirements": {
+        "all": [
+          {"type": "quest_completed", "key": "Pandemonium"},
+          {"type": "skill_at_least", "key": "Sailing", "value": 50}
+        ]
+      },
+      "preparation": {"all": []},
+      "completion": {"all": [{"type": "transport_flag", "key": "port_roberts"}]},
+      "outcomes": [{"type": "transport_flag", "key": "port_roberts"}],
+      "repeatable": false,
+      "transition": {
+        "effects": [{"op": "set_add", "state": "transport_flags", "key": "port_roberts", "fact_id": "port-roberts-access"}],
+        "options": [],
+        "reported_effects": []
+      }
+    },
+    {
+      "id": "action:wyrmscraig-access",
+      "name": "Reach Wyrmscraig",
+      "kind": "unlock",
+      "status": "verified",
+      "fact_ids": ["wyrmscraig", "sailing-entry-pandemonium"],
+      "requirements": {
+        "all": [
+          {"type": "quest_completed", "key": "Pandemonium"},
+          {"type": "skill_at_least", "key": "Sailing", "value": 62}
+        ]
+      },
+      "preparation": {"all": []},
+      "completion": {"all": [{"type": "transport_flag", "key": "wyrmscraig"}]},
+      "outcomes": [{"type": "transport_flag", "key": "wyrmscraig"}],
+      "repeatable": false,
+      "transition": {
+        "effects": [{"op": "set_add", "state": "transport_flags", "key": "wyrmscraig", "fact_id": "wyrmscraig"}],
+        "options": [],
+        "reported_effects": []
+      }
+    },
+    {
+      "id": "action:fallen-from-grace",
+      "name": "Complete Fallen From Grace",
+      "kind": "quest",
+      "status": "verified",
+      "fact_ids": ["wyrmscraig"],
+      "requirements": {
+        "all": [
+          {"type": "transport_flag", "key": "wyrmscraig"},
+          {"type": "skill_at_least", "key": "Sailing", "value": 62},
+          {"type": "skill_at_least", "key": "Crafting", "value": 60},
+          {"type": "skill_at_least", "key": "Runecraft", "value": 47},
+          {"type": "skill_at_least", "key": "Mining", "value": 53}
+        ]
+      },
+      "preparation": {"all": []},
+      "completion": {"all": [{"type": "quest_completed", "key": "Fallen From Grace"}]},
+      "outcomes": [
+        {"type": "quest_completed", "key": "Fallen From Grace"},
+        {"type": "milestone", "key": "sunstone_golem_crafting_access"},
+        {"type": "milestone", "key": "sunstone_mining_access"},
+        {"type": "milestone", "key": "mad_angel_access"},
+        {"type": "transport_flag", "key": "wyrmscraig_slayer_ring_teleport"},
+        {"type": "transport_flag", "key": "sunstone_mine_necklace_of_passage_teleport"}
+      ],
+      "repeatable": false,
+      "transition": {
+        "effects": [
+          {"op": "set_add", "state": "quests_completed", "key": "Fallen From Grace", "fact_id": "wyrmscraig"},
+          {"op": "set_add", "state": "milestones", "key": "sunstone_golem_crafting_access", "fact_id": "wyrmscraig"},
+          {"op": "set_add", "state": "milestones", "key": "sunstone_mining_access", "fact_id": "wyrmscraig"},
+          {"op": "set_add", "state": "milestones", "key": "mad_angel_access", "fact_id": "wyrmscraig"},
+          {"op": "set_add", "state": "transport_flags", "key": "wyrmscraig_slayer_ring_teleport", "fact_id": "wyrmscraig"},
+          {"op": "set_add", "state": "transport_flags", "key": "sunstone_mine_necklace_of_passage_teleport", "fact_id": "wyrmscraig"},
+          {"op": "gain_xp", "state": "skill_xp", "key": "Crafting", "amount": 10000, "fact_id": "wyrmscraig"},
+          {"op": "gain_xp", "state": "skill_xp", "key": "Sailing", "amount": 12500, "fact_id": "wyrmscraig"},
+          {"op": "gain_xp", "state": "skill_xp", "key": "Mining", "amount": 5000, "fact_id": "wyrmscraig"},
+          {"op": "gain_xp", "state": "skill_xp", "key": "Runecraft", "amount": 5000, "fact_id": "wyrmscraig"}
+        ],
+        "options": [],
+        "reported_effects": []
+      }
+    },
+    {
+      "id": "action:sunstone-golem-crafting",
+      "name": "Craft a Sunstone Golem",
+      "kind": "activity",
+      "status": "verified",
+      "fact_ids": ["sunstone-golem-crafting"],
+      "requirements": {
+        "all": [
+          {"type": "quest_completed", "key": "Fallen From Grace"},
+          {"type": "skill_at_least", "key": "Crafting", "value": 60}
+        ]
+      },
+      "preparation": {
+        "all": [
+          {"type": "item_at_least", "key": "hammer", "value": 1},
+          {"type": "item_at_least", "key": "chisel", "value": 1},
+          {"type": "item_at_least", "key": "sunstone", "value": 1},
+          {"type": "item_at_least", "key": "hunter_fur", "value": 1}
+        ]
+      },
+      "completion": {"all": []},
+      "outcomes": [],
+      "repeatable": true,
+      "transition": {
+        "effects": [],
+        "options": [],
+        "reported_effects": [
+          {"type": "variable_activity_output", "description": "Crafting experience, gem rewards, and the Jeweller's Chisel roll are variable and are not applied as guaranteed state.", "fact_id": "sunstone-golem-crafting"}
+        ]
+      }
     }
   ]
 }

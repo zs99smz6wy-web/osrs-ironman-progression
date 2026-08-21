@@ -144,18 +144,18 @@ class ScoreCandidatesTests(unittest.TestCase):
             "action:tree-gnome-village",
             {candidate["action_id"] for candidate in result["ranked_eligible_candidates"]},
         )
+        unscored = {action["id"]: action for action in result["eligible_unscored_actions"]}
         self.assertEqual(
-            [
-                {
-                    "id": "action:tree-gnome-village",
-                    "name": "Complete Tree Gnome Village",
-                    "kind": "quest",
-                    "fact_ids": ["tree-gnome-village"],
-                    "status": "eligible",
-                }
-            ],
-            result["eligible_unscored_actions"],
+            {
+                "id": "action:tree-gnome-village",
+                "name": "Complete Tree Gnome Village",
+                "kind": "quest",
+                "fact_ids": ["tree-gnome-village"],
+                "status": "eligible",
+            },
+            unscored["action:tree-gnome-village"],
         )
+        self.assertIn("action:pandemonium", unscored)
 
     def test_unknown_candidate_action_id_raises_value_error(self) -> None:
         candidates_document = copy.deepcopy(self.candidates_document)

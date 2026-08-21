@@ -13,6 +13,7 @@ sys.path.insert(0, str(REPOSITORY_ROOT / "scripts"))
 
 from apply_action import apply_action  # noqa: E402
 from evaluate_progression import load_json  # noqa: E402
+from osrs_xp import minimum_xp_for_level  # noqa: E402
 
 
 FRESH_ACCOUNT = REPOSITORY_ROOT / "tests" / "fixtures" / "fresh-account.json"
@@ -87,6 +88,58 @@ class ApplyActionTests(unittest.TestCase):
         self.assertEqual(0, result["next_state"]["items"]["vodka"])
         self.assertEqual(105, result["next_state"]["counters"]["kudos"])
         self.assertIn("fossil_island", result["next_state"]["transport_flags"])
+
+    def test_pandemonium_unlocks_sailing_with_only_fixed_rewards(self) -> None:
+        result = apply_action(self.actions_document, self.state, "action:pandemonium")
+
+        self.assertEqual("applied", result["status"])
+        self.assertIn("Pandemonium", result["next_state"]["quests_completed"])
+        self.assertIn("sailing_access", result["next_state"]["milestones"])
+        self.assertEqual(1, result["next_state"]["items"]["sailing_raft"])
+        self.assertEqual(1, result["next_state"]["items"]["captains_log"])
+        self.assertEqual(25, result["next_state"]["items"]["sawmill_coupon"])
+        self.assertEqual(300, result["next_state"]["skill_xp"]["Sailing"])
+        self.assertEqual([], result["reported_effects"])
+
+    def test_skiff_spends_its_verified_purchase_cost(self) -> None:
+        self.state["quests_completed"].append("Pandemonium")
+        self.state["resources"]["coins"] = 15000
+        self.state["skill_xp"]["Sailing"] = minimum_xp_for_level(15)
+        self.state["skills"]["Sailing"] = 15
+
+        result = apply_action(self.actions_document, self.state, "action:buy-sailing-skiff")
+
+        self.assertEqual("applied", result["status"])
+        self.assertEqual(0, result["next_state"]["resources"]["coins"])
+        self.assertEqual(1, result["next_state"]["items"]["sailing_skiff"])
+
+    def test_fallen_from_grace_applies_official_xp_and_unlocks_without_item_rewards(self) -> None:
+        self.state["transport_flags"].append("wyrmscraig")
+        for skill, level in (("Sailing", 62), ("Crafting", 60), ("Runecraft", 47), ("Mining", 53)):
+            self.state["skill_xp"][skill] = minimum_xp_for_level(level)
+            self.state["skills"][skill] = level
+
+        result = apply_action(self.actions_document, self.state, "action:fallen-from-grace")
+
+        self.assertEqual("applied", result["status"])
+        self.assertEqual(minimum_xp_for_level(62) + 12500, result["next_state"]["skill_xp"]["Sailing"])
+        self.assertEqual(minimum_xp_for_level(60) + 10000, result["next_state"]["skill_xp"]["Crafting"])
+        self.assertIn("sunstone_golem_crafting_access", result["next_state"]["milestones"])
+        self.assertIn("wyrmscraig_slayer_ring_teleport", result["next_state"]["transport_flags"])
+        self.assertNotIn("jewellers_chisel", result["next_state"]["items"])
+
+    def test_sunstone_golem_crafting_reports_variable_outputs_without_claiming_chisel(self) -> None:
+        self.state["quests_completed"].append("Fallen From Grace")
+        self.state["skill_xp"]["Crafting"] = minimum_xp_for_level(60)
+        self.state["skills"]["Crafting"] = 60
+        self.state["items"] = {"hammer": 1, "chisel": 1, "sunstone": 1, "hunter_fur": 1}
+
+        result = apply_action(self.actions_document, self.state, "action:sunstone-golem-crafting")
+
+        self.assertEqual("applied", result["status"])
+        self.assertEqual(self.state["items"], result["next_state"]["items"])
+        self.assertNotIn("jewellers_chisel", result["next_state"]["items"])
+        self.assertEqual("variable_activity_output", result["reported_effects"][0]["type"])
 
     def test_throne_of_miscellania_unlocks_management_and_seeds_coffer(self) -> None:
         self.state["quests_completed"] = ["Heroes' Quest", "The Fremennik Trials"]

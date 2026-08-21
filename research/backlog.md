@@ -10,9 +10,10 @@
 
 ### 2. Current Sailing access and utility closure
 
-- Revalidate `Pandemonium`, `Troubled Tortugans`, Great Conch/Gryphon access, skiffs, bounty tasks, Port Roberts, and Wyrmscraig against current official and Wiki sources.
-- Verify Golem Crafting, Jeweller's Chisel, Shellbane Gryphon, and Belle's Folly before treating them as utility or bypass paths.
-- Add normalized actions only after the live access and reward facts agree; keep preferred early Sailing milestones in strategy.
+- Completed: revalidated `Pandemonium`, skiffs, bounty tasks, `Troubled Tortugans`, Great Conch/Gryphon access, Port Roberts, Wyrmscraig, and `Fallen From Grace` against current official and Wiki sources.
+- Completed: verified Golem Crafting, Jeweller's Chisel, Shellbane Gryphon, and Belle's Folly facts, including their current random-drop rates and repair gate.
+- Completed: normalized deterministic Sailing access, quest, and activity actions; represented random rewards with `makes_obtainable` edges rather than guaranteed state transitions.
+- Pending: model Slayer-task and combat state before adding a Shellbane Gryphon action, then add Belle's Folly repair as a separate deterministic action. Keep preferred Sailing milestones and utility valuations in strategy.
 
 ### 3. Utility-minigame closure
 
@@ -28,7 +29,7 @@
 - Giants' Foundry: reward costs, Smithing/GP/resource outputs, and natural stop candidates.
 - Tempoross/Fish Barrel, Tithe Farm, Guardians of the Rift, and MTA: utility-first stop points.
 - Rune axe and other low-cost monster-drop bypasses, including expected-time and combat-access analysis.
-- Modern Sailing: level milestones, transport links, resources, activities, combat, Wyrmscraig, Golem Crafting, and Jeweller's Chisel.
+- Modern Sailing: economic inputs, repeatable-activity yields, Slayer-task state, combat readiness, and strategy-layer valuation of verified utility unlocks.
 
 ## Source mix
 
