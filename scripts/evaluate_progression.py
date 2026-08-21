@@ -278,6 +278,9 @@ def _predicate_result(predicate: dict[str, Any], state: dict[str, Any]) -> tuple
         return key in state.get("quests_completed", []), f"complete {key}"
     if predicate_type == "transport_flag":
         return key in state.get("transport_flags", []), f"unlock transport: {key}"
+    if predicate_type == "transport_flag_absent":
+        absent = key not in state.get("transport_flags", [])
+        return absent, f"transport remains locked: {key}"
     if predicate_type == "milestone":
         return key in state.get("milestones", []), f"reach milestone: {key}"
     if predicate_type == "passive_loop":

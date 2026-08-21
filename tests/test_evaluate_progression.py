@@ -109,6 +109,27 @@ class EvaluateProgressionScenarioTests(unittest.TestCase):
         fairy_action = next(action for action in self.actions_document["actions"] if action["id"] == "action:fairy-ring-permission")
         self.assertNotIn("fairy_rings", {outcome["key"] for outcome in fairy_action["outcomes"]})
 
+    def test_transport_flag_absent_reads_only_confirmed_snapshot_state(self) -> None:
+        state = load_json(FIXTURES / "fresh-account.json")
+        predicate = {"type": "transport_flag_absent", "key": "lovakengj_minecart_free"}
+
+        self.assertEqual((True, []), evaluate_condition(predicate, state))
+        state["transport_flags"].append("lovakengj_minecart_free")
+        satisfied, missing = evaluate_condition(predicate, state)
+        self.assertFalse(satisfied)
+        self.assertEqual(["transport remains locked: lovakengj_minecart_free"], missing)
+
+        valid_errors: list[str] = []
+        validate_condition(predicate, "synthetic", valid_errors)
+        self.assertEqual([], valid_errors)
+        invalid_errors: list[str] = []
+        validate_condition(
+            {"type": "transport_flag_absent", "key": "lovakengj_minecart_free", "value": True},
+            "synthetic",
+            invalid_errors,
+        )
+        self.assertIn("synthetic transport_flag_absent requires a non-empty trimmed key", invalid_errors)
+
     def test_malformed_account_state_is_rejected(self) -> None:
         state = copy.deepcopy(load_json(FIXTURES / "fresh-account.json"))
         del state["items"]

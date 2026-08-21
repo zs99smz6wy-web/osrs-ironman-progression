@@ -20,6 +20,7 @@ ROOT = Path(__file__).resolve().parents[1]
 PREDICATE_STATE = {
     "quest_completed": "quests_completed",
     "transport_flag": "transport_flags",
+    "transport_flag_absent": "transport_flags",
     "milestone": "milestones",
     "gear_threshold": "gear_thresholds",
     "notable_drop": "notable_drops",
@@ -35,6 +36,7 @@ EXTERNAL_INPUT_PREDICATES = {
     "diary_tier_at_least",
     "kourend_memoir_owned", "kourend_memoir_form", "kourend_memoir_page", "kourend_memoir_charges_at_least",
     "kourend_memoir_charge_space_at_least",
+    "transport_flag_absent",
 }
 
 
@@ -79,6 +81,8 @@ def _current_value(predicate: dict[str, Any], state: dict[str, Any]) -> Any:
     if predicate_type == "kourend_memoir_charge_space_at_least":
         memoir = state["kourend_memoir"]
         return kourend_memoir_capacity(memoir) - memoir["charges"] if memoir is not None else 0
+    if predicate_type == "transport_flag_absent":
+        return key not in state["transport_flags"]
     return key in state[PREDICATE_STATE[predicate_type]]
 
 

@@ -1744,6 +1744,19 @@
       "transition": {"effects": [{"op": "set_add", "state": "quests_completed", "key": "The Forsaken Tower", "fact_id": "lovakengj-minecart-network"}, {"op": "set_add", "state": "transport_flags", "key": "lovakengj_minecart_free", "fact_id": "lovakengj-minecart-network"}, {"op": "delta", "state": "resources", "key": "coins", "amount": 6000, "fact_id": "lovakengj-minecart-network"}, {"op": "ensure_min", "state": "items", "key": "jewellery_of_jubilation_page", "value": 1, "fact_id": "kharedsts-memoirs-and-book-of-the-dead"}, {"op": "gain_xp", "state": "skill_xp", "key": "Mining", "amount": 500, "fact_id": "lovakengj-minecart-network"}, {"op": "gain_xp", "state": "skill_xp", "key": "Smithing", "amount": 500, "fact_id": "lovakengj-minecart-network"}], "options": [], "reported_effects": []}
     },
     {
+      "id": "action:lovakengj-minecart-paid-trip",
+      "name": "Take a paid Lovakengj minecart trip",
+      "kind": "activity",
+      "status": "verified",
+      "fact_ids": ["lovakengj-minecart-network"],
+      "requirements": {"all": [{"type": "transport_flag_absent", "key": "lovakengj_minecart_free"}]},
+      "preparation": {"all": [{"type": "resource_at_least", "key": "coins", "value": 20}]},
+      "completion": {"all": []},
+      "outcomes": [],
+      "repeatable": true,
+      "transition": {"effects": [{"op": "delta", "state": "resources", "key": "coins", "amount": -20, "fact_id": "lovakengj-minecart-network"}], "options": [], "reported_effects": [{"type": "recorded_progress", "description": "The selected station changes location only. Before The Forsaken Tower, each trip consumes exactly 20 coins.", "fact_id": "lovakengj-minecart-network"}]}
+    },
+    {
       "id": "action:lovakengj-minecart-free-trip",
       "name": "Take a free Lovakengj minecart trip",
       "kind": "activity",

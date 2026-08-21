@@ -55,6 +55,7 @@ VALID_PREDICATE_TYPES = {
     "skill_at_least",
     "quest_completed",
     "transport_flag",
+    "transport_flag_absent",
     "milestone",
     "resource_at_least",
     "item_at_least",
@@ -115,6 +116,9 @@ def validate_condition(condition: dict, context: str, errors: list[str]) -> None
             or condition["key"] != condition["key"].strip()
         ):
             errors.append(f"{context} slayer_task_target key must be a non-empty trimmed string")
+    if predicate_type == "transport_flag_absent":
+        if set(condition) != {"type", "key"} or not condition.get("key") or condition["key"] != condition["key"].strip():
+            errors.append(f"{context} transport_flag_absent requires a non-empty trimmed key")
     if predicate_type == "diary_tier_at_least":
         if set(condition) != {"type", "key", "value"}:
             errors.append(f"{context} diary_tier_at_least must contain only type, key, and value")

@@ -1034,6 +1034,23 @@ class ApplyActionTests(unittest.TestCase):
         for rune in ("law_rune", "body_rune", "mind_rune", "soul_rune"):
             self.assertEqual(0, state["items"][rune])
 
+    def test_lovakengj_minecart_charges_only_before_free_access(self) -> None:
+        self.state["resources"]["coins"] = 40
+
+        paid = apply_action(self.actions_document, self.state, "action:lovakengj-minecart-paid-trip")
+        self.assertEqual("applied", paid["status"])
+        self.assertEqual(20, paid["next_state"]["resources"]["coins"])
+
+        state = paid["next_state"]
+        state["transport_flags"].append("lovakengj_minecart_free")
+        blocked = apply_action(self.actions_document, state, "action:lovakengj-minecart-paid-trip")
+        self.assertEqual("not_eligible", blocked["status"])
+        self.assertEqual(20, blocked["next_state"]["resources"]["coins"])
+
+        free = apply_action(self.actions_document, state, "action:lovakengj-minecart-free-trip")
+        self.assertEqual("applied", free["status"])
+        self.assertEqual(20, free["next_state"]["resources"]["coins"])
+
     def test_kourend_memoir_multiple_destinations_require_explicit_selection(self) -> None:
         self.state["kourend_memoir"] = {
             "form": "memoirs",
