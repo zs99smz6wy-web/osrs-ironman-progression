@@ -23,6 +23,7 @@
   },
   "recurring_observations": {},
   "kingdom_observation": null,
+  "slayer_task": null,
   "attention_window": {
     "duration_minutes": 30,
     "mode": "low_attention",

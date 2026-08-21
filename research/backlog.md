@@ -13,7 +13,8 @@
 - Completed: revalidated `Pandemonium`, skiffs, bounty tasks, `Troubled Tortugans`, Great Conch/Gryphon access, Port Roberts, Wyrmscraig, and `Fallen From Grace` against current official and Wiki sources.
 - Completed: verified Golem Crafting, Jeweller's Chisel, Shellbane Gryphon, and Belle's Folly facts, including their current random-drop rates and repair gate.
 - Completed: normalized deterministic Sailing access, quest, and activity actions; represented random rewards with `makes_obtainable` edges rather than guaranteed state transitions.
-- Pending: model Slayer-task and combat state before adding a Shellbane Gryphon action, then add Belle's Folly repair as a separate deterministic action. Keep preferred Sailing milestones and utility valuations in strategy.
+- Completed: added explicit observed Slayer-task state, a task-gated Shellbane Gryphon action that never invents kills or drops, and a separate deterministic Belle's Folly repair action.
+- Pending: model account-specific combat readiness and keep preferred Sailing milestones and utility valuations in strategy.
 
 ### 3. Utility-minigame closure
 
@@ -36,7 +37,8 @@
 - Completed: revalidated birdhouse, giant-seaweed, farming-contract, and Tears passive-loop requirements, reusable and consumed inputs, offline waiting, active interaction, recurrence gates, and fixed-versus-variable outputs.
 - Completed: added observed recurring-system readiness separately from permanent loop flags; timestamps are preserved but never advance timers, grant outputs, or infer completion.
 - Completed: normalized player-confirmed birdhouse, giant-seaweed, Tears, and Kingdom collection/reset actions; explicit ready observations are consumed, while timers and variable rewards remain uninferred.
-- Perilous Moons and Belle's Folly: exact current hard gates, readiness thresholds, and reward utility.
+- Completed: verified and normalized Perilous Moons hard quest and skill gates, fixed quest XP, encounter mechanics, internal supplies, Lunar Chest reward behavior, duplicate protection, and Moon-set utility/degradation. Community readiness recommendations remain labelled as judgement rather than requirements.
+- Perilous Moons: evaluate account-specific combat readiness and strategic stop conditions without converting community recommendations into hard gates.
 - Giants' Foundry: reward costs, Smithing/GP/resource outputs, and natural stop candidates.
 - Tempoross/Fish Barrel, Tithe Farm, Guardians of the Rift, and MTA: utility-first stop points.
 - Monster-drop bypass measured throughput and account-specific combat-readiness analysis using the now-verified encounter and probability inputs.

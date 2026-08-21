@@ -101,6 +101,42 @@ class AnalyzeDependenciesTests(unittest.TestCase):
             any(entry["predicate"] == readiness["predicate"] for entry in analysis["missing_modeled_producers"])
         )
 
+    def test_slayer_task_target_remains_an_external_player_observation(self) -> None:
+        actions = {
+            "actions": [
+                {
+                    "id": "action:synthetic-slayer-task-consumer",
+                    "name": "Use current Slayer task",
+                    "kind": "activity",
+                    "status": "verified",
+                    "fact_ids": ["synthetic"],
+                    "requirements": {
+                        "all": [{"type": "slayer_task_target", "key": "Aberrant spectres"}],
+                    },
+                    "preparation": {"all": []},
+                    "completion": {"all": []},
+                    "outcomes": [],
+                    "repeatable": True,
+                    "transition": {"effects": [], "options": [], "reported_effects": []},
+                }
+            ]
+        }
+
+        analysis = analyze_dependency_closure(
+            actions,
+            copy.deepcopy(self.fresh_state),
+            "action:synthetic-slayer-task-consumer",
+        )
+
+        consumer = self._action_node(analysis, "action:synthetic-slayer-task-consumer")
+        task = self._predicate(consumer, "requirements", "slayer_task_target", "Aberrant spectres")
+        self.assertIsNone(task["current_value"])
+        self.assertEqual([], task["producer_actions"])
+        self.assertTrue(any(entry["predicate"] == task["predicate"] for entry in analysis["external_inputs"]))
+        self.assertFalse(
+            any(entry["predicate"] == task["predicate"] for entry in analysis["missing_modeled_producers"])
+        )
+
     def test_analysis_has_no_route_or_ranking_fields(self) -> None:
         analysis = analyze_dependency_closure(
             self.actions_document,

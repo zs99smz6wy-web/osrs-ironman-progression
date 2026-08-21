@@ -35,6 +35,7 @@ REQUIRED_ACCOUNT_STATE_KEYS = {
     "passive_loops",
     "recurring_observations",
     "kingdom_observation",
+    "slayer_task",
     "attention_window",
     "notable_drops",
     "preferences",
@@ -50,6 +51,7 @@ VALID_PREDICATE_TYPES = {
     "counter_at_least",
     "passive_loop",
     "recurring_state",
+    "slayer_task_target",
     "notable_drop",
     "gear_threshold",
 }
@@ -88,6 +90,15 @@ def validate_condition(condition: dict, context: str, errors: list[str]) -> None
         errors.append(f"{context} passive_loop value must be boolean")
     if predicate_type == "recurring_state" and condition.get("value") not in RECURRING_OBSERVATION_STATES:
         errors.append(f"{context} recurring_state value is invalid")
+    if predicate_type == "slayer_task_target":
+        if set(condition) != {"type", "key"}:
+            errors.append(f"{context} slayer_task_target must contain only type and key")
+        elif (
+            not isinstance(condition.get("key"), str)
+            or not condition["key"]
+            or condition["key"] != condition["key"].strip()
+        ):
+            errors.append(f"{context} slayer_task_target key must be a non-empty trimmed string")
 
 
 def load_json(path: Path) -> dict:

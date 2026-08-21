@@ -23,7 +23,9 @@ PREDICATE_STATE = {
     "counter_at_least": "counters",
 }
 FLOOR_PREDICATES = {"item_at_least", "resource_at_least", "counter_at_least"}
-EXTERNAL_INPUT_PREDICATES = {"skill_at_least", "item_at_least", "resource_at_least", "recurring_state"}
+EXTERNAL_INPUT_PREDICATES = {
+    "skill_at_least", "item_at_least", "resource_at_least", "recurring_state", "slayer_task_target",
+}
 
 
 def _predicate_view(predicate: dict[str, Any]) -> dict[str, Any]:
@@ -48,6 +50,9 @@ def _current_value(predicate: dict[str, Any], state: dict[str, Any]) -> Any:
         return state["passive_loops"].get(key, False)
     if predicate_type == "recurring_state":
         return state["recurring_observations"].get(key, {}).get("state", "unobserved")
+    if predicate_type == "slayer_task_target":
+        task = state["slayer_task"]
+        return task if task is not None and task["remaining"] > 0 else None
     return key in state[PREDICATE_STATE[predicate_type]]
 
 

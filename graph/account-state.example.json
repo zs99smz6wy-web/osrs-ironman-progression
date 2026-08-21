@@ -12,6 +12,7 @@
   "passive_loops": {"farming": false, "birdhouses": false, "seaweed": false, "kingdom": false, "tears_of_guthix": false},
   "recurring_observations": {},
   "kingdom_observation": null,
+  "slayer_task": null,
   "attention_window": {"duration_minutes": 30, "mode": "low_attention", "player_present": true},
   "notable_drops": [],
   "preferences": {"risk_tolerance": 2, "intensity_tolerance": 2, "diversity_preference": 3},

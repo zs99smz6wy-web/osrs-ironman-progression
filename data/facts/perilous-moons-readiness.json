@@ -1,0 +1,173 @@
+{
+  "records": [
+    {
+      "id": "perilous-moons-readiness",
+      "name": "Perilous Moons quest and Moons of Peril factual readiness inputs",
+      "category": "quest",
+      "status": "verified",
+      "verified_at": "2026-08-21",
+      "scope": "Current factual access, encounter, reward, and recovery mechanics for Perilous Moons and the repeatable Moons of Peril activity. It does not decide whether a particular account is ready, select gear, rank rewards, estimate completions per hour, or recommend when to do the content.",
+      "hard_access_gates": {
+        "membership": true,
+        "quest_chain": [
+          "Children of the Sun completed",
+          "Twilight's Promise completed"
+        ],
+        "skills_not_boostable_and_required_to_start": {
+          "Slayer": 48,
+          "Hunter": 20,
+          "Fishing": 20,
+          "Runecraft": 20,
+          "Construction": 10
+        },
+        "location": "Neypotzli, entered from the northern end of Cam Torum in Varlamore after the quest chain and skill gates are met.",
+        "external_item_gate": "No externally supplied item is listed as a hard quest-start requirement in the registered quest source. Combat equipment is recommended rather than a listed item requirement. Quest and dungeon resource tools are supplied within Neypotzli."
+      },
+      "quest_completion": {
+        "required_encounters": [
+          "Sulphur Nagua",
+          "Eclipse Moon (combat level 329)",
+          "Blue Moon (combat level 329)",
+          "Blood Moon (combat level 329)"
+        ],
+        "in_quest_area_progression": [
+          "The quest has the player establish the dungeon campsites. The campsite supply crates provide the tools used to gather, prepare, and cook Neypotzli resources.",
+          "The quest introduces collection and preparation of its internal resources, including moonlight grubs, moss lizards, and raw bream.",
+          "The three Moon encounters must be completed as quest encounters; completion also counts as a normal Moons of Peril defeat for Lunar Chest purposes."
+        ],
+        "fixed_rewards": {
+          "Slayer_experience": 40000,
+          "Runecraft_experience": 5000,
+          "Hunter_experience": 5000,
+          "Fishing_experience": 5000,
+          "unlocks": [
+            "Neypotzli access",
+            "repeatable Moons of Peril activity",
+            "Lunar Chest access",
+            "lesser nagua Slayer-task eligibility"
+          ]
+        }
+      },
+      "repeatable_activity_hard_gates": {
+        "quest_completion": "Perilous Moons completion is required to open the Lunar Chest.",
+        "individual_boss_requirement": "A player must defeat at least one Moon in the current activity run before the Lunar Chest can be looted.",
+        "combat_style_rule": "There is no sourced player weapon-style requirement. The Moons have very high Magic and Ranged defence, and their documented weaknesses are melee styles; this is an encounter property, not a formal equipment gate.",
+        "party_and_ironman_rule": "Other players can be visible in the same chamber, but each player has an individual boss-health contribution. Ironmen remain eligible for Lunar Chest rewards when fighting alongside other players."
+      },
+      "moon_encounter_baseline": {
+        "shared_stats": {
+          "hitpoints": 500,
+          "Attack": 258,
+          "Strength": 100,
+          "Magic": 100,
+          "Defence": 60
+        },
+        "shared_attack_and_defence_rules": [
+          "Each Moon's standard melee sequence has three hits with maximum hits of 4, 8, and 20. If an earlier hit misses, later hits in that sequence also miss.",
+          "Each Moon has +100 melee defence in styles other than its listed weakness, and +500 Magic and Ranged defence.",
+          "Protection prayers do not reduce or negate any Moon attacks.",
+          "Standing on Eyatlalli's currently imbued glyph is required during normal attacks. Standing elsewhere starts at 1 damage per tick and rapidly doubles up to 16 while applying Curse of the Moons stacks. During special attacks, the player is generally allowed to stand anywhere in the arena.",
+          "The Moon damages itself slightly while attacking or performing special attacks; this damage is not shown as hitsplats and slows at low remaining health.",
+          "The Curse of the Moons is removed after defeating a Moon."
+        ],
+        "no_general_equipment_restriction": "No fight-wide rule requires a particular player combat level, armour set, prayer, food, potion, or weapon to enter an encounter. Individual special attacks can temporarily constrain actions or equipment."
+      },
+      "individual_moons": [
+        {
+          "name": "Eclipse Moon",
+          "documented_melee_weakness": "Stab",
+          "flat_armour": "6 flat armour, reduced to 4 during the Clone special attack.",
+          "curse_effect": "Glancing attacks can reduce the player's maximum hit by 12, or 8 during Clone; the chance scales with Curse stacks.",
+          "special_attack_constraints": [
+            "Searing Rays forces the player behind a moon shield; the rays are avoided by moving with that shield.",
+            "During Clones, the player is bound in the centre and must face each spawning clone to parry its attack. The return attack is melee, so ranged and Magic cannot damage the boss in this phase."
+          ]
+        },
+        {
+          "name": "Blue Moon",
+          "documented_melee_weakness": "Crush",
+          "flat_armour": "-5 flat armour, increasing each hitsplat dealt by 5.",
+          "curse_effect": "At 18 Curse stacks, the player's next attack is cancelled and 18 stacks are removed.",
+          "special_attack_constraints": [
+            "Weapon Freeze places the equipped weapon into an ice block. The player cannot equip another weapon until the glowing block is broken through unarmed combat.",
+            "If the player logs out or disconnects during Weapon Freeze, the weapon must be reclaimed from Eyatlalli."
+          ]
+        },
+        {
+          "name": "Blood Moon",
+          "documented_melee_weakness": "Slash",
+          "flat_armour": "-2 flat armour, increasing each hitsplat dealt by 2.",
+          "curse_effect": "The curse heals Blood Moon for 1x, 2x, and 3x the damage dealt by its siphon hits; the third heal has a minimum of 30. Walking underneath the boss during that attack can avoid the final hit and its heal.",
+          "special_attack_constraints": [
+            "No additional player equipment restriction is documented beyond the shared encounter mechanics."
+          ]
+        }
+      ],
+      "internal_supply_mechanics": {
+        "self_contained_tools": "Campsite supply crates provide the tools needed for resource gathering and preparation, including vials of water, pestle and mortar, big fishing net, rope, and butterfly net.",
+        "food": {
+          "sources": ["raw bream", "raw moss lizard"],
+          "mechanic": "Dungeon food is gathered and cooked at campsites. Cooked bream healing scales from the lower of Cooking and Fishing; cooked moss-lizard healing scales from the lower of Cooking and Hunter. Higher Cooking can increase moss-lizard food yield and bream cooking speed."
+        },
+        "moonlight_potions": {
+          "creation": "Pick moonlight grubs, grind them into paste with a pestle and mortar, then mix the paste with a vial of water.",
+          "effect": "A moonlight potion provides prayer restoration, super-combat boosts, and a divine-super-defence-style boost without the self-damage effect.",
+          "scaling": "Higher Herblore can increase potion doses and potion effectiveness; this is not a quest-start gate."
+        },
+        "moonlight_moths": "At 75 Hunter with a butterfly net, or 85 Hunter barehanded, a moonlight moth restores 22 Prayer points.",
+        "run_energy": "The campsite cooking stove's Make-cuppa option fully restores run energy.",
+        "area_bound_outputs": "On leaving Neypotzli, raw and cooked bream and moss lizards are destroyed, and moonlight potions revert to vials of water. They must not be modeled as bankable external supplies."
+      },
+      "death_and_retry": {
+        "death_location": "If the player dies in Neypotzli, their grave appears at the antechamber.",
+        "simultaneous_kill_rule": "If the player dies at the same time as a Moon, they leave the arena with 1 Hitpoint and the fight is counted as a victory.",
+        "after_victory": "Defeating a Moon teleports the player to a campsite; the destination depends on the defeated-Moon order.",
+        "unresolved_by_registered_sources": "The registered sources reviewed do not provide a fully enumerated Moon-by-Moon reset-state specification after an ordinary death or manual exit. This record therefore does not infer a retry state, reclaim fee, or external respawn location."
+      },
+      "lunar_chest_and_bad_luck_mechanics": {
+        "eligibility_and_roll_context": "The chest is lootable only after the quest and at least one Moon defeat. Its reward context depends on how many Moons were subdued before looting; no fixed chest value or guaranteed unique is modeled.",
+        "unique_reward_groups": [
+          "Blood moon armour and dual macuahuitl",
+          "Blue moon armour and blue moon spear",
+          "Eclipse moon armour and eclipse atlatl",
+          "atlatl darts and non-unique resource rewards"
+        ],
+        "duplicate_protection": "The current documented bad-luck mitigation prevents duplicate pieces within a Moon equipment set until every piece of that set has been received at least once.",
+        "item_sacrifice": "Eyatlalli can accept a Blood, Blue, or Eclipse Moon equipment piece for a chance at another equipment roll. The registered source says that rate is not confirmed and the replacement can be the same item; it is not modeled as deterministic duplicate conversion.",
+        "no_unmodeled_bad_luck_claim": "No additional bad-luck guarantee is asserted here beyond the documented within-set duplicate protection."
+      },
+      "key_reward_utility_facts": {
+        "blood_moon_set": "A melee set. The armour requires 50 Defence and 75 Strength; dual macuahuitl requires 70 Attack and 75 Strength. The chestplate and tassets have the same Strength bonuses as Bandos counterparts, while having different defensive characteristics. The complete set enables Bloodrager, which can make a successful dual-macuahuitl hit attack one tick earlier.",
+        "blue_moon_set": "A Magic/Melee hybrid set. The armour requires 50 Defence and 75 Magic. Each armour piece gives 1% Magic damage, for 3% across the three armour pieces. The complete set enables Frostweaver, which can make the Blue moon spear's next melee attack ignore action delay after a qualifying bind, freeze, or root spell.",
+        "eclipse_moon_set": "A Ranged/Melee hybrid set. The armour requires 50 Defence and 75 Ranged. The complete set enables Eclipse: successful eclipse-atlatl attacks have a 20% chance to apply burn to a non-immune target.",
+        "degradation": "Moon armour, but not the weapons, degrades with combat even when using protection prayers or taking no damage. A newly obtained armour piece has 45 combat hours before it becomes fully degraded and needs repair; performance does not decline before fully degraded.",
+        "utility_classification": "These are item-effect and equip-requirement facts only. Their account-specific value, comparative priority, and whether to pursue a full set remain unresolved."
+      },
+      "community_readiness_recommendations_not_hard_gates": {
+        "source_class": "Community-maintained OSRS Wiki strategy material and third-party/community guides; these do not change the hard gates above.",
+        "documented_examples": [
+          "The OSRS Wiki strategy page presents 70+ Attack, Strength, and Defence, 75+ Hitpoints, and 34+ Prayer for Steel Skin, Incredible Reflexes, and Ultimate Strength as suggested skill targets; it identifies 70 Prayer for Piety as a further suggestion.",
+          "The same strategy material recommends defensive melee armour and melee weapons matching stab, crush, and slash weaknesses, rather than treating those items or levels as entry requirements.",
+          "It presents 50+ Cooking, Fishing, Hunter, and Herblore as suggestions for stronger internal supplies, and 75 Hunter with a butterfly net as an optional way to restore Prayer with moths.",
+          "Jagex's 2023 poll described the content as aimed at mid-level players; that design description is not a live mechanical access condition."
+        ],
+        "account_specific_readiness": "Unresolved. It depends on the player's actual combat levels, equipment, food and recovery tolerance, ability to perform the glyph and special-attack mechanics, available escape/reclaim plan, and desired completion scope."
+      },
+      "source_registry_gaps": [
+        "official-fortis-colosseum-perilous-moons-rewards-poll: current official Jagex registry record for the historical released reward design context."
+      ],
+      "source_ids": [
+        "wiki-perilous-moons",
+        "wiki-moons-of-peril-strategies",
+        "wiki-lunar-chest",
+        "wiki-blood-moon-equipment",
+        "wiki-blue-moon-equipment",
+        "wiki-eclipse-moon-equipment",
+        "wiki-children-sun",
+        "wiki-quest-experience-rewards",
+        "official-summer-summit-2023"
+      ],
+      "confidence": "high for documented gates and shared mechanics; community readiness examples remain explicitly non-binding."
+    }
+  ]
+}

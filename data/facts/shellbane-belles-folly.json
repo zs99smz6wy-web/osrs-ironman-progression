@@ -1,0 +1,151 @@
+{
+  "records": [
+    {
+      "id": "shellbane-gryphon-belles-folly-chain",
+      "name": "Shellbane Gryphon and Belle's Folly acquisition chain",
+      "category": "bypass",
+      "status": "verified",
+      "verified_at": "2026-08-21",
+      "scope": "Factual access, encounter, drop, repair, and item-state model only. It does not estimate kill time, evaluate combat readiness, rank weapons, or recommend when to pursue the drop.",
+      "hard_access_gates": {
+        "membership": true,
+        "great_conch_and_quest": {
+          "required_quest": "Troubled Tortugans",
+          "quest_start_requirements": {
+            "quests": ["Pandemonium"],
+            "skills_non_boostable": {
+              "Slayer": 51,
+              "Construction": 48,
+              "Sailing": 45,
+              "Hunter": 45,
+              "Woodcutting": 40,
+              "Crafting": 34
+            }
+          },
+          "quest_outputs_relevant_to_this_chain": ["Great Conch access", "Shellbane Gryphon cave access"],
+          "quest_encounter": "Troubled Tortugans lists the level-235 Shellbane Gryphon as a required combat encounter. The separately documented repeat-kill restriction explicitly applies after quest completion."
+        },
+        "ordinary_gryphon_access": {
+          "monster_requirement": "Ordinary gryphons are Slayer monsters requiring 51 Slayer to kill.",
+          "location_requirement": "They inhabit the Great Conch, which requires 45 Sailing and completion of Troubled Tortugans to access.",
+          "task_state": "A Slayer assignment is not stated as a requirement to kill ordinary gryphons; a gryphon assignment is a separate Slayer-task state."
+        },
+        "gryphon_assignment_rules": {
+          "base_task_eligibility": ["51 Slayer", "45 Sailing", "Troubled Tortugans completed"],
+          "combat_level_filter": "A 60 Combat requirement is relevant only when the player's Slayer settings filter assignments by combat level.",
+          "masters_without_wings_spread": ["Vannaka", "Chaeldar"],
+          "masters_requiring_wings_spread": {
+            "masters": ["Nieve or Steve", "Duradel or Kuradal"],
+            "unlock": "Wings Spread",
+            "slayer_reward_point_cost": 80
+          },
+          "task_extension": {
+            "name": "Gryphon and on",
+            "slayer_reward_point_cost": 50,
+            "effect": "Adds 80 gryphons to an assigned gryphon task.",
+            "classification": "Optional task-extension fact; it is not an encounter-access gate."
+          }
+        },
+        "shellbane_repeat_kill_state": {
+          "normal_post_quest_rule": "After Troubled Tortugans, a Shellbane Gryphon kill requires an active gryphon Slayer task.",
+          "single_kill_exception": "An Elite clue that directs the player to kill a Shellbane Gryphon permits one boss kill without the normal active-task route.",
+          "exception_limit": "The Elite-clue exception permits only one boss kill.",
+          "not_inferred": ["The sources used here do not establish that a Shellbane kill consumes a gryphon-task count.", "The sources used here do not establish any repeat access after the clue-directed single kill when no active gryphon task remains."]
+        }
+      },
+      "encounter": {
+        "identity": {"monster": "Shellbane Gryphon", "location": "Shellbane Gryphon Cave at the Great Conch", "instance_type": "Solo-instance fight"},
+        "registered_source_confirmed_stats": {"combat_level": 235, "hitpoints": 400, "attack_styles": ["Melee", "Ranged"]},
+        "wiki_documented_mechanics": {
+          "ordinary_attack_pattern": "The boss primarily attacks with Melee and occasionally uses Ranged.",
+          "combat_style_and_weakness": "The strategy source identifies Melee as its primary weakness and an elemental weakness to wind spells; it also says a special attack makes the Magic approach less practical.",
+          "tortugan_shield_interaction": "With Protect from Melee active and a Tortugan shield equipped, the documented Melee damage is fully negated. Without the shield, the documented Melee attacks deal heavy damage through Protect from Melee.",
+          "tortugan_shield_acquisition_fact": "The registered Slayer source lists the Tortugan shield at Elder Blunn's Spear and Shield Stall for 2,500 coins and at least 51 Slayer. This is a sourced acquisition fact, not a requirement to enter the boss instance.",
+          "knockback": {
+            "trigger": "Equipped weight below 40 kg.",
+            "effect": "Knocks the player back for up to 30 unavoidable damage.",
+            "counter": "At least 40 kg of equipped weight negates the initial knockback and stuns the boss for 2 ticks. The player must promptly attack during the stun to knock the boss back; otherwise the boss regains focus and knocks the player back.",
+            "not_a_hard_gate": "Players may enter and fight below 40 kg; the weight condition changes the attack outcome rather than encounter eligibility."
+          },
+          "corrosive_spit": {
+            "avoidance": "Move at least one tile from the current position before the projectile lands.",
+            "failure_effect": "Corrodes worn equipment and deals 3-12 damage six times over 32 ticks, for 18-72 total damage if uninterrupted.",
+            "documented_interruption": "Quickly unequipping all worn items interrupts the corrosion damage."
+          },
+          "whirlwinds": {
+            "formation": "The boss forms one whirlwind every 3 ticks, to a maximum of five; a new whirlwind on an existing one increases that whirlwind's strength.",
+            "damage_start": "Six ticks after the last formation, whirlwinds damage the player every tick while stood on them.",
+            "burst": "Fifteen seconds later, all summoned whirlwinds burst outward. Burst damage and radius scale with wind strength.",
+            "not_a_hard_gate": "Movement is a documented response to a damage mechanic, not an access requirement."
+          }
+        },
+        "community_recommendations_not_hard_gates": [
+          "The Wiki strategy guide recommends partial Fairytale II progress for fairy-ring transport, 65 Attack, 65 Strength, and at least 43 Prayer for Protect from Melee.",
+          "The same guide recommends the Tortugan shield and sufficient equipped weight to manage the boss mechanics.",
+          "These are explicitly separated from hard eligibility: no recommendation in this field changes whether the game permits the encounter."
+        ],
+        "numeric_stat_evidence_limit": "The currently registered sources establish combat level, Hitpoints, attack styles, and documented mechanics. Dedicated current source records are still needed for base Attack, Strength, Defence, Magic, Ranged, defence bonuses, attack speed, and ordinary-attack maximum hit."
+      },
+      "belles_folly_drop": {
+        "input_state": "An eligible Shellbane Gryphon kill through either the active-task route or the one-kill Elite-clue exception.",
+        "output": "One Belle's Folly (tarnished).",
+        "type": "RNG transition; the item is not guaranteed by any number of eligible kills.",
+        "current_rate": "1/256 per eligible Shellbane Gryphon kill.",
+        "rate_provenance": "Jagex changed the rate from 1/400 to 1/256 in the Shellbane Gryphon changes update. This is the current official rate stated by the registered source.",
+        "not_inferred": ["Expected kills or cumulative acquisition probability are not deterministic transitions.", "Other Shellbane loot is not modeled as a guaranteed output."]
+      },
+      "repair_and_item_state": {
+        "required_pre_repair_state": {"item": "Belle's Folly (tarnished)", "quantity": 1},
+        "hard_repair_requirements": {
+          "skill": {"Smithing": 70},
+          "facility": "Polishing wheel at Giants' Foundry",
+          "facility_access": "Giants' Foundry requires completion of Sleeping Giants."
+        },
+        "deterministic_transition": {
+          "consumes": {"Belle's Folly (tarnished)": 1},
+          "produces": {"Belle's Folly": 1},
+          "fixed_experience": {"Smithing": 500},
+          "randomness": "None once the stated item, level, and facility conditions are met."
+        },
+        "equipping": {
+          "requirement": {"Attack": 65},
+          "weapon_type": "One-handed stab weapon",
+          "source_status": "The level and weapon-type facts were checked against the current live item material, but a dedicated registered Belle's Folly source record is required for direct provenance in this repository."
+        },
+        "charges_and_degradation": {
+          "current_checked_item_page_observation": "No charge, degradation, repair-cycle, or consumable-ammunition mechanic is listed for Belle's Folly.",
+          "evidence_limit": "This is an absence observation from the current item material, not a claim that no future game update could add such a mechanic. A dedicated registered item-page source is required to make this provenance complete."
+        }
+      },
+      "transition_summary": {
+        "deterministic": [
+          "Meeting Troubled Tortugans start requirements and completing the quest unlocks the Great Conch and the post-quest Shellbane access state.",
+          "An active gryphon task permits post-quest Shellbane kills; an Elite clue directing this kill permits exactly one exception kill.",
+          "Using one tarnished Belle's Folly at the Giants' Foundry polishing wheel with 70 Smithing converts it to one Belle's Folly and grants 500 fixed Smithing XP."
+        ],
+        "rng": [
+          "Each eligible Shellbane kill has the official 1/256 chance to produce Belle's Folly (tarnished).",
+          "The task-assignment process is not modeled as deterministic; eligibility and master-specific unlocks are facts, while receiving a task is variable."
+        ]
+      },
+      "missing_source_ids": [
+        {"id": "official-sailing-slayer-creatures-unique-drops", "needed_for": "Direct Jagex provenance for the original gryphon-task unlock design and Shellbane boss introduction."}
+      ],
+      "source_ids": [
+        "wiki-troubled-tortugans",
+        "wiki-sailing-resources",
+        "wiki-shellbane-gryphon-strategies",
+        "wiki-shellbane-gryphon",
+        "wiki-belles-folly",
+        "wiki-slayer-reward-point",
+        "wiki-slayer-assignment",
+        "wiki-slayer",
+        "wiki-smithing-experience-table",
+        "wiki-giants-foundry",
+        "official-sailing-launch-guide",
+        "official-shellbane-gryphon-changes"
+      ],
+      "confidence": "high"
+    }
+  ]
+}

@@ -16,7 +16,7 @@ DEFAULT_STATE = ROOT / "graph" / "account-state.example.json"
 REQUIRED_STATE_KEYS = {
     "skills", "skill_xp", "quests_completed", "completed_actions", "transport_flags", "milestones",
     "gear_thresholds", "items", "resources", "counters", "passive_loops", "recurring_observations",
-    "kingdom_observation",
+    "kingdom_observation", "slayer_task",
     "attention_window", "notable_drops", "preferences", "cash_commitments",
 }
 LIST_STATE_KEYS = {
@@ -28,6 +28,7 @@ RECURRING_OBSERVATION_STATES = {"needs_inputs", "in_progress", "ready", "cooldow
 KINGDOM_OBSERVATION_FIELDS = {
     "approval_percent", "worker_assignments", "collection_paused", "observed_at",
 }
+SLAYER_TASK_FIELDS = {"target", "remaining", "observed_at"}
 RFC_3339_TIMESTAMP = re.compile(
     r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?(?:Z|[+-]\d{2}:\d{2})$"
 )
@@ -143,6 +144,19 @@ def validate_account_state(state: dict[str, Any]) -> None:
         if not _is_rfc_3339_timestamp(kingdom_observation["observed_at"]):
             raise ValueError("Account state kingdom_observation.observed_at must be RFC 3339")
 
+    slayer_task = state["slayer_task"]
+    if slayer_task is not None:
+        if not isinstance(slayer_task, dict) or set(slayer_task) != SLAYER_TASK_FIELDS:
+            raise ValueError("Account state slayer_task has invalid fields")
+        target = slayer_task["target"]
+        if not isinstance(target, str) or not target or target != target.strip():
+            raise ValueError("Account state slayer_task.target must be a non-empty trimmed string")
+        remaining = slayer_task["remaining"]
+        if isinstance(remaining, bool) or not isinstance(remaining, int) or remaining < 1:
+            raise ValueError("Account state slayer_task.remaining must be a positive integer")
+        if not _is_rfc_3339_timestamp(slayer_task["observed_at"]):
+            raise ValueError("Account state slayer_task.observed_at must be RFC 3339")
+
     attention = state["attention_window"]
     if not isinstance(attention, dict) or attention.get("mode") not in {"true_afk", "low_attention", "semi_afk", "active"}:
         raise ValueError("Account state attention_window has an invalid mode")
@@ -204,6 +218,10 @@ def _predicate_result(predicate: dict[str, Any], state: dict[str, Any]) -> tuple
     if predicate_type == "recurring_state":
         current = state.get("recurring_observations", {}).get(key, {}).get("state", "unobserved")
         return current == value, f"recurring state {key} = {value} (current: {current})"
+    if predicate_type == "slayer_task_target":
+        task = state.get("slayer_task")
+        current = task["target"] if task is not None and task["remaining"] > 0 else "none"
+        return current == key, f"current Slayer task {key} (current: {current})"
     if predicate_type == "notable_drop":
         return key in state.get("notable_drops", []), f"obtain notable drop: {key}"
     if predicate_type == "gear_threshold":

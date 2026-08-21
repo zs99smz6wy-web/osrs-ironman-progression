@@ -1326,6 +1326,58 @@
         "options": [],
         "reported_effects": [{"type": "variable_activity_output", "description": "Cyclops kills, defender-chain progress, combat experience, and Dragon defender drops remain variable; no defenders or experience are applied automatically.", "fact_id": "dragon-defender-warriors-guild"}]
       }
+    },
+    {
+      "id": "action:fight-shellbane-gryphon-on-task",
+      "name": "Fight the Shellbane Gryphon on a gryphon task",
+      "kind": "activity",
+      "status": "verified",
+      "fact_ids": ["shellbane-gryphon-belles-folly-chain"],
+      "requirements": {"all": [{"type": "quest_completed", "key": "Troubled Tortugans"}, {"type": "skill_at_least", "key": "Slayer", "value": 51}, {"type": "slayer_task_target", "key": "Gryphons"}]},
+      "preparation": {"all": []},
+      "completion": {"all": []},
+      "outcomes": [],
+      "repeatable": true,
+      "transition": {"effects": [], "options": [], "reported_effects": [{"type": "variable_activity_output", "description": "Eligible kills, task-count changes, combat experience, ordinary loot, and the 1/256 tarnished Belle's Folly drop remain player-observed; no kill, task decrement, drop, or experience is applied automatically.", "fact_id": "shellbane-gryphon-belles-folly-chain"}]}
+    },
+    {
+      "id": "action:repair-belles-folly",
+      "name": "Repair Belle's Folly at the Giants' Foundry",
+      "kind": "unlock",
+      "status": "verified",
+      "fact_ids": ["shellbane-gryphon-belles-folly-chain"],
+      "requirements": {"all": [{"type": "quest_completed", "key": "Sleeping Giants"}, {"type": "skill_at_least", "key": "Smithing", "value": 70}]},
+      "preparation": {"all": [{"type": "item_at_least", "key": "belles_folly_tarnished", "value": 1}]},
+      "completion": {"all": [{"type": "item_at_least", "key": "belles_folly", "value": 1}]},
+      "outcomes": [],
+      "repeatable": false,
+      "transition": {"effects": [{"op": "delta", "state": "items", "key": "belles_folly_tarnished", "amount": -1, "fact_id": "shellbane-gryphon-belles-folly-chain"}, {"op": "ensure_min", "state": "items", "key": "belles_folly", "value": 1, "fact_id": "shellbane-gryphon-belles-folly-chain"}, {"op": "gain_xp", "state": "skill_xp", "key": "Smithing", "amount": 500, "fact_id": "shellbane-gryphon-belles-folly-chain"}], "options": [], "reported_effects": []}
+    },
+    {
+      "id": "action:perilous-moons-quest",
+      "name": "Complete Perilous Moons",
+      "kind": "quest",
+      "status": "verified",
+      "fact_ids": ["perilous-moons-readiness"],
+      "requirements": {"all": [{"type": "quest_completed", "key": "Children of the Sun"}, {"type": "quest_completed", "key": "Twilight's Promise"}, {"type": "skill_at_least", "key": "Slayer", "value": 48}, {"type": "skill_at_least", "key": "Hunter", "value": 20}, {"type": "skill_at_least", "key": "Fishing", "value": 20}, {"type": "skill_at_least", "key": "Runecraft", "value": 20}, {"type": "skill_at_least", "key": "Construction", "value": 10}]},
+      "preparation": {"all": []},
+      "completion": {"all": [{"type": "quest_completed", "key": "Perilous Moons"}]},
+      "outcomes": [{"type": "quest_completed", "key": "Perilous Moons"}, {"type": "milestone", "key": "neypotzli_access"}, {"type": "milestone", "key": "moons_of_peril_unlocked"}, {"type": "milestone", "key": "lunar_chest_access"}, {"type": "milestone", "key": "lesser_nagua_task_eligible"}],
+      "repeatable": false,
+      "transition": {"effects": [{"op": "set_add", "state": "quests_completed", "key": "Perilous Moons", "fact_id": "perilous-moons-readiness"}, {"op": "set_add", "state": "milestones", "key": "neypotzli_access", "fact_id": "perilous-moons-readiness"}, {"op": "set_add", "state": "milestones", "key": "moons_of_peril_unlocked", "fact_id": "perilous-moons-readiness"}, {"op": "set_add", "state": "milestones", "key": "lunar_chest_access", "fact_id": "perilous-moons-readiness"}, {"op": "set_add", "state": "milestones", "key": "lesser_nagua_task_eligible", "fact_id": "perilous-moons-readiness"}, {"op": "gain_xp", "state": "skill_xp", "key": "Slayer", "amount": 40000, "fact_id": "perilous-moons-readiness"}, {"op": "gain_xp", "state": "skill_xp", "key": "Runecraft", "amount": 5000, "fact_id": "perilous-moons-readiness"}, {"op": "gain_xp", "state": "skill_xp", "key": "Hunter", "amount": 5000, "fact_id": "perilous-moons-readiness"}, {"op": "gain_xp", "state": "skill_xp", "key": "Fishing", "amount": 5000, "fact_id": "perilous-moons-readiness"}], "options": [], "reported_effects": [{"type": "recorded_progress", "description": "Required encounter completion and area-bound supply use are confirmed by quest completion; no Lunar Chest items or external supplies are granted by this transition.", "fact_id": "perilous-moons-readiness"}]}
+    },
+    {
+      "id": "action:moons-of-peril",
+      "name": "Run Moons of Peril",
+      "kind": "activity",
+      "status": "verified",
+      "fact_ids": ["perilous-moons-readiness"],
+      "requirements": {"all": [{"type": "quest_completed", "key": "Perilous Moons"}]},
+      "preparation": {"all": []},
+      "completion": {"all": []},
+      "outcomes": [],
+      "repeatable": true,
+      "transition": {"effects": [], "options": [], "reported_effects": [{"type": "variable_activity_output", "description": "Defeated Moons, internal supplies, chest eligibility, ordinary rewards, unique equipment, duplicate-protection state, combat experience, and death or retry outcomes remain player-observed and are not applied automatically.", "fact_id": "perilous-moons-readiness"}]}
     }
   ]
 }

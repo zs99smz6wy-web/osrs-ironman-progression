@@ -650,6 +650,54 @@ class ApplyActionTests(unittest.TestCase):
         self.assertEqual(minimum_xp_for_level(70) + 500, result["next_state"]["skill_xp"]["Smithing"])
         self.assertEqual([], result["reported_effects"])
 
+    def test_shellbane_task_is_observed_and_does_not_decrement_or_invent_drops(self) -> None:
+        self.state["quests_completed"].append("Troubled Tortugans")
+        self.state["skill_xp"]["Slayer"] = minimum_xp_for_level(51)
+        self.state["skills"]["Slayer"] = 51
+        self.state["slayer_task"] = {
+            "target": "Gryphons",
+            "remaining": 37,
+            "observed_at": "2026-08-21T12:00:00-07:00",
+        }
+
+        result = apply_action(self.actions_document, self.state, "action:fight-shellbane-gryphon-on-task")
+
+        self.assertEqual("applied", result["status"])
+        self.assertEqual(self.state["slayer_task"], result["next_state"]["slayer_task"])
+        self.assertNotIn("belles_folly_tarnished", result["next_state"]["items"])
+        self.assertEqual("variable_activity_output", result["reported_effects"][0]["type"])
+
+    def test_belles_folly_repair_is_deterministic(self) -> None:
+        self.state["quests_completed"].append("Sleeping Giants")
+        self.state["skill_xp"]["Smithing"] = minimum_xp_for_level(70)
+        self.state["skills"]["Smithing"] = 70
+        self.state["items"]["belles_folly_tarnished"] = 1
+        starting_xp = self.state["skill_xp"]["Smithing"]
+
+        result = apply_action(self.actions_document, self.state, "action:repair-belles-folly")
+
+        self.assertEqual("applied", result["status"])
+        self.assertEqual(0, result["next_state"]["items"]["belles_folly_tarnished"])
+        self.assertEqual(1, result["next_state"]["items"]["belles_folly"])
+        self.assertEqual(starting_xp + 500, result["next_state"]["skill_xp"]["Smithing"])
+
+    def test_perilous_moons_applies_only_fixed_quest_rewards(self) -> None:
+        self.state["quests_completed"].extend(["Children of the Sun", "Twilight's Promise"])
+        for skill, level in (("Slayer", 48), ("Hunter", 20), ("Fishing", 20), ("Runecraft", 20), ("Construction", 10)):
+            self.state["skill_xp"][skill] = minimum_xp_for_level(level)
+            self.state["skills"][skill] = level
+        starting_xp = dict(self.state["skill_xp"])
+
+        result = apply_action(self.actions_document, self.state, "action:perilous-moons-quest")
+
+        self.assertEqual("applied", result["status"])
+        self.assertIn("Perilous Moons", result["next_state"]["quests_completed"])
+        self.assertEqual(starting_xp["Slayer"] + 40000, result["next_state"]["skill_xp"]["Slayer"])
+        for skill in ("Hunter", "Fishing", "Runecraft"):
+            self.assertEqual(starting_xp[skill] + 5000, result["next_state"]["skill_xp"][skill])
+        self.assertNotIn("blood_moon_chestplate", result["next_state"]["items"])
+        self.assertIn("lunar_chest_access", result["next_state"]["milestones"])
+
 
 if __name__ == "__main__":
     unittest.main()

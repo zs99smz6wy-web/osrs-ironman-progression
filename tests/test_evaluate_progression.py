@@ -12,6 +12,7 @@ REPOSITORY_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPOSITORY_ROOT / "scripts"))
 
 from evaluate_progression import evaluate_actions, evaluate_condition, load_json, validate_account_state  # noqa: E402
+from validate_data import validate_condition  # noqa: E402
 
 
 FIXTURES = Path(__file__).parent / "fixtures"
@@ -317,6 +318,80 @@ class EvaluateProgressionScenarioTests(unittest.TestCase):
         satisfied, missing = evaluate_condition(condition, state)
         self.assertTrue(satisfied)
         self.assertEqual([], missing)
+
+    def test_slayer_task_is_required_and_strictly_validated(self) -> None:
+        state = copy.deepcopy(load_json(FIXTURES / "fresh-account.json"))
+        del state["slayer_task"]
+        with self.assertRaisesRegex(ValueError, "missing required keys"):
+            validate_account_state(state)
+
+        state = copy.deepcopy(load_json(FIXTURES / "fresh-account.json"))
+        state["slayer_task"] = {}
+        with self.assertRaisesRegex(ValueError, "invalid fields"):
+            validate_account_state(state)
+
+        state["slayer_task"] = {
+            "target": " Aberrant spectres",
+            "remaining": 20,
+            "observed_at": "2026-08-21T09:30:00Z",
+        }
+        with self.assertRaisesRegex(ValueError, "non-empty trimmed string"):
+            validate_account_state(state)
+
+        state["slayer_task"]["target"] = "Aberrant spectres"
+        state["slayer_task"]["remaining"] = 0
+        with self.assertRaisesRegex(ValueError, "positive integer"):
+            validate_account_state(state)
+
+        state["slayer_task"]["remaining"] = 20
+        state["slayer_task"]["observed_at"] = "2026-08-21 09:30:00"
+        with self.assertRaisesRegex(ValueError, "observed_at must be RFC 3339"):
+            validate_account_state(state)
+
+        state["slayer_task"]["observed_at"] = "2026-08-21T09:30:00-07:00"
+        validate_account_state(state)
+
+    def test_slayer_task_target_predicate_uses_only_current_player_observation(self) -> None:
+        state = copy.deepcopy(load_json(FIXTURES / "fresh-account.json"))
+        condition = {"type": "slayer_task_target", "key": "Aberrant spectres"}
+
+        satisfied, missing = evaluate_condition(condition, state)
+        self.assertFalse(satisfied)
+        self.assertIn("current: none", missing[0])
+
+        state["slayer_task"] = {
+            "target": "Aberrant spectres",
+            "remaining": 20,
+            "observed_at": "2026-08-21T09:30:00Z",
+        }
+        validate_account_state(state)
+        original_state = copy.deepcopy(state)
+        satisfied, missing = evaluate_condition(condition, state)
+        self.assertTrue(satisfied)
+        self.assertEqual([], missing)
+        self.assertEqual(original_state, state)
+
+        state["slayer_task"]["remaining"] = 0
+        satisfied, missing = evaluate_condition(condition, state)
+        self.assertFalse(satisfied)
+        self.assertIn("current: none", missing[0])
+
+    def test_data_validator_requires_an_exact_slayer_task_target_predicate(self) -> None:
+        valid_errors: list[str] = []
+        validate_condition(
+            {"type": "slayer_task_target", "key": "Aberrant spectres"},
+            "synthetic",
+            valid_errors,
+        )
+        self.assertEqual([], valid_errors)
+
+        invalid_errors: list[str] = []
+        validate_condition(
+            {"type": "slayer_task_target", "key": " Aberrant spectres", "value": 1},
+            "synthetic",
+            invalid_errors,
+        )
+        self.assertIn("synthetic slayer_task_target must contain only type and key", invalid_errors)
 
 
 if __name__ == "__main__":
