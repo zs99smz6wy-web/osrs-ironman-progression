@@ -21,6 +21,7 @@
     "kingdom": false,
     "tears_of_guthix": false
   },
+  "recurring_observations": {},
   "attention_window": {
     "duration_minutes": 30,
     "mode": "low_attention",

@@ -1,8 +1,10 @@
 from __future__ import annotations
 
 import argparse
+from datetime import datetime
 import json
 from pathlib import Path
+import re
 from typing import Any
 
 from osrs_xp import MAX_XP, SKILLS, level_from_xp
@@ -13,18 +15,33 @@ DEFAULT_ACTIONS = ROOT / "data" / "progression" / "actions.json"
 DEFAULT_STATE = ROOT / "graph" / "account-state.example.json"
 REQUIRED_STATE_KEYS = {
     "skills", "skill_xp", "quests_completed", "completed_actions", "transport_flags", "milestones",
-    "gear_thresholds", "items", "resources", "counters", "passive_loops",
+    "gear_thresholds", "items", "resources", "counters", "passive_loops", "recurring_observations",
     "attention_window", "notable_drops", "preferences", "cash_commitments",
 }
 LIST_STATE_KEYS = {
     "quests_completed", "completed_actions", "transport_flags", "milestones",
     "gear_thresholds", "notable_drops",
 }
+RECURRING_OBSERVATION_FIELDS = {"state", "observed_at", "ready_at"}
+RECURRING_OBSERVATION_STATES = {"needs_inputs", "in_progress", "ready", "cooldown", "unknown"}
+RFC_3339_TIMESTAMP = re.compile(
+    r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?(?:Z|[+-]\d{2}:\d{2})$"
+)
 
 
 def load_json(path: str | Path) -> dict[str, Any]:
     with Path(path).open(encoding="utf-8") as handle:
         return json.load(handle)
+
+
+def _is_rfc_3339_timestamp(value: Any) -> bool:
+    if not isinstance(value, str) or not value or not RFC_3339_TIMESTAMP.fullmatch(value):
+        return False
+    try:
+        datetime.fromisoformat(value.replace("Z", "+00:00"))
+    except ValueError:
+        return False
+    return True
 
 
 def validate_account_state(state: dict[str, Any]) -> None:
@@ -72,6 +89,21 @@ def validate_account_state(state: dict[str, Any]) -> None:
     passive_loops = state["passive_loops"]
     if not isinstance(passive_loops, dict) or any(not isinstance(value, bool) for value in passive_loops.values()):
         raise ValueError("Account state passive_loops must contain boolean values")
+
+    observations = state["recurring_observations"]
+    if not isinstance(observations, dict):
+        raise ValueError("Account state recurring_observations must be an object")
+    for system_id, observation in observations.items():
+        if system_id not in passive_loops:
+            raise ValueError(f"Account state recurring_observations.{system_id} is not a known passive loop")
+        if not isinstance(observation, dict) or set(observation) != RECURRING_OBSERVATION_FIELDS:
+            raise ValueError(f"Account state recurring_observations.{system_id} has invalid fields")
+        if observation["state"] not in RECURRING_OBSERVATION_STATES:
+            raise ValueError(f"Account state recurring_observations.{system_id}.state is invalid")
+        if not _is_rfc_3339_timestamp(observation["observed_at"]):
+            raise ValueError(f"Account state recurring_observations.{system_id}.observed_at must be RFC 3339")
+        if observation["ready_at"] is not None and not _is_rfc_3339_timestamp(observation["ready_at"]):
+            raise ValueError(f"Account state recurring_observations.{system_id}.ready_at must be RFC 3339 or null")
 
     attention = state["attention_window"]
     if not isinstance(attention, dict) or attention.get("mode") not in {"true_afk", "low_attention", "semi_afk", "active"}:

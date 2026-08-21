@@ -143,6 +143,82 @@ class EvaluateProgressionScenarioTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "purpose must be non-empty"):
             validate_account_state(state)
 
+    def test_recurring_observations_accept_explicit_observation_without_affecting_actions(self) -> None:
+        state = copy.deepcopy(load_json(FIXTURES / "fresh-account.json"))
+        state["recurring_observations"] = {
+            "birdhouses": {
+                "state": "ready",
+                "observed_at": "2026-08-20T09:30:00Z",
+                "ready_at": "2026-08-20T09:30:00Z",
+            }
+        }
+
+        validate_account_state(state)
+        results = {result["id"]: result for result in evaluate_actions(self.actions_document, state)}
+        self.assertEqual("blocked", results["action:birdhouse-loop"]["status"])
+
+    def test_recurring_observations_are_required_and_strictly_validated(self) -> None:
+        state = copy.deepcopy(load_json(FIXTURES / "fresh-account.json"))
+        del state["recurring_observations"]
+        with self.assertRaisesRegex(ValueError, "missing required keys"):
+            validate_account_state(state)
+
+        state = copy.deepcopy(load_json(FIXTURES / "fresh-account.json"))
+        state["recurring_observations"] = []
+        with self.assertRaisesRegex(ValueError, "must be an object"):
+            validate_account_state(state)
+
+        state = copy.deepcopy(load_json(FIXTURES / "fresh-account.json"))
+        state["recurring_observations"] = {
+            "birdhouses": {
+                "state": "ready",
+                "observed_at": "2026-08-20T09:30:00Z",
+                "ready_at": None,
+                "extra": True,
+            }
+        }
+        with self.assertRaisesRegex(ValueError, "invalid fields"):
+            validate_account_state(state)
+
+        state = copy.deepcopy(load_json(FIXTURES / "fresh-account.json"))
+        state["recurring_observations"] = {
+            "birdhouses": {
+                "state": "finished",
+                "observed_at": "2026-08-20T09:30:00Z",
+                "ready_at": None,
+            }
+        }
+        with self.assertRaisesRegex(ValueError, "state is invalid"):
+            validate_account_state(state)
+
+        state = copy.deepcopy(load_json(FIXTURES / "fresh-account.json"))
+        state["recurring_observations"] = {
+            "giant_seaweed": {
+                "state": "ready",
+                "observed_at": "2026-08-20T09:30:00Z",
+                "ready_at": None,
+            }
+        }
+        with self.assertRaisesRegex(ValueError, "is not a known passive loop"):
+            validate_account_state(state)
+
+    def test_recurring_observation_timestamps_must_be_rfc_3339(self) -> None:
+        state = copy.deepcopy(load_json(FIXTURES / "fresh-account.json"))
+        state["recurring_observations"] = {
+            "birdhouses": {
+                "state": "in_progress",
+                "observed_at": "2026-08-20 09:30:00",
+                "ready_at": None,
+            }
+        }
+        with self.assertRaisesRegex(ValueError, "observed_at must be RFC 3339"):
+            validate_account_state(state)
+
+        state["recurring_observations"]["birdhouses"]["observed_at"] = "2026-08-20T09:30:00+00:00"
+        state["recurring_observations"]["birdhouses"]["ready_at"] = "not-a-timestamp"
+        with self.assertRaisesRegex(ValueError, "ready_at must be RFC 3339 or null"):
+            validate_account_state(state)
+
 
 if __name__ == "__main__":
     unittest.main()
