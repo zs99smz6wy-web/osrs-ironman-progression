@@ -13,9 +13,13 @@ from evaluate_progression import (
     DEFAULT_STATE,
     DIARY_TIER_ORDER,
     DIARY_REGIONS,
+    KOUREND_MEMOIR_ORDINARY_PAGES,
+    KOUREND_MEMOIR_PAGES,
+    KOUREND_MEMOIR_SECRET_PAGE,
     LIST_STATE_KEYS,
     evaluate_actions,
     evaluate_condition,
+    kourend_memoir_capacity,
     load_json,
     validate_account_state,
 )
@@ -74,6 +78,14 @@ def _effect_is_satisfied(effect: dict[str, Any], state: dict[str, Any]) -> bool:
     if operation == "set_diary_tier":
         current = state["diary_tiers"][key]
         return DIARY_TIER_ORDER[current] >= DIARY_TIER_ORDER[effect.get("value")]
+    if operation == "obtain_kourend_memoir":
+        return state["kourend_memoir"] is not None
+    if operation == "add_kourend_memoir_page":
+        memoir = state["kourend_memoir"]
+        return memoir is not None and key in memoir["pages"]
+    if operation == "upgrade_kourend_memoir_to_book":
+        memoir = state["kourend_memoir"]
+        return memoir is not None and memoir["form"] == "book_of_the_dead"
     # A delta has no reconstructable target value in an imported snapshot.
     return True
 
@@ -139,6 +151,34 @@ def _validate_effect(effect: dict[str, Any]) -> None:
             raise ValueError("set_diary_tier requires a canonical diary region and tier")
         return
 
+    if operation == "obtain_kourend_memoir":
+        if state_key != "kourend_memoir" or key != "memoirs" or "value" in effect or "amount" in effect:
+            raise ValueError("obtain_kourend_memoir requires the empty memoirs state")
+        return
+
+    if operation == "add_kourend_memoir_page":
+        if state_key != "kourend_memoir" or key not in KOUREND_MEMOIR_PAGES or "value" in effect or "amount" in effect:
+            raise ValueError("add_kourend_memoir_page requires a canonical page ID")
+        return
+
+    if operation == "upgrade_kourend_memoir_to_book":
+        if state_key != "kourend_memoir" or key != "book_of_the_dead" or "value" in effect or "amount" in effect:
+            raise ValueError("upgrade_kourend_memoir_to_book requires the Book of the dead target")
+        return
+
+    if operation in {"recharge_kourend_memoir", "spend_kourend_memoir_charges"}:
+        amount = effect.get("amount")
+        if (
+            state_key != "kourend_memoir"
+            or key != "charges"
+            or isinstance(amount, bool)
+            or not isinstance(amount, int)
+            or amount <= 0
+            or "value" in effect
+        ):
+            raise ValueError(f"{operation} requires a positive charge amount")
+        return
+
     raise ValueError(f"Unknown transition effect operation: {operation}")
 
 
@@ -167,6 +207,55 @@ def _apply_effect(effect: dict[str, Any], state: dict[str, Any]) -> None:
         if DIARY_TIER_ORDER[effect["value"]] < DIARY_TIER_ORDER[current]:
             raise ValueError(f"Transition cannot downgrade diary_tiers.{key}")
         state[state_key][key] = effect["value"]
+        return
+
+    if operation == "obtain_kourend_memoir":
+        if state[state_key] is not None:
+            raise ValueError("Kourend memoir is already owned")
+        state[state_key] = {"form": "memoirs", "pages": [], "charges": 0}
+        return
+
+    memoir = state["kourend_memoir"]
+    if operation == "add_kourend_memoir_page":
+        if memoir is None:
+            raise ValueError("Kourend memoir page requires owned memoirs")
+        if key in memoir["pages"]:
+            raise ValueError(f"Kourend memoir already has page {key}")
+        next_pages = [*memoir["pages"], key]
+        added_charges = 0 if key == KOUREND_MEMOIR_SECRET_PAGE else 20
+        next_memoir = {**memoir, "pages": next_pages, "charges": memoir["charges"] + added_charges}
+        if next_memoir["charges"] > kourend_memoir_capacity(next_memoir):
+            raise ValueError("Kourend memoir page would exceed charge capacity")
+        state["kourend_memoir"] = next_memoir
+        return
+
+    if operation == "upgrade_kourend_memoir_to_book":
+        if memoir is None or memoir["form"] != "memoirs":
+            raise ValueError("Kourend memoir upgrade requires memoirs form")
+        if not set(KOUREND_MEMOIR_ORDINARY_PAGES).issubset(memoir["pages"]):
+            raise ValueError("Kourend memoir upgrade requires all ordinary pages")
+        next_memoir = {**memoir, "form": "book_of_the_dead", "charges": memoir["charges"] + 150}
+        if next_memoir["charges"] > kourend_memoir_capacity(next_memoir):
+            raise ValueError("Kourend memoir upgrade would exceed charge capacity")
+        state["kourend_memoir"] = next_memoir
+        return
+
+    if operation == "recharge_kourend_memoir":
+        if memoir is None:
+            raise ValueError("Kourend memoir recharge requires owned memoirs")
+        next_charges = memoir["charges"] + effect["amount"]
+        if next_charges > kourend_memoir_capacity(memoir):
+            raise ValueError("Kourend memoir recharge would exceed charge capacity")
+        state["kourend_memoir"] = {**memoir, "charges": next_charges}
+        return
+
+    if operation == "spend_kourend_memoir_charges":
+        if memoir is None:
+            raise ValueError("Kourend memoir charge spend requires owned memoirs")
+        next_charges = memoir["charges"] - effect["amount"]
+        if next_charges < 0:
+            raise ValueError("Kourend memoir charge spend would underflow")
+        state["kourend_memoir"] = {**memoir, "charges": next_charges}
         return
 
 

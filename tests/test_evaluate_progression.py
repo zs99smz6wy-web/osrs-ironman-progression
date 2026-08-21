@@ -414,6 +414,72 @@ class EvaluateProgressionScenarioTests(unittest.TestCase):
         self.assertFalse(satisfied)
         self.assertEqual(["Falador diary elite (confirmed: hard)"], missing)
 
+    def test_kourend_memoir_is_a_nullable_strict_account_observation(self) -> None:
+        state = copy.deepcopy(load_json(FIXTURES / "fresh-account.json"))
+        del state["kourend_memoir"]
+        with self.assertRaisesRegex(ValueError, "missing required keys"):
+            validate_account_state(state)
+
+        state = copy.deepcopy(load_json(FIXTURES / "fresh-account.json"))
+        state["kourend_memoir"] = {"form": "memoirs", "pages": [], "charges": 1}
+        with self.assertRaisesRegex(ValueError, "must not exceed capacity 0"):
+            validate_account_state(state)
+
+        state["kourend_memoir"] = {
+            "form": "memoirs",
+            "pages": ["the_fishers_flute", "the_fishers_flute"],
+            "charges": 20,
+        }
+        with self.assertRaisesRegex(ValueError, "unique canonical page IDs"):
+            validate_account_state(state)
+
+        state["kourend_memoir"] = {
+            "form": "book_of_the_dead",
+            "pages": ["the_fishers_flute"],
+            "charges": 20,
+        }
+        with self.assertRaisesRegex(ValueError, "requires all ordinary pages"):
+            validate_account_state(state)
+
+        state["kourend_memoir"] = {
+            "form": "book_of_the_dead",
+            "pages": [
+                "lunch_by_the_lancalliums",
+                "the_fishers_flute",
+                "history_and_hearsay",
+                "jewellery_of_jubilation",
+                "a_dark_disposition",
+                "secret_page",
+            ],
+            "charges": 250,
+        }
+        validate_account_state(state)
+
+    def test_kourend_memoir_predicates_read_only_confirmed_state(self) -> None:
+        state = copy.deepcopy(load_json(FIXTURES / "fresh-account.json"))
+        conditions = {
+            "owned": {"type": "kourend_memoir_owned", "key": "kourend_memoir"},
+            "form": {"type": "kourend_memoir_form", "key": "memoirs"},
+            "page": {"type": "kourend_memoir_page", "key": "the_fishers_flute"},
+            "charges": {"type": "kourend_memoir_charges_at_least", "key": "charges", "value": 15},
+            "charge_space": {"type": "kourend_memoir_charge_space_at_least", "key": "charges", "value": 5},
+        }
+        for condition in conditions.values():
+            satisfied, _ = evaluate_condition(condition, state)
+            self.assertFalse(satisfied)
+
+        state["kourend_memoir"] = {
+            "form": "memoirs",
+            "pages": ["the_fishers_flute"],
+            "charges": 15,
+        }
+        validate_account_state(state)
+        original_state = copy.deepcopy(state)
+        for condition in conditions.values():
+            satisfied, missing = evaluate_condition(condition, state)
+            self.assertTrue(satisfied, missing)
+        self.assertEqual(original_state, state)
+
     def test_data_validator_requires_an_exact_slayer_task_target_predicate(self) -> None:
         valid_errors: list[str] = []
         validate_condition(
@@ -447,6 +513,32 @@ class EvaluateProgressionScenarioTests(unittest.TestCase):
             invalid_errors,
         )
         self.assertIn("synthetic diary_tier_at_least requires a canonical region and tier", invalid_errors)
+
+    def test_data_validator_requires_exact_kourend_memoir_predicates(self) -> None:
+        valid_conditions = [
+            {"type": "kourend_memoir_owned", "key": "kourend_memoir"},
+            {"type": "kourend_memoir_form", "key": "book_of_the_dead"},
+            {"type": "kourend_memoir_page", "key": "secret_page"},
+            {"type": "kourend_memoir_charges_at_least", "key": "charges", "value": 1},
+            {"type": "kourend_memoir_charge_space_at_least", "key": "charges", "value": 1},
+        ]
+        for condition in valid_conditions:
+            errors: list[str] = []
+            validate_condition(condition, "synthetic", errors)
+            self.assertEqual([], errors)
+
+        invalid_conditions = [
+            {"type": "kourend_memoir_owned", "key": "memoirs"},
+            {"type": "kourend_memoir_form", "key": "book"},
+            {"type": "kourend_memoir_page", "key": "unknown_page"},
+            {"type": "kourend_memoir_charges_at_least", "key": "charge", "value": True},
+            {"type": "kourend_memoir_charge_space_at_least", "key": "charges", "value": 0},
+        ]
+        for condition in invalid_conditions:
+            errors = []
+            validate_condition(condition, "synthetic", errors)
+            self.assertEqual(1, len(errors))
+            self.assertIn("kourend_memoir", errors[0])
 
 
 if __name__ == "__main__":

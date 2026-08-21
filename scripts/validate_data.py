@@ -8,6 +8,9 @@ from pathlib import Path
 from evaluate_progression import (
     DIARY_REGIONS,
     DIARY_TIER_ORDER,
+    KOUREND_MEMOIR_FORMS,
+    KOUREND_MEMOIR_OWNED_KEY,
+    KOUREND_MEMOIR_PAGES,
     RECURRING_OBSERVATION_STATES,
     validate_account_state,
 )
@@ -42,6 +45,7 @@ REQUIRED_ACCOUNT_STATE_KEYS = {
     "kingdom_observation",
     "slayer_task",
     "diary_tiers",
+    "kourend_memoir",
     "attention_window",
     "notable_drops",
     "preferences",
@@ -59,6 +63,11 @@ VALID_PREDICATE_TYPES = {
     "recurring_state",
     "slayer_task_target",
     "diary_tier_at_least",
+    "kourend_memoir_owned",
+    "kourend_memoir_form",
+    "kourend_memoir_page",
+    "kourend_memoir_charges_at_least",
+    "kourend_memoir_charge_space_at_least",
     "notable_drop",
     "gear_threshold",
 }
@@ -111,6 +120,35 @@ def validate_condition(condition: dict, context: str, errors: list[str]) -> None
             errors.append(f"{context} diary_tier_at_least must contain only type, key, and value")
         elif condition.get("key") not in DIARY_REGIONS or condition.get("value") not in DIARY_TIER_ORDER:
             errors.append(f"{context} diary_tier_at_least requires a canonical region and tier")
+    if predicate_type == "kourend_memoir_owned":
+        if set(condition) != {"type", "key"} or condition.get("key") != KOUREND_MEMOIR_OWNED_KEY:
+            errors.append(f"{context} kourend_memoir_owned requires the canonical memoir key")
+    if predicate_type == "kourend_memoir_form":
+        if set(condition) != {"type", "key"} or condition.get("key") not in KOUREND_MEMOIR_FORMS:
+            errors.append(f"{context} kourend_memoir_form requires a canonical form")
+    if predicate_type == "kourend_memoir_page":
+        if set(condition) != {"type", "key"} or condition.get("key") not in KOUREND_MEMOIR_PAGES:
+            errors.append(f"{context} kourend_memoir_page requires a canonical page ID")
+    if predicate_type == "kourend_memoir_charges_at_least":
+        if (
+            set(condition) != {"type", "key", "value"}
+            or condition.get("key") != "charges"
+            or isinstance(condition.get("value"), bool)
+            or not isinstance(condition.get("value"), int)
+            or condition["value"] < 0
+        ):
+            errors.append(f"{context} kourend_memoir_charges_at_least requires charges and a non-negative integer")
+    if predicate_type == "kourend_memoir_charge_space_at_least":
+        if (
+            set(condition) != {"type", "key", "value"}
+            or condition.get("key") != "charges"
+            or isinstance(condition.get("value"), bool)
+            or not isinstance(condition.get("value"), int)
+            or condition["value"] < 1
+        ):
+            errors.append(
+                f"{context} kourend_memoir_charge_space_at_least requires charges and a positive integer"
+            )
 
 
 def load_json(path: Path) -> dict:

@@ -10,6 +10,7 @@ from evaluate_progression import (
     DEFAULT_STATE,
     evaluate_actions,
     evaluate_condition,
+    kourend_memoir_capacity,
     load_json,
 )
 
@@ -32,6 +33,8 @@ FLOOR_PREDICATES = {"item_at_least", "resource_at_least", "counter_at_least"}
 EXTERNAL_INPUT_PREDICATES = {
     "skill_at_least", "item_at_least", "resource_at_least", "recurring_state", "slayer_task_target",
     "diary_tier_at_least",
+    "kourend_memoir_owned", "kourend_memoir_form", "kourend_memoir_page", "kourend_memoir_charges_at_least",
+    "kourend_memoir_charge_space_at_least",
 }
 
 
@@ -62,6 +65,20 @@ def _current_value(predicate: dict[str, Any], state: dict[str, Any]) -> Any:
         return task if task is not None and task["remaining"] > 0 else None
     if predicate_type == "diary_tier_at_least":
         return state["diary_tiers"][key]
+    if predicate_type == "kourend_memoir_owned":
+        return state["kourend_memoir"] is not None
+    if predicate_type == "kourend_memoir_form":
+        memoir = state["kourend_memoir"]
+        return memoir["form"] if memoir is not None else None
+    if predicate_type == "kourend_memoir_page":
+        memoir = state["kourend_memoir"]
+        return memoir is not None and key in memoir["pages"]
+    if predicate_type == "kourend_memoir_charges_at_least":
+        memoir = state["kourend_memoir"]
+        return memoir["charges"] if memoir is not None else 0
+    if predicate_type == "kourend_memoir_charge_space_at_least":
+        memoir = state["kourend_memoir"]
+        return kourend_memoir_capacity(memoir) - memoir["charges"] if memoir is not None else 0
     return key in state[PREDICATE_STATE[predicate_type]]
 
 
@@ -126,6 +143,43 @@ class DependencyClosureAnalyzer:
         for action in sorted(self.actions.values(), key=lambda candidate: candidate["id"]):
             for effect in action["transition"]["effects"]:
                 effect_type = effect["op"]
+                memoir_producers: list[tuple[str, str, str, int | None]] = []
+                if effect_type == "obtain_kourend_memoir":
+                    memoir_producers = [
+                        ("kourend_memoir_owned", "kourend_memoir", "set_value", None),
+                        ("kourend_memoir_form", "memoirs", "set_value", None),
+                    ]
+                elif effect_type == "add_kourend_memoir_page":
+                    memoir_producers = [("kourend_memoir_page", effect["key"], "set_membership", None)]
+                    if effect["key"] != "secret_page":
+                        memoir_producers.append(("kourend_memoir_charges_at_least", "charges", "incremental", 20))
+                elif effect_type == "upgrade_kourend_memoir_to_book":
+                    memoir_producers = [
+                        ("kourend_memoir_form", "book_of_the_dead", "set_value", None),
+                        ("kourend_memoir_charges_at_least", "charges", "incremental", 150),
+                    ]
+                elif effect_type == "recharge_kourend_memoir":
+                    memoir_producers = [
+                        ("kourend_memoir_charges_at_least", "charges", "incremental", effect["amount"]),
+                    ]
+                elif effect_type == "spend_kourend_memoir_charges":
+                    memoir_producers = [
+                        ("kourend_memoir_charge_space_at_least", "charges", "incremental", effect["amount"]),
+                    ]
+
+                if memoir_producers:
+                    for predicate_type, predicate_key, capability, amount in memoir_producers:
+                        candidate = {
+                            "action_id": action["id"],
+                            "operation": effect_type,
+                            "capability": capability,
+                            "fact_id": effect["fact_id"],
+                        }
+                        if amount is not None:
+                            candidate["amount"] = amount
+                        producers.setdefault((predicate_type, predicate_key), []).append(candidate)
+                    continue
+
                 if effect_type == "set_add":
                     predicate_type = {
                         "quests_completed": "quest_completed",

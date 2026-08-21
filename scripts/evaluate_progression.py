@@ -16,7 +16,7 @@ DEFAULT_STATE = ROOT / "graph" / "account-state.example.json"
 REQUIRED_STATE_KEYS = {
     "skills", "skill_xp", "quests_completed", "completed_actions", "transport_flags", "milestones",
     "gear_thresholds", "items", "resources", "counters", "passive_loops", "recurring_observations",
-    "kingdom_observation", "slayer_task", "diary_tiers",
+    "kingdom_observation", "slayer_task", "diary_tiers", "kourend_memoir",
     "attention_window", "notable_drops", "preferences", "cash_commitments",
 }
 LIST_STATE_KEYS = {
@@ -44,6 +44,18 @@ DIARY_REGIONS = (
     "Wilderness",
 )
 DIARY_TIER_ORDER = {"none": 0, "easy": 1, "medium": 2, "hard": 3, "elite": 4}
+KOUREND_MEMOIR_FORMS = {"memoirs", "book_of_the_dead"}
+KOUREND_MEMOIR_ORDINARY_PAGES = (
+    "lunch_by_the_lancalliums",
+    "the_fishers_flute",
+    "history_and_hearsay",
+    "jewellery_of_jubilation",
+    "a_dark_disposition",
+)
+KOUREND_MEMOIR_SECRET_PAGE = "secret_page"
+KOUREND_MEMOIR_PAGES = frozenset((*KOUREND_MEMOIR_ORDINARY_PAGES, KOUREND_MEMOIR_SECRET_PAGE))
+KOUREND_MEMOIR_FIELDS = {"form", "pages", "charges"}
+KOUREND_MEMOIR_OWNED_KEY = "kourend_memoir"
 RFC_3339_TIMESTAMP = re.compile(
     r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?(?:Z|[+-]\d{2}:\d{2})$"
 )
@@ -62,6 +74,14 @@ def _is_rfc_3339_timestamp(value: Any) -> bool:
     except ValueError:
         return False
     return True
+
+
+def kourend_memoir_capacity(memoir: dict[str, Any]) -> int:
+    """Return the usable charge cap for a validated memoir record."""
+    if memoir["form"] == "book_of_the_dead":
+        return 250
+    ordinary_pages = set(memoir["pages"]) & set(KOUREND_MEMOIR_ORDINARY_PAGES)
+    return 20 * len(ordinary_pages)
 
 
 def validate_account_state(state: dict[str, Any]) -> None:
@@ -179,6 +199,33 @@ def validate_account_state(state: dict[str, Any]) -> None:
         if tier not in DIARY_TIER_ORDER:
             raise ValueError(f"Account state diary_tiers.{region} has an invalid tier")
 
+    kourend_memoir = state["kourend_memoir"]
+    if kourend_memoir is not None:
+        if not isinstance(kourend_memoir, dict) or set(kourend_memoir) != KOUREND_MEMOIR_FIELDS:
+            raise ValueError("Account state kourend_memoir has invalid fields")
+        if kourend_memoir["form"] not in KOUREND_MEMOIR_FORMS:
+            raise ValueError("Account state kourend_memoir.form is invalid")
+        pages = kourend_memoir["pages"]
+        if (
+            not isinstance(pages, list)
+            or any(page not in KOUREND_MEMOIR_PAGES for page in pages)
+            or len(pages) != len(set(pages))
+        ):
+            raise ValueError("Account state kourend_memoir.pages must be unique canonical page IDs")
+        charges = kourend_memoir["charges"]
+        if isinstance(charges, bool) or not isinstance(charges, int) or charges < 0:
+            raise ValueError("Account state kourend_memoir.charges must be a non-negative integer")
+        if (
+            kourend_memoir["form"] == "book_of_the_dead"
+            and not set(KOUREND_MEMOIR_ORDINARY_PAGES).issubset(pages)
+        ):
+            raise ValueError("Account state kourend_memoir.book_of_the_dead requires all ordinary pages")
+        capacity = kourend_memoir_capacity(kourend_memoir)
+        if charges > capacity:
+            raise ValueError(
+                f"Account state kourend_memoir.charges must not exceed capacity {capacity}"
+            )
+
     attention = state["attention_window"]
     if not isinstance(attention, dict) or attention.get("mode") not in {"true_afk", "low_attention", "semi_afk", "active"}:
         raise ValueError("Account state attention_window has an invalid mode")
@@ -250,6 +297,25 @@ def _predicate_result(predicate: dict[str, Any], state: dict[str, Any]) -> tuple
             DIARY_TIER_ORDER[current] >= DIARY_TIER_ORDER[value],
             f"{key} diary {value} (confirmed: {current})",
         )
+    if predicate_type == "kourend_memoir_owned":
+        owned = state["kourend_memoir"] is not None
+        return owned, f"own Kourend memoir (current: {'owned' if owned else 'none'})"
+    if predicate_type == "kourend_memoir_form":
+        memoir = state["kourend_memoir"]
+        current = memoir["form"] if memoir is not None else "none"
+        return current == key, f"Kourend memoir form {key} (current: {current})"
+    if predicate_type == "kourend_memoir_page":
+        memoir = state["kourend_memoir"]
+        has_page = memoir is not None and key in memoir["pages"]
+        return has_page, f"Kourend memoir page {key}"
+    if predicate_type == "kourend_memoir_charges_at_least":
+        memoir = state["kourend_memoir"]
+        current = memoir["charges"] if memoir is not None else 0
+        return current >= value, f"Kourend memoir charges {value} (current: {current})"
+    if predicate_type == "kourend_memoir_charge_space_at_least":
+        memoir = state["kourend_memoir"]
+        current = kourend_memoir_capacity(memoir) - memoir["charges"] if memoir is not None else 0
+        return current >= value, f"Kourend memoir charge space {value} (current: {current})"
     if predicate_type == "notable_drop":
         return key in state.get("notable_drops", []), f"obtain notable drop: {key}"
     if predicate_type == "gear_threshold":

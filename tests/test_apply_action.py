@@ -821,6 +821,177 @@ class ApplyActionTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "cannot downgrade diary_tiers.Varrock"):
             apply_action(document(incorrect_claim), self.state, incorrect_claim["id"])
 
+    def test_kourend_memoir_transitions_preserve_exact_pages_forms_and_charges(self) -> None:
+        obtain = action(
+            "action:obtain-memoirs",
+            effects=[{"op": "obtain_kourend_memoir", "state": "kourend_memoir", "key": "memoirs"}],
+        )
+        add_page = action(
+            "action:add-fishers-flute",
+            effects=[{"op": "add_kourend_memoir_page", "state": "kourend_memoir", "key": "the_fishers_flute"}],
+        )
+        add_secret = action(
+            "action:add-secret-page",
+            effects=[{"op": "add_kourend_memoir_page", "state": "kourend_memoir", "key": "secret_page"}],
+        )
+        recharge = action(
+            "action:recharge-memoirs",
+            effects=[{"op": "recharge_kourend_memoir", "state": "kourend_memoir", "key": "charges", "amount": 0}],
+        )
+        spend = action(
+            "action:spend-memoir-charge",
+            effects=[{"op": "spend_kourend_memoir_charges", "state": "kourend_memoir", "key": "charges", "amount": 5}],
+        )
+
+        state = apply_action(document(obtain), self.state, obtain["id"])["next_state"]
+        self.assertEqual({"form": "memoirs", "pages": [], "charges": 0}, state["kourend_memoir"])
+        state = apply_action(document(add_page), state, add_page["id"])["next_state"]
+        self.assertEqual(20, state["kourend_memoir"]["charges"])
+        state = apply_action(document(add_secret), state, add_secret["id"])["next_state"]
+        self.assertEqual(20, state["kourend_memoir"]["charges"])
+
+        state = apply_action(document(spend), state, spend["id"])["next_state"]
+        self.assertEqual(15, state["kourend_memoir"]["charges"])
+        recharge["transition"]["effects"][0]["amount"] = 5
+        state = apply_action(document(recharge), state, recharge["id"])["next_state"]
+        self.assertEqual(20, state["kourend_memoir"]["charges"])
+
+    def test_kourend_memoir_upgrade_requires_all_ordinary_pages_and_adds_150_charges(self) -> None:
+        upgrade = action(
+            "action:upgrade-memoirs",
+            effects=[{"op": "upgrade_kourend_memoir_to_book", "state": "kourend_memoir", "key": "book_of_the_dead"}],
+        )
+        self.state["kourend_memoir"] = {
+            "form": "memoirs",
+            "pages": [
+                "lunch_by_the_lancalliums",
+                "the_fishers_flute",
+                "history_and_hearsay",
+                "jewellery_of_jubilation",
+                "a_dark_disposition",
+            ],
+            "charges": 100,
+        }
+
+        result = apply_action(document(upgrade), self.state, upgrade["id"])
+
+        self.assertEqual("book_of_the_dead", result["next_state"]["kourend_memoir"]["form"])
+        self.assertEqual(250, result["next_state"]["kourend_memoir"]["charges"])
+
+    def test_kourend_quest_chain_preserves_choice_xp_and_reusable_tools(self) -> None:
+        self.state["items"] = {"spade": 1, "feather": 1, "tinderbox": 1}
+        starting_xp = dict(self.state["skill_xp"])
+
+        result = apply_action(self.actions_document, self.state, "action:x-marks-the-spot")
+        state = result["next_state"]
+        self.assertEqual("applied", result["status"])
+        self.assertEqual(1, state["items"]["spade"])
+        self.assertEqual(200, state["resources"]["coins"])
+        self.assertEqual(starting_xp, state["skill_xp"])
+        self.assertEqual("xp_choice_award", result["reported_effects"][0]["type"])
+
+        result = apply_action(self.actions_document, state, "action:client-of-kourend")
+        state = result["next_state"]
+        self.assertEqual("ordinary-feather", result["selected_option_id"])
+        self.assertEqual(0, state["items"]["feather"])
+        self.assertEqual({"form": "memoirs", "pages": [], "charges": 0}, state["kourend_memoir"])
+        self.assertIn("kourend_castle_teleport_unlocked", state["milestones"])
+
+        result = apply_action(self.actions_document, state, "action:the-forsaken-tower")
+        state = result["next_state"]
+        self.assertEqual(6200, state["resources"]["coins"])
+        self.assertEqual(500, state["skill_xp"]["Mining"])
+        self.assertEqual(500, state["skill_xp"]["Smithing"])
+        self.assertIn("lovakengj_minecart_free", state["transport_flags"])
+        self.assertEqual([], state["kourend_memoir"]["pages"])
+
+        result = apply_action(self.actions_document, state, "action:apply-jewellery-of-jubilation-page")
+        self.assertEqual(20, result["next_state"]["kourend_memoir"]["charges"])
+        self.assertIn("jewellery_of_jubilation", result["next_state"]["kourend_memoir"]["pages"])
+
+    def test_kourend_memoir_teleport_and_recharge_are_exact_and_atomic(self) -> None:
+        self.state["kourend_memoir"] = {
+            "form": "memoirs",
+            "pages": ["the_fishers_flute"],
+            "charges": 20,
+        }
+        self.state["items"] = {"law_rune": 1, "body_rune": 1, "mind_rune": 1, "soul_rune": 1}
+
+        blocked = apply_action(self.actions_document, self.state, "action:recharge-kourend-memoir-one-charge")
+        self.assertEqual("not_eligible", blocked["status"])
+        self.assertEqual(self.state, blocked["next_state"])
+
+        result = apply_action(self.actions_document, self.state, "action:kourend-memoir-teleport")
+        state = result["next_state"]
+        self.assertEqual("port-piscarilius", result["selected_option_id"])
+        self.assertEqual(19, state["kourend_memoir"]["charges"])
+
+        result = apply_action(self.actions_document, state, "action:recharge-kourend-memoir-one-charge")
+        state = result["next_state"]
+        self.assertEqual(20, state["kourend_memoir"]["charges"])
+        self.assertEqual(10, state["skill_xp"]["Magic"])
+        for rune in ("law_rune", "body_rune", "mind_rune", "soul_rune"):
+            self.assertEqual(0, state["items"][rune])
+
+    def test_kourend_memoir_multiple_destinations_require_explicit_selection(self) -> None:
+        self.state["kourend_memoir"] = {
+            "form": "memoirs",
+            "pages": ["the_fishers_flute", "jewellery_of_jubilation"],
+            "charges": 40,
+        }
+
+        unresolved = apply_action(self.actions_document, self.state, "action:kourend-memoir-teleport")
+        self.assertEqual("choice_required", unresolved["status"])
+        self.assertEqual(40, unresolved["next_state"]["kourend_memoir"]["charges"])
+
+        result = apply_action(
+            self.actions_document,
+            self.state,
+            "action:kourend-memoir-teleport",
+            option_id="lovakengj",
+        )
+        self.assertEqual("applied", result["status"])
+        self.assertEqual("lovakengj", result["selected_option_id"])
+        self.assertEqual(39, result["next_state"]["kourend_memoir"]["charges"])
+
+    def test_invalid_kourend_memoir_operations_raise_without_mutating_input_state(self) -> None:
+        atomic_failure = action(
+            "action:atomic-memoir-failure",
+            effects=[
+                {"op": "obtain_kourend_memoir", "state": "kourend_memoir", "key": "memoirs"},
+                {"op": "recharge_kourend_memoir", "state": "kourend_memoir", "key": "charges", "amount": 1},
+            ],
+        )
+        original_state = copy.deepcopy(self.state)
+        with self.assertRaisesRegex(ValueError, "would exceed charge capacity"):
+            apply_action(document(atomic_failure), self.state, atomic_failure["id"])
+        self.assertEqual(original_state, self.state)
+
+        self.state["kourend_memoir"] = {
+            "form": "memoirs", "pages": ["the_fishers_flute"], "charges": 20,
+        }
+        already_owned = action(
+            "action:obtain-again",
+            effects=[{"op": "obtain_kourend_memoir", "state": "kourend_memoir", "key": "memoirs"}],
+        )
+        duplicate_page = action(
+            "action:add-page-again",
+            effects=[{"op": "add_kourend_memoir_page", "state": "kourend_memoir", "key": "the_fishers_flute"}],
+        )
+        overspend = action(
+            "action:overspend-memoir-charge",
+            effects=[{"op": "spend_kourend_memoir_charges", "state": "kourend_memoir", "key": "charges", "amount": 21}],
+        )
+        for invalid_action, message in (
+            (already_owned, "already owned"),
+            (duplicate_page, "already has page"),
+            (overspend, "would underflow"),
+        ):
+            before = copy.deepcopy(self.state)
+            with self.assertRaisesRegex(ValueError, message):
+                apply_action(document(invalid_action), self.state, invalid_action["id"])
+            self.assertEqual(before, self.state)
+
     def test_perilous_moons_applies_only_fixed_quest_rewards(self) -> None:
         self.state["quests_completed"].extend(["Children of the Sun", "Twilight's Promise"])
         for skill, level in (("Slayer", 48), ("Hunter", 20), ("Fishing", 20), ("Runecraft", 20), ("Construction", 10)):

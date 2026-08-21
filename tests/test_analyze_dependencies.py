@@ -173,6 +173,89 @@ class AnalyzeDependenciesTests(unittest.TestCase):
             any(entry["predicate"] == tier["predicate"] for entry in analysis["missing_modeled_producers"])
         )
 
+    def test_kourend_memoir_predicates_are_external_without_effects_but_resolve_from_explicit_effects(self) -> None:
+        consumer = {
+            "id": "action:synthetic-memoir-consumer",
+            "name": "Use memoir transport",
+            "kind": "activity",
+            "status": "verified",
+            "fact_ids": ["synthetic"],
+            "requirements": {"all": [
+                {"type": "kourend_memoir_owned", "key": "kourend_memoir"},
+                {"type": "kourend_memoir_form", "key": "memoirs"},
+                {"type": "kourend_memoir_page", "key": "the_fishers_flute"},
+                {"type": "kourend_memoir_charges_at_least", "key": "charges", "value": 20},
+                {"type": "kourend_memoir_charge_space_at_least", "key": "charges", "value": 1},
+            ]},
+            "preparation": {"all": []},
+            "completion": {"all": []},
+            "outcomes": [],
+            "repeatable": True,
+            "transition": {"effects": [], "options": [], "reported_effects": []},
+        }
+        source = {
+            "id": "action:synthetic-memoir-source",
+            "name": "Build memoir transport",
+            "kind": "activity",
+            "status": "verified",
+            "fact_ids": ["synthetic"],
+            "requirements": {"all": []},
+            "preparation": {"all": []},
+            "completion": {"all": []},
+            "outcomes": [],
+            "repeatable": True,
+            "transition": {
+                "effects": [
+                    {"op": "obtain_kourend_memoir", "state": "kourend_memoir", "key": "memoirs", "fact_id": "synthetic"},
+                    {"op": "add_kourend_memoir_page", "state": "kourend_memoir", "key": "the_fishers_flute", "fact_id": "synthetic"},
+                    {"op": "spend_kourend_memoir_charges", "state": "kourend_memoir", "key": "charges", "amount": 1, "fact_id": "synthetic"},
+                ],
+                "options": [],
+                "reported_effects": [],
+            },
+        }
+
+        external_analysis = analyze_dependency_closure({"actions": [consumer]}, copy.deepcopy(self.fresh_state), consumer["id"])
+        external_node = self._action_node(external_analysis, consumer["id"])
+        for predicate_type, key in (
+            ("kourend_memoir_owned", "kourend_memoir"),
+            ("kourend_memoir_form", "memoirs"),
+            ("kourend_memoir_page", "the_fishers_flute"),
+            ("kourend_memoir_charges_at_least", "charges"),
+            ("kourend_memoir_charge_space_at_least", "charges"),
+        ):
+            predicate = self._predicate(external_node, "requirements", predicate_type, key)
+            self.assertTrue(any(entry["predicate"] == predicate["predicate"] for entry in external_analysis["external_inputs"]))
+            self.assertFalse(any(entry["predicate"] == predicate["predicate"] for entry in external_analysis["missing_modeled_producers"]))
+
+        produced_analysis = analyze_dependency_closure({"actions": [consumer, source]}, copy.deepcopy(self.fresh_state), consumer["id"])
+        produced_node = self._action_node(produced_analysis, consumer["id"])
+        for predicate_type, key in (
+            ("kourend_memoir_owned", "kourend_memoir"),
+            ("kourend_memoir_form", "memoirs"),
+            ("kourend_memoir_page", "the_fishers_flute"),
+            ("kourend_memoir_charges_at_least", "charges"),
+            ("kourend_memoir_charge_space_at_least", "charges"),
+        ):
+            predicate = self._predicate(produced_node, "requirements", predicate_type, key)
+            self.assertEqual([source["id"]], predicate["producer_actions"])
+
+        observed_state = copy.deepcopy(self.fresh_state)
+        observed_state["kourend_memoir"] = {
+            "form": "memoirs",
+            "pages": ["the_fishers_flute"],
+            "charges": 15,
+        }
+        observed_analysis = analyze_dependency_closure({"actions": [consumer]}, observed_state, consumer["id"])
+        observed_node = self._action_node(observed_analysis, consumer["id"])
+        space = self._predicate(
+            observed_node,
+            "requirements",
+            "kourend_memoir_charge_space_at_least",
+            "charges",
+        )
+        self.assertEqual(5, space["current_value"])
+
     def test_analysis_has_no_route_or_ranking_fields(self) -> None:
         analysis = analyze_dependency_closure(
             self.actions_document,
@@ -274,8 +357,15 @@ class AnalyzeDependenciesTests(unittest.TestCase):
         self.assertTrue(any(entry["predicate"] == fremennik["predicate"] for entry in analysis["external_inputs"]))
 
     def test_descendant_reward_is_not_a_usable_prerequisite_producer(self) -> None:
+        actions_document = {
+            "actions": [
+                action
+                for action in self.actions_document["actions"]
+                if action["id"] in {"action:throne-of-miscellania", "action:royal-trouble"}
+            ]
+        }
         analysis = analyze_dependency_closure(
-            self.actions_document,
+            actions_document,
             copy.deepcopy(self.fresh_state),
             "action:royal-trouble",
             include_preparation=True,
