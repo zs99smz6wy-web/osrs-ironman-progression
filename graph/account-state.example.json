@@ -13,6 +13,7 @@
   "recurring_observations": {},
   "kingdom_observation": null,
   "slayer_task": null,
+  "diary_tiers": {"Ardougne": "none", "Desert": "none", "Falador": "none", "Fremennik": "none", "Kandarin": "none", "Karamja": "none", "Kourend & Kebos": "none", "Lumbridge & Draynor": "none", "Morytania": "none", "Varrock": "none", "Western Provinces": "none", "Wilderness": "none"},
   "attention_window": {"duration_minutes": 30, "mode": "low_attention", "player_present": true},
   "notable_drops": [],
   "preferences": {"risk_tolerance": 2, "intensity_tolerance": 2, "diversity_preference": 3},

@@ -11,6 +11,8 @@ from typing import Any
 from evaluate_progression import (
     DEFAULT_ACTIONS,
     DEFAULT_STATE,
+    DIARY_TIER_ORDER,
+    DIARY_REGIONS,
     LIST_STATE_KEYS,
     evaluate_actions,
     evaluate_condition,
@@ -69,6 +71,9 @@ def _effect_is_satisfied(effect: dict[str, Any], state: dict[str, Any]) -> bool:
         return key not in state.get("recurring_observations", {})
     if operation == "ensure_min":
         return state.get(state_key, {}).get(key, 0) >= effect.get("value")
+    if operation == "set_diary_tier":
+        current = state["diary_tiers"][key]
+        return DIARY_TIER_ORDER[current] >= DIARY_TIER_ORDER[effect.get("value")]
     # A delta has no reconstructable target value in an imported snapshot.
     return True
 
@@ -124,6 +129,16 @@ def _validate_effect(effect: dict[str, Any]) -> None:
             raise ValueError("ensure_min requires a non-negative integer for items, resources, or counters")
         return
 
+    if operation == "set_diary_tier":
+        if (
+            state_key != "diary_tiers"
+            or key not in DIARY_REGIONS
+            or effect.get("value") not in DIARY_TIER_ORDER
+            or "amount" in effect
+        ):
+            raise ValueError("set_diary_tier requires a canonical diary region and tier")
+        return
+
     raise ValueError(f"Unknown transition effect operation: {operation}")
 
 
@@ -145,6 +160,13 @@ def _apply_effect(effect: dict[str, Any], state: dict[str, Any]) -> None:
 
     if operation == "clear_observation":
         state[state_key].pop(key, None)
+        return
+
+    if operation == "set_diary_tier":
+        current = state[state_key][key]
+        if DIARY_TIER_ORDER[effect["value"]] < DIARY_TIER_ORDER[current]:
+            raise ValueError(f"Transition cannot downgrade diary_tiers.{key}")
+        state[state_key][key] = effect["value"]
         return
 
 

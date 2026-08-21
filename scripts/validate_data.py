@@ -5,7 +5,12 @@ import sys
 from datetime import date
 from pathlib import Path
 
-from evaluate_progression import RECURRING_OBSERVATION_STATES, validate_account_state
+from evaluate_progression import (
+    DIARY_REGIONS,
+    DIARY_TIER_ORDER,
+    RECURRING_OBSERVATION_STATES,
+    validate_account_state,
+)
 from score_candidates import score_candidates
 from apply_action import _validate_effect
 from osrs_xp import SKILLS
@@ -36,6 +41,7 @@ REQUIRED_ACCOUNT_STATE_KEYS = {
     "recurring_observations",
     "kingdom_observation",
     "slayer_task",
+    "diary_tiers",
     "attention_window",
     "notable_drops",
     "preferences",
@@ -52,6 +58,7 @@ VALID_PREDICATE_TYPES = {
     "passive_loop",
     "recurring_state",
     "slayer_task_target",
+    "diary_tier_at_least",
     "notable_drop",
     "gear_threshold",
 }
@@ -99,6 +106,11 @@ def validate_condition(condition: dict, context: str, errors: list[str]) -> None
             or condition["key"] != condition["key"].strip()
         ):
             errors.append(f"{context} slayer_task_target key must be a non-empty trimmed string")
+    if predicate_type == "diary_tier_at_least":
+        if set(condition) != {"type", "key", "value"}:
+            errors.append(f"{context} diary_tier_at_least must contain only type, key, and value")
+        elif condition.get("key") not in DIARY_REGIONS or condition.get("value") not in DIARY_TIER_ORDER:
+            errors.append(f"{context} diary_tier_at_least requires a canonical region and tier")
 
 
 def load_json(path: Path) -> dict:

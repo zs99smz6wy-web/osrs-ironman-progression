@@ -21,6 +21,7 @@
 - Completed: normalized `Enter the Abyss` and `Temple of the Eye` into Guardians of the Rift, reward searches, deterministic pearl purchases, and random unique-reward paths.
 - Completed: normalized Tithe Farm and Auto-weed, `Sleeping Giants` and Giants' Foundry utility purchases, and Motherlode Mine reward milestones with spendable currencies separated from random acquisition.
 - Completed: strengthened Tempoross and Fish Barrel modeling so permits support reward searches while the barrel remains `makes_obtainable`, never guaranteed.
+- Completed: audited factual stop-condition inputs across Mage Training Arena, Giants' Foundry, Tempoross, Tithe Farm, and Guardians of the Rift, and normalized the two deterministic MTA utility purchases.
 - Pending: add strategic scores and account-specific stop conditions only after comparing these verified unlocks with alternative uses of their currencies and time.
 
 ### 4. Economic bottleneck and monster-drop bypass closure
@@ -38,6 +39,8 @@
 - Completed: added observed recurring-system readiness separately from permanent loop flags; timestamps are preserved but never advance timers, grant outputs, or infer completion.
 - Completed: normalized player-confirmed birdhouse, giant-seaweed, Tears, and Kingdom collection/reset actions; explicit ready observations are consumed, while timers and variable rewards remain uninferred.
 - Completed: verified and normalized Perilous Moons hard quest and skill gates, fixed quest XP, encounter mechanics, internal supplies, Lunar Chest reward behavior, duplicate protection, and Moon-set utility/degradation. Community readiness recommendations remain labelled as judgement rather than requirements.
+- Completed: audited all 12 achievement-diary regions for material permanent or repeatable utility and added exact claimed-tier account state with forward-only transitions. Full task-by-task diary normalization remains pending.
+- Completed: audited major early transport networks and identified missing Ectophial, Ardougne cloak, minecart, balloon, eagle, Trollheim, Ardougne spell, and Kourend memoir branches without assigning route priority.
 - Perilous Moons: evaluate account-specific combat readiness and strategic stop conditions without converting community recommendations into hard gates.
 - Giants' Foundry: reward costs, Smithing/GP/resource outputs, and natural stop candidates.
 - Tempoross/Fish Barrel, Tithe Farm, Guardians of the Rift, and MTA: utility-first stop points.

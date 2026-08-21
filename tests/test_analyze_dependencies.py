@@ -137,6 +137,42 @@ class AnalyzeDependenciesTests(unittest.TestCase):
             any(entry["predicate"] == task["predicate"] for entry in analysis["missing_modeled_producers"])
         )
 
+    def test_diary_tier_remains_an_external_confirmed_claim_observation(self) -> None:
+        actions = {
+            "actions": [
+                {
+                    "id": "action:synthetic-diary-tier-consumer",
+                    "name": "Use confirmed diary claim",
+                    "kind": "activity",
+                    "status": "verified",
+                    "fact_ids": ["synthetic"],
+                    "requirements": {
+                        "all": [{"type": "diary_tier_at_least", "key": "Falador", "value": "hard"}],
+                    },
+                    "preparation": {"all": []},
+                    "completion": {"all": []},
+                    "outcomes": [],
+                    "repeatable": True,
+                    "transition": {"effects": [], "options": [], "reported_effects": []},
+                }
+            ]
+        }
+
+        analysis = analyze_dependency_closure(
+            actions,
+            copy.deepcopy(self.fresh_state),
+            "action:synthetic-diary-tier-consumer",
+        )
+
+        consumer = self._action_node(analysis, "action:synthetic-diary-tier-consumer")
+        tier = self._predicate(consumer, "requirements", "diary_tier_at_least", "Falador")
+        self.assertEqual("none", tier["current_value"])
+        self.assertEqual([], tier["producer_actions"])
+        self.assertTrue(any(entry["predicate"] == tier["predicate"] for entry in analysis["external_inputs"]))
+        self.assertFalse(
+            any(entry["predicate"] == tier["predicate"] for entry in analysis["missing_modeled_producers"])
+        )
+
     def test_analysis_has_no_route_or_ranking_fields(self) -> None:
         analysis = analyze_dependency_closure(
             self.actions_document,

@@ -376,6 +376,44 @@ class EvaluateProgressionScenarioTests(unittest.TestCase):
         self.assertFalse(satisfied)
         self.assertIn("current: none", missing[0])
 
+    def test_diary_tiers_are_required_exact_claim_observations(self) -> None:
+        state = copy.deepcopy(load_json(FIXTURES / "fresh-account.json"))
+        del state["diary_tiers"]
+        with self.assertRaisesRegex(ValueError, "missing required keys"):
+            validate_account_state(state)
+
+        state = copy.deepcopy(load_json(FIXTURES / "fresh-account.json"))
+        del state["diary_tiers"]["Kandarin"]
+        with self.assertRaisesRegex(ValueError, "every canonical region exactly"):
+            validate_account_state(state)
+
+        state = copy.deepcopy(load_json(FIXTURES / "fresh-account.json"))
+        state["diary_tiers"]["Tirannwn"] = "none"
+        with self.assertRaisesRegex(ValueError, "every canonical region exactly"):
+            validate_account_state(state)
+
+        state = copy.deepcopy(load_json(FIXTURES / "fresh-account.json"))
+        state["diary_tiers"]["Kandarin"] = "ready"
+        with self.assertRaisesRegex(ValueError, "invalid tier"):
+            validate_account_state(state)
+
+    def test_diary_tier_predicate_checks_confirmed_claims_not_task_readiness(self) -> None:
+        state = copy.deepcopy(load_json(FIXTURES / "fresh-account.json"))
+        state["diary_tiers"]["Falador"] = "hard"
+        validate_account_state(state)
+
+        satisfied, missing = evaluate_condition(
+            {"type": "diary_tier_at_least", "key": "Falador", "value": "medium"}, state
+        )
+        self.assertTrue(satisfied)
+        self.assertEqual([], missing)
+
+        satisfied, missing = evaluate_condition(
+            {"type": "diary_tier_at_least", "key": "Falador", "value": "elite"}, state
+        )
+        self.assertFalse(satisfied)
+        self.assertEqual(["Falador diary elite (confirmed: hard)"], missing)
+
     def test_data_validator_requires_an_exact_slayer_task_target_predicate(self) -> None:
         valid_errors: list[str] = []
         validate_condition(
@@ -392,6 +430,23 @@ class EvaluateProgressionScenarioTests(unittest.TestCase):
             invalid_errors,
         )
         self.assertIn("synthetic slayer_task_target must contain only type and key", invalid_errors)
+
+    def test_data_validator_requires_an_exact_canonical_diary_tier_predicate(self) -> None:
+        valid_errors: list[str] = []
+        validate_condition(
+            {"type": "diary_tier_at_least", "key": "Kourend & Kebos", "value": "hard"},
+            "synthetic",
+            valid_errors,
+        )
+        self.assertEqual([], valid_errors)
+
+        invalid_errors: list[str] = []
+        validate_condition(
+            {"type": "diary_tier_at_least", "key": "Tirannwn", "value": "ready"},
+            "synthetic",
+            invalid_errors,
+        )
+        self.assertIn("synthetic diary_tier_at_least requires a canonical region and tier", invalid_errors)
 
 
 if __name__ == "__main__":

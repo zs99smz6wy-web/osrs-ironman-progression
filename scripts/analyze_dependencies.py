@@ -5,7 +5,13 @@ import json
 from pathlib import Path
 from typing import Any
 
-from evaluate_progression import DEFAULT_ACTIONS, DEFAULT_STATE, evaluate_actions, evaluate_condition, load_json
+from evaluate_progression import (
+    DEFAULT_ACTIONS,
+    DEFAULT_STATE,
+    evaluate_actions,
+    evaluate_condition,
+    load_json,
+)
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -25,6 +31,7 @@ PREDICATE_STATE = {
 FLOOR_PREDICATES = {"item_at_least", "resource_at_least", "counter_at_least"}
 EXTERNAL_INPUT_PREDICATES = {
     "skill_at_least", "item_at_least", "resource_at_least", "recurring_state", "slayer_task_target",
+    "diary_tier_at_least",
 }
 
 
@@ -53,6 +60,8 @@ def _current_value(predicate: dict[str, Any], state: dict[str, Any]) -> Any:
     if predicate_type == "slayer_task_target":
         task = state["slayer_task"]
         return task if task is not None and task["remaining"] > 0 else None
+    if predicate_type == "diary_tier_at_least":
+        return state["diary_tiers"][key]
     return key in state[PREDICATE_STATE[predicate_type]]
 
 

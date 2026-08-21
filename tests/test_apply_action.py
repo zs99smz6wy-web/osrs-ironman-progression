@@ -681,6 +681,72 @@ class ApplyActionTests(unittest.TestCase):
         self.assertEqual(1, result["next_state"]["items"]["belles_folly"])
         self.assertEqual(starting_xp + 500, result["next_state"]["skill_xp"]["Smithing"])
 
+    def test_mta_rune_pouch_purchase_consumes_exact_point_balances(self) -> None:
+        self.state["resources"].update({
+            "telekinetic_pizazz": 150,
+            "graveyard_pizazz": 150,
+            "enchantment_pizazz": 1500,
+            "alchemist_pizazz": 200,
+        })
+
+        result = apply_action(self.actions_document, self.state, "action:buy-mta-rune-pouch")
+
+        self.assertEqual("applied", result["status"])
+        for currency in ("telekinetic_pizazz", "graveyard_pizazz", "enchantment_pizazz", "alchemist_pizazz"):
+            self.assertEqual(0, result["next_state"]["resources"][currency])
+        self.assertEqual(1, result["next_state"]["items"]["rune_pouch"])
+
+    def test_bones_to_peaches_purchase_unlocks_only_the_spell(self) -> None:
+        self.state["resources"].update({
+            "telekinetic_pizazz": 200,
+            "graveyard_pizazz": 200,
+            "enchantment_pizazz": 2000,
+            "alchemist_pizazz": 300,
+        })
+
+        result = apply_action(self.actions_document, self.state, "action:unlock-bones-to-peaches")
+
+        self.assertEqual("applied", result["status"])
+        self.assertIn("bones_to_peaches_unlocked", result["next_state"]["milestones"])
+        self.assertNotIn("rune_pouch", result["next_state"]["items"])
+        self.assertEqual(self.state["skill_xp"], result["next_state"]["skill_xp"])
+
+    def test_set_diary_tier_advances_a_confirmed_claim_without_inferring_readiness(self) -> None:
+        record_claim = action(
+            "action:record-ardougne-hard",
+            effects=[
+                {
+                    "op": "set_diary_tier",
+                    "state": "diary_tiers",
+                    "key": "Ardougne",
+                    "value": "hard",
+                }
+            ],
+        )
+
+        result = apply_action(document(record_claim), self.state, record_claim["id"])
+
+        self.assertEqual("applied", result["status"])
+        self.assertEqual("hard", result["next_state"]["diary_tiers"]["Ardougne"])
+        self.assertEqual("none", result["next_state"]["diary_tiers"]["Falador"])
+
+    def test_set_diary_tier_rejects_downgrades(self) -> None:
+        self.state["diary_tiers"]["Varrock"] = "elite"
+        incorrect_claim = action(
+            "action:record-varrock-easy",
+            effects=[
+                {
+                    "op": "set_diary_tier",
+                    "state": "diary_tiers",
+                    "key": "Varrock",
+                    "value": "easy",
+                }
+            ],
+        )
+
+        with self.assertRaisesRegex(ValueError, "cannot downgrade diary_tiers.Varrock"):
+            apply_action(document(incorrect_claim), self.state, incorrect_claim["id"])
+
     def test_perilous_moons_applies_only_fixed_quest_rewards(self) -> None:
         self.state["quests_completed"].extend(["Children of the Sun", "Twilight's Promise"])
         for skill, level in (("Slayer", 48), ("Hunter", 20), ("Fishing", 20), ("Runecraft", 20), ("Construction", 10)):

@@ -1378,6 +1378,32 @@
       "outcomes": [],
       "repeatable": true,
       "transition": {"effects": [], "options": [], "reported_effects": [{"type": "variable_activity_output", "description": "Defeated Moons, internal supplies, chest eligibility, ordinary rewards, unique equipment, duplicate-protection state, combat experience, and death or retry outcomes remain player-observed and are not applied automatically.", "fact_id": "perilous-moons-readiness"}]}
+    },
+    {
+      "id": "action:buy-mta-rune-pouch",
+      "name": "Buy a rune pouch from the Mage Training Arena",
+      "kind": "unlock",
+      "status": "verified",
+      "fact_ids": ["utility-stop-mage-training-arena"],
+      "requirements": {"all": [{"type": "resource_at_least", "key": "telekinetic_pizazz", "value": 150}, {"type": "resource_at_least", "key": "graveyard_pizazz", "value": 150}, {"type": "resource_at_least", "key": "enchantment_pizazz", "value": 1500}, {"type": "resource_at_least", "key": "alchemist_pizazz", "value": 200}]},
+      "preparation": {"all": []},
+      "completion": {"all": [{"type": "item_at_least", "key": "rune_pouch", "value": 1}]},
+      "outcomes": [],
+      "repeatable": false,
+      "transition": {"effects": [{"op": "delta", "state": "resources", "key": "telekinetic_pizazz", "amount": -150, "fact_id": "utility-stop-mage-training-arena"}, {"op": "delta", "state": "resources", "key": "graveyard_pizazz", "amount": -150, "fact_id": "utility-stop-mage-training-arena"}, {"op": "delta", "state": "resources", "key": "enchantment_pizazz", "amount": -1500, "fact_id": "utility-stop-mage-training-arena"}, {"op": "delta", "state": "resources", "key": "alchemist_pizazz", "amount": -200, "fact_id": "utility-stop-mage-training-arena"}, {"op": "ensure_min", "state": "items", "key": "rune_pouch", "value": 1, "fact_id": "utility-stop-mage-training-arena"}], "options": [], "reported_effects": []}
+    },
+    {
+      "id": "action:unlock-bones-to-peaches",
+      "name": "Unlock Bones to Peaches from the Mage Training Arena",
+      "kind": "unlock",
+      "status": "verified",
+      "fact_ids": ["utility-stop-mage-training-arena"],
+      "requirements": {"all": [{"type": "resource_at_least", "key": "telekinetic_pizazz", "value": 200}, {"type": "resource_at_least", "key": "graveyard_pizazz", "value": 200}, {"type": "resource_at_least", "key": "enchantment_pizazz", "value": 2000}, {"type": "resource_at_least", "key": "alchemist_pizazz", "value": 300}]},
+      "preparation": {"all": []},
+      "completion": {"all": [{"type": "milestone", "key": "bones_to_peaches_unlocked"}]},
+      "outcomes": [{"type": "milestone", "key": "bones_to_peaches_unlocked"}],
+      "repeatable": false,
+      "transition": {"effects": [{"op": "delta", "state": "resources", "key": "telekinetic_pizazz", "amount": -200, "fact_id": "utility-stop-mage-training-arena"}, {"op": "delta", "state": "resources", "key": "graveyard_pizazz", "amount": -200, "fact_id": "utility-stop-mage-training-arena"}, {"op": "delta", "state": "resources", "key": "enchantment_pizazz", "amount": -2000, "fact_id": "utility-stop-mage-training-arena"}, {"op": "delta", "state": "resources", "key": "alchemist_pizazz", "amount": -300, "fact_id": "utility-stop-mage-training-arena"}, {"op": "set_add", "state": "milestones", "key": "bones_to_peaches_unlocked", "fact_id": "utility-stop-mage-training-arena"}], "options": [], "reported_effects": []}
     }
   ]
 }

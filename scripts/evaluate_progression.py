@@ -16,7 +16,7 @@ DEFAULT_STATE = ROOT / "graph" / "account-state.example.json"
 REQUIRED_STATE_KEYS = {
     "skills", "skill_xp", "quests_completed", "completed_actions", "transport_flags", "milestones",
     "gear_thresholds", "items", "resources", "counters", "passive_loops", "recurring_observations",
-    "kingdom_observation", "slayer_task",
+    "kingdom_observation", "slayer_task", "diary_tiers",
     "attention_window", "notable_drops", "preferences", "cash_commitments",
 }
 LIST_STATE_KEYS = {
@@ -29,6 +29,21 @@ KINGDOM_OBSERVATION_FIELDS = {
     "approval_percent", "worker_assignments", "collection_paused", "observed_at",
 }
 SLAYER_TASK_FIELDS = {"target", "remaining", "observed_at"}
+DIARY_REGIONS = (
+    "Ardougne",
+    "Desert",
+    "Falador",
+    "Fremennik",
+    "Kandarin",
+    "Karamja",
+    "Kourend & Kebos",
+    "Lumbridge & Draynor",
+    "Morytania",
+    "Varrock",
+    "Western Provinces",
+    "Wilderness",
+)
+DIARY_TIER_ORDER = {"none": 0, "easy": 1, "medium": 2, "hard": 3, "elite": 4}
 RFC_3339_TIMESTAMP = re.compile(
     r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?(?:Z|[+-]\d{2}:\d{2})$"
 )
@@ -157,6 +172,13 @@ def validate_account_state(state: dict[str, Any]) -> None:
         if not _is_rfc_3339_timestamp(slayer_task["observed_at"]):
             raise ValueError("Account state slayer_task.observed_at must be RFC 3339")
 
+    diary_tiers = state["diary_tiers"]
+    if not isinstance(diary_tiers, dict) or set(diary_tiers) != set(DIARY_REGIONS):
+        raise ValueError("Account state diary_tiers must contain every canonical region exactly")
+    for region, tier in diary_tiers.items():
+        if tier not in DIARY_TIER_ORDER:
+            raise ValueError(f"Account state diary_tiers.{region} has an invalid tier")
+
     attention = state["attention_window"]
     if not isinstance(attention, dict) or attention.get("mode") not in {"true_afk", "low_attention", "semi_afk", "active"}:
         raise ValueError("Account state attention_window has an invalid mode")
@@ -222,6 +244,12 @@ def _predicate_result(predicate: dict[str, Any], state: dict[str, Any]) -> tuple
         task = state.get("slayer_task")
         current = task["target"] if task is not None and task["remaining"] > 0 else "none"
         return current == key, f"current Slayer task {key} (current: {current})"
+    if predicate_type == "diary_tier_at_least":
+        current = state["diary_tiers"][key]
+        return (
+            DIARY_TIER_ORDER[current] >= DIARY_TIER_ORDER[value],
+            f"{key} diary {value} (confirmed: {current})",
+        )
     if predicate_type == "notable_drop":
         return key in state.get("notable_drops", []), f"obtain notable drop: {key}"
     if predicate_type == "gear_threshold":
