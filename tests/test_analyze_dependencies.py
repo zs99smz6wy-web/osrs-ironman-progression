@@ -127,6 +127,19 @@ class AnalyzeDependenciesTests(unittest.TestCase):
         self.assertEqual(["requirements"], [entry["phase"] for entry in without_node["conditions"]])
         self.assertEqual(["requirements", "preparation"], [entry["phase"] for entry in with_node["conditions"]])
 
+    def test_action_does_not_claim_its_own_xp_reward_as_prerequisite_progress(self) -> None:
+        analysis = analyze_dependency_closure(
+            self.actions_document,
+            copy.deepcopy(self.fresh_state),
+            "action:the-dig-site",
+        )
+        dig_site = self._action_node(analysis, "action:the-dig-site")
+        herblore = self._predicate(dig_site, "requirements", "skill_at_least", "Herblore")
+
+        self.assertFalse(
+            any(progress["action_id"] == "action:the-dig-site" for progress in herblore.get("partial_progress", []))
+        )
+
     def test_transition_options_are_explicit_and_never_selected(self) -> None:
         analysis = analyze_dependency_closure(
             self.actions_document,

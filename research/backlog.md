@@ -1,9 +1,29 @@
 # Research Backlog
 
-## First validation tranche
+## Prioritized acquisition tranches
+
+### 1. Kingdom and passive-resource closure
+
+- Verify the full `Throne of Miscellania` and `Royal Trouble` prerequisite, item, skill, and reward records.
+- Model Kingdom access, coffer funding, approval, and recurring collection as factual state; keep worker allocation and rush timing in strategy.
+- Normalize quest and passive-loop actions so dependency closure can explain access without prescribing an allocation.
+
+### 2. Current Sailing access and utility closure
+
+- Revalidate `Pandemonium`, `Troubled Tortugans`, Great Conch/Gryphon access, skiffs, bounty tasks, Port Roberts, and Wyrmscraig against current official and Wiki sources.
+- Verify Golem Crafting, Jeweller's Chisel, Shellbane Gryphon, and Belle's Folly before treating them as utility or bypass paths.
+- Add normalized actions only after the live access and reward facts agree; keep preferred early Sailing milestones in strategy.
+
+### 3. Utility-minigame closure
+
+- Normalize `Temple of the Eye` into Guardians of the Rift and its durable utility rewards.
+- Normalize Tithe Farm access and utility rewards, `Sleeping Giants` into Giants' Foundry, and Motherlode reward milestones.
+- Strengthen Tempoross/Fish Barrel access and reward modeling without treating variable rewards as guaranteed.
+
+## Continuing validation queue
 
 - Quest XP, item, combat, and GP requirement records for early transport and Fossil Island chains.
-- Birdhouse, farming, seaweed, Kingdom, and Tears passive-loop requirements and outputs.
+- Birdhouse, farming, seaweed, and Tears passive-loop requirements and outputs.
 - Perilous Moons and Belle's Folly: exact current hard gates, readiness thresholds, and reward utility.
 - Giants' Foundry: reward costs, Smithing/GP/resource outputs, and natural stop candidates.
 - Tempoross/Fish Barrel, Tithe Farm, Guardians of the Rift, and MTA: utility-first stop points.

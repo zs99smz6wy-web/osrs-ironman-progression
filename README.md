@@ -39,6 +39,7 @@ python scripts/validate_data.py
 python scripts/evaluate_progression.py graph/account-state.example.json
 python scripts/score_candidates.py graph/account-state.example.json
 python scripts/apply_action.py graph/account-state.example.json action:the-restless-ghost
+python scripts/analyze_dependencies.py graph/account-state.example.json --goal action:fossil-island-access --include-preparation --json
 ```
 
-The validator checks factual record shape, source references, normalized action links, transitions and predicates, graph endpoints, and the firewall between factual and strategic directories. The evaluator separates blocked gates, missing preparation, eligible actions, and completed actions. The scorer compares only eligible actions with a visible breakdown. The transition tool applies one eligible action to an in-memory copy and prints the resulting state; none of these tools generates a route or writes an account snapshot.
+The validator checks factual record shape, source references, normalized action links, transitions and predicates, graph endpoints, and the firewall between factual and strategic directories. The evaluator separates blocked gates, missing preparation, eligible actions, and completed actions. The scorer compares only eligible actions with a visible breakdown. The transition tool applies one eligible action to an in-memory copy and prints the resulting state. The dependency analyzer explains the full modeled prerequisite closure for one goal while preserving alternatives and unresolved external inputs. None of these tools generates a route or writes an account snapshot.

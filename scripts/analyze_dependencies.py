@@ -155,11 +155,13 @@ class DependencyClosureAnalyzer:
                 producers.setdefault((predicate_type, effect["key"]), []).append(candidate)
         return producers
 
-    def _xp_progress(self, predicate: dict[str, Any]) -> list[dict[str, Any]]:
+    def _xp_progress(self, predicate: dict[str, Any], action_id: str) -> list[dict[str, Any]]:
         if predicate["type"] != "skill_at_least":
             return []
         progress: list[dict[str, Any]] = []
         for action in sorted(self.actions.values(), key=lambda candidate: candidate["id"]):
+            if action["id"] == action_id:
+                continue
             for effect in action["transition"]["effects"]:
                 if effect["op"] == "gain_xp" and effect["key"] == predicate["key"]:
                     progress.append(
@@ -297,7 +299,7 @@ class DependencyClosureAnalyzer:
                 self._record_unresolved(node, "deterministic effects provide only bounded partial progress")
             return node
 
-        xp_progress = self._xp_progress(predicate)
+        xp_progress = self._xp_progress(predicate, action_id)
         if xp_progress:
             node["partial_progress"] = xp_progress
         self._record_unresolved(node, "no deterministic producer in the supplied action data")
