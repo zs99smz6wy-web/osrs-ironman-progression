@@ -49,9 +49,9 @@
       "category": "transport",
       "status": "verified",
       "verified_at": "2026-08-20",
-      "requirements": {"initial_house": {"Construction": 1, "coins": 5000}, "teleport_to_house_spell": {"Magic": 40}},
+      "requirements": {"initial_house": {"Construction": 1, "coins": 1000, "alternative": "Complete Daddy's Home"}, "teleport_to_house_spell": {"Magic": 40}},
       "locations": {"Rimmington": {"Construction": 1, "coins": 5000}, "Taverley": {"Construction": 10, "coins": 5000}, "Pollnivneach": {"Construction": 20, "coins": 7500}, "Hosidius": {"Construction": 25, "coins": 8750}, "Rellekka": {"Construction": 30, "coins": 10000}, "Aldarin": {"Construction": 35, "coins": 12500}},
-      "source_ids": ["wiki-house-portal"],
+      "source_ids": ["wiki-house-portal", "wiki-estate-agent"],
       "confidence": "high"
     },
     {

@@ -6,6 +6,6 @@ GP is a resource with deadlines, not a universal early-game target.
 
 Choose an economic activity by comparing the next required purchases against total account outputs. A method is preferable when it provides needed GP while also advancing an active skill, supplies, gear, access, or low-attention progression.
 
-Current candidate methods include Giants' Foundry, Agility Pyramid, Wealthy Varlamorians, Sailing resource activities, Slayer with alchables, and conventional Thieving. Each must have its current requirements, GP, attention classification, risk, and relevant side outputs validated before it is scored.
+Current candidate methods include Giants' Foundry, Agility Pyramid, wealthy-citizen valuables, Sailing bounties and salvaging, Slayer with alchables, and conventional Thieving. The factual gates and outputs for the first four groups and selected Thieving methods are now validated; their strategic scores remain pending until an account snapshot supplies real cash deadlines, skills, unlocks, and attention constraints.
 
 Blackjacking remains available, but it is not the default answer unless its speed is necessary for a specifically identified upcoming purchase.

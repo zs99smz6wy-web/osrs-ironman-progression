@@ -1069,6 +1069,210 @@
       "outcomes": [{"type": "milestone", "key": "motherlode_pay_dirt_sack_upgrade"}],
       "repeatable": false,
       "transition": {"effects": [{"op": "delta", "state": "resources", "key": "golden_nuggets", "amount": -200, "fact_id": "utility-motherlode-mine-reward-milestones"}, {"op": "set_add", "state": "milestones", "key": "motherlode_pay_dirt_sack_upgrade", "fact_id": "utility-motherlode-mine-reward-milestones"}], "options": [], "reported_effects": []}
+    },
+    {
+      "id": "action:steal-valuables",
+      "name": "Steal valuables in Civitas illa Fortis",
+      "kind": "activity",
+      "status": "verified",
+      "fact_ids": ["economic-stealing-valuables"],
+      "requirements": {"all": [{"type": "quest_completed", "key": "Children of the Sun"}, {"type": "skill_at_least", "key": "Thieving", "value": 50}]},
+      "preparation": {"all": []},
+      "completion": {"all": []},
+      "outcomes": [],
+      "repeatable": true,
+      "transition": {
+        "effects": [],
+        "options": [],
+        "reported_effects": [{"type": "variable_activity_output", "description": "House keys, valuables, jewellery, experience, and catch losses vary by activity; no valuables, coins, drops, or experience are applied automatically.", "fact_id": "economic-stealing-valuables"}]
+      }
+    },
+    {
+      "id": "action:steal-silk-stalls",
+      "name": "Steal from silk stalls",
+      "kind": "activity",
+      "status": "verified",
+      "fact_ids": ["economic-conventional-thieving-silk"],
+      "requirements": {"all": [{"type": "skill_at_least", "key": "Thieving", "value": 20}]},
+      "preparation": {"all": []},
+      "completion": {"all": []},
+      "outcomes": [],
+      "repeatable": true,
+      "transition": {
+        "effects": [],
+        "options": [],
+        "reported_effects": [{"type": "variable_activity_output", "description": "Successful stall thefts, silk sales, and experience depend on player activity and guard visibility; no silk, coins, or experience are applied automatically.", "fact_id": "economic-conventional-thieving-silk"}]
+      }
+    },
+    {
+      "id": "action:blackjack-bandits",
+      "name": "Blackjack Pollnivneach bandits",
+      "kind": "activity",
+      "status": "verified",
+      "fact_ids": ["economic-blackjacking-bandits"],
+      "requirements": {"all": [{"type": "milestone", "key": "the_feud_blackjack_access"}, {"type": "skill_at_least", "key": "Thieving", "value": 45}]},
+      "preparation": {"all": []},
+      "completion": {"all": []},
+      "outcomes": [],
+      "repeatable": true,
+      "transition": {
+        "effects": [],
+        "options": [],
+        "reported_effects": [{"type": "variable_activity_output", "description": "Target selection, knock-out success, pickpockets, coins, and experience are session-dependent; no coins or experience are applied automatically.", "fact_id": "economic-blackjacking-bandits"}]
+      }
+    },
+    {
+      "id": "action:salvage-shipwrecks",
+      "name": "Salvage shipwrecks",
+      "kind": "activity",
+      "status": "verified",
+      "fact_ids": ["economic-sailing-salvaging"],
+      "requirements": {"all": [{"type": "quest_completed", "key": "Pandemonium"}, {"type": "skill_at_least", "key": "Sailing", "value": 15}]},
+      "preparation": {"all": [{"type": "item_at_least", "key": "salvaging_hook", "value": 1}, {"any": [{"type": "item_at_least", "key": "sailing_raft", "value": 1}, {"type": "item_at_least", "key": "sailing_skiff", "value": 1}, {"type": "milestone", "key": "salvaging_capable_boat"}]}]},
+      "completion": {"all": []},
+      "outcomes": [],
+      "repeatable": true,
+      "transition": {
+        "effects": [],
+        "options": [],
+        "reported_effects": [{"type": "variable_activity_output", "description": "Shipwreck availability, salvage, sorted loot, and Sailing experience vary; no loot, coins, or experience are applied automatically.", "fact_id": "economic-sailing-salvaging"}]
+      }
+    },
+    {
+      "id": "action:steal-port-roberts-stalls",
+      "name": "Steal from Port Roberts stalls",
+      "kind": "activity",
+      "status": "verified",
+      "fact_ids": ["economic-port-roberts-stalls"],
+      "requirements": {"all": [{"type": "transport_flag", "key": "port_roberts"}, {"type": "skill_at_least", "key": "Thieving", "value": 2}]},
+      "preparation": {"all": []},
+      "completion": {"all": []},
+      "outcomes": [],
+      "repeatable": true,
+      "transition": {
+        "effects": [],
+        "options": [],
+        "reported_effects": [{"type": "variable_activity_output", "description": "Available stall tier, stolen items, arrests, and experience depend on the selected stall and guard timing; no items, coins, or experience are applied automatically.", "fact_id": "economic-port-roberts-stalls"}]
+      }
+    },
+    {
+      "id": "action:fight-enchanted-valley-tree-spirits",
+      "name": "Fight Enchanted Valley tree spirits",
+      "kind": "activity",
+      "status": "verified",
+      "fact_ids": ["enchanted-valley-rune-axe-drop"],
+      "requirements": {"all": [{"type": "milestone", "key": "fairytale_ii_fairy_godfather_permission"}]},
+      "preparation": {"all": [{"any": [{"type": "item_at_least", "key": "dramen_staff", "value": 1}, {"type": "item_at_least", "key": "lunar_staff", "value": 1}, {"type": "milestone", "key": "lumbridge_draynor_elite_diary"}]}, {"type": "milestone", "key": "woodcutting_axe_available"}]},
+      "completion": {"all": []},
+      "outcomes": [],
+      "repeatable": true,
+      "transition": {
+        "effects": [],
+        "options": [],
+        "reported_effects": [{"type": "variable_activity_output", "description": "Tree-spirit encounters, combat experience, and the Rune axe drop remain variable; no Rune axe or experience is applied automatically.", "fact_id": "enchanted-valley-rune-axe-drop"}]
+      }
+    },
+    {
+      "id": "action:fight-armoured-zombies",
+      "name": "Fight armoured zombies",
+      "kind": "activity",
+      "status": "verified",
+      "fact_ids": ["zombie-axe-armoured-zombies"],
+      "requirements": {"all": [{"type": "skill_at_least", "key": "Smithing", "value": 55}, {"type": "skill_at_least", "key": "Hunter", "value": 52}, {"type": "milestone", "key": "defender_of_varrock_armoured_zombie_access"}]},
+      "preparation": {"all": []},
+      "completion": {"all": []},
+      "outcomes": [],
+      "repeatable": true,
+      "transition": {
+        "effects": [],
+        "options": [],
+        "reported_effects": [{"type": "variable_activity_output", "description": "Armoured-zombie kills, combat experience, and broken zombie axe drops remain variable; no drops or experience are applied automatically.", "fact_id": "zombie-axe-armoured-zombies"}]
+      }
+    },
+    {
+      "id": "action:repair-zombie-axe",
+      "name": "Repair a broken zombie axe",
+      "kind": "unlock",
+      "status": "verified",
+      "fact_ids": ["zombie-axe-armoured-zombies"],
+      "requirements": {"all": [{"type": "skill_at_least", "key": "Smithing", "value": 70}]},
+      "preparation": {"all": [{"type": "item_at_least", "key": "broken_zombie_axe", "value": 1}]},
+      "completion": {"all": []},
+      "outcomes": [],
+      "repeatable": true,
+      "transition": {
+        "effects": [{"op": "delta", "state": "items", "key": "broken_zombie_axe", "amount": -1, "fact_id": "zombie-axe-armoured-zombies"}, {"op": "delta", "state": "items", "key": "zombie_axe", "amount": 1, "fact_id": "zombie-axe-armoured-zombies"}, {"op": "gain_xp", "state": "skill_xp", "key": "Smithing", "amount": 500, "fact_id": "zombie-axe-armoured-zombies"}],
+        "options": [],
+        "reported_effects": []
+      }
+    },
+    {
+      "id": "action:fight-warped-creatures",
+      "name": "Fight warped creatures",
+      "kind": "activity",
+      "status": "verified",
+      "fact_ids": ["warped-sceptre-warped-creatures"],
+      "requirements": {"all": [{"type": "skill_at_least", "key": "Slayer", "value": 56}, {"type": "milestone", "key": "path_of_glouphrie_warped_creatures_access"}]},
+      "preparation": {"all": []},
+      "completion": {"all": []},
+      "outcomes": [],
+      "repeatable": true,
+      "transition": {
+        "effects": [],
+        "options": [],
+        "reported_effects": [{"type": "variable_activity_output", "description": "Eligible creature kills, combat experience, and uncharged Warped sceptre drops remain variable; no drops or experience are applied automatically.", "fact_id": "warped-sceptre-warped-creatures"}]
+      }
+    },
+    {
+      "id": "action:fight-zamorak-warriors-for-rune-scimitar",
+      "name": "Fight Zamorak warriors for a Rune scimitar",
+      "kind": "activity",
+      "status": "verified",
+      "fact_ids": ["rune-scimitar-drop-paths"],
+      "requirements": {"all": []},
+      "preparation": {"all": []},
+      "completion": {"all": []},
+      "outcomes": [],
+      "repeatable": true,
+      "transition": {
+        "effects": [],
+        "options": [],
+        "reported_effects": [{"type": "variable_activity_output", "description": "Zamorak-warrior kills, combat experience, and Rune scimitar drops remain variable; no drops or experience are applied automatically.", "fact_id": "rune-scimitar-drop-paths"}]
+      }
+    },
+    {
+      "id": "action:fight-fire-giants-for-rune-scimitar",
+      "name": "Fight fire giants for a Rune scimitar",
+      "kind": "activity",
+      "status": "verified",
+      "fact_ids": ["rune-scimitar-drop-paths"],
+      "requirements": {"all": [{"type": "milestone", "key": "fire_giant_location_access"}]},
+      "preparation": {"all": []},
+      "completion": {"all": []},
+      "outcomes": [],
+      "repeatable": true,
+      "transition": {
+        "effects": [],
+        "options": [],
+        "reported_effects": [{"type": "variable_activity_output", "description": "Fire-giant kills, combat experience, and Rune scimitar drops remain variable; no drops or experience are applied automatically.", "fact_id": "rune-scimitar-drop-paths"}]
+      }
+    },
+    {
+      "id": "action:fight-warriors-guild-cyclopes-for-dragon-defender",
+      "name": "Fight Warriors' Guild basement cyclopes for a Dragon defender",
+      "kind": "activity",
+      "status": "verified",
+      "fact_ids": ["dragon-defender-warriors-guild"],
+      "requirements": {"all": [{"type": "milestone", "key": "warriors_guild_eligibility"}, {"type": "milestone", "key": "warriors_guild_basement_access"}]},
+      "preparation": {"any": [{"type": "resource_at_least", "key": "warrior_guild_tokens", "value": 100}, {"type": "milestone", "key": "warriors_guild_token_exemption"}]},
+      "completion": {"all": []},
+      "outcomes": [],
+      "repeatable": true,
+      "transition": {
+        "effects": [],
+        "options": [],
+        "reported_effects": [{"type": "variable_activity_output", "description": "Cyclops kills, defender-chain progress, combat experience, and Dragon defender drops remain variable; no defenders or experience are applied automatically.", "fact_id": "dragon-defender-warriors-guild"}]
+      }
     }
   ]
 }

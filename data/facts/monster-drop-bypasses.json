@@ -1,0 +1,219 @@
+{
+  "records": [
+    {
+      "id": "enchanted-valley-rune-axe-drop",
+      "name": "Rune axe from Enchanted Valley tree spirits",
+      "category": "bypass",
+      "status": "verified",
+      "verified_at": "2026-08-20",
+      "scope": "Members-only monster-drop route; no acquisition is guaranteed.",
+      "acquisition": {
+        "source": "Tree spirit spawned by attempting to woodcut a tree in the Enchanted Valley",
+        "location": "Fairy ring BKQ",
+        "drop": "Rune axe",
+        "wiki_listed_rate": "4/128 (1/32)"
+      },
+      "access": {
+        "quest": "Unlock fairy rings by completing Fairytale I - Growing Pains and progressing Fairytale II - Cure a Queen through Fairy Godfather permission, the Co-ordinator, and Fairy Fixit; full Fairytale II completion and its 40 Thieving, 49 Farming, and 57 Herblore requirements are not required for fairy-ring use.",
+        "equipment": "A dramen or lunar staff must be equipped to use fairy rings unless another in-game fairy-ring exemption has been unlocked.",
+        "skill": "No Woodcutting level is required to trigger the guardian; an axe is needed to attempt the woodcutting action.",
+        "combat": "The spawned tree spirit scales from level 14 to 159 by player combat level; guardian combat XP is only 2.5% of the normal amount."
+      },
+      "use_and_repair": {
+        "repair": "None.",
+        "use": "The rune axe is usable for Woodcutting at level 41 Woodcutting."
+      },
+      "normal_deterministic_alternatives": [
+        {
+          "method": "Buy from Perry's Chop-chop Shop in the Woodcutting Guild",
+          "requirements": "60 Woodcutting to enter the guild; the Wiki notes this access can be boosted.",
+          "cost": "40,960 coins listed shop price; stock 1; one-minute restock."
+        }
+      ],
+      "downstream_capability": "Provides the rune Woodcutting axe tier for level-41 Woodcutting actions.",
+      "rng_disclaimer": "The 1/32 value describes an independent listed drop chance per defeated tree spirit, not a guaranteed acquisition by 32 kills.",
+      "validation_notes": {
+        "rate_source_method": "The Tree spirit page labels its drop rates as Drop Rate Project estimates. The independently labelled community report also says 1/32, so there is no value conflict, but Jagex has not been found publishing this rate directly.",
+        "unvalidated_values": []
+      },
+      "source_ids": [
+        "wiki-enchanted-valley",
+        "wiki-tree-spirit",
+        "wiki-fairytale-ii",
+        "wiki-rune-axe"
+      ]
+    },
+    {
+      "id": "zombie-axe-armoured-zombies",
+      "name": "Zombie axe from armoured zombies",
+      "category": "bypass",
+      "status": "verified",
+      "verified_at": "2026-08-20",
+      "scope": "Members-only monster-drop route; no acquisition is guaranteed.",
+      "acquisition": {
+        "source": "Armoured zombie",
+        "location": "Zemouregal's Base",
+        "monster": "Level 85, undead, max hit 8",
+        "drop": "Broken zombie axe",
+        "wiki_listed_rate": "1/800",
+        "post_quest_population": "41 base spawns after Defender of Varrock completion."
+      },
+      "access": {
+        "quest": "Defender of Varrock grants access to Zemouregal's Base. Starting it requires 55 Smithing and 52 Hunter, both non-boostable, plus Shield of Arrav, Temple of Ikov, Below Ice Mountain, Family Crest, Garden of Tranquillity, What Lies Below, Romeo & Juliet, and Demon Slayer; their listed prerequisite chains also apply.",
+        "combat": "The quest requires defeating at least six level-85 armoured zombies and multiple level-70 Chaos Golems. The Wiki lists combat level 65 and 43 Prayer as recommendations, not hard requirements.",
+        "pre_completion_exception": "Before looking over the second balcony, the quest instance contains armoured zombies with the same drop table. This is a distinct pre-completion access state, not a conflict with the post-quest route."
+      },
+      "use_and_repair": {
+        "equip_requirement": "65 Attack.",
+        "repair": "Repair one broken zombie axe at an anvil with 70 Smithing; the creation action grants 500 Smithing XP.",
+        "item_behavior": "One-handed battleaxe with five-tick attack speed; no recurring charge or degradation requirement is listed."
+      },
+      "normal_deterministic_alternatives": [],
+      "downstream_capability": "One-handed slash and crush melee capability; the item has +105 slash, +90 crush, and +107 strength bonus.",
+      "rng_disclaimer": "The 1/800 value describes the listed chance per eligible armoured-zombie kill, not a guaranteed acquisition by 800 kills.",
+      "validation_notes": {
+        "rate_source_method": "The armoured-zombie page labels its drop rates as Drop Rate Project estimates. Jagex's release material confirms the post-quest drop concept, 65 Attack requirement, and 70-Smithing anvil repair, but does not publish a 1/800 rate.",
+        "unvalidated_values": []
+      },
+      "source_ids": [
+        "wiki-defender-varrock",
+        "wiki-armoured-zombie",
+        "wiki-zombie-axe",
+        "official-defender-varrock-poll"
+      ]
+    },
+    {
+      "id": "warped-sceptre-warped-creatures",
+      "name": "Warped sceptre from warped and mutated creatures",
+      "category": "bypass",
+      "status": "verified",
+      "verified_at": "2026-08-20",
+      "scope": "Members-only monster-drop route; no acquisition is guaranteed.",
+      "acquisition": {
+        "sources": [
+          "Warped terrorbird, levels 96 and 138: 1/320",
+          "Warped tortoise, level 121: 1/320",
+          "Mutated terrorbird, level 178: 1/320",
+          "Mutated tortoise, level 247: 1/320"
+        ],
+        "drop": "Warped sceptre (uncharged)"
+      },
+      "access": {
+        "quest": "Partial completion of The Path of Glouphrie is required to kill any listed warped or mutated creature. Completing the quest requires The Eyes of Glouphrie, Waterfall Quest, and Tree Gnome Village, plus 60 Strength, 56 Slayer, 56 Thieving, 47 Ranged, and 45 Agility.",
+        "task": "56 Slayer is a quest requirement and is also stated on the sceptre page for the warped terrorbird and tortoise sources.",
+        "combat": "The listed source combat levels range from 96 to 247; no separate combat level is a stated access requirement.",
+        "unvalidated_detail": "The item source confirms partial quest completion but does not identify the exact quest-stage boundary in the sourced excerpt."
+      },
+      "use_and_repair": {
+        "equip_requirement": "62 Magic.",
+        "charging": "Up to 20,000 charges. Each cast consumes 2 chaos runes and 5 earth runes; uncharging returns the stored runes.",
+        "repair": "None listed."
+      },
+      "normal_deterministic_alternatives": [],
+      "downstream_capability": "Enables the sceptre's built-in powered-staff spell with its runes stored in the weapon.",
+      "rng_disclaimer": "Each listed creature source has a 1/320 listed chance per eligible kill; the rate does not guarantee the item after 320 kills.",
+      "validation_notes": {
+        "rate_source_method": "The Wiki gives the same 1/320 value for all four sources. Jagex's Summer Summit poll confirms the quest was intended to add the two Slayer creatures and a mid-level self-powered staff, but does not publish the rate.",
+        "unvalidated_values": [
+          "Exact partial-completion quest stage required to attack the creatures."
+        ]
+      },
+      "source_ids": [
+        "wiki-warped-sceptre",
+        "wiki-path-of-glouphrie-requirements",
+        "official-summer-summit-2023"
+      ]
+    },
+    {
+      "id": "rune-scimitar-drop-paths",
+      "name": "Rune scimitar from early and mid-progression drop paths",
+      "category": "bypass",
+      "status": "verified",
+      "verified_at": "2026-08-20",
+      "scope": "Selected lower-barrier sources only; this is not an exhaustive list of all Rune scimitar sources. No acquisition is guaranteed.",
+      "acquisition": {
+        "sources": [
+          {
+            "monster": "Zamorak warrior",
+            "location": "Ourania Cave, at the Ourania Altar",
+            "combat_levels": [84, 85],
+            "drop_rate": "1/50",
+            "rate_provenance": "The Wiki cites a Jagex Mod Ash statement for this value."
+          },
+          {
+            "monster": "Fire giant",
+            "combat_levels": [86, 104, 109],
+            "drop_rate": "1/128",
+            "access_note": "Fire giants have multiple locations; their location-specific travel or quest requirements are not a single item-source requirement."
+          }
+        ]
+      },
+      "access": {
+        "quest": "Neither selected monster has a universal quest gate stated by its item source. Access to a chosen fire-giant location can add its own requirements.",
+        "skill": "No Slayer level is required to kill fire giants. No Slayer level is stated for Zamorak warriors.",
+        "combat": "Zamorak warriors are level 84 or 85. The base fire giant is level 86, has max hit 11, and is aggressive.",
+        "task": "Neither selected drop is restricted to a Slayer task."
+      },
+      "use_and_repair": {
+        "equip_requirement": "40 Attack.",
+        "repair": "None.",
+        "item_behavior": "Four-tick scimitar."
+      },
+      "normal_deterministic_alternatives": [
+        {
+          "method": "Smith a Rune scimitar",
+          "requirements": "90 Smithing and 2 runite bars.",
+          "cost": "2 runite bars; no shop purchase route for the Rune scimitar is stated by the sourced item page."
+        }
+      ],
+      "downstream_capability": "Provides the rune scimitar's one-handed four-tick slash melee capability.",
+      "rng_disclaimer": "The stated 1/50 and 1/128 values are per eligible monster kill and do not guarantee acquisition after that many kills.",
+      "validation_notes": {
+        "rate_source_method": "The 1/50 Zamorak-warrior rate has a cited Jagex statement. The fire-giant 1/128 value is Wiki-listed; the fire-giant page describes the table as Drop Rate Project estimates.",
+        "unvalidated_values": []
+      },
+      "source_ids": [
+        "wiki-rune-scimitar",
+        "wiki-zamorak-warrior",
+        "wiki-fire-giant"
+      ]
+    },
+    {
+      "id": "dragon-defender-warriors-guild",
+      "name": "Dragon defender from Warriors' Guild basement cyclopes",
+      "category": "bypass",
+      "status": "verified",
+      "verified_at": "2026-08-20",
+      "scope": "Members-only defender-chain acquisition; no acquisition is guaranteed.",
+      "acquisition": {
+        "source": "Level-106 cyclopes in the Warriors' Guild basement",
+        "drop": "Dragon defender",
+        "wiki_listed_rate": "1/100"
+      },
+      "access": {
+        "guild_requirement": "Combined Attack and Strength level of at least 130, or level 99 in either skill.",
+        "defender_chain": "Top-floor cyclopes can award bronze, iron, steel, black, mithril, adamant, then rune defender, in that order. Each tier has a 1/50 listed chance; each received defender must be shown to Kamfreena before the next can drop.",
+        "token_requirement": "Carry at least 100 Warrior guild tokens to enter either cyclops room. Entry spends 10 tokens and another 10 tokens per minute; the level-99 Attack cape exempts token use while worn.",
+        "combat": "Cyclopes must be fought with melee attacks. Basement access is unlocked by showing a rune defender to Lorelai; the rune defender need not remain in the bank after that unlock."
+      },
+      "use_and_repair": {
+        "equip_requirement": "60 Defence.",
+        "repair": "No routine repair. If unprotected on a death below level-20 Wilderness, it remains but is unusable until repaired by Perdu for 240,000 coins; above level 20 it converts to 8,160 coins.",
+        "item_behavior": "Shield-slot defender with offensive attack and strength bonuses."
+      },
+      "normal_deterministic_alternatives": [],
+      "downstream_capability": "Enables a dragon-tier offensive defender and is the base item for an Avernic defender when combined with an Avernic defender hilt; the completed Avernic requires 70 Attack and 70 Defence to equip.",
+      "rng_disclaimer": "The 1/50 pre-chain and 1/100 dragon-defender values are individual eligible-cyclops chances, not guarantees at their nominal kill counts.",
+      "validation_notes": {
+        "rate_source_method": "The Wiki lists the defender rates. Jagex's original poll confirms the basement was designed to require showing a rune defender and to use the same token fee; it does not publish the 1/100 rate.",
+        "unvalidated_values": []
+      },
+      "source_ids": [
+        "wiki-warriors-guild",
+        "wiki-dragon-defender",
+        "official-dragon-defender-poll",
+        "official-theatre-of-blood-poll"
+      ]
+    }
+  ]
+}

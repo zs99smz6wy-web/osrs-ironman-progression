@@ -1,0 +1,252 @@
+{
+  "records": [
+    {
+      "id": "economic-agility-pyramid",
+      "name": "Agility Pyramid fixed top payout and failure exposure",
+      "category": "economy",
+      "status": "verified",
+      "verified_at": "2026-08-20",
+      "requirements": {
+        "membership": true,
+        "skills": {"Agility": 30},
+        "quest_requirements": [],
+        "environmental_supplies": ["desert-heat protection or waterskins", "food while failures remain possible"]
+      },
+      "payout": {
+        "unit": "pyramid top sold to Simon Templeton",
+        "coins_per_completed_top": 10000,
+        "type": "fixed sale value; no loot-table roll after reaching the top"
+      },
+      "failure_and_attention": {
+        "attention": "active movement and obstacle interaction",
+        "failure": "Obstacles can fail below 75 Agility; a failed obstacle can deal up to 10 damage and reduces completed-top throughput.",
+        "failure_ceiling": "At 75 Agility, no obstacle can fail.",
+        "desert_risk": "Desert heat continues to require water or protection outside settlements."
+      },
+      "side_outputs": ["Agility experience"],
+      "community_guide_estimates": [
+        {
+          "estimate": "200,000 coins per hour at 60+ Agility; up to 260,000 coins per hour at 75 Agility",
+          "evidence_class": "community_guide_estimate_not_guaranteed_mechanic",
+          "assumptions": "Route efficiency, supplies, and obstacle success; lower levels can fail enough to materially reduce the rate."
+        }
+      ],
+      "source_ids": ["wiki-agility-pyramid-mechanics", "wiki-agility-pyramid"],
+      "confidence": "high"
+    },
+    {
+      "id": "economic-stealing-valuables",
+      "name": "Wealthy citizens and stealing valuables",
+      "category": "economy",
+      "status": "verified",
+      "verified_at": "2026-08-20",
+      "requirements": {
+        "membership": true,
+        "quest": "Children of the Sun completed",
+        "skills": {"Thieving": 50},
+        "location": "Civitas illa Fortis"
+      },
+      "mechanics": {
+        "house_keys": "Keys are variable loot. Pickpocketing wealthy citizens is the fastest listed source, at about 1 key per 17 pickpockets.",
+        "distraction_window": "Three street urchins distract citizens together every 84-99 seconds. During the 24-second window, pickpockets have 100% success and continue automatically.",
+        "valuables": "House searches produce a variable count of valuables. Their resale price is fixed at 55 coins each to Oriana, or 65 coins each after the 8,000-Glory Fortis Colosseum Gladiator rank.",
+        "caught_in_house": "If the homeowner catches the player, about 90% of valuables from that house are lost; valuables obtained from earlier houses are retained."
+      },
+      "attention_and_risk": {
+        "attention": "low-to-medium: street-urchin intervals support semi-AFK key collection, while house burgling needs monitoring for the return cue and window exit.",
+        "failure_risk": "The deterministic sale price does not make total income deterministic: keys, house loot, jewellery, and catch losses vary."
+      },
+      "side_outputs": ["Thieving experience", "easy clue scrolls from wealthy-citizen pickpockets", "uncommon jewellery through diamond", "rare blessed bone statuettes that break into Prayer-training bone shards"],
+      "community_guide_estimates": [
+        {
+          "estimate": "1,600-2,300 valuables, or 90,000-125,000 coins per hour before Gladiator rank and excluding jewellery",
+          "evidence_class": "community_guide_estimate_not_guaranteed_mechanic",
+          "assumptions": "18-19 houses per hour and the guide's stated execution efficiency."
+        }
+      ],
+      "source_ids": ["wiki-stealing-valuables", "wiki-money-stealing-valuables", "wiki-children-sun"],
+      "confidence": "high"
+    },
+    {
+      "id": "economic-giants-foundry-commissions",
+      "name": "Giants' Foundry commission cash conversion",
+      "category": "economy",
+      "status": "verified",
+      "verified_at": "2026-08-20",
+      "requirements": {
+        "membership": true,
+        "quest": "Sleeping Giants completed",
+        "quest_skill_gate": {"Smithing": 15},
+        "commission_inputs": "Consumable metal bars or Smithing-made metal equipment worth at least two bars, plus a bucket or ice gloves to pick up the moulded weapon."
+      },
+      "payout": {
+        "type": "fixed after the commission's final quality is determined",
+        "coins": "Twice the Smithing experience awarded for that completed sword.",
+        "foundry_reputation": "Equal to final sword quality: metal score plus mould score minus 5 per mistake."
+      },
+      "attention_and_risk": {
+        "attention": "active, timing-based commission gameplay",
+        "risk": "Input cost and the final quality/mistake count determine net GP; the coin formula is deterministic, but no single profit figure is independent of alloy choice, supplied item value, moulds, and execution."
+      },
+      "side_outputs": ["Smithing experience", "Foundry Reputation for deterministic shop purchases and moulds"],
+      "community_guide_estimates": [
+        {
+          "estimate": "168,624 coins per hour for the listed forging-giant-swords method at 30 Smithing",
+          "evidence_class": "community_guide_estimate_not_guaranteed_mechanic",
+          "assumptions": "The money-making guide's then-current inputs, quality, and execution; not an Ironman-guaranteed net rate."
+        }
+      ],
+      "source_ids": ["wiki-giants-foundry", "official-giants-foundry-launch", "wiki-sleeping-giants", "wiki-giants-foundry-strategies"],
+      "confidence": "high"
+    },
+    {
+      "id": "economic-conventional-thieving-silk",
+      "name": "Conventional stall thieving: silk sale cycle",
+      "category": "economy",
+      "status": "verified",
+      "verified_at": "2026-08-20",
+      "requirements": {
+        "membership": true,
+        "skills": {"Thieving": 20},
+        "quest_requirements": [],
+        "location": "a thievable silk stall, with East Ardougne providing the documented resale merchant"
+      },
+      "payout": {
+        "unit": "silk sold unnoted to the East Ardougne Silk Merchant after successful barter",
+        "coins_per_silk": 60,
+        "type": "fixed merchant value after the theft cooldown; the number of successful steals is player-time dependent"
+      },
+      "attention_and_risk": {
+        "attention": "active stall clicking and guard/owner line-of-sight management",
+        "failure": "A stall theft is 100% successful only while the owner and guards do not have line of sight. Being spotted causes guards to attack.",
+        "sale_delay": "The merchant refuses recently stolen silk for roughly 20-30 minutes; time logged out does not count toward the owner interaction restriction."
+      },
+      "side_outputs": ["24 Thieving experience per silk", "silk is also a quest material"],
+      "community_guide_estimates": [],
+      "source_ids": ["wiki-silk-stall", "wiki-thieving", "wiki-ironman-thieving"],
+      "confidence": "high"
+    },
+    {
+      "id": "economic-blackjacking-bandits",
+      "name": "Blackjacking Pollnivneach bandits",
+      "category": "economy",
+      "status": "verified",
+      "verified_at": "2026-08-20",
+      "requirements": {
+        "membership": true,
+        "quest_access": "The Feud must be progressed far enough to use blackjacks; starting that quest requires 30 Thieving and its listed consumable coin requirement is 501 coins.",
+        "targets": {"bearded_bandit": {"Thieving": 45}, "bandit": {"Thieving": 55}, "Menaphite_thug": {"Thieving": 65}}
+      },
+      "payout": {
+        "bearded_bandit": {"coins_per_knocked_out_pickpocket": 40, "type": "always"},
+        "bandit": {"coins_per_knocked_out_pickpocket": 50, "type": "always"},
+        "coin_delivery": "Coins are received directly from a knocked-out target rather than as coin pouches."
+      },
+      "attention_and_risk": {
+        "attention": "high; repeated lure/knock-out/pickpocket inputs and fast recovery from failure",
+        "failure": "Knock-out success is level-dependent and can fail. A failed knock-out can make the target aggressive and able to attack; the two pickpockets after a successful knock-out are guaranteed only when performed quickly."
+      },
+      "side_outputs": ["Thieving experience: 65 per bearded bandit and 84.3 per bandit successful pickpocket"],
+      "community_guide_estimates": [
+        {
+          "estimate": "127,000 coins per hour at 50 Thieving and 220,000 coins per hour at 99 Thieving",
+          "evidence_class": "community_guide_estimate_not_guaranteed_mechanic",
+          "assumptions": "The cited Ironman guide's click-intensive execution and stated equipment assumptions."
+        }
+      ],
+      "source_ids": ["wiki-the-feud", "wiki-blackjack", "wiki-bandit-pollnivneach", "wiki-ironman-money"],
+      "confidence": "high"
+    },
+    {
+      "id": "economic-sailing-bounty-tasks",
+      "name": "Sailing bounty-task coin payouts",
+      "category": "sailing",
+      "status": "verified",
+      "verified_at": "2026-08-20",
+      "requirements": {"membership": true, "skills": {"Sailing": 30}, "sailing_entry": "Pandemonium completed"},
+      "payout": {
+        "type": "fixed for a completed accepted task",
+        "coins": "Equal to the task's base Sailing experience award.",
+        "task_slots": 3,
+        "not_random_loot": "The coin payout is not a reward-pool roll; it varies only because accepted tasks have different base experience."
+      },
+      "attention_and_risk": {"attention": "task-dependent active Sailing and travel; no universal GP-per-hour rate is a guaranteed mechanic."},
+      "side_outputs": ["Sailing experience", "bounty parts that cannot be banked but can be stored in a ship cargo hold"],
+      "community_guide_estimates": [],
+      "source_ids": ["wiki-bounty-tasks", "wiki-sailing"],
+      "confidence": "high"
+    },
+    {
+      "id": "economic-sailing-salvaging",
+      "name": "Sailing shipwreck salvaging",
+      "category": "sailing",
+      "status": "verified",
+      "verified_at": "2026-08-20",
+      "requirements": {
+        "membership": true,
+        "entry": "Pandemonium completed; level 15 Sailing and a salvaging hook on a raft or better boat to begin.",
+        "at_sea_sorting_upgrade": {"skills": {"Sailing": 42, "Construction": 34}, "requirements": ["read Salvaging station schematic", "4 teak planks", "16 steel nails"]}
+      },
+      "mechanics": {
+        "yield_type": "Variable salvage is sorted into variable item loot; it is not a fixed coin payout.",
+        "attention": "low-intensity collection, but shipwrecks in an area share a limited spawn pool and sink after a timer once salvaging begins.",
+        "station_effect": "A salvaging station on the boat permits sorting at sea; without it, sorted loot requires a port station."
+      },
+      "side_outputs": ["Sailing experience from retrieving and sorting salvage", "farming seeds", "salvaging relics", "Boat bottle", "Facility bottle", "Sailors' amulet", "dragon shipbuilding materials"],
+      "community_guide_estimates": [
+        {
+          "estimate": "21,610 coins per hour for small shipwrecks; 194,936 for large shipwrecks; 343,026 for mercenary shipwrecks",
+          "evidence_class": "community_guide_estimate_not_guaranteed_mechanic",
+          "assumptions": "The Wiki money-making guides' loot valuation and activity assumptions. Higher wreck tiers impose additional level, boat, hook, and route gates."
+        }
+      ],
+      "source_ids": ["wiki-shipwreck-salvaging", "wiki-salvaging-station", "wiki-sailing", "wiki-sailing-training"],
+      "confidence": "high"
+    },
+    {
+      "id": "economic-port-roberts-stalls",
+      "name": "Port Roberts non-depleting thieving stalls",
+      "category": "sailing",
+      "status": "verified",
+      "verified_at": "2026-08-20",
+      "requirements": {
+        "membership": true,
+        "sailing": 50,
+        "thieving_stall_gates": {"vegetable": 2, "silk": 20, "fur": 35, "fish": 42, "silver": 50, "spice": 65, "gem": 75, "ore": 82, "cannonball": 87}
+      },
+      "mechanics": {
+        "stock": "The Port Roberts stalls do not deplete and continue stealing from one click.",
+        "payout_type": "Item output, not a fixed direct-coin reward; any shop sale or alchemy value depends on the selected stall and subsequent handling.",
+        "arrest": "Market guards patrol on fixed timings. Stealing while observed sends the player to jail; release is by lockpicking or a 500-coin bribe."
+      },
+      "attention_and_risk": {"attention": "active timing around guards; theoretical uninterrupted stall rates are reduced by guard behavior."},
+      "side_outputs": ["Thieving experience", "stall-specific supplies such as food, gems, ores, and cannonballs"],
+      "community_guide_estimates": [],
+      "source_ids": ["wiki-port-roberts", "wiki-thieving-training", "wiki-thieving", "wiki-sailing-map"],
+      "confidence": "high"
+    },
+    {
+      "id": "economic-cash-commitments",
+      "name": "Concrete cash commitments and cash-gated preparations",
+      "category": "economy",
+      "status": "verified",
+      "verified_at": "2026-08-20",
+      "commitments": {
+        "sailing_skiff": {"hard_gate": {"Sailing": 15, "coins": 15000}, "effect": "Skiff ownership"},
+        "kingdom_coffer": {
+          "entry": "Throne of Miscellania seeds the coffer with a fixed 10,000 coins.",
+          "maximum_daily_wage_math": {"before_Royal_Trouble": {"coffer_floor_for_50000_daily_wage": 500000, "daily_cap": 50000}, "after_Royal_Trouble": {"coffer_floor_for_75000_daily_wage": 750000, "daily_cap": 75000}},
+          "classification": "These coffer floors are formula thresholds for maximum daily wage, not quest-access requirements; daily payment is 10% of the current coffer up to the applicable cap."
+        },
+        "poh_location": {"initial_house_in_Rimmington": {"Construction": 1, "coins": 1000, "alternative": "Daddy's Home grants the first house without the coin purchase"}, "relocate_to_Rimmington": {"Construction": 1, "coins": 5000}, "Pollnivneach": {"Construction": 20, "coins": 7500}, "Hosidius": {"Construction": 25, "coins": 8750}, "Rellekka": {"Construction": 30, "coins": 10000}, "Aldarin": {"Construction": 35, "coins": 12500}},
+        "sawmill_fees_per_log": {"plank": 100, "oak_plank": 250, "teak_plank": 500, "mahogany_plank": 1500},
+        "throne_of_miscellania_support": {"coins": 1875, "classification": "Optional fixed-cost way to obtain the required 75% support; non-coin skilling alternatives exist."},
+        "the_feud": {"coins": 501, "classification": "Listed consumable coin preparation for the quest that enables blackjack progression."},
+        "rune_and_shop": {"Waterfall_Quest": {"air_runes": 6, "earth_runes": 6, "water_runes": 6}, "Ali_Morrisane_rune_shop": "Requires The Feud and Rogue Trader rune section; rune prices and stock are not represented as a fixed GP commitment.", "Barrows_gloves": {"coins": 130000, "classification": "Fixed purchase after Recipe for Disaster completion."}}
+      },
+      "notes": "This record names concrete spends, consumable gates, and formula thresholds only. It does not set a route cash target or prescribe a funding method.",
+      "source_ids": ["wiki-sailing", "wiki-throne-of-miscellania", "wiki-managing-miscellania", "wiki-house-portal", "wiki-estate-agent", "wiki-sawmill", "wiki-the-feud", "wiki-waterfall-quest", "wiki-runes", "wiki-barrows-gloves"],
+      "confidence": "high"
+    }
+  ]
+}

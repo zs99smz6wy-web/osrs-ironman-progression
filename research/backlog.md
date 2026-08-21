@@ -22,6 +22,13 @@
 - Completed: strengthened Tempoross and Fish Barrel modeling so permits support reward searches while the barrel remains `makes_obtainable`, never guaranteed.
 - Pending: add strategic scores and account-specific stop conditions only after comparing these verified unlocks with alternative uses of their currencies and time.
 
+### 4. Economic bottleneck and monster-drop bypass closure
+
+- Completed: verified the hard gates, fixed payouts, variable outputs, attention notes, and guide-estimate boundaries for Agility Pyramid, wealthy-citizen valuables, Giants' Foundry commissions, silk stalls, blackjacking, Sailing bounties, shipwreck salvaging, and Port Roberts stalls.
+- Completed: normalized concrete cash commitments and added a deadline-aware account-state analyzer that reports funding shortfalls without choosing a money-making method or route.
+- Completed: verified and graphed Rune axe, Zombie axe, Warped sceptre, Rune scimitar, and Dragon defender acquisition paths; random drops use `makes_obtainable`, while purchases, smithing, and repairs remain deterministic.
+- Pending: estimate expected combat time and readiness for each drop route, then score the verified economic methods and bypasses against an actual account snapshot in the strategy layer.
+
 ## Continuing validation queue
 
 - Quest XP, item, combat, and GP requirement records for early transport and Fossil Island chains.
@@ -29,7 +36,7 @@
 - Perilous Moons and Belle's Folly: exact current hard gates, readiness thresholds, and reward utility.
 - Giants' Foundry: reward costs, Smithing/GP/resource outputs, and natural stop candidates.
 - Tempoross/Fish Barrel, Tithe Farm, Guardians of the Rift, and MTA: utility-first stop points.
-- Rune axe and other low-cost monster-drop bypasses, including expected-time and combat-access analysis.
+- Monster-drop bypass expected-time, combat-readiness, and opportunity-cost analysis using the now-verified acquisition facts.
 - Modern Sailing: economic inputs, repeatable-activity yields, Slayer-task state, combat readiness, and strategy-layer valuation of verified utility unlocks.
 
 ## Source mix

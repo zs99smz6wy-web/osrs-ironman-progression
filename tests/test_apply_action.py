@@ -522,6 +522,53 @@ class ApplyActionTests(unittest.TestCase):
         self.assertNotIn("fish_barrel", result["next_state"]["items"])
         self.assertEqual("variable_activity_output", result["reported_effects"][0]["type"])
 
+    def test_new_rng_activities_do_not_invent_items_or_coins(self) -> None:
+        rng_action_ids = {
+            "action:steal-valuables",
+            "action:steal-silk-stalls",
+            "action:blackjack-bandits",
+            "action:salvage-shipwrecks",
+            "action:steal-port-roberts-stalls",
+            "action:fight-enchanted-valley-tree-spirits",
+            "action:fight-armoured-zombies",
+            "action:fight-warped-creatures",
+            "action:fight-zamorak-warriors-for-rune-scimitar",
+            "action:fight-fire-giants-for-rune-scimitar",
+            "action:fight-warriors-guild-cyclopes-for-dragon-defender",
+        }
+        actions_by_id = {action["id"]: action for action in self.actions_document["actions"]}
+        for action_id in rng_action_ids:
+            transition = actions_by_id[action_id]["transition"]
+            self.assertTrue(actions_by_id[action_id]["repeatable"])
+            self.assertEqual([], transition["effects"])
+            self.assertEqual("variable_activity_output", transition["reported_effects"][0]["type"])
+
+        self.state["quests_completed"].append("Children of the Sun")
+        self.state["skills"]["Thieving"] = 50
+        self.state["skill_xp"]["Thieving"] = minimum_xp_for_level(50)
+        original_items = copy.deepcopy(self.state["items"])
+        original_coins = self.state["resources"]["coins"]
+
+        result = apply_action(self.actions_document, self.state, "action:steal-valuables")
+
+        self.assertEqual("applied", result["status"])
+        self.assertEqual(original_items, result["next_state"]["items"])
+        self.assertEqual(original_coins, result["next_state"]["resources"]["coins"])
+        self.assertEqual("variable_activity_output", result["reported_effects"][0]["type"])
+
+    def test_zombie_axe_repair_is_deterministic(self) -> None:
+        self.state["skills"]["Smithing"] = 70
+        self.state["skill_xp"]["Smithing"] = minimum_xp_for_level(70)
+        self.state["items"]["broken_zombie_axe"] = 1
+
+        result = apply_action(self.actions_document, self.state, "action:repair-zombie-axe")
+
+        self.assertEqual("applied", result["status"])
+        self.assertEqual(0, result["next_state"]["items"]["broken_zombie_axe"])
+        self.assertEqual(1, result["next_state"]["items"]["zombie_axe"])
+        self.assertEqual(minimum_xp_for_level(70) + 500, result["next_state"]["skill_xp"]["Smithing"])
+        self.assertEqual([], result["reported_effects"])
+
 
 if __name__ == "__main__":
     unittest.main()

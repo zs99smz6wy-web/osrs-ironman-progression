@@ -259,6 +259,73 @@ class AnalyzeDependenciesTests(unittest.TestCase):
         self.assertTrue(any(entry["predicate"] == fish_barrel["predicate"] for entry in analysis["external_inputs"]))
         self.assertNotIn("action:tempoross", [node["action_id"] for node in analysis["closure"]["actions"]])
 
+    def test_reported_rng_item_and_coin_outputs_are_not_action_producers(self) -> None:
+        actions = {
+            "actions": [
+                {
+                    "id": "action:rng-drop-report",
+                    "name": "Report an RNG drop",
+                    "kind": "activity",
+                    "status": "verified",
+                    "fact_ids": ["synthetic"],
+                    "requirements": {"all": []},
+                    "preparation": {"all": []},
+                    "completion": {"all": []},
+                    "outcomes": [],
+                    "repeatable": True,
+                    "transition": {
+                        "effects": [],
+                        "options": [],
+                        "reported_effects": [
+                            {
+                                "type": "rng_item_drop",
+                                "item": "rune_axe",
+                                "fact_id": "synthetic",
+                            },
+                            {
+                                "type": "variable_activity_output",
+                                "resource": "coins",
+                                "fact_id": "synthetic",
+                            },
+                        ],
+                    },
+                },
+                {
+                    "id": "action:rng-output-consumer",
+                    "name": "Use reported RNG outputs",
+                    "kind": "activity",
+                    "status": "verified",
+                    "fact_ids": ["synthetic"],
+                    "requirements": {
+                        "all": [
+                            {"type": "item_at_least", "key": "rune_axe", "value": 1},
+                            {"type": "resource_at_least", "key": "coins", "value": 1000},
+                        ]
+                    },
+                    "preparation": {"all": []},
+                    "completion": {"all": []},
+                    "outcomes": [],
+                    "repeatable": True,
+                    "transition": {"effects": [], "options": [], "reported_effects": []},
+                },
+            ]
+        }
+
+        analysis = analyze_dependency_closure(
+            actions,
+            copy.deepcopy(self.fresh_state),
+            "action:rng-output-consumer",
+        )
+
+        consumer = self._action_node(analysis, "action:rng-output-consumer")
+        rune_axe = self._predicate(consumer, "requirements", "item_at_least", "rune_axe")
+        coins = self._predicate(consumer, "requirements", "resource_at_least", "coins")
+        self.assertEqual([], rune_axe["producer_actions"])
+        self.assertEqual([], coins["producer_actions"])
+        self.assertTrue(any(entry["predicate"] == rune_axe["predicate"] for entry in analysis["external_inputs"]))
+        self.assertTrue(any(entry["predicate"] == coins["predicate"] for entry in analysis["external_inputs"]))
+        self.assertNotIn("action:rng-drop-report", [node["action_id"] for node in analysis["closure"]["actions"]])
+
     def test_deterministic_purchase_can_produce_item_while_rng_currency_remains_external(self) -> None:
         def action(action_id: str, requirements: dict, effects: list[dict], reports: list[dict]) -> dict:
             return {
