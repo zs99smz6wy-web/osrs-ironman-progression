@@ -74,23 +74,30 @@ def _preference_adjustments(dimensions: dict[str, Any], account_state: dict[str,
     }
 
 
-def score_candidates(
+def _evaluated_actions_and_annotations(
     candidates_document: dict[str, Any], actions_document: dict[str, Any], account_state: dict[str, Any]
-) -> list[dict[str, Any]]:
-    """Rank strategic annotations after the factual evaluator identifies eligible actions."""
+) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
+    """Evaluate factual actions and validate the strategic annotations that name them."""
     evaluated = evaluate_actions(actions_document, account_state)
-    eligible = {result["id"]: result for result in evaluated if result["status"] == "eligible"}
     evaluated_ids = {result["id"] for result in evaluated}
 
     annotations = candidates_document["candidates"]
     annotation_ids = [annotation["action_id"] for annotation in annotations]
     if len(annotation_ids) != len(set(annotation_ids)):
         raise ValueError("Candidate action_id values must be unique")
-    if set(annotation_ids) != evaluated_ids:
-        missing = sorted(evaluated_ids - set(annotation_ids))
-        unexpected = sorted(set(annotation_ids) - evaluated_ids)
-        raise ValueError(f"Candidate annotations must match current pilot actions; missing={missing}, unexpected={unexpected}")
+    unexpected = sorted(set(annotation_ids) - evaluated_ids)
+    if unexpected:
+        raise ValueError(
+            "Candidate annotations must refer to normalized factual actions; "
+            f"unexpected={unexpected}"
+        )
+    return evaluated, annotations
 
+
+def _rank_eligible_annotations(
+    annotations: list[dict[str, Any]], evaluated: list[dict[str, Any]], account_state: dict[str, Any]
+) -> list[dict[str, Any]]:
+    eligible = {result["id"]: result for result in evaluated if result["status"] == "eligible"}
     ranked: list[dict[str, Any]] = []
     for annotation in annotations:
         action_id = annotation["action_id"]
@@ -120,10 +127,40 @@ def score_candidates(
     return sorted(ranked, key=lambda candidate: (-candidate["total_score"], candidate["name"]))
 
 
+def score_candidates(
+    candidates_document: dict[str, Any], actions_document: dict[str, Any], account_state: dict[str, Any]
+) -> list[dict[str, Any]]:
+    """Rank eligible factual actions that have a strategic annotation."""
+    evaluated, annotations = _evaluated_actions_and_annotations(
+        candidates_document, actions_document, account_state
+    )
+    return _rank_eligible_annotations(annotations, evaluated, account_state)
+
+
+def _eligible_unscored_actions(
+    evaluated: list[dict[str, Any]], annotations: list[dict[str, Any]]
+) -> list[dict[str, Any]]:
+    annotated_ids = {annotation["action_id"] for annotation in annotations}
+    return [
+        {
+            "id": action["id"],
+            "name": action["name"],
+            "kind": action["kind"],
+            "fact_ids": action["fact_ids"],
+            "status": action["status"],
+        }
+        for action in evaluated
+        if action["status"] == "eligible" and action["id"] not in annotated_ids
+    ]
+
+
 def _result_document(
     candidates_document: dict[str, Any], actions_document: dict[str, Any], account_state: dict[str, Any]
 ) -> dict[str, Any]:
-    ranked = score_candidates(candidates_document, actions_document, account_state)
+    evaluated, annotations = _evaluated_actions_and_annotations(
+        candidates_document, actions_document, account_state
+    )
+    ranked = _rank_eligible_annotations(annotations, evaluated, account_state)
     return {
         "formula": {
             "base_score": "sum(lifetime_utility, content_unlock, economic_infrastructure, multi_output, diversity) - detour_cost - burnout_risk - danger_risk; afk_fit is applied only by attention_window",
@@ -133,6 +170,7 @@ def _result_document(
             "risk_tolerance": "min(preferences.risk_tolerance, danger_risk), reducing the practical penalty of danger the player explicitly accepts",
         },
         "ranked_eligible_candidates": ranked,
+        "eligible_unscored_actions": _eligible_unscored_actions(evaluated, annotations),
     }
 
 

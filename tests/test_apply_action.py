@@ -88,6 +88,39 @@ class ApplyActionTests(unittest.TestCase):
         self.assertEqual(105, result["next_state"]["counters"]["kudos"])
         self.assertIn("fossil_island", result["next_state"]["transport_flags"])
 
+    def test_throne_of_miscellania_unlocks_management_and_seeds_coffer(self) -> None:
+        self.state["quests_completed"] = ["Heroes' Quest", "The Fremennik Trials"]
+        self.state["resources"]["coins"] = 1875
+        self.state["items"] = {
+            "iron_bar": 1,
+            "common_non_silver_ring": 1,
+            "logs": 1,
+        }
+
+        result = apply_action(self.actions_document, self.state, "action:throne-of-miscellania")
+
+        self.assertEqual("applied", result["status"])
+        self.assertIn("Throne of Miscellania", result["next_state"]["quests_completed"])
+        self.assertIn("kingdom_management_unlocked", result["next_state"]["milestones"])
+        self.assertIn("ring_of_wealth_miscellania", result["next_state"]["transport_flags"])
+        self.assertEqual(10000, result["next_state"]["resources"]["kingdom_coffer_coins"])
+        self.assertEqual(0, result["next_state"]["items"]["common_non_silver_ring"])
+
+    def test_royal_trouble_applies_fixed_coins_and_xp(self) -> None:
+        self.state["quests_completed"].append("Throne of Miscellania")
+        for skill in ("Agility", "Slayer"):
+            self.state["skills"][skill] = 40
+            self.state["skill_xp"][skill] = 37224
+
+        result = apply_action(self.actions_document, self.state, "action:royal-trouble")
+
+        self.assertEqual("applied", result["status"])
+        self.assertEqual(20000, result["next_state"]["resources"]["coins"])
+        self.assertEqual(42224, result["next_state"]["skill_xp"]["Agility"])
+        self.assertEqual(42224, result["next_state"]["skill_xp"]["Slayer"])
+        self.assertEqual(6154, result["next_state"]["skill_xp"]["Hitpoints"])
+        self.assertIn("kingdom_management_expanded", result["next_state"]["milestones"])
+
     def test_current_birdhouse_transition_requires_seed_choice_when_both_are_ready(self) -> None:
         state = load_json(REPOSITORY_ROOT / "tests" / "fixtures" / "passive-loops-ready.json")
         state["items"]["high_level_birdhouse_seed"] = 20

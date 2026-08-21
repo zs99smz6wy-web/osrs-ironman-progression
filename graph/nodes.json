@@ -13,7 +13,7 @@
     {"id": "activity:sailing", "kind": "activity", "label": "Sailing"},
     {"id": "goal:fish-barrel", "kind": "reward", "label": "Fish Barrel"},
     {"id": "goal:belles-folly", "kind": "item", "label": "Belle's Folly"},
-    {"id": "state:kingdom", "kind": "passive_loop", "label": "Managing Miscellania active"},
+    {"id": "state:kingdom", "kind": "passive_loop", "label": "Managing Miscellania unlocked"},
     {"id": "state:seaweed-loop", "kind": "passive_loop", "label": "Giant seaweed loop available"},
     {"id": "state:spirit-trees", "kind": "account_flag", "label": "Spirit trees usable"},
     {"id": "state:varlamore", "kind": "account_flag", "label": "Varlamore accessible"},
@@ -49,6 +49,10 @@
     {"id": "goal:herb-sack", "kind": "reward", "label": "Herb Sack"},
     {"id": "goal:bottomless-compost-bucket", "kind": "reward", "label": "Bottomless compost bucket"},
     {"id":"goal:piety","kind":"reward","label":"Piety"},
-    {"id":"goal:dragon-defender","kind":"reward","label":"Dragon defender"}
+    {"id":"goal:dragon-defender","kind":"reward","label":"Dragon defender"},
+    {"id":"quest:heroes-quest","kind":"quest","label":"Heroes' Quest completed"},
+    {"id":"quest:fremennik-trials","kind":"quest","label":"The Fremennik Trials completed"},
+    {"id":"quest:throne-of-miscellania","kind":"quest","label":"Throne of Miscellania completed"},
+    {"id":"quest:royal-trouble","kind":"quest","label":"Royal Trouble completed"}
   ]
 }

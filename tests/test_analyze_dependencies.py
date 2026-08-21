@@ -161,6 +161,44 @@ class AnalyzeDependenciesTests(unittest.TestCase):
             [choice for choice in analysis["choices"] if choice["action_id"] == "action:priest-in-peril"],
         )
 
+    def test_royal_trouble_resolves_through_throne_while_its_quest_prerequisites_remain_external(self) -> None:
+        analysis = analyze_dependency_closure(
+            self.actions_document,
+            copy.deepcopy(self.fresh_state),
+            "action:royal-trouble",
+        )
+
+        royal = self._action_node(analysis, "action:royal-trouble")
+        throne_requirement = self._predicate(
+            royal,
+            "requirements",
+            "quest_completed",
+            "Throne of Miscellania",
+        )
+        self.assertEqual(["action:throne-of-miscellania"], throne_requirement["producer_actions"])
+
+        throne = self._action_node(analysis, "action:throne-of-miscellania")
+        heroes = self._predicate(throne, "requirements", "quest_completed", "Heroes' Quest")
+        fremennik = self._predicate(throne, "requirements", "quest_completed", "The Fremennik Trials")
+        self.assertEqual([], heroes["producer_actions"])
+        self.assertEqual([], fremennik["producer_actions"])
+        self.assertTrue(any(entry["predicate"] == heroes["predicate"] for entry in analysis["external_inputs"]))
+        self.assertTrue(any(entry["predicate"] == fremennik["predicate"] for entry in analysis["external_inputs"]))
+
+    def test_descendant_reward_is_not_a_usable_prerequisite_producer(self) -> None:
+        analysis = analyze_dependency_closure(
+            self.actions_document,
+            copy.deepcopy(self.fresh_state),
+            "action:royal-trouble",
+            include_preparation=True,
+        )
+        throne = self._action_node(analysis, "action:throne-of-miscellania")
+        coins = self._predicate(throne, "preparation", "resource_at_least", "coins")
+
+        self.assertEqual([], coins["producer_actions"])
+        self.assertEqual("action:royal-trouble", coins["cyclic_producer_evidence"][0]["action_id"])
+        self.assertTrue(analysis["cycles"])
+
     def test_synthetic_dependency_cycle_is_reported(self) -> None:
         def action(action_id: str, requires_quest: str, completed_quest: str) -> dict:
             return {

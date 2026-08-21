@@ -176,8 +176,7 @@ class DependencyClosureAnalyzer:
 
     def _visit_action(self, action_id: str, needed_for: str) -> None:
         if action_id in self.active_actions:
-            cycle = tuple(self.active_actions[self.active_actions.index(action_id) :] + [action_id])
-            self.cycles.setdefault(cycle, {"action_ids": list(cycle)})
+            self._record_cycle(action_id)
             return
 
         node = self.action_nodes.get(action_id)
@@ -224,6 +223,10 @@ class DependencyClosureAnalyzer:
             node["transition_choices"].append(choice)
             self.choices[(action_id, option["id"])] = choice
         self.active_actions.pop()
+
+    def _record_cycle(self, action_id: str) -> None:
+        cycle = tuple(self.active_actions[self.active_actions.index(action_id) :] + [action_id])
+        self.cycles.setdefault(cycle, {"action_ids": list(cycle)})
 
     def _build_condition(
         self,
@@ -276,8 +279,14 @@ class DependencyClosureAnalyzer:
         ]
         fully_satisfying: list[dict[str, Any]] = []
         partial: list[dict[str, Any]] = []
+        cyclic: list[dict[str, Any]] = []
         for candidate in candidates:
             evidence = dict(candidate)
+            if candidate["action_id"] in self.active_actions:
+                evidence["cyclic_dependency"] = True
+                cyclic.append(evidence)
+                self._record_cycle(candidate["action_id"])
+                continue
             if candidate["capability"] == "floor":
                 evidence["satisfies_predicate"] = candidate["value"] >= predicate["value"]
             elif candidate["capability"] == "incremental":
@@ -298,6 +307,11 @@ class DependencyClosureAnalyzer:
             if not fully_satisfying:
                 self._record_unresolved(node, "deterministic effects provide only bounded partial progress")
             return node
+
+        if cyclic:
+            node["cyclic_producer_evidence"] = sorted(
+                cyclic, key=lambda item: (item["action_id"], item["operation"])
+            )
 
         xp_progress = self._xp_progress(predicate, action_id)
         if xp_progress:

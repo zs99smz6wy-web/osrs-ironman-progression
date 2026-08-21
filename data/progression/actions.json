@@ -372,6 +372,89 @@
       "outcomes": [],
       "repeatable": true,
       "transition": {"effects": [], "options": [], "reported_effects": [{"type": "variable_activity_output", "description": "Course success, experience, and GP per visit vary and are not applied as guaranteed account state.", "fact_id": "agility-pyramid"}]}
+    },
+    {
+      "id": "action:throne-of-miscellania",
+      "name": "Complete Throne of Miscellania",
+      "kind": "quest",
+      "status": "verified",
+      "fact_ids": ["throne-of-miscellania"],
+      "requirements": {
+        "all": [
+          {"type": "quest_completed", "key": "Heroes' Quest"},
+          {"type": "quest_completed", "key": "The Fremennik Trials"}
+        ]
+      },
+      "preparation": {
+        "all": [
+          {
+            "any": [
+              {"type": "resource_at_least", "key": "coins", "value": 1875},
+              {"all": [{"type": "item_at_least", "key": "axe", "value": 1}, {"type": "skill_at_least", "key": "Woodcutting", "value": 45}]},
+              {"all": [{"type": "item_at_least", "key": "rake", "value": 1}, {"type": "skill_at_least", "key": "Farming", "value": 10}]},
+              {"all": [{"type": "item_at_least", "key": "pickaxe", "value": 1}, {"type": "skill_at_least", "key": "Mining", "value": 35}]},
+              {"all": [{"any": [{"type": "item_at_least", "key": "harpoon", "value": 1}, {"type": "item_at_least", "key": "lobster_pot", "value": 1}]}, {"type": "skill_at_least", "key": "Fishing", "value": 35}]}
+            ]
+          },
+          {"type": "item_at_least", "key": "iron_bar", "value": 1},
+          {"type": "item_at_least", "key": "common_non_silver_ring", "value": 1},
+          {"type": "item_at_least", "key": "logs", "value": 1}
+        ]
+      },
+      "completion": {"all": [{"type": "quest_completed", "key": "Throne of Miscellania"}]},
+      "outcomes": [
+        {"type": "quest_completed", "key": "Throne of Miscellania"},
+        {"type": "milestone", "key": "kingdom_management_unlocked"},
+        {"type": "transport_flag", "key": "ring_of_wealth_miscellania"}
+      ],
+      "repeatable": false,
+      "transition": {
+        "effects": [
+          {"op": "set_add", "state": "quests_completed", "key": "Throne of Miscellania", "fact_id": "throne-of-miscellania"},
+          {"op": "set_add", "state": "milestones", "key": "kingdom_management_unlocked", "fact_id": "throne-of-miscellania"},
+          {"op": "set_add", "state": "transport_flags", "key": "ring_of_wealth_miscellania", "fact_id": "throne-of-miscellania"},
+          {"op": "ensure_min", "state": "resources", "key": "kingdom_coffer_coins", "value": 10000, "fact_id": "throne-of-miscellania"},
+          {"op": "delta", "state": "items", "key": "common_non_silver_ring", "amount": -1, "fact_id": "throne-of-miscellania"}
+        ],
+        "options": [],
+        "reported_effects": []
+      }
+    },
+    {
+      "id": "action:royal-trouble",
+      "name": "Complete Royal Trouble",
+      "kind": "quest",
+      "status": "verified",
+      "fact_ids": ["royal-trouble"],
+      "requirements": {
+        "all": [
+          {"type": "quest_completed", "key": "Throne of Miscellania"},
+          {"type": "skill_at_least", "key": "Agility", "value": 40},
+          {"type": "skill_at_least", "key": "Slayer", "value": 40}
+        ]
+      },
+      "preparation": {"all": []},
+      "completion": {"all": [{"type": "quest_completed", "key": "Royal Trouble"}]},
+      "outcomes": [
+        {"type": "quest_completed", "key": "Royal Trouble"},
+        {"type": "milestone", "key": "kingdom_management_expanded"}
+      ],
+      "repeatable": false,
+      "transition": {
+        "effects": [
+          {"op": "set_add", "state": "quests_completed", "key": "Royal Trouble", "fact_id": "royal-trouble"},
+          {"op": "set_add", "state": "milestones", "key": "kingdom_management_expanded", "fact_id": "royal-trouble"},
+          {"op": "delta", "state": "resources", "key": "coins", "amount": 20000, "fact_id": "royal-trouble"},
+          {"op": "gain_xp", "state": "skill_xp", "key": "Agility", "amount": 5000, "fact_id": "royal-trouble"},
+          {"op": "gain_xp", "state": "skill_xp", "key": "Slayer", "amount": 5000, "fact_id": "royal-trouble"},
+          {"op": "gain_xp", "state": "skill_xp", "key": "Hitpoints", "amount": 5000, "fact_id": "royal-trouble"}
+        ],
+        "options": [],
+        "reported_effects": [
+          {"type": "recorded_progress", "description": "Five coal and two rope may be obtained during the quest and are not modeled as imported-inventory hard gates.", "fact_id": "royal-trouble"},
+          {"type": "recorded_progress", "description": "The Giant Sea Snake combat encounter (combat level 149) is verified; combat readiness is not modeled as a gear threshold.", "fact_id": "royal-trouble"}
+        ]
+      }
     }
   ]
 }

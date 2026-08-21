@@ -16,6 +16,7 @@ from score_candidates import (  # noqa: E402
     ALL_DIMENSIONS,
     COST_DIMENSIONS,
     POSITIVE_DIMENSIONS,
+    _result_document,
     score_candidates,
 )
 
@@ -125,11 +126,53 @@ class ScoreCandidatesTests(unittest.TestCase):
         self.assertEqual(4, wintertodt["base_score"])
         self.assertEqual(11, wintertodt["total_score"])
 
-    def test_missing_candidate_coverage_raises_value_error(self) -> None:
+    def test_missing_candidate_coverage_is_exposed_as_eligible_unscored(self) -> None:
         candidates_document = copy.deepcopy(self.candidates_document)
-        candidates_document["candidates"].pop()
+        candidates_document["candidates"] = [
+            candidate
+            for candidate in candidates_document["candidates"]
+            if candidate["action_id"] != "action:tree-gnome-village"
+        ]
 
-        with self.assertRaisesRegex(ValueError, "Candidate annotations must match current pilot actions"):
+        result = _result_document(
+            candidates_document,
+            self.actions_document,
+            load_json(FIXTURES / "fresh-account.json"),
+        )
+
+        self.assertNotIn(
+            "action:tree-gnome-village",
+            {candidate["action_id"] for candidate in result["ranked_eligible_candidates"]},
+        )
+        self.assertEqual(
+            [
+                {
+                    "id": "action:tree-gnome-village",
+                    "name": "Complete Tree Gnome Village",
+                    "kind": "quest",
+                    "fact_ids": ["tree-gnome-village"],
+                    "status": "eligible",
+                }
+            ],
+            result["eligible_unscored_actions"],
+        )
+
+    def test_unknown_candidate_action_id_raises_value_error(self) -> None:
+        candidates_document = copy.deepcopy(self.candidates_document)
+        candidates_document["candidates"][0]["action_id"] = "action:not-normalized"
+
+        with self.assertRaisesRegex(ValueError, "must refer to normalized factual actions"):
+            score_candidates(
+                candidates_document,
+                self.actions_document,
+                load_json(FIXTURES / "fresh-account.json"),
+            )
+
+    def test_duplicate_candidate_action_id_raises_value_error(self) -> None:
+        candidates_document = copy.deepcopy(self.candidates_document)
+        candidates_document["candidates"].append(copy.deepcopy(candidates_document["candidates"][0]))
+
+        with self.assertRaisesRegex(ValueError, "must be unique"):
             score_candidates(
                 candidates_document,
                 self.actions_document,

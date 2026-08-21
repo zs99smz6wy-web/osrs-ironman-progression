@@ -39,6 +39,11 @@
     {"from": "activity:hespori", "to": "goal:bottomless-compost-bucket", "type": "makes_obtainable", "evidence": "Hespori has a one-in-35 Bottomless compost bucket drop."},
     {"from": "goal:herb-sack", "to": "goal:hunters-rumours", "type": "improves", "evidence": "Herb storage can reduce inventory friction in herb-gathering Hunter content; exact timing is strategic."},
     {"from":"goal:piety","to":"goal:perilous-moons","type":"improves","evidence":"Piety improves general melee capability; Moons' unique mechanics still require individual readiness assessment."},
-    {"from":"goal:dragon-defender","to":"goal:perilous-moons","type":"improves","evidence":"The defender's melee bonuses can improve combat readiness without being a hard requirement."}
+    {"from":"goal:dragon-defender","to":"goal:perilous-moons","type":"improves","evidence":"The defender's melee bonuses can improve combat readiness without being a hard requirement."},
+    {"from":"quest:heroes-quest","to":"quest:throne-of-miscellania","type":"requires","evidence":"Heroes' Quest is a direct Throne of Miscellania prerequisite."},
+    {"from":"quest:fremennik-trials","to":"quest:throne-of-miscellania","type":"requires","evidence":"The Fremennik Trials is a direct Throne of Miscellania prerequisite."},
+    {"from":"quest:throne-of-miscellania","to":"state:kingdom","type":"unlocks","evidence":"Throne of Miscellania unlocks Kingdom management and seeds its coffer with 10,000 coins."},
+    {"from":"quest:throne-of-miscellania","to":"quest:royal-trouble","type":"requires","evidence":"Throne of Miscellania is the direct Royal Trouble prerequisite."},
+    {"from":"quest:royal-trouble","to":"state:kingdom","type":"improves","evidence":"Royal Trouble expands Kingdom management to 15 workers, raises its coffer and daily wage caps, and adds labour categories."}
   ]
 }

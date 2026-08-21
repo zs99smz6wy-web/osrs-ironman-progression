@@ -4,9 +4,9 @@
 
 ### 1. Kingdom and passive-resource closure
 
-- Verify the full `Throne of Miscellania` and `Royal Trouble` prerequisite, item, skill, and reward records.
-- Model Kingdom access, coffer funding, approval, and recurring collection as factual state; keep worker allocation and rush timing in strategy.
-- Normalize quest and passive-loop actions so dependency closure can explain access without prescribing an allocation.
+- Completed: verified and normalized `Throne of Miscellania` and `Royal Trouble` prerequisites, items, skills, rewards, fixed XP, and unlock relationships.
+- Completed: verified coffer caps, daily withdrawal rules, worker counts, approval decay, and midnight processing without prescribing worker allocation or rush timing.
+- Pending: design an observed Kingdom-status snapshot and parameterized coffer transfers; do not infer approval, daily deductions, or collection output from elapsed time.
 
 ### 2. Current Sailing access and utility closure
 
