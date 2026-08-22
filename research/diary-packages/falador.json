@@ -1,0 +1,164 @@
+{
+  "package": "falador-regional-diary",
+  "status": "research-only",
+  "checked_at": "2026-08-22",
+  "scope": "Current task-level factual package for every Falador Achievement Diary tier. It proposes future normalizations but does not modify production facts, actions, graph data, routes, or strategy scores.",
+  "facts_strategy_boundary": {
+    "included": ["task requirements", "fixed rewards", "item consumption and reuse", "skill boostability", "deterministic versus player-confirmed completion", "cross-record references"],
+    "excluded": ["diary priority", "combat readiness", "training methods", "route order", "candidate scoring"]
+  },
+  "source_catalog": [
+    {
+      "id": "wiki-falador-diary-current",
+      "publisher": "Old School RuneScape Wiki",
+      "url": "https://oldschool.runescape.wiki/w/Falador_Diary",
+      "checked_at": "2026-08-22",
+      "use": "Authoritative current task table, tier requirements, rewards, and historical corrections."
+    },
+    {
+      "id": "wiki-achievement-diary-rewards-current",
+      "publisher": "Old School RuneScape Wiki",
+      "url": "https://oldschool.runescape.wiki/w/Achievement_Diary/Rewards",
+      "checked_at": "2026-08-22",
+      "use": "Cross-check for standard tier lamps and claim conventions."
+    },
+    {
+      "id": "official-achievement-diary-rewards-poll",
+      "publisher": "Jagex",
+      "url": "https://oldschool.runescape.com/polls/2014/1164",
+      "checked_at": "2026-08-22",
+      "use": "Official provenance for the Achievement Diary reward expansion; current live details defer to the Wiki task page."
+    },
+    {
+      "id": "official-falador-elite-amethyst-poll",
+      "publisher": "Jagex",
+      "url": "https://oldschool.runescape.com/polls/2021/1625",
+      "checked_at": "2026-08-22",
+      "use": "Official confirmation that the additional Mining Guild amethyst spot is tied to Falador Elite."
+    }
+  ],
+  "global_claim_rule": "Tasks can be completed in any order. Claiming a tier from Sir Rebral requires every task in that tier and all preceding Falador tiers. Unless a task says otherwise, temporary skill boosts are permitted.",
+  "shared_fact_references": [
+    {"record": "data/facts/utility-skilling-minigames.json#utility-motherlode-mine-access-and-nuggets", "use": "Motherlode entry and golden-nugget context."},
+    {"record": "data/facts/utility-skilling-minigames.json#utility-motherlode-mine-reward-milestones", "use": "Prospector-helmet and Motherlode reward context."},
+    {"record": "data/facts/afk-passive.json#motherlode-mine", "use": "Motherlode's passive-activity profile and the hard-tier helmet correction."},
+    {"record": "data/facts/drop-bypass-readiness.json#dragon-defender", "use": "Warriors' Guild entry and defender-chain distinction."},
+    {"record": "data/facts/achievement-diary-utility.json#pvm-dragon-defender-foundation-audit", "use": "Existing deterministic Warriors' Guild access facts."},
+    {"record": "data/facts/balloon-eagle-transport.json", "use": "Entrana and Taverley transport facts; no duplication here."},
+    {"record": "data/facts/achievement-diary-utility.json#achievement-diary-universal-claim-and-fixed-lamps", "use": "Standard lamp values and recipient-level rules."}
+  ],
+  "tiers": [
+    {
+      "tier": "easy",
+      "tasks": [
+        {"id": "family-crest", "task": "Finish Sir Renitee's dialogue to learn the family crest.", "skills": [{"skill": "Construction", "level": 16, "boostable": true}], "quests": [], "items": {"consumed": [], "reusable": []}, "gates": ["Sir Renitee dialogue"], "completion": "deterministic"},
+        {"id": "western-wall", "task": "Climb over the western Falador wall.", "skills": [{"skill": "Agility", "level": 5, "boostable": true}], "quests": [], "items": {"consumed": [], "reusable": []}, "gates": [], "completion": "deterministic"},
+        {"id": "sarah-farm-shop", "task": "Browse Sarah's Farming Shop.", "skills": [], "quests": [], "items": {"consumed": [], "reusable": []}, "gates": ["shop interaction"], "completion": "deterministic"},
+        {"id": "falador-hairdresser", "task": "Get a haircut or shave from the Falador Hairdresser.", "skills": [], "quests": [], "items": {"consumed": [], "reusable": []}, "gates": ["hairdresser interaction"], "completion": "deterministic"},
+        {"id": "falador-waterpump", "task": "Fill a bucket from the pump north of Falador west bank.", "skills": [], "quests": [], "items": {"consumed": [], "reusable": ["bucket"]}, "gates": [], "completion": "deterministic"},
+        {"id": "falador-park-duck", "task": "Kill a duck in Falador Park.", "skills": [], "quests": [], "items": {"consumed": [], "reusable": ["a viable combat method"]}, "gates": ["player-confirmed combat kill"], "completion": "player_confirmed_encounter"},
+        {"id": "mind-tiara", "task": "Make a mind tiara.", "skills": [], "quests": [], "items": {"consumed": ["tiara", "mind talisman"], "reusable": []}, "gates": ["Mind Altar"], "completion": "deterministic"},
+        {"id": "entrana-boat", "task": "Take the Monk of Entrana boat to Entrana.", "skills": [], "quests": [], "items": {"consumed": [], "reusable": []}, "gates": ["no weapons or armour equipped or carried"], "completion": "deterministic"},
+        {"id": "repair-motherlode-strut", "task": "Repair a broken strut in Motherlode Mine.", "skills": [], "quests": [], "items": {"consumed": [], "reusable": ["hammer", "any pickaxe"]}, "gates": ["Motherlode Mine access"], "completion": "deterministic"},
+        {"id": "port-sarim-security-book", "task": "Finish the Security guard's security dialogue upstairs at Port Sarim jail to claim a security book.", "skills": [], "quests": [], "items": {"consumed": [], "reusable": []}, "gates": ["finish dialogue"], "completion": "deterministic"},
+        {"id": "doric-blurite-limbs", "task": "Smith Blurite limbs on Doric's anvil.", "skills": [{"skill": "Mining", "level": 10, "boostable": true}, {"skill": "Smithing", "level": 13, "boostable": true}], "quests": ["Doric's Quest", "The Knight's Sword"], "items": {"consumed": ["blurite bar"], "reusable": ["hammer"]}, "gates": ["Doric's anvil"], "completion": "deterministic"}
+      ],
+      "reward": {
+        "claim_action": "action:claim-falador-easy-diary",
+        "items": ["Falador shield 1"],
+        "lamp": {"xp": 2500, "recipient_skill_minimum": 30},
+        "capabilities": ["restore 25% Prayer once per day", "Burthorpe-to-Chaos Temple tight-gap shortcut; using it requires 14 Agility"]
+      }
+    },
+    {
+      "tier": "medium",
+      "tasks": [
+        {"id": "rimmington-bullseye-lantern", "task": "Light a regular bullseye lantern at the Rimmington Chemist.", "skills": [{"skill": "Firemaking", "level": 49, "boostable": true}], "quests": [], "items": {"consumed": [], "reusable": ["regular bullseye lantern", "tinderbox"]}, "gates": [], "completion": "deterministic"},
+        {"id": "chaos-temple-telegrab", "task": "Telegrab Wine of Zamorak at the Chaos Temple north-west of Goblin Village while inside the building.", "skills": [{"skill": "Magic", "level": 33, "boostable": true}], "quests": [], "items": {"consumed": ["1 air rune", "1 law rune"], "reusable": []}, "gates": ["Telekinetic Grab spell", "correct Chaos Temple location"], "completion": "deterministic"},
+        {"id": "taverley-crystal-chest", "task": "Unlock the Crystal chest in Taverley.", "skills": [], "quests": [], "items": {"consumed": ["crystal key"], "reusable": []}, "gates": [], "completion": "deterministic"},
+        {"id": "falador-scarecrow", "task": "Place a scarecrow in the Falador Farm flower patch.", "skills": [{"skill": "Farming", "level": 23, "boostable": true, "ironman_note": "Ironmen need 47 Farming or a gryphon-kill source for the watermelon."}], "quests": [], "items": {"consumed": ["bronze spear", "watermelon", "hay sack"], "reusable": ["empty sack may be filled at nearby hay bale"]}, "gates": ["Falador Farm flower patch"], "completion": "deterministic"},
+        {"id": "mudskipper-mogre", "task": "Kill a Mogre at Mudskipper Point.", "skills": [{"skill": "Slayer", "level": 32, "boostable": true}], "quests": ["Skippy and the Mogres"], "items": {"consumed": ["fishing explosive to spawn Mogre"], "reusable": ["viable combat method"]}, "gates": ["Mogre encounter", "Sailing boat-cannon kills do not bypass the quest or fishing-explosive requirement"], "completion": "player_confirmed_encounter"},
+        {"id": "port-sarim-rat-pits", "task": "Visit Port Sarim Rat Pits.", "skills": [], "quests": ["Ratcatchers (partial completion)"], "items": {"consumed": [], "reusable": []}, "gates": [], "completion": "deterministic"},
+        {"id": "north-wall-grapple", "task": "Grapple up then jump from the north Falador wall.", "skills": [{"skill": "Agility", "level": 11, "boostable": true}, {"skill": "Strength", "level": 37, "boostable": true}, {"skill": "Ranged", "level": 19, "boostable": true}], "quests": [], "items": {"consumed": [], "reusable": ["mith grapple", "any crossbow"]}, "gates": ["Ironman mith-grapple route: Ancient Cavern access, or 59 Smithing and 59 Fletching"], "completion": "deterministic"},
+        {"id": "falador-guard-pickpocket", "task": "Pickpocket a Falador guard.", "skills": [{"skill": "Thieving", "level": 40, "boostable": true}], "quests": [], "items": {"consumed": [], "reusable": []}, "gates": ["successful pickpocket"], "completion": "player_confirmed_skill_success"},
+        {"id": "taverley-guthix-altar", "task": "Pray at the Taverley Altar of Guthix wearing full Initiate armour.", "skills": [{"skill": "Prayer", "level": 10, "boostable": true}, {"skill": "Defence", "level": 20, "boostable": true}], "quests": ["Recruitment Drive"], "items": {"consumed": [], "reusable": ["full Initiate armour"]}, "gates": [], "completion": "deterministic"},
+        {"id": "crafting-guild-gold-ore", "task": "Mine gold ore at the Crafting Guild.", "skills": [{"skill": "Crafting", "level": 40, "boostable": true}, {"skill": "Mining", "level": 40, "boostable": true}], "quests": [], "items": {"consumed": [], "reusable": ["any pickaxe", "brown apron, golden apron, or Crafting cape"]}, "gates": ["Crafting Guild entry", "successful ore mine"], "completion": "player_confirmed_skill_success"},
+        {"id": "dwarven-mine-crevice", "task": "Squeeze through the Dwarven Mine crevice.", "skills": [{"skill": "Agility", "level": 42, "boostable": true}], "quests": [], "items": {"consumed": [], "reusable": []}, "gates": [], "completion": "deterministic"},
+        {"id": "taverley-willow", "task": "Chop and burn willow logs in Taverley; player-grown willows do not count.", "skills": [{"skill": "Woodcutting", "level": 30, "boostable": true}, {"skill": "Firemaking", "level": 30, "boostable": true}], "quests": [], "items": {"consumed": ["willow log chopped at qualifying Taverley tree"], "reusable": ["any axe", "tinderbox"]}, "gates": [], "completion": "deterministic"},
+        {"id": "falador-farm-fruit-basket", "task": "Craft a fruit basket at the Falador Farm loom.", "skills": [{"skill": "Crafting", "level": 36, "boostable": true}, {"skill": "Farming", "level": 30, "boostable": true, "applies_to": "Ironman accounts"}], "quests": [], "items": {"consumed": ["6 willow branches"], "reusable": []}, "gates": ["Falador Farm loom"], "completion": "deterministic"},
+        {"id": "falador-teleport", "task": "Teleport to Falador.", "skills": [{"skill": "Magic", "level": 37, "boostable": true}], "quests": [], "items": {"consumed": ["3 air runes", "1 water rune", "1 law rune"], "reusable": []}, "gates": ["Falador Teleport"], "completion": "deterministic"}
+      ],
+      "reward": {
+        "claim_action": "action:claim-falador-medium-diary",
+        "items": ["Falador shield 2"],
+        "lamp": {"xp": 7500, "recipient_skill_minimum": 40},
+        "capabilities": ["restore 50% Prayer once per day", "10% more experience from Falador Farm patch", "Motherlode dark-tunnel shortcut; using it requires 54 Agility", "Falador guard medium-clue chance changes from 1/128 to 1/106 (roughly 21% increase)"]
+      }
+    },
+    {
+      "tier": "hard",
+      "tasks": [
+        {"id": "mind-runes-140", "task": "Craft 140 mind runes simultaneously from essence without extracts; mind cores do not count.", "skills": [{"skill": "Runecraft", "level": 56, "boostable": true, "alternative": "42 with at least 3 Raiments of the Eye pieces"}], "quests": [], "items": {"consumed": ["28 pure, daeyalt, or rune essence; fewer can suffice at higher Runecraft"], "reusable": ["mind talisman or tiara, catalytic talisman or tiara, or Abyss access"]}, "gates": ["Mind Altar access"], "completion": "deterministic"},
+        {"id": "saradomin-family-crest", "task": "Change family crest to Saradomin at Sir Renitee.", "skills": [{"skill": "Prayer", "level": 70, "boostable": false}, {"skill": "Construction", "level": 16, "boostable": true}], "quests": [], "items": {"consumed": ["5,000 coins; 10,000 total if current randomized crest is Saradomin, requiring a change away and back"], "reusable": []}, "gates": ["Sir Renitee"], "completion": "deterministic"},
+        {"id": "giant-mole", "task": "Kill the Giant Mole beneath Falador Park.", "skills": [], "quests": [], "items": {"consumed": [], "reusable": ["spade", "light source", "viable combat method"]}, "gates": ["Mole Hole entry", "player-confirmed boss kill"], "completion": "player_confirmed_encounter"},
+        {"id": "skeletal-wyvern", "task": "Kill a Skeletal Wyvern in Asgarnia Ice Dungeon.", "skills": [{"skill": "Slayer", "level": 72, "boostable": true}], "quests": [], "items": {"consumed": [], "reusable": ["icy-breath protection", "viable combat method"]}, "gates": ["Asgarnia Ice Dungeon", "player-confirmed combat kill"], "completion": "player_confirmed_encounter"},
+        {"id": "falador-rooftop-lap", "task": "Complete a Falador Rooftop Agility Course lap.", "skills": [{"skill": "Agility", "level": 50, "boostable": true}], "quests": [], "items": {"consumed": [], "reusable": []}, "gates": [], "completion": "deterministic"},
+        {"id": "mining-guild-prospector", "task": "Enter Mining Guild wearing a Prospector helmet or golden Prospector helmet.", "skills": [{"skill": "Mining", "level": 60, "boostable": true}], "quests": [], "items": {"consumed": [], "reusable": ["Prospector helmet or golden Prospector helmet"]}, "gates": ["Mining Guild entry"], "completion": "deterministic"},
+        {"id": "heroes-guild-blue-dragon", "task": "Kill the Blue Dragon under Heroes' Guild.", "skills": [], "quests": ["Heroes' Quest"], "items": {"consumed": [], "reusable": ["dragonfire protection", "viable combat method"]}, "gates": ["Heroes' Guild basement", "player-confirmed combat kill"], "completion": "player_confirmed_encounter"},
+        {"id": "rogues-den-wall-safe", "task": "Crack a lobby wall safe in Rogues' Den; maze wall safes do not count.", "skills": [{"skill": "Thieving", "level": 50, "boostable": true}], "quests": [], "items": {"consumed": [], "reusable": []}, "gates": ["successful lobby wall-safe crack"], "completion": "player_confirmed_skill_success"},
+        {"id": "port-sarim-proselyte-prayer", "task": "Recharge Prayer at Port Sarim church wearing full Proselyte armour.", "skills": [{"skill": "Defence", "level": 30, "boostable": true}, {"skill": "Prayer", "level": 20, "boostable": true}], "quests": ["The Slug Menace"], "items": {"consumed": [], "reusable": ["full Proselyte armour"]}, "gates": [], "completion": "deterministic"},
+        {"id": "warriors-guild-entry", "task": "Enter Warriors' Guild.", "skills": [{"skill": "Attack plus Strength", "level": 130, "boostable": true, "alternative": "99 in either Attack or Strength"}], "quests": [], "items": {"consumed": [], "reusable": []}, "gates": ["Warriors' Guild entry"], "completion": "deterministic"},
+        {"id": "dwarven-helmet", "task": "Equip a dwarven helmet in Dwarven Mine.", "skills": [{"skill": "Defence", "level": 50, "boostable": true}], "quests": ["Grim Tales"], "items": {"consumed": [], "reusable": ["dwarven helmet"]}, "gates": [], "completion": "deterministic"}
+      ],
+      "reward": {
+        "claim_action": "action:claim-falador-hard-diary",
+        "items": ["Falador shield 3"],
+        "lamp": {"xp": 15000, "recipient_skill_minimum": 50},
+        "capabilities": ["restore full Prayer once per day", "Giant Mole location indication when shield is held or equipped in Mole Hole", "noted Giant Mole skins and claws", "Crafting Guild bank chest and deposit box", "Heroes' Guild Fountain shortcut; using it requires 67 Agility"]
+      }
+    },
+    {
+      "tier": "elite",
+      "tasks": [
+        {"id": "air-runes-252", "task": "Craft 252 air runes simultaneously from essence without extracts.", "skills": [{"skill": "Runecraft", "level": 88, "boostable": true, "alternatives": ["77 with 2 Raiments pieces", "77 with 1 Raiments piece plus abyssal lantern containing willow or redwood logs", "66 with 3 Raiments pieces", "55 with 4 Raiments pieces"]}], "quests": [], "items": {"consumed": ["28 pure, daeyalt, or rune essence; fewer can suffice at higher Runecraft"], "reusable": ["air talisman or tiara, elemental talisman or tiara, or Abyss access", "Raiments pieces and qualifying abyssal lantern when used"]}, "gates": ["Air Altar access"], "completion": "deterministic"},
+        {"id": "white-2h-sword", "task": "Buy a White 2h sword from Sir Vyvin; selling and rebuying without the rank does not count.", "skills": [], "quests": ["Wanted!"], "items": {"consumed": ["1,920 coins"], "reusable": []}, "gates": ["White Knight Master rank; Black Knight kill score 1,300, with rank beginning at Novice score 100"], "completion": "deterministic"},
+        {"id": "falador-magic-roots", "task": "Find at least 3 magic roots at once when digging up a self-cut Falador magic tree.", "skills": [{"skill": "Farming", "level": 91, "boostable": true}, {"skill": "Woodcutting", "level": 75, "boostable": true}], "quests": [], "items": {"consumed": ["magic sapling", "the harvested magic tree"], "reusable": ["spade", "any axe"]}, "gates": ["Falador tree patch", "player must cut the tree personally"], "completion": "variable_harvest_outcome"},
+        {"id": "castle-cape-emote", "task": "Perform a valid skillcape or quest-point-cape emote atop Falador Castle.", "skills": [], "quests": ["all quests completed, unless any skill is level 99"], "items": {"consumed": [], "reusable": ["any qualifying skillcape; joke skillcapes and Max cape do not count", "or Quest point cape"]}, "gates": ["top of Falador Castle"], "completion": "deterministic"},
+        {"id": "taverley-strange-floor", "task": "Jump the Taverley Dungeon strange floor without taking damage; retries may be necessary.", "skills": [{"skill": "Agility", "level": 80, "boostable": true}], "quests": [], "items": {"consumed": [], "reusable": []}, "gates": ["successful no-damage jump"], "completion": "player_confirmed_skill_success"},
+        {"id": "falador-saradomin-brew", "task": "Mix a Saradomin brew in Falador east bank.", "skills": [{"skill": "Herblore", "level": 81, "boostable": true}], "quests": [], "items": {"consumed": ["toadflax potion (unf)", "crushed nest"], "reusable": []}, "gates": ["Falador east bank"], "completion": "deterministic"}
+      ],
+      "reward": {
+        "claim_action": "action:claim-falador-elite-diary",
+        "items": ["Falador shield 4"],
+        "lamp": {"xp": 50000, "recipient_skill_minimum": 70},
+        "capabilities": ["restore full Prayer twice per day", "Falador Park tree patch cannot become diseased", "access larger western Mining Guild amethyst mine", "about one percentage point higher roll for each higher-level ore type when cleaning pay-dirt"]
+      }
+    }
+  ],
+  "normalization_proposal": {
+    "rule": "Each task becomes one action that only awards its own durable task milestone. Diary-tier claim actions require all task milestones in that tier and preceding tiers. A claim action awards a claimed-tier milestone and the shield capability record; daily counters, farming disease, clue rolls, Mole drops, and pay-dirt rolls remain non-simulated until their account-state models exist.",
+    "actions": [
+      {"pattern": "action:complete-falador-{tier}-{task_id}", "kind": "milestone", "effects": ["milestone:falador-{tier}-{task_id}"], "source": "wiki-falador-diary-current"},
+      {"id": "action:claim-falador-easy-diary", "requires": ["all easy task milestones"], "effects": ["milestone:falador-easy-claimed", "capability:falador-shield-1"]},
+      {"id": "action:claim-falador-medium-diary", "requires": ["milestone:falador-easy-claimed", "all medium task milestones"], "effects": ["milestone:falador-medium-claimed", "capability:falador-shield-2"]},
+      {"id": "action:claim-falador-hard-diary", "requires": ["milestone:falador-medium-claimed", "all hard task milestones"], "effects": ["milestone:falador-hard-claimed", "capability:falador-shield-3"]},
+      {"id": "action:claim-falador-elite-diary", "requires": ["milestone:falador-hard-claimed", "all elite task milestones"], "effects": ["milestone:falador-elite-claimed", "capability:falador-shield-4"]}
+    ],
+    "graph_nodes": ["milestone:falador-{tier}-{task_id} for each of 42 tasks", "milestone:falador-{easy|medium|hard|elite}-claimed", "capability:falador-shield-{1|2|3|4}", "capability:falador-farming-patch-xp", "capability:falador-motherlode-dark-tunnel", "capability:falador-crafting-guild-bank", "capability:falador-mole-noted-drops", "capability:falador-amethyst-mine"],
+    "graph_edges": ["each required quest, item, skill condition, or existing access node -> its task action (requires)", "each task action -> its durable task milestone (produces)", "all tier task milestones plus prior claimed tier -> tier claim action (requires)", "tier claim action -> claimed-tier milestone and tier capabilities (produces)", "existing Motherlode, Warriors' Guild, mining, and transport nodes remain dependencies; this package adds no duplicate replacement nodes"],
+    "encounter_boundary": "Combat kills, successful pickpockets or wall-safe cracks, no-damage strange-floor jumps, and three-root magic-tree harvests must be represented as player-confirmed events. They must not grant the milestone through a deterministic simulator action."
+  },
+  "coverage": {
+    "task_count": 42,
+    "by_tier": {"easy": 11, "medium": 14, "hard": 11, "elite": 6},
+    "task_fields_present": ["tier", "skills and boostability", "quest requirements", "consumed and reusable items", "encounter or access gates", "completion determinism"],
+    "rewards_covered": ["all four shields", "all four lamps", "all current listed tier capabilities"],
+    "intentionally_not_modeled_as_actions": ["daily prayer-restoration uses", "Falador Farm experience bonus", "guard clue-roll rate", "Giant Mole drops", "tree disease prevention", "pay-dirt ore rolls"]
+  },
+  "conflicts_and_unknowns": [
+    {"severity": "correction", "subject": "Existing hard-tier Motherlode claim", "detail": "data/facts/achievement-diary-utility.json currently says Falador Hard gives 10% more experience from mining pay-dirt. The current Falador Diary page records that medium and hard pay-dirt benefits were removed; the live elite reward is instead a roughly one-percentage-point higher roll for each higher-level ore type. This package does not edit the shared fact."},
+    {"severity": "model-boundary", "subject": "Global boosts", "detail": "The current diary page says boosts are allowed unless stated otherwise. Prayer 70 for the Saradomin crest is explicitly not boostable. This package does not independently re-derive boost behavior for every alternative item-acquisition path."},
+    {"severity": "model-boundary", "subject": "Combat and probability", "detail": "The diary table supplies target and access requirements but does not make encounters readiness-safe. Kills, stochastic skill success, and the magic-root outcome are intentionally player-confirmed rather than automatic."},
+    {"severity": "source-limit", "subject": "Official historical source", "detail": "Jagex's accessible official polls establish historical reward approval and the Elite amethyst decision. Current live task and reward specifics are taken from the current OSRS Wiki page, which is the more suitable current-mechanics source."}
+  ]
+}
