@@ -1,0 +1,554 @@
+{
+  "package_schema_version": 1,
+  "package_type": "minigame-research",
+  "package_id": "research-minigame-tempoross",
+  "activity": "Tempoross",
+  "status": "research-proposal",
+  "checked_at": "2026-08-22",
+  "scope": "Current factual research package for the members-only Fishing skilling boss at Tempoross Cove. It proposes integration records only. It neither alters shared production data nor assigns route order, target permit count, success, rewards, collection-log state, attention preference, or a stop condition.",
+  "facts_strategy_boundary": {
+    "included": [
+      "current access, transport, local tools, round phases, attacks, contribution points, permit threshold, reward-pool mechanics, and repeatability",
+      "deterministic versus RNG boundaries for rewards, Fishing-level reward brackets, duplicate replacement, and item utility",
+      "factual alternatives for harpooning, cooking, tethering, fire control, local item recovery, and travel",
+      "proposed observed account state for attempts, point/permit deltas, pool balance, searches, unique items, and temporary minigame supplies"
+    ],
+    "excluded": [
+      "whether Tempoross should be rushed, played solo rather than in a group, or completed to any particular Fishing level, permit count, or collection-log state",
+      "any assumed successful game, points, permits, searches, catches, supplies, XP, unique drop, reward-pool result, or player readiness",
+      "execution-dependent XP, permits, rewards, attention intervals, money, food, or time-per-hour estimates",
+      "community solo rotations and stopping targets, except as explicitly labeled strategy candidates"
+    ]
+  },
+  "source_catalog": [
+    {
+      "id": "wiki-tempoross-current",
+      "publisher": "Old School RuneScape Wiki",
+      "kind": "wiki",
+      "url": "https://oldschool.runescape.wiki/w/Tempoross",
+      "checked_at": "2026-08-22",
+      "use": "Access, Ruins of Unkah transport, required tools, local crates, core loop, attacks, contribution values, local item-loss boundary, official worlds, and Fishing mechanics. Revalidates existing production source id wiki-tempoross."
+    },
+    {
+      "id": "wiki-tempoross-reward-pool-current",
+      "publisher": "Old School RuneScape Wiki",
+      "kind": "wiki",
+      "url": "https://oldschool.runescape.wiki/w/Reward_pool",
+      "checked_at": "2026-08-22",
+      "use": "Permit threshold and storage cap, net fallback, level-at-claim rule, search timing, Big-search, unique table, rates, and duplicate Fish Barrel or Tackle Box replacement."
+    },
+    {
+      "id": "wiki-fish-barrel-current",
+      "publisher": "Old School RuneScape Wiki",
+      "kind": "wiki",
+      "url": "https://oldschool.runescape.wiki/w/Fish_barrel",
+      "checked_at": "2026-08-22",
+      "use": "Fish Barrel acquisition, 28-total raw-fish storage, auto-fill, exclusions, banking restriction, and Fish Sack Barrel conversion. Revalidates existing production source id wiki-fish-barrel."
+    },
+    {
+      "id": "wiki-tackle-box-current",
+      "publisher": "Old School RuneScape Wiki",
+      "kind": "wiki",
+      "url": "https://oldschool.runescape.wiki/w/Tackle_box",
+      "checked_at": "2026-08-22",
+      "use": "Tackle Box reward route, storage-only behavior, supported fishing equipment, and no-use-from-storage boundary."
+    },
+    {
+      "id": "wiki-spirit-angler-current",
+      "publisher": "Old School RuneScape Wiki",
+      "kind": "wiki",
+      "url": "https://oldschool.runescape.wiki/w/Spirit_angler%27s_outfit",
+      "checked_at": "2026-08-22",
+      "use": "Spirit flakes, exact 1,200-flake per-piece conversion cost, Angler-set prerequisite, 2.5 percent total Fishing XP utility, and full-set rope replacement."
+    },
+    {
+      "id": "wiki-dragon-harpoon-current",
+      "publisher": "Old School RuneScape Wiki",
+      "kind": "wiki",
+      "url": "https://oldschool.runescape.wiki/w/Dragon_harpoon",
+      "checked_at": "2026-08-22",
+      "use": "Dragon harpoon use and wield gates, Tempoross catch-rate modifier, special attack, and alternative acquisition context."
+    },
+    {
+      "id": "wiki-tome-of-water-current",
+      "publisher": "Old School RuneScape Wiki",
+      "kind": "wiki",
+      "url": "https://oldschool.runescape.wiki/w/Tome_of_water",
+      "checked_at": "2026-08-22",
+      "use": "Tome of water reward identity and utility boundary."
+    },
+    {
+      "id": "official-tempoross-launch-current-reference",
+      "publisher": "Jagex",
+      "kind": "official",
+      "url": "https://secure.runescape.com/m=news/fishing-skill-boss-and-easter-event?oldschool=1",
+      "checked_at": "2026-08-22",
+      "use": "Official launch context for the Fishing skilling boss and Fish Barrel. Revalidates existing production source id official-tempoross-launch; current mechanics use the current Wiki pages above."
+    },
+    {
+      "id": "guide-wiki-tempoross-strategies-current",
+      "publisher": "Old School RuneScape Wiki community guide",
+      "kind": "guide",
+      "url": "https://oldschool.runescape.wiki/w/Tempoross/Strategies",
+      "checked_at": "2026-08-22",
+      "use": "Optional mass and solo rotations, equipment comparisons, fire control, and strategy explanations. It is explicitly not used to create output guarantees or a recommended route."
+    },
+    {
+      "id": "github-runelite-tempoross-score-tracking",
+      "publisher": "RuneLite",
+      "kind": "github",
+      "url": "https://github.com/runelite/runelite/discussions/20253",
+      "checked_at": "2026-08-22",
+      "use": "External implementation discussion showing that Tempoross score tracking is an observation/display concern, not a basis for inferred account state. Not a mechanics authority."
+    },
+    {
+      "id": "reddit-ironscape-tempoross-35-to-81-2026",
+      "publisher": "r/ironscape",
+      "kind": "reddit",
+      "url": "https://www.reddit.com/r/ironscape/comments/1t1oroa/tempoross_from_35_fishing_to_81/",
+      "checked_at": "2026-08-22",
+      "use": "Player-reported solo progression and delayed reward collection discussion. Used only as a strategy candidate and dry-RNG illustration."
+    },
+    {
+      "id": "youtube-perch-tempoross-firefighter-2025",
+      "publisher": "Perch",
+      "kind": "youtube",
+      "url": "https://www.youtube.com/watch?v=JeJpfYtUcOk",
+      "checked_at": "2026-08-22",
+      "use": "Current video example of an advanced solo firefighter rotation with stated gear and Fishing assumptions. Used only as a strategy candidate."
+    }
+  ],
+  "access": {
+    "requirements": {
+      "membership": true,
+      "minigame_gate": {
+        "skill": "Fishing",
+        "level": 35,
+        "boostability": "The activity lists level 35 Fishing as its only gate. Treat entry as requiring an observed current eligible Fishing level; do not infer it from XP, a planned boost, or earlier participation."
+      },
+      "quest_prerequisites": [],
+      "base_entry_fee": {"coins": 0, "consumable_ticket": null},
+      "reference_existing_production_facts": [
+        "tempoross-fish-barrel",
+        "utility-tempoross-reward-permits",
+        "utility-tempoross-fish-barrel",
+        "utility-stop-tempoross-fish-barrel"
+      ],
+      "reference_existing_action": "action:tempoross"
+    },
+    "location_and_transport": [
+      "Board at the sea-spirit dock west of the Ruins of Unkah, then sail to Tempoross Cove. Desert heat remains a travel consideration until reaching the relevant safe area; it is not a minigame combat requirement.",
+      "Direct: Ferryman Sathwood south of Al Kharid bank travels to the destination.",
+      "Near: Pharaoh's sceptre Jaldraocht teleport then travel south-west; Camulet Enakhra's Temple Entrance then travel south; magic carpet to Menaphos then travel north-west.",
+      "Sailing alternative: dock at Ruins of Unkah with observed Sailing level 48 and an independently observed vessel/docking capability. This package does not infer the vessel, route, or dock availability.",
+      "Return/reward location: the Reward pool is in the Ruins of Unkah immediately outside the bank. Successful encounters return there automatically after a short delay, with a local leave option as an alternative."
+    ],
+    "unlock_transition": {
+      "event": "player reaches the observed eligible Fishing state and boards the dock boat",
+      "deterministic_effects": ["Tempoross Cove can be entered without a quest, entry fee, or consumed ticket"],
+      "non_effects": ["does not confirm a completed game, contribution, permit, reward, local tool, travel supply, or successful return"]
+    }
+  },
+  "activity_loop": {
+    "entry_inputs": [
+      {"item": "rope", "quantity": 1, "behavior": "used to tether to a mast or totem pole against a colossal wave; it can be obtained from a cove crate and is not needed while a full Spirit angler outfit is worn"},
+      {"item": "bucket", "quantity": 1, "behavior": "used with the local water pump to make bucket(s) of water for fires; additional buckets are an optional player preparation choice and can be obtained from cove crates"},
+      {"item": "hammer", "quantity": 1, "behavior": "used to repair broken masts or totem poles; a normal hammer can be obtained from cove crates"},
+      {"item": "harpoon", "quantity": 1, "behavior": "basic harvesting tool for harpoonfish; a basic harpoon is available from cove crates"},
+      {"item": "small or big fishing net", "quantity": 1, "behavior": "not needed during a fight; used to claim Reward pool rolls. The nearby Spirit Angler offers a free small net when the player attempts to claim without one."}
+    ],
+    "reusable_setup": [
+      {"item_or_capability": "barb-tail harpoon", "effect": "main-hand alternative to a basic harpoon that can free an inventory slot; possession is observed."},
+      {"item_or_capability": "Barbarian Training bare-handed harpooning", "effect": "tool-free alternative at qualifying Fishing/Barbarian Training state that also gives Strength XP; eligibility and output are separately observed."},
+      {"item_or_capability": "dragon, infernal, or crystal harpoon", "effect": "optional harpoon alternatives with their independent level, wielding, charge, upgrade, and special-attack boundaries. They are never required for access or assumed from a reward roll."},
+      {"item_or_capability": "full Spirit angler outfit", "effect": "replaces the rope for tethering and grants the same 2.5 percent total Fishing XP clothing utility as the Angler set; requires player-confirmed four-piece ownership and wear state."},
+      {"item_or_capability": "Imcando hammer", "effect": "optional hammer alternative; do not infer ownership or item-loss immunity beyond a source-backed future integration fact."},
+      {"item_or_capability": "range or cooking action", "effect": "raw harpoonfish may be cooked at local ranges before loading cannons. Cooking is optional: raw and cooked fish are distinct factual inputs with different energy damage and point values."},
+      {"item_or_capability": "Humidify or water-pump use", "effect": "optional water-supply alternatives. Humidify carries independent Lunar spellbook, skill, rune, and account-readiness requirements; water-pump use is local and does not establish spell capability."}
+    ],
+    "round_phases": [
+      {
+        "phase": "arrival and setup",
+        "facts": ["A player boards one of two functionally equivalent ships and arrives at the Cove.", "Cove crates provide basic ropes, buckets, hammers, and harpoons when forgotten or lost.", "Players may start a solo instance from the rope ladder or join a group encounter; choice does not itself establish a successful encounter."]
+      },
+      {
+        "phase": "energy-drain phase",
+        "facts": ["Fish harpoonfish from cove spots. Jumping spots can produce two harpoonfish at once; catches are still variable and must be observed.", "Raw harpoonfish drain 10 Tempoross energy when fired by cannon; cooked harpoonfish drain 15.", "Load harpoonfish into cannon ammunition crates, then fire cannons to reduce Tempoross energy.", "Energy naturally returns during the encounter. Storm intensity changes as the fight progresses and drives attack pressure; no player-specific intensity progress may be inferred."]
+      },
+      {
+        "phase": "vulnerable essence phase",
+        "facts": ["At zero energy, Tempoross submerges and spirit pools appear. Harpoon energised fish from a spirit pool to scatter essence.", "The max hit against a spirit pool is 12 regardless of Fishing level. Successful scatter messages restore 3 percent run energy at the stated interval.", "Solo and group player counts change the total essence available; a group or solo label is not enough to infer an exact essence total or personal contribution."]
+      },
+      {
+        "phase": "repeat and conclusion",
+        "facts": ["Repeat energy-drain and vulnerable phases until Tempoross essence is reduced to zero for success.", "If the encounter succeeds, the player is returned to Ruins of Unkah after a short delay or can use the local leave option.", "Failure does not create a player death by default, but earned encounter points are lost and no permit is awarded from that failed encounter."]
+      }
+    ],
+    "energy_and_contribution": {
+      "fishing_and_cooking": "Fishing harpoonfish awards 5 contribution points per fish. Cooking awards 10 per fish. A capture, cooking event, XP amount, or inventory count is never inferred.",
+      "cannon_loading": "Depositing raw, cooked, or crystallised harpoonfish awards 20, 65, or 20 contribution points respectively. Raw and cooked fish have 10 and 15 cannon-energy damage respectively.",
+      "support_actions": "Repairing a mast or totem awards 40 points and Construction XP equal to four times the player's Construction level. Dousing one fire awards 40 points. Surviving a wave while tethered awards 10 points. Harpooning a spirit pool awards 55 points per scatter.",
+      "reward_permit_threshold": "A successful encounter grants no permit below 2,000 personal points. At 2,000 points it grants one permit, then one additional permit for each complete 700 points above 2,000. Remaining points create a linearly scaled chance of one final additional permit.",
+      "permit_storage": "Up to 8,000 reward-pool rolls can be stored. Stored permits and claimed-permit count are player-observed counters; no permit balance is inferred from a run plan or activity history.",
+      "success_boundary": "The factual point formula and thresholds describe an observed result. A model must record successful completion, personal points, permit delta, and any XP only when supplied by the player or imported from a trusted account observation."
+    },
+    "attacks_and_response": {
+      "colossal_wave": "A wave pushes untethered players and can destroy currently held minigame supplies. Tether to a mast or totem with rope, or the full Spirit angler set. Standing between ammunition crates avoids the push but not item loss. Waves extinguish fires and do not begin at 10 percent energy or lower. A tether site can break at a storm-intensity-scaled 15 to 25 percent chance and is repaired with a hammer.",
+      "lightning_and_fires": "Lightning clouds start fires. Douse fires with bucket(s) of water; unattended fires spread. Waves extinguish fires. Lightning does not begin at 10 percent energy or lower, though existing fires can continue to spread.",
+      "torrent": "A water torrent can disable a cannon temporarily and stun a player loading it. Step away or choose another cannon. Torrent does not begin at 10 percent energy or lower.",
+      "item_loss_and_death": "These attacks do not normally deal player damage or create a grave/reclaim event. Only hammer, rope, bucket, bucket of water, raw harpoonfish, and harpoonfish may be destroyed by encounter attacks. All destroyed local tools can be replenished at cove crates; actual losses remain observed."
+    },
+    "completion_or_reward_events": [
+      {"event": "successful encounter with observed personal points at least 2,000", "deterministic_formula": "one guaranteed permit at 2,000 plus one at every complete additional 700 points", "state_rule": "record success, points, any fractional-roll outcome, permit delta, Fishing/Cooking/Construction/Strength XP, and supplies only as observations"},
+      {"event": "failed encounter", "deterministic_formula": "personal points from that encounter are lost", "state_rule": "do not credit a permit, pool roll, catch, XP, game completion, or player death from a failed encounter"},
+      {"event": "Reward pool search", "requirements": "one observed reward permit and a small or big fishing net", "state_rule": "consume one observed permit and record exactly one observed result; a pool search grants 10 Fishing XP but no drop table result is deterministic"},
+      {"event": "Reward pool Big-search", "requirements": "at least five observed permits and a small or big fishing net", "state_rule": "process five independent observed searches, not one combined guaranteed table result"}
+    ],
+    "failure_and_death": {
+      "failure": "An unsuccessful encounter loses the points accrued in that encounter. It does not produce reward permits.",
+      "player_combat_and_death": "Tempoross is a skilling boss. Its described attacks hinder movement, disable cannons, create fires, and destroy limited minigame supplies rather than imposing a normal player death/reclaim loop. Treat an exceptional player death as a separately reported account event.",
+      "recovery": "Basic rope, bucket, hammer, and harpoon can be collected from cove crates. A previously carried special harpoon, outfit, spellbook state, or other account gear is not replaced or inferred by that local recovery.",
+      "persistent_state": "Observed reward permits, claimed-pool results, unique items, fish, pages, flakes, and collection-log entries persist. Temporary raw fish and local tools may be lost; neither their quantity nor loss event is assumed."
+    },
+    "repeatability": {
+      "activity": "repeatable indefinitely after satisfying the Fishing gate",
+      "round_entry": "no stated GP fee, quest key, daily lockout, or consumable ticket",
+      "modes": "Both group and player-started solo encounters are supported. Group population affects encounter essence and execution but does not alter the core permit threshold.",
+      "daily_or_weekly_limit": "none stated by current activity documentation"
+    }
+  },
+  "currencies": [
+    {
+      "id": "tempoross-contribution-points",
+      "acquisition": "mixed",
+      "spend_behavior": "Personal encounter score gates reward permits on successful completion. It is session-scoped: a failed encounter loses the accrued points. Record it only as a player-observed final/run value.",
+      "persistent": false
+    },
+    {
+      "id": "tempoross-reward-permits",
+      "acquisition": "mixed",
+      "spend_behavior": "One permit is consumed for one Reward pool search. Whole successful-point thresholds are deterministic, while the final fractional permit is RNG. Existing shared production records call this currency tempoross-reward-permits; retain that canonical id during integration.",
+      "persistent": true,
+      "storage_cap": 8000
+    },
+    {
+      "id": "spirit-flakes",
+      "acquisition": "rng",
+      "spend_behavior": "A Reward pool unique outcome gives 32 to 64 flakes at 1 in 4. Four exact 1,200-flake conversions plus observed corresponding Angler pieces can create the Spirit angler outfit. Do not infer flakes, purchases, or conversion state from searches.",
+      "persistent": true,
+      "drop_protection": "No pity, threshold, or dry protection found. The 1,200-flake per-piece upgrade cost is deterministic only after observed flakes and the matching observed Angler piece."
+    },
+    {
+      "id": "soaked-pages",
+      "acquisition": "rng",
+      "spend_behavior": "Reward-pool unique results supply pages. Pages charge a Tome of water and may replace duplicate Fish Barrel or Tackle Box reward slots in the quantities stated by the reward table.",
+      "persistent": true
+    }
+  ],
+  "rewards": [
+    {
+      "id": "tempoross-standard-level-dependent-loot",
+      "acquisition": "rng",
+      "utility": ["variable fish, resources, alchables, runes, bait, feathers, nails, planks, seaweed, and casket outcomes", "Fishing reward bands use the player's base Fishing level when the Reward pool is searched"],
+      "fishing_level_brackets": ["35-39", "40-45", "46-49", "50-75", "76-78", "79-80", "81+"],
+      "model_boundary": "Skill boosts do not change pool loot. Permit accumulation does not lock in a reward tier: evaluate the observed base Fishing level at each search. Never materialize a standard result, quantity, food supply, coins, or GP value without a recorded search result."
+    },
+    {
+      "id": "fish-barrel",
+      "acquisition": "rng",
+      "utility": ["stores a combined total of 28 eligible raw fish", "open barrel automatically fills with eligible raw fish", "full barrel can be emptied only at a bank or bank deposit box", "enables Fish Sack Barrel conversion only after an observed Fish Sack"],
+      "rate": "1 in 400 per independent Reward pool roll",
+      "protection": "No pity or purchase path. A duplicate Fish Barrel result is replaced by 25 soaked pages rather than a second barrel.",
+      "reference_existing_fact": "utility-tempoross-fish-barrel",
+      "model_boundary": "Fish Barrel possession, open/closed state, stored contents, and Fish Sack Barrel conversion are observed; a 1-in-400 rate creates only a makes_obtainable graph edge."
+    },
+    {
+      "id": "tackle-box",
+      "acquisition": "rng",
+      "utility": ["stores supported Fishing equipment and outfit pieces", "reduces bank/inventory storage pressure", "bank-interface use can deposit supported inventory items"],
+      "rate": "1 in 400 per independent Reward pool roll",
+      "protection": "No pity or purchase path. A duplicate Tackle Box result is replaced by 25 soaked pages rather than a second box.",
+      "model_boundary": "Stored equipment cannot be used while inside the box, is not automatically equipped, and is not proof that the player holds a usable fishing setup."
+    },
+    {
+      "id": "tome-of-water-empty",
+      "acquisition": "rng",
+      "utility": ["off-hand Tome of water that can be charged with soaked pages", "water-spell utility is conditional on observed tome, page, Magic, and spell readiness"],
+      "rate": "1 in 1,600 per independent Reward pool roll",
+      "protection": "No pity or deterministic purchase path found in the current reward documentation.",
+      "model_boundary": "Do not treat the tome, its charges, or a spell capability as acquired from participation or a pool search without observation."
+    },
+    {
+      "id": "dragon-harpoon",
+      "acquisition": "rng",
+      "utility": ["wieldable harpoon alternative", "5 percent increased catch rate at Tempoross compared with a regular harpoon", "Fishstabber special grants visible +3 Fishing while wielded"],
+      "rate": "1 in 8,000 per independent Reward pool roll",
+      "protection": "No pity or deterministic reward-pool purchase path. Monster drop routes are alternatives, not a conversion or protection mechanism.",
+      "requirements_to_use": ["Fishing 61", "Attack 60 to wield", "100 percent special attack energy for Fishstabber"],
+      "model_boundary": "Dragon harpoon roll, ownership, Attack/Fishing readiness, charge/special energy, and use must all be observed independently."
+    },
+    {
+      "id": "spirit-angler-outfit",
+      "acquisition": "mixed",
+      "utility": ["2.5 percent total Fishing XP when all four pieces or compatible mixed Angler/Spirit set state is worn", "the complete Spirit angler outfit functions as a rope for Tempoross tethering"],
+      "deterministic_conversion": {"per_piece": {"spirit_flakes": 1200, "matching_angler_piece": 1}, "full_set_spirit_flakes": 4800},
+      "rng_input": "Spirit flakes are a 1-in-4 pool outcome for 32 to 64 flakes.",
+      "model_boundary": "The conversion is deterministic only after confirmed flakes and matching Angler items. It is not a direct guaranteed Tempoross reward or a route stop."
+    },
+    {
+      "id": "soaked-pages",
+      "acquisition": "rng",
+      "utility": ["charges Tome of water", "25-page substitute for duplicate Fish Barrel and Tackle Box reward slots"],
+      "rates": ["5-9 pages at 149 in 8,000 per pool roll", "25 pages in place of duplicate Fish Barrel or Tackle Box results"],
+      "model_boundary": "Do not equate pages to a guaranteed duplicate protection outcome unless the duplicate result and page quantity are observed."
+    },
+    {
+      "id": "big-harpoonfish",
+      "acquisition": "rng",
+      "utility": ["collection-log and mounted/display utility after independently confirmed appropriate use"],
+      "rate": "1 in 1,600 per independent Reward pool roll",
+      "protection": "No pity or deterministic purchase path found."
+    },
+    {
+      "id": "tiny-tempor",
+      "acquisition": "rng",
+      "utility": ["pet and collection-log utility"],
+      "rate": "1 in 8,000 per independent Reward pool roll",
+      "protection": "No pity or deterministic purchase path found."
+    },
+    {
+      "id": "casket-reward-pool",
+      "acquisition": "rng",
+      "utility": ["variable casket contents"],
+      "rate": "1 in 20 per independent Reward pool roll",
+      "model_boundary": "Casket possession and contents are separately observed."
+    }
+  ],
+  "dependencies_and_bypasses": [
+    {"target": "Fishing level 35", "relationship": "requires", "detail": "Only stated activity requirement; do not assume temporary boosts satisfy the gate."},
+    {"target": "Ruins of Unkah transport", "relationship": "requires", "detail": "Physical travel is required; Ferryman, desert teleports/carpets, and Sailing docking are alternatives."},
+    {"target": "rope", "relationship": "requires", "detail": "Normal tether route; cove crate is a no-bank local recovery source."},
+    {"target": "full Spirit angler outfit", "relationship": "alternative_to", "detail": "Full set replaces rope for tethering but does not replace the Fishing entry requirement or confirm a successful wave survival."},
+    {"target": "basic cove harpoon", "relationship": "requires", "detail": "Basic harpoon is a local default tool."},
+    {"target": "bare-handed harpooning", "relationship": "alternative_to", "detail": "Eligible Barbarian Training state replaces carrying a harpoon; it is not assumed from Fishing level alone."},
+    {"target": "dragon/infernal/crystal harpoon", "relationship": "improves", "detail": "Optional upgrade paths improve differing aspects of the loop and carry independent gates; none bypass participation observation."},
+    {"target": "small or big fishing net", "relationship": "requires", "detail": "Needed only to search the Reward pool; a Spirit Angler supplies a free small net when a player tries to claim without one."},
+    {"target": "Fish Barrel", "relationship": "produces", "detail": "A makes_obtainable relationship only: reward searches can roll a Fish Barrel at 1 in 400."},
+    {"target": "tackle box", "relationship": "produces", "detail": "A makes_obtainable relationship only: reward searches can roll one at 1 in 400."},
+    {"target": "Tome of water", "relationship": "produces", "detail": "A makes_obtainable relationship only: reward searches can roll one at 1 in 1,600."},
+    {"target": "dragon harpoon", "relationship": "produces", "detail": "A makes_obtainable relationship only: reward searches can roll one at 1 in 8,000; monster drops are alternative acquisition routes."}
+  ],
+  "afk_and_attention": {
+    "attention_class": "active",
+    "measured_interaction_interval_seconds": null,
+    "logout_or_idle_constraints": ["Wave tethering, lightning fires, cannon disabling, fishing-spot movement, cooking/loading, and spirit-pool phases need active response.", "A temporary no-special-attacks-at-10-percent-energy mechanic does not convert a complete encounter into a guaranteed low-attention activity.", "Exact attention intervals, success, and actual mode are player- and rotation-observed rather than inferred from a guide."],
+    "source_boundary": "Current mechanics sources establish reactive events. Community claims of lower-intensity solo methods are strategy candidates, not factual AFK classification."
+  },
+  "community_strategy_observations": [
+    {
+      "claim": "Mass worlds can favor simpler group participation, while solo rotations can seek greater personal permit output by controlling energy, cooking, waves, and fires.",
+      "source_ids": ["guide-wiki-tempoross-strategies-current", "reddit-ironscape-tempoross-35-to-81-2026"],
+      "treatment": "strategy-candidate-not-fact",
+      "boundary": "No permits-per-hour, game duration, completion rate, or route preference is adopted. Group population, player inputs, equipment, execution, and current worlds vary."
+    },
+    {
+      "claim": "The firefighter solo rotation intentionally manages fires and energy phases to increase reward-permit efficiency.",
+      "source_ids": ["guide-wiki-tempoross-strategies-current", "youtube-perch-tempoross-firefighter-2025"],
+      "treatment": "strategy-candidate-not-fact",
+      "boundary": "The cited video declares advanced Fishing and Infernal harpoon assumptions for its shown route. It cannot establish universal readiness, expected permits, failure avoidance, or a recommended account stop."
+    },
+    {
+      "claim": "Players sometimes save permits until base Fishing 81 to search under the highest documented Reward-pool bracket, while others open earlier for a possible Fish Barrel or harpoon.",
+      "source_ids": ["wiki-tempoross-reward-pool-current", "reddit-ironscape-tempoross-35-to-81-2026"],
+      "treatment": "strategy-candidate-not-fact",
+      "boundary": "The level-at-claim rule is factual. Delaying searches, desired food mix, target Fishing level, and the value of earlier RNG opportunities are scoring decisions, not facts."
+    },
+    {
+      "claim": "Fish Barrel is often treated by Ironman players as a utility target for later fishing loops, but it can be arbitrarily dry because it has no deterministic purchase path or pity protection.",
+      "source_ids": ["wiki-fish-barrel-current", "wiki-tempoross-reward-pool-current", "reddit-ironscape-tempoross-35-to-81-2026"],
+      "treatment": "strategy-candidate-not-fact",
+      "boundary": "A future scoring model may value storage utility and opportunity cost, but must never issue a guaranteed permit, time, or stop recommendation from the 1-in-400 rate."
+    }
+  ],
+  "state_boundaries": [
+    "Entry capability is distinct from current travel position, desert supplies, local tool possession, group selection, or a started encounter.",
+    "A successful game, personal points, permit delta, fractional-permit roll, XP, catches, Cooking/Construction/Strength outputs, local-tool loss, and failures are observed events, never implications of action:tempoross.",
+    "Reward permits are persistent only after observed successful threshold satisfaction. A failed encounter loses its points and cannot be converted into a permit later.",
+    "A Reward pool search consumes one observed permit and produces exactly one observed result. RNG rates establish availability, never ownership, count, or collection-log completion.",
+    "Fishing reward tiers use base Fishing at claim time; a temporary boost cannot select a higher tier and stored permits do not determine a tier before the search.",
+    "Unique item possession, collection-log confirmation, variants, Tome pages/charges, Fish Barrel contents/open state, and Tackle Box contents all require account observations.",
+    "Normal Tempoross attacks do not establish player death, grave, reclaim fee, combat-readiness state, or loss of account equipment outside the enumerated temporary/minigame items.",
+    "Sailing travel to Ruins of Unkah and any vessel state remain governed by the separate Sailing observations; this package only records it as an alternative transport path."
+  ],
+  "proposed_normalization": {
+    "facts": [
+      {
+        "id": "tempoross-current-round-and-contribution-mechanics",
+        "category": "minigame",
+        "status": "proposed",
+        "source_ids": ["wiki-tempoross-current", "official-tempoross-launch-current-reference"],
+        "summary": "Access, transport, local equipment, solo/group phases, energy/essence loop, attacks, contributions, threshold, failure, recovery, and repeatability. Replaces no current fact until a central integrator reconciles this with tempoross-fish-barrel and utility-tempoross-reward-permits."
+      },
+      {
+        "id": "tempoross-current-reward-pool-and-uniques",
+        "category": "reward",
+        "status": "proposed",
+        "source_ids": ["wiki-tempoross-reward-pool-current", "wiki-fish-barrel-current", "wiki-tackle-box-current", "wiki-tome-of-water-current", "wiki-dragon-harpoon-current"],
+        "summary": "Permit-backed Reward pool search, Fishing-level brackets, unique rates, duplicate substitutions, and item utility/observation boundaries."
+      },
+      {
+        "id": "tempoross-spirit-angler-and-fishing-utility",
+        "category": "utility",
+        "status": "proposed",
+        "source_ids": ["wiki-spirit-angler-current", "wiki-fish-barrel-current", "wiki-tackle-box-current"],
+        "summary": "Observed Fish Barrel, Tackle Box, Spirit angler, Tome, and harpoon utility without asserting route priority or ownership."
+      }
+    ],
+    "actions": [
+      {
+        "id": "action:tempoross-round-proposed",
+        "kind": "activity",
+        "requirements": ["observed eligible Fishing >= 35", "observed access to the Tempoross dock/boat"],
+        "repeatable": true,
+        "transition": "No automatic outputs. Record a player-observed attempt, success/failure, points, permit delta, XP, local item loss, and any reward separately. Consider whether the existing action:tempoross can be expanded rather than duplicated."
+      },
+      {
+        "id": "action:tempoross-reward-pool-search-proposed",
+        "kind": "activity",
+        "requirements": ["observed tempoross-reward-permits >= 1", "observed small or big fishing net"],
+        "repeatable": true,
+        "transition": "Consume one observed permit. Report 10 Fishing XP and the exact search result only when observed. A random rate never generates an item automatically."
+      },
+      {
+        "id": "action:tempoross-reward-pool-big-search-proposed",
+        "kind": "activity",
+        "requirements": ["observed tempoross-reward-permits >= 5", "observed small or big fishing net"],
+        "repeatable": true,
+        "transition": "Consume five observed permits as five independent observed searches; do not flatten them into one deterministic bundle."
+      },
+      {
+        "id": "action:convert-spirit-angler-piece-proposed",
+        "kind": "unlock",
+        "requirements": ["observed matching Angler piece", "observed spirit flakes >= 1,200"],
+        "repeatable": true,
+        "transition": "Consume 1,200 observed flakes and transform the explicitly selected observed matching piece only after the player confirms the conversion."
+      },
+      {
+        "id": "action:make-fish-sack-barrel-proposed",
+        "kind": "unlock",
+        "requirements": ["observed Fish Barrel", "observed Fish Sack"],
+        "repeatable": "conversion and dismantle state dependent",
+        "transition": "Combine only confirmed inputs. Fish Sack sourcing and its Molch-pearl cost remain a separate Fishing Trawler/Aerial Fishing fact path."
+      }
+    ],
+    "graph_nodes": [
+      "activity:tempoross",
+      "activity:tempoross-reward-pool",
+      "currency:tempoross-reward-permits",
+      "condition:fishing-35",
+      "goal:fish-barrel",
+      "goal:tackle-box",
+      "goal:tome-of-water",
+      "goal:dragon-harpoon",
+      "goal:spirit-angler-outfit",
+      "capability:tempoross-rope-replacement",
+      "capability:fish-barrel-raw-fish-storage",
+      "capability:tackle-box-fishing-equipment-storage",
+      "capability:tempoross-ruins-of-unkah-sailing-dock"
+    ],
+    "graph_edges": [
+      {"from": "condition:fishing-35", "to": "activity:tempoross", "relation": "requires", "evidence": "access.requirements.minigame_gate"},
+      {"from": "activity:tempoross", "to": "currency:tempoross-reward-permits", "relation": "produces", "evidence": "activity_loop.energy_and_contribution; successful observed points only"},
+      {"from": "currency:tempoross-reward-permits", "to": "activity:tempoross-reward-pool", "relation": "requires", "evidence": "one permit per observed search"},
+      {"from": "activity:tempoross-reward-pool", "to": "goal:fish-barrel", "relation": "makes_obtainable", "evidence": "rewards.fish-barrel rate 1 in 400; no guarantee"},
+      {"from": "activity:tempoross-reward-pool", "to": "goal:tackle-box", "relation": "makes_obtainable", "evidence": "rewards.tackle-box rate 1 in 400; no guarantee"},
+      {"from": "activity:tempoross-reward-pool", "to": "goal:tome-of-water", "relation": "makes_obtainable", "evidence": "rewards.tome-of-water-empty rate 1 in 1,600; no guarantee"},
+      {"from": "activity:tempoross-reward-pool", "to": "goal:dragon-harpoon", "relation": "makes_obtainable", "evidence": "rewards.dragon-harpoon rate 1 in 8,000; no guarantee"},
+      {"from": "goal:fish-barrel", "to": "capability:fish-barrel-raw-fish-storage", "relation": "unlocks", "evidence": "rewards.fish-barrel utility"},
+      {"from": "goal:tackle-box", "to": "capability:tackle-box-fishing-equipment-storage", "relation": "unlocks", "evidence": "rewards.tackle-box utility"},
+      {"from": "goal:spirit-angler-outfit", "to": "capability:tempoross-rope-replacement", "relation": "unlocks", "evidence": "rewards.spirit-angler-outfit utility"},
+      {"from": "condition:sailing-48", "to": "capability:tempoross-ruins-of-unkah-sailing-dock", "relation": "requires", "evidence": "access.location_and_transport; vessel/dock state separately observed"},
+      {"from": "capability:tempoross-ruins-of-unkah-sailing-dock", "to": "activity:tempoross", "relation": "alternative_to", "evidence": "access.location_and_transport; alternative travel path, not an activity unlock"}
+    ],
+    "account_observations": [
+      {
+        "field": "encounter_observations.tempoross",
+        "shape": {
+          "observed_at": "RFC 3339 date-time",
+          "attempts": "integer",
+          "successful_completions": "integer or null",
+          "elapsed_minutes": "integer or null",
+          "supply_use": "object",
+          "deaths": "integer or null",
+          "banking_trips": "integer or null"
+        },
+        "rule": "Use the existing generic encounter-observation shape only for player-supplied values. Normal minigame attacks should not synthesize a death/reclaim event."
+      },
+      {
+        "field": "tempoross_observation (proposed new optional field)",
+        "shape": {
+          "observed_at": "RFC 3339 date-time",
+          "mode": "unknown|solo|group",
+          "last_round": {"status": "unknown|success|failure", "personal_points": "integer or null", "permit_delta": "integer or null", "fishing_xp": "integer or null", "cooking_xp": "integer or null", "construction_xp": "integer or null", "strength_xp": "integer or null"},
+          "reward_permits_available": "integer or null",
+          "reward_searches_claimed": "integer or null",
+          "last_reward_pool_results": "array of player-recorded result descriptors",
+          "temporary_items": {"rope": "integer or null", "bucket": "integer or null", "bucket_of_water": "integer or null", "hammer": "integer or null", "raw_harpoonfish": "integer or null", "harpoonfish": "integer or null"}
+        },
+        "rule": "All amounts are report-only. Validators may check non-negative amounts and known threshold consistency, but never derive a game result, permit count, pool result, or temporary inventory from a plan."
+      },
+      {
+        "field": "unique_item_observations",
+        "keys": ["fish_barrel", "fish_sack_barrel", "tackle_box", "tome_of_water", "dragon_harpoon", "infernal_harpoon", "crystal_harpoon", "spirit_angler_headband", "spirit_angler_top", "spirit_angler_waders", "spirit_angler_boots", "big_harpoonfish", "tiny_tempor"],
+        "rule": "Use the existing possession/collection-log/quantity/variant/charges/condition/usable/reclaimable shape. Record only player-confirmed ownership, logged status, pages/charges, and condition."
+      },
+      {
+        "field": "items and resources",
+        "keys": ["tempoross_reward_permits", "spirit_flakes", "soaked_pages", "fish_barrel_contents", "tackle_box_contents"],
+        "rule": "Use an explicit account-state convention chosen by the central integrator; do not add both item and resource representations for the same counter. Contents need a structured follow-up model before they can be automatically acted on."
+      },
+      {
+        "field": "sailing_observation",
+        "rule": "Continue using the existing Sailing vessel/dock observations for the Ruins of Unkah docking alternative. A Sailing level alone does not prove a usable vessel or current location."
+      }
+    ]
+  },
+  "conflicts_and_unknowns": [
+    {
+      "id": "existing-tempoross-facts-are-summary-level",
+      "status": "requires-central-reconciliation",
+      "detail": "Existing facts tempoross-fish-barrel, utility-tempoross-reward-permits, utility-tempoross-fish-barrel, and utility-stop-tempoross-fish-barrel remain authoritative current shared records. This package expands rather than replaces them; central integration must consolidate without duplicate canonical rates or source ids."
+    },
+    {
+      "id": "reward-table-rates-are-estimated",
+      "status": "source-qualified",
+      "detail": "The Reward pool labels several rates as estimated from the Drop Rate Project sample set. Record the published current rates as sourced estimates and never turn them into deterministic expectations or pity calculations."
+    },
+    {
+      "id": "item-loss-and-special-alternatives",
+      "status": "requires-targeted-fact-before-automation",
+      "detail": "Normal cove tools are explicitly lost by encounter attacks. This package does not claim a global loss/protection rule for every special harpoon or Imcando hammer beyond the source-backed text included here. Any automatic lost-item/recovery logic needs item-specific facts."
+    },
+    {
+      "id": "intensity-and-solo-rotation-values",
+      "status": "intentional-model-boundary",
+      "detail": "Storm intensity, fishing spot timing, player count, pathing, food/cooking choice, special attacks, fire patterns, and wave responses make exact solo/group outputs execution-dependent. They belong to observations and future strategy scoring, not default fact transitions."
+    },
+    {
+      "id": "fish-sack-barrel-dependency",
+      "status": "cross-package-dependency",
+      "detail": "Fish Sack Barrel needs an observed Fish Barrel and Fish Sack. The Fish Sack's 1,000 Molch-pearl Aerial Fishing route is referenced by existing facts but not normalized here, avoiding an unrelated duplicate package."
+    }
+  ],
+  "coverage": {
+    "access": true,
+    "loop": true,
+    "currencies": true,
+    "rewards": true,
+    "failure_state": true,
+    "sources": true,
+    "normalization": true,
+    "checked_source_count": 12,
+    "production_files_modified": 0
+  }
+}
