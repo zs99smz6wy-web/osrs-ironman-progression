@@ -1,0 +1,525 @@
+{
+  "package_schema_version": 1,
+  "package_type": "minigame-research",
+  "package_id": "research-minigame-tithe-farm",
+  "activity": "Tithe Farm",
+  "status": "research-proposal",
+  "checked_at": "2026-08-22",
+  "scope": "Current factual research package for the members-only, solo Farming activity in Hosidius. It proposes normalization records only. It does not select a route, point target, seed tier, planting pattern, or account outcome.",
+  "facts_strategy_boundary": {
+    "included": [
+      "current entry and travel facts, Farming gates, seed tiers, local tools, crop lifecycle, session persistence, exact point and experience rules, current shop stock, and current point cap",
+      "deterministic point-shop purchases versus variable shop-container contents, pet rolls, player execution, and crop survival",
+      "factual alternatives for seed dibbers, watering cans, free fertiliser, and the permanent Gricoller's can",
+      "proposed observed account state for sessions, crops, fruit, points, shop purchases, tool water, and Farming experience"
+    ],
+    "excluded": [
+      "whether Tithe Farm should be rushed, which reward should be bought first, whether to pursue the collection log, or any recommended stop point",
+      "an assumed successful run, crop survival, number of plants, deposited fruit, points, shop purchase, XP award, pet roll, water supply, boost, or account readiness",
+      "execution-dependent rates, time-to-reward estimates, input availability, attention tolerance, or a recommended planting route",
+      "community planting patterns and guide advice except where explicitly labeled strategy-candidate-not-fact"
+    ]
+  },
+  "source_catalog": [
+    {
+      "id": "wiki-tithe-farm-current",
+      "publisher": "Old School RuneScape Wiki",
+      "kind": "wiki",
+      "url": "https://oldschool.runescape.wiki/w/Tithe_Farm",
+      "checked_at": "2026-08-22",
+      "use": "Current access, Hosidius transport options, solo-instance status, seed tiers, boosts, local loop, watering and crop failure, logout and exit state, fruit/point/XP thresholds, point cap, and dated updates. Revalidates existing source id wiki-tithe-farm."
+    },
+    {
+      "id": "wiki-farmer-gricollers-rewards-current",
+      "publisher": "Old School RuneScape Wiki",
+      "kind": "wiki",
+      "url": "https://oldschool.runescape.wiki/w/Farmer_Gricoller%27s_Rewards",
+      "checked_at": "2026-08-22",
+      "use": "Complete current reward-shop stock, exact costs, Farmer's outfit exchange value, deterministic purchases, Bologa's blessing bundle, Herb box and Seed pack variability, and collection-log boundary. Revalidates existing source id wiki-tithe-rewards."
+    },
+    {
+      "id": "wiki-tithe-farm-strategies-current",
+      "publisher": "Old School RuneScape Wiki community guide",
+      "kind": "guide",
+      "url": "https://oldschool.runescape.wiki/w/Tithe_Farm/Strategies",
+      "checked_at": "2026-08-22",
+      "use": "Clearly separated community strategy material for basic, fertiliser, combo, and 25x4 patterns, tool alternatives, and active-attention characteristics. It is not used as an account-rate guarantee."
+    },
+    {
+      "id": "steamdb-poll-85-tithe-farm-cap-archive",
+      "publisher": "SteamDB reproducing Old School RuneScape update notes",
+      "kind": "other",
+      "url": "https://steamdb.info/patchnotes/19872724/",
+      "checked_at": "2026-08-22",
+      "use": "Dated archive of the September 2025 Old School RuneScape update notes that explicitly raises the cap from 1,000 to 16,000. The current Wiki activity page independently supplies the current cap and related history."
+    },
+    {
+      "id": "runenation-poll-83-tithe-seed-pack-reference",
+      "publisher": "RuneNation reproducing Old School RuneScape poll material",
+      "kind": "guide",
+      "url": "https://www.runenation.org/news-and-updates/osrs-news-and-updates/11210-poll-83-castle-wars-new-player-changes-more",
+      "checked_at": "2026-08-22",
+      "use": "Clearly labeled community reproduction of the poll material describing the 2025 Tithe Farm reward-shop Seed pack addition. Current shop mechanics are rechecked against the current Wiki reward page."
+    },
+    {
+      "id": "github-runelite-tithe-farm-plugin",
+      "publisher": "RuneLite",
+      "kind": "github",
+      "url": "https://github.com/runelite/runelite/tree/master/runelite-client/src/main/java/net/runelite/client/plugins/tithefarm",
+      "checked_at": "2026-08-22",
+      "use": "External implementation evidence that crop timers are displayable observations. It is not a mechanics authority and must not turn timers into inferred crop survival or output."
+    },
+    {
+      "id": "guide-bruhsailer-tithe-farm-2026",
+      "publisher": "BRUHsailer",
+      "kind": "guide",
+      "url": "https://osrsper.github.io/BRUHsailer/",
+      "checked_at": "2026-08-22",
+      "use": "Current Ironman-guide example of boosted Bologano and 25x4 advice. Retained only as a labeled strategy candidate, never as an account-state or timing fact."
+    },
+    {
+      "id": "reddit-ironscape-tithe-farm-patterns-2026",
+      "publisher": "r/ironscape",
+      "kind": "reddit",
+      "url": "https://www.reddit.com/r/ironscape/comments/1uxqfls/i_like_the_tithe_farm/",
+      "checked_at": "2026-08-22",
+      "use": "Player discussion of 20, 21, 24, and 25-plant patterns and subjective attention burden. Used only as strategy-candidate evidence."
+    },
+    {
+      "id": "youtube-dehsow-tithe-farm-25x4-2026",
+      "publisher": "Dehsow",
+      "kind": "youtube",
+      "url": "https://www.youtube.com/watch?v=gnkGUlIuHoE",
+      "checked_at": "2026-08-22",
+      "use": "Current video example of a 25x4 tile pattern. Used only as a labeled execution strategy candidate."
+    }
+  ],
+  "access": {
+    "requirements": {
+      "membership": true,
+      "minigame_gate": {
+        "skill": "Farming",
+        "level": 34,
+        "boostability": "A boost may be used to take and plant a seed tier. The qualifying boosted Farming level must remain present for both retrieval and planting; after planting, watering and harvesting do not require the boost. Do not infer a boost, its duration, or eligibility from a plan."
+      },
+      "quest_prerequisites": [],
+      "removed_historical_gate": "Hosidius favour is not a current access requirement. The level-34 access state followed the removal of Kourend favour in 2024.",
+      "base_entry_fee": {"coins": 0, "consumable_ticket": null},
+      "required_tools": [
+        "spade",
+        "seed dibber, unless the Farming portion of Barbarian Training has been completed for bare-handed planting",
+        "one or more watering cans with usable water doses, or an observed Gricoller's can with usable water doses"
+      ],
+      "reference_existing_production_facts": [
+        "utility-tithe-farm-access-and-currency",
+        "utility-tithe-farm-durable-rewards",
+        "utility-stop-tithe-farm"
+      ],
+      "reference_existing_action": "action:tithe-farm"
+    },
+    "location_and_transport": [
+      "The activity is south-east of Hosidius in Great Kourend. It is an instanced, solo-only activity; entering does not establish a successful session or output.",
+      "The Grouping interface minigame teleport can target Tithe Farm only after the player has entered Tithe Farm at least once; first-entry history remains an observed account flag.",
+      "Lovakengj Minecart Network to Hosidius South places the player directly south of the activity, subject to its independent network access and destination unlock state.",
+      "Fairy ring AKR to Hosidius Vinery, a Hosidius teleport or a POH exit in Hosidius, Xeric's Glade, Kharedst's memoirs or Book of the dead Hosidius reminisce, Skills necklace to Woodcutting Guild, and Kourend Castle Teleport are separate travel alternatives with their own observed ownership, charge, quest, spellbook, and transport requirements."
+    ],
+    "unlock_transition": {
+      "event": "player reaches an observed eligible Farming state, has the stated tools, retrieves one seed tier from the local table, and enters the farm",
+      "deterministic_effects": [
+        "the player may operate an isolated Tithe Farm session with the chosen eligible seed tier",
+        "up to 10,000 local seeds of one chosen type may be taken for that session"
+      ],
+      "non_effects": [
+        "does not confirm any planted crop, water dose, crop survival, harvested fruit, deposit, point, XP, shop purchase, collection-log entry, or future Grouping teleport eligibility"
+      ]
+    }
+  },
+  "activity_loop": {
+    "entry_inputs": [
+      {"item": "spade", "quantity": 1, "behavior": "reusable required tool for the Tithe patch loop; ownership and availability are observed"},
+      {"item": "seed dibber", "quantity": 1, "behavior": "reusable planting tool unless the observed bare-handed-planting milestone supplies the alternative"},
+      {"item": "watering can", "quantity": "one or more", "behavior": "reusable water container; three successful waterings per planted crop are needed before the respective growth stages. Dose count and refills are observed."},
+      {"item": "Gricoller's can", "quantity": 1, "behavior": "optional permanent watering-can alternative. It holds 1,000 doses, equivalent to 333 complete three-water plant cycles before refill. It can be filled at water sources and, under the current update, for free through the Tithe Farm shop. Ownership and remaining doses are observed."},
+      {"item": "Golovanova, Bologano, or Logavano seed", "quantity": "up to 10,000 local seeds of one selected type", "behavior": "taken from the local table after the relevant current or boosted Farming gate. They are session inputs, not an inferred bank item or external seed stock."}
+    ],
+    "reusable_setup": [
+      {"item_or_capability": "Gricoller's fertiliser", "effect": "provided on entering the farm and can double crop growth speed. Its use is optional, session-local, and must be observed; it changes execution timing rather than awarding points or guaranteeing crops."},
+      {"item_or_capability": "Bare-handed planting", "effect": "the Barbarian Training Farming portion bypasses the seed-dibber item requirement. The normal Tithe Farm animation can still show a seed dibber."},
+      {"item_or_capability": "Farmer's outfit", "effect": "optional worn equipment. A complete worn set grants 2.5 percent additional Farming XP. It neither supplies points, prevents crop death, nor changes the selected seed gate."},
+      {"item_or_capability": "weight-reducing equipment, run-energy restoration, or Humidify", "effect": "optional execution aids with independent ownership, charge, skill, rune, spellbook, and account-readiness requirements. No aid is required for entry or assumed by this package."}
+    ],
+    "seed_tiers": [
+      {"seed": "Golovanova", "Farming_level": 34, "boostable_for_take_and_plant": true, "harvest_xp": 6, "harvest_xp_with_full_farmers_outfit": 6.15},
+      {"seed": "Bologano", "Farming_level": 54, "boostable_for_take_and_plant": true, "harvest_xp": 14, "harvest_xp_with_full_farmers_outfit": 14.35},
+      {"seed": "Logavano", "Farming_level": 74, "boostable_for_take_and_plant": true, "harvest_xp": 23, "harvest_xp_with_full_farmers_outfit": 23.58}
+    ],
+    "round_phases": [
+      {
+        "phase": "seed selection and entry",
+        "facts": [
+          "Search the seed table and select one eligible seed type; the game plays identically for the three types, while their Farming XP differs.",
+          "Only one seed type may be taken into a session, with up to 10,000 local seeds available.",
+          "Entering supplies Gricoller's fertiliser. Choosing, retaining, using, or discarding it is player-observed."
+        ]
+      },
+      {
+        "phase": "planting and stage watering",
+        "facts": [
+          "Plant a local seed in an empty Tithe patch. Planting awards no Farming XP.",
+          "A crop takes three minutes to fully grow under normal growth, with a watering requirement before minutes one, two, and three: three waterings total.",
+          "If the needed watering is missed before a stage, the crop wilts and dies. A dead crop creates no fruit and must be cleared/replaced before that patch can be replanted.",
+          "Applying the supplied Gricoller's fertiliser doubles growth speed. It does not eliminate water-stage requirements or guarantee a successful harvest."
+        ]
+      },
+      {
+        "phase": "mature crop and harvest",
+        "facts": [
+          "A fully grown crop can be harvested for exactly one matching fruit and the seed-tier harvest XP; fully grown Tithe crops no longer decay.",
+          "Harvest count, crop survival, precise Farming XP, Farmer's-outfit wear state, and any pet result must be reported. No model may derive them from elapsed time, a planting pattern, or a selected seed tier."
+        ]
+      },
+      {
+        "phase": "sack deposit and accounting",
+        "facts": [
+          "Deposit harvested fruit into any farm sack. A sack holds at most 100 fruit; if an attempted deposit would exceed its capacity, only enough fruit is deposited to fill it and the sack then empties.",
+          "The first 74 fruit in a sack receive the base deposit XP. Fruit 75 through 100 receive double deposit XP, the 75th fruit also gives a fixed seed-tier XP bonus, and the 100th fruit gives two additional Tithe Farm points.",
+          "Leaving through the farm door resets the local game/score and removes remaining local seeds and collected fruit, while already-earned points and XP remain. Logging out retains local score, seeds, and collected fruit but removes every planted crop."
+        ]
+      }
+    ],
+    "point_and_xp_rules": {
+      "fruit_per_harvest": 1,
+      "normal_growth_minutes": 3,
+      "watering_deadlines": ["before minute 1", "before minute 2", "before minute 3"],
+      "point_formula": "One Tithe Farm point for every three deposited fruit, plus two additional points when the 100th fruit is added to a sack.",
+      "full_sack_points": 35,
+      "point_balance_cap": 16000,
+      "fruit_to_current_point_cap_when_depositing_optimally": 45715,
+      "per_instance_deposit_cap": 10000,
+      "deposit_xp_per_fruit": {
+        "fruit_1_through_74": {"Golovanova": 60, "Bologano": 140, "Logavano": 230},
+        "fruit_75_through_100": {"Golovanova": 120, "Bologano": 280, "Logavano": 460},
+        "75th_fruit_bonus": {"Golovanova": 1500, "Bologano": 3500, "Logavano": 5750, "farmers_outfit_modifies_bonus": false},
+        "full_sack_deposit_xp_excluding_harvest_xp": {"Golovanova": 9060, "Bologano": 21140, "Logavano": 34730}
+      },
+      "full_sack_total_xp_including_harvest_xp": {
+        "without_full_farmers_outfit": {"Golovanova": 9660, "Bologano": 22540, "Logavano": 37030},
+        "with_full_farmers_outfit": {"Golovanova": 9864, "Bologano": 23016, "Logavano": 37812}
+      },
+      "boundary": "These formulas only calculate from player-observed tier, fruit count, sack position, and outfit-wear state. They do not establish that fruit was deposited or that the reported session completed. Fruit deposited after the observed 16,000-point balance cap still awards its associated Farming XP but awards no further points."
+    },
+    "completion_or_reward_events": [
+      {"event": "observed fruit deposit", "deterministic_formula": "apply the point formula and exact sack-position XP only from an observed selected seed tier, deposited-fruit quantity, and start/end sack state", "state_rule": "record fruit, point delta, Farming XP, and post-deposit balance only when reported or imported from a trusted account observation"},
+      {"event": "observed shop purchase", "deterministic_formula": "subtract the listed Tithe Farm point cost and create the specific purchased reward only after both the purchase and pre/post balance are observed", "state_rule": "a deterministic shop price is not evidence that the account bought, owns, or can currently use the reward"},
+      {"event": "Herb box or Seed pack opening", "deterministic_formula": "the container purchase is fixed, but its contents are variable", "state_rule": "record exact observed contents; do not create herbs, seeds, or white lily seeds from the container purchase alone"},
+      {"event": "plant death, logout, or exit", "deterministic_formula": "death removes that crop's possible fruit; logout clears planted crops; exit clears local seeds and fruit while retaining previously earned points and XP", "state_rule": "apply only the specifically reported event and reported affected crops/items; never infer all crops, all fruit, or a full-session result"}
+    ],
+    "failure_and_death": {
+      "failure": "A crop that misses a required watering stage wilts and dies, produces no fruit, and must be cleared/replaced to reuse that patch. A fully grown crop does not decay under the current rules.",
+      "player_combat_and_death": "Tithe Farm has no ordinary combat or reclaim loop. An exceptional player death is outside its normal mechanics and must be recorded separately if reported.",
+      "recovery": "The player may plant another local seed in an available patch when they still meet the seed-tier gate and have the relevant local/session supplies. This package does not infer that any seed, tool, water, or local crop is available after a failure.",
+      "persistent_state": "Observed Tithe Farm points, purchased permanent unlocks, purchased items, and credited XP persist. Current crops, remaining session seeds, collected but undeployed fruit, fertiliser use, water doses, and sack progress have the stated exit/logout boundaries and remain observed state."
+    },
+    "repeatability": {
+      "activity": "repeatable indefinitely after satisfying current entry requirements",
+      "round_entry": "no stated GP fee, daily lockout, quest key, or consumed ticket",
+      "modes": "solo-only instanced activity",
+      "daily_or_weekly_limit": "none stated by current activity documentation"
+    }
+  },
+  "currencies": [
+    {
+      "id": "tithe-farm-session-fruit",
+      "acquisition": "player_observed",
+      "spend_behavior": "Each successfully harvested crop can yield one matching fruit. Fruit is deposited into sacks to trigger deterministic point/XP accounting, but count, tier, sack position, and survival are all observed. It is local session state and is removed on farm exit.",
+      "persistent": false,
+      "session_cap": 10000
+    },
+    {
+      "id": "tithe-farm-points",
+      "acquisition": "deterministic",
+      "spend_behavior": "Points derive exactly from observed deposited fruit: one per three fruit plus two on each 100th sack fruit. They buy fixed shop items and unlocks, persist after session exit, and have a current 16,000 point balance cap.",
+      "persistent": true,
+      "storage_cap": 16000,
+      "acquisition_boundary": "The formula is deterministic, not the account result. Do not create a point balance from a planned number of plants, elapsed time, or an assumed successful route."
+    },
+    {
+      "id": "bologas-blessings",
+      "acquisition": "deterministic",
+      "spend_behavior": "One Tithe Farm point buys a bundle of 20 blessings. Their use is separately gated by Bologa's one-time 50 Prayer, 75,000-coin, Zamorak-affiliated-item condition and converts a blessing into one permitted Zamorak grape pick; purchases, gate completion, and resulting grapes remain observed.",
+      "persistent": true
+    }
+  ],
+  "rewards": [
+    {
+      "id": "farmers-outfit",
+      "acquisition": "shop",
+      "point_costs": {"strawhat": 75, "jacket_or_shirt": 150, "boro_trousers": 125, "boots": 50, "full_set": 400},
+      "utility": ["The full worn set grants 2.5 percent additional Farming XP.", "Individual pieces are collection-log and equipment state; the XP effect requires all four pieces worn."],
+      "current_change": "Spare pieces may be sold back to Gricoller for 80 percent of their listed point price. This does not create a purchase or ownership inference."
+    },
+    {
+      "id": "auto-weed",
+      "acquisition": "shop",
+      "point_cost": 50,
+      "utility": ["Permanent toggleable prevention of new weeds in ordinary Farming patches.", "Does not remove existing weeds and does not affect Managing Miscellania patches."],
+      "current_change": "Reactivating an already purchased perk no longer costs points. Purchase and current toggle state are separate observations."
+    },
+    {
+      "id": "gricollers-can",
+      "acquisition": "shop",
+      "point_cost": 200,
+      "utility": ["Watering can with 1,000 doses, enough for 333 complete three-water Tithe plant cycles before refill.", "Can be filled at a water source and is now refilled for free through the Tithe Farm shop."],
+      "current_change": "The current free shop refill is additive to water-source refill behavior; no remaining charge count is inferred."
+    },
+    {
+      "id": "seed-box",
+      "acquisition": "shop",
+      "point_cost": 250,
+      "utility": ["Stores an unlimited quantity of up to six seed types."],
+      "boundary": "The box does not establish its selected seed types or stored counts."
+    },
+    {
+      "id": "herb-sack",
+      "acquisition": "shop",
+      "point_cost": 250,
+      "additional_use_requirement": {"skill": "Herblore", "level": 58},
+      "utility": ["Stores up to 30 of each grimy herb type, up to 420 grimy herbs in total."],
+      "boundary": "The shop purchase and the Herblore gate are deterministic; stored herbs and alternative acquisition routes remain separate observations."
+    },
+    {
+      "id": "grape-seed",
+      "acquisition": "shop",
+      "point_cost": 2,
+      "utility": ["One tradeable grape seed per purchase for the separate vine-patch progression path."],
+      "boundary": "Grape-vine planting, protection, growth, harvest, cooking, and wine output are outside this minigame package and cannot be inferred from purchase."
+    },
+    {
+      "id": "bologas-blessing-bundle",
+      "acquisition": "shop",
+      "point_cost": 1,
+      "quantity": 20,
+      "utility": ["Each qualifying blessing use permits one Zamorak grape pick after Bologa's separate access condition is met."],
+      "additional_gate": {"Prayer": 50, "coins_one_time": 75000, "equipment": "one item affiliated with Zamorak"}
+    },
+    {
+      "id": "compost",
+      "acquisition": "shop",
+      "point_cost": 1,
+      "utility": ["One consumable compost item per purchase for external Farming use."],
+      "boundary": "A fixed purchase does not infer a later patch treatment, crop survival, or yield."
+    },
+    {
+      "id": "supercompost",
+      "acquisition": "shop",
+      "point_cost": 5,
+      "utility": ["One consumable supercompost item per purchase for external Farming use."],
+      "boundary": "A fixed purchase does not infer a later patch treatment, crop survival, or yield."
+    },
+    {
+      "id": "herb-box",
+      "acquisition": "mixed",
+      "point_cost": 30,
+      "utility": ["One container purchase with an assortment of ten random grimy herbs."],
+      "randomness_boundary": "The 30-point purchase is deterministic, while the ten herb identities and quantities are not to be inferred."
+    },
+    {
+      "id": "seed-pack",
+      "acquisition": "mixed",
+      "point_cost": 30,
+      "utility": ["One container equivalent to a tier-3 Farming Contract seed pack."],
+      "randomness_boundary": "The shop purchase is deterministic. Contents are variable, including the documented White lily seed chance, and must be recorded from an observed opening.",
+      "current_change": "Added to Farmer Gricoller's Rewards in 2025."
+    },
+    {
+      "id": "tangleroot",
+      "acquisition": "rng",
+      "utility": ["Possible collection-log pet roll associated with Tithe Farm Farming experience."],
+      "randomness_boundary": "No point, fruit, XP, duration, or completion threshold guarantees the pet. This package does not convert its rate into a target or route."
+    }
+  ],
+  "dependencies_and_bypasses": [
+    {"target": "observed Farming level 34 or qualifying temporary boost", "relationship": "requires", "detail": "Entry requires an observed eligible level; any boost must cover seed withdrawal and planting."},
+    {"target": "spade", "relationship": "requires", "detail": "Required reusable loop tool."},
+    {"target": "seed dibber", "relationship": "requires", "detail": "Required unless the separately observed Barbarian Training bare-handed-planting milestone is present."},
+    {"target": "bare-handed planting milestone", "relationship": "alternative_to", "detail": "Bypasses carrying a seed dibber but does not bypass the spade, watering, or Farming requirements."},
+    {"target": "Gricoller's can", "relationship": "alternative_to", "detail": "Permanent 200-point alternative to carrying multiple ordinary watering cans; it does not bypass water use or crop timing."},
+    {"target": "Auto-weed", "relationship": "unlocks", "detail": "A 50-point permanent Farming-patch convenience effect, subject to the stated existing-weed and Managing Miscellania exclusions."},
+    {"target": "Farmer's outfit", "relationship": "unlocks", "detail": "A 400-point equipment set whose full worn state improves Farming XP by 2.5 percent."},
+    {"target": "seed box and herb sack", "relationship": "unlocks", "detail": "Deterministic point-shop storage utility. Herb-sack use additionally requires observed Herblore 58."},
+    {"target": "Farming contracts and external patch loops", "relationship": "improves", "detail": "Tithe Farm shop seed packs, grape seeds, compost items, Auto-weed, storage, watering capacity, and XP clothing can interact with external Farming systems, but this package does not model their outputs or declare a preferred source."}
+  ],
+  "afk_and_attention": {
+    "attention_class": "active",
+    "measured_interaction_interval_seconds": null,
+    "logout_or_idle_constraints": [
+      "During normal growth, each planted crop needs a watering action before each of three growth stages. A missed stage can kill that crop.",
+      "A fully grown crop no longer decays, so the post-growth harvest/deposit portion can be deferred without crop loss; this does not create passive points or XP.",
+      "Logging out preserves local session score, selected remaining seeds, and collected fruit but clears planted crops. Leaving by the farm door resets local score and removes local seeds and collected fruit while keeping already earned points and XP."
+    ],
+    "source_boundary": "Tithe Farm is not modeled as AFK or passive progression. Guide-reported layouts, route durations, run energy, and hourly rates depend on execution and are strategy candidates rather than account outcomes."
+  },
+  "community_strategy_observations": [
+    {
+      "claim": "The Wiki community guide presents a basic five-by-twenty pattern, with smaller sets suggested while learning; it advises aiming for 100-fruit deposits for the two-point sack bonus.",
+      "source_ids": ["wiki-tithe-farm-strategies-current"],
+      "treatment": "strategy-candidate-not-fact"
+    },
+    {
+      "claim": "The community guide and current videos describe 25x4 and combo patterns as more execution-sensitive alternatives, often using manual watering, movement optimizations, and optional tile markers.",
+      "source_ids": ["wiki-tithe-farm-strategies-current", "youtube-dehsow-tithe-farm-25x4-2026"],
+      "treatment": "strategy-candidate-not-fact"
+    },
+    {
+      "claim": "The fertiliser approach is presented as a lower-plant-count, more forgiving pattern that trades route characteristics for shorter growth intervals; a particular plant count, rate, or attention burden is player-specific.",
+      "source_ids": ["wiki-tithe-farm-strategies-current", "reddit-ironscape-tithe-farm-patterns-2026"],
+      "treatment": "strategy-candidate-not-fact"
+    },
+    {
+      "claim": "BRUHsailer suggests temporary boosts for Bologano and a 25x4-style method in parts of its Ironman guide. That is route advice, not evidence that this account has the boost, food, run energy, capability, or desired target.",
+      "source_ids": ["guide-bruhsailer-tithe-farm-2026"],
+      "treatment": "strategy-candidate-not-fact"
+    },
+    {
+      "claim": "Community discussion treats common 20- to 25-plant patterns as subjective trade-offs between forgiveness and intensity, rather than a universal stop target or a dependable output rate.",
+      "source_ids": ["reddit-ironscape-tithe-farm-patterns-2026"],
+      "treatment": "strategy-candidate-not-fact"
+    }
+  ],
+  "state_boundaries": [
+    "Do not infer current Farming level, temporary boost, membership, travel availability, first-entry history, tools, water doses, Gricoller's can, fertiliser use, run energy, outfit wear, seed tier, or account readiness.",
+    "Do not infer a planted crop, its watering-stage progress, its survival, maturity, harvest, exact fruit, sack position, deposit, XP, point balance, shop purchase, container result, grape, blessing use, or collection-log entry from elapsed time, a suggested layout, or a strategy target.",
+    "Track crop status and session state only from explicit observations. A timer/plugin display may assist a player but does not establish that a watering action occurred or that the client/session remained active.",
+    "Only apply deterministic arithmetic after its inputs are observed: selected seed tier, crop/fruit count, exact fruit deposited, sack position, full-outfit wear state where relevant, observed point balance, and an observed confirmed shop transaction.",
+    "Separate persistent point/shop/XP state from session-local seeds, fruit, crops, fertiliser choice, water, and sacks. Apply the documented logout and exit consequences only when the corresponding event is explicitly reported."
+  ],
+  "proposed_normalization": {
+    "facts": [
+      {
+        "id": "tithe-farm-current-loop-and-accounting",
+        "name": "Tithe Farm current access, crop loop, session persistence, point/XP formula, and cap",
+        "category": "minigame",
+        "status": "verified",
+        "source_ids": ["wiki-tithe-farm-current", "steamdb-poll-85-tithe-farm-cap-archive"],
+        "integration_note": "Reconcile existing utility-tithe-farm-access-and-currency and utility-stop-tithe-farm. Preserve their intent, correct stale point-cap references to 16,000, and add session/logout/exit and exact XP accounting without converting observed fruit into automatic output."
+      },
+      {
+        "id": "tithe-farm-current-shop-and-utility",
+        "name": "Tithe Farm current reward shop, deterministic costs, variable containers, and durable utility",
+        "category": "reward",
+        "status": "verified",
+        "source_ids": ["wiki-farmer-gricollers-rewards-current", "wiki-tithe-farm-current", "runenation-poll-83-tithe-seed-pack-reference"],
+        "integration_note": "Reconcile utility-tithe-farm-durable-rewards and utility-stop-tithe-farm with every current shop line, seed-pack addition, free can refill, free Auto-weed reactivation, and 80-percent outfit resale. Keep Herb box/Seed pack contents and pet results non-deterministic."
+      },
+      {
+        "id": "tithe-farm-observed-session-state",
+        "name": "Observed Tithe Farm session, crop, point, and reward state contract",
+        "category": "account-observation",
+        "status": "proposal",
+        "source_ids": ["wiki-tithe-farm-current", "github-runelite-tithe-farm-plugin"],
+        "integration_note": "Add observation-only state; do not add an autonomous timer, predicted crop survival, or automatic fruit/point/XP generation."
+      }
+    ],
+    "actions": [
+      {
+        "id": "action:enter-tithe-farm-session",
+        "kind": "activity_setup",
+        "requires": ["observed Farming 34 or observed qualifying boost", "spade", "seed dibber or observed bare-handed-planting milestone", "observed usable watering capability"],
+        "outcomes": ["observed Tithe Farm session only"],
+        "reported_effects_only": ["chosen seed tier", "seed count", "fertiliser handling", "water doses", "crop placements", "first-entry history", "session start"]
+      },
+      {
+        "id": "action:report-tithe-farm-deposit",
+        "kind": "observed_activity_result",
+        "requires": ["reported selected seed tier", "reported deposited fruit count", "reported sack start/end state", "reported current point balance or independently verified transition"],
+        "outcomes": ["deterministic point and XP calculation from reported inputs"],
+        "reported_effects_only": ["crop survival", "harvest count", "outfit wear state", "Farming XP shown", "pre/post point balance"]
+      },
+      {
+        "id": "action:buy-tithe-farm-reward",
+        "kind": "shop_purchase",
+        "requires": ["observed sufficient Tithe Farm point balance", "observed confirmed purchase", "any reward-specific use gate"],
+        "outcomes": ["specific deterministic shop item/unlock only"],
+        "reported_effects_only": ["container contents", "current Auto-weed toggle", "Gricoller's can water doses", "herb/seed storage contents", "later use"]
+      },
+      {
+        "id": "action:report-tithe-farm-session-boundary",
+        "kind": "account_observation",
+        "requires": ["reported logout, exit, death, or session continuation event"],
+        "outcomes": ["apply only documented session-local clearing/persistence"],
+        "reported_effects_only": ["affected crops", "remaining local fruit/seeds", "point balance", "XP", "subsequent readiness"]
+      }
+    ],
+    "graph_nodes": [
+      "activity:tithe-farm",
+      "state:skill-farming-34",
+      "state:tithe-farm-session-observed",
+      "state:tithe-farm-crops-observed",
+      "state:tithe-farm-fruit-observed",
+      "resource:tithe-farm-points",
+      "unlock:auto-weed",
+      "item:gricollers-can",
+      "item:farmers-outfit",
+      "item:seed-box",
+      "item:herb-sack",
+      "item:grape-seed",
+      "item:bologas-blessing",
+      "item:herb-box",
+      "item:seed-pack"
+    ],
+    "graph_edges": [
+      {"from": "state:skill-farming-34", "to": "activity:tithe-farm", "relationship": "requires", "condition": "current or qualifying temporary boost for seed take and planting"},
+      {"from": "activity:tithe-farm", "to": "state:tithe-farm-session-observed", "relationship": "produces", "condition": "only after an observed entry"},
+      {"from": "state:tithe-farm-crops-observed", "to": "state:tithe-farm-fruit-observed", "relationship": "produces", "condition": "only after an observed successful harvest"},
+      {"from": "state:tithe-farm-fruit-observed", "to": "resource:tithe-farm-points", "relationship": "produces", "condition": "only after an observed deposit; formula uses exact fruit/sack inputs and cap"},
+      {"from": "resource:tithe-farm-points", "to": "unlock:auto-weed", "relationship": "unlocks", "condition": "50 observed points and observed shop purchase"},
+      {"from": "resource:tithe-farm-points", "to": "item:gricollers-can", "relationship": "unlocks", "condition": "200 observed points and observed shop purchase"},
+      {"from": "resource:tithe-farm-points", "to": "item:farmers-outfit", "relationship": "unlocks", "condition": "400 observed points across exact piece purchases"},
+      {"from": "resource:tithe-farm-points", "to": "item:seed-box", "relationship": "unlocks", "condition": "250 observed points and observed shop purchase"},
+      {"from": "resource:tithe-farm-points", "to": "item:herb-sack", "relationship": "unlocks", "condition": "250 observed points, observed shop purchase, and separate Herblore 58 use gate"},
+      {"from": "resource:tithe-farm-points", "to": "item:seed-pack", "relationship": "makes_obtainable", "condition": "30 observed points per purchase; container contents remain RNG"}
+    ],
+    "account_observations": [
+      {"id": "observation:tithe-farm-access", "fields": ["membership state", "current Farming level", "temporary boost name/level/remaining duration if used", "first Tithe Farm entry completed", "travel method actually available", "spade/dibber/bare-handed milestone", "watering tool and usable doses"]},
+      {"id": "observation:tithe-farm-session", "fields": ["session active/ended", "selected seed tier", "local remaining seed count", "fertiliser held/used/discarded", "sack fruit position", "deposited-fruit total", "logout/exit event"]},
+      {"id": "observation:tithe-farm-crops", "fields": ["per-crop planted/dead/mature/harvested state", "water-stage actions actually completed", "crop survival", "harvested fruit count"], "prohibited_inferences": ["future maturity", "survival", "harvest", "water use", "fruit count from timer or elapsed time"]},
+      {"id": "observation:tithe-farm-points-and-xp", "fields": ["point balance before/after deposit", "exact deposited fruit tier/count", "full-outfit wear state where relevant", "Farming XP reported by the game"], "prohibited_inferences": ["points or XP from planned plants or a guide rate"]},
+      {"id": "observation:tithe-farm-rewards", "fields": ["each shop purchase", "Auto-weed owned/toggle state", "outfit pieces owned", "Gricoller's can owned/remaining doses", "storage contents", "Herb box/Seed pack observed contents", "collection-log outcomes"]}
+    ]
+  },
+  "conflicts_and_unknowns": [
+    {
+      "topic": "Historical point cap",
+      "conflict": "Older cached Wiki reward material and legacy guide content refer to a 1,000-point maximum, while the current activity page and the September 2025 official update record a 16,000-point maximum.",
+      "resolution": "Use 16,000 for all new integration. Treat 1,000 as superseded historical data, not a fallback rule.",
+      "source_ids": ["wiki-tithe-farm-current", "steamdb-poll-85-tithe-farm-cap-archive"]
+    },
+    {
+      "topic": "Gricoller's can refill description",
+      "conflict": "Existing shared facts mention water-source refilling but omit the later free Tithe Farm shop refill.",
+      "resolution": "Retain water-source refilling and add the current free shop refill; neither describes remaining doses or player ownership.",
+      "source_ids": ["wiki-tithe-farm-current"]
+    },
+    {
+      "topic": "Current reward shop coverage",
+      "conflict": "Existing shared production facts cover durable utility rewards but omit consumable stock, Herb boxes, 2025 Seed packs, Bologa's blessing conditions, 80-percent outfit resale, and the Auto-weed reactivation change.",
+      "resolution": "Integrate all current shop lines while keeping container contents, downstream Farming outputs, and reward ownership observed.",
+      "source_ids": ["wiki-farmer-gricollers-rewards-current", "wiki-tithe-farm-current"]
+    },
+    {
+      "topic": "Guide rates and stop targets",
+      "conflict": "Community sources report route-specific plants-per-cycle, hourly rates, and reward milestones, but their outcomes depend on execution, equipment, boost, network, and crop survival.",
+      "resolution": "Keep them as strategy candidates only; do not normalize them as facts, predicted outputs, or a recommended route.",
+      "source_ids": ["wiki-tithe-farm-strategies-current", "guide-bruhsailer-tithe-farm-2026", "reddit-ironscape-tithe-farm-patterns-2026", "youtube-dehsow-tithe-farm-25x4-2026"]
+    }
+  ],
+  "coverage": {
+    "access": true,
+    "loop": true,
+    "currencies": true,
+    "rewards": true,
+    "failure_state": true,
+    "sources": true,
+    "normalization": true
+  }
+}
