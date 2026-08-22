@@ -1,0 +1,372 @@
+{
+  "package_schema_version": 1,
+  "package_type": "minigame-research",
+  "package_id": "research-minigame-mage-training-arena",
+  "activity": "Mage Training Arena",
+  "status": "research-proposal",
+  "checked_at": "2026-08-22",
+  "scope": "Current factual package for the members-only Mage Training Arena north of the Emir's Arena. It proposes integration records only and does not modify production data, select a route, score a reward, assume current Pizazz balances, or manufacture casts, room completions, purchases, or readiness.",
+  "facts_strategy_boundary": {
+    "included": [
+      "current access, transport, room gates, spell inputs, Pizazz formulas and caps, 2024 rework behavior, reward-shop costs, and post-2025 Rune pouch alternative",
+      "deterministic purchase costs and the distinction between fixed shop purchases, random point rounding, and player-observed earning results",
+      "fixed Rune pouch, Bones to Peaches, equipment, rune, diary, and collection-log utility boundaries",
+      "safe-death, room-progress, logout, repeatability, active-attention, and account-observation requirements"
+    ],
+    "excluded": [
+      "whether Mage Training Arena, Rune pouch, Bones to Peaches, Infinity equipment, a wand, Mage's book, or a collection-log entry should be pursued now",
+      "assumed point balances, casts, spell tier, rune stock, coins, maze solutions, room rate, Magic XP, successful deposit, purchase, or account readiness",
+      "fixed time, GP, XP, points-per-hour, rune-per-reward, or stop condition claims derived from community execution guides",
+      "a final route or a claim that a named alternative acquisition path is preferable"
+    ]
+  },
+  "source_catalog": [
+    {
+      "id": "wiki-mta-current",
+      "publisher": "Old School RuneScape Wiki",
+      "kind": "wiki",
+      "url": "https://oldschool.runescape.wiki/w/Mage_Training_Arena",
+      "checked_at": "2026-08-22",
+      "use": "Current access, room layout, all current point caps, 2024 rework summary, Rune pouch update, shop inventory and current four-currency costs. Revalidates production source id wiki-mta."
+    },
+    {
+      "id": "wiki-mta-telekinetic-current",
+      "publisher": "Old School RuneScape Wiki",
+      "kind": "wiki",
+      "url": "https://oldschool.runescape.wiki/w/Mage_Training_Arena/Telekinetic_Theatre",
+      "checked_at": "2026-08-22",
+      "use": "Telekinetic Grab gate and inputs, maze count, completion/streak rewards, reset and exit behavior, safe-death boundary, and current cap."
+    },
+    {
+      "id": "wiki-mta-creature-graveyard-current",
+      "publisher": "Old School RuneScape Wiki",
+      "kind": "wiki",
+      "url": "https://oldschool.runescape.wiki/w/Mage_Training_Arena/Creature_Graveyard",
+      "checked_at": "2026-08-22",
+      "use": "Bone cycle, fruit conversion/deposit formula, three-point deposit cap, falling-bone damage, rune award timing, tablet behavior, logout retention, and current cap."
+    },
+    {
+      "id": "wiki-mta-enchanting-current",
+      "publisher": "Old School RuneScape Wiki",
+      "kind": "wiki",
+      "url": "https://oldschool.runescape.wiki/w/Mage_Training_Arena/Enchanting_Chamber",
+      "checked_at": "2026-08-22",
+      "use": "Shape/dragonstone inputs, selected-shape and tenth-cast point mechanics, orb-deposit rune reward, and current Enchantment cap."
+    },
+    {
+      "id": "wiki-mta-alchemist-current",
+      "publisher": "Old School RuneScape Wiki",
+      "kind": "wiki",
+      "url": "https://oldschool.runescape.wiki/w/Mage_Training_Arena/Alchemist%27s_Playground",
+      "checked_at": "2026-08-22",
+      "use": "Cupboard sequence and rotation, permitted minigame items, alchemy behavior, point rounding, coin/bank behavior, rework changes, logout retention, and current cap."
+    },
+    {
+      "id": "wiki-pizazz-points-current",
+      "publisher": "Old School RuneScape Wiki",
+      "kind": "wiki",
+      "url": "https://oldschool.runescape.wiki/w/Pizazz_points",
+      "checked_at": "2026-08-22",
+      "use": "Current reward shop costs, including all rune, Infinity, wand, Mage's book, Rune pouch, and Bones to Peaches rows."
+    },
+    {
+      "id": "wiki-rune-pouch-current",
+      "publisher": "Old School RuneScape Wiki",
+      "kind": "wiki",
+      "url": "https://oldschool.runescape.wiki/w/Rune_pouch",
+      "checked_at": "2026-08-22",
+      "use": "Three-type pouch storage, one-pouch ownership limit, MTA, LMS, and Slayer acquisition branches, post-2025 MTA cost, bank load-outs, and death boundary. Revalidates production source id wiki-rune-pouch."
+    },
+    {
+      "id": "wiki-bones-to-peaches-current",
+      "publisher": "Old School RuneScape Wiki",
+      "kind": "wiki",
+      "url": "https://oldschool.runescape.wiki/w/Bones_to_Peaches",
+      "checked_at": "2026-08-22",
+      "use": "Spell unlock, Standard spellbook, level-60 boostability, per-cast runes and XP, eligible-bone boundary, and tablet distinction. Revalidates production source id wiki-bones-to-peaches."
+    },
+    {
+      "id": "official-poll-81-mta-2024",
+      "publisher": "Jagex",
+      "kind": "official",
+      "url": "https://oldschool.runescape.com/polls/2024",
+      "checked_at": "2026-08-22",
+      "use": "Official Poll 81 record for the 2024 Mage Training Arena improvement program. Current mechanical values are taken from the current Wiki room pages."
+    },
+    {
+      "id": "official-summer-sweep-up-slayer-more-2025",
+      "publisher": "Jagex",
+      "kind": "official",
+      "url": "https://secure.runescape.com/m=news/summer-sweep-up-slayer--more?oldschool=1",
+      "checked_at": "2026-08-22",
+      "use": "Official 27 August 2025 addition of the MTA Rune pouch purchase as a middle acquisition route between LMS and Slayer. Revalidates production source id official-summer-sweep-up-slayer-more."
+    },
+    {
+      "id": "wiki-lumbridge-diary-current",
+      "publisher": "Old School RuneScape Wiki",
+      "kind": "wiki",
+      "url": "https://oldschool.runescape.wiki/w/Lumbridge_%26_Draynor_Diary",
+      "checked_at": "2026-08-22",
+      "use": "Lumbridge and Draynor hard task relationship: the spell, not a tablet, must be cast in Al Kharid Palace."
+    },
+    {
+      "id": "wiki-collection-log-current",
+      "publisher": "Old School RuneScape Wiki",
+      "kind": "wiki",
+      "url": "https://oldschool.runescape.wiki/w/Collection_log",
+      "checked_at": "2026-08-22",
+      "use": "Mage Training Arena collection-log category: ten item entries and the Bones to Peaches unlock."
+    },
+    {
+      "id": "community-wiki-mta-unlock-bones-to-peaches",
+      "publisher": "Old School RuneScape Wiki community guide",
+      "kind": "guide",
+      "url": "https://oldschool.runescape.wiki/w/Mage_Training_Arena/Unlock_bones_to_peaches",
+      "checked_at": "2026-08-22",
+      "use": "Community efficient-room ordering and optional supply-planning discussion. It is not used to create a fixed rate, cost, route, or stop condition."
+    },
+    {
+      "id": "community-bruhsailer-current",
+      "publisher": "BRUHsailer",
+      "kind": "guide",
+      "url": "https://osrsper.github.io/BRUHsailer/",
+      "checked_at": "2026-08-22",
+      "use": "Established Ironman route evidence for an optional early MTA utility stop. Used only as a strategy candidate."
+    },
+    {
+      "id": "community-reddit-mta-rework-current",
+      "publisher": "r/2007scape",
+      "kind": "reddit",
+      "url": "https://www.reddit.com/r/2007scape/comments/1clkizv/mta_approved_changes/",
+      "checked_at": "2026-08-22",
+      "use": "Community contemporaneous confirmation that the 2024 rework was live. It is corroboration only, not the authority for mechanics."
+    }
+  ],
+  "access": {
+    "requirements": {
+      "membership": true,
+      "location": "North of the Emir's Arena, north-east of Al Kharid, in the Kharidian Desert.",
+      "minimum_magic_to_enter_lobby": {"level": 7, "boostability": "not a separate documented entry check; level 7 is the Lvl-1 Enchant spell gate for the first usable room activity"},
+      "all_room_spell_gate": {"level": 33, "reason": "Telekinetic Theatre needs Telekinetic Grab; higher Magic expands Enchanting Chamber spell choices and level 60 permits boosted Bones to Peaches casting"},
+      "spellbook": "All four room spells are Standard spellbook spells. A spellbook change is an independent observed capability.",
+      "reference_existing_production_facts": [
+        "utility-stop-mage-training-arena",
+        "diary-lumbridge-draynor-task-utility-branches",
+        "mta-rune-pouch",
+        "bones-to-peaches"
+      ],
+      "reference_existing_actions": ["action:buy-mta-rune-pouch", "action:unlock-bones-to-peaches", "action:complete-lumbridge-hard-bones-to-peaches-task"]
+    },
+    "location_and_transport": [
+      "Direct: the Mage Training Arena Grouping teleport is available only after the player has spoken to the Entrance Guardian; current access and teleport readiness remain observed.",
+      "Near: ring of dueling to Emir's Arena then run north; ring of the elements to Fire Altar then run north-east; travel on foot from Al Kharid.",
+      "The 2024 rework added a bank chest on the upper floor. Its existence does not establish the player's rune, coin, equipment, or pouch inventory.",
+      "The Arena sits in the Desert region. Desert travel state, heat protection, transport charges, and route safety remain independently modeled facts."
+    ],
+    "unlock_transition": {
+      "event": "player-confirmed arrival and eligible room/spell state",
+      "deterministic_effects": ["The lobby, Reward Guardian, and rooms can be used while membership is active and each selected spell gate/input is met."],
+      "non_effects": ["Arrival does not grant Pizazz, runes, coin, Magic XP, room progress, Rune pouch, Bones to Peaches, collection-log entries, spellbook state, or combat/readiness conclusions."]
+    }
+  },
+  "activity_loop": {
+    "entry_inputs": [
+      {"item_or_capability": "Standard spellbook", "behavior": "required for every room spell; player-observed spellbook state"},
+      {"item_or_capability": "runes or applicable elemental-rune substitute", "behavior": "each selected spell consumes its normal runes unless a valid staff/tome/substitute supplies an elemental component; substitutes and charges are observed"},
+      {"item_or_capability": "inventory space", "behavior": "needed variably for room-generated shapes, fruit, coins, orbs, and rewards; no inventory capacity is inferred"}
+    ],
+    "reusable_setup": [
+      {"item_or_capability": "elemental staff, combination runes, or charged tome", "effect": "can cover only the corresponding elemental component of a selected spell; it does not cover law, nature, cosmic, blood, or soul requirements unless a current sourced item specifically does so."},
+      {"item_or_capability": "Explorer's ring alchemy charges", "effect": "the ring's daily rune-free low/high alchemy casts work in the Alchemist's Playground and receive that room's Magic XP; current daily charges are diary/account observations, never assumed."},
+      {"item_or_capability": "Bones to Peaches spell or tablet", "effect": "both can convert MTA graveyard bones after the 2024 rework; only the purchased spell supplies the permanent Standard-spell capability and diary task requirement."},
+      {"item_or_capability": "Rune pouch", "effect": "can consolidate up to three observed rune types and supply casts; it is a convenience, not an access gate, and its specific rune contents are not inferred."}
+    ],
+    "room_spell_requirements": {
+      "telekinetic_grab": {"magic_level": 33, "runes_per_cast": {"air_rune": 1, "law_rune": 1}, "magic_xp_per_cast": 43},
+      "low_level_alchemy": {"magic_level": 21, "runes_per_cast": {"fire_rune": 3, "nature_rune": 1}, "magic_xp_per_cast": 31},
+      "high_level_alchemy": {"magic_level": 55, "runes_per_cast": {"fire_rune": 5, "nature_rune": 1}, "magic_xp_per_cast": 65},
+      "bones_to_bananas": {"magic_level": 15, "runes_per_cast": {"water_rune": 2, "earth_rune": 2, "nature_rune": 2}, "magic_xp_per_cast": 25},
+      "bones_to_peaches": {"magic_level": 60, "boostable": true, "runes_per_cast": {"water_rune": 4, "earth_rune": 4, "nature_rune": 2}, "magic_xp_per_cast": 35.5},
+      "enchant_jewellery": [
+        {"spell": "Lvl-1 Enchant", "magic_level": 7, "runes_per_cast": {"water_rune": 1, "cosmic_rune": 1}, "base_pizazz": 1},
+        {"spell": "Lvl-2 Enchant", "magic_level": 27, "runes_per_cast": {"air_rune": 3, "cosmic_rune": 1}, "base_pizazz": 2},
+        {"spell": "Lvl-3 Enchant", "magic_level": 49, "runes_per_cast": {"fire_rune": 5, "cosmic_rune": 1}, "base_pizazz": 3},
+        {"spell": "Lvl-4 Enchant", "magic_level": 57, "runes_per_cast": {"earth_rune": 10, "cosmic_rune": 1}, "base_pizazz": 4},
+        {"spell": "Lvl-5 Enchant", "magic_level": 68, "runes_per_cast": {"water_rune": 15, "cosmic_rune": 1}, "base_pizazz": 5},
+        {"spell": "Lvl-6 Enchant", "magic_level": 87, "runes_per_cast": {"earth_rune": 20, "cosmic_rune": 1}, "base_pizazz": 6},
+        {"spell": "Lvl-7 Enchant", "magic_level": 93, "runes_per_cast": {"blood_rune": 20, "soul_rune": 20, "cosmic_rune": 1}, "base_pizazz": 7}
+      ]
+    },
+    "rooms": [
+      {
+        "id": "telekinetic-theatre",
+        "gate": "Magic 33 and a valid Telekinetic Grab cast",
+        "loop": "Cast Telekinetic Grab from a non-corner side to pull the Maze Guardian one tile north, south, east, or west through one of ten mazes to its exit square. Each maze needs seven through ten valid pulls.",
+        "completion_or_reward_events": [
+          {"event": "complete one maze", "outputs": {"telekinetic_pizazz": 2, "magic_xp": 250}, "plus": "normal spell-cast XP and normal selected-spell rune consumption"},
+          {"event": "complete every fifth maze in the persistent streak", "outputs": {"telekinetic_pizazz": 8, "magic_xp": 1000, "law_rune": 10, "run_energy": "restored to 100 percent"}}
+        ],
+        "failure_and_progress": "A corner cast spends a law rune and still grants spell XP but does not move the guardian. Reset returns the statue to its start. Leaving an incomplete maze starts a new random maze. Reset/exit does not reset the five-maze streak. Logging out returns the player to the lobby and does not retain in-room maze progress.",
+        "cap": 8000
+      },
+      {
+        "id": "creature-graveyard",
+        "gate": "Magic 15 for Bones to Bananas, or Magic 60 (boostable) for the spell-version Bones to Peaches; a tablet can perform the room conversion but does not establish spell ownership.",
+        "loop": "Collect four successive bones from a cycling pile. The four bone types convert to one, two, three, or four fruit each. Convert them to bananas or peaches, then deposit fruit in wall chutes.",
+        "completion_or_reward_events": [
+          {"event": "deposit fruit", "formula": "One Graveyard Pizazz per 16 bananas or per 8 peaches; peaches count as two fruit. A deposit can award at most three Pizazz even when excess fruit still receives XP.", "magic_xp": {"banana": 5, "peach": 10}},
+          {"event": "exit room", "output": "one water, earth, nature, death, or blood rune for each qualifying point award, with the exact rune outcome player-observed"}
+        ],
+        "failure_and_progress": "Falling bones can damage the player; other pre-2024 damage sources were removed. Entry forbids bringing eligible convertible bones, bananas, or peaches. The activity is safe for normal accounts: death does not lose items, including deathbank items; Hardcore Group Iron death remains dangerous. Logout retains progress after the 2024 rework.",
+        "cap": 8000
+      },
+      {
+        "id": "enchanting-chamber",
+        "gate": "Magic level and current runes/substitute for the selected Lvl-1 through Lvl-7 Enchant spell",
+        "loop": "Take cubes, cylinders, pentamids, or icosahedrons from corner piles and enchant them into orbs. The indicated bonus shape changes every 24 seconds. Dragonstones spawn near the centre and have a 1/32 search chance from a shape pile.",
+        "completion_or_reward_events": [
+          {"event": "enchant a normal shape", "formula": "gain Pizazz equal to selected Enchant level; every tenth enchanted shape doubles that point award; the indicated shape adds two points after the tenth-shape doubling rule."},
+          {"event": "enchant dragonstone", "formula": "awards double the relevant shape-enchant Pizazz; selected-shape and tenth-cast effects remain governed by the room rule."},
+          {"event": "deposit 20 orbs and leave", "outputs": "20 Magic XP per deposited orb and a set of three blood, death, or cosmic runes; exact rune type and count of completed deposit sets are observed."}
+        ],
+        "failure_and_progress": "Shapes and dragonstones are room items. Dropping orbs, missing bonus windows, changing spell tier, dragonstone availability, and deposit completion are execution/observation boundaries. Logout retains room progress after the 2024 rework.",
+        "cap": 32000
+      },
+      {
+        "id": "alchemists-playground",
+        "gate": "Magic 21 for Low Level Alchemy or 55 for High Level Alchemy, plus selected spell inputs",
+        "loop": "Search six cupboards for minigame leather boots, adamant kiteshields, adamant medium helms, emeralds, rune longswords, or an empty result. Alchemise an item and deposit the resulting room coins into the Coin Collector. Positions and displayed values rotate every 60 seconds; each item receives 1, 5, 8, 15, or 30 coins.",
+        "completion_or_reward_events": [
+          {"event": "deposit room coins", "formula": "one Alchemist Pizazz per 100 coins plus ten coins paid to bank per full threshold, 2 Magic XP per deposited coin, and an independent remainder-percent chance of one extra Pizazz; Low and High Alchemy yield the same room-coin value."},
+          {"event": "free-cast indicator", "effect": "the green-arrow item does not consume alchemy runes; the selected spell's other normal requirements and all result observations remain separate."},
+          {"event": "leave room", "effect": "automatically deposits remaining activity coins, applying the same point, XP, and bank-coin behavior."}
+        ],
+        "failure_and_progress": "Normal coins, coin pouches, clue scrolls, and clue caskets cannot be brought in; externally created coins are removed and earn no Pizazz. Cupboards are open by default, close briefly at rotation, and permit Take-5 after the 2024 rework. Logout retains room progress after the rework.",
+        "cap": 16000
+      }
+    ],
+    "completion_or_reward_events": [
+      {"event": "Rewards Guardian purchase", "requirements": "observed current four Pizazz balances, item-specific prerequisite/ownership state, and player-confirmed shop purchase", "determinism": "a shop purchase has an exact stated point subtraction and fixed selected reward; accumulating the balances is not automatically derived from entering or repeating rooms."}
+    ],
+    "failure_and_death": {
+      "ordinary_account_safety": "Each room is a safe activity. A normal-account death does not lose carried items, including items stored in an Item Retrieval Service.",
+      "hardcore_group_iron_boundary": "The Wiki explicitly warns that death remains dangerous for Hardcore Group Iron players. No death outcome, health, food, or survival state is inferred.",
+      "teleport_boundary": "Teleporting out is not allowed while inside the rooms. Re-entry and travel capability must remain explicit.",
+      "no_global_completion": "There is no one-time Arena completion. Each room and reward purchase is repeatable subject to observed input, cap, ownership, and currency state."
+    },
+    "repeatability": {
+      "is_repeatable": true,
+      "persistent_values": ["four Pizazz balances are persistent currencies subject to caps", "Telekinetic five-maze streak persists through reset/exit but not an unfinished maze", "purchased rewards and permanent spell unlocks require observation"],
+      "session_values": ["current maze position", "current graveyard fruit/deposit sequence", "selected bonus shape", "room-generated items/coins/orbs", "rotation timing", "current room health/damage context"],
+      "logout_rule": "The 2024 rework permits logout with room progress retained in all rooms except Telekinetic Theatre; no elapsed-time advancement or in-progress result is generated by the account model."
+    }
+  },
+  "currencies": [
+    {"id": "telekinetic_pizazz", "acquisition": "player_observed", "cap": 8000, "earning_formula": "2 per completed maze; +8 per fifth maze in the persistent streak. Individual casts, correct pulls, maze completion, and balance remain observed.", "spend_behavior": "Spent exactly in item-specific four-currency Reward Guardian costs."},
+    {"id": "graveyard_pizazz", "acquisition": "player_observed", "cap": 8000, "earning_formula": "1 per 16 bananas or 8 peaches deposited, with a maximum of 3 Pizazz per deposit. Room conversion/deposits are player-observed.", "spend_behavior": "Spent exactly in item-specific four-currency Reward Guardian costs."},
+    {"id": "enchantment_pizazz", "acquisition": "player_observed", "cap": 32000, "earning_formula": "base points equal selected enchant level; every tenth shape doubles, the selected shape adds 2 after doubling, and dragonstones use the stated double-point rule. Spell selection and executed casts are observed.", "spend_behavior": "Spent exactly in item-specific four-currency Reward Guardian costs."},
+    {"id": "alchemist_pizazz", "acquisition": "player_observed", "cap": 16000, "earning_formula": "1 per 100 deposited activity coins plus an independent percent chance from any remainder. The room-coin value, free cast, selected spell, deposit, and point result remain observed.", "spend_behavior": "Spent exactly in item-specific four-currency Reward Guardian costs."}
+  ],
+  "rewards": [
+    {"id": "mta-rune-shop", "acquisition": "shop", "utility": ["fixed individual-rune purchase; not a source of inferred rune inventory"], "costs_per_one_rune": {"mist_rune": [1, 1, 15, 1], "dust_rune": [1, 1, 15, 1], "mud_rune": [1, 1, 15, 1], "smoke_rune": [1, 1, 15, 1], "steam_rune": [1, 1, 15, 1], "lava_rune": [1, 1, 15, 1], "cosmic_rune": [0, 0, 5, 0], "chaos_rune": [0, 1, 5, 1], "nature_rune": [0, 1, 0, 1], "death_rune": [2, 1, 20, 1], "law_rune": [2, 0, 0, 0], "soul_rune": [2, 2, 25, 2], "blood_rune": [2, 2, 25, 2]}, "cost_order": ["telekinetic", "graveyard", "enchantment", "alchemist"]},
+    {"id": "infinity-hat", "acquisition": "shop", "utility": ["Magic equipment", "Mage Training Arena collection-log item"], "cost": [350, 350, 3000, 400]},
+    {"id": "infinity-top", "acquisition": "shop", "utility": ["Magic equipment", "Mage Training Arena collection-log item"], "cost": [400, 400, 4000, 450]},
+    {"id": "infinity-bottoms", "acquisition": "shop", "utility": ["Magic equipment", "Mage Training Arena collection-log item"], "cost": [450, 450, 5000, 500]},
+    {"id": "infinity-gloves", "acquisition": "shop", "utility": ["Magic equipment", "Mage Training Arena collection-log item"], "cost": [175, 175, 1500, 225]},
+    {"id": "infinity-boots", "acquisition": "shop", "utility": ["Magic equipment", "Mage Training Arena collection-log item"], "cost": [120, 120, 1200, 120]},
+    {"id": "beginner-wand", "acquisition": "shop", "utility": ["Magic weapon with autocast capability", "Mage Training Arena collection-log item"], "cost": [30, 30, 300, 30]},
+    {"id": "apprentice-wand", "acquisition": "shop", "utility": ["Magic weapon with autocast capability", "Mage Training Arena collection-log item"], "cost": [60, 60, 600, 60], "additional_requirement": "exchange a Beginner wand from equipment or inventory"},
+    {"id": "teacher-wand", "acquisition": "shop", "utility": ["Magic weapon with autocast capability", "Mage Training Arena collection-log item"], "cost": [150, 150, 1500, 200], "additional_requirement": "exchange an Apprentice wand from equipment or inventory"},
+    {"id": "master-wand", "acquisition": "shop", "utility": ["Magic weapon that can autocast Ancient Magicks", "Mage Training Arena collection-log item"], "cost": [240, 240, 2400, 240], "additional_requirement": "exchange a Teacher wand from equipment or inventory", "full_upgrade_chain_cost": [480, 480, 4800, 530]},
+    {"id": "mages-book", "acquisition": "shop", "utility": ["off-hand Magic equipment", "Mage Training Arena collection-log item"], "cost": [500, 500, 6000, 550]},
+    {"id": "rune-pouch", "acquisition": "shop", "utility": ["stores up to 16000 of each of three selected rune types", "spells can consume contained runes", "bank-configurable load-outs", "permanent inventory-space utility"], "cost": [150, 150, 1500, 200], "ownership_condition": "MTA sale only if the player does not already own a Rune pouch; exact pouch/rune contents remain observed."},
+    {"id": "bones-to-peaches-spell", "acquisition": "shop", "utility": ["permanent Standard-spell unlock", "converts eligible inventory bones to peaches", "required spell unlock for Lumbridge and Draynor hard diary task", "Mage Training Arena collection-log unlock"], "cost": [200, 200, 2000, 300], "casting_boundary": "Casting still needs observed Magic/spellbook/runes/bones; a tablet does not substitute for the diary task."},
+    {"id": "arena-book", "acquisition": "fixed", "utility": ["help text only; no progression capability"], "cost": {"coins": 200}, "four_currency_cost": [0, 0, 0, 0]}
+  ],
+  "dependencies_and_bypasses": [
+    {"target": "goal:mta-rune-pouch", "relationship": "unlocks", "detail": "A confirmed MTA purchase yields the permanent three-rune-type storage capability, subject to one-pouch ownership."},
+    {"target": "goal:bones-to-peaches", "relationship": "unlocks", "detail": "A confirmed MTA shop purchase yields the permanent spell unlock, but each cast remains separately gated by Magic, spellbook, runes, and eligible bones."},
+    {"target": "activity:complete-lumbridge-hard-bones-to-peaches-task", "relationship": "unlocks", "detail": "The permanent spell is required for the diary task; the tablet does not count."},
+    {"target": "activity:last-man-standing", "relationship": "alternative_to", "detail": "Justine sells a Rune pouch note for 75 LMS points; match participation, points, purchase, note conversion, and ownership remain observed."},
+    {"target": "activity:slayer-reward-shop", "relationship": "alternative_to", "detail": "Any Slayer master sells Rune pouch for 750 Slayer reward points; task/point history and purchase are observed."},
+    {"target": "capability:explorers-ring-alchemy", "relationship": "improves", "detail": "Observed daily Explorer's ring alchemy charges can make valid free alchemy casts in Alchemist's Playground, but do not establish points or use counters."},
+    {"target": "collection-log:mage-training-arena", "relationship": "produces", "detail": "Purchases can add ten item entries (four wand chain entries, five Infinity pieces, Mage's book) and the Bones to Peaches unlock; each actual log state is player-observed."},
+    {"target": "equipment:infinity-and-wands", "relationship": "makes_obtainable", "detail": "The shop is a deterministic acquisition path only after exact observed currency and prerequisite state, unlike an RNG drop."}
+  ],
+  "afk_and_attention": {
+    "attention_class": "mixed",
+    "measured_interaction_interval_seconds": null,
+    "logout_or_idle_constraints": [
+      "Telekinetic Theatre requires active spatial inputs; corner casts can waste a law rune and exiting/logging out loses current-maze progress.",
+      "Creature Graveyard, Enchanting Chamber, and Alchemist's Playground retain progress on logout following the 2024 rework, but this does not turn their outcomes into passive progression.",
+      "No source-backed universal idle interval is asserted; selected spell, room, player execution, damage, inventory, and rotation state all vary."
+    ],
+    "source_boundary": "Community labels such as low-intensity, casual, efficient, or AFK are execution advice. This package treats all point earning and outputs as actively observed unless a future measurement model receives explicit player data."
+  },
+  "community_strategy_observations": [
+    {"claim": "Some Ironman routes obtain Bones to Peaches and Rune pouch together, commonly completing utility purchases before optional equipment.", "source_ids": ["community-bruhsailer-current", "community-wiki-mta-unlock-bones-to-peaches"], "treatment": "strategy-candidate-not-fact"},
+    {"claim": "Unlocking the permanent Bones to Peaches spell before farming Graveyard points can improve the room's point conversion versus Bones to Bananas.", "source_ids": ["community-wiki-mta-unlock-bones-to-peaches"], "treatment": "strategy-candidate-not-fact"},
+    {"claim": "Community guides propose room order, staff choices, MTA plugin/maze aids, world-hopping for free Alchemy casts, and selected Enchant tiers to reduce input cost or time.", "source_ids": ["community-wiki-mta-unlock-bones-to-peaches", "community-reddit-mta-rework-current"], "treatment": "strategy-candidate-not-fact"}
+  ],
+  "state_boundaries": [
+    "Never infer membership, spellbook, Magic level/boost, room entry, current location, Grouping teleport, bank contents, staff/tome charge, Explorer's ring daily charge, Rune pouch ownership/content, spell unlock, or room readiness.",
+    "The factual spell costs and Pizazz formulas may validate player-reported casts/deposits, but the model never accumulates casts, points, XP, runes, coins, fruit, orbs, streaks, or room progress from an activity selection.",
+    "A Pizazz cap is a factual storage limit, not proof that the account has the cap or an available balance. Remainder-point rolls, dragonstone search, room-item availability, selected bonus shape, and reward-rune type are not deterministic account outputs.",
+    "Shop purchases are deterministic only after explicit observed balances, required prior wand, one-pouch ownership condition, and player-confirmed purchase. No proposed action may turn nominal required points into earned Pizazz.",
+    "Collection-log state, purchased equipment, wand-chain exchange state, diary task completion, Bones to Peaches cast, eligible-bone quantity, runes consumed, damage/death, and Hardcore Group Iron survival are report-only.",
+    "Existing production actions action:buy-mta-rune-pouch and action:unlock-bones-to-peaches remain canonical for the two modeled utility purchases. A future integrator must amend/reference them rather than create parallel transitions."
+  ],
+  "proposed_normalization": {
+    "facts": [
+      {"id": "mage-training-arena-current-mechanics", "treatment": "proposed-new", "content": "Current factual MTA access, four-room mechanics, exact spell costs, post-2024 caps/rework behavior, safety, shop cost table, and non-inference boundaries."},
+      {"id": "mage-training-arena-reward-utility", "treatment": "amend-existing", "targets": ["utility-stop-mage-training-arena", "mta-rune-pouch", "bones-to-peaches", "diary-lumbridge-draynor-task-utility-branches"], "content": "Reconcile canonical Rune pouch/Bones to Peaches facts with current MTA source ids, LMS/Slayer alternatives, one-pouch condition, diary distinction, and full shop context without changing strategic score."}
+    ],
+    "actions": [
+      {"id": "action:buy-mta-rune-pouch", "treatment": "amend-existing", "requirements": "Keep exact four Pizazz requirements; add confirmed MTA access and no-existing-Rune-pouch ownership condition if supported by account schema.", "transition": "Subtract only player-observed Pizazz and add only confirmed pouch ownership; never set pouch rune types or balances."},
+      {"id": "action:unlock-bones-to-peaches", "treatment": "amend-existing", "requirements": "Keep exact shop costs, level-60-or-observed-boost gating, and explicit MTA access.", "transition": "Subtract only observed Pizazz and set the permanent unlock milestone; do not grant bones, peaches, runes, casts, diary completion, or XP."},
+      {"id": "action:record-mta-observation", "treatment": "proposed-new", "requirements": "player-reported room, observed balances/caps, optional executed event, and optional purchase/log state", "transition": "store report-only observations; optionally validate supplied values against caps and deterministic cost/formula constraints without auto-crediting a room."},
+      {"id": "action:buy-mta-shop-reward", "treatment": "proposed-new", "requirements": "confirmed MTA access, exact observed four Pizazz balances, selected reward, and reward-specific prerequisite/ownership state", "transition": "exact four-currency subtraction plus selected deterministic reward or declared rune count only after player confirms the purchase."}
+    ],
+    "graph_nodes": ["activity:mage-training-arena", "currency:mta-telekinetic-pizazz", "currency:mta-graveyard-pizazz", "currency:mta-enchantment-pizazz", "currency:mta-alchemist-pizazz", "goal:mta-rune-pouch", "goal:bones-to-peaches", "capability:rune-pouch-storage", "capability:bones-to-peaches-spell", "collection-log:mage-training-arena"],
+    "graph_edges": [
+      {"from": "activity:mage-training-arena", "to": "currency:mta-telekinetic-pizazz", "type": "produces", "evidence": "Observed successful Telekinetic Theatre completion produces this capped currency."},
+      {"from": "activity:mage-training-arena", "to": "currency:mta-graveyard-pizazz", "type": "produces", "evidence": "Observed qualifying Creature Graveyard deposits produce this capped currency."},
+      {"from": "activity:mage-training-arena", "to": "currency:mta-enchantment-pizazz", "type": "produces", "evidence": "Observed Enchanting Chamber casts produce this capped currency under the room formula."},
+      {"from": "activity:mage-training-arena", "to": "currency:mta-alchemist-pizazz", "type": "produces", "evidence": "Observed qualifying Alchemist coin deposits produce this capped currency under the room formula."},
+      {"from": "currency:mta-telekinetic-pizazz", "to": "goal:mta-rune-pouch", "type": "requires", "evidence": "Rune pouch costs 150 Telekinetic Pizazz."},
+      {"from": "currency:mta-graveyard-pizazz", "to": "goal:mta-rune-pouch", "type": "requires", "evidence": "Rune pouch costs 150 Graveyard Pizazz."},
+      {"from": "currency:mta-enchantment-pizazz", "to": "goal:mta-rune-pouch", "type": "requires", "evidence": "Rune pouch costs 1,500 Enchantment Pizazz."},
+      {"from": "currency:mta-alchemist-pizazz", "to": "goal:mta-rune-pouch", "type": "requires", "evidence": "Rune pouch costs 200 Alchemist Pizazz."},
+      {"from": "goal:mta-rune-pouch", "to": "capability:rune-pouch-storage", "type": "unlocks", "evidence": "Confirmed ordinary Rune pouch ownership provides three-type rune storage."},
+      {"from": "goal:bones-to-peaches", "to": "capability:bones-to-peaches-spell", "type": "unlocks", "evidence": "Confirmed MTA purchase permanently unlocks the spell."},
+      {"from": "capability:bones-to-peaches-spell", "to": "activity:complete-lumbridge-hard-bones-to-peaches-task", "type": "requires", "evidence": "The diary task needs a spell cast, not a tablet."}
+    ],
+    "account_observations": [
+      {"key": "mta_access_observed", "type": "boolean", "evidence": "Player confirms current membership/arrival/Entrance Guardian interaction as relevant; no quest completion is assumed."},
+      {"key": "mta_pizazz", "type": "object", "shape": {"telekinetic": "integer_0_to_8000_or_null", "graveyard": "integer_0_to_8000_or_null", "enchantment": "integer_0_to_32000_or_null", "alchemist": "integer_0_to_16000_or_null", "observed_at": "RFC3339_timestamp_or_null"}, "rule": "Reported balances only; no action accumulates them."},
+      {"key": "mta_room_observation", "type": "object_or_null", "shape": {"room": "telekinetic|graveyard|enchanting|alchemist", "last_event": "player_text_or_null", "telekinetic_streak": "integer_or_null", "room_progress_retained": "boolean_or_null", "damage_or_death_observed": "boolean_or_null"}, "rule": "Session state is descriptive and does not generate result transitions."},
+      {"key": "mta_spell_and_supply_observation", "type": "object", "shape": {"spellbook": "observed_value", "selected_spells": "set", "rune_inventory_or_pouch_counts": "optional_reported_map", "elemental_substitute_and_charge": "optional_reported_map", "explorers_ring_alchemy_uses": "integer_or_null"}, "rule": "Never infer casts, charges, supplies, or readiness from a plan."},
+      {"key": "mta_reward_observation", "type": "object", "shape": {"purchases": "set", "wand_chain_current": "none|beginner|apprentice|teacher|master|unknown", "rune_pouch_owned": "boolean_or_null", "bones_to_peaches_unlocked": "boolean_or_null", "collection_log_entries": "set"}, "rule": "Actual purchases and log entries must be confirmed separately."}
+    ]
+  },
+  "conflicts_and_unknowns": [
+    {"id": "existing-mta-source-id-scope", "status": "needs-source-alias-reconciliation", "detail": "Production facts use wiki-mta, wiki-rune-pouch, wiki-bones-to-peaches, and official-summer-sweep-up-slayer-more. This isolated package uses current-suffixed IDs to make date/revalidation explicit; an integrator should map them to canonical source registry records without duplicate claims."},
+    {"id": "mta-entry-level-wording", "status": "documentation-boundary", "detail": "The Arena is commonly summarized as requiring Magic 7 because Lvl-1 Enchant is the lowest room spell. It does not have a universal single minigame-level gate beyond selected room/spell requirements. Do not model an invented global entry action that grants point readiness."},
+    {"id": "enchant-dragonstone-combination", "status": "formula-needs-runtime-test-before-automatic-calculation", "detail": "Current sources state dragonstones give double Pizazz and separately specify tenth-shape and selected-shape rules. Preserve the factual statements but do not implement a derived combined-point calculator until an in-game or primary-source test confirms ordering for all combinations."},
+    {"id": "mta-rate-and-full-shop-estimates", "status": "intentional-strategy-boundary", "detail": "Wiki/community estimates for total runes, GP, hours, room rates, and optimal methods depend on selected spells, free casts, inventory handling, and execution. They must not be treated as fixed account costs."},
+    {"id": "rune-pouch-alternatives", "status": "current", "detail": "The current ordinary Rune pouch is available via MTA, a 75-point LMS Rune pouch note, or 750 Slayer reward points. MTA purchase is blocked by already owning one ordinary pouch; model alternatives as mutually satisfying the ownership goal, not stackable rewards."},
+    {"id": "collection-log-count", "status": "current", "detail": "The current Collection Log lists ten MTA item entries and one Bones to Peaches unlock. The Rune pouch and shop runes are not MTA collection-log entries."}
+  ],
+  "coverage": {
+    "access": true,
+    "loop": true,
+    "currencies": true,
+    "rewards": true,
+    "failure_state": true,
+    "sources": true,
+    "normalization": true,
+    "rooms_covered": ["Telekinetic Theatre", "Creature Graveyard", "Enchanting Chamber", "Alchemist's Playground"],
+    "current_rework_covered": true,
+    "production_files_modified": 0
+  }
+}
