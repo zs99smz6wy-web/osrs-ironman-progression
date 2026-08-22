@@ -1,0 +1,111 @@
+{
+  "dataset": "diary-task-utility-branches",
+  "scope": "Factual, task-level dependencies for a bounded Lumbridge & Draynor and Kourend & Kebos diary utility pass. It records exact game mechanics and model boundaries; it does not rank diaries, select a route, or infer combat readiness.",
+  "audited_at": "2026-08-22",
+  "facts_strategy_boundary": {
+    "facts_included": [
+      "individual task requirements and exact spell inputs",
+      "claimed-tier reward behavior and repeat-use limits",
+      "deterministic item claims and zero-charge travel",
+      "explicit model boundaries for daily counters, combat events, and random outcomes"
+    ],
+    "strategy_excluded": [
+      "diary priority",
+      "whether a player should pursue a reward",
+      "combat-readiness conclusions",
+      "time, GP, or attention scoring"
+    ],
+    "community_strategy_sources_used": []
+  },
+  "records": [
+    {
+      "id": "diary-lumbridge-draynor-task-utility-branches",
+      "name": "Lumbridge & Draynor task-level utility branches",
+      "category": "reward",
+      "status": "verified",
+      "verified_at": "2026-08-22",
+      "requirements": {
+        "claim_boundary": "A claimed tier requires every task in that tier and every preceding tier. The account model records a claimed tier separately and does not infer it from the subset of task milestones below.",
+        "hard_bones_to_peaches_task": {
+          "task": "Cast Bones to Peaches in Al Kharid Palace.",
+          "spellbook": "Standard",
+          "tablet_counts": false,
+          "spell_unlock": "Mage Training Arena Bones to Peaches purchase",
+          "magic": {"level": 60, "boostable": true},
+          "minimum_single_bones_cast": {"bones": 1, "water_rune": 4, "earth_rune": 4, "nature_rune": 2},
+          "magic_xp": 35.5
+        }
+      },
+      "fixed_rewards": {
+        "explorers_ring_1": {
+          "run_energy": "Restore 50% twice per day.",
+          "rune_free_low_alchemy": "30 casts per day; no Magic experience outside the Alchemist's Playground."
+        },
+        "explorers_ring_2": {
+          "run_energy": "Restore 50% three times per day.",
+          "cabbage_patch_teleport": "Three daily teleports to the cabbage patch near South Falador Farm."
+        },
+        "explorers_ring_3": {
+          "run_energy": "Restore 50% four times per day.",
+          "cabbage_patch_teleport": "Unlimited teleports to the cabbage patch near South Falador Farm.",
+          "tears_of_guthix": "10% more experience."
+        },
+        "explorers_ring_4": {
+          "run_energy": "Restore 100% three times per day.",
+          "rune_free_high_alchemy": "30 casts per day; no Magic experience outside the Alchemist's Playground.",
+          "other": ["Fairy rings do not require a Dramen or Lunar staff.", "The seventh Slayer task-block slot is unlocked.", "Culinaromancer's Chest prices are 20% lower."]
+        }
+      },
+      "modeling_boundary": "The current account schema has no daily-use or location state. Claiming the current ring and the zero-charge hard-tier cabbage teleport are represented as actions; exact daily ring uses remain factual capabilities and are not simulated as unlimited repeat transitions.",
+      "source_ids": ["wiki-lumbridge-diary", "wiki-achievement-diary-rewards", "wiki-bones-to-peaches", "wiki-mta"],
+      "confidence": "high"
+    },
+    {
+      "id": "diary-kourend-kebos-hard-task-utility-branches",
+      "name": "Kourend & Kebos hard task and utility branches",
+      "category": "reward",
+      "status": "verified",
+      "verified_at": "2026-08-22",
+      "requirements": {
+        "claim_boundary": "A claimed hard tier requires all easy, medium, and hard tasks. The modeled task milestones are necessary branches, not sufficient proof of a hard-tier claim.",
+        "xerics_heart_task": {
+          "task": "Teleport to Xeric's Heart.",
+          "accepted_access": ["A charged Xeric's talisman", "A mounted Xeric's talisman in a player-owned house"],
+          "rng_boundary": "A Xeric's talisman can come from qualifying lizardman drops; acquisition is random and never becomes a deterministic item grant."
+        },
+        "monster_examine_task": {
+          "task": "Cast Monster Examine on a mountain troll south of Mount Quidamortem.",
+          "quest": "Dream Mentor",
+          "spellbook": "Lunar",
+          "magic": {"level": 66, "boostable": true},
+          "spell_inputs": {"astral_rune": 1, "cosmic_rune": 1, "mind_rune": 1},
+          "magic_xp": 61
+        },
+        "wyrm_task": {
+          "task": "Kill a wyrm in the Karuulm Slayer Dungeon.",
+          "slayer": 62,
+          "protective_footwear": ["Boots of stone", "Brimstone boots", "Granite boots"],
+          "transition_boundary": "The actual combat kill remains player-confirmed until a combat-readiness and encounter model can establish it without inventing a kill."
+        }
+      },
+      "fixed_rewards": {
+        "radas_blessing_3": {
+          "claim": "Hard-tier reward from Elise; it can be retrieved for free if lost.",
+          "kourend_woodland": "Unlimited teleports.",
+          "mount_karuulm": "Three teleports per day.",
+          "fishing": "While equipped, 6% chance to catch two fish at once everywhere except Tempoross; the extra fish grants no experience.",
+          "prayer_bonus": 1
+        },
+        "ash_sanctifier": {
+          "claim": "Claimable from Tyss after the hard tier.",
+          "behavior": "When carried and charged with death runes, it automatically scatters demonic ashes from killed monsters for half normal scattering Prayer experience.",
+          "per_ash": "One charge is consumed for each automatic scattering.",
+          "elite_change": "A claimed elite Kourend & Kebos tier raises its automatic scatter experience to the full normal amount."
+        }
+      },
+      "modeling_boundary": "Rada's daily Mount Karuulm counter, fishing-proc roll, Ash sanctifier charge balance, and ash drops are not present in the account schema. They are recorded as factual capabilities, not converted into unrestricted actions, automatic XP, or item gains.",
+      "source_ids": ["wiki-kourend-diary", "wiki-radas-blessing-3", "wiki-ash-sanctifier", "wiki-achievement-diary-all-achievements", "wiki-xerics-talisman"],
+      "confidence": "high"
+    }
+  ]
+}

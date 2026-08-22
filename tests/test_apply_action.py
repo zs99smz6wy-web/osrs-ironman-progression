@@ -963,6 +963,8 @@ class ApplyActionTests(unittest.TestCase):
             "enchantment_pizazz": 2000,
             "alchemist_pizazz": 300,
         })
+        self.state["skills"]["Magic"] = 60
+        self.state["skill_xp"]["Magic"] = minimum_xp_for_level(60)
 
         result = apply_action(self.actions_document, self.state, "action:unlock-bones-to-peaches")
 
@@ -1386,6 +1388,83 @@ class ApplyActionTests(unittest.TestCase):
             self.assertEqual(starting_xp[skill] + 5000, result["next_state"]["skill_xp"][skill])
         self.assertNotIn("blood_moon_chestplate", result["next_state"]["items"])
         self.assertIn("lunar_chest_access", result["next_state"]["milestones"])
+
+    def test_diary_utility_claims_and_repeatable_teleports_have_no_fabricated_costs(self) -> None:
+        self.state["diary_tiers"]["Lumbridge & Draynor"] = "hard"
+        self.state["diary_tiers"]["Kourend & Kebos"] = "hard"
+
+        state = apply_action(self.actions_document, self.state, "action:claim-explorers-ring-current")["next_state"]
+        self.assertEqual(1, state["items"]["explorers_ring_current"])
+
+        cabbage = apply_action(self.actions_document, state, "action:explorers-ring-hard-cabbage-teleport")
+        self.assertEqual("applied", cabbage["status"])
+        self.assertEqual(state, cabbage["next_state"])
+
+        state = apply_action(self.actions_document, state, "action:claim-radas-blessing-3")["next_state"]
+        state = apply_action(self.actions_document, state, "action:claim-ash-sanctifier")["next_state"]
+        self.assertEqual(1, state["items"]["radas_blessing_3"])
+        self.assertEqual(1, state["items"]["ash_sanctifier"])
+
+        woodland = apply_action(self.actions_document, state, "action:radas-blessing-kourend-woodland-teleport")
+        self.assertEqual("applied", woodland["status"])
+        self.assertEqual(state, woodland["next_state"])
+
+    def test_lumbridge_hard_bones_to_peaches_task_consumes_its_exact_single_cast_inputs(self) -> None:
+        self.state["skills"]["Magic"] = 60
+        self.state["skill_xp"]["Magic"] = minimum_xp_for_level(60)
+        self.state["milestones"].extend(["bones_to_peaches_unlocked", "standard_spellbook_active"])
+        self.state["items"].update({
+            "bones": 1,
+            "water_rune": 4,
+            "earth_rune": 4,
+            "nature_rune": 2,
+        })
+
+        result = apply_action(self.actions_document, self.state, "action:complete-lumbridge-hard-bones-to-peaches-task")
+
+        self.assertEqual("applied", result["status"])
+        for item in ("bones", "water_rune", "earth_rune", "nature_rune"):
+            self.assertEqual(0, result["next_state"]["items"][item])
+        self.assertEqual(1, result["next_state"]["items"]["peach"])
+        self.assertIn("lumbridge_draynor_hard_bones_to_peaches_task", result["next_state"]["milestones"])
+        self.assertEqual(self.state["skill_xp"]["Magic"], result["next_state"]["skill_xp"]["Magic"])
+
+    def test_kourend_hard_task_branches_consume_only_their_deterministic_inputs(self) -> None:
+        self.state["quests_completed"].append("Dream Mentor")
+        self.state["skills"]["Magic"] = 66
+        self.state["skill_xp"]["Magic"] = minimum_xp_for_level(66)
+        self.state["milestones"].append("lunar_spellbook_active")
+        self.state["items"].update({"astral_rune": 1, "cosmic_rune": 1, "mind_rune": 1})
+
+        monster_examine = apply_action(
+            self.actions_document, self.state, "action:complete-kourend-hard-monster-examine-task"
+        )
+        self.assertEqual("applied", monster_examine["status"])
+        for item in ("astral_rune", "cosmic_rune", "mind_rune"):
+            self.assertEqual(0, monster_examine["next_state"]["items"][item])
+        self.assertEqual(minimum_xp_for_level(66) + 61, monster_examine["next_state"]["skill_xp"]["Magic"])
+
+        charged_state = copy.deepcopy(self.state)
+        charged_state["items"]["xerics_talisman_charge"] = 1
+        charged = apply_action(
+            self.actions_document,
+            charged_state,
+            "action:complete-kourend-hard-xerics-heart-teleport-task",
+        )
+        self.assertEqual("applied", charged["status"])
+        self.assertEqual("charged-talisman", charged["selected_option_id"])
+        self.assertEqual(0, charged["next_state"]["items"]["xerics_talisman_charge"])
+
+        mounted_state = copy.deepcopy(self.state)
+        mounted_state["milestones"].append("mounted_xerics_talisman_heart_teleport_available")
+        mounted = apply_action(
+            self.actions_document,
+            mounted_state,
+            "action:complete-kourend-hard-xerics-heart-teleport-task",
+        )
+        self.assertEqual("applied", mounted["status"])
+        self.assertEqual("mounted-talisman", mounted["selected_option_id"])
+        self.assertNotIn("xerics_talisman_charge", mounted["next_state"]["items"])
 
 
 if __name__ == "__main__":

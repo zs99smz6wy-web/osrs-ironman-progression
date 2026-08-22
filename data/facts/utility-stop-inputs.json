@@ -37,7 +37,7 @@
       "name": "Mage Training Arena utility-reward inputs",
       "category": "minigame",
       "status": "verified",
-      "verified_at": "2026-08-21",
+      "verified_at": "2026-08-22",
       "hard_gates": {
         "membership": true,
         "minimum_magic_to_begin": 7,
@@ -71,18 +71,24 @@
           "storage": "Stores up to 16,000 each of three rune types, excluding Nightmare Zone runes.",
           "spellcasting": "Spells can consume runes stored in the pouch.",
           "ownership": "A player cannot own more than one rune pouch; the MTA purchase is available only when the player does not already own one.",
+          "mta_cost_currently": {"telekinetic_pizazz": 150, "graveyard_pizazz": 150, "enchantment_pizazz": 1500, "alchemist_pizazz": 200},
           "degradation_or_charges": "No charge or degradation mechanic is listed for the ordinary rune pouch."
         },
         "bones_to_peaches": {
+          "spellbook": "Standard",
+          "casting_magic": {"level": 60, "boostable": true},
+          "per_cast_runes": {"water_rune": 4, "earth_rune": 4, "nature_rune": 2},
+          "magic_xp": 35.5,
           "effect": "Unlocks the spell. When cast, it converts eligible bones in the player's inventory into peaches.",
-          "known_restrictions": "Demonic ashes cannot be converted, and bones above big bones are not suitable for the spell."
+          "known_restrictions": "Demonic ashes cannot be converted, and bones above big bones are not suitable for the spell.",
+          "diary_relationship": "The Lumbridge & Draynor hard task requires casting the spell in Al Kharid Palace; a Bones to Peaches tablet does not complete that task."
         }
       },
       "uncertainties": [
-        "The source registry does not yet contain direct item-page records for the rune pouch and Bones to Peaches; their proposed IDs are listed at the document root.",
-        "Per-cast Bones to Peaches rune consumption is deliberately not recorded here until that dedicated spell source is registered."
+        "Pizazz acquisition is deliberately not converted into a fixed time, rune, or GP total because it depends on selected rooms, spells, and execution.",
+        "The account schema does not store the three selected rune types or their pouch balances, so this record does not invent a rune-pouch loading transition."
       ],
-      "source_ids": ["wiki-mta", "wiki-rune-pouch", "wiki-bones-to-peaches"],
+      "source_ids": ["wiki-mta", "wiki-rune-pouch", "wiki-bones-to-peaches", "official-summer-sweep-up-slayer-more"],
       "confidence": "high"
     },
     {
