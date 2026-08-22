@@ -1,0 +1,205 @@
+{
+  "package_schema_version": 1,
+  "package_type": "minigame-research",
+  "package_id": "research-minigame-nightmare-zone",
+  "activity": "Nightmare Zone",
+  "status": "research-proposal",
+  "checked_at": "2026-08-22",
+  "scope": "Current factual package for the members-only Nightmare Zone north-west of Yanille. It proposes facts, actions, graph relationships, and report-only observations; it does not select five quests, a boss list, a combat method, a reward target, or a route order.",
+  "facts_strategy_boundary": {
+    "included": [
+      "current access, transport, eligible quest/boss roster, mode/difficulty costs, dream mechanics, points, power-ups, safety, reward-shop stock, and exact imbue costs",
+      "fixed requirements and deterministic shop/refund rules once the relevant account state is explicitly observed",
+      "Nightmare-Zone-only potion handling, alternative imbue systems, Hard Combat Achievement discount, and the Ardougne elite diary's location-specific Salve requirement",
+      "explicit account-observation requirements for combat state, boss availability, points, time, XP, purchases, imbues, and collection-log/drop state"
+    ],
+    "excluded": [
+      "a recommended five-quest threshold package, enabled-boss list, equipment setup, low-Hitpoints technique, AFK duration, stop condition, or final progression route",
+      "assumed combat readiness, completed quests, defeated bosses, coins, dream entry, points, time, XP, consumable stock, purchases, imbues, Slayer task, or successful exit",
+      "fixed points-per-hour, XP-per-hour, supplies-per-hour, success rate, attention interval, or expected return from a community method",
+      "a claim that Nightmare Zone, Soul Wars, or Emir's Arena is universally the preferable imbue path"
+    ]
+  },
+  "source_catalog": [
+    {"id": "wiki-nightmare-zone-current", "publisher": "Old School RuneScape Wiki", "kind": "wiki", "url": "https://oldschool.runescape.wiki/w/Nightmare_Zone", "checked_at": "2026-08-22", "use": "Current access, transport, eligible quests, modes, costs, boss roster, points, group rules, power-ups, safety, reward resources, and minigame potions."},
+    {"id": "wiki-nightmare-zone-upgrades-current", "publisher": "Old School RuneScape Wiki", "kind": "wiki", "url": "https://oldschool.runescape.wiki/w/Template:Nightmare_Zone_upgrades", "checked_at": "2026-08-22", "use": "Current imbue item list, normal and Hard Combat Achievement point costs, holy wrench requirement, and uncharge/refund behavior."},
+    {"id": "wiki-nightmare-zone-strategies-current", "publisher": "Old School RuneScape Wiki", "kind": "guide", "url": "https://oldschool.runescape.wiki/w/Nightmare_Zone/Strategies", "checked_at": "2026-08-22", "use": "Clearly fenced community setup, boss-selection, low-Hitpoints, attention, and throughput guidance; not authority for a default route or output."},
+    {"id": "wiki-imbuing-current", "publisher": "Old School RuneScape Wiki", "kind": "wiki", "url": "https://oldschool.runescape.wiki/w/Imbuing", "checked_at": "2026-08-22", "use": "NMZ, Soul Wars, and Emir's Arena imbue/reversal boundaries and Hard Combat Achievement refund timing."},
+    {"id": "wiki-salve-amulet-i-current", "publisher": "Old School RuneScape Wiki", "kind": "wiki", "url": "https://oldschool.runescape.wiki/w/Salve_amulet_(i)", "checked_at": "2026-08-22", "use": "Current Salve imbue costs, bonuses, alternative paths, Wilderness loss/refund behavior, and NMZ-only Ardougne-diary qualification."},
+    {"id": "wiki-ardougne-diary-current", "publisher": "Old School RuneScape Wiki", "kind": "wiki", "url": "https://oldschool.runescape.wiki/w/Ardougne_Diary", "checked_at": "2026-08-22", "use": "Ardougne elite task requires a Salve amulet imbued at Nightmare Zone, or equipping one previously imbued there; Soul Wars and scroll alternatives do not satisfy it."},
+    {"id": "official-nmz-launch-devblog", "publisher": "Jagex", "kind": "official", "url": "https://secure.runescape.com/m=news/dev-blog-nightmare-zone-progress?oldschool=1", "checked_at": "2026-08-22", "use": "Original official explanation of supplied quest-specific items and the intended mode structure; current mechanics are taken from current Wiki sources."},
+    {"id": "official-combat-achievements", "publisher": "Jagex", "kind": "official", "url": "https://secure.runescape.com/m=news/combat-achievements?oldschool=1", "checked_at": "2026-08-22", "use": "Official background for Combat Achievement reward tiers; current imbue discount values are corroborated by current item/shop sources."},
+    {"id": "community-bruhsailer-current", "publisher": "BRUHsailer", "kind": "guide", "url": "https://osrsper.github.io/BRUHsailer/", "checked_at": "2026-08-22", "use": "Established Ironman-route evidence for possible NMZ utility stops. It is strategy evidence only."},
+    {"id": "community-reddit-nmz-point-formula", "publisher": "r/2007scape", "kind": "reddit", "url": "https://www.reddit.com/r/2007scape/comments/k6n3gg/i_figured_out_how_nightmare_zone_points_are/", "checked_at": "2026-08-22", "use": "Community investigation of the Dream Mentor/Desert Treasure I point penalty; current package preserves the current Wiki's sourced rule rather than deriving a route."},
+    {"id": "community-youtube-nmz-guide", "publisher": "YouTube", "kind": "youtube", "url": "https://www.youtube.com/results?search_query=OSRS+Nightmare+Zone+guide", "checked_at": "2026-08-22", "use": "Discovery-only source class for current video guides. Individual video loadouts, rates, and AFK claims are strategy candidates and are not normalized as facts."},
+    {"id": "community-github-osrs-tools", "publisher": "GitHub", "kind": "github", "url": "https://github.com/search?q=OSRS+Nightmare+Zone&type=repositories", "checked_at": "2026-08-22", "use": "Discovery-only source class for community calculators/tools. No repository output is treated as a current mechanic unless independently corroborated."}
+  ],
+  "access": {
+    "requirements": {
+      "membership": true,
+      "location": "North-west of the Yanille bank.",
+      "minigame_gate": "At least five completed quests from the eligible roster. Completion, boss availability, and Grouping-teleport readiness are separately observed.",
+      "eligible_quests": ["The Ascent of Arceuus", "Contact!", "The Corsair Curse", "The Depths of Despair", "Desert Treasure I", "Dragon Slayer I", "Dream Mentor", "Fairytale I - Growing Pains", "Family Crest", "Fight Arena", "The Fremennik Isles", "Getting Ahead", "The Grand Tree", "The Great Brain Robbery", "Grim Tales", "Haunted Mine", "Holy Grail", "Horror from the Deep", "In Search of the Myreque", "Legends' Quest", "Lost City", "Lunar Diplomacy", "Monkey Madness I", "Mountain Daughter", "My Arm's Big Adventure", "One Small Favour", "Recipe for Disaster", "Roving Elves", "Shadow of the Storm", "Shilo Village", "Song of the Elves", "Tale of the Righteous", "Tree Gnome Village", "Troll Romance", "Troll Stronghold", "Vampyre Slayer", "What Lies Below", "Witch's House"],
+      "reference_existing_production_facts": ["utility-stop-mage-training-arena", "residual-transport-network", "ardougne-diary-utility-branches"]
+    },
+    "location_and_transport": [
+      "Grouping/Minigame Teleport: Nightmare Zone becomes usable only when the five-quest access condition is met.",
+      "Watchtower Teleport or tablet after Watchtower, then run east.",
+      "Yanille player-owned house Teleport to House/tablet, including a Yanille tablet made with a scroll of redirection.",
+      "Fairy ring CLS then north-west, or CIQ through Yanille; ring of dueling to Castle Wars; Spirit tree to Tree Gnome Village; Ardougne cloak 1 to the monastery; or Fishing Trawler Grouping teleport then south-west.",
+      "Every spellbook, tablet, charge, diary reward, tree/ring access, house location, current position, and travel outcome remains separately observed."
+    ],
+    "unlock_transition": {
+      "event": "player-confirmed completion of five eligible quests and arrival or valid minigame teleport",
+      "deterministic_effects": ["The player can speak to Dominic Onion and start an eligible dream after separately meeting the selected mode's coin and party conditions."],
+      "non_effects": ["Does not grant coins, combat levels, equipment, supplies, boss defeats, points, dream completion, reward ownership, an imbue, or a safe-exit result."]
+    }
+  },
+  "activity_loop": {
+    "entry_inputs": [
+      {"item_or_capability": "five observed completed eligible quests", "behavior": "required to start Nightmare Zone and use its Grouping teleport."},
+      {"item_or_capability": "coins in coffer", "behavior": "required for paid Endurance or Rumble modes; every grouped participant needs the applicable coffer amount."},
+      {"item_or_capability": "combat, inventory, spell, prayer, equipment, and boss-selection state", "behavior": "may affect an attempt but is never inferred from access or from a guide."}
+    ],
+    "reusable_setup": [
+      {"item_or_capability": "Dominic Onion boss customisation", "effect": "A paid Custom Rumble can toggle any boss unlocked from a completed eligible quest. Disabling a quest boss disables every boss from that quest."},
+      {"item_or_capability": "minigame-supplied critical items", "effect": "The arena supplies required anti-dragon shield, magic secateurs, rune pickaxe, and Chronozon runes when relevant. These are instance-only and do not establish ownership outside the dream."},
+      {"item_or_capability": "Nightmare Zone potion barrels", "effect": "Store up to 255 doses of each sold NMZ potion type; withdraw desired doses before a dream without empty vials. Unused doses are not lost on ordinary dream death."}
+    ],
+    "modes_and_costs": [
+      {"mode": "practice", "normal_coins": 0, "hard_coins": 0, "mechanics": "One previously defeated boss, one-on-one, until player or boss death. No combat XP, NMZ points, or Slayer-task credit; normal drops can be awarded on boss defeat."},
+      {"mode": "endurance", "normal_coins": 1000, "hard_coins": 5000, "mechanics": "One-on-one waves through every currently unlocked boss until death or all are defeated. Observed boss kills award their listed mode points. Full current roster totals are 216634 normal or 794770 hard points."},
+      {"mode": "rumble", "normal_coins": 2000, "hard_coins": 6000, "mechanics": "Standard Rumble uses all unlocked bosses. Random-order duplicates spawn endlessly after observed kills; solo has at most four bosses at once and parties of up to five increase the concurrent maximum."},
+      {"mode": "custom-rumble", "normal_coins": 22000, "hard_coins": 26000, "maximum-quest-points-normal_coins": 12000, "maximum-quest-points-hard_coins": 16000, "mechanics": "The host can toggle unlocked bosses. Missing bosses reduce per-kill points; exact selected roster, party, kills, point deltas, and results are observed."}
+    ],
+    "difficulty": {
+      "normal": "Quest bosses use their quest stats and some quest mechanics.",
+      "hard": "Applicable Hitpoints, Attack, Strength, Magic, and Ranged levels increase; Defence and defensive bonuses normally remain unchanged with documented exceptions. Some bosses simplify to Melee while others gain mechanics, including The Untouchable reflecting 20 percent of dealt damage.",
+      "boundary": "A difficulty selection does not demonstrate capability to survive, damage, finish, or safely exit a dream."
+    },
+    "eligible_boss_roster": [
+      {"quest": "The Ascent of Arceuus", "bosses": ["Trapped Soul"]}, {"quest": "Vampyre Slayer", "bosses": ["Count Draynor"]}, {"quest": "The Corsair Curse", "bosses": ["Corsair Traitor"]}, {"quest": "The Depths of Despair", "bosses": ["Sand Snake"]}, {"quest": "Tale of the Righteous", "bosses": ["Corrupt Lizardman"]}, {"quest": "What Lies Below", "bosses": ["King Roald"]}, {"quest": "Witch's House", "bosses": ["Witch's experiment"]}, {"quest": "Mountain Daughter", "bosses": ["The Kendal"]}, {"quest": "Lunar Diplomacy", "bosses": ["Me"]}, {"quest": "Getting Ahead", "bosses": ["Headless Beast"]}, {"quest": "Dragon Slayer I", "bosses": ["Elvarg"]}, {"quest": "Roving Elves", "bosses": ["Moss Guardian"]}, {"quest": "One Small Favour", "bosses": ["Slagilith"]}, {"quest": "Shilo Village", "bosses": ["Nazastarool"]}, {"quest": "Haunted Mine", "bosses": ["Treus Dayth"]}, {"quest": "In Search of the Myreque", "bosses": ["Skeleton Hellhound"]}, {"quest": "Horror from the Deep", "bosses": ["Dagannoth mother"]}, {"quest": "Shadow of the Storm", "bosses": ["Agrith-Naar"]}, {"quest": "Lost City", "bosses": ["Tree spirit"]}, {"quest": "Troll Stronghold", "bosses": ["Dad"]}, {"quest": "Fairytale I - Growing Pains", "bosses": ["Tanglefoot"]}, {"quest": "Tree Gnome Village", "bosses": ["Khazard warlord"]}, {"quest": "Troll Romance", "bosses": ["Arrg"]}, {"quest": "Holy Grail", "bosses": ["Black Knight Titan"]}, {"quest": "The Fremennik Isles", "bosses": ["Ice Troll King"]}, {"quest": "Fight Arena", "bosses": ["Bouncer"]}, {"quest": "Grim Tales", "bosses": ["Glod"]}, {"quest": "Recipe for Disaster - Freeing Sir Amik Varze", "bosses": ["Evil Chicken"]}, {"quest": "Recipe for Disaster - Final battle", "bosses": ["Agrith-Na-Na", "Flambeed", "Karamel", "Dessourt", "Gelatinnoth Mother", "Culinaromancer"]}, {"quest": "Family Crest", "bosses": ["Chronozon"]}, {"quest": "The Grand Tree", "bosses": ["Black demon"]}, {"quest": "My Arm's Big Adventure", "bosses": ["Giant Roc"]}, {"quest": "Desert Treasure I", "bosses": ["Dessous", "Damis", "Fareed", "Kamil"]}, {"quest": "Legends' Quest", "bosses": ["Nezikchened"]}, {"quest": "The Great Brain Robbery", "bosses": ["Barrelchest"]}, {"quest": "Contact!", "bosses": ["Giant Scarab"]}, {"quest": "Monkey Madness I", "bosses": ["Jungle Demon"]}, {"quest": "Song of the Elves", "bosses": ["Elven traitor", "Essyllt"]}, {"quest": "Dream Mentor", "bosses": ["The Untouchable", "The Everlasting", "The Inadequacy"]}
+    ],
+    "point_and_powerup_mechanics": [
+      "The published boss table's normal/hard values are maximum per-kill points assuming every quest is complete and every boss enabled. In teams, points are split by damage; Rumble can only select bosses available to every party member.",
+      "If Dream Mentor bosses are enabled while Desert Treasure I bosses are disabled, all kills take an 83.33 percent (one-sixth) point penalty. Preserve selected quests/bosses as observations rather than automatically calculating a route's earnings.",
+      "One hard Rumble can award at most 1048575 points. The reward chest can hold at most 2147483647 points.",
+      "Rumble-only random power-ups disappear after one minute unclaimed: Recurrent damage lasts 45 seconds and adds a no-XP 75-percent follow-up hit; Zapper lasts one minute and damages nearby eligible bosses; Power surge lasts 45 seconds and restores/regenerates special attack; Ultimate force kills current bosses without NMZ points. Slayer credit/drop behavior for Ultimate force requires the player to have dealt at least one damage to the relevant boss.",
+      "Boss-specific attacks, requirements, immunities, reflections, poison, prayers, stat drains, supplied items, drops, kill credit, Slayer compatibility, and point delta require a selected-boss and observed-event model."
+    ],
+    "completion_or_reward_events": [
+      {"event": "player-confirmed paid dream entry", "determinism": "subtract the selected stated coin fee only from observed coins; no combat result, points, XP, or supplies are created."},
+      {"event": "player-confirmed boss kill or failed/ended dream", "determinism": "record only reported selected boss, difficulty, mode, points/XP/Slayer/drop deltas, consumables, and exit/death outcome. Published mechanics validate reports but do not synthesize them."},
+      {"event": "player-confirmed Reward Shop purchase", "determinism": "subtract the exact observed point cost and transform the selected confirmed item only after requirements are met; earning points and future utility remain external observations."}
+    ],
+    "failure_and_death": {
+      "ordinary_account_safety": "Nightmare Zone is a safe instance. Ordinary dream death does not lose equipment; stored unwithdrawn potion-barrel doses are not lost.",
+      "hardcore_group_iron_boundary": "A Hardcore Group Iron death is not safe. To avoid life loss, leave by drinking a dream potion on the north or south side of the arena.",
+      "exit_and_logout": "Leaving the arena, drinking an exit dream potion, or a six-hour log ends the dream and restores stats to normal. Logging out inside the arena ends the dream and returns the player to the lobby.",
+      "instance_boundary": "Practice, Endurance, Rumble, party membership, current bosses, points during a dream, supplied items, power-ups, and combat events do not persist as inferred account state."
+    },
+    "repeatability": {
+      "repeatable": true,
+      "cycle": "A paid dream can be started again only with current access, observed coins, selected mode/party state, and player-confirmed entry.",
+      "rng_boundary": "A plan never implies continued attempts, selected boss order, survival, output, or a particular number of hours."
+    }
+  },
+  "currencies": [
+    {"id": "nightmare-zone-points", "acquisition": "player_observed", "spend_behavior": "Observed eligible Endurance/Rumble boss events can change this balance; Practice gives no points. Reward chest balance is capped at 2147483647. Spend only after an observed balance and selected valid purchase; never derive points from a planned boss list or time estimate.", "cap": 2147483647},
+    {"id": "nightmare-zone-coffer-coins", "acquisition": "player_observed", "spend_behavior": "Observed ordinary coins placed or available in the coffer. Entry fees are fixed by selected mode/difficulty but party, entry, and payment are observed."},
+    {"id": "nightmare-zone-potion-barrel-doses", "acquisition": "player_observed", "spend_behavior": "Observed shop purchases create stored doses. Each potion barrel holds up to 255 doses; withdrawals and in-dream consumption are report-only."}
+  ],
+  "rewards": [
+    {"id": "resource-shop", "acquisition": "shop", "utility": ["Resources tab stock and exact point prices: flax 75, bucket of sand 200, seaweed 200, compost potion(4) 5000, air/water/earth/fire rune 25 each, rune essence 60, pure essence 70, herb box 9500, vial of water 145, scroll of redirection 775."], "requirements": "Observed NMZ points and selected stock. Ironmen may purchase only scrolls of redirection from this tab; herb boxes also have a 15-per-day purchase limit."},
+    {"id": "nightmare-zone-potions", "acquisition": "shop", "utility": ["Nightmare-Zone-only super ranging(1) and super magic(1) cost 250 points per dose; overload(1) costs 1500; absorption(1) costs 1000."], "requirements": "Observed points and barrel capacity. Potions are usable only in an NMZ dream; normal overload damage is not absorbed by absorption."},
+    {"id": "imbue-black-mask-or-slayer-helmet", "acquisition": "shop", "utility": ["Black mask(i) or Slayer helmet(i) improves Magic/Ranged Slayer-task accuracy and damage by 15 percent."], "requirements": "Observed base item and 1250000 NMZ points, or 625000 after Hard Combat Achievements are claimed. Treat black-mask-to-helmet assembly state as observed."},
+    {"id": "imbue-salve", "acquisition": "shop", "utility": ["Salve amulet(i)/(ei) has strengthened undead bonuses; a Nightmare-Zone imbue is the qualifying form for the Ardougne elite diary task."], "requirements": "Observed Salve amulet or enchanted Salve, 800000 NMZ points or 400000 after Hard Combat Achievements, Haunted Mine completion for the item, and NMZ access. Soul Wars and Emir's Arena versions do not satisfy the diary task."},
+    {"id": "imbue-ring-of-suffering", "acquisition": "shop", "utility": ["Ring of suffering(i) doubles equipment bonuses."], "requirements": "Observed base ring and 725000 NMZ points, or 362500 after Hard Combat Achievements."},
+    {"id": "imbue-ring-of-the-gods", "acquisition": "shop", "utility": ["Ring of the gods(i) doubles Prayer bonus and gains holy-wrench effect while equipped."], "requirements": "Observed base ring, holy wrench in inventory, and 650000 NMZ points, or 325000 after Hard Combat Achievements."},
+    {"id": "imbue-standard-fremennik-rings", "acquisition": "shop", "utility": ["Berserker, warrior, archers, seers, tyrannical, and treasonous ring imbues each double equipment bonuses."], "requirements": "Each needs its observed base ring and 650000 NMZ points, or 325000 after Hard Combat Achievements."},
+    {"id": "imbue-granite-ring", "acquisition": "shop", "utility": ["Granite ring(i) doubles equipment bonuses."], "requirements": "Observed Granite ring and 500000 NMZ points, or 250000 after Hard Combat Achievements."},
+    {"id": "boss-drops-and-slayer-credit", "acquisition": "mixed", "utility": ["Some Nightmare Zone bosses have listed drops and some can provide Slayer credit/XP when on an applicable observed task."], "requirements": "Selected eligible boss, player-confirmed kill/damage/assignment, and mode-specific rules. Practice boss kills can award drops but do not grant combat XP, NMZ points, or Slayer-task credit."}
+  ],
+  "dependencies_and_bypasses": [
+    {"target": "five eligible completed quests", "relationship": "requires", "detail": "Access requires any five completed quests from the live eligible roster; the model must record exactly which are confirmed rather than selecting a default five."},
+    {"target": "customisable Rumble", "relationship": "requires", "detail": "Needs observed NMZ access, 22000/26000 coins or maximum-quest-points 12000/16000 cost, and selected confirmed unlocked bosses."},
+    {"target": "Nightmare Zone Grouping teleport", "relationship": "unlocks", "detail": "The teleport is a transport convenience after observed NMZ access, not evidence of a completed dream or combat readiness."},
+    {"target": "scroll of redirection", "relationship": "produces", "detail": "Ironman-eligible deterministic Resources-tab purchase at 775 observed NMZ points; it supports Yanille house-tablet transport but does not move the player automatically."},
+    {"target": "Ardougne elite Salve task", "relationship": "requires", "detail": "A Salve imbued at NMZ, not a Soul Wars Zeal or Emir's Arena scroll imbue, is accepted. Completion remains player-confirmed."},
+    {"target": "Soul Wars imbue", "relationship": "alternative_to", "detail": "Alternative item imbue path using Zeal Tokens, but it cannot be unimbued for NMZ points and does not qualify the NMZ-specific Ardougne task."},
+    {"target": "Emir's Arena scroll of imbuing", "relationship": "alternative_to", "detail": "Alternative imbue path; uncharging returns the scroll, but it is not the NMZ-specific diary qualification."},
+    {"target": "Hard Combat Achievements", "relationship": "improves", "detail": "Claimed Hard-tier reward halves NMZ imbue cost. Do not infer task completion or claim state from a desired discounted price."},
+    {"target": "minigame-supplied quest items", "relationship": "alternative_to", "detail": "Arena supplies named fight-critical items such as anti-dragon shield, secateurs, pickaxe, and Chronozon runes only inside relevant dreams; it does not bypass access, encounter readiness, or external ownership."}
+  ],
+  "afk_and_attention": {
+    "attention_class": "mixed",
+    "measured_interaction_interval_seconds": null,
+    "logout_or_idle_constraints": ["Combat, boss mechanics, poison/absorption exceptions, stat boosts, consumable availability, party state, power-up spawns, Rapid Heal interaction, target changes, six-hour logout, and safe exits depend on actual selected bosses, build, player actions, and mode.", "A guide's low-attention or AFK claim does not prove a particular account can survive, maintain a potion state, avoid a Hardcore Group Iron death, or earn a stated output.", "Record a player-measured elapsed time, interactions, supplied inventory, outcome, points, XP, and failures before any strategy layer compares NMZ to another activity."],
+    "source_boundary": "Community AFK methods, boss lists, overload/absorption timing, low-Hitpoints techniques, and stop recommendations are strategy candidates only."
+  },
+  "community_strategy_observations": [
+    {"claim": "Community guides commonly choose a small custom Rumble roster, combine absorption with overload or other boosts, and use a low-Hitpoints technique to reduce absorption damage.", "source_ids": ["wiki-nightmare-zone-strategies-current", "community-youtube-nmz-guide"], "treatment": "strategy-candidate-not-fact", "boundary": "Do not assume rock cake/locator orb ownership, Hitpoints level, protection, potion stock, survival, attention period, XP, or points."},
+    {"claim": "Community material treats certain boss rosters as more convenient or higher-point and suggests particular Slayer or combat-training configurations.", "source_ids": ["wiki-nightmare-zone-strategies-current", "community-reddit-nmz-point-formula"], "treatment": "strategy-candidate-not-fact", "boundary": "Boss availability, quest completion, gear, accuracy, task assignment, grouping, execution, and current mechanics vary. A central strategy model must score a supplied account state rather than adopt a roster here."},
+    {"claim": "Established Ironman routes may schedule NMZ for redirection scrolls, a specific imbue, or combat training.", "source_ids": ["community-bruhsailer-current"], "treatment": "strategy-candidate-not-fact", "boundary": "The value of an imbue, transport tablet, points, time, combat XP, and opportunity cost belongs in later scoring; this package does not set a target or timing."}
+  ],
+  "state_boundaries": [
+    "Never infer membership, five-quest eligibility, exact completed quests, individual unlocked bosses, previously defeated Practice boss, current location, Grouping teleport, party, coffer coins, dream entry, mode, difficulty, customisation, boss order, or active power-up.",
+    "Never infer combat levels, equipment, spells, prayers, consumables, overload/absorption dose counts, special-attack energy, current/maximum Hitpoints, poison, kill capability, task assignment, combat readiness, safety, death, exit, damage, or successful completion from a guide or planned action.",
+    "Published points, cost tables, caps, and boss properties validate player-reported observations but do not accumulate points, time, XP, drops, kills, Slayer credit, potion use, or purchases automatically.",
+    "A normal-account safe dream does not imply a Hardcore Group Iron safe death. Logouts and exits end dreams; report their actual result before adjusting any account observation.",
+    "All purchases and imbues need reported current point balance, selected base item, relevant prerequisite, Hard Combat Achievement claim state, and player-confirmed transaction. Uncharging is an observed transaction, not an automatic optimization.",
+    "Salve's NMZ origin, base/enhanced state, imbue state, diary acceptance, collection-log state, and any Wilderness-loss reimbursement origin must be explicitly stored; the visual '(i)' result alone does not prove NMZ origin."
+  ],
+  "proposed_normalization": {
+    "facts": [
+      {"id": "nightmare-zone-current-access-and-dream-mechanics", "treatment": "proposed-new", "content": "Current five-eligible-quest access, Yanille/teleport alternatives, modes, fixed costs, party/customisation rules, boss roster, point constraints, power-ups, supplied items, safety, exit, and non-inference boundaries."},
+      {"id": "nightmare-zone-current-rewards-and-imbues", "treatment": "proposed-new", "content": "Current Resources, Benefits, all NMZ imbue rows/costs/discounts, reversible/refund behavior, Ironman Resources-tab limitation, alternate imbues, and diary-specific Salve provenance."},
+      {"id": "nightmare-zone-ardougne-salve-bridge", "treatment": "amend-existing", "targets": ["ardougne-diary-utility-branches"], "content": "Reconcile the existing NMZ Salve task branch with observed point balance, claimed Hard Combat Achievement discount, exact NMZ provenance, and alternative-path non-qualification without changing strategy score."}
+    ],
+    "actions": [
+      {"id": "action:record-nightmare-zone-observation", "treatment": "proposed-new", "requirements": "player-reported access, optional confirmed eligible quest/boss set, and optional dream/encounter/reward observation", "transition": "store report-only state and validate fixed caps/costs/roster references; never create a point, kill, XP, item, combat-readiness, or timer result."},
+      {"id": "action:start-nightmare-zone-dream", "treatment": "proposed-new", "requirements": "observed NMZ access, selected mode/difficulty, observed appropriate coins, and party/customisation observations where applicable", "transition": "subtract only the exact observed entry fee after confirmed entry; create no automatic output."},
+      {"id": "action:buy-nightmare-zone-reward", "treatment": "proposed-new", "requirements": "observed NMZ point balance, selected reward, selected quantity, Ironman-tab eligibility where relevant, daily herb-box count where relevant, and item-specific requirements", "transition": "apply exact observed cost only after a confirmed purchase; add only fixed purchased resource/benefit/imbue state and never infer use or utility."},
+      {"id": "action:uncharge-nightmare-zone-imbue", "treatment": "proposed-new", "requirements": "observed NMZ-origin imbued item and player-confirmed uncharge", "transition": "remove the selected imbue and refund its current NMZ cost under the observed Hard Combat Achievement claim state; do not automatically claim Combat Achievement rewards or re-imbue items."},
+      {"id": "action:complete-ardougne-elite-nmz-salve-task", "treatment": "amend-existing", "requirements": "observed NMZ-origin Salve amulet(i)/(ei), Haunted Mine/diary gate as separately modeled, NMZ access, and player-confirmed task event", "transition": "record diary completion only; do not infer the 400000/800000 points were earned in the current session."}
+    ],
+    "graph_nodes": ["activity:nightmare-zone", "currency:nightmare-zone-points", "condition:five-nightmare-zone-quests", "mode:nightmare-zone-practice", "mode:nightmare-zone-endurance", "mode:nightmare-zone-rumble", "goal:nightmare-zone-salve-imbue", "goal:nightmare-zone-redirection-scroll", "capability:nightmare-zone-grouping-teleport", "capability:nightmare-zone-potion-barrel", "diary:ardougne-elite-nmz-salve"],
+    "graph_edges": [
+      {"from": "condition:five-nightmare-zone-quests", "to": "activity:nightmare-zone", "type": "requires", "evidence": "At least five live-roster quests must be completed."},
+      {"from": "activity:nightmare-zone", "to": "capability:nightmare-zone-grouping-teleport", "type": "unlocks", "evidence": "Grouping teleport is available only after access condition is met."},
+      {"from": "activity:nightmare-zone", "to": "currency:nightmare-zone-points", "type": "produces", "evidence": "Only observed eligible Endurance/Rumble boss events can produce point deltas; Practice does not."},
+      {"from": "currency:nightmare-zone-points", "to": "goal:nightmare-zone-redirection-scroll", "type": "requires", "evidence": "Scroll costs 775 observed points and is Ironman-eligible from Resources."},
+      {"from": "currency:nightmare-zone-points", "to": "goal:nightmare-zone-salve-imbue", "type": "requires", "evidence": "Salve imbue costs 800000 or 400000 with claimed Hard Combat Achievements."},
+      {"from": "goal:nightmare-zone-salve-imbue", "to": "diary:ardougne-elite-nmz-salve", "type": "requires", "evidence": "Diary requires NMZ-origin Salve imbue, unlike Soul Wars/Emir alternatives."},
+      {"from": "currency:nightmare-zone-points", "to": "capability:nightmare-zone-potion-barrel", "type": "produces", "evidence": "Observed point purchases can add per-dose NMZ-only potion stock."}
+    ],
+    "account_observations": [
+      {"key": "nightmare_zone_access_observation", "type": "object", "shape": {"eligible_quests_confirmed": "set", "eligible_bosses_confirmed": "set", "grouping_teleport_available": "boolean_or_null", "observed_at": "RFC3339_timestamp_or_null"}, "rule": "At least five confirmed eligible quests can validate access; never choose or backfill a quest/boss set."},
+      {"key": "nightmare_zone_balance_observation", "type": "object", "shape": {"points": "integer_0_to_2147483647_or_null", "coffer_coins": "integer_or_null", "hard_combat_achievements_claimed": "boolean_or_null", "observed_at": "RFC3339_timestamp_or_null"}, "rule": "Balances and discount claim are report-only. No action accrues point totals from time or a proposed roster."},
+      {"key": "nightmare_zone_encounter_observation", "type": "object", "shape": {"mode": "practice|endurance|rumble|custom-rumble|unknown", "difficulty": "normal|hard|unknown", "selected_bosses": "set", "party_size": "integer_1_to_5_or_null", "started": "boolean_or_null", "ended_by": "unknown|exit|logout|ordinary-death|hardcore-death|completion", "reported_point_delta": "integer_or_null", "reported_xp": "map_or_null", "reported_elapsed_minutes": "number_or_null", "reported_consumables": "map_or_null"}, "rule": "All combat/encounter outcomes are descriptive. Validate fixed fees and caps only when values are supplied."},
+      {"key": "nightmare_zone_reward_observation", "type": "object", "shape": {"potion_barrels": "map_of_integer_0_to_255_or_null", "resources_purchased": "map_or_null", "herb_boxes_bought_today": "integer_0_to_15_or_null", "imbues": "set_with_origin_nightmare-zone|soul-wars|emirs-arena|unknown", "salve_nightmare_zone_origin": "boolean_or_null", "collection_log_or_drop_state": "set"}, "rule": "Item presence, origin, uses, refund, diary acceptance, and purchase quantities require player confirmation."},
+      {"key": "combat_readiness_observation", "type": "object", "shape": {"skills": "player-reported map", "equipment": "player-reported set", "spells_prayers": "player-reported set", "supplies": "player-reported map", "slayer_task": "player-reported object_or_null"}, "rule": "This package may consume observations but must never infer readiness from a guide, quest count, desired boss list, or mode."}
+    ]
+  },
+  "conflicts_and_unknowns": [
+    {"id": "nightmare-zone-boss-output-is-variable", "status": "intentional-model-boundary", "detail": "Published boss values are maxima under a fully enabled roster. Damage share, party, enabled quests, boss spawn order, power-ups, mechanics, selection, accuracy, and survival prevent automatic point/XP/kill estimates."},
+    {"id": "hard-combat-achievement-refund-timing", "status": "current-mechanics-boundary", "detail": "The Hard reward halves future imbue cost. To realize the current-cost refund behavior, an NMZ-origin imbue must be uncharged before claiming the reward; this is an observed transaction sequence, not an automatic recommendation."},
+    {"id": "salve-diary-provenance", "status": "cross-package-dependency", "detail": "Ardougne elite accepts an NMZ-origin Salve imbue/equip event. Equivalent Soul Wars or Emir's Arena imbues are mechanically valid items but do not satisfy this diary condition."},
+    {"id": "ironman-resources-tab-limit", "status": "current-mechanics-boundary", "detail": "Current Wiki documentation states Ironmen may buy only scrolls of redirection from Resources. Model the other resource costs as factual stock, but do not expose them as Ironman purchases."},
+    {"id": "community-afk-and-stop-claims", "status": "intentional-strategy-boundary", "detail": "Guide rates, boss lists, absorption/overload timing, low-Hitpoints behavior, and stop advice are not normalized as deterministic readiness, throughput, or route content."}
+  ],
+  "coverage": {
+    "access": true,
+    "loop": true,
+    "currencies": true,
+    "rewards": true,
+    "failure_state": true,
+    "sources": true,
+    "normalization": true,
+    "eligible_quests_covered": 38,
+    "boss_roster_grouped_by_quest": true,
+    "mode_costs_covered": true,
+    "shop_categories_covered": ["Resources", "Upgrades/imbues", "Benefits/NMZ-only potions"],
+    "production_files_modified": 0
+  }
+}
