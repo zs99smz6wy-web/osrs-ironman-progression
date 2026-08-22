@@ -17,7 +17,8 @@ REQUIRED_STATE_KEYS = {
     "skills", "skill_xp", "quests_completed", "completed_actions", "transport_flags", "milestones",
     "gear_thresholds", "items", "resources", "counters", "passive_loops", "recurring_observations",
     "kingdom_observation", "combat_readiness_observation", "encounter_observations",
-    "slayer_task", "unique_item_observations", "diary_tiers", "kourend_memoir",
+    "slayer_task", "unique_item_observations", "sailing_observation", "perilous_moons_observation",
+    "farming_recurrence_observation", "diary_tiers", "kourend_memoir",
     "attention_window", "notable_drops", "preferences", "cash_commitments",
 }
 LIST_STATE_KEYS = {
@@ -47,6 +48,38 @@ UNIQUE_ITEM_OBSERVATION_FIELDS = {
 UNIQUE_ITEM_POSSESSION_STATES = {"unknown", "owned", "not_owned"}
 COLLECTION_LOG_STATES = {"unknown", "confirmed", "not_confirmed"}
 UNIQUE_ITEM_CONDITIONS = {"pristine", "degraded", "broken"}
+SAILING_OBSERVATION_FIELDS = {"observed_at", "vessel", "recovery", "tasks"}
+SAILING_VESSEL_FIELDS = {
+    "boat_type", "component_tiers", "facilities", "hull_hitpoints", "hull_max_hitpoints",
+    "cargo_hold", "last_gangplank", "last_mooring_point",
+}
+SAILING_RECOVERY_FIELDS = {"last_event", "cargo_loss_observed"}
+SAILING_TASK_FIELDS = {
+    "task_id", "kind", "origin", "destination", "cargo_item", "cargo_quantity", "bounty_target",
+    "bounty_item_count", "slots_used", "status", "cargo_loaded", "observed_at",
+}
+SAILING_TASK_KINDS = {"courier", "bounty", "unknown"}
+SAILING_RECOVERY_EVENTS = {"unknown", "none", "capsize", "quick_transport", "ship_recovery", "death"}
+SAILING_TASK_STATUSES = {"unknown", "accepted", "completed", "cancelled", "failed", "recovered"}
+MOON_BOSS_IDS = {"blood_moon", "blue_moon", "eclipse_moon"}
+PERILOUS_MOONS_OBSERVATION_FIELDS = {"observed_at", "run", "internal_supplies", "death_recovery"}
+MOONS_RUN_FIELDS = {"run_id", "bosses_defeated", "defeat_order", "campsite_location", "lunar_chest_opened", "inside_neyzpotli"}
+MOONS_INTERNAL_SUPPLY_FIELDS = {
+    "raw_bream", "cooked_bream", "moss_lizard", "moonlight_grub_paste", "moonlight_potion", "moth",
+}
+MOONS_DEATH_RECOVERY_FIELDS = {"last_death_observed_at", "grave_location", "grave_active_minutes_remaining", "reclaim_status"}
+MOONS_RECLAIM_STATUSES = {"unknown", "in_grave", "recovered", "expired", "deaths_office"}
+FARMING_RECURRENCE_FIELDS = {"observed_at", "patches", "hespori", "anima_patch"}
+FARMING_PATCH_FIELDS = {
+    "patch_id", "patch_type", "seed_id", "planted_at", "growth_class", "growth_ticks_observed",
+    "disease_state", "harvest_lives_remaining", "compost_id", "protection_state", "ready_observed", "observed_at",
+}
+FARMING_DISEASE_STATES = {"unknown", "disease_free", "diseased", "dead", "cleared"}
+FARMING_PROTECTION_STATES = {"unknown", "protected", "unprotected", "not_applicable"}
+HESPORI_OBSERVATION_FIELDS = {"seed_present", "planted_at", "state", "last_defeat_at", "last_harvest_at", "ready_observed"}
+HESPORI_STATES = {"unknown", "seeded", "growing", "ready", "defeated", "harvested"}
+ANIMA_PATCH_FIELDS = {"seed_id", "planted_at", "state", "active_effect", "ready_observed"}
+ANIMA_PATCH_STATES = {"unknown", "active", "expired", "cleared"}
 SLAYER_TASK_FIELDS = {
     "target", "remaining", "initial_count", "master", "streak", "points",
     "blocked_targets", "observed_at",
@@ -124,6 +157,25 @@ def _validate_supply_counts(values: Any, context: str) -> None:
             raise ValueError(f"{context} has an invalid item ID")
         if isinstance(count, bool) or not isinstance(count, int) or count < 0:
             raise ValueError(f"{context}.{item_id} must be a non-negative integer")
+
+
+def _validate_nullable_timestamp(value: Any, context: str) -> None:
+    if value is not None and not _is_rfc_3339_timestamp(value):
+        raise ValueError(f"{context} must be RFC 3339 or null")
+
+
+def _validate_nullable_boolean(value: Any, context: str) -> None:
+    if value is not None and not isinstance(value, bool):
+        raise ValueError(f"{context} must be boolean or null")
+
+
+def _validate_unique_trimmed_strings(values: Any, context: str) -> None:
+    if (
+        not isinstance(values, list)
+        or any(not isinstance(value, str) or not value.strip() or value != value.strip() for value in values)
+        or len(values) != len(set(values))
+    ):
+        raise ValueError(f"{context} must be unique trimmed strings")
 
 
 def validate_account_state(state: dict[str, Any]) -> None:
@@ -335,6 +387,198 @@ def validate_account_state(state: dict[str, Any]) -> None:
             raise ValueError(f"Account state unique_item_observations.{item_id}.owned quantity must be positive")
         if observation["possession"] == "unknown" and observation["quantity"] is not None:
             raise ValueError(f"Account state unique_item_observations.{item_id}.unknown possession requires null quantity")
+
+    sailing = state["sailing_observation"]
+    if sailing is not None:
+        if not isinstance(sailing, dict) or set(sailing) != SAILING_OBSERVATION_FIELDS:
+            raise ValueError("Account state sailing_observation has invalid fields")
+        if not _is_rfc_3339_timestamp(sailing["observed_at"]):
+            raise ValueError("Account state sailing_observation.observed_at must be RFC 3339")
+
+        vessel = sailing["vessel"]
+        if not isinstance(vessel, dict) or set(vessel) != SAILING_VESSEL_FIELDS:
+            raise ValueError("Account state sailing_observation.vessel has invalid fields")
+        _validate_nullable_trimmed_string(vessel["boat_type"], "Account state sailing_observation.vessel.boat_type")
+        component_tiers = vessel["component_tiers"]
+        if not isinstance(component_tiers, dict):
+            raise ValueError("Account state sailing_observation.vessel.component_tiers must be an object")
+        for component_id, tier in component_tiers.items():
+            if not isinstance(component_id, str) or not component_id.strip() or component_id != component_id.strip():
+                raise ValueError("Account state sailing_observation.vessel.component_tiers has an invalid component ID")
+            _validate_nullable_non_negative_integer(
+                tier, f"Account state sailing_observation.vessel.component_tiers.{component_id}"
+            )
+        _validate_unique_trimmed_strings(
+            vessel["facilities"], "Account state sailing_observation.vessel.facilities"
+        )
+        for field in ("hull_hitpoints", "hull_max_hitpoints"):
+            _validate_nullable_non_negative_integer(
+                vessel[field], f"Account state sailing_observation.vessel.{field}"
+            )
+        if (
+            vessel["hull_hitpoints"] is not None
+            and vessel["hull_max_hitpoints"] is not None
+            and vessel["hull_hitpoints"] > vessel["hull_max_hitpoints"]
+        ):
+            raise ValueError("Account state sailing_observation.vessel.hull_hitpoints cannot exceed hull_max_hitpoints")
+        _validate_supply_counts(vessel["cargo_hold"], "Account state sailing_observation.vessel.cargo_hold")
+        for field in ("last_gangplank", "last_mooring_point"):
+            _validate_nullable_trimmed_string(
+                vessel[field], f"Account state sailing_observation.vessel.{field}"
+            )
+
+        recovery = sailing["recovery"]
+        if not isinstance(recovery, dict) or set(recovery) != SAILING_RECOVERY_FIELDS:
+            raise ValueError("Account state sailing_observation.recovery has invalid fields")
+        if recovery["last_event"] not in SAILING_RECOVERY_EVENTS:
+            raise ValueError("Account state sailing_observation.recovery.last_event is invalid")
+        _validate_nullable_boolean(
+            recovery["cargo_loss_observed"], "Account state sailing_observation.recovery.cargo_loss_observed"
+        )
+
+        tasks = sailing["tasks"]
+        if not isinstance(tasks, list):
+            raise ValueError("Account state sailing_observation.tasks must be an array")
+        seen_task_ids: set[str] = set()
+        for index, task in enumerate(tasks):
+            context = f"Account state sailing_observation.tasks[{index}]"
+            if not isinstance(task, dict) or set(task) != SAILING_TASK_FIELDS:
+                raise ValueError(f"{context} has invalid fields")
+            task_id = task["task_id"]
+            if not isinstance(task_id, str) or not task_id.strip() or task_id != task_id.strip():
+                raise ValueError(f"{context}.task_id must be a non-empty trimmed string")
+            if task_id in seen_task_ids:
+                raise ValueError("Account state sailing_observation.tasks must have unique task IDs")
+            seen_task_ids.add(task_id)
+            if task["kind"] not in SAILING_TASK_KINDS:
+                raise ValueError(f"{context}.kind is invalid")
+            for field in ("origin", "destination", "cargo_item", "bounty_target"):
+                _validate_nullable_trimmed_string(task[field], f"{context}.{field}")
+            for field in ("cargo_quantity", "bounty_item_count", "slots_used"):
+                _validate_nullable_non_negative_integer(task[field], f"{context}.{field}")
+            if task["status"] not in SAILING_TASK_STATUSES:
+                raise ValueError(f"{context}.status is invalid")
+            _validate_nullable_boolean(task["cargo_loaded"], f"{context}.cargo_loaded")
+            if not _is_rfc_3339_timestamp(task["observed_at"]):
+                raise ValueError(f"{context}.observed_at must be RFC 3339")
+
+    moons = state["perilous_moons_observation"]
+    if moons is not None:
+        if not isinstance(moons, dict) or set(moons) != PERILOUS_MOONS_OBSERVATION_FIELDS:
+            raise ValueError("Account state perilous_moons_observation has invalid fields")
+        if not _is_rfc_3339_timestamp(moons["observed_at"]):
+            raise ValueError("Account state perilous_moons_observation.observed_at must be RFC 3339")
+
+        run = moons["run"]
+        if not isinstance(run, dict) or set(run) != MOONS_RUN_FIELDS:
+            raise ValueError("Account state perilous_moons_observation.run has invalid fields")
+        _validate_nullable_trimmed_string(run["run_id"], "Account state perilous_moons_observation.run.run_id")
+        for field in ("bosses_defeated", "defeat_order"):
+            _validate_unique_trimmed_strings(run[field], f"Account state perilous_moons_observation.run.{field}")
+            if any(boss_id not in MOON_BOSS_IDS for boss_id in run[field]):
+                raise ValueError(f"Account state perilous_moons_observation.run.{field} has an invalid Moon ID")
+        if not set(run["defeat_order"]).issubset(run["bosses_defeated"]):
+            raise ValueError("Account state perilous_moons_observation.run.defeat_order must be a subset of bosses_defeated")
+        _validate_nullable_trimmed_string(
+            run["campsite_location"], "Account state perilous_moons_observation.run.campsite_location"
+        )
+        for field in ("lunar_chest_opened", "inside_neyzpotli"):
+            _validate_nullable_boolean(run[field], f"Account state perilous_moons_observation.run.{field}")
+
+        internal_supplies = moons["internal_supplies"]
+        if not isinstance(internal_supplies, dict) or set(internal_supplies) != MOONS_INTERNAL_SUPPLY_FIELDS:
+            raise ValueError("Account state perilous_moons_observation.internal_supplies has invalid fields")
+        for item_id, quantity in internal_supplies.items():
+            _validate_nullable_non_negative_integer(
+                quantity, f"Account state perilous_moons_observation.internal_supplies.{item_id}"
+            )
+
+        death_recovery = moons["death_recovery"]
+        if not isinstance(death_recovery, dict) or set(death_recovery) != MOONS_DEATH_RECOVERY_FIELDS:
+            raise ValueError("Account state perilous_moons_observation.death_recovery has invalid fields")
+        _validate_nullable_timestamp(
+            death_recovery["last_death_observed_at"],
+            "Account state perilous_moons_observation.death_recovery.last_death_observed_at",
+        )
+        _validate_nullable_trimmed_string(
+            death_recovery["grave_location"],
+            "Account state perilous_moons_observation.death_recovery.grave_location",
+        )
+        _validate_nullable_non_negative_integer(
+            death_recovery["grave_active_minutes_remaining"],
+            "Account state perilous_moons_observation.death_recovery.grave_active_minutes_remaining",
+        )
+        if death_recovery["reclaim_status"] not in MOONS_RECLAIM_STATUSES:
+            raise ValueError("Account state perilous_moons_observation.death_recovery.reclaim_status is invalid")
+
+    farming = state["farming_recurrence_observation"]
+    if farming is not None:
+        if not isinstance(farming, dict) or set(farming) != FARMING_RECURRENCE_FIELDS:
+            raise ValueError("Account state farming_recurrence_observation has invalid fields")
+        if not _is_rfc_3339_timestamp(farming["observed_at"]):
+            raise ValueError("Account state farming_recurrence_observation.observed_at must be RFC 3339")
+
+        patches = farming["patches"]
+        if not isinstance(patches, list):
+            raise ValueError("Account state farming_recurrence_observation.patches must be an array")
+        seen_patch_ids: set[str] = set()
+        for index, patch in enumerate(patches):
+            context = f"Account state farming_recurrence_observation.patches[{index}]"
+            if not isinstance(patch, dict) or set(patch) != FARMING_PATCH_FIELDS:
+                raise ValueError(f"{context} has invalid fields")
+            for field in ("patch_id", "patch_type"):
+                value = patch[field]
+                if not isinstance(value, str) or not value.strip() or value != value.strip():
+                    raise ValueError(f"{context}.{field} must be a non-empty trimmed string")
+            if patch["patch_id"] in seen_patch_ids:
+                raise ValueError("Account state farming_recurrence_observation.patches must have unique patch IDs")
+            seen_patch_ids.add(patch["patch_id"])
+            for field in ("seed_id", "growth_class", "compost_id"):
+                _validate_nullable_trimmed_string(patch[field], f"{context}.{field}")
+            _validate_nullable_timestamp(patch["planted_at"], f"{context}.planted_at")
+            for field in ("growth_ticks_observed", "harvest_lives_remaining"):
+                _validate_nullable_non_negative_integer(patch[field], f"{context}.{field}")
+            if patch["disease_state"] not in FARMING_DISEASE_STATES:
+                raise ValueError(f"{context}.disease_state is invalid")
+            if patch["protection_state"] not in FARMING_PROTECTION_STATES:
+                raise ValueError(f"{context}.protection_state is invalid")
+            _validate_nullable_boolean(patch["ready_observed"], f"{context}.ready_observed")
+            if not _is_rfc_3339_timestamp(patch["observed_at"]):
+                raise ValueError(f"{context}.observed_at must be RFC 3339")
+
+        hespori = farming["hespori"]
+        if hespori is not None:
+            if not isinstance(hespori, dict) or set(hespori) != HESPORI_OBSERVATION_FIELDS:
+                raise ValueError("Account state farming_recurrence_observation.hespori has invalid fields")
+            _validate_nullable_boolean(
+                hespori["seed_present"], "Account state farming_recurrence_observation.hespori.seed_present"
+            )
+            for field in ("planted_at", "last_defeat_at", "last_harvest_at"):
+                _validate_nullable_timestamp(
+                    hespori[field], f"Account state farming_recurrence_observation.hespori.{field}"
+                )
+            if hespori["state"] not in HESPORI_STATES:
+                raise ValueError("Account state farming_recurrence_observation.hespori.state is invalid")
+            _validate_nullable_boolean(
+                hespori["ready_observed"], "Account state farming_recurrence_observation.hespori.ready_observed"
+            )
+
+        anima = farming["anima_patch"]
+        if anima is not None:
+            if not isinstance(anima, dict) or set(anima) != ANIMA_PATCH_FIELDS:
+                raise ValueError("Account state farming_recurrence_observation.anima_patch has invalid fields")
+            for field in ("seed_id", "active_effect"):
+                _validate_nullable_trimmed_string(
+                    anima[field], f"Account state farming_recurrence_observation.anima_patch.{field}"
+                )
+            _validate_nullable_timestamp(
+                anima["planted_at"], "Account state farming_recurrence_observation.anima_patch.planted_at"
+            )
+            if anima["state"] not in ANIMA_PATCH_STATES:
+                raise ValueError("Account state farming_recurrence_observation.anima_patch.state is invalid")
+            _validate_nullable_boolean(
+                anima["ready_observed"], "Account state farming_recurrence_observation.anima_patch.ready_observed"
+            )
 
     diary_tiers = state["diary_tiers"]
     if not isinstance(diary_tiers, dict) or set(diary_tiers) != set(DIARY_REGIONS):

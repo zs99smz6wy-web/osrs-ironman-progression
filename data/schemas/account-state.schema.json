@@ -20,7 +20,7 @@
       "additionalProperties": false
     }
   },
-  "required": ["skills", "skill_xp", "quests_completed", "completed_actions", "transport_flags", "milestones", "gear_thresholds", "items", "resources", "counters", "passive_loops", "recurring_observations", "kingdom_observation", "combat_readiness_observation", "encounter_observations", "slayer_task", "unique_item_observations", "diary_tiers", "kourend_memoir", "attention_window", "notable_drops", "preferences", "cash_commitments"],
+  "required": ["skills", "skill_xp", "quests_completed", "completed_actions", "transport_flags", "milestones", "gear_thresholds", "items", "resources", "counters", "passive_loops", "recurring_observations", "kingdom_observation", "combat_readiness_observation", "encounter_observations", "slayer_task", "unique_item_observations", "sailing_observation", "perilous_moons_observation", "farming_recurrence_observation", "diary_tiers", "kourend_memoir", "attention_window", "notable_drops", "preferences", "cash_commitments"],
   "properties": {
     "skills": {"$ref": "#/$defs/skillLevels"},
     "skill_xp": {"$ref": "#/$defs/skillXp"},
@@ -121,6 +121,160 @@
         },
         "additionalProperties": false
       }
+    },
+    "sailing_observation": {
+      "type": ["object", "null"],
+      "required": ["observed_at", "vessel", "recovery", "tasks"],
+      "properties": {
+        "observed_at": {"type": "string", "format": "date-time"},
+        "vessel": {
+          "type": "object",
+          "required": ["boat_type", "component_tiers", "facilities", "hull_hitpoints", "hull_max_hitpoints", "cargo_hold", "last_gangplank", "last_mooring_point"],
+          "properties": {
+            "boat_type": {"type": ["string", "null"], "minLength": 1},
+            "component_tiers": {"type": "object", "additionalProperties": {"type": ["integer", "null"], "minimum": 0}},
+            "facilities": {"type": "array", "items": {"type": "string", "minLength": 1}, "uniqueItems": true},
+            "hull_hitpoints": {"type": ["integer", "null"], "minimum": 0},
+            "hull_max_hitpoints": {"type": ["integer", "null"], "minimum": 0},
+            "cargo_hold": {"type": "object", "additionalProperties": {"type": "integer", "minimum": 0}},
+            "last_gangplank": {"type": ["string", "null"], "minLength": 1},
+            "last_mooring_point": {"type": ["string", "null"], "minLength": 1}
+          },
+          "additionalProperties": false
+        },
+        "recovery": {
+          "type": "object",
+          "required": ["last_event", "cargo_loss_observed"],
+          "properties": {
+            "last_event": {"type": "string", "enum": ["unknown", "none", "capsize", "quick_transport", "ship_recovery", "death"]},
+            "cargo_loss_observed": {"type": ["boolean", "null"]}
+          },
+          "additionalProperties": false
+        },
+        "tasks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["task_id", "kind", "origin", "destination", "cargo_item", "cargo_quantity", "bounty_target", "bounty_item_count", "slots_used", "status", "cargo_loaded", "observed_at"],
+            "properties": {
+              "task_id": {"type": "string", "minLength": 1},
+              "kind": {"type": "string", "enum": ["courier", "bounty", "unknown"]},
+              "origin": {"type": ["string", "null"], "minLength": 1},
+              "destination": {"type": ["string", "null"], "minLength": 1},
+              "cargo_item": {"type": ["string", "null"], "minLength": 1},
+              "cargo_quantity": {"type": ["integer", "null"], "minimum": 0},
+              "bounty_target": {"type": ["string", "null"], "minLength": 1},
+              "bounty_item_count": {"type": ["integer", "null"], "minimum": 0},
+              "slots_used": {"type": ["integer", "null"], "minimum": 0},
+              "status": {"type": "string", "enum": ["unknown", "accepted", "completed", "cancelled", "failed", "recovered"]},
+              "cargo_loaded": {"type": ["boolean", "null"]},
+              "observed_at": {"type": "string", "format": "date-time"}
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "perilous_moons_observation": {
+      "type": ["object", "null"],
+      "required": ["observed_at", "run", "internal_supplies", "death_recovery"],
+      "properties": {
+        "observed_at": {"type": "string", "format": "date-time"},
+        "run": {
+          "type": "object",
+          "required": ["run_id", "bosses_defeated", "defeat_order", "campsite_location", "lunar_chest_opened", "inside_neyzpotli"],
+          "properties": {
+            "run_id": {"type": ["string", "null"], "minLength": 1},
+            "bosses_defeated": {"type": "array", "items": {"type": "string", "enum": ["blood_moon", "blue_moon", "eclipse_moon"]}, "uniqueItems": true},
+            "defeat_order": {"type": "array", "items": {"type": "string", "enum": ["blood_moon", "blue_moon", "eclipse_moon"]}, "uniqueItems": true},
+            "campsite_location": {"type": ["string", "null"], "minLength": 1},
+            "lunar_chest_opened": {"type": ["boolean", "null"]},
+            "inside_neyzpotli": {"type": ["boolean", "null"]}
+          },
+          "additionalProperties": false
+        },
+        "internal_supplies": {
+          "type": "object",
+          "required": ["raw_bream", "cooked_bream", "moss_lizard", "moonlight_grub_paste", "moonlight_potion", "moth"],
+          "properties": {
+            "raw_bream": {"type": ["integer", "null"], "minimum": 0},
+            "cooked_bream": {"type": ["integer", "null"], "minimum": 0},
+            "moss_lizard": {"type": ["integer", "null"], "minimum": 0},
+            "moonlight_grub_paste": {"type": ["integer", "null"], "minimum": 0},
+            "moonlight_potion": {"type": ["integer", "null"], "minimum": 0},
+            "moth": {"type": ["integer", "null"], "minimum": 0}
+          },
+          "additionalProperties": false
+        },
+        "death_recovery": {
+          "type": "object",
+          "required": ["last_death_observed_at", "grave_location", "grave_active_minutes_remaining", "reclaim_status"],
+          "properties": {
+            "last_death_observed_at": {"type": ["string", "null"], "format": "date-time"},
+            "grave_location": {"type": ["string", "null"], "minLength": 1},
+            "grave_active_minutes_remaining": {"type": ["integer", "null"], "minimum": 0},
+            "reclaim_status": {"type": "string", "enum": ["unknown", "in_grave", "recovered", "expired", "deaths_office"]}
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "farming_recurrence_observation": {
+      "type": ["object", "null"],
+      "required": ["observed_at", "patches", "hespori", "anima_patch"],
+      "properties": {
+        "observed_at": {"type": "string", "format": "date-time"},
+        "patches": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["patch_id", "patch_type", "seed_id", "planted_at", "growth_class", "growth_ticks_observed", "disease_state", "harvest_lives_remaining", "compost_id", "protection_state", "ready_observed", "observed_at"],
+            "properties": {
+              "patch_id": {"type": "string", "minLength": 1},
+              "patch_type": {"type": "string", "minLength": 1},
+              "seed_id": {"type": ["string", "null"], "minLength": 1},
+              "planted_at": {"type": ["string", "null"], "format": "date-time"},
+              "growth_class": {"type": ["string", "null"], "minLength": 1},
+              "growth_ticks_observed": {"type": ["integer", "null"], "minimum": 0},
+              "disease_state": {"type": "string", "enum": ["unknown", "disease_free", "diseased", "dead", "cleared"]},
+              "harvest_lives_remaining": {"type": ["integer", "null"], "minimum": 0},
+              "compost_id": {"type": ["string", "null"], "minLength": 1},
+              "protection_state": {"type": "string", "enum": ["unknown", "protected", "unprotected", "not_applicable"]},
+              "ready_observed": {"type": ["boolean", "null"]},
+              "observed_at": {"type": "string", "format": "date-time"}
+            },
+            "additionalProperties": false
+          }
+        },
+        "hespori": {
+          "type": ["object", "null"],
+          "required": ["seed_present", "planted_at", "state", "last_defeat_at", "last_harvest_at", "ready_observed"],
+          "properties": {
+            "seed_present": {"type": ["boolean", "null"]},
+            "planted_at": {"type": ["string", "null"], "format": "date-time"},
+            "state": {"type": "string", "enum": ["unknown", "seeded", "growing", "ready", "defeated", "harvested"]},
+            "last_defeat_at": {"type": ["string", "null"], "format": "date-time"},
+            "last_harvest_at": {"type": ["string", "null"], "format": "date-time"},
+            "ready_observed": {"type": ["boolean", "null"]}
+          },
+          "additionalProperties": false
+        },
+        "anima_patch": {
+          "type": ["object", "null"],
+          "required": ["seed_id", "planted_at", "state", "active_effect", "ready_observed"],
+          "properties": {
+            "seed_id": {"type": ["string", "null"], "minLength": 1},
+            "planted_at": {"type": ["string", "null"], "format": "date-time"},
+            "state": {"type": "string", "enum": ["unknown", "active", "expired", "cleared"]},
+            "active_effect": {"type": ["string", "null"], "minLength": 1},
+            "ready_observed": {"type": ["boolean", "null"]}
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
     },
     "diary_tiers": {"type": "object"},
     "kourend_memoir": {"type": ["object", "null"]},

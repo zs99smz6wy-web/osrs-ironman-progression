@@ -34,8 +34,13 @@ Observation fields are strict snapshots of what the player recorded, not claims 
 | `encounter_observations` | Per-encounter attempt window, successes, elapsed minutes, consumed supplies, deaths, and banking trips. | Future throughput, supply burn, or a route decision. |
 | `slayer_task` | A currently observed target and remaining count, plus optional initial count, master, streak, points, and blocked targets. | A new assignment, an eligible master, or a deterministic task path. |
 | `unique_item_observations` | Separate current possession, collection-log confirmation, quantity, variant, charges, condition, usability, and reclaimability observations. | That an item is currently usable merely because it was once logged, or vice versa. |
+| `sailing_observation` | A timestamped vessel snapshot, observed component tiers and facilities, hull and cargo state, accepted task records, and the last recorded recovery event. | Cargo loss, task rewards, repair costs, future task selection, or Sailing throughput. |
+| `perilous_moons_observation` | A recorded run, boss defeat order, dungeon-local supplies, and death/recovery state. Moon equipment remains in `unique_item_observations`. | Chest loot, reclaim fees, future completion, set completion, or encounter readiness. |
+| `farming_recurrence_observation` | Generic patch snapshots plus nullable Hespori and anima-patch observations. | Growth since the timestamp, disease outcomes, harvest yield, seed supply, or current readiness. |
 
 `analyze_combat_observations.py` may divide explicit successes by explicit elapsed minutes to display a measured rate. It returns `null` when either measurement is missing or elapsed time is zero, and marks all readiness, supply, and collection-log inference as false.
+
+`analyze_activity_observations.py` returns deep copies of the three structural observations. Its Moon-equipment view selects existing entries from `unique_item_observations`; it never creates a second possession or collection-log state. It does not advance clocks, infer growth or readiness, create loot, calculate reclaim fees, complete equipment sets, or turn community throughput into facts.
 
 ## Normalized progression actions
 
