@@ -1,0 +1,377 @@
+{
+  "package_schema_version": 1,
+  "package_type": "minigame-research",
+  "package_id": "research-minigame-pyramid-plunder",
+  "activity": "Pyramid Plunder",
+  "status": "research-proposal",
+  "checked_at": "2026-08-22",
+  "scope": "Current factual package for the members-only Thieving minigame in Jalsavrah, Sophanem. It proposes future records only: it does not alter shared data, choose a route or sceptre target, assume a run, survival, loot, XP, points, a charge balance, diary completion, or player readiness.",
+  "facts_strategy_boundary": {
+    "included": [
+      "current quest/access, entrance-state, room gates, five-minute loop, object interactions, traps, damage, death, repeatability, artefact/XP rules, sceptre rolls, charge lifecycle, and transport utility",
+      "current Desert Diary Pyramid Plunder tasks and the factual diary charge capacities of 10, 25, 50, and 100",
+      "exact deterministic facts where documented, plus explicit random, execution-dependent, and player-observed boundaries",
+      "proposed factual records, actions, graph nodes/edges, and observation shapes without central integration"
+    ],
+    "excluded": [
+      "whether Pyramid Plunder is worth training now, which rooms/objects to prioritize, food or prayer setup, whether to target a sceptre, or when to stop",
+      "assumed entry success, correct-door discovery, opened objects, avoided traps, run completion, survival, XP, coins, artefacts, sceptres, pet, collection-log state, charges, or readiness",
+      "fixed XP, loot, sceptres-per-hour, supplies-per-hour, deaths-per-hour, run duration, time-to-drop, or economic outcome estimates",
+      "community chest, urn, sarcophagus, room, banking, and sceptre tactics except as clearly fenced strategy candidates"
+    ]
+  },
+  "source_catalog": [
+    {
+      "id": "wiki-pyramid-plunder-current",
+      "publisher": "Old School RuneScape Wiki",
+      "kind": "wiki",
+      "url": "https://oldschool.runescape.wiki/w/Pyramid_Plunder",
+      "checked_at": "2026-08-22",
+      "use": "Primary current source for membership/quest/Thieving gates, five-minute loop, room structure, transport, damage, death warning, artefact table, XP table, sceptre rates, and current change history."
+    },
+    {
+      "id": "wiki-pharaohs-sceptre-current",
+      "publisher": "Old School RuneScape Wiki",
+      "kind": "wiki",
+      "url": "https://oldschool.runescape.wiki/w/Pharaoh%27s_sceptre",
+      "checked_at": "2026-08-22",
+      "use": "Sceptre acquisition identity, wield requirements, destinations, one-charge teleport behavior, Guardian mummy charging, and current Desert Diary capacity tiers."
+    },
+    {
+      "id": "wiki-desert-diary-current",
+      "publisher": "Old School RuneScape Wiki",
+      "kind": "wiki",
+      "url": "https://oldschool.runescape.wiki/w/Desert_Diary",
+      "checked_at": "2026-08-22",
+      "use": "Easy first-room sarcophagus task, Elite final-room Grand Gold Chest task, tier reward capacities, and noted-artefact utility after Easy."
+    },
+    {
+      "id": "wiki-achievement-diary-current",
+      "publisher": "Old School RuneScape Wiki",
+      "kind": "wiki",
+      "url": "https://oldschool.runescape.wiki/w/Achievement_Diary",
+      "checked_at": "2026-08-22",
+      "use": "Cross-check of the two Desert Diary tasks and their unboostable 21/91 Thieving room gates."
+    },
+    {
+      "id": "wiki-thieving-training-current",
+      "publisher": "Old School RuneScape Wiki",
+      "kind": "wiki",
+      "url": "https://oldschool.runescape.wiki/w/Thieving_training",
+      "checked_at": "2026-08-22",
+      "use": "Current high-level training context, Contact! bank utility, and community-style room guidance, used as a strategy source rather than a guaranteed output authority."
+    },
+    {
+      "id": "official-poll-78-near-miss-current",
+      "publisher": "Jagex",
+      "kind": "official",
+      "url": "https://secure.runescape.com/m=news/poll-78-near-miss--skilling-improvements?oldschool=1",
+      "checked_at": "2026-08-22",
+      "use": "Official March 2023 change: scarab swarms pause while a player remains on the sarcophagus interaction tile for up to 20 ticks, then resume under the stated conditions."
+    },
+    {
+      "id": "official-poll-80-pyramid-plunder-current",
+      "publisher": "Jagex",
+      "kind": "official",
+      "url": "https://secure.runescape.com/m=news/poll-80-wilderness-tombs-of-amascut--more?oldschool=1",
+      "checked_at": "2026-08-22",
+      "use": "Official August 2023 correction to late-room Pharaoh's sceptre scaling and failed chest/sarcophagus sceptre-roll behavior."
+    },
+    {
+      "id": "wiki-guardian-mummy-transcript-current",
+      "publisher": "Old School RuneScape Wiki",
+      "kind": "wiki",
+      "url": "https://oldschool.runescape.wiki/w/Transcript:Guardian_mummy",
+      "checked_at": "2026-08-22",
+      "use": "Guardian mummy interaction and charge-exchange dialogue, including six gold artefacts for a full recharge."
+    },
+    {
+      "id": "wiki-collection-log-current",
+      "publisher": "Old School RuneScape Wiki",
+      "kind": "wiki",
+      "url": "https://oldschool.runescape.wiki/w/Collection_log",
+      "checked_at": "2026-08-22",
+      "use": "Collection Log boundary for the Pharaoh's sceptre and Rocky; individual player log state is still observed."
+    },
+    {
+      "id": "community-wiki-pyramid-plunder-training-current",
+      "publisher": "Old School RuneScape Wiki community guide",
+      "kind": "guide",
+      "url": "https://oldschool.runescape.wiki/w/Thieving_training#Levels_91%E2%80%9399:_Pyramid_Plunder",
+      "checked_at": "2026-08-22",
+      "use": "Community high-level room, chest, urn, banking, and sceptre-running guidance. It is strategy-only."
+    },
+    {
+      "id": "community-reddit-ironscape-pyramid-plunder-sceptre",
+      "publisher": "r/ironscape",
+      "kind": "reddit",
+      "url": "https://www.reddit.com/r/ironscape/comments/sv4eae/pyramid_plunder_strategy_2022_ironman/",
+      "checked_at": "2026-08-22",
+      "use": "Ironman player discussion of chest/sarcophagus choices, prayer, food, and sceptre dryness. It is not a mechanics authority."
+    },
+    {
+      "id": "community-reddit-entrance-state",
+      "publisher": "r/2007scape",
+      "kind": "reddit",
+      "url": "https://www.reddit.com/r/2007scape/comments/1pqw2bf/osrs_fun_fact_17_every_time_someone_starts_a_game/",
+      "checked_at": "2026-08-22",
+      "use": "Community confirmation that a run start can reroll the shared correct entrance. Used only to flag the older 15-minute rotation claim as unsafe for automation."
+    }
+  ],
+  "access": {
+    "requirements": {
+      "membership": true,
+      "quest": {
+        "name": "Icthlarin's Little Helper",
+        "minimum_state": "started",
+        "effect": "Access to Sophanem and the minigame exterior; this does not prove travel position, survival supplies, or a started run."
+      },
+      "minigame_gate": {
+        "skill": "Thieving",
+        "level": 21,
+        "boostability": "The initial room and every later room gate cannot be boosted. Treat entry as an observed unboosted eligible level, never as planned XP, an effect, or prior participation."
+      },
+      "room_gates": [
+        {"room": 1, "thieving": 21, "boostable": false},
+        {"room": 2, "thieving": 31, "boostable": false},
+        {"room": 3, "thieving": 41, "boostable": false},
+        {"room": 4, "thieving": 51, "boostable": false},
+        {"room": 5, "thieving": 61, "boostable": false},
+        {"room": 6, "thieving": 71, "boostable": false},
+        {"room": 7, "thieving": 81, "boostable": false},
+        {"room": 8, "thieving": 91, "boostable": false}
+      ],
+      "base_entry_fee": {"coins": 0, "consumable_ticket": null},
+      "reference_existing_production_facts": ["pharaohs-sceptre", "desert-diary", "utility-teleport-chronicle"],
+      "reference_existing_actions": []
+    },
+    "location_and_transport": [
+      "Jalsavrah is the northern pyramid in Sophanem. Four anonymous exterior doors lead to the lobby; the Guardian mummy is behind the currently correct one.",
+      "Entrance state is shared per world and can change when another player starts a run. It must be observed at interaction time. The older claim that the guardian simply rotates every 15 minutes is not reliable enough for an action precondition.",
+      "On foot: travel through the Kharidian Desert to Sophanem after the quest gate. Desert heat/supply state is external to the minigame and must be modeled separately.",
+      "Carpet route: travel from Pollnivneach to Sophanem for 400 coins, or 200 after Rogue Trader; exact current coins and miniquest state are observed.",
+      "Fairy ring AKP reaches the Necropolis route after Beneath Cursed Sands unlocks Necropolis and 62 Agility (boostable); this is an alternative travel capability, not a Pyramid Plunder requirement.",
+      "A charged Pharaoh's sceptre teleports directly to the Jalsavrah lobby. It requires one observed charge per teleport and never proves current charges or a completed run.",
+      "After Contact!, the Sophanem Dungeon bank is a nearby banking alternative. Quest completion does not grant inventory, food, prayer, antidotes, or a successful banking trip."
+    ],
+    "unlock_transition": {
+      "event": "player reaches Sophanem, identifies the current Guardian mummy entrance, and enters with observed unboosted Thieving 21 or higher",
+      "deterministic_effects": ["A five-minute solo Pyramid Plunder attempt begins in room 1."],
+      "non_effects": ["does not confirm the entrance on a later interaction, a safe route through rooms, loot, XP, damage avoidance, survival, room completion, or any permanent reward."]
+    }
+  },
+  "activity_loop": {
+    "entry_inputs": [
+      {"item_or_capability": "observed qualifying location and entrance state", "behavior": "The correct door must be found at time of interaction; no item is consumed to start."},
+      {"item_or_capability": "food, Prayer, antipoison/antidote, waterskins, and weight/stamina setup", "behavior": "Optional player-selected survival/travel supplies. No specific quantity, possession, consumption, or survival follows from this package."},
+      {"item_or_capability": "lockpick", "behavior": "Optional door alternative. It can reduce door XP by half and does not bypass a room's unboostable Thieving gate."},
+      {"item_or_capability": "snake charm", "behavior": "Optional urn-risk tool; charm use and success are events, not a readiness guarantee."}
+    ],
+    "reusable_setup": [
+      {"item_or_capability": "Protect from Melee", "effect": "At observed Prayer 43, it fully negates mummy and scarab-swarm damage according to the current activity source. Prayer points/activation remain observed."},
+      {"item_or_capability": "poison cure", "effect": "Antipoison, antidote, prayer-book/holy-symbol cure, or a relevant poison-immunity item can be an alternative response to poison. Their inventory, charge, duration, and use are separate observations."},
+      {"item_or_capability": "charged Pharaoh's sceptre", "effect": "Optional direct lobby teleport; consumes one observed charge per use and can be recharged only through the Guardian mummy's specified artefact exchange."},
+      {"item_or_capability": "Desert Diary Easy", "effect": "Observed completion allows Simon Templeton to buy Pyramid Plunder artefacts in noted form and increases sceptre capacity to 10; it does not create artefacts or charges."},
+      {"item_or_capability": "Contact! completion", "effect": "Optional nearby Sophanem Dungeon bank access; it is not access to Pyramid Plunder itself."}
+    ],
+    "guardian_entrance_state": {
+      "facts": [
+        "Four exterior doors are visually anonymous. Interacting with the current correct door reaches the Guardian mummy lobby; an incorrect-door attempt can result in a Guardian mummy punch before the player tries another door.",
+        "Starting a game can change the currently correct entrance for players on that world. Therefore a discovered door is a short-lived observation, not durable account state.",
+        "Historical third-party guidance describes an approximately 15-minute mummy rotation. Current community evidence instead describes rerolls on game starts. Do not implement a timer prediction until a primary/current mechanics source resolves it."
+      ],
+      "model_boundary": "Record only a player-observed door/world/time snapshot. Never emit a correct-door result, entrance location, or a start action from a stored rotation estimate."
+    },
+    "room_loop": {
+      "timer": "Five minutes begins after entering. The timer ending removes the player from the pyramid; the model does not calculate remaining time or finish actions automatically.",
+      "room_structure": "Rooms 1 through 7 have a choice of doors to progress or dead-end. Room 8 is final. Each accessible room can contain urns, one Grand Gold Chest, and one sarcophagus.",
+      "door_transition": "A successful eligible door interaction can reach the next room; locked, trapped, dead-end, incorrect, failed, or delayed outcomes are execution events. The lockpick alternative changes door XP but does not change room eligibility.",
+      "object_events": [
+        {"object": "urn", "facts": "Urns can be searched directly, checked first, or checked/charmed before search. They can contain loot, snakes, poison, or a scarab swarm. Exact outcome, XP, loot, damage, poison, and item use are observed."},
+        {"object": "Grand Gold Chest", "facts": "One per room. It can produce loot, a scarab swarm, or a Pharaoh's sceptre roll. Since August 2023, chests still roll the sceptre when the opening attempt fails. A chest swarm gives no chest XP."},
+        {"object": "sarcophagus", "facts": "One per room. Opening awards Strength rather than Thieving XP and can produce loot, mummy interaction, or a Pharaoh's sceptre roll. Since August 2023 it still rolls the sceptre when opening fails. Scarab swarms no longer interrupt the interaction under the official 20-tick same-tile exception, but damage/survival is never inferred."}
+      ],
+      "completion_or_reward_events": [
+        {"event": "room object or door result", "determinism": "Only the stated XP values are factual conditional values. Successful interaction, failure, RNG result, damage, and inventory delta are all player-observed."},
+        {"event": "Pharaoh's sceptre roll", "determinism": "A chest or sarcophagus roll may replace an artefact at the room-specific rate. On success the player is immediately teleported outside the northern entrance; if inventory is full the sceptre is dropped below the player. The item/ground state must be confirmed."},
+        {"event": "timer expiry, quick-leave, or exit", "determinism": "Ends the attempt. It does not convert pending actions into loot, charge, XP, a diary task, or a survival result."}
+      ],
+      "failure_and_death": {
+        "hazards": ["wrong-door Guardian mummy punch", "door and spear traps", "snakes and poison from urns", "scarabs/Scarab swarms", "mummies from sarcophagi", "five-minute expiry"],
+        "damage_boundary": "Damage amounts, poison state, Prayer activation/drain, food/antipoison consumption, item condition, and survival are not derived by a route model.",
+        "death_boundary": "The activity is dangerous. On death, Hardcore Ironmen lose status and unprotected items move to a grave. This package does not infer death, grave contents, reclaim, protected items, or Hardcore status.",
+        "scarab_sarcophagus_rule": "Official rule: a scarab swarm pauses attacks for up to 20 ticks while the player remains on the tile from which the sarcophagus was clicked. Moving, taking too long, or successfully opening ends the pause. This permits no automatic survival conclusion."
+      },
+      "repeatability": {
+        "is_repeatable": true,
+        "persistent_values": ["owned sceptre(s)", "observed sceptre charges", "Desert Diary tier", "quest and transport capabilities", "observed collection-log entries"],
+        "session_values": ["current world/door state", "remaining timer", "current room", "doors/object outcomes", "temporary damage/poison/Prayer", "looted inventory", "run completion"],
+        "rule": "No run result is retained or inferred merely because an action is repeatable."
+      }
+    },
+    "xp_table": [
+      {"room": 1, "thieving_gate": 21, "urn": 60, "chest": 40, "door": 40, "sarcophagus_strength": 20},
+      {"room": 2, "thieving_gate": 31, "urn": 90, "chest": 60, "door": 60, "sarcophagus_strength": 30},
+      {"room": 3, "thieving_gate": 41, "urn": 150, "chest": 100, "door": 100, "sarcophagus_strength": 50},
+      {"room": 4, "thieving_gate": 51, "urn": 215, "chest": 140, "door": 140, "sarcophagus_strength": 70},
+      {"room": 5, "thieving_gate": 61, "urn": 300, "chest": 200, "door": 200, "sarcophagus_strength": 100},
+      {"room": 6, "thieving_gate": 71, "urn": 450, "chest": 300, "door": 300, "sarcophagus_strength": 150},
+      {"room": 7, "thieving_gate": 81, "urn": 675, "chest": 450, "door": 450, "sarcophagus_strength": 225},
+      {"room": 8, "thieving_gate": 91, "urn": 825, "chest": 550, "door": null, "sarcophagus_strength": 275}
+    ],
+    "xp_rules": [
+      "Searching an urn grants the stated full urn XP, whether searched directly or after checking; charming alters risk and may alter XP behavior, so actual events remain observed.",
+      "A chest gives no XP when it produces a Scarab swarm.",
+      "Using a lockpick halves stated door XP.",
+      "Sarcophagus XP is Strength XP. The Easy Desert task can therefore cause 20 Strength XP; this is a factual compatibility consideration, not an assumed task completion.",
+      "All table values are per qualifying interaction. The model must not sum actions into XP without player-confirmed outcomes."
+    ],
+    "completion_or_reward_events": [
+      {"event": "player-observed object or door result", "boundary": "XP, loot, damage, failure, and room transition remain event observations."},
+      {"event": "player-observed Pharaoh's sceptre roll", "boundary": "Room-scaled RNG only makes the sceptre obtainable and never creates an item by expectation."},
+      {"event": "timer expiry, leave, sceptre exit, or death", "boundary": "Ends the attempt without generating a deterministic reward or completion state."}
+    ],
+    "failure_and_death": {
+      "summary": "Traps, poison, scarabs, mummies, five-minute expiry, and death are dangerous/execution-dependent states. Only an explicit player observation may record damage, poison, survival, grave, or loss.",
+      "detailed_rules": "See room_loop.failure_and_death for current scarab/sarcophagus and Hardcore Iron boundaries."
+    },
+    "repeatability": {
+      "is_repeatable": true,
+      "summary": "Each attempt is isolated. Sceptres, diary state, charges, quests, and logged items persist only when independently observed; a planned repeat does not carry forward an outcome.",
+      "detailed_rules": "See room_loop.repeatability."
+    }
+  },
+  "currencies": [
+    {
+      "id": "pyramid-plunder-artefacts",
+      "acquisition": "rng",
+      "spend_behavior": "Artefacts are random object outputs. They can be sold to Simon Templeton or exchanged with the Guardian mummy to charge a Pharaoh's sceptre. Inventory quantity/type and every sale/exchange are observed.",
+      "types_and_sale_values": [{"item": "ivory comb", "rooms": "1-2", "Simon_coins": 50}, {"item": "pottery scarab", "rooms": "1", "Simon_coins": 75}, {"item": "pottery statuette", "rooms": "1-3", "Simon_coins": 100}, {"item": "stone seal", "rooms": "1-5", "Simon_coins": 150}, {"item": "stone scarab", "rooms": "1-7", "Simon_coins": 175}, {"item": "stone statuette", "rooms": "1-8", "Simon_coins": 200}, {"item": "gold seal", "rooms": "3-8", "Simon_coins": 750}, {"item": "golden scarab", "rooms": "5-8", "Simon_coins": 1000}, {"item": "golden statuette", "rooms": "7-8", "Simon_coins": 1250}],
+      "model_boundary": "The room table only makes possible item types factual. It does not generate a loot roll, coin total, noted form, or recharge input."
+    },
+    {
+      "id": "pharaohs-sceptre-charges",
+      "acquisition": "deterministic",
+      "spend_behavior": "Each selected sceptre teleport consumes one charge. The Guardian mummy can charge an observed sceptre to its observed diary-dependent maximum using 24 ivory/pottery artefacts, 12 stone artefacts, or 6 gold artefacts. The specific selected artefacts and charge before/after are observed.",
+      "model_boundary": "A capacity is not a current charge balance. The package never chooses recharge materials, assumes a complete recharge, or creates a teleport."
+    }
+  ],
+  "rewards": [
+    {
+      "id": "pharaohs-sceptre",
+      "acquisition": "rng",
+      "utility": ["one-charge teleport to Jalsavrah, Jaleustrophos, Jaldraocht, or Jaltevas after the destination-specific unlock where applicable", "Jalsavrah lobby transport", "Desert-region utility", "collection-log utility after player-confirmed entry"],
+      "wield_requirement": {"attack": 30, "magic": 30},
+      "room_rates": [{"room": 1, "sarcophagus": "1/4200", "chest": "1/4200"}, {"room": 2, "sarcophagus": "1/2800", "chest": "1/2800"}, {"room": 3, "sarcophagus": "1/1600", "chest": "1/1600"}, {"room": 4, "sarcophagus": "1/950", "chest": "1/950"}, {"room": 5, "sarcophagus": "1/800", "chest": "1/800"}, {"room": 6, "sarcophagus": "1/750", "chest": "1/750"}, {"room": 7, "sarcophagus": "1/650", "chest": "1/650"}, {"room": 8, "sarcophagus": "1/650", "chest": "1/650"}],
+      "current_protection": "No duplicate protection, deterministic purchase, pity system, or guaranteed completion path found. Every qualifying chest/sarcophagus has a separate room-scaled opportunity, including failed openings after the August 2023 change.",
+      "model_boundary": "Rates make a sceptre obtainable; they never create ownership, a roll, a charge state, collection-log entry, or time estimate."
+    },
+    {
+      "id": "pharaohs-sceptre-capacity-by-desert-diary",
+      "acquisition": "threshold",
+      "utility": ["increases the maximum charge capacity of each observed Pharaoh's sceptre"],
+      "capacities": [{"diary": "none", "maximum_charges": 3}, {"diary": "Easy", "maximum_charges": 10}, {"diary": "Medium", "maximum_charges": 25}, {"diary": "Hard", "maximum_charges": 50}, {"diary": "Elite", "maximum_charges": 100}],
+      "model_boundary": "Completion tier and actual current charges are independent observations. Historical 4/5/6/8 capacities are superseded and must not be used."
+    },
+    {
+      "id": "pyramid-plunder-artefacts",
+      "acquisition": "rng",
+      "utility": ["Guardian mummy sceptre-recharge input", "Simon Templeton coin-sale value", "noted sale convenience after observed Desert Diary Easy completion"],
+      "model_boundary": "Artefact roll, quantity, inventory retention, sale, and recharge choice are observed."
+    },
+    {
+      "id": "rocky",
+      "acquisition": "rng",
+      "utility": ["skilling pet and collection-log utility"],
+      "model_boundary": "A potential pet roll is never inferred from XP, an interaction, a run count, or a loot table."
+    }
+  ],
+  "dependencies_and_bypasses": [
+    {"target": "quest:icthlarins-little-helper-started", "relationship": "requires", "detail": "Required access state for Sophanem/Pyramid Plunder."},
+    {"target": "condition:thieving-21-unboosted", "relationship": "requires", "detail": "Room 1 and start gate; later rooms use their own unboostable gates."},
+    {"target": "condition:thieving-91-unboosted", "relationship": "requires", "detail": "Required for final Room 8 and its Grand Gold Chest/Elite Desert Diary task."},
+    {"target": "activity:desert-diary-easy-first-room-sarcophagus", "relationship": "unlocks", "detail": "A player-observed Room 1 sarcophagus open can satisfy the named Easy Desert diary task; it also has a 20 Strength XP compatibility boundary."},
+    {"target": "activity:desert-diary-elite-final-room-chest", "relationship": "unlocks", "detail": "A player-observed Room 8 Grand Gold Chest search can satisfy the named Elite Desert diary task only after all other Elite requirements are met."},
+    {"target": "goal:pharaohs-sceptre", "relationship": "makes_obtainable", "detail": "Chest/sarcophagus rolls make a sceptre obtainable at the room-specific rates; there is no guaranteed path."},
+    {"target": "capability:pharaohs-sceptre-jalsavrah-teleport", "relationship": "unlocks", "detail": "Confirmed charged sceptre ownership enables a charge-consuming alternative lobby arrival."},
+    {"target": "capability:sophanem-dungeon-bank", "relationship": "alternative_to", "detail": "Contact! completion provides a nearby banking alternative; it is neither a run requirement nor a sceptre substitute."},
+    {"target": "transport:fairy-ring-akp", "relationship": "alternative_to", "detail": "Necropolis/fairy-ring route is alternative travel once its separate quest/Agility gates are observed."},
+    {"target": "equipment:poison-cure", "relationship": "alternative_to", "detail": "Several separately gated items/cures can respond to poison; none demonstrates immunity, duration, supply, or successful survival by default."}
+  ],
+  "afk_and_attention": {
+    "attention_class": "active",
+    "measured_interaction_interval_seconds": null,
+    "logout_or_idle_constraints": ["The five-minute timer, shared entrance changes, room doors, object choices, traps, damage/poison, prayer, food, and inventory pressure require responsive interaction.", "The package does not claim an AFK room, a safe idle interval, a repeat cadence, or that a particular community rotation is low-attention.", "Logging/teleport/leave behavior ends or interrupts player activity; no partially completed actions or outcomes may be synthesized."],
+    "source_boundary": "Current sources establish active hazards and time limit. Community XP/sceptre methods are strategy candidates, not a measured passive-progression model."
+  },
+  "community_strategy_observations": [
+    {"claim": "For Thieving XP, players commonly rush doors/chests then prioritize urns in the final accessible room, sometimes using the previous room if time remains.", "source_ids": ["community-wiki-pyramid-plunder-training-current", "wiki-thieving-training-current"], "treatment": "strategy-candidate-not-fact", "boundary": "Room success, timing, safety, XP/hour, and any preferred Thieving target depend on execution and current account state."},
+    {"claim": "For a Pharaoh's sceptre, community Ironman advice often favors chest attempts and treats early sarcophagi as a time/supply trade-off, with later-room opportunities more valuable.", "source_ids": ["community-reddit-ironscape-pyramid-plunder-sceptre", "community-wiki-pyramid-plunder-training-current"], "treatment": "strategy-candidate-not-fact", "boundary": "Current room-specific rates are factual, but no chest/sarcophagus policy, expected time, food cost, target, or stopping point is adopted."},
+    {"claim": "Charged sceptre plus a bank/rejuvenation loop is community-described as faster for repeated attempts than overland travel.", "source_ids": ["community-wiki-pyramid-plunder-training-current", "wiki-thieving-training-current"], "treatment": "strategy-candidate-not-fact", "boundary": "It assumes unobserved reward ownership, charges, house/bank transports, supplies, and execution. It provides no route priority or time estimate."},
+    {"claim": "Players describe personal stopping limits or level targets to manage sceptre dryness.", "source_ids": ["community-reddit-ironscape-pyramid-plunder-sceptre"], "treatment": "strategy-candidate-not-fact", "boundary": "RNG has no current duplicate protection or pity path; a future strategy layer may score opportunity cost but must never treat a personal target as factual completion."}
+  ],
+  "state_boundaries": [
+    "Never infer membership, started Icthlarin's Little Helper, Contact!, location, exterior-door identity, world/entrance state, Thieving level, a boost, eligible room, transport, supplies, prayer, poison cure, weight, food, or readiness.",
+    "The five-minute rule and XP/rate tables can validate player-reported events but cannot generate a started run, room, object attempt, correct door, successful action, failed action, timer state, XP, artefact, coin, or diary completion.",
+    "Sceptre rates establish only makes_obtainable edges. Do not infer a roll from loot count, a room run, a chest/sarcophagus attempt, a failed action, or expected-value arithmetic.",
+    "Current sceptre capacity is a diary-tier property and current charges are an item observation. A capacity, artefact inventory, or Guardian mummy availability never proves recharging or a usable teleport.",
+    "Damage, poison, sarcophagus mummy, scarab swarm, death, grave, reclaim, Hardcore status, protected items, survival, and temporary resource consumption are report-only.",
+    "Desert diary tasks require their specified successful object event; their task completion, lamps, tier rewards, and item effects stay separately observed until a central diary integrator reconciles the package.",
+    "Collection Log entries for sceptre/Rocky and any item quantities/variants must be player-confirmed."
+  ],
+  "proposed_normalization": {
+    "facts": [
+      {"id": "pyramid-plunder-current-access-and-loop", "treatment": "proposed-new", "source_ids": ["wiki-pyramid-plunder-current", "official-poll-78-near-miss-current", "official-poll-80-pyramid-plunder-current"], "content": "Current access, shared entrance observation, unboostable room gates, five-minute loop, hazards, XP conditions, repeatability, and failed-attempt sceptre rolls."},
+      {"id": "pyramid-plunder-current-sceptre-and-artefact-economy", "treatment": "proposed-new", "source_ids": ["wiki-pyramid-plunder-current", "wiki-pharaohs-sceptre-current", "wiki-guardian-mummy-transcript-current"], "content": "Room-scaled sceptre rates, no-protection boundary, charge exchange, capacities, destinations, artefact classes, and observed economic transitions."},
+      {"id": "desert-diary-pyramid-plunder-utility", "treatment": "amend-existing", "source_ids": ["wiki-desert-diary-current", "wiki-achievement-diary-current"], "content": "Reconcile first-room sarcophagus and final-room Grand Gold Chest tasks, unboostable gates, Strength-XP compatibility, noted-artefact benefit, and updated sceptre capacities without assigning route order or task completion."}
+    ],
+    "actions": [
+      {"id": "action:record-pyramid-plunder-observation", "treatment": "proposed-new", "requirements": "player-reported observed entry, optional room/object result, optional XP/loot/damage/survival/charge change", "transition": "store report-only values and validate known gates/capacities/rates where applicable; never produce a roll or cumulative output."},
+      {"id": "action:recharge-pharaohs-sceptre", "treatment": "proposed-new", "requirements": "observed selected sceptre, Guardian mummy access, selected observed artefacts sufficient for 24 ivory/pottery, 12 stone, or 6 gold recharge set, and observed diary capacity", "transition": "only after player confirmation, consume the selected stated artefacts and set the selected sceptre's observed charge count to its observed maximum; never choose artefacts or infer a transaction."},
+      {"id": "action:use-pharaohs-sceptre-teleport", "treatment": "proposed-new", "requirements": "observed charged selected sceptre, selected available destination, and player-confirmed use", "transition": "subtract one observed charge and record intended destination only after confirmation; no arrival, survival, door state, or minigame run is automatically completed."},
+      {"id": "action:record-desert-diary-pyramid-task", "treatment": "proposed-new", "requirements": "player-confirmed named task event and separately observed broader diary requirements", "transition": "record only the named task event/completion observation; no lamp, diary tier, charge capacity, or inventory item is granted unless the canonical diary action confirms it."}
+    ],
+    "graph_nodes": ["activity:pyramid-plunder", "condition:thieving-21-unboosted", "condition:thieving-91-unboosted", "condition:guardian-mummy-entrance-observed", "currency:pyramid-plunder-artefacts", "goal:pharaohs-sceptre", "resource:pharaohs-sceptre-charges", "capability:pharaohs-sceptre-jalsavrah-teleport", "activity:desert-diary-easy-first-room-sarcophagus", "activity:desert-diary-elite-final-room-chest", "collection-log:pyramid-plunder"],
+    "graph_edges": [
+      {"from": "condition:thieving-21-unboosted", "to": "activity:pyramid-plunder", "relation": "requires", "evidence": "access.requirements.minigame_gate"},
+      {"from": "condition:guardian-mummy-entrance-observed", "to": "activity:pyramid-plunder", "relation": "requires", "evidence": "activity_loop.guardian_entrance_state; shared live state"},
+      {"from": "activity:pyramid-plunder", "to": "currency:pyramid-plunder-artefacts", "relation": "makes_obtainable", "evidence": "Random qualifying urn/chest/sarcophagus loot; no automatic output"},
+      {"from": "activity:pyramid-plunder", "to": "goal:pharaohs-sceptre", "relation": "makes_obtainable", "evidence": "room-specific chest/sarcophagus rates, no protection"},
+      {"from": "currency:pyramid-plunder-artefacts", "to": "resource:pharaohs-sceptre-charges", "relation": "produces", "evidence": "Guardian mummy recharge exchange, only after explicit observed transaction"},
+      {"from": "goal:pharaohs-sceptre", "to": "capability:pharaohs-sceptre-jalsavrah-teleport", "relation": "unlocks", "evidence": "Charged sceptre selected-destination teleport utility"},
+      {"from": "condition:thieving-21-unboosted", "to": "activity:desert-diary-easy-first-room-sarcophagus", "relation": "requires", "evidence": "first room sarcophagus task gate"},
+      {"from": "condition:thieving-91-unboosted", "to": "activity:desert-diary-elite-final-room-chest", "relation": "requires", "evidence": "final room Grand Gold Chest task gate"},
+      {"from": "activity:pyramid-plunder", "to": "collection-log:pyramid-plunder", "relation": "makes_obtainable", "evidence": "sceptre/Rocky outcomes are random and separately observed"}
+    ],
+    "account_observations": [
+      {"key": "pyramid_plunder_access_observation", "type": "object", "shape": {"icthlarins_little_helper_state": "unknown|started|completed", "unboosted_thieving": "integer_or_null", "current_location": "optional_player_text", "contact_complete": "boolean_or_null"}, "rule": "No field is inferred from planning or a historical run."},
+      {"key": "pyramid_plunder_entrance_observation", "type": "object", "shape": {"world": "integer_or_null", "observed_at": "RFC3339_timestamp_or_null", "door": "north|east|south|west|unknown", "result": "unknown|entered|wrong_door|interrupted"}, "rule": "Short-lived shared observation only. Never reuse it as a predicted correct door."},
+      {"key": "pyramid_plunder_run_observation", "type": "object", "shape": {"started_at": "RFC3339_timestamp_or_null", "last_room_reached": "integer_1_to_8_or_null", "timer_end_or_exit": "unknown|expired|quick_leave|manual_leave|sceptre_exit|death", "object_events": "array_of_player_reported_events", "thieving_xp": "integer_or_null", "strength_xp": "integer_or_null", "damage_or_poison": "player_reported_or_null", "survived": "boolean_or_null"}, "rule": "A report may describe an attempt; it does not fill omitted event fields or infer an outcome."},
+      {"key": "pharaohs_sceptre_observation", "type": "object", "shape": {"owned_count": "integer_or_null", "selected_item_charge_count": "integer_or_null", "selected_item_capacity": "3|10|25|50|100|unknown", "destinations_unlocked": "set", "collection_log": "boolean_or_null"}, "rule": "Each item, charge count, destination access, and log entry is player-confirmed."},
+      {"key": "pyramid_plunder_artefact_observation", "type": "object", "shape": {"inventory_by_type": "optional_nonnegative_map", "noted": "boolean_or_null", "last_sale_or_recharge": "optional_player_reported_transaction"}, "rule": "Random acquisition and any sale/exchange must be recorded, not derived."},
+      {"key": "desert_diary_pyramid_plunder_observation", "type": "object", "shape": {"easy_first_room_sarcophagus": "boolean_or_null", "elite_final_room_grand_gold_chest": "boolean_or_null", "desert_diary_tier": "none|easy|medium|hard|elite|unknown"}, "rule": "Task event, full tier completion, lamps, and sceptre capacity must remain separately confirmed."}
+    ]
+  },
+  "conflicts_and_unknowns": [
+    {"id": "guardian-door-rotation-claim", "status": "do-not-automate", "detail": "Older third-party sources describe a roughly 15-minute Guardian mummy rotation. Current community evidence says a game start can reroll shared entrance state. Until a current primary mechanics source specifies exact behavior, model only player-observed world/door state."},
+    {"id": "historical-sceptre-capacities", "status": "superseded", "detail": "Older 4/5/6/8 Desert Diary capacity claims are stale. Current capacities are base 3, then 10/25/50/100 for Easy/Medium/Hard/Elite."},
+    {"id": "historical-late-room-sceptre-rates", "status": "superseded", "detail": "Pre-August-2023 guides may claim rates worsen after room 5. Current documented rates improve through room 7 and room 8 is 1/650 for both chest and sarcophagus."},
+    {"id": "failed-open-sceptre-roll", "status": "current", "detail": "Since August 2023 a chest/sarcophagus still rolls a sceptre on an opening failure. Failure still must be observed and does not prove any outcome."},
+    {"id": "sarcophagus-scarab-interruption", "status": "current", "detail": "Since March 2023 scarabs pause under the stated up-to-20-tick same-tile sarcophagus interaction rule. Older advice that a swarm always interrupts opening is stale."},
+    {"id": "loot-and-rate-estimates", "status": "intentional-observation-boundary", "detail": "Object loot tables, interaction success, hazards, travel, banking, supplies, player decisions, and shared entrance competition make per-hour XP/loot/sceptre claims non-deterministic. This package intentionally avoids adopting those estimates."},
+    {"id": "shared-production-aliases", "status": "requires-central-reconciliation", "detail": "Existing transport/Desert Diary/sceptre records may use different canonical IDs. This package proposes links but does not edit or replace shared facts/actions."}
+  ],
+  "coverage": {
+    "access": true,
+    "loop": true,
+    "currencies": true,
+    "rewards": true,
+    "failure_state": true,
+    "sources": true,
+    "normalization": true,
+    "guardian_entrance_state": true,
+    "all_eight_unboostable_room_gates": true,
+    "desert_diary_first_and_final_room_tasks": true,
+    "production_files_modified": 0
+  }
+}
