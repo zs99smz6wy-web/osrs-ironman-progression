@@ -1,0 +1,175 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/osrs-ironman-progression/minigame-package.schema.json",
+  "title": "OSRS Ironman minigame research package",
+  "description": "Research-only contract for one minigame or tightly coupled activity. Packages propose integration records but do not set route order or strategy scores.",
+  "type": "object",
+  "required": [
+    "package_schema_version",
+    "package_type",
+    "package_id",
+    "activity",
+    "status",
+    "checked_at",
+    "facts_strategy_boundary",
+    "source_catalog",
+    "access",
+    "activity_loop",
+    "currencies",
+    "rewards",
+    "state_boundaries",
+    "proposed_normalization",
+    "coverage"
+  ],
+  "properties": {
+    "package_schema_version": {"const": 1},
+    "package_type": {"const": "minigame-research"},
+    "package_id": {"type": "string", "pattern": "^research-minigame-[a-z0-9-]+$"},
+    "activity": {"type": "string", "minLength": 1},
+    "status": {"const": "research-proposal"},
+    "checked_at": {"type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$"},
+    "scope": {"type": "string"},
+    "facts_strategy_boundary": {
+      "type": "object",
+      "required": ["included", "excluded"],
+      "properties": {
+        "included": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+        "excluded": {"type": "array", "minItems": 1, "items": {"type": "string"}}
+      },
+      "additionalProperties": false
+    },
+    "source_catalog": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "publisher", "kind", "url", "checked_at", "use"],
+        "properties": {
+          "id": {"type": "string"},
+          "publisher": {"type": "string"},
+          "kind": {"enum": ["official", "wiki", "github", "guide", "reddit", "youtube", "other"]},
+          "url": {"type": "string", "format": "uri"},
+          "checked_at": {"type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$"},
+          "use": {"type": "string"}
+        },
+        "additionalProperties": true
+      }
+    },
+    "access": {
+      "type": "object",
+      "required": ["requirements", "location_and_transport", "unlock_transition"],
+      "properties": {
+        "requirements": {"type": "object"},
+        "location_and_transport": {"type": "array", "items": {"type": "string"}},
+        "unlock_transition": {"type": "object"}
+      },
+      "additionalProperties": true
+    },
+    "activity_loop": {
+      "type": "object",
+      "required": ["entry_inputs", "reusable_setup", "completion_or_reward_events", "failure_and_death", "repeatability"],
+      "properties": {
+        "entry_inputs": {"type": "array", "items": {"type": "object"}},
+        "reusable_setup": {"type": "array", "items": {"type": "object"}},
+        "completion_or_reward_events": {"type": "array", "minItems": 1, "items": {"type": "object"}},
+        "failure_and_death": {"type": "object"},
+        "repeatability": {"type": "object"}
+      },
+      "additionalProperties": true
+    },
+    "currencies": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "acquisition", "spend_behavior"],
+        "properties": {
+          "id": {"type": "string"},
+          "acquisition": {"enum": ["deterministic", "rng", "mixed", "player_observed"]},
+          "spend_behavior": {"type": "string"}
+        },
+        "additionalProperties": true
+      }
+    },
+    "rewards": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "acquisition", "utility"],
+        "properties": {
+          "id": {"type": "string"},
+          "acquisition": {"enum": ["fixed", "shop", "rng", "threshold", "mixed"]},
+          "utility": {"type": "array", "items": {"type": "string"}}
+        },
+        "additionalProperties": true
+      }
+    },
+    "dependencies_and_bypasses": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["target", "relationship"],
+        "properties": {
+          "target": {"type": "string"},
+          "relationship": {"enum": ["requires", "unlocks", "produces", "makes_obtainable", "alternative_to", "improves"]}
+        },
+        "additionalProperties": true
+      }
+    },
+    "afk_and_attention": {
+      "type": "object",
+      "properties": {
+        "attention_class": {"enum": ["active", "moderate", "low", "mixed", "unknown"]},
+        "measured_interaction_interval_seconds": {"type": ["number", "null"], "minimum": 0},
+        "logout_or_idle_constraints": {"type": "array", "items": {"type": "string"}},
+        "source_boundary": {"type": "string"}
+      },
+      "additionalProperties": true
+    },
+    "community_strategy_observations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["claim", "source_ids", "treatment"],
+        "properties": {
+          "claim": {"type": "string"},
+          "source_ids": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+          "treatment": {"const": "strategy-candidate-not-fact"}
+        },
+        "additionalProperties": true
+      }
+    },
+    "state_boundaries": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"type": "string"}
+    },
+    "proposed_normalization": {
+      "type": "object",
+      "required": ["facts", "actions", "graph_nodes", "graph_edges", "account_observations"],
+      "properties": {
+        "facts": {"type": "array", "items": {"type": "object"}},
+        "actions": {"type": "array", "items": {"type": "object"}},
+        "graph_nodes": {"type": "array", "items": {"type": "string"}},
+        "graph_edges": {"type": "array", "items": {"type": "object"}},
+        "account_observations": {"type": "array", "items": {"type": "object"}}
+      },
+      "additionalProperties": true
+    },
+    "conflicts_and_unknowns": {"type": "array", "items": {"type": "object"}},
+    "coverage": {
+      "type": "object",
+      "required": ["access", "loop", "currencies", "rewards", "failure_state", "sources", "normalization"],
+      "properties": {
+        "access": {"const": true},
+        "loop": {"const": true},
+        "currencies": {"const": true},
+        "rewards": {"const": true},
+        "failure_state": {"const": true},
+        "sources": {"const": true},
+        "normalization": {"const": true}
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true
+}
