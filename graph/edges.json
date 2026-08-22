@@ -427,7 +427,7 @@
     {"from": "condition:magic-49", "to": "activity:enchant-digsite-pendant-with-spell", "type": "requires", "evidence": "Manual Lvl-3 Enchant pendant creation requires boostable level-49 Magic."},
     {"from": "capability:digsite-pendant-enchantment", "to": "activity:enchant-digsite-pendant-with-tablet", "type": "unlocks", "evidence": "Permanent Museum enchantment knowledge is required before the tablet alternative can create a Digsite pendant."},
     {"from": "item:ruby-necklace", "to": "activity:enchant-digsite-pendant-with-tablet", "type": "requires", "evidence": "Each tablet-path pendant creation transforms one ruby necklace."},
-    {"from": "item:enchant-ruby-or-topaz-tablet", "to": "activity:enchant-digsite-pendant-with-tablet", "type": "requires", "evidence": "An enchant ruby or topaz tablet is the documented alternative to the level-49 Magic spell path; its normal item lifecycle is not inferred here."},
+    {"from": "item:enchant-ruby-or-topaz-tablet", "to": "activity:enchant-digsite-pendant-with-tablet", "type": "requires", "evidence": "The documented tablet alternative consumes one enchant ruby or topaz tablet instead of requiring the level-49 Magic spell and runes."},
     {"from": "activity:enchant-digsite-pendant-with-spell", "to": "item:digsite-pendant-5", "type": "produces", "evidence": "Once inputs are met, the manual spell path deterministically creates one Digsite pendant with five charges and grants 59 Magic XP."},
     {"from": "activity:enchant-digsite-pendant-with-tablet", "to": "item:digsite-pendant-5", "type": "produces", "evidence": "Once inputs are met, the tablet alternative deterministically creates one Digsite pendant with five charges."},
     {"from": "activity:enchant-digsite-pendant-with-spell", "to": "currency:digsite-pendant-charges", "type": "produces", "evidence": "Each newly enchanted pendant begins with exactly five teleport charges."},
@@ -539,6 +539,10 @@
     {"from": "item:oak-plank", "to": "activity:build-museum-camp-loom", "type": "requires", "evidence": "The loom build consumes two oak planks."},
     {"from": "item:rope", "to": "activity:build-museum-camp-loom", "type": "requires", "evidence": "The loom build consumes one rope."},
     {"from": "item:nails", "to": "activity:build-museum-camp-loom", "type": "requires", "evidence": "The loom build consumes five nails; Museum Camp nails do not bend."},
-    {"from": "activity:build-museum-camp-loom", "to": "capability:museum-camp-loom", "type": "produces", "evidence": "The completed build permanently provides the Museum Camp loom."}
+    {"from": "activity:build-museum-camp-loom", "to": "capability:museum-camp-loom", "type": "produces", "evidence": "The completed build permanently provides the Museum Camp loom."},
+    {"from": "counter:museum-kudos", "to": "activity:claim-museum-kudos-51-reward", "type": "requires", "evidence": "The one-time Mining reward becomes claimable at 51 Museum Kudos."},
+    {"from": "activity:claim-museum-kudos-51-reward", "to": "reward:museum-kudos-51-mining-xp", "type": "produces", "evidence": "The 51-Kudos threshold claim deterministically awards 1,000 Mining XP."},
+    {"from": "counter:museum-kudos", "to": "activity:claim-museum-kudos-101-reward", "type": "requires", "evidence": "The one-time Crafting and Mining reward becomes claimable at 101 Museum Kudos."},
+    {"from": "activity:claim-museum-kudos-101-reward", "to": "reward:museum-kudos-101-crafting-mining-xp", "type": "produces", "evidence": "The 101-Kudos threshold claim deterministically awards 2,500 Crafting XP and 2,500 Mining XP."}
   ]
 }

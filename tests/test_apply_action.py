@@ -134,12 +134,114 @@ class ApplyActionTests(unittest.TestCase):
         self.assertEqual("not_eligible", unconfirmed["status"])
         self.assertEqual(28, unconfirmed["next_state"]["counters"]["kudos"])
 
+    def test_historian_minas_claims_are_independent_and_defer_lamps(self) -> None:
+        claim_cases = (
+            ("action:claim-minas-demon-slayer", "Demon Slayer", 5, False),
+            ("action:claim-minas-rune-mysteries", "Rune Mysteries", 5, False),
+            ("action:claim-minas-shield-of-arrav", "Shield of Arrav", 5, True),
+            ("action:claim-minas-a-tail-of-two-cats", "A Tail of Two Cats", 5, False),
+            ("action:claim-minas-hazeel-cult", "Hazeel Cult", 5, False),
+            ("action:claim-minas-in-aid-of-the-myreque", "In Aid of the Myreque", 5, False),
+            ("action:claim-minas-making-history", "Making History", 5, True),
+            ("action:claim-minas-merlins-crystal", "Merlin's Crystal", 5, True),
+            ("action:claim-minas-observatory-quest", "Observatory Quest", 5, False),
+            ("action:claim-minas-priest-in-peril", "Priest in Peril", 5, False),
+            ("action:claim-minas-temple-of-ikov", "Temple of Ikov", 5, False),
+            ("action:claim-minas-the-grand-tree", "The Grand Tree", 5, False),
+            ("action:claim-minas-what-lies-below", "What Lies Below", 5, False),
+            ("action:claim-minas-curse-of-the-empty-lord", "Curse of the Empty Lord", 10, True),
+            ("action:claim-minas-defender-of-varrock", "Defender of Varrock", 5, True),
+        )
+        self.state["quests_completed"] = [case[1] for case in claim_cases]
+        self.state["items"] = {"dagonhai_history": 1}
+        self.state["milestones"].append("ghostly_robes_complete_confirmed")
+        starting_xp = dict(self.state["skill_xp"])
+
+        state = self.state
+        expected_kudos = 0
+        for action_id, _, kudos, has_lamp in claim_cases:
+            result = apply_action(self.actions_document, state, action_id)
+            self.assertEqual("applied", result["status"], action_id)
+            state = result["next_state"]
+            expected_kudos += kudos
+            self.assertEqual(expected_kudos, state["counters"]["kudos"])
+            self.assertEqual(has_lamp, bool(result["reported_effects"]))
+            if has_lamp:
+                self.assertEqual("xp_choice_award", result["reported_effects"][0]["type"])
+
+        self.assertEqual(80, state["counters"]["kudos"])
+        self.assertEqual(1, state["items"]["dagonhai_history"])
+        self.assertEqual(starting_xp, state["skill_xp"])
+        repeated = apply_action(self.actions_document, state, "action:claim-minas-demon-slayer")
+        self.assertEqual("already_completed", repeated["status"])
+        self.assertEqual(80, repeated["next_state"]["counters"]["kudos"])
+
+    def test_historian_minas_special_claim_inputs_are_required_but_not_consumed(self) -> None:
+        self.state["quests_completed"] = ["What Lies Below", "Curse of the Empty Lord"]
+
+        missing_history = apply_action(
+            self.actions_document, self.state, "action:claim-minas-what-lies-below"
+        )
+        missing_robes = apply_action(
+            self.actions_document, self.state, "action:claim-minas-curse-of-the-empty-lord"
+        )
+        self.assertEqual("not_eligible", missing_history["status"])
+        self.assertEqual("not_eligible", missing_robes["status"])
+
+        self.state["items"]["dagonhai_history"] = 1
+        self.state["milestones"].append("ghostly_robes_complete_confirmed")
+        history = apply_action(self.actions_document, self.state, "action:claim-minas-what-lies-below")
+        robes = apply_action(
+            self.actions_document, history["next_state"], "action:claim-minas-curse-of-the-empty-lord"
+        )
+        self.assertEqual(1, robes["next_state"]["items"]["dagonhai_history"])
+        self.assertIn("ghostly_robes_complete_confirmed", robes["next_state"]["milestones"])
+
+    def test_museum_kudos_threshold_xp_claims_are_separate_and_one_time(self) -> None:
+        self.state["counters"]["kudos"] = 50
+        blocked_51 = apply_action(
+            self.actions_document, self.state, "action:claim-museum-kudos-51-mining-xp"
+        )
+        self.assertEqual("not_eligible", blocked_51["status"])
+
+        self.state["counters"]["kudos"] = 51
+        claim_51 = apply_action(
+            self.actions_document, self.state, "action:claim-museum-kudos-51-mining-xp"
+        )
+        state = claim_51["next_state"]
+        self.assertEqual("applied", claim_51["status"])
+        self.assertEqual(51, state["counters"]["kudos"])
+        self.assertEqual(1000, state["skill_xp"]["Mining"])
+
+        blocked_101 = apply_action(
+            self.actions_document, state, "action:claim-museum-kudos-101-crafting-mining-xp"
+        )
+        self.assertEqual("not_eligible", blocked_101["status"])
+
+        state["counters"]["kudos"] = 101
+        claim_101 = apply_action(
+            self.actions_document, state, "action:claim-museum-kudos-101-crafting-mining-xp"
+        )
+        self.assertEqual("applied", claim_101["status"])
+        self.assertEqual(101, claim_101["next_state"]["counters"]["kudos"])
+        self.assertEqual(2500, claim_101["next_state"]["skill_xp"]["Crafting"])
+        self.assertEqual(3500, claim_101["next_state"]["skill_xp"]["Mining"])
+
+        repeated_101 = apply_action(
+            self.actions_document,
+            claim_101["next_state"],
+            "action:claim-museum-kudos-101-crafting-mining-xp",
+        )
+        self.assertEqual("already_completed", repeated_101["status"])
+
     def test_clean_necklace_and_digsite_pendant_chain_tracks_exact_charges(self) -> None:
         self.state["quests_completed"].extend(["The Dig Site", "Bone Voyage"])
         self.state["milestones"].append("varrock_museum_specimen_cleaning_access")
+        self.state["items"]["specimen_rock"] = 1
 
         cleaning = apply_action(self.actions_document, self.state, "action:clean-varrock-museum-specimen")
         self.assertEqual("applied", cleaning["status"])
+        self.assertEqual(0, cleaning["next_state"]["items"]["specimen_rock"])
         self.assertNotIn("clean_necklace", cleaning["next_state"]["items"])
 
         state = cleaning["next_state"]
@@ -157,11 +259,30 @@ class ApplyActionTests(unittest.TestCase):
         self.assertIsNone(created["selected_option_id"])
         self.assertEqual(5, state["items"]["digsite_pendant_charge"])
 
+        digsite_trip = apply_action(self.actions_document, state, "action:digsite-pendant-digsite-teleport")
+        state = digsite_trip["next_state"]
+        self.assertEqual(4, state["items"]["digsite_pendant_charge"])
+
         bound = apply_action(self.actions_document, state, "action:bind-fossil-island-pendant-destination")
         state = bound["next_state"]
-        self.assertEqual(5, state["items"]["digsite_pendant_charge"])
+        self.assertEqual(4, state["items"]["digsite_pendant_charge"])
         teleported = apply_action(self.actions_document, state, "action:digsite-pendant-fossil-island-teleport")
-        self.assertEqual(4, teleported["next_state"]["items"]["digsite_pendant_charge"])
+        self.assertEqual(3, teleported["next_state"]["items"]["digsite_pendant_charge"])
+
+    def test_digsite_pendant_tablet_path_consumes_inputs_without_magic_xp(self) -> None:
+        self.state["milestones"].append("digsite_pendant_enchantment_knowledge")
+        self.state["items"].update({"ruby_necklace": 1, "enchant_ruby_or_topaz_tablet": 1})
+        magic_xp = self.state["skill_xp"].get("Magic", 0)
+
+        result = apply_action(
+            self.actions_document, self.state, "action:create-digsite-pendant-with-tablet"
+        )
+
+        self.assertEqual("applied", result["status"])
+        self.assertEqual(0, result["next_state"]["items"]["ruby_necklace"])
+        self.assertEqual(0, result["next_state"]["items"]["enchant_ruby_or_topaz_tablet"])
+        self.assertEqual(5, result["next_state"]["items"]["digsite_pendant_charge"])
+        self.assertEqual(magic_xp, result["next_state"]["skill_xp"].get("Magic", 0))
 
     def test_fossil_island_discoveries_and_camp_builds_preserve_tools(self) -> None:
         self.state["transport_flags"].append("fossil_island")
@@ -201,6 +322,28 @@ class ApplyActionTests(unittest.TestCase):
             self.assertEqual(0, state["items"][item])
         for tool in ("axe", "rake", "hammer", "tinderbox"):
             self.assertEqual(1, state["items"][tool])
+
+        for action_id in (
+            "action:travel-mushtree-house-on-the-hill",
+            "action:travel-mushtree-verdant-valley",
+            "action:travel-mushtree-sticky-swamp",
+            "action:travel-mushtree-mushroom-meadow",
+        ):
+            result = apply_action(self.actions_document, state, action_id)
+            self.assertEqual("applied", result["status"], action_id)
+            self.assertEqual(state, result["next_state"], action_id)
+
+    def test_sticky_swamp_rubber_cap_route_bypasses_ordinary_tools(self) -> None:
+        self.state["transport_flags"].append("fossil_island")
+        self.state["milestones"].append("sticky_swamp_rubber_cap_route_confirmed")
+
+        result = apply_action(
+            self.actions_document, self.state, "action:discover-mushtree-sticky-swamp"
+        )
+
+        self.assertEqual("applied", result["status"])
+        self.assertEqual("rubber-cap-route", result["selected_option_id"])
+        self.assertIn("mushtree_sticky_swamp", result["next_state"]["transport_flags"])
 
     def test_pandemonium_unlocks_sailing_with_only_fixed_rewards(self) -> None:
         result = apply_action(self.actions_document, self.state, "action:pandemonium")

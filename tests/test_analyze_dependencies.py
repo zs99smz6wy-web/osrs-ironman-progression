@@ -58,6 +58,21 @@ class AnalyzeDependenciesTests(unittest.TestCase):
         kudos = self._predicate(fossil, "requirements", "counter_at_least", "kudos")
         self.assertEqual(
             [
+                "action:claim-minas-a-tail-of-two-cats",
+                "action:claim-minas-curse-of-the-empty-lord",
+                "action:claim-minas-defender-of-varrock",
+                "action:claim-minas-demon-slayer",
+                "action:claim-minas-hazeel-cult",
+                "action:claim-minas-in-aid-of-the-myreque",
+                "action:claim-minas-making-history",
+                "action:claim-minas-merlins-crystal",
+                "action:claim-minas-observatory-quest",
+                "action:claim-minas-priest-in-peril",
+                "action:claim-minas-rune-mysteries",
+                "action:claim-minas-shield-of-arrav",
+                "action:claim-minas-temple-of-ikov",
+                "action:claim-minas-the-grand-tree",
+                "action:claim-minas-what-lies-below",
                 "action:display-museum-ancient-coin",
                 "action:display-museum-ancient-symbol",
                 "action:display-museum-old-coin",
