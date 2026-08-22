@@ -70,14 +70,14 @@
       "id": "varlamore-wealthy-citizens",
       "name": "Wealthy Varlamorians",
       "category": "economy",
-      "status": "needs_revalidation",
-      "verified_at": "2026-08-20",
+      "status": "verified",
+      "verified_at": "2026-08-22",
       "requirements": {"quest": "Children of the Sun", "skills": {"Thieving": 50}},
-      "outputs": ["coin pouches", "house keys", "occasional blessed bone statuettes"],
-      "mechanics": {"distraction": "A distracted citizen can be auto-pickpocketed with 100% success."},
-      "notes": "Exact GP, XP, attention rating, and expected key value need a current dedicated validation before scoring.",
-      "source_ids": ["wiki-ironman-thieving"],
-      "confidence": "medium"
+      "outputs": {"ordinary_pickpocket": {"Thieving_xp": 96, "coins": 85}, "variable": ["house keys", "easy clue scrolls", "jewellery through diamond", "blessed bone statuettes"]},
+      "mechanics": {"distraction": "Three urchins distract one wealthy citizen each every 84-99 seconds. During the approximately 20-24 second window, pickpocket success is 100% and pickpocketing continues automatically.", "house_keys": "House keys are variable pickpocket loot at approximately 5/85; full Rogue equipment doubles keys.", "valuables": "Each ordinary house search awards 45 Thieving XP and one valuable; a short-lived shiny-object event awards 14 valuables and 630 Thieving XP.", "sale": "Oriana buys each valuable for 55 coins, increased to 65 after the 8,000-Glory Gladiator rank.", "catch_loss": "Being caught by a returning homeowner loses about 90% of valuables stolen in that house but preserves valuables from earlier houses."},
+      "notes": "Total keys, valuables, jewellery, statuettes, XP, and coins remain session-dependent. Wiki throughput ranges are guide estimates, not deterministic action outputs.",
+      "source_ids": ["wiki-wealthy-citizen", "wiki-stealing-valuables", "wiki-money-stealing-valuables"],
+      "confidence": "high"
     }
   ]
 }

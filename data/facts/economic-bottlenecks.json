@@ -39,7 +39,7 @@
       "name": "Wealthy citizens and stealing valuables",
       "category": "economy",
       "status": "verified",
-      "verified_at": "2026-08-20",
+      "verified_at": "2026-08-22",
       "requirements": {
         "membership": true,
         "quest": "Children of the Sun completed",
@@ -47,9 +47,10 @@
         "location": "Civitas illa Fortis"
       },
       "mechanics": {
-        "house_keys": "Keys are variable loot. Pickpocketing wealthy citizens is the fastest listed source, at about 1 key per 17 pickpockets.",
-        "distraction_window": "Three street urchins distract citizens together every 84-99 seconds. During the 24-second window, pickpockets have 100% success and continue automatically.",
-        "valuables": "House searches produce a variable count of valuables. Their resale price is fixed at 55 coins each to Oriana, or 65 coins each after the 8,000-Glory Fortis Colosseum Gladiator rank.",
+        "ordinary_pickpocket": "Each successful wealthy-citizen pickpocket awards exactly 96 Thieving XP and 85 coins; outside a distraction, success and failure remain level-dependent.",
+        "house_keys": "Keys are variable loot at approximately 5/85 successful pickpockets. Full Rogue equipment doubles keys; a full inventory can suppress the key drop.",
+        "distraction_window": "Three street urchins distract citizens together every 84-99 seconds. During the approximately 20-24 second window, pickpockets have 100% success and continue automatically.",
+        "valuables": "Ordinary house searches award 45 Thieving XP and one valuable. A short-lived shiny-object event awards 14 valuables and 630 Thieving XP. Resale is fixed at 55 coins each to Oriana, or 65 coins each after the 8,000-Glory Fortis Colosseum Gladiator rank.",
         "caught_in_house": "If the homeowner catches the player, about 90% of valuables from that house are lost; valuables obtained from earlier houses are retained."
       },
       "attention_and_risk": {
@@ -64,7 +65,7 @@
           "assumptions": "18-19 houses per hour and the guide's stated execution efficiency."
         }
       ],
-      "source_ids": ["wiki-stealing-valuables", "wiki-money-stealing-valuables", "wiki-children-sun"],
+      "source_ids": ["wiki-wealthy-citizen", "wiki-stealing-valuables", "wiki-money-stealing-valuables", "wiki-children-sun"],
       "confidence": "high"
     },
     {
