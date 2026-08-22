@@ -16,7 +16,8 @@ DEFAULT_STATE = ROOT / "graph" / "account-state.example.json"
 REQUIRED_STATE_KEYS = {
     "skills", "skill_xp", "quests_completed", "completed_actions", "transport_flags", "milestones",
     "gear_thresholds", "items", "resources", "counters", "passive_loops", "recurring_observations",
-    "kingdom_observation", "slayer_task", "diary_tiers", "kourend_memoir",
+    "kingdom_observation", "combat_readiness_observation", "encounter_observations",
+    "slayer_task", "unique_item_observations", "diary_tiers", "kourend_memoir",
     "attention_window", "notable_drops", "preferences", "cash_commitments",
 }
 LIST_STATE_KEYS = {
@@ -28,7 +29,28 @@ RECURRING_OBSERVATION_STATES = {"needs_inputs", "in_progress", "ready", "cooldow
 KINGDOM_OBSERVATION_FIELDS = {
     "approval_percent", "worker_assignments", "collection_paused", "observed_at",
 }
-SLAYER_TASK_FIELDS = {"target", "remaining", "observed_at"}
+COMBAT_READINESS_FIELDS = {
+    "observed_at", "loadouts", "current_hitpoints", "current_prayer",
+    "food_healing_available", "prayer_restore_points_available",
+    "emergency_teleport_available", "recovery_tolerance",
+}
+COMBAT_LOADOUT_STYLES = {"melee", "ranged", "magic"}
+RECOVERY_TOLERANCES = {"none", "low", "moderate", "high"}
+ENCOUNTER_OBSERVATION_FIELDS = {
+    "observed_at", "attempts", "successful_completions", "elapsed_minutes",
+    "supply_use", "deaths", "banking_trips",
+}
+UNIQUE_ITEM_OBSERVATION_FIELDS = {
+    "observed_at", "possession", "collection_log", "quantity", "variant", "charges",
+    "condition", "usable", "reclaimable",
+}
+UNIQUE_ITEM_POSSESSION_STATES = {"unknown", "owned", "not_owned"}
+COLLECTION_LOG_STATES = {"unknown", "confirmed", "not_confirmed"}
+UNIQUE_ITEM_CONDITIONS = {"pristine", "degraded", "broken"}
+SLAYER_TASK_FIELDS = {
+    "target", "remaining", "initial_count", "master", "streak", "points",
+    "blocked_targets", "observed_at",
+}
 DIARY_REGIONS = (
     "Ardougne",
     "Desert",
@@ -82,6 +104,26 @@ def kourend_memoir_capacity(memoir: dict[str, Any]) -> int:
         return 250
     ordinary_pages = set(memoir["pages"]) & set(KOUREND_MEMOIR_ORDINARY_PAGES)
     return 20 * len(ordinary_pages)
+
+
+def _validate_nullable_non_negative_integer(value: Any, context: str) -> None:
+    if value is not None and (isinstance(value, bool) or not isinstance(value, int) or value < 0):
+        raise ValueError(f"{context} must be a non-negative integer or null")
+
+
+def _validate_nullable_trimmed_string(value: Any, context: str) -> None:
+    if value is not None and (not isinstance(value, str) or not value.strip() or value != value.strip()):
+        raise ValueError(f"{context} must be a non-empty trimmed string or null")
+
+
+def _validate_supply_counts(values: Any, context: str) -> None:
+    if not isinstance(values, dict):
+        raise ValueError(f"{context} must be an object")
+    for item_id, count in values.items():
+        if not isinstance(item_id, str) or not item_id.strip() or item_id != item_id.strip():
+            raise ValueError(f"{context} has an invalid item ID")
+        if isinstance(count, bool) or not isinstance(count, int) or count < 0:
+            raise ValueError(f"{context}.{item_id} must be a non-negative integer")
 
 
 def validate_account_state(state: dict[str, Any]) -> None:
@@ -179,6 +221,64 @@ def validate_account_state(state: dict[str, Any]) -> None:
         if not _is_rfc_3339_timestamp(kingdom_observation["observed_at"]):
             raise ValueError("Account state kingdom_observation.observed_at must be RFC 3339")
 
+    combat_readiness = state["combat_readiness_observation"]
+    if combat_readiness is not None:
+        if not isinstance(combat_readiness, dict) or set(combat_readiness) != COMBAT_READINESS_FIELDS:
+            raise ValueError("Account state combat_readiness_observation has invalid fields")
+        if not _is_rfc_3339_timestamp(combat_readiness["observed_at"]):
+            raise ValueError("Account state combat_readiness_observation.observed_at must be RFC 3339")
+        loadouts = combat_readiness["loadouts"]
+        if not isinstance(loadouts, dict) or set(loadouts) != COMBAT_LOADOUT_STYLES:
+            raise ValueError("Account state combat_readiness_observation.loadouts must contain melee, ranged, and magic")
+        for style, item_ids in loadouts.items():
+            if (
+                not isinstance(item_ids, list)
+                or any(not isinstance(item_id, str) or not item_id.strip() or item_id != item_id.strip() for item_id in item_ids)
+                or len(item_ids) != len(set(item_ids))
+            ):
+                raise ValueError(
+                    f"Account state combat_readiness_observation.loadouts.{style} must be unique trimmed item IDs"
+                )
+        for field in (
+            "current_hitpoints", "current_prayer", "food_healing_available", "prayer_restore_points_available",
+        ):
+            _validate_nullable_non_negative_integer(
+                combat_readiness[field], f"Account state combat_readiness_observation.{field}"
+            )
+        if combat_readiness["emergency_teleport_available"] is not None and not isinstance(
+            combat_readiness["emergency_teleport_available"], bool
+        ):
+            raise ValueError("Account state combat_readiness_observation.emergency_teleport_available must be boolean or null")
+        if (
+            combat_readiness["recovery_tolerance"] is not None
+            and combat_readiness["recovery_tolerance"] not in RECOVERY_TOLERANCES
+        ):
+            raise ValueError("Account state combat_readiness_observation.recovery_tolerance is invalid")
+
+    encounter_observations = state["encounter_observations"]
+    if not isinstance(encounter_observations, dict):
+        raise ValueError("Account state encounter_observations must be an object")
+    for encounter_id, observation in encounter_observations.items():
+        if not isinstance(encounter_id, str) or not encounter_id.strip() or encounter_id != encounter_id.strip():
+            raise ValueError("Account state encounter_observations has an invalid encounter ID")
+        if not isinstance(observation, dict) or set(observation) != ENCOUNTER_OBSERVATION_FIELDS:
+            raise ValueError(f"Account state encounter_observations.{encounter_id} has invalid fields")
+        if not _is_rfc_3339_timestamp(observation["observed_at"]):
+            raise ValueError(f"Account state encounter_observations.{encounter_id}.observed_at must be RFC 3339")
+        attempts = observation["attempts"]
+        if isinstance(attempts, bool) or not isinstance(attempts, int) or attempts < 0:
+            raise ValueError(f"Account state encounter_observations.{encounter_id}.attempts must be a non-negative integer")
+        for field in ("successful_completions", "elapsed_minutes", "deaths", "banking_trips"):
+            _validate_nullable_non_negative_integer(
+                observation[field], f"Account state encounter_observations.{encounter_id}.{field}"
+            )
+        successes = observation["successful_completions"]
+        if successes is not None and successes > attempts:
+            raise ValueError(
+                f"Account state encounter_observations.{encounter_id}.successful_completions cannot exceed attempts"
+            )
+        _validate_supply_counts(observation["supply_use"], f"Account state encounter_observations.{encounter_id}.supply_use")
+
     slayer_task = state["slayer_task"]
     if slayer_task is not None:
         if not isinstance(slayer_task, dict) or set(slayer_task) != SLAYER_TASK_FIELDS:
@@ -191,6 +291,50 @@ def validate_account_state(state: dict[str, Any]) -> None:
             raise ValueError("Account state slayer_task.remaining must be a positive integer")
         if not _is_rfc_3339_timestamp(slayer_task["observed_at"]):
             raise ValueError("Account state slayer_task.observed_at must be RFC 3339")
+        _validate_nullable_non_negative_integer(slayer_task["initial_count"], "Account state slayer_task.initial_count")
+        if slayer_task["initial_count"] is not None and slayer_task["initial_count"] < remaining:
+            raise ValueError("Account state slayer_task.initial_count cannot be below remaining")
+        _validate_nullable_trimmed_string(slayer_task["master"], "Account state slayer_task.master")
+        for field in ("streak", "points"):
+            _validate_nullable_non_negative_integer(slayer_task[field], f"Account state slayer_task.{field}")
+        blocked_targets = slayer_task["blocked_targets"]
+        if (
+            not isinstance(blocked_targets, list)
+            or any(not isinstance(target, str) or not target.strip() or target != target.strip() for target in blocked_targets)
+            or len(blocked_targets) != len(set(blocked_targets))
+        ):
+            raise ValueError("Account state slayer_task.blocked_targets must be unique trimmed target names")
+
+    unique_item_observations = state["unique_item_observations"]
+    if not isinstance(unique_item_observations, dict):
+        raise ValueError("Account state unique_item_observations must be an object")
+    for item_id, observation in unique_item_observations.items():
+        if not isinstance(item_id, str) or not item_id.strip() or item_id != item_id.strip():
+            raise ValueError("Account state unique_item_observations has an invalid item ID")
+        if not isinstance(observation, dict) or set(observation) != UNIQUE_ITEM_OBSERVATION_FIELDS:
+            raise ValueError(f"Account state unique_item_observations.{item_id} has invalid fields")
+        if not _is_rfc_3339_timestamp(observation["observed_at"]):
+            raise ValueError(f"Account state unique_item_observations.{item_id}.observed_at must be RFC 3339")
+        if observation["possession"] not in UNIQUE_ITEM_POSSESSION_STATES:
+            raise ValueError(f"Account state unique_item_observations.{item_id}.possession is invalid")
+        if observation["collection_log"] not in COLLECTION_LOG_STATES:
+            raise ValueError(f"Account state unique_item_observations.{item_id}.collection_log is invalid")
+        _validate_nullable_non_negative_integer(
+            observation["quantity"], f"Account state unique_item_observations.{item_id}.quantity"
+        )
+        _validate_nullable_trimmed_string(observation["variant"], f"Account state unique_item_observations.{item_id}.variant")
+        _validate_nullable_non_negative_integer(
+            observation["charges"], f"Account state unique_item_observations.{item_id}.charges"
+        )
+        if observation["condition"] is not None and observation["condition"] not in UNIQUE_ITEM_CONDITIONS:
+            raise ValueError(f"Account state unique_item_observations.{item_id}.condition is invalid")
+        for field in ("usable", "reclaimable"):
+            if observation[field] is not None and not isinstance(observation[field], bool):
+                raise ValueError(f"Account state unique_item_observations.{item_id}.{field} must be boolean or null")
+        if observation["possession"] == "owned" and observation["quantity"] is not None and observation["quantity"] < 1:
+            raise ValueError(f"Account state unique_item_observations.{item_id}.owned quantity must be positive")
+        if observation["possession"] == "unknown" and observation["quantity"] is not None:
+            raise ValueError(f"Account state unique_item_observations.{item_id}.unknown possession requires null quantity")
 
     diary_tiers = state["diary_tiers"]
     if not isinstance(diary_tiers, dict) or set(diary_tiers) != set(DIARY_REGIONS):

@@ -24,6 +24,19 @@ Facts must not contain route order, subjective priority, or instructions such as
 
 An account state holds skill levels, completed quests and actions, transport flags, milestones, gear thresholds, item counts, spendable resources, permanent counters, active passive loops, attention availability, preferences, and discovered drops. Items, spendable resources, and non-spendable counters are distinct so preparation and economic accounting do not silently consume permanent progress such as Kudos.
 
+### Player observations
+
+Observation fields are strict snapshots of what the player recorded, not claims the model can derive. Their absence, `null` value, or nullable subfields mean unknown; they must never become hard action gates, create graph edges, or silently fill an inventory field.
+
+| Field | Captures | Does not imply |
+| --- | --- | --- |
+| `combat_readiness_observation` | Timestamped combat loadouts, current HP/Prayer, available healing/restoration, emergency teleport availability, and recovery tolerance. | Encounter eligibility, a recommended loadout, or a guaranteed kill. |
+| `encounter_observations` | Per-encounter attempt window, successes, elapsed minutes, consumed supplies, deaths, and banking trips. | Future throughput, supply burn, or a route decision. |
+| `slayer_task` | A currently observed target and remaining count, plus optional initial count, master, streak, points, and blocked targets. | A new assignment, an eligible master, or a deterministic task path. |
+| `unique_item_observations` | Separate current possession, collection-log confirmation, quantity, variant, charges, condition, usability, and reclaimability observations. | That an item is currently usable merely because it was once logged, or vice versa. |
+
+`analyze_combat_observations.py` may divide explicit successes by explicit elapsed minutes to display a measured rate. It returns `null` when either measurement is missing or elapsed time is zero, and marks all readiness, supply, and collection-log inference as false.
+
 ## Normalized progression actions
 
 `data/progression/actions.json` is the executable bridge between sourced facts and account-state evaluation. Each action cites one or more verified fact records and expresses only hard requirements and observable outcomes. Requirements support nested `all` and `any` groups so alternatives can be represented without flattening them into prose.

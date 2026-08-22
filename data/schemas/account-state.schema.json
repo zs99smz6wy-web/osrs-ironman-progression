@@ -20,7 +20,7 @@
       "additionalProperties": false
     }
   },
-  "required": ["skills", "skill_xp", "quests_completed", "completed_actions", "transport_flags", "milestones", "gear_thresholds", "items", "resources", "counters", "passive_loops", "attention_window", "notable_drops", "preferences"],
+  "required": ["skills", "skill_xp", "quests_completed", "completed_actions", "transport_flags", "milestones", "gear_thresholds", "items", "resources", "counters", "passive_loops", "recurring_observations", "kingdom_observation", "combat_readiness_observation", "encounter_observations", "slayer_task", "unique_item_observations", "diary_tiers", "kourend_memoir", "attention_window", "notable_drops", "preferences", "cash_commitments"],
   "properties": {
     "skills": {"$ref": "#/$defs/skillLevels"},
     "skill_xp": {"$ref": "#/$defs/skillXp"},
@@ -45,6 +45,85 @@
       "type": "object",
       "additionalProperties": {"type": "boolean"}
     },
+    "recurring_observations": {"type": "object"},
+    "kingdom_observation": {"type": ["object", "null"]},
+    "combat_readiness_observation": {
+      "type": ["object", "null"],
+      "required": ["observed_at", "loadouts", "current_hitpoints", "current_prayer", "food_healing_available", "prayer_restore_points_available", "emergency_teleport_available", "recovery_tolerance"],
+      "properties": {
+        "observed_at": {"type": "string", "format": "date-time"},
+        "loadouts": {
+          "type": "object",
+          "required": ["melee", "ranged", "magic"],
+          "properties": {
+            "melee": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+            "ranged": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+            "magic": {"type": "array", "items": {"type": "string"}, "uniqueItems": true}
+          },
+          "additionalProperties": false
+        },
+        "current_hitpoints": {"type": ["integer", "null"], "minimum": 0},
+        "current_prayer": {"type": ["integer", "null"], "minimum": 0},
+        "food_healing_available": {"type": ["integer", "null"], "minimum": 0},
+        "prayer_restore_points_available": {"type": ["integer", "null"], "minimum": 0},
+        "emergency_teleport_available": {"type": ["boolean", "null"]},
+        "recovery_tolerance": {"type": ["string", "null"], "enum": ["none", "low", "moderate", "high", null]}
+      },
+      "additionalProperties": false
+    },
+    "encounter_observations": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["observed_at", "attempts", "successful_completions", "elapsed_minutes", "supply_use", "deaths", "banking_trips"],
+        "properties": {
+          "observed_at": {"type": "string", "format": "date-time"},
+          "attempts": {"type": "integer", "minimum": 0},
+          "successful_completions": {"type": ["integer", "null"], "minimum": 0},
+          "elapsed_minutes": {"type": ["integer", "null"], "minimum": 0},
+          "supply_use": {"type": "object", "additionalProperties": {"type": "integer", "minimum": 0}},
+          "deaths": {"type": ["integer", "null"], "minimum": 0},
+          "banking_trips": {"type": ["integer", "null"], "minimum": 0}
+        },
+        "additionalProperties": false
+      }
+    },
+    "slayer_task": {
+      "type": ["object", "null"],
+      "required": ["target", "remaining", "initial_count", "master", "streak", "points", "blocked_targets", "observed_at"],
+      "properties": {
+        "target": {"type": "string", "minLength": 1},
+        "remaining": {"type": "integer", "minimum": 1},
+        "initial_count": {"type": ["integer", "null"], "minimum": 0},
+        "master": {"type": ["string", "null"], "minLength": 1},
+        "streak": {"type": ["integer", "null"], "minimum": 0},
+        "points": {"type": ["integer", "null"], "minimum": 0},
+        "blocked_targets": {"type": "array", "items": {"type": "string", "minLength": 1}, "uniqueItems": true},
+        "observed_at": {"type": "string", "format": "date-time"}
+      },
+      "additionalProperties": false
+    },
+    "unique_item_observations": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["observed_at", "possession", "collection_log", "quantity", "variant", "charges", "condition", "usable", "reclaimable"],
+        "properties": {
+          "observed_at": {"type": "string", "format": "date-time"},
+          "possession": {"type": "string", "enum": ["unknown", "owned", "not_owned"]},
+          "collection_log": {"type": "string", "enum": ["unknown", "confirmed", "not_confirmed"]},
+          "quantity": {"type": ["integer", "null"], "minimum": 0},
+          "variant": {"type": ["string", "null"]},
+          "charges": {"type": ["integer", "null"], "minimum": 0},
+          "condition": {"type": ["string", "null"], "enum": ["pristine", "degraded", "broken", null]},
+          "usable": {"type": ["boolean", "null"]},
+          "reclaimable": {"type": ["boolean", "null"]}
+        },
+        "additionalProperties": false
+      }
+    },
+    "diary_tiers": {"type": "object"},
+    "kourend_memoir": {"type": ["object", "null"]},
     "attention_window": {
       "type": "object",
       "required": ["duration_minutes", "mode", "player_present"],

@@ -23,7 +23,10 @@
   },
   "recurring_observations": {},
   "kingdom_observation": null,
+  "combat_readiness_observation": null,
+  "encounter_observations": {},
   "slayer_task": null,
+  "unique_item_observations": {},
   "diary_tiers": {"Ardougne": "none", "Desert": "none", "Falador": "none", "Fremennik": "none", "Kandarin": "none", "Karamja": "none", "Kourend & Kebos": "none", "Lumbridge & Draynor": "none", "Morytania": "none", "Varrock": "none", "Western Provinces": "none", "Wilderness": "none"},
   "kourend_memoir": null,
   "attention_window": {

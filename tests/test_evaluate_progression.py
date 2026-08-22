@@ -354,6 +354,11 @@ class EvaluateProgressionScenarioTests(unittest.TestCase):
         state["slayer_task"] = {
             "target": " Aberrant spectres",
             "remaining": 20,
+            "initial_count": None,
+            "master": None,
+            "streak": None,
+            "points": None,
+            "blocked_targets": [],
             "observed_at": "2026-08-21T09:30:00Z",
         }
         with self.assertRaisesRegex(ValueError, "non-empty trimmed string"):
@@ -383,6 +388,11 @@ class EvaluateProgressionScenarioTests(unittest.TestCase):
         state["slayer_task"] = {
             "target": "Aberrant spectres",
             "remaining": 20,
+            "initial_count": None,
+            "master": None,
+            "streak": None,
+            "points": None,
+            "blocked_targets": [],
             "observed_at": "2026-08-21T09:30:00Z",
         }
         validate_account_state(state)

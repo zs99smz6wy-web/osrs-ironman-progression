@@ -912,6 +912,11 @@ class ApplyActionTests(unittest.TestCase):
         self.state["slayer_task"] = {
             "target": "Gryphons",
             "remaining": 37,
+            "initial_count": 37,
+            "master": None,
+            "streak": None,
+            "points": None,
+            "blocked_targets": [],
             "observed_at": "2026-08-21T12:00:00-07:00",
         }
 
