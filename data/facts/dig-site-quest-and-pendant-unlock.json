@@ -1,0 +1,327 @@
+{
+  "scope": "Current factual requirements, item lifecycles, combat, rewards, and account-state transitions for The Dig Site and the distinct post-quest clean-necklace discovery that enables Digsite-pendant enchanting. This record deliberately contains no route ordering, valuation, or account-specific recommendation.",
+  "source_catalog": [
+    {
+      "id": "wiki-dig-site",
+      "url": "https://oldschool.runescape.wiki/w/The_Dig_Site",
+      "used_for": "Current quest requirements, walkthrough item transitions, combat context, completion rewards, and specimen-cleaning access.",
+      "verified_at": "2026-08-21"
+    },
+    {
+      "id": "wiki-digsite-pendant-direct",
+      "url": "https://oldschool.runescape.wiki/w/Digsite_pendant",
+      "used_for": "Clean-necklace discovery rate, unlock condition, Lvl-3 Enchant inputs, Magic requirement, experience, charge count, and pendant behavior.",
+      "verified_at": "2026-08-21"
+    },
+    {
+      "id": "wiki-kudos",
+      "url": "https://oldschool.runescape.wiki/w/Kudos_lamps",
+      "used_for": "Post-quest specimen-cleaning prerequisites, unlimited uncleaned-find access, and deterministic archaeologist hand-in behavior.",
+      "verified_at": "2026-08-21"
+    },
+    {
+      "id": "wiki-varrock-museum-tools-direct",
+      "url": "https://oldschool.runescape.wiki/w/Tools_(Varrock_Museum)",
+      "used_for": "Tool-rack cleaning-kit contents, availability, and possession rules.",
+      "verified_at": "2026-08-21"
+    },
+    {
+      "id": "wiki-barrel-digsite-direct",
+      "url": "https://oldschool.runescape.wiki/w/Barrel_(Digsite)",
+      "used_for": "Vial-to-unidentified-liquid acquisition and the trowel requirement to open the barrel.",
+      "verified_at": "2026-08-21"
+    },
+    {
+      "id": "wiki-trowel-direct",
+      "url": "https://oldschool.runescape.wiki/w/Trowel",
+      "used_for": "Quest acquisition/replacement of the trowel and its Digsite use.",
+      "verified_at": "2026-08-21"
+    },
+    {
+      "id": "wiki-quest-item-rewards-direct",
+      "url": "https://oldschool.runescape.wiki/w/Quest_item_rewards",
+      "used_for": "The two gold bars and the single post-quest Level 3-certificate choice between Fruit blast and chocolate cake.",
+      "verified_at": "2026-08-21"
+    },
+    {
+      "id": "wiki-quest-requirements-by-quest-direct",
+      "url": "https://oldschool.runescape.wiki/w/Quests/Requirements_by_quest",
+      "used_for": "The three current boostable, completion-only skill gates and absence of quest prerequisites.",
+      "verified_at": "2026-08-21"
+    },
+    {
+      "id": "wiki-clean-necklace-legacy-direct",
+      "url": "https://oldschoolrunescape.fandom.com/wiki/Clean_necklace",
+      "used_for": "Explicit clean-necklace removal from inventory after archaeologist hand-in. This legacy mirror is supplementary to the current OSRS Wiki sources above.",
+      "verified_at": "2026-08-21"
+    },
+    {
+      "id": "official-portal-nexus-poll-2018-direct",
+      "url": "https://oldschool.runescape.com/polls/2018/1525",
+      "used_for": "Official Jagex confirmation of Digsite-pendant terminology and the later mounted-pendant extension; that optional Construction extension is not a requirement of the quest or basic pendant enchantment.",
+      "verified_at": "2026-08-21"
+    }
+  ],
+  "records": [
+    {
+      "id": "the-dig-site-quest-detail",
+      "name": "The Dig Site",
+      "category": "quest",
+      "status": "verified",
+      "verified_at": "2026-08-21",
+      "membership": true,
+      "official_difficulty": "Intermediate",
+      "start": {
+        "npc": "Examiner",
+        "location": "Exam Centre, south of the Digsite"
+      },
+      "requirements": {
+        "quest_prerequisites": {
+          "direct": [],
+          "notes": "The current requirement source lists no quest prerequisite."
+        },
+        "formal_skill_gates": {
+          "required_to_complete_not_to_start": {
+            "Agility": {
+              "level": 10,
+              "boostable": true,
+              "required_for": "Operating the relevant Digsite winch."
+            },
+            "Herblore": {
+              "level": 10,
+              "boostable": true,
+              "required_for": "Combining the chemical-compound ingredients."
+            },
+            "Thieving": {
+              "level": 25,
+              "boostable": true,
+              "required_for": "Obtaining the animal skull from Digsite workmen for an exam answer."
+            }
+          },
+          "notes": "No listed formal skill gate is required to start the quest."
+        },
+        "player_provided_inputs": {
+          "cup_of_tea": {
+            "quantity": 1,
+            "use": "Given to the panning guide to allow panning for the special cup.",
+            "lifecycle": "Consumed. A player may bring one or obtain one from the nearby Varrock tea stall; the quest does not award it."
+          },
+          "opal": {
+            "quantity": 1,
+            "accepted_forms": [
+              "Opal",
+              "Uncut opal"
+            ],
+            "use": "Given to the student during the exam-answer sequence.",
+            "lifecycle": "Consumed. Panning can provide an opal, but that is a variable output rather than a deterministic quest grant."
+          },
+          "rope": {
+            "quantity": 2,
+            "use": "One rope is used on each required Digsite winch.",
+            "lifecycle": "Attached to the winches and not retained as ordinary inventory ropes."
+          },
+          "vial": {
+            "quantity": 1,
+            "use": "Filled from the opened Digsite barrel to obtain unidentified liquid, later identified as nitroglycerin and mixed into the chemical compound.",
+            "lifecycle": "Transformed through the chemical-compound sequence and consumed when the compound is detonated."
+          },
+          "pestle_and_mortar": {
+            "quantity": 1,
+            "use": "Grinds charcoal into ground charcoal for the chemical compound.",
+            "lifecycle": "Reusable tool; not consumed."
+          },
+          "charcoal": {
+            "quantity": 1,
+            "use": "Ground and mixed into the chemical compound.",
+            "lifecycle": "Consumed by transformation into ground charcoal and then chemical compound.",
+            "alternative_acquisition": "Can be obtained from the Digsite specimen tray, but its appearance there is variable; treating it as a player-held input preserves the hard inventory dependency."
+          },
+          "tinderbox": {
+            "quantity": 1,
+            "use": "Ignites the chemical compound at the blocked bricks.",
+            "lifecycle": "Reusable tool; not consumed."
+          }
+        },
+        "quest_sourced_or_temporary_items": {
+          "obtained_during_quest": [
+            "Unstamped letter and sealed letter",
+            "Teddy, animal skull, and special cup used to obtain the three exam answers",
+            "Panning tray",
+            "Level 1, Level 2, and Level 3 certificates",
+            "Trowel, specimen brush, specimen jar, rock pick, and invitation letter",
+            "Ancient talisman",
+            "Arcenia root",
+            "Chest key",
+            "Chemical powder, identified ammonium nitrate, unidentified liquid/nitroglycerin, ground charcoal, mixed chemicals, and chemical compound",
+            "Stone tablet"
+          ],
+          "lifecycle_notes": "The letters, student-recovery items, chemistry intermediates, access items, and stone tablet are quest progression state. The trowel is acquired from an examiner after the first exam and can be replaced by an examiner if lost. The quest's temporary-item list is intentionally not modeled as a stable pre-quest inventory requirement."
+        }
+      },
+      "combat": {
+        "mandatory_defeats": [],
+        "encountered_but_not_required_to_defeat": [
+          {
+            "enemy": "Skeleton",
+            "combat_level": 22,
+            "context": "Aggressive skeletons occupy the final room containing the stone tablet; the tablet can be picked up without a required kill."
+          }
+        ],
+        "notes": "No combat level, weapon, armour, food, prayer, or monster defeat is a formal requirement of completion."
+      },
+      "fixed_completion_rewards": {
+        "quest_points": 2,
+        "skill_experience": {
+          "Mining": 15300,
+          "Herblore": 2000
+        },
+        "items": [
+          {
+            "item": "Gold bar",
+            "quantity": 2,
+            "lifecycle": "Granted on completion."
+          }
+        ],
+        "permanent_capability_unlocks": [
+          "Access to the Varrock Museum specimen-cleaning activity",
+          "Digsite Dungeon winch access subject to using a rope on the winch",
+          "The Dig Site quest-complete account state required by the clean-necklace and Digsite-pendant chain"
+        ]
+      },
+      "choice_or_deferred_rewards": {
+        "certificate_hand_in": {
+          "condition": "Present the Level 1, Level 2, and Level 3 certificates to the Varrock Museum curator after the quest.",
+          "choose_one": [
+            "Fruit blast",
+            "Chocolate cake"
+          ],
+          "auto_select": false,
+          "lifecycle": "The three certificates are surrendered for one selected item."
+        }
+      },
+      "completion_state": {
+        "deterministic": true,
+        "outputs": [
+          "the_dig_site_completed",
+          "varrock_museum_specimen_cleaning_access"
+        ],
+        "not_granted_by_completion_alone": [
+          "digsite_pendant_enchantment_knowledge",
+          "A Digsite pendant",
+          "A clean necklace"
+        ]
+      },
+      "strategic_judgments": [],
+      "source_ids": [
+        "wiki-dig-site",
+        "wiki-kudos"
+      ],
+      "confidence": "high for formal gates, fixed rewards, and the main input/temporary-item transitions; medium for the non-deterministic in-quest charcoal acquisition alternative, which is explicitly distinguished from the held-input model."
+    },
+    {
+      "id": "digsite-pendant-enchantment-unlock",
+      "name": "Clean-necklace discovery and Digsite-pendant enchantment unlock",
+      "category": "transport",
+      "status": "verified",
+      "verified_at": "2026-08-21",
+      "hard_access_gates": {
+        "required_account_state": [
+          "the_dig_site_completed",
+          "varrock_museum_specimen_cleaning_access"
+        ],
+        "cleaning_equipment": {
+          "must_be_worn": [
+            "Leather boots",
+            "Leather gloves"
+          ],
+          "must_be_in_inventory": [
+            "Trowel",
+            "Rock pick",
+            "Specimen brush"
+          ],
+          "tool_rack_behavior": "The Varrock Museum tool rack supplies any missing cleaning-kit components: leather boots, leather gloves, rock pick, specimen brush, and trowel. These tools are reusable and are not consumed by cleaning."
+        }
+      },
+      "clean_necklace_discovery": {
+        "input": {
+          "item": "Uncleaned find",
+          "quantity": 1,
+          "source": "The specimen rock pile in the Museum cleaning area supplies uncleaned finds without a stated finite limit."
+        },
+        "action": "Use an uncleaned find on an empty specimen table while satisfying the cleaning-equipment conditions.",
+        "random_output": {
+          "item": "Clean necklace",
+          "chance_per_cleaned_find": "1/51",
+          "deterministic": false,
+          "guarantee": "No finite number of cleaned finds guarantees the necklace."
+        },
+        "other_cleaning_outputs": "Other artefacts and crate rewards are outside this pendant-unlock record and must not be inferred as guaranteed by the necklace roll.",
+        "hand_in": {
+          "target": "Any archaeologist in the Museum cleaning area",
+          "result": "The archaeologist teaches the account how to enchant ruby necklaces into Digsite pendants.",
+          "deterministic_after_discovery": true,
+          "clean_necklace_lifecycle": "Removed from the player's inventory during the teaching interaction."
+        }
+      },
+      "enchanting": {
+        "permanent_account_state_created": "digsite_pendant_enchantment_knowledge",
+        "requirements_per_pendant": {
+          "item": {
+            "item": "Ruby necklace",
+            "quantity": 1,
+            "lifecycle": "Consumed and transformed into one Digsite pendant (5)."
+          },
+          "spell": "Lvl-3 Enchant",
+          "magic_requirement": {
+            "level": 49,
+            "boostable": true,
+            "notes": "The pendant creation source marks the Lvl-3 Enchant Magic requirement boostable. The clean-necklace teaching source also allows an enchant ruby or topaz tablet as an alternative to meeting the level-49 Magic condition for the teaching/enchantment path."
+          },
+          "runes": {
+            "Cosmic rune": 1,
+            "Fire rune": 5,
+            "lifecycle": "Consumed by a manual spell cast unless provided by qualifying rune-providing equipment."
+          },
+          "alternative_spell_delivery": "An enchant ruby or topaz tablet is listed by the pendant source as an alternative to the level-49 Magic requirement. The precise tablet's normal consumption follows its own item mechanic and is not asserted here as a reusable source."
+        },
+        "deterministic_output": {
+          "item": "Digsite pendant (5)",
+          "quantity": 1,
+          "initial_charges": 5,
+          "magic_experience": 59,
+          "randomness": "None after the permanent enchantment knowledge and selected spell/tablet requirements are satisfied."
+        }
+      },
+      "pendant_behavior": {
+        "base_destination": "Digsite, north of the Digsite and west of the canal barge.",
+        "charge_cost_per_teleport": 1,
+        "depletion": "The pendant cannot be recharged and crumbles to dust after its fifth charge is used.",
+        "separately_gated_destinations": {
+          "fossil_island": "Requires Bone Voyage completion and using a pendant on the southern Strange Machine at the House on the Hill.",
+          "lithkren": "Requires Dragon Slayer II completion and using a pendant on the Strange Machine north of the rune dragons."
+        },
+        "scope_note": "Those destination extensions are not granted by The Dig Site quest, clean-necklace discovery, or ordinary ruby-necklace enchanting alone."
+      },
+      "factual_modeling_notes": {
+        "state_transition_order": [
+          "Complete The Dig Site",
+          "Clean uncleaned finds until the random clean-necklace result occurs",
+          "Hand the necklace to an archaeologist to set permanent enchantment knowledge",
+          "Independently provide a ruby necklace and the selected Lvl-3 Enchant spell/tablet inputs for each pendant"
+        ],
+        "do_not_auto_mutate": [
+          "The random clean-necklace discovery",
+          "The optional certificate reward choice",
+          "Ruby-necklace acquisition or crafting method",
+          "Later Fossil Island and Lithkren destination-unlock interactions"
+        ]
+      },
+      "strategic_judgments": [],
+      "source_ids": [
+        "wiki-dig-site",
+        "wiki-kudos"
+      ],
+      "confidence": "high for post-quest access, cleaning equipment, the 1/51 rate, deterministic hand-in, rune inputs, Magic experience, charge count, and depletion; medium for tablet-path lifecycle wording because the current pendant source establishes the alternative but does not enumerate tablet-item consumption in the same record."
+    }
+  ]
+}

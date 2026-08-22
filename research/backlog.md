@@ -34,7 +34,8 @@
 
 ## Continuing validation queue
 
-- Quest XP, item, combat, and GP requirement records for early transport and Fossil Island chains.
+- Completed: expanded the early Fossil Island chain with detailed Dig Site inputs and rewards, exact Natural History Quiz and cleaned-find Kudos contributions, random clean-necklace discovery, permanent Digsite-pendant enchant knowledge, five-charge pendant creation, barge travel, four independent Magic Mushtree discoveries, pendant destination binding, and all six Museum Camp builds.
+- Pending: normalize the 15 independent Historian Minas Kudos claims and separate 51/101-Kudos threshold reward claims; retain the confirmed-100-Kudos import action for account combinations not yet fully represented by normalized quest-claim actions.
 - Completed: revalidated birdhouse, giant-seaweed, farming-contract, and Tears passive-loop requirements, reusable and consumed inputs, offline waiting, active interaction, recurrence gates, and fixed-versus-variable outputs.
 - Completed: added observed recurring-system readiness separately from permanent loop flags; timestamps are preserved but never advance timers, grant outputs, or infer completion.
 - Completed: normalized player-confirmed birdhouse, giant-seaweed, Tears, and Kingdom collection/reset actions; explicit ready observations are consumed, while timers and variable rewards remain uninferred.

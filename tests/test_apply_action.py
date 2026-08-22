@@ -88,7 +88,119 @@ class ApplyActionTests(unittest.TestCase):
         self.assertEqual(0, result["next_state"]["items"]["vodka"])
         self.assertEqual(100, result["next_state"]["counters"]["kudos"])
         self.assertIn("fossil_island", result["next_state"]["transport_flags"])
+        self.assertIn("fossil_island_barge_quick_travel", result["next_state"]["transport_flags"])
         self.assertEqual([], result["reported_effects"])
+
+    def test_dig_site_consumes_quest_inputs_and_preserves_tools(self) -> None:
+        for skill, level in (("Agility", 10), ("Herblore", 10), ("Thieving", 25)):
+            self.state["skill_xp"][skill] = minimum_xp_for_level(level)
+            self.state["skills"][skill] = level
+        self.state["items"] = {
+            "vial": 1,
+            "pestle_and_mortar": 1,
+            "tinderbox": 1,
+            "cup_of_tea": 1,
+            "rope": 2,
+            "uncut_opal": 1,
+            "charcoal": 1,
+        }
+
+        result = apply_action(self.actions_document, self.state, "action:the-dig-site")
+        state = result["next_state"]
+
+        self.assertEqual("applied", result["status"])
+        self.assertEqual("uncut-opal", result["selected_option_id"])
+        for item in ("vial", "cup_of_tea", "rope", "uncut_opal", "charcoal"):
+            self.assertEqual(0, state["items"][item])
+        self.assertEqual(1, state["items"]["pestle_and_mortar"])
+        self.assertEqual(1, state["items"]["tinderbox"])
+        self.assertEqual(2, state["items"]["gold_bar"])
+        self.assertIn("varrock_museum_specimen_cleaning_access", state["milestones"])
+
+    def test_museum_kudos_actions_apply_only_confirmed_contributions(self) -> None:
+        quiz = apply_action(self.actions_document, self.state, "action:natural-history-quiz")
+        state = quiz["next_state"]
+        self.assertEqual(28, state["counters"]["kudos"])
+        self.assertEqual(1000, state["skill_xp"]["Hunter"])
+        self.assertEqual(1000, state["skill_xp"]["Slayer"])
+
+        state["quests_completed"].append("The Dig Site")
+        state["items"]["museum_find_pottery"] = 1
+        display = apply_action(self.actions_document, state, "action:display-museum-pottery")
+        self.assertEqual(38, display["next_state"]["counters"]["kudos"])
+        self.assertEqual(0, display["next_state"]["items"]["museum_find_pottery"])
+
+        unconfirmed = apply_action(self.actions_document, state, "action:museum-kudos-100")
+        self.assertEqual("not_eligible", unconfirmed["status"])
+        self.assertEqual(28, unconfirmed["next_state"]["counters"]["kudos"])
+
+    def test_clean_necklace_and_digsite_pendant_chain_tracks_exact_charges(self) -> None:
+        self.state["quests_completed"].extend(["The Dig Site", "Bone Voyage"])
+        self.state["milestones"].append("varrock_museum_specimen_cleaning_access")
+
+        cleaning = apply_action(self.actions_document, self.state, "action:clean-varrock-museum-specimen")
+        self.assertEqual("applied", cleaning["status"])
+        self.assertNotIn("clean_necklace", cleaning["next_state"]["items"])
+
+        state = cleaning["next_state"]
+        state["items"]["clean_necklace"] = 1
+        learned = apply_action(self.actions_document, state, "action:learn-digsite-pendant-enchantment")
+        state = learned["next_state"]
+        self.assertEqual(0, state["items"]["clean_necklace"])
+        self.assertIn("digsite_pendant_enchantment_knowledge", state["milestones"])
+
+        state["skill_xp"]["Magic"] = minimum_xp_for_level(49)
+        state["skills"]["Magic"] = 49
+        state["items"].update({"ruby_necklace": 1, "cosmic_rune": 1, "fire_rune": 5})
+        created = apply_action(self.actions_document, state, "action:create-digsite-pendant")
+        state = created["next_state"]
+        self.assertIsNone(created["selected_option_id"])
+        self.assertEqual(5, state["items"]["digsite_pendant_charge"])
+
+        bound = apply_action(self.actions_document, state, "action:bind-fossil-island-pendant-destination")
+        state = bound["next_state"]
+        self.assertEqual(5, state["items"]["digsite_pendant_charge"])
+        teleported = apply_action(self.actions_document, state, "action:digsite-pendant-fossil-island-teleport")
+        self.assertEqual(4, teleported["next_state"]["items"]["digsite_pendant_charge"])
+
+    def test_fossil_island_discoveries_and_camp_builds_preserve_tools(self) -> None:
+        self.state["transport_flags"].append("fossil_island")
+        self.state["skill_xp"]["Construction"] = minimum_xp_for_level(29)
+        self.state["skills"]["Construction"] = 29
+        self.state["items"] = {
+            "axe": 1,
+            "rake": 1,
+            "hammer": 1,
+            "tinderbox": 1,
+            "oak_plank": 10,
+            "iron_bar": 2,
+            "nails": 25,
+            "plank": 5,
+            "soft_clay": 3,
+            "logs": 2,
+            "rope": 2,
+            "bucket": 1,
+        }
+        state = self.state
+        for action_id in (
+            "action:discover-mushtree-house-on-the-hill",
+            "action:discover-mushtree-verdant-valley",
+            "action:discover-mushtree-sticky-swamp",
+            "action:discover-mushtree-mushroom-meadow",
+            "action:build-museum-camp-bank-chest",
+            "action:build-museum-camp-cleaning-bench",
+            "action:build-museum-camp-well",
+            "action:build-museum-camp-cooking-pot",
+            "action:build-museum-camp-spinning-wheel",
+            "action:build-museum-camp-loom",
+        ):
+            result = apply_action(self.actions_document, state, action_id)
+            self.assertEqual("applied", result["status"], action_id)
+            state = result["next_state"]
+        for item in ("oak_plank", "iron_bar", "nails", "plank", "soft_clay", "logs", "rope", "bucket"):
+            self.assertEqual(0, state["items"][item])
+        for tool in ("axe", "rake", "hammer", "tinderbox"):
+            self.assertEqual(1, state["items"][tool])
 
     def test_pandemonium_unlocks_sailing_with_only_fixed_rewards(self) -> None:
         result = apply_action(self.actions_document, self.state, "action:pandemonium")

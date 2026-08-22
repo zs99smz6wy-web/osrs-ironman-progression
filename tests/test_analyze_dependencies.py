@@ -40,7 +40,7 @@ class AnalyzeDependenciesTests(unittest.TestCase):
             if predicate["predicate"]["type"] == predicate_type and predicate["predicate"]["key"] == key
         )
 
-    def test_fossil_island_finds_dig_site_and_leaves_kudos_unresolved_without_producer(self) -> None:
+    def test_fossil_island_finds_dig_site_and_exact_partial_kudos_producers(self) -> None:
         actions_without_kudos = copy.deepcopy(self.actions_document)
         actions_without_kudos["actions"] = [
             action for action in actions_without_kudos["actions"] if action["id"] != "action:museum-kudos-100"
@@ -56,7 +56,18 @@ class AnalyzeDependenciesTests(unittest.TestCase):
         dig_site = self._predicate(fossil, "requirements", "quest_completed", "The Dig Site")
         self.assertEqual(["action:the-dig-site"], dig_site["producer_actions"])
         kudos = self._predicate(fossil, "requirements", "counter_at_least", "kudos")
-        self.assertEqual([], kudos["producer_actions"])
+        self.assertEqual(
+            [
+                "action:display-museum-ancient-coin",
+                "action:display-museum-ancient-symbol",
+                "action:display-museum-old-coin",
+                "action:display-museum-old-symbol",
+                "action:display-museum-pottery",
+                "action:natural-history-quiz",
+            ],
+            kudos["producer_actions"],
+        )
+        self.assertEqual("partial_progress", kudos["status"])
         self.assertTrue(
             any(entry["predicate"] == kudos["predicate"] for entry in analysis["external_inputs"])
         )

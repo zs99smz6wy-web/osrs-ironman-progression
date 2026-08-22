@@ -1,0 +1,327 @@
+{
+  "scope": "Current factual post-Bone Voyage access, repeat transport, Digsite pendant behavior relevant to Fossil Island, and permanent Museum Camp construction. This record does not assign utility value, recommend an unlock order, or prescribe a route.",
+  "source_catalog": [
+    {
+      "id": "wiki-fossil-island",
+      "url": "https://oldschool.runescape.wiki/w/Fossil_Island",
+      "used_for": "Bone Voyage access requirement, Fossil Island transport overview, House on the Hill Strange Machine, Magic Mushtree discovery behavior, and Tar Swamp access facts.",
+      "verified_at": "2026-08-21"
+    },
+    {
+      "id": "wiki-canal-barge",
+      "url": "https://oldschool.runescape.wiki/w/Canal_barge",
+      "used_for": "Current post-Bone Voyage barge Quick-Travel availability.",
+      "verified_at": "2026-08-21"
+    },
+    {
+      "id": "wiki-digsite-pendant",
+      "url": "https://oldschool.runescape.wiki/w/Digsite_pendant",
+      "used_for": "Pendant acquisition gates, creation inputs, charge lifecycle, Digsite destination, and Fossil Island Strange Machine binding behavior.",
+      "verified_at": "2026-08-21"
+    },
+    {
+      "id": "wiki-mycelium-transportation-system",
+      "url": "https://oldschool.runescape.wiki/w/Mycelium_Transportation_System",
+      "used_for": "Magic Mushtree network identity, all four endpoints, and per-endpoint discovery behavior.",
+      "verified_at": "2026-08-21"
+    },
+    {
+      "id": "wiki-tar-swamp",
+      "url": "https://oldschool.runescape.wiki/w/Tar_Swamp",
+      "used_for": "Sticky Swamp location and its ordinary axe-and-rake access path, plus the rubber-cap alternate path risk.",
+      "verified_at": "2026-08-21"
+    },
+    {
+      "id": "wiki-museum-camp-notice-board",
+      "url": "https://oldschool.runescape.wiki/w/Notice_board_(Museum_Camp)",
+      "used_for": "Exact Museum Camp construction levels, materials, tools, and all-improvements total material ledger.",
+      "verified_at": "2026-08-21"
+    },
+    {
+      "id": "official-qol-skilling-suggestions-2018",
+      "url": "https://oldschool.runescape.com/polls/2018/1482",
+      "used_for": "Official description of the approved Digsite barge change: one interaction each way after Bone Voyage, and the approved Magic Mushtree keyboard-shortcut quality-of-life change.",
+      "verified_at": "2026-08-21"
+    }
+  ],
+  "records": [
+    {
+      "id": "fossil-island-post-bone-voyage-barge",
+      "name": "Canal barge repeat travel after Bone Voyage",
+      "category": "transport",
+      "status": "verified",
+      "verified_at": "2026-08-21",
+      "membership": true,
+      "hard_access_gate": {
+        "completed_quest": "Bone Voyage"
+      },
+      "network": {
+        "digsite_endpoint": "Canal barge north of the Digsite, east of Varrock",
+        "fossil_island_endpoint": "Museum Camp landing on Fossil Island",
+        "operation": "Use the Barge guard's Quick-Travel option after Bone Voyage.",
+        "post_quest_interaction_shape": "The current Quick-Travel interaction is the post-quest barge travel mechanism. Jagex's approved quality-of-life change specifies one interaction each way rather than the original three-NPC sequence.",
+        "repeat_cost": {
+          "coins": 0,
+          "items_consumed": {},
+          "note": "The registered current sources list no fare, rune, charge, or item consumption for the Quick-Travel trip."
+        }
+      },
+      "strategic_judgments": [],
+      "source_ids": ["wiki-fossil-island"],
+      "confidence": "high"
+    },
+    {
+      "id": "fossil-island-mycelium-transportation-system",
+      "name": "Mycelium Transportation System",
+      "category": "transport",
+      "status": "verified",
+      "verified_at": "2026-08-21",
+      "membership": true,
+      "hard_access_gate": {
+        "completed_quest": "Bone Voyage",
+        "reason": "All four Magic Mushtrees are on Fossil Island."
+      },
+      "network_behavior": {
+        "type": "Magic Mushtree network",
+        "discovery_rule": "Each endpoint is unlocked only after the player walks to that Magic Mushtree and attempts to use it.",
+        "repeat_use": "Discovered endpoints can be selected through the Magic Mushtree transport interface for movement around Fossil Island.",
+        "repeat_cost": {
+          "coins": 0,
+          "items_consumed": {},
+          "runes_or_charges": 0,
+          "note": "The registered sources describe endpoint discovery and network transport without a fare, consumable, rune, or charge cost."
+        },
+        "endpoint_count": 4
+      },
+      "endpoints": [
+        {
+          "id": "house-on-the-hill",
+          "name": "House on the Hill",
+          "location": "Inside the House on the Hill, north-east of Museum Camp.",
+          "discovery": "Walk to the Magic Mushtree and attempt to use it.",
+          "additional_location_fact": "The southern Strange Machine that binds the Fossil Island Digsite-pendant destination is in the same building."
+        },
+        {
+          "id": "verdant-valley",
+          "name": "Verdant Valley",
+          "location": "South of Museum Camp.",
+          "discovery": "Walk to the Magic Mushtree and attempt to use it."
+        },
+        {
+          "id": "sticky-swamp",
+          "name": "Sticky Swamp",
+          "location": "Centre of the Tar Swamp.",
+          "discovery": "Walk to the Magic Mushtree and attempt to use it.",
+          "initial_physical_access": {
+            "ordinary_path_tools": [
+              "Axe",
+              "Rake"
+            ],
+            "ordinary_path_operation": "Use the axe and rake to clear the Tar Swamp obstacles.",
+            "alternate_path": "A rubber cap mushroom can launch the player directly to the area, but the published source warns of potentially 50+ damage when its landing pit has not been cushioned with mushrooms.",
+            "note": "The tools describe the ordinary traversal path, not a separate Mycelium-network charge or skill gate."
+          }
+        },
+        {
+          "id": "mushroom-meadow",
+          "name": "Mushroom Meadow",
+          "location": "North-west corner of the Mushroom Forest, south-west of the Ancient Shroom.",
+          "discovery": "Walk to the Magic Mushtree and attempt to use it."
+        }
+      ],
+      "strategic_judgments": [],
+      "source_ids": ["wiki-fossil-island"],
+      "confidence": "high"
+    },
+    {
+      "id": "digsite-pendant-fossil-island-destination",
+      "name": "Digsite pendant Fossil Island destination and repeat-use lifecycle",
+      "category": "transport",
+      "status": "verified",
+      "verified_at": "2026-08-21",
+      "membership": true,
+      "pendant_access_and_creation": {
+        "make_or_use_gates": {
+          "completed_quest": "The Dig Site",
+          "museum_enchantment_knowledge": "An archaeologist teaches the enchantment after the player finds and hands in a clean necklace while cleaning uncleaned finds in the Varrock Museum.",
+          "clean_necklace_acquisition": "The published chance per uncleaned-find clean is 1/51.",
+          "enchant_condition": "The registered source specifies either 49 Magic or an Enchant ruby or topaz tablet."
+        },
+        "creation": {
+          "input": {
+            "ruby_necklace": 1,
+            "cosmic_rune": 1,
+            "fire_rune": 5
+          },
+          "output": "Digsite pendant (5)",
+          "magic_experience": 59,
+          "magic_requirement": {
+            "level": 49,
+            "boostable": true
+          }
+        }
+      },
+      "charge_and_destination_behavior": {
+        "maximum_teleport_charges_per_new_pendant": 5,
+        "each_teleport": "Uses one remaining pendant teleport charge for the selected unlocked destination.",
+        "zero_charges": "The pendant cannot be recharged and crumbles to dust when its final teleport charge is used.",
+        "base_destination": {
+          "name": "Digsite",
+          "location": "North of the Digsite, west of the canal barge."
+        },
+        "fossil_island_binding": {
+          "hard_access_gate": "Bone Voyage completed",
+          "machine": "Southern Strange Machine displaying a book with symbols",
+          "machine_location": "House on the Hill, north-east of Museum Camp on Fossil Island",
+          "binding_input": "A Digsite pendant with any positive number of charges",
+          "permanent_account_effect": "Adds the Fossil Island (House on the Hill) destination to the pendant currently used and to future Digsite pendants.",
+          "destination": "House on the Hill",
+          "binding_charge_ledger": "The current registered Wiki text states that a pendant of any amount of charges may be used for the binding and that the option applies to future pendants; it does not explicitly state that the binding itself consumes a teleport charge. This record therefore does not infer a charge deduction for the binding interaction.",
+          "reversal": "Using a pendant on the same machine again can unbind this teleport option."
+        },
+        "unlocked_destination_restriction": "Attempting to teleport to a destination that has not been unlocked displays a failure message instead of teleporting."
+      },
+      "strategic_judgments": [],
+      "source_ids": ["wiki-fossil-island"],
+      "confidence": "high for published creation, teleport-charge, and destination-unlock mechanics; high that the source does not explicitly specify charge consumption for the binding interaction."
+    },
+    {
+      "id": "museum-camp-permanent-construction",
+      "name": "Museum Camp permanent construction infrastructure",
+      "category": "reward",
+      "status": "verified",
+      "verified_at": "2026-08-21",
+      "membership": true,
+      "hard_access_gate": {
+        "completed_quest": "Bone Voyage",
+        "reason": "Museum Camp is on Fossil Island."
+      },
+      "shared_construction_rule": {
+        "required_tool": "Hammer",
+        "nail_behavior": "Nails do not bend on Museum Camp construction objects.",
+        "persistence": "Each completed build supplies the named permanent Camp infrastructure rather than a consumable travel action."
+      },
+      "builds": [
+        {
+          "id": "museum-camp-bank-chest",
+          "name": "Bank chest",
+          "construction_requirement": {
+            "level": 21,
+            "boostable": "The registered Notice board source lists the level but does not state boost behavior."
+          },
+          "tools_not_consumed": [
+            "Hammer"
+          ],
+          "materials_consumed": {
+            "oak_plank": 2,
+            "iron_bar": 1,
+            "nails": 5
+          },
+          "permanent_outcome": "Museum Camp bank chest."
+        },
+        {
+          "id": "museum-camp-archaeologists-cleaning-bench",
+          "name": "Archaeologists' cleaning bench",
+          "construction_requirement": {
+            "level": 5,
+            "boostable": "The registered Notice board source lists the level but does not state boost behavior."
+          },
+          "tools_not_consumed": [
+            "Hammer"
+          ],
+          "materials_consumed": {
+            "plank": 5,
+            "nails": 5
+          },
+          "permanent_outcome": "Museum Camp archaeologists' cleaning bench."
+        },
+        {
+          "id": "museum-camp-well",
+          "name": "Well",
+          "construction_requirement": {
+            "level": 22,
+            "boostable": "The registered Notice board source lists the level but does not state boost behavior."
+          },
+          "tools_not_consumed": [
+            "Hammer"
+          ],
+          "materials_consumed": {
+            "oak_plank": 2,
+            "bucket": 1,
+            "rope": 1,
+            "nails": 5
+          },
+          "permanent_outcome": "Museum Camp well."
+        },
+        {
+          "id": "museum-camp-cooking-pot",
+          "name": "Cooking pot",
+          "construction_requirement": {
+            "level": 24,
+            "boostable": "The registered Notice board source lists the level but does not state boost behavior."
+          },
+          "tools_not_consumed": [
+            "Hammer",
+            "Tinderbox"
+          ],
+          "materials_consumed": {
+            "logs": 2,
+            "iron_bar": 1,
+            "soft_clay": 3
+          },
+          "permanent_outcome": "Museum Camp cooking pot."
+        },
+        {
+          "id": "museum-camp-spinning-wheel",
+          "name": "Spinning wheel",
+          "construction_requirement": {
+            "level": 28,
+            "boostable": "The registered Notice board source lists the level but does not state boost behavior."
+          },
+          "tools_not_consumed": [
+            "Hammer"
+          ],
+          "materials_consumed": {
+            "oak_plank": 4,
+            "nails": 5
+          },
+          "permanent_outcome": "Museum Camp spinning wheel."
+        },
+        {
+          "id": "museum-camp-loom",
+          "name": "Loom",
+          "construction_requirement": {
+            "level": 29,
+            "boostable": "The registered Notice board source lists the level but does not state boost behavior."
+          },
+          "tools_not_consumed": [
+            "Hammer"
+          ],
+          "materials_consumed": {
+            "oak_plank": 2,
+            "rope": 1,
+            "nails": 5
+          },
+          "permanent_outcome": "Museum Camp loom."
+        }
+      ],
+      "all_builds_material_ledger": {
+        "oak_plank": 10,
+        "iron_bar": 2,
+        "nails": 25,
+        "plank": 5,
+        "soft_clay": 3,
+        "logs": 2,
+        "rope": 2,
+        "bucket": 1,
+        "tools_not_consumed": [
+          "Hammer",
+          "Tinderbox"
+        ]
+      },
+      "strategic_judgments": [],
+      "source_ids": ["wiki-fossil-island"],
+      "confidence": "high for the published level, material, tool, and nail-behavior records; boostability is explicitly not inferred where the source does not state it."
+    }
+  ]
+}

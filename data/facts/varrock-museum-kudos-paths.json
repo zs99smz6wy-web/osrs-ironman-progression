@@ -1,0 +1,178 @@
+{
+  "scope": "Current factual Varrock Museum contribution mechanics relevant to the 100-Kudos Bone Voyage gate: the Natural History Quiz, Digsite uncleaned-find displays, and Historian Minas timeline claims. This record separates fixed awards from random discovery and does not prescribe a route or automatically complete eligible quests or claims.",
+  "source_catalog": [
+    {
+      "id": "wiki-kudos",
+      "url": "https://oldschool.runescape.wiki/w/Kudos",
+      "used_for": "Current Kudos thresholds and maxima, Natural History Quiz mechanics and completion XP, Digsite cleaning access/tools/displays, Historian Minas claim table, lamp amounts, and Bone Voyage's current 100-Kudos gate.",
+      "verified_at": "2026-08-21",
+      "confidence": "high"
+    },
+    {
+      "id": "wiki-dig-site",
+      "url": "https://oldschool.runescape.wiki/w/The_Dig_Site",
+      "used_for": "The Dig Site completion as the cleaning prerequisite; current boostable skill gates and fixed quest XP relevant to that prerequisite.",
+      "verified_at": "2026-08-21",
+      "confidence": "high"
+    },
+    {
+      "id": "wiki-bone-voyage",
+      "url": "https://oldschool.runescape.wiki/w/Bone_Voyage",
+      "used_for": "Current Bone Voyage requirement relationship: The Dig Site completion plus at least 100 Kudos.",
+      "verified_at": "2026-08-21",
+      "confidence": "high"
+    }
+  ],
+  "records": [
+    {
+      "id": "varrock-museum-kudos-paths",
+      "name": "Varrock Museum Kudos paths before Bone Voyage",
+      "category": "activity",
+      "status": "verified",
+      "verified_at": "2026-08-21",
+      "membership": {
+        "bone_voyage_and_digsite_path": true,
+        "note": "The 100-Kudos Bone Voyage gate is a members progression gate. The Museum's only free-to-play Kudos source is ancient relic donation, which is outside this record's scope."
+      },
+      "kudos_counter": {
+        "is_permanent": true,
+        "is_spendable": false,
+        "rule": "Kudos can be acquired but are never spent.",
+        "bone_voyage_requirement": {
+          "minimum_kudos": 100,
+          "additional_requirement": "The Dig Site completed"
+        },
+        "current_maxima": {
+          "all_members_museum_activities": 235,
+          "covered_pre_bone_voyage_sources_if_every_covered_one_time_contribution_is_claimed": 158,
+          "covered_source_breakdown": {
+            "natural_history_quiz": 28,
+            "digsite_cleaned_find_displays": 50,
+            "historian_minas_timeline_claims": 80
+          },
+          "boundary": "The 235 total also includes 72 fossil-display Kudos that require Bone Voyage/Fossil Island and five Camdozaal ancient-relic Kudos; it is not a pre-Bone Voyage total. The covered 158 is an available maximum, not a claim that any listed quest, random find, or Minas conversation has occurred."
+        }
+      },
+      "natural_history_quiz": {
+        "location": "Varrock Museum, first basement floor",
+        "start": "Talk to Orlando Smith and receive the lecture before answering display plaques.",
+        "hard_access_gates": {
+          "quest_requirements": [],
+          "skill_requirements": {},
+          "player_provided_items": {},
+          "coins": 0
+        },
+        "completion_units": {
+          "display_cases": 14,
+          "correct_answers_required_per_display": 3,
+          "kudos_per_completed_display": 2,
+          "total_kudos": 28
+        },
+        "fixed_completion_experience": {
+          "Hunter": 1000,
+          "Slayer": 1000,
+          "claim_condition": "Complete all 14 display quizzes, then talk to Orlando Smith.",
+          "auto_apply": true
+        },
+        "determinism": {
+          "kudos": "Deterministic one-time awards after the required correct answers are submitted for each display.",
+          "experience": "Deterministic fixed skill XP after full quiz completion and the Orlando conversation.",
+          "random_or_discovery_component": "None recorded for the award mechanics; answers are player responses, not loot rolls."
+        }
+      },
+      "digsite_uncleaned_find_displays": {
+        "location": "Roped-off southern cleaning area on the Varrock Museum ground floor",
+        "hard_access_gates": {
+          "quest_requirements": ["The Dig Site"],
+          "indirect_the_dig_site_skill_checks": {
+            "Agility": {"level": 10, "boostable": true},
+            "Herblore": {"level": 10, "boostable": true},
+            "Thieving": {"level": 25, "boostable": true}
+          },
+          "direct_cleaning_skill_requirements": {},
+          "coins": 0
+        },
+        "tools_and_inputs": {
+          "required_while_cleaning": {
+            "equipped": ["Leather boots", "Leather gloves"],
+            "inventory": ["Trowel", "Rock pick", "Specimen brush"]
+          },
+          "source_of_required_tools": "All five required tools/equipment pieces can be collected from the cleaning area's south-wall tool rack.",
+          "specimen_input": "Dig site specimen rocks from the nearby specimen-rock pile are used on an empty specimen table to create a cleaned result.",
+          "consumption": "The required tools/equipment are reusable. Each cleaning attempt consumes one specimen rock into one result; the source supports taking specimen rocks repeatedly."
+        },
+        "one_time_kudos_displays": [
+          {"find": "Pottery", "display_case": 22, "kudos": 10},
+          {"find": "Old symbol", "display_case": 36, "kudos": 10},
+          {"find": "Ancient symbol", "display_case": 37, "kudos": 10},
+          {"find": "Ancient coin", "display_case": 44, "kudos": 10},
+          {"find": "Old coin", "display_case": 45, "kudos": 10}
+        ],
+        "claim_sequence": "For a first eligible find, show it to a museum archaeologist, then place it in the stated display case. Each display grants its one-time 10 Kudos when filled.",
+        "maximum_kudos": 50,
+        "fixed_experience_from_kudos_displays": {},
+        "determinism": {
+          "display_award": "The 10-Kudos award is fixed once the corresponding first-time find has been discovered and placed.",
+          "find_acquisition": "Random/discovery-dependent. Cleaning can yield many non-display items, and the source does not provide a bounded number of specimens required to discover all five display finds.",
+          "not_auto_complete": "Completion of The Dig Site unlocks cleaning only. It neither grants the 50 Kudos nor guarantees that any particular specimen has already been found or displayed."
+        },
+        "other_random_outputs_not_counted_toward_kudos": {
+          "clean_necklace": "A possible cleaned result with no Kudos. Showing it to an archaeologist teaches the account the Digsite-pendant enchantment; it is not assumed obtained.",
+          "storage_crate_material": "Other cleaned finds may be deposited in the storage crate for rewards, including a possible antique lamp. These are variable/random outputs and no XP is treated as fixed by this record."
+        }
+      },
+      "historian_minas_timeline_claims": {
+        "location": "Varrock Museum first floor, beside the stairs",
+        "claim_mechanic": "Talk to Historian Minas and exchange information for each completed eligible quest. A claim is a separate one-time Museum interaction; a quest appearing below is a prerequisite for its claim, not evidence that the quest or its Museum claim is complete.",
+        "maximum_kudos": 80,
+        "fixed_lamp_total_if_all_lamp_claims_are_eligible_and_claimed": 18000,
+        "claims": [
+          {"quest": "Demon Slayer", "display_case": 25, "kudos": 5, "lamp": null},
+          {"quest": "Rune Mysteries", "display_case": 21, "kudos": 5, "lamp": null},
+          {"quest": "Shield of Arrav", "display_case": 24, "kudos": 5, "lamp": {"xp": 1000, "minimum_target_skill_level": 20, "auto_apply": false}},
+          {"quest": "A Tail of Two Cats", "display_case": 20, "kudos": 5, "lamp": null},
+          {"quest": "Hazeel Cult", "display_case": 7, "kudos": 5, "lamp": null},
+          {"quest": "In Aid of the Myreque", "display_case": 23, "kudos": 5, "lamp": null},
+          {"quest": "Making History", "display_case": 46, "kudos": 5, "lamp": {"xp": 1000, "minimum_target_skill_level": 20, "auto_apply": false}},
+          {"quest": "Merlin's Crystal", "display_case": 9, "kudos": 5, "lamp": {"xp": 1000, "minimum_target_skill_level": 20, "auto_apply": false}},
+          {"quest": "Observatory Quest", "display_case": 17, "kudos": 5, "lamp": null},
+          {"quest": "Priest in Peril", "display_case": 23, "kudos": 5, "lamp": null},
+          {"quest": "Temple of Ikov", "display_case": 28, "kudos": 5, "lamp": null},
+          {"quest": "The Grand Tree", "display_case": 10, "kudos": 5, "lamp": null},
+          {"quest": "What Lies Below", "display_case": 3, "kudos": 5, "lamp": null, "additional_claim_input": "Dagon'hai history, obtained from the Varrock Palace library"},
+          {"quest": "Curse of the Empty Lord", "display_case": 16, "kudos": 10, "lamp": {"xp": 10000, "minimum_target_skill_level": 50, "auto_apply": false}, "additional_claim_input": "A complete set of ghostly robes"},
+          {"quest": "Defender of Varrock", "display_case": 24, "kudos": 5, "lamp": {"xp": 5000, "minimum_target_skill_level": 30, "auto_apply": false}}
+        ],
+        "fixed_and_deferred_outputs": {
+          "kudos": "Each listed claim has a fixed one-time Kudos value after its own quest-completion and any stated additional claim input are satisfied.",
+          "lamps": "Lamp XP amounts are fixed, but each lamp's eligible target skill is selected by the player and must meet its listed minimum level. No lamp XP is automatically assigned to a skill.",
+          "quest_outcomes": "This record does not restate each quest's own rewards or assume any quest path, skill state, items, or combat readiness needed to complete it."
+        },
+        "modeling_boundary": {
+          "do_not_auto_complete": [
+            "Any quest listed in claims",
+            "Any Historian Minas information exchange",
+            "Any antique-lamp target selection",
+            "What Lies Below claim without Dagon'hai history",
+            "Curse of the Empty Lord claim without a complete ghostly-robe set"
+          ],
+          "independence": "The fifteen claims are independent contribution records. They must be represented as individually observed/completed account state, not as a single action that inserts 80 Kudos."
+        }
+      },
+      "factual_modeling_notes": {
+        "pre_bone_voyage_dependency_boundary": "Fossil displays provide another 72 total Kudos but require Bone Voyage and therefore cannot satisfy Bone Voyage's own prerequisite. They are excluded from the pre-Bone Voyage contribution maximum.",
+        "threshold_xp_not_auto_claimed": {
+          "at_51_kudos": {"Mining": 1000},
+          "at_101_kudos": {"Crafting": 2500, "Mining": 2500},
+          "claim_source": "Information clerk",
+          "note": "These are fixed threshold rewards but are not outputs of a particular quiz, find display, or Minas quest claim and should remain separately claimable."
+        },
+        "no_route_recommendation": true
+      },
+      "strategic_judgments": [],
+      "source_ids": ["wiki-kudos", "wiki-dig-site", "wiki-bone-voyage"],
+      "confidence": "high for the fixed awards, current caps, access gates, tools, display cases, and Minas claim table; medium for the clean-necklace and storage-crate descriptions because their possible outputs are recorded only as non-Kudos random branches, without asserting rates."
+    }
+  ],
+  "strategic_judgments": []
+}
