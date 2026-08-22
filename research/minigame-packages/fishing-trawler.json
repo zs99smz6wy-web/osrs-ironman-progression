@@ -1,0 +1,391 @@
+{
+  "package_schema_version": 1,
+  "package_type": "minigame-research",
+  "package_id": "research-minigame-fishing-trawler",
+  "activity": "Fishing Trawler",
+  "status": "research-proposal",
+  "checked_at": "2026-08-22",
+  "scope": "Current factual research package for Murphy's members-only Fishing Trawler at Port Khazard. It proposes future normalized records only. It does not set a route order, target trip count, team, world, contribution target, supplies target, reward result, diary result, collection-log result, attention preference, or stop condition.",
+  "facts_strategy_boundary": {
+    "included": [
+      "current access, Fishing reward gate, transport alternatives, official activity worlds, ship timing, local tool boxes, leak/net/tentacle/rail/water mechanics, contribution thresholds, and sink/logout boundary",
+      "deterministic versus RNG boundaries for fish catch eligibility, Angler's outfit, Heron, junk, Fishing XP, duplicate behavior, and the current Ardougne diary interactions",
+      "the full current reward categories, Fishing-level catch table, outfit utility, collection-log boundary, and the alternative Aerial Fishing purchase path",
+      "proposed observation-only account state for attempts, team/set-off state, contribution, supplies, success/failure, catch, outfit pieces, diary state, and collection log"
+    ],
+    "excluded": [
+      "whether Fishing Trawler should be started, soloed, massed, completed to an Angler's outfit, used for fish, or stopped at any count",
+      "any assumed successful trip, contribution amount, Fishing level, fish, Fishing XP, junk, outfit piece, pet, team, world, supply use, diary credit, diary completion, collection-log entry, or player readiness",
+      "execution-dependent timing, catch quantity, XP, drop count, expense, attention interval, AFK duration, survival, or hourly rate",
+      "community world selection, paste inventory, method, contribution target, or stopping advice except where explicitly marked strategy-candidate-not-fact"
+    ]
+  },
+  "source_catalog": [
+    {
+      "id": "wiki-fishing-trawler-current",
+      "publisher": "Old School RuneScape Wiki",
+      "kind": "wiki",
+      "url": "https://oldschool.runescape.wiki/w/Fishing_Trawler",
+      "checked_at": "2026-08-22",
+      "use": "Current access, Port Khazard transport, official worlds, boarding/timing, tools, ship loop, contribution, success/failure, reward table, Angler and Heron rates, junk, and post-2021/post-2024 changes."
+    },
+    {
+      "id": "wiki-anglers-outfit-current",
+      "publisher": "Old School RuneScape Wiki",
+      "kind": "wiki",
+      "url": "https://oldschool.runescape.wiki/w/Angler%27s_outfit",
+      "checked_at": "2026-08-22",
+      "use": "Current piece bonuses, full-set bonus, equip level, Aerial Fishing alternative, Spirit angler conversion context, storage, and downstream utility requirements."
+    },
+    {
+      "id": "wiki-ardougne-diary-current",
+      "publisher": "Old School RuneScape Wiki",
+      "kind": "wiki",
+      "url": "https://oldschool.runescape.wiki/w/Ardougne_Diary",
+      "checked_at": "2026-08-22",
+      "use": "Easy start-a-trawler task, elite manta-ray-and-Port-Khazard-cook task, Fishing/Cooking gates, sequencing boundary, and elite 50 percent more-fish reward."
+    },
+    {
+      "id": "official-fishing-trawler-improvements-2021",
+      "publisher": "Jagex",
+      "kind": "official",
+      "url": "https://secure.runescape.com/m=news/fishing-trawler-improvements-and-equipment-rebalance-part-one?oldschool=1",
+      "checked_at": "2026-08-22",
+      "use": "Official basis for the 2021 five-minute game, 1/12 Angler rate, non-depleting contribution meter, and Kraken activities. Current exact mechanics are rechecked against the Wiki source."
+    },
+    {
+      "id": "official-tempoross-trawler-poll-2020",
+      "publisher": "Jagex",
+      "kind": "official",
+      "url": "https://oldschool.runescape.com/polls/2020/1613",
+      "checked_at": "2026-08-22",
+      "use": "Historical poll wording for the contribution and Angler-rate rework. It is not used where later live mechanics supersede its proposed values."
+    },
+    {
+      "id": "guide-wiki-fishing-trawler-strategies-current",
+      "publisher": "Old School RuneScape Wiki community guide",
+      "kind": "guide",
+      "url": "https://oldschool.runescape.wiki/w/Fishing_Trawler/Strategies",
+      "checked_at": "2026-08-22",
+      "use": "Optional solo/mass preparation and technique discussion. Used only for strategy candidates, never as an output guarantee or route choice."
+    },
+    {
+      "id": "reddit-ironscape-anglers-paste-discussion-2020",
+      "publisher": "r/ironscape",
+      "kind": "reddit",
+      "url": "https://www.reddit.com/r/ironscape/comments/jmmhvt/getting_anglers_outfit/",
+      "checked_at": "2026-08-22",
+      "use": "Player-reported swamp-paste, contribution, official-world, dry-RNG, and attention anecdotes. It is explicitly non-authoritative strategy material."
+    }
+  ],
+  "access": {
+    "requirements": {
+      "membership": true,
+      "minigame_entry": "No skill, quest, GP, or ticket gate is required to board Murphy's boat and begin a Fishing Trawler trip.",
+      "reward_fishing_gate": {
+        "skill": "Fishing",
+        "level": 15,
+        "effect": "Level 15 Fishing is required to receive any Fishing Trawler rewards and to use the Minigame Teleport. Boarding or the Ardougne Easy 'start' task does not require it.",
+        "observation_boundary": "Do not infer an eligible Fishing level, reward eligibility, a Minigame Teleport, catches, or previous participation from a plan, XP estimate, or diary state."
+      },
+      "outfit_equip_gate": {
+        "skill": "Fishing",
+        "level": 34,
+        "effect": "Each Angler's outfit piece requires 34 Fishing to equip; ownership and wear state are separate observations."
+      },
+      "base_entry_fee": {"coins": 0, "consumable_ticket": null},
+      "reference_existing_production_facts": [],
+      "reference_existing_action": null
+    },
+    "location_and_transport": [
+      "Activity location: Port Khazard, on Murphy's large ship north of him.",
+      "Direct capability: Minigame Teleport to Fishing Trawler requires observed Fishing level 15 and its independently observed cooldown/readiness.",
+      "Spell/tablet capability: Khazard Teleport on the Lunar spellbook or a Khazard teleport tablet; spellbook, tablet, runes, levels, charges, and inventory are independent observations.",
+      "Other sourced approaches: charter ship to Port Khazard; Ardougne cloak to Ardougne Monastery then south-east; fairy ring DJP then south; Watchtower or Ardougne teleport/tablet; or Tree Gnome Village spirit tree then walk east/south.",
+      "The current designated Fishing Trawler worlds are 315 (United States west) and 370 (United States east). A world designation does not establish its population, team behavior, ship state, latency, success, or reward result."
+    ],
+    "unlock_transition": {
+      "event": "Player boards Murphy's trawling boat at Port Khazard.",
+      "deterministic_effects": ["A Fishing Trawler expedition can be entered without consuming an entry ticket or coins."],
+      "non_effects": ["does not confirm 15 Fishing, a voyage departure, team members, contribution, supplies, successful completion, catch, Angler roll, diary credit, or return location"]
+    }
+  },
+  "activity_loop": {
+    "entry_inputs": [
+      {"item": "swamp paste", "behavior": "Consumable used to patch hull leaks. Record exact inventory/use deltas only after play; team size and events make required amount variable."},
+      {"item": "rope", "behavior": "Consumable repair input for a torn stern net. Net repair can fail based on Crafting; do not infer an attempt, success, rope decrement, or net state."},
+      {"item": "bailing bucket", "behavior": "Reusable tool for bailing water with the bail-with and empty options. At least one is a factual tool alternative, not a guaranteed safe preparation quantity."},
+      {"item": "hammer", "behavior": "Reusable tool for repairing a rail damaged by the Kraken tentacle."},
+      {"item": "axe other than blessed axe", "behavior": "Reusable tool for attacking the Kraken tentacle. Axe success depends on the axe and Woodcutting level; blessed axes do not work."}
+    ],
+    "reusable_setup": [
+      {"item_or_capability": "top-deck supply boxes", "effect": "Provide bailing buckets, hammers, and bronze axes. These local replacements do not provide swamp paste or rope and do not create a persistent owned-tool observation."},
+      {"item_or_capability": "player-owned house ownership", "effect": "Not required for patching leaks or repairing rails. It is required only for the associated Construction XP; contribution remains possible without it."},
+      {"item_or_capability": "camera-sway setting", "effect": "Camera sway can be disabled. This is a display preference rather than a readiness, completion, or reward fact."}
+    ],
+    "round_timing_and_team_boundary": {
+      "boarding": "Board the ship north of Murphy. If a voyage is in progress, wait up to roughly six minutes for a new one. Once anyone boards, players have one minute to collect rewards and return before departure.",
+      "round": "A complete cycle is roughly 6.5 minutes: five minutes trawling, one minute docking, and approximately 15-second cutscenes at start and end.",
+      "team_boundary": "The minigame can be played solo or with one or more players. Leaks, torn nets, and Kraken encounters scale with players aboard. Since 19 June 2024 rewards are divided between players present when the ship sets off, not players present at encounter end. Never derive an exact team size, share, catch, or success from the world label or a departure report alone."
+    },
+    "round_phases": [
+      {
+        "phase": "leaks and water",
+        "facts": [
+          "Hull leaks can be patched from up to one tile away with swamp paste.",
+          "Unpatched leaks raise the boat water level. Water can be bailed back into the sea with a bailing bucket.",
+          "Leak repair and bailing award contribution on the actual live action; another player's simultaneous action and changing boat state mean no assumed success, points, or paste result."
+        ]
+      },
+      {
+        "phase": "stern net",
+        "facts": [
+          "The stern fishing net can tear. While torn, it catches no fish.",
+          "Either net half can repair the whole net using rope. Repair success depends on Crafting, and failure is possible.",
+          "A non-torn net at completion is necessary for fish catch consideration, but does not guarantee any particular fish or quantity."
+        ]
+      },
+      {
+        "phase": "Kraken tentacle and rail",
+        "facts": [
+          "An enormous Kraken tentacle can attack the ship net and railings, slowing fish catches.",
+          "Chop the tentacle with a working axe; success depends on the axe and Woodcutting level.",
+          "Repair its damaged rail with a hammer. A player without a house can still obtain contribution but not Construction XP from rail repair or leak patching."
+        ]
+      },
+      {
+        "phase": "completion and inspection",
+        "facts": [
+          "The voyage succeeds only if water does not become too high before the five-minute trawling timer ends.",
+          "At a successful dock, the trawler net can be inspected for eligible outcomes. An inspection is a player event; it must record its exact result rather than calculate one from points, Fishing, team, duration, diary, or probability."
+        ]
+      }
+    ],
+    "contribution": {
+      "meter": "Contribution is a non-depleting meter capped at 255. The meter changes from red to yellow at 50 points.",
+      "reward_threshold": "At least 50 contribution when the game ends is required to earn a portion of the catch and to have an Angler's outfit roll.",
+      "full_meter_effect": "A full 255 meter yields 100 percent more fish than the minimum-50 contribution baseline and improves the Heron-pet chance. It does not improve the Angler-piece rate beyond the initial 50-point threshold.",
+      "actions": [
+        {"action": "bail water", "points": 2, "skill_xp": "none"},
+        {"action": "patch a leak with swamp paste", "points": 5, "skill_xp": "5 Construction XP only if the player owns a house"},
+        {"action": "repair torn net with rope", "points": 7, "skill_xp": "5 Crafting XP"},
+        {"action": "successful chop against Kraken tentacle", "points": 10, "skill_xp": "5 Woodcutting XP"},
+        {"action": "repair Kraken-damaged rail", "points": 10, "skill_xp": "5 Construction XP only if the player owns a house"}
+      ],
+      "observation_boundary": "Never infer a meter value, threshold crossing, full meter, action success, skill XP, eligible reward, or contribution from a trip, items brought, an assigned world, elapsed time, or a player being present at departure."
+    },
+    "completion_or_reward_events": [
+      {"event": "eligible successful inspection", "requirements": "Player reports a non-sunk completion, at least 50 contribution at end, reward-eligible Fishing state, and an inspected trawler net.", "outcome_boundary": "Fish, junk, Angler piece, Heron, Fishing XP, item counts, and diary state are individual observed results. Probability and level tables only describe what may occur."},
+      {"event": "Ardougne Easy start task", "requirements": "Player starts a Fishing Trawler expedition.", "outcome_boundary": "This diary task is satisfied by starting, not completing, the minigame. It does not grant a successful trip, contribution, catch, Angler roll, or an elite diary reward."},
+      {"event": "Ardougne Elite manta-and-cook task", "requirements": "Observed base Fishing level 81, a manta ray caught in Fishing Trawler, observed Cooking level 91 or an allowed boost, and a successful cook in Port Khazard without another task completion/update between the linked steps.", "outcome_boundary": "Fishing is not boostable for this diary task. Do not infer manta catches, burning/successful cooking, task continuity, or elite completion from skills or a trawler attempt."}
+    ],
+    "failure_and_death": {
+      "sinking": "If water becomes too high before time expires, the boat sinks. Players climb onto a barrel and return north of Port Khazard near fairy ring DJP.",
+      "logout": "Logging out during a trawl returns the player to the same shore location.",
+      "damage": "Swimming to shore after the sink/logout path deals 1-2 damage.",
+      "rewards": "A sunk trip is not a successful reward event. It grants no inferred fish, junk, Angler roll, Heron roll, Fishing XP, diary credit, or collection-log result.",
+      "death_boundary": "The minigame's sourced sink result is damage and return, not a modeled death. Any player death, lost equipment, grave, reclaim, hitpoints, food, or recovery condition remains a separate player-observed state."
+    },
+    "repeatability": {
+      "repeatable": true,
+      "cycle": "Board -> one-minute departure window -> five-minute trawl -> dock/inspect or sink/logout return -> independently choose whether to board again.",
+      "rng_boundary": "Every eligible trawler-net result is variable. Fixed fact tables identify possible categories and gated outcomes only; they cannot generate expected fish, outfit pieces, pets, junk, XP, collection-log progress, or a stop point."
+    }
+  },
+  "currencies": [],
+  "rewards": [
+    {
+      "id": "fishing-trawler-fish-catch-table",
+      "acquisition": "rng",
+      "utility": ["Potential raw-fish resources and Fishing XP from an eligible successful trawler-net inspection.", "Sea turtles and manta rays are special high-level catches available through this activity."],
+      "gates_and_entries": [
+        {"minimum_fishing": 15, "entries": ["raw shrimps", "raw anchovies", "raw sardine"], "fishing_xp_each": 0.7},
+        {"minimum_fishing": 16, "entries": ["oyster"], "fishing_xp_each": 51},
+        {"minimum_fishing": 35, "entries": ["raw tuna"], "fishing_xp_each": 48},
+        {"minimum_fishing": 40, "entries": ["raw lobster"], "fishing_xp_each": 54},
+        {"minimum_fishing": 50, "entries": ["raw swordfish"], "fishing_xp_each": 60},
+        {"minimum_fishing": 76, "entries": ["raw shark"], "fishing_xp_each": 66},
+        {"minimum_fishing": 79, "entries": ["raw sea turtle"], "fishing_xp_each": 57},
+        {"minimum_fishing": 81, "entries": ["raw manta ray"], "fishing_xp_each": 69}
+      ],
+      "boundary": "Fish catch count, distribution, Fishing XP, raw-manta receipt, and whether the net was intact are observed outcomes. Do not create them from level, contribution, success, team, or diary state."
+    },
+    {
+      "id": "anglers-outfit",
+      "acquisition": "rng",
+      "utility": ["Four wearable pieces: Angler hat, top, waders, and boots.", "Individual pieces grant 0.4%, 0.8%, 0.6%, and 0.2% Fishing XP respectively; a full worn set grants 2.5% total.", "The full set is required by separate downstream content including minnow access, a master clue skill challenge, and a hard Combat Achievement."],
+      "rate_and_duplicates": "At an eligible successful trawler-net inspection, there is a 1/12 chance for an Angler piece not currently owned. Contribution above 50 does not raise this rate. A piece does not repeat until the first full set is completed; only then can a second set begin. Inventory-full ground-drop handling, ownership, storage, acquisition source, and collection-log result are all observed.",
+      "alternative": "Aerial Fishing can purchase each Angler piece for 100 Molch pearls. This is an alternative acquisition path, not evidence of pearls, outfit ownership, or a recommended method.",
+      "collection_log_boundary": "Each piece and its collection-log state must be recorded from a player account observation. Receiving one piece does not infer the full set, wear state, storage, conversion, future duplicate, or all collection-log entries."
+    },
+    {
+      "id": "heron-pet",
+      "acquisition": "rng",
+      "utility": ["Cosmetic pet and collection-log-relevant rare outcome."],
+      "rate_and_boundary": "Requires successful minigame completion. The current stated rate is 1/5,000 and scales up to 1/2,500 with a full contribution meter. It is never guaranteed, and contribution/team/trip counts cannot infer a pet or collection-log entry."
+    },
+    {
+      "id": "fishing-trawler-junk",
+      "acquisition": "rng",
+      "utility": ["Low-value variable trawler-net outcomes; they are item observations rather than planned resources."],
+      "entries": ["broken arrow", "broken glass", "broken staff", "buttons", "damaged armour", "old boot", "pot", "rusty sword"],
+      "rate_and_boundary": "Independently of Fishing level, the current table states zero to two junk items per eligible net result, with approximately 37% chance for one and approximately 16% chance for two; junk entries are equally likely. Exact item and quantity must be observed. Fishing Trawler has no Angler gloves reward; the outfit consists only of hat, top, waders, and boots."
+    },
+    {
+      "id": "ardougne-elite-trawler-boost",
+      "acquisition": "threshold",
+      "utility": ["Completed Ardougne Elite Diary grants 50 percent more fish from Fishing Trawler."],
+      "boundary": "The diary reward increases a future variable catch amount only after observed elite completion/claim state. It does not produce a fish, confirm an earlier trip, replace the 50-contribution eligibility threshold, or increase Angler-piece odds."
+    }
+  ],
+  "dependencies_and_bypasses": [
+    {"target": "Fishing level 15", "relationship": "requires", "detail": "Required for Fishing Trawler reward eligibility and Minigame Teleport, not for boarding or the Ardougne Easy start task."},
+    {"target": "Fishing level 34", "relationship": "requires", "detail": "Required to equip owned Angler pieces."},
+    {"target": "Fishing level 81 and Cooking level 91", "relationship": "requires", "detail": "Ardougne Elite manta-and-Port-Khazard-cook task. Fishing is not boostable for that task; Cooking may be boosted."},
+    {"target": "Angler's outfit", "relationship": "makes_obtainable", "detail": "Eligible successful Fishing Trawler inspection provides a 1/12 chance for a currently missing piece."},
+    {"target": "Aerial Fishing and 100 Molch pearls per piece", "relationship": "alternative_to", "detail": "Alternative Angler-piece source, with separately modeled Hunter/Fishing/access/pearl state."},
+    {"target": "Ardougne Easy Diary", "relationship": "unlocks", "detail": "Starting an expedition supplies the diary-task event only; it does not require a completed trip."},
+    {"target": "Ardougne Elite Diary", "relationship": "improves", "detail": "Observed completion enables the 50 percent more-fish modifier for future Fishing Trawler catches; no fixed output is produced."},
+    {"target": "Minnow fishing, master clue challenge, hard Combat Achievement, Spirit angler conversion", "relationship": "unlocks", "detail": "Separate downstream content uses the full Angler set; all related gates and results remain outside this package."},
+    {"target": "Port Khazard approaches", "relationship": "alternative_to", "detail": "Minigame Teleport, Khazard Teleport/tablet, charter, cloak, fairy ring, Watchtower/Ardougne teleport, and spirit tree are approaches with independently observed availability."}
+  ],
+  "afk_and_attention": {
+    "attention_class": "mixed",
+    "measured_interaction_interval_seconds": null,
+    "logout_or_idle_constraints": [
+      "The five-minute trawl has variable leaks, water, net tears, Kraken/rail events, team effects, and a sink risk. The contribution meter does not deplete, but a non-depleting meter does not make ship success, supplies, or safety passive.",
+      "Logging out during a trawl returns the player to the shore north of Port Khazard and is not a successful completion or retained in-progress state.",
+      "No generic safe idle duration, idle schedule, XP/hour, catch/hour, success rate, or unattended-play recommendation is stored as fact. Player-recorded timestamps and observed results may be stored separately."
+    ],
+    "source_boundary": "Sources support a mixed, event-driven activity with non-depleting contribution. Community claims that it is AFK, relaxed, or low supply are strategy anecdotes rather than a universal attention/safety guarantee."
+  },
+  "community_strategy_observations": [
+    {
+      "claim": "Community guides and Ironman discussion often use designated worlds for an easier group Angler-outfit attempt, while treating solo trips as a separate, more hands-on method.",
+      "source_ids": ["guide-wiki-fishing-trawler-strategies-current", "reddit-ironscape-anglers-paste-discussion-2020"],
+      "treatment": "strategy-candidate-not-fact",
+      "boundary": "Current world population, coordination, success, fish share, required supplies, time, and preference are not stable or account-independent. Do not select a team/world from this claim."
+    },
+    {
+      "claim": "Players suggest different swamp-paste stacks and recommend stopping active work after reaching the reward-eligible contribution threshold or a fuller meter.",
+      "source_ids": ["reddit-ironscape-anglers-paste-discussion-2020", "guide-wiki-fishing-trawler-strategies-current"],
+      "treatment": "strategy-candidate-not-fact",
+      "boundary": "Supplies consumed depend on team size, ship events, concurrent clicks, objective, inventory, live game state, and luck. A contribution threshold does not guarantee a successful ship, catch, or item."
+    },
+    {
+      "claim": "Guides commonly frame Fishing Trawler as the practical Angler-outfit route compared with the Aerial Fishing pearl option, and quote average-trip/XP estimates.",
+      "source_ids": ["guide-wiki-fishing-trawler-strategies-current", "wiki-anglers-outfit-current"],
+      "treatment": "strategy-candidate-not-fact",
+      "boundary": "This is a route tradeoff involving account state, time, collection-log intent, future Fishing, attention preference, alternate content, and RNG. No expected trips, time, XP, or stop condition is normalized."
+    }
+  ],
+  "state_boundaries": [
+    "Do not infer membership, Port Khazard access, any transport capability, world, team size, departure inclusion, Fishing/Crafting/Woodcutting/Construction/Cooking levels, house ownership, tools, swamp paste, rope, bailing bucket, hammer, axe, diary tier, or player readiness.",
+    "Do not infer a boarded ship, started trip, departed trip, local tool retrieval, water level, leaks, net state, tentacle, rail state, action attempt/success/failure, paste/rope use, contribution, XP, elapsed time, successful dock, sink, logout, damage, death, reclaim, or return location.",
+    "Do not infer a fish, junk, manta ray, catch quantity, Fishing XP, Angler roll/piece, outfit set, duplicate state, Heron, collection-log entry, Aerial Fishing pearl state, or future drop from probability, level, contribution, team, diary, or prior trips.",
+    "Ardougne Easy is a start-only task; Ardougne Elite's manta-and-cook task has ordered and location-dependent steps. Neither task, nor the elite 50 percent fish modifier, may be inferred from a trawler attempt or skills alone.",
+    "All attention and AFK labels are descriptive constraints, not evidence of unattended safety, a player-specific cadence, passive/offline progression, a stable world/team, or a route recommendation."
+  ],
+  "proposed_normalization": {
+    "facts": [
+      {"id": "fishing-trawler-current-access-and-loop", "status": "proposed", "purpose": "Current Port Khazard access, reward Fishing gate, transport alternatives, official worlds, local-tool boundary, five-minute loop, net/water/Kraken mechanics, and post-2024 team share rule."},
+      {"id": "fishing-trawler-current-contribution", "status": "proposed", "purpose": "Non-depleting 0-255 contribution meter, 50-point reward threshold, exact action-point table, XP/house boundary, and full-meter variable modifiers."},
+      {"id": "fishing-trawler-current-rewards", "status": "proposed", "purpose": "Current Fishing-level fish table, complete junk category, 1/12 missing-Angler-piece behavior, Heron scaling, collection-log boundary, and no invented Angler-glove reward."},
+      {"id": "fishing-trawler-ardougne-diary-current", "status": "proposed", "purpose": "Easy start-only task, elite manta/cook sequencing and boostability, and the elite 50 percent fish modifier with probability/output boundary."},
+      {"id": "fishing-trawler-attention-current", "status": "proposed", "purpose": "Mixed active-event profile with null measured interval; preserve no generic AFK or success-rate assertion."}
+    ],
+    "actions": [
+      {"id": "action:fishing-trawler-board", "treatment": "proposed-new", "requirements": "Reported membership, Port Khazard arrival, and board action.", "transition": "Record a board/start event only. Do not mutate supplies, contribution, trip success, rewards, diary completion, or account readiness."},
+      {"id": "action:record-fishing-trawler-trip", "treatment": "proposed-new", "requirements": "Player reports exact trip outcome after departure, completion, sink, or logout.", "transition": "Record supplied team/set-off, contribution, tools/supply deltas, events, success/failure, damage, net inspection, fish/junk/unique/XP results, and diary/collection-log changes without deriving omitted fields."},
+      {"id": "action:claim-fishing-trawler-angler-observation", "treatment": "proposed-new", "requirements": "Player reports a specific net inspection result.", "transition": "Add only the reported Angler piece and any reported collection-log change. Never roll or synthesize the 1/12 chance, set completion, duplicate, storage, or Spirit conversion."},
+      {"id": "action:record-ardougne-trawler-task", "treatment": "proposed-new", "requirements": "Player reports the exact diary task event and relevant ordered steps.", "transition": "Record only reported Easy start credit or Elite manta/cook credit. Do not infer diary-tier completion, reward claim, boosted fish, manta catches, cooking success, or continuity."}
+    ],
+    "graph_nodes": [
+      "activity:fishing-trawler",
+      "location:port-khazard",
+      "condition:fishing-15",
+      "condition:fishing-34",
+      "condition:fishing-81",
+      "condition:cooking-91",
+      "state:fishing-trawler-live-trip",
+      "state:fishing-trawler-contribution",
+      "state:fishing-trawler-net",
+      "state:fishing-trawler-water",
+      "resource:swamp-paste",
+      "resource:rope",
+      "item:anglers-outfit",
+      "reward:raw-manta-ray",
+      "reward:heron",
+      "milestone:ardougne-easy-trawler-start",
+      "milestone:ardougne-elite-manta-cook",
+      "capability:ardougne-elite-trawler-fish-bonus"
+    ],
+    "graph_edges": [
+      {"from": "location:port-khazard", "to": "activity:fishing-trawler", "relationship": "requires", "determinism": "player_observed_arrival"},
+      {"from": "condition:fishing-15", "to": "activity:fishing-trawler", "relationship": "improves", "determinism": "fixed_reward_eligibility_not_entry"},
+      {"from": "activity:fishing-trawler", "to": "state:fishing-trawler-live-trip", "relationship": "produces", "determinism": "player_observed_board_and_departure"},
+      {"from": "resource:swamp-paste", "to": "state:fishing-trawler-live-trip", "relationship": "improves", "determinism": "variable_live_leak_events"},
+      {"from": "resource:rope", "to": "state:fishing-trawler-net", "relationship": "improves", "determinism": "variable_torn_net_and_crafting_success"},
+      {"from": "state:fishing-trawler-live-trip", "to": "state:fishing-trawler-contribution", "relationship": "produces", "determinism": "player_observed_actions_only"},
+      {"from": "state:fishing-trawler-contribution", "to": "item:anglers-outfit", "relationship": "makes_obtainable", "determinism": "requires_success_and_observed_50_contribution_then_rng_1_in_12_missing_piece"},
+      {"from": "state:fishing-trawler-net", "to": "reward:raw-manta-ray", "relationship": "makes_obtainable", "determinism": "requires_success_intact_net_fishing_81_and_rng"},
+      {"from": "state:fishing-trawler-contribution", "to": "reward:heron", "relationship": "makes_obtainable", "determinism": "requires_success_then_rng_scaled_by_observed_contribution"},
+      {"from": "activity:fishing-trawler", "to": "milestone:ardougne-easy-trawler-start", "relationship": "unlocks", "determinism": "player_observed_start_only"},
+      {"from": "condition:fishing-81", "to": "milestone:ardougne-elite-manta-cook", "relationship": "requires", "determinism": "fixed_unboostable_diary_gate"},
+      {"from": "condition:cooking-91", "to": "milestone:ardougne-elite-manta-cook", "relationship": "requires", "determinism": "fixed_boostable_diary_gate"},
+      {"from": "reward:raw-manta-ray", "to": "milestone:ardougne-elite-manta-cook", "relationship": "requires", "determinism": "player_observed_catch_and_ordered_port_khazard_cook"},
+      {"from": "milestone:ardougne-elite-manta-cook", "to": "capability:ardougne-elite-trawler-fish-bonus", "relationship": "unlocks", "determinism": "requires_observed_full_elite_diary_completion_and_reward_state"},
+      {"from": "capability:ardougne-elite-trawler-fish-bonus", "to": "activity:fishing-trawler", "relationship": "improves", "determinism": "future_variable_fish_amount_only"}
+    ],
+    "account_observations": [
+      {"key": "fishing_trawler_access", "type": "boolean", "evidence": "Player report or verified account snapshot; no Port Khazard/boarding access inferred from a route."},
+      {"key": "fishing_trawler_transport_capabilities", "type": "set", "evidence": "Reported Minigame Teleport, spell/tablet, charter, diary-item, fairy-ring, or spirit-tree capability and readiness."},
+      {"key": "fishing_trawler_tools_and_supplies", "type": "object", "evidence": "Reported owned/local tools and exact swamp-paste/rope/bucket/hammer/axe counts before or after play; no consumption is derived."},
+      {"key": "fishing_trawler_trip_history", "type": "array", "evidence": "One report per observed trip containing board/set-off state, world/team if known, contribution, actions, success/sink/logout, damage, and result. Unknown fields remain unknown."},
+      {"key": "fishing_trawler_live_state", "type": "object_or_null", "evidence": "Reported in-progress water, net, tentacle, rail, contribution, team, departure, and supply state. It expires/changes only through player report."},
+      {"key": "fishing_trawler_rewards", "type": "object", "evidence": "Reported fish, junk, Fishing XP, Angler pieces, Heron, and exact count/inspection result; never estimated from rate or trips."},
+      {"key": "anglers_outfit_pieces", "type": "set", "evidence": "Reported exact pieces, acquisition source, storage/wear state, and any completed first/second set. No inference from a 1/12 probability."},
+      {"key": "fishing_trawler_collection_log", "type": "set", "evidence": "Reported collection-log entries only; ownership, a net inspection, or diary state does not imply the log."},
+      {"key": "ardougne_trawler_diary_state", "type": "object", "evidence": "Reported Easy start and Elite manta/cook step continuity/completion/claim state. Skills, fish, or a boarded trip cannot fill this state."},
+      {"key": "fishing_trawler_attention_observations", "type": "array", "evidence": "Player-recorded timestamps, interruptions, team conditions, and actual attention experience. No generic AFK duration is stored as an account fact."}
+    ]
+  },
+  "conflicts_and_unknowns": [
+    {
+      "id": "activity-bar-is-stale",
+      "severity": "correction",
+      "existing_or_community_claim": "Older Fishing Trawler guides describe an activity bar that decays, can kick inactive players, or requires keeping a green bar.",
+      "current_source_claim": "The 21 April 2021 update replaced the activity bar with a non-depleting contribution meter. Current mechanics use 50 contribution for reward eligibility and a 255 maximum.",
+      "treatment": "Use current contribution terminology and observation model. Preserve older discussion only as dated strategy context; do not normalize decaying-bar, kick, or generic AFK claims."
+    },
+    {
+      "id": "full-contribution-fish-bonus-history",
+      "severity": "correction",
+      "existing_or_community_claim": "The 2020 poll wording proposed up to 50 percent more fish at full contribution, and older guides repeat that figure.",
+      "current_source_claim": "The current Fishing Trawler page says a full 255 meter yields 100 percent more fish compared with the 50-point minimum baseline.",
+      "treatment": "Use the live 100-percent-versus-minimum statement and do not compute actual catch counts from it."
+    },
+    {
+      "id": "reward-division-at-set-off",
+      "severity": "integration-note",
+      "existing_or_community_claim": "Pre-19-June-2024 explanations may divide reward accumulation among players present at the end of a trip.",
+      "current_source_claim": "Rewards are divided among players present when the ship sets off.",
+      "treatment": "Trip observations require a known/unknown set-off state. Do not reconstruct reward shares from an end-state team list."
+    },
+    {
+      "id": "angler-gloves-naming",
+      "severity": "correction",
+      "existing_or_community_claim": "Informal requests or guides can refer generically to Angler gloves.",
+      "current_source_claim": "Fishing Trawler's Angler outfit is hat, top, waders, and boots. The current Trawler junk table also does not list gloves.",
+      "treatment": "Do not create an Angler-gloves item or collection-log node. Treat any purported glove item as a separate source-verification request."
+    },
+    {
+      "id": "team-world-supply-and-attention-variance",
+      "severity": "research-hygiene",
+      "existing_or_community_claim": "Guides and players give differing paste/rope/bucket amounts, official-world advice, solo claims, and AFK intervals.",
+      "current_source_claim": "Live event frequency scales with players aboard, and current sources provide no account-independent safe supply, success, attention, or time guarantee.",
+      "treatment": "Keep these claims fenced as strategy candidates and record actual team, events, supply deltas, and attention only after play."
+    }
+  ],
+  "coverage": {"access": true, "loop": true, "currencies": true, "rewards": true, "failure_state": true, "sources": true, "normalization": true}
+}
