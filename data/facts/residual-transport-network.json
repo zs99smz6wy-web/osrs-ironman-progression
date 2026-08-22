@@ -1,0 +1,170 @@
+{
+  "records": [
+    {
+      "id": "residual-transport-network",
+      "name": "Residual portable, spellbook, and diary transport network",
+      "category": "transport",
+      "status": "verified",
+      "verified_at": "2026-08-22",
+      "scope": "Current factual mechanics for portable teleport jewellery, charged-item lifecycles, spellbook teleport families, tablet use, remaining major diary and Combat Achievement teleports, Chronicle, and Home Teleport. It preserves the separately normalized POH, balloon, minecart, eagle, Ectophial, Trollheim, Ardougne, Kourend memoir, and Fossil Island work. It does not rank these options or generate a route.",
+      "modeling_boundaries": {
+        "portable_charge_variants": "The normalized actions represent each usable portable-jewellery charge variant as a distinct inventory item so one use cannot silently leave a fully charged item available. Exact destinations are reported from a family-level action when their only shared cost is one charge.",
+        "daily_and_cooldown_limits": "Daily-limited diary and Combat Achievement teleports are factual capabilities only unless their use is unlimited. Home Teleport requires an explicit ready recurring observation; use clears that observation and no action resets a day or advances a timer.",
+        "bulk_recharges": "Fountains, Recharge Dragonstone, and charge-scroll effects can recharge all eligible items together. Per-item actions model a selected item only where the result can be stated exactly; bulk inventory conversion remains a reported factual mechanic rather than an inferred rewrite.",
+        "rng": "Treasure Trail scrolls, elf crystal-seed drops, enhanced crystal teleport seeds, and eternal glory are availability edges only. They are never deterministic transition outputs."
+      },
+      "core_charged_jewellery": {
+        "games_necklace": {
+          "creation": {"magic": {"level": 7, "boostable": true, "xp": 17.5}, "inputs": {"sapphire_necklace": 1, "cosmic_rune": 1, "water_rune": 1}, "output": "Games necklace (8)"},
+          "charges": 8,
+          "destinations": ["Barbarian Outpost", "Burthorpe Games Room", "Corporeal Beast's Lair", "Tears of Guthix after Tears of Guthix", "Wintertodt Camp after visiting Zeah"]
+        },
+        "ring_of_dueling": {
+          "creation": {"magic": {"level": 27, "boostable": true, "xp": 37}, "inputs": {"emerald_ring": 1, "cosmic_rune": 1, "air_rune": 3}, "output": "Ring of dueling (8)"},
+          "charges": 8,
+          "destinations": ["Emir's Arena", "Castle Wars", "Ferox Enclave", "Fortis Colosseum after earning the Hero title"]
+        },
+        "necklace_of_passage": {
+          "creation": {"magic": {"level": 27, "boostable": true, "xp": 37}, "inputs": {"jade_necklace": 1, "cosmic_rune": 1, "air_rune": 3}, "output": "Necklace of passage (5)"},
+          "charges": 5,
+          "destinations": ["Wizards' Tower", "The Outpost", "Eagles' Eyrie", "Wyrmscraig after Fallen From Grace"]
+        },
+        "burning_amulet": {
+          "creation": {"magic": {"level": 49, "boostable": true, "xp": 59}, "inputs": {"topaz_amulet": 1, "cosmic_rune": 1, "fire_rune": 5}, "output": "Burning amulet (5)"},
+          "charges": 5,
+          "destinations": ["Chaos Temple in level-15 Wilderness", "Bandit Camp in level-17 Wilderness", "Lava Maze in level-41 Wilderness"]
+        },
+        "lifecycle": "Each ordinary portable-jewellery teleport consumes exactly one charge. These four non-dragonstone items crumble at zero charges; their creation action produces their full-charge variant."
+      },
+      "dragonstone_jewellery": {
+        "enchantment": {"magic": {"level": 68, "boostable": true, "xp": 78}, "inputs_per_item": {"cosmic_rune": 1, "earth_rune": 15, "water_rune": 15}, "outputs": {"dragonstone_ring": "Ring of wealth (uncharged)", "dragon_necklace": "Skills necklace (uncharged)", "dragonstone_bracelet": "Combat bracelet (uncharged)", "dragonstone_amulet": "Amulet of glory (uncharged)"}},
+        "normal_charge_limits": {"amulet_of_glory": 4, "skills_necklace": 4, "combat_bracelet": 4, "ring_of_wealth": 5},
+        "fountain_of_rune": {
+          "location": "east of the Demonic Ruins in the Wilderness",
+          "charge_limits": {"amulet_of_glory": 6, "skills_necklace": 6, "combat_bracelet": 6, "ring_of_wealth": 5},
+          "quest_gates": {"amulet_of_glory": "Heroes' Quest", "skills_necklace": "Legends' Quest", "combat_bracelet": "Legends' Quest", "ring_of_wealth": null},
+          "bulk_behavior": "Charges all applicable eligible jewellery in inventory and equipment. Combat bracelets and skills necklaces may be noted; glories and rings of wealth may not.",
+          "rng_boundary": "Each glory charged has a 1 in 25,000 chance to become an eternal glory with unlimited teleports."
+        },
+        "four_charge_recharges": {
+          "amulet_of_glory": ["Fountain of Heroes after Heroes' Quest", "Fountain of Uhld after Dragon Slayer II", "charge dragonstone jewellery scroll after Heroes' Quest", "Recharge Dragonstone after hard Fremennik Diary and 89 Magic"],
+          "skills_necklace": ["Legends' Guild totem pole", "Fountain of Uhld", "charge dragonstone jewellery scroll", "Recharge Dragonstone"],
+          "combat_bracelet": ["Legends' Guild totem pole", "Fountain of Uhld", "charge dragonstone jewellery scroll", "Recharge Dragonstone"],
+          "ring_of_wealth": ["No four-charge path; only the Fountain of Rune can charge it."]
+        },
+        "recharge_dragonstone": {"spellbook": "Lunar", "magic": 89, "diary": "Fremennik hard", "runes": {"astral_rune": 1, "soul_rune": 1, "water_rune": 4}, "targets": ["amulet of glory", "combat bracelet after Legends' Quest", "skills necklace after Legends' Quest"], "excludes": "ring of wealth"},
+        "charge_scroll": {"acquisition": "Treasure Trail reward except beginner clues; variable acquisition", "consumed": 1, "targets": "All unnoted eligible uncharged or partial glories, combat bracelets, and skills necklaces in inventory plus equipped jewellery", "requirements": "Heroes' Quest globally; combat bracelets and skills necklaces also require Legends' Quest; ring of wealth is excluded."},
+        "teleport_lifecycle": "A charged dragonstone item spends one charge per teleport and becomes its uncharged variant at zero. Portable destinations are independent of POH jewellery boxes, which consume full-charge versions during construction."
+      },
+      "special_item_networks": {
+        "slayer_ring": {
+          "purchase": {"slayer_reward_points": 75, "output": "Slayer ring (8)"},
+          "crafting": {"ring_bling_unlock": {"slayer_reward_points": 300}, "crafting": {"level": 75, "boostable": true, "xp": 15}, "facility": "furnace", "reusable": ["ring mould"], "inputs": {"enchanted_gem": 1, "gold_bar": 1}, "output": "Slayer ring (8)"},
+          "charges": 8,
+          "depletion": "A zero-charge ring crumbles and leaves an enchanted gem. Charges may be transferred or decanted, but those multi-item operations are not inferred by a one-item action.",
+          "destinations": {"Stronghold Slayer Cave": null, "Slayer Tower": "Priest in Peril", "Fremennik Slayer Dungeon": null, "Tarn's Lair": "Haunted Mine", "Dark Beasts": "Mourning's End Part II", "Wyrmscraig Cavern": "Fallen From Grace"}
+        },
+        "ring_of_the_elements": {
+          "purchase": {"requirements": ["Temple of the Eye", "400 abyssal pearls"], "output": "Ring of the elements"},
+          "charges": {"per_charge": {"air_rune": 1, "earth_rune": 1, "fire_rune": 1, "water_rune": 1, "law_rune": 1}, "maximum": 10000, "scope": "charge count is player-wide across rings"},
+          "destinations": ["Air Altar", "Water Altar", "Earth Altar", "Fire Altar"],
+          "uncharge": "At almost any bank, the right-click Uncharge option returns the runes represented by the stored charges. A bulk return is factual but not inferred by a one-charge action."
+        },
+        "teleport_crystal": {
+          "initial_state": "A newly received teleport crystal has four charges; zero charges become a crystal teleport seed.",
+          "destinations": {"Lletya": null, "Prifddinas": "Song of the Elves"},
+          "recharge": {"facility": "Eluned after starting Mourning's End Part I, or an Elven Scout after Song of the Elves", "quest_start": "Mourning's End Part I started", "quoted_coin_costs": {"first": 750, "second": 600, "third": 450, "fourth": 300, "fifth_and_later": 150}, "ordinary_output_charges": 3, "western_provinces_hard_output_charges": 5},
+          "rng_boundary": "Elf warriors and elf guards in Lletya or Prifddinas can variably drop crystal teleport seeds, and may drop a one- or zero-charge crystal. Enhanced crystal teleport seed acquisition for the eternal crystal is also variable."
+        }
+      },
+      "spellbook_families": {
+        "standard": {
+          "access": "Standard spellbook active.",
+          "casts": [
+            {"name": "Varrock", "magic": 25, "runes": {"law_rune": 1, "air_rune": 3, "fire_rune": 1}, "xp": 35},
+            {"name": "Lumbridge", "magic": 31, "runes": {"law_rune": 1, "air_rune": 3, "earth_rune": 1}, "xp": 41},
+            {"name": "Falador", "magic": 37, "runes": {"law_rune": 1, "air_rune": 3, "water_rune": 1}, "xp": 48},
+            {"name": "House", "magic": 40, "runes": {"law_rune": 1, "air_rune": 1, "earth_rune": 1}, "xp": 30},
+            {"name": "Camelot", "magic": 45, "runes": {"law_rune": 1, "air_rune": 5}, "xp": 55.5},
+            {"name": "Kourend Castle", "magic": 48, "runes": {"law_rune": 2, "fire_rune": 1, "water_rune": 1}, "xp": 58, "quest": "Client of Kourend"},
+            {"name": "Ardougne", "magic": 51, "runes": {"law_rune": 2, "water_rune": 2}, "xp": 61, "quest": "Plague City", "existing_action": "action:cast-ardougne-teleport"},
+            {"name": "Civitas illa Fortis", "magic": 54, "runes": {"law_rune": 2, "earth_rune": 1, "fire_rune": 1}, "xp": 64, "quest": "Twilight's Promise"},
+            {"name": "Watchtower", "magic": 58, "runes": {"law_rune": 2, "earth_rune": 2}, "xp": 68, "quest": "Watchtower"},
+            {"name": "Trollheim", "magic": 61, "runes": {"law_rune": 2, "fire_rune": 2}, "xp": 68, "quest": "Eadgar's Ruse", "existing_action": "action:cast-trollheim-teleport"},
+            {"name": "Ape Atoll", "magic": 64, "runes": {"law_rune": 2, "fire_rune": 2, "water_rune": 2, "banana": 1}, "xp": 74, "quest": "Freeing King Awowogei"},
+            {"name": "Boat", "magic": 67, "runes": {"law_rune": 2, "earth_rune": 2, "water_rune": 2}, "xp": 77, "requirements": ["Pandemonium", "greater teleport focus on the selected player-owned boat"]}
+          ]
+        },
+        "ancient": {
+          "access": "Ancient spellbook active after Desert Treasure I.",
+          "casts": [
+            {"name": "Paddewwa", "magic": 54, "runes": {"law_rune": 2, "air_rune": 1, "fire_rune": 1}, "xp": 64},
+            {"name": "Senntisten", "magic": 60, "runes": {"law_rune": 2, "soul_rune": 1}, "xp": 70},
+            {"name": "Kharyrll", "magic": 66, "runes": {"law_rune": 2, "blood_rune": 1}, "xp": 76},
+            {"name": "Lassar", "magic": 72, "runes": {"law_rune": 2, "water_rune": 4}, "xp": 82},
+            {"name": "Dareeyak", "magic": 78, "runes": {"law_rune": 2, "air_rune": 2, "fire_rune": 3}, "xp": 88},
+            {"name": "Carrallanger", "magic": 84, "runes": {"law_rune": 2, "soul_rune": 2}, "xp": 94},
+            {"name": "Annakarl", "magic": 90, "runes": {"law_rune": 2, "blood_rune": 2}, "xp": 100},
+            {"name": "Ghorrock", "magic": 96, "runes": {"law_rune": 2, "water_rune": 8}, "xp": 106}
+          ]
+        },
+        "lunar": {
+          "access": "Lunar spellbook active after Lunar Diplomacy. The quest itself has non-boostable 65 Magic and 40 Defence requirements.",
+          "casts": [
+            {"name": "Moonclan", "magic": 69, "runes": {"astral_rune": 2, "law_rune": 1, "earth_rune": 2}, "xp": 66},
+            {"name": "Ourania", "magic": 71, "runes": {"astral_rune": 2, "law_rune": 1, "earth_rune": 6}, "xp": 69},
+            {"name": "Waterbirth", "magic": 72, "runes": {"astral_rune": 2, "law_rune": 1, "water_rune": 1}, "xp": 71},
+            {"name": "Barbarian", "magic": 75, "runes": {"astral_rune": 2, "law_rune": 2, "fire_rune": 3}, "xp": 76},
+            {"name": "Khazard", "magic": 78, "runes": {"astral_rune": 2, "law_rune": 2, "water_rune": 4}, "xp": 80},
+            {"name": "Fishing Guild", "magic": 85, "runes": {"astral_rune": 3, "law_rune": 3, "water_rune": 10}, "xp": 89},
+            {"name": "Catherby", "magic": 87, "runes": {"astral_rune": 3, "law_rune": 3, "water_rune": 10}, "xp": 92},
+            {"name": "Ice Plateau", "magic": 89, "runes": {"astral_rune": 3, "law_rune": 3, "water_rune": 8}, "xp": 96}
+          ]
+        },
+        "arceuus": {
+          "access": "Arceuus spellbook active after speaking to Tyss; Kourend favour is not required. A Kingdom Divided is not required for these teleports.",
+          "casts": [
+            {"name": "Arceuus Library", "magic": 6, "runes": {"law_rune": 1, "earth_rune": 2}, "xp": 9.5},
+            {"name": "Draynor Manor", "magic": 17, "runes": {"law_rune": 1, "earth_rune": 1, "water_rune": 1}, "xp": 16},
+            {"name": "Battlefront", "magic": 23, "runes": {"law_rune": 1, "earth_rune": 1, "fire_rune": 1}, "xp": 19},
+            {"name": "Mind Altar", "magic": 28, "runes": {"law_rune": 1, "mind_rune": 2}, "xp": 22},
+            {"name": "Respawn", "magic": 34, "runes": {"law_rune": 1, "soul_rune": 1}, "xp": 27},
+            {"name": "Salve Graveyard", "magic": 40, "runes": {"law_rune": 1, "soul_rune": 2}, "xp": 30, "quest": "Priest in Peril"},
+            {"name": "Fenkenstrain's Castle", "magic": 48, "runes": {"law_rune": 1, "soul_rune": 1, "earth_rune": 1}, "xp": 50, "quest": "Priest in Peril"},
+            {"name": "West Ardougne", "magic": 61, "runes": {"law_rune": 2, "soul_rune": 2}, "xp": 68, "quest": "Biohazard"},
+            {"name": "Harmony Island", "magic": 65, "runes": {"law_rune": 1, "soul_rune": 1, "nature_rune": 1}, "xp": 74, "quest": "The Great Brain Robbery"},
+            {"name": "Cemetery", "magic": 71, "runes": {"law_rune": 1, "soul_rune": 1, "blood_rune": 1}, "xp": 82},
+            {"name": "Barrows", "magic": 83, "runes": {"law_rune": 2, "soul_rune": 2, "blood_rune": 1}, "xp": 90, "quest": "Priest in Peril"},
+            {"name": "Ape Atoll", "magic": 90, "runes": {"law_rune": 2, "soul_rune": 2, "blood_rune": 2}, "xp": 100, "quest": "Monkey Madness I"}
+          ]
+        }
+      },
+      "tablet_use_alternatives": {
+        "shared": "Magic tablets are stackable single-use spells. Making one requires the corresponding Magic level, the active spellbook where applicable, and the spell's rune requirements; using one has no Magic level requirement and consumes one tablet.",
+        "standard": "Standard tablets use soft clay and their cast runes at a POH lectern. They can be made without the Standard spellbook active at a suitable POH lectern.",
+        "ancient": "Ancient tablets are made at the Ancient Pyramid lectern while on Ancients. Desert Treasure I is required to use them.",
+        "lunar": "Lunar tablets are made at the Lunar Isle lectern while on Lunar. Moonclan and Ourania tablet use require Lunar Diplomacy; the source calls out those two use gates explicitly.",
+        "arceuus": "Arceuus tablets are made at the Ouditor's house lectern while on Arceuus, using the corresponding runes plus one dark essence block. Mining 38 is required to obtain dark essence blocks.",
+        "model_boundary": "Tablet-use actions consume a known tablet and represent the Magic-level bypass only. They neither manufacture a tablet nor infer access to a lectern, spellbook, or source-specific quest path that supplied it."
+      },
+      "diary_and_combat_reward_transport": {
+        "Ardougne": "Cloak monastery travel is already normalized. Farm-patch travel is three daily at medium, five daily at hard, and unlimited at elite.",
+        "Desert": "Amulet 2 and 3 give one daily Nardah teleport. Amulet 4 gives unlimited Nardah and Kalphite Cave teleports.",
+        "Fremennik": "Sea boots 1 through 3 give one daily Rellekka teleport; sea boots 4 is unlimited.",
+        "Karamja": "Gloves 3 and 4 give unlimited gem-mine teleports. Gloves 4 also gives unlimited Duradel teleports.",
+        "Morytania": "Legs 1 and 2 give two and five daily Slime Pit teleports. Legs 3 gives unlimited Burgh de Rott; legs 4 gives unlimited Slime Pit and Burgh de Rott.",
+        "Kandarin": "Headgear 3 gives one daily Sherlock teleport; headgear 4 is unlimited.",
+        "Western Provinces": "Banner 3 gives one daily Piscatoris Fishing Colony teleport; banner 4 is unlimited.",
+        "Wilderness": "Sword 3 gives one daily Fountain of Rune teleport; sword 4 is unlimited.",
+        "Kourend and Kebos": "Rada's blessing Kourend Woodland and hard-tier behavior are already normalized. Mount Karuulm is three daily at hard and unlimited at elite.",
+        "Combat Achievements": "Ghommal's hilt 1 and 2 give three and five daily God Wars Dungeon teleports; hilt 3 is unlimited. Hilt 4 and 5 give three and five daily Mor Ul Rek teleports; hilt 6 is unlimited."
+      },
+      "free_and_shop_transport": {
+        "chronicle": {"purchase": {"coins": 300, "vendor": "Diango"}, "card_coins": 150, "capacity": 1000, "per_use": 1, "destination": "outside Champions' Guild", "restrictions": ["does not work in Wilderness", "charges persist when replaced after loss or destruction"]},
+        "home_teleport": {"cost": "free", "cooldown_minutes": 30, "shared_across_spellbooks": true, "not_shared_with": "Minigame Teleport", "interruption": "Interrupted by most actions including combat; casting also requires at least 10 seconds since combat ended.", "destinations": {"Standard": "Lumbridge", "Ancient": "Edgeville", "Lunar": "Lunar Isle", "Arceuus": "Dark Altar"}}
+      },
+      "source_ids": ["wiki-enchantment-spells", "wiki-games-necklace", "wiki-ring-of-dueling", "wiki-necklace-of-passage", "wiki-burning-amulet", "wiki-dragonstone", "wiki-amulet-of-glory", "wiki-combat-bracelet", "wiki-skills-necklace", "wiki-ring-of-wealth", "wiki-fountain-of-rune", "wiki-recharge-dragonstone", "wiki-charge-dragonstone-jewellery-scroll", "wiki-slayer-ring", "wiki-slayer-reward-point", "wiki-ring-of-the-elements", "wiki-teleport-crystal", "wiki-standard-spellbook", "wiki-ancient-magicks", "wiki-lunar-spellbook", "wiki-arceuus-spellbook", "wiki-magic-tablet", "wiki-home-teleport", "wiki-chronicle", "wiki-transportation", "wiki-combat-achievements"],
+      "confidence": "high"
+    }
+  ]
+}

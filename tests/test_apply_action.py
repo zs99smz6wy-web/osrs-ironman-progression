@@ -1595,6 +1595,227 @@ class ApplyActionTests(unittest.TestCase):
         self.assertEqual(0, state["items"]["amulet_of_glory_4"])
         self.assertEqual(0, state["items"]["ring_of_wealth_5"])
 
+    def test_residual_jewellery_lifecycles_keep_charge_variants_exact(self) -> None:
+        self.state["skills"]["Magic"] = 68
+        self.state["skill_xp"]["Magic"] = minimum_xp_for_level(68)
+        self.state["items"] = {
+            "sapphire_necklace": 1,
+            "cosmic_rune": 2,
+            "water_rune": 16,
+            "dragonstone_amulet": 1,
+            "earth_rune": 15,
+        }
+
+        games = apply_action(self.actions_document, self.state, "action:enchant-games-necklace")
+        self.assertEqual("applied", games["status"])
+        self.assertEqual(1, games["next_state"]["items"]["games_necklace_8"])
+
+        used_games = apply_action(
+            self.actions_document,
+            games["next_state"],
+            "action:use-games-necklace-teleport",
+            option_id="from-8",
+        )
+        self.assertEqual("applied", used_games["status"])
+        self.assertEqual(0, used_games["next_state"]["items"]["games_necklace_8"])
+        self.assertEqual(1, used_games["next_state"]["items"]["games_necklace_7"])
+
+        glory = apply_action(self.actions_document, used_games["next_state"], "action:enchant-amulet-of-glory")
+        self.assertEqual("applied", glory["status"])
+        state = glory["next_state"]
+        state["quests_completed"].append("Heroes' Quest")
+
+        charged_four = apply_action(
+            self.actions_document,
+            state,
+            "action:charge-amulet-of-glory-four-charges",
+            option_id="from-uncharged",
+        )
+        self.assertEqual("applied", charged_four["status"])
+        self.assertEqual(1, charged_four["next_state"]["items"]["amulet_of_glory_4"])
+
+        spent = apply_action(
+            self.actions_document,
+            charged_four["next_state"],
+            "action:use-amulet-of-glory-teleport",
+            option_id="from-4",
+        )
+        self.assertEqual("applied", spent["status"])
+        self.assertEqual(1, spent["next_state"]["items"]["amulet_of_glory_3"])
+
+        fountain = apply_action(
+            self.actions_document,
+            spent["next_state"],
+            "action:charge-amulet-of-glory-at-fountain-rune",
+            option_id="from-3",
+        )
+        self.assertEqual("applied", fountain["status"])
+        self.assertEqual(1, fountain["next_state"]["items"]["amulet_of_glory_6"])
+        self.assertEqual(0, fountain["next_state"]["items"]["amulet_of_glory_3"])
+
+    def test_slayer_ring_and_ring_of_elements_track_deterministic_costs(self) -> None:
+        self.state["skills"]["Crafting"] = 75
+        self.state["skill_xp"]["Crafting"] = minimum_xp_for_level(75)
+        self.state["resources"] = {"slayer_reward_points": 375}
+        self.state["items"] = {
+            "ring_mould": 1,
+            "enchanted_gem": 1,
+            "gold_bar": 1,
+            "ring_of_the_elements": 1,
+            "air_rune": 1,
+            "earth_rune": 1,
+            "fire_rune": 1,
+            "water_rune": 1,
+            "law_rune": 1,
+        }
+
+        unlocked = apply_action(self.actions_document, self.state, "action:unlock-ring-bling")
+        self.assertEqual("applied", unlocked["status"])
+        self.assertIn("ring_bling_unlocked", unlocked["next_state"]["milestones"])
+
+        bought = apply_action(self.actions_document, unlocked["next_state"], "action:buy-slayer-ring")
+        self.assertEqual("applied", bought["status"])
+        self.assertEqual(1, bought["next_state"]["items"]["slayer_ring_8"])
+
+        used = apply_action(
+            self.actions_document,
+            bought["next_state"],
+            "action:use-slayer-ring-teleport",
+            option_id="from-8",
+        )
+        self.assertEqual("applied", used["status"])
+        self.assertEqual(1, used["next_state"]["items"]["slayer_ring_7"])
+
+        crafted = apply_action(self.actions_document, used["next_state"], "action:craft-slayer-ring")
+        self.assertEqual("applied", crafted["status"])
+        self.assertEqual(1, crafted["next_state"]["items"]["slayer_ring_8"])
+        self.assertEqual(0, crafted["next_state"]["items"]["enchanted_gem"])
+
+        charged = apply_action(self.actions_document, crafted["next_state"], "action:charge-ring-of-the-elements")
+        self.assertEqual("applied", charged["status"])
+        self.assertEqual(1, charged["next_state"]["items"]["ring_of_elements_charge"])
+
+        teleported = apply_action(
+            self.actions_document,
+            charged["next_state"],
+            "action:use-ring-of-the-elements-teleport",
+            option_id="air-altar",
+        )
+        self.assertEqual("applied", teleported["status"])
+        self.assertEqual(0, teleported["next_state"]["items"]["ring_of_elements_charge"])
+        self.assertNotIn("crystal_teleport_seed", teleported["next_state"]["items"])
+
+    def test_teleport_crystal_recharge_uses_selected_observed_quote(self) -> None:
+        self.state["milestones"] = ["mourning_end_part_i_started"]
+        self.state["items"] = {"crystal_teleport_seed": 1}
+        self.state["resources"] = {"coins": 750}
+
+        ordinary = apply_action(
+            self.actions_document,
+            self.state,
+            "action:recharge-teleport-crystal",
+            option_id="normal-three-charges-750",
+        )
+        self.assertEqual("applied", ordinary["status"])
+        self.assertEqual(1, ordinary["next_state"]["items"]["teleport_crystal_3"])
+        self.assertEqual(0, ordinary["next_state"]["resources"]["coins"])
+
+        western_hard = load_json(FRESH_ACCOUNT)
+        western_hard["milestones"] = ["mourning_end_part_i_started"]
+        western_hard["diary_tiers"]["Western Provinces"] = "hard"
+        western_hard["items"] = {"crystal_teleport_seed": 1}
+        western_hard["resources"] = {"coins": 150}
+        elite = apply_action(
+            self.actions_document,
+            western_hard,
+            "action:recharge-teleport-crystal",
+            option_id="western-hard-five-charges-150",
+        )
+        self.assertEqual("applied", elite["status"])
+        self.assertEqual(1, elite["next_state"]["items"]["teleport_crystal_5"])
+        self.assertNotIn("teleport_crystal_quote", elite["next_state"])
+
+    def test_spell_tablet_bypass_and_home_cooldown_observation_are_explicit(self) -> None:
+        self.state["milestones"] = ["standard_spellbook_active"]
+        self.state["skills"]["Magic"] = 25
+        self.state["skill_xp"]["Magic"] = minimum_xp_for_level(25)
+        self.state["items"] = {"law_rune": 1, "air_rune": 3, "fire_rune": 1}
+
+        cast = apply_action(
+            self.actions_document,
+            self.state,
+            "action:cast-standard-teleport-family",
+            option_id="varrock",
+        )
+        self.assertEqual("applied", cast["status"])
+        self.assertEqual(0, cast["next_state"]["items"]["law_rune"])
+
+        tablet_state = load_json(FRESH_ACCOUNT)
+        tablet_state["items"] = {"varrock_teleport_tablet": 1}
+        tablet = apply_action(
+            self.actions_document,
+            tablet_state,
+            "action:use-standard-teleport-tablet-family",
+            option_id="varrock",
+        )
+        self.assertEqual("applied", tablet["status"])
+        self.assertEqual(1, tablet["next_state"]["skills"]["Magic"])
+        self.assertEqual(0, tablet["next_state"]["items"]["varrock_teleport_tablet"])
+
+        home_state = load_json(FRESH_ACCOUNT)
+        home_state["passive_loops"]["home_teleport"] = True
+        home_state["recurring_observations"]["home_teleport"] = {
+            "state": "ready",
+            "observed_at": "2026-08-22T10:00:00Z",
+            "ready_at": "2026-08-22T10:00:00Z",
+        }
+        home_state["milestones"] = ["standard_spellbook_active"]
+        home = apply_action(
+            self.actions_document,
+            home_state,
+            "action:use-home-teleport",
+            option_id="standard",
+        )
+        self.assertEqual("applied", home["status"])
+        self.assertNotIn("home_teleport", home["next_state"]["recurring_observations"])
+
+        repeated = apply_action(
+            self.actions_document,
+            home["next_state"],
+            "action:use-home-teleport",
+            option_id="standard",
+        )
+        self.assertEqual("not_eligible", repeated["status"])
+
+    def test_chronicle_and_unlimited_diary_transport_never_reset_daily_uses(self) -> None:
+        self.state["resources"] = {"coins": 450}
+        chronicle = apply_action(self.actions_document, self.state, "action:buy-chronicle")
+        self.assertEqual("applied", chronicle["status"])
+        card = apply_action(self.actions_document, chronicle["next_state"], "action:buy-chronicle-teleport-card")
+        self.assertEqual("applied", card["status"])
+        used = apply_action(self.actions_document, card["next_state"], "action:use-chronicle-teleport")
+        self.assertEqual("applied", used["status"])
+        self.assertEqual(0, used["next_state"]["items"]["chronicle_charge"])
+
+        diary_state = load_json(FRESH_ACCOUNT)
+        diary_state["diary_tiers"]["Desert"] = "elite"
+        diary_state["items"] = {"desert_amulet_current": 1}
+        first = apply_action(
+            self.actions_document,
+            diary_state,
+            "action:use-desert-amulet-elite-teleport",
+            option_id="nardah",
+        )
+        second = apply_action(
+            self.actions_document,
+            first["next_state"],
+            "action:use-desert-amulet-elite-teleport",
+            option_id="kalphite-cave",
+        )
+        self.assertEqual("applied", first["status"])
+        self.assertEqual("applied", second["status"])
+        self.assertEqual(first["next_state"]["items"], second["next_state"]["items"])
+
 
 if __name__ == "__main__":
     unittest.main()
