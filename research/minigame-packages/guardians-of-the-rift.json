@@ -1,0 +1,439 @@
+{
+  "package_schema_version": 1,
+  "package_type": "minigame-research",
+  "package_id": "research-minigame-guardians-of-the-rift",
+  "activity": "Guardians of the Rift",
+  "status": "research-proposal",
+  "checked_at": "2026-08-22",
+  "scope": "Current factual package for the members-only Guardians of the Rift Runecraft minigame. It is integration-ready research only: it proposes facts, actions, graph records, and explicit account observations without changing production data, assigning route order, scoring the activity, or treating community targets as facts.",
+  "facts_strategy_boundary": {
+    "included": [
+      "current quest, skill, item, location, transport, reward, and shop mechanics",
+      "deterministic versus random acquisition and consumption boundaries",
+      "round phases, energy caps, point rounding, threshold, failure, and session-item behavior",
+      "fixed utility of the outfit, ring, pouch, lantern, talismans, and cosmetic rewards",
+      "current official August 2026 needle, lantern, and Guardian's Eye changes",
+      "proposed observation fields that require player-reported values"
+    ],
+    "excluded": [
+      "whether this activity should be done early or for how long",
+      "XP, rune, pearl, search, or game-per-hour estimates as account facts",
+      "a recommended pearl purchase order or stop condition",
+      "assumed account readiness, round success, earned energy, points, searches, RNG drops, or collection-log state"
+    ]
+  },
+  "source_catalog": [
+    {
+      "id": "wiki-gotr-current",
+      "publisher": "Old School RuneScape Wiki",
+      "kind": "wiki",
+      "url": "https://oldschool.runescape.wiki/w/Guardians_of_the_Rift",
+      "checked_at": "2026-08-22",
+      "use": "Current access, Wizard's Tower location and transport list, round mechanics, energy, point threshold and rounding, shop summary, session-item cleanup, and reward categories."
+    },
+    {
+      "id": "wiki-temple-of-the-eye-current",
+      "publisher": "Old School RuneScape Wiki",
+      "kind": "wiki",
+      "url": "https://oldschool.runescape.wiki/w/Temple_of_the_Eye",
+      "checked_at": "2026-08-22",
+      "use": "Temple of the Eye prerequisite chain, level-10 Runecraft gate, completion reward, in-quest XP, medium-pouch reward, and permanent unlock."
+    },
+    {
+      "id": "wiki-quest-experience-rewards-current",
+      "publisher": "Old School RuneScape Wiki",
+      "kind": "wiki",
+      "url": "https://oldschool.runescape.wiki/w/Quest_experience_rewards",
+      "checked_at": "2026-08-22",
+      "use": "Cross-check that Enter the Abyss gives 1,000 Runecraft XP and Temple of the Eye has a 5,000 fixed completion reward."
+    },
+    {
+      "id": "wiki-rewards-guardian-current",
+      "publisher": "Old School RuneScape Wiki",
+      "kind": "wiki",
+      "url": "https://oldschool.runescape.wiki/w/Rewards_Guardian",
+      "checked_at": "2026-08-22",
+      "use": "Reward-search inputs, standard loot and unique reward table, pearl roll quantity, and RNG drop-rate cross-check."
+    },
+    {
+      "id": "wiki-temple-supplies-current",
+      "publisher": "Old School RuneScape Wiki",
+      "kind": "wiki",
+      "url": "https://oldschool.runescape.wiki/w/Temple_Supplies",
+      "checked_at": "2026-08-22",
+      "use": "Deterministic abyssal-pearl costs, talisman stock conditions, ring charges, and current shop inventory."
+    },
+    {
+      "id": "wiki-abyssal-lantern-current",
+      "publisher": "Old School RuneScape Wiki",
+      "kind": "wiki",
+      "url": "https://oldschool.runescape.wiki/w/Abyssal_lantern",
+      "checked_at": "2026-08-22",
+      "use": "Lantern lighting inputs, Firemaking gates, log effects, equipment slot, and pouch-decay utility."
+    },
+    {
+      "id": "wiki-colossal-pouch-current",
+      "publisher": "Old School RuneScape Wiki",
+      "kind": "wiki",
+      "url": "https://oldschool.runescape.wiki/w/Colossal_pouch",
+      "checked_at": "2026-08-22",
+      "use": "Needle combination recipe, unboosted Crafting requirement, tiered capacity, decay, repair, and recovery behavior."
+    },
+    {
+      "id": "official-gotr-minigame-makeover-2024",
+      "publisher": "Jagex",
+      "kind": "official",
+      "url": "https://oldschool.runescape.wiki/w/Update:Guardians_of_the_Rift_Changes_Out_Now!",
+      "checked_at": "2026-08-22",
+      "use": "Official update text mirrored by the Wiki: dynamic scaling, setup-phase behavior, medium-rift protection, full-barrier contributions, 2,500 XP/450-energy cell cap, repair cost, Big-Search, pearl exchange, pearl quantity, and scaled pouch capacity."
+    },
+    {
+      "id": "official-summer-sweep-up-2026",
+      "publisher": "Jagex",
+      "kind": "official",
+      "url": "https://secure.runescape.com/m=news/summer-sweep-up---hunter--skilling?oldschool=1",
+      "checked_at": "2026-08-22",
+      "use": "Official August 19, 2026 release listing for the current Guardians of the Rift changes; the detailed release text confirms the 750-pearl needle, 1,500-pearl lantern, expanded lantern effects, and permanent Guardian's Eye metamorphosis."
+    },
+    {
+      "id": "community-bruhsailer-current",
+      "publisher": "BRUHsailer",
+      "kind": "guide",
+      "url": "https://osrsper.github.io/BRUHsailer/",
+      "checked_at": "2026-08-22",
+      "use": "Current community route evidence for a stated outfit-and-colossal-pouch stop target. Used only as a strategy candidate, never as a factual requirement."
+    },
+    {
+      "id": "community-reddit-ironman-early-gotr",
+      "publisher": "r/ironscape",
+      "kind": "reddit",
+      "url": "https://www.reddit.com/r/ironscape/comments/tw4m5e/guardians_of_the_rift_on_a_new_ironman/",
+      "checked_at": "2026-08-22",
+      "use": "Community discussion of early participation and pouch-repair friction. Used only as a strategy candidate."
+    },
+    {
+      "id": "community-reddit-gotr-solo",
+      "publisher": "r/2007scape",
+      "kind": "reddit",
+      "url": "https://www.reddit.com/r/2007scape/comments/w8f1hg/guardians_of_the_rift_solo_guide/",
+      "checked_at": "2026-08-22",
+      "use": "Community solo-round rotation and attention discussion. It is not treated as a general performance guarantee."
+    },
+    {
+      "id": "community-wiki-strategies",
+      "publisher": "Old School RuneScape Wiki",
+      "kind": "guide",
+      "url": "https://oldschool.runescape.wiki/w/Guardians_of_the_Rift/Strategies",
+      "checked_at": "2026-08-22",
+      "use": "Community-maintained strategy reference for optional rotations and recommended equipment; not used to define deterministic output."
+    }
+  ],
+  "access": {
+    "requirements": {
+      "membership": true,
+      "quest_chain": [
+        {"quest_or_miniquest": "Rune Mysteries", "relationship": "Enter the Abyss prerequisite"},
+        {"quest_or_miniquest": "Enter the Abyss", "requirements": ["Rune Mysteries"], "fixed_reward": {"skill": "Runecraft", "xp": 1000}},
+        {"quest_or_miniquest": "Temple of the Eye", "requirements": ["Enter the Abyss completed", "Runecraft level 10"], "fixed_completion_reward": {"skill": "Runecraft", "xp": 5000}, "additional_in_quest_runecraft_xp": 4210, "full_quest_total_runecraft_xp": 9210, "other_fixed_outputs": ["1 quest point", "medium pouch if not already acquired", "Guardians of the Rift access"]}
+      ],
+      "minigame_gate": {"quest": "Temple of the Eye completed", "skill": "Runecraft", "level": 27, "boostability": "not documented as boostable; treat as an unboosted access gate until a primary source establishes otherwise"},
+      "required_setup": ["any pickaxe"],
+      "conditional_setup": [{"item": "chisel", "when": "crafting rift guardians from guardian stones; a permanent chisel spawn is available in the activity"}],
+      "reference_existing_production_facts": ["enter-abyss-temple-eye-prerequisite", "temple-of-the-eye-access-and-rewards", "guardians-of-the-rift-minigame-access"]
+    },
+    "location_and_transport": [
+      "Current Wiki location: the minigame portal is in the Wizards' Tower basement.",
+      "Direct/reusable transport: amulet of the eye has unlimited teleports to the lobby; it is an RNG outcome via intricate pouch -> tarnished locket -> amulet, so possession is player-observed.",
+      "Direct/free transport: Guardians of the Rift Minigame Teleport from a spellbook or the Grouping tab.",
+      "Near transport: necklace of passage to Wizards' Tower; fairy ring DIS; amulet of glory to Draynor Village then walk south; Lumbridge Home Teleport then walk south-west.",
+      "Scar alternative: ring of shadows teleports to the Scar after Desert Treasure II; use the linked Guardian of the Rift route only where that account capability is independently confirmed.",
+      "A bank chest north of the portal supports inventory changes but does not establish bank contents or return-path readiness."
+    ],
+    "unlock_transition": {
+      "event": "player-confirmed completion of Temple of the Eye",
+      "deterministic_effects": ["Temple of the Eye quest complete", "Guardians of the Rift access milestone", "fixed total 9,210 Runecraft XP across the completed quest", "medium pouch only if the account did not already own one"],
+      "non_effects": ["does not infer level 27 from XP; level is evaluated from observed account skill XP/level", "does not infer a pickaxe, chisel, transport item, round participation, reward point, or reward"]
+    }
+  },
+  "activity_loop": {
+    "entry_inputs": [
+      {"item": "pickaxe", "quantity": 1, "behavior": "required and reusable for mining guardian fragments"},
+      {"item": "chisel", "quantity": 1, "behavior": "only required when making guardians; a permanent activity spawn is available"},
+      {"item": "guardian fragments", "behavior": "generated only inside a round; session-only and not an account inventory input"},
+      {"item": "uncharged cells", "behavior": "taken inside a round; session-only and not an account inventory input"}
+    ],
+    "reusable_setup": [
+      {"item_or_capability": "essence pouches", "effect": "increase carried guardian essence capacity; state, condition, and charges are not inferred"},
+      {"item_or_capability": "raiments of the eye", "effect": "10% more runes per worn piece plus 20% additional full-set bonus, 60% total; no Runecraft XP bonus"},
+      {"item_or_capability": "abyssal lantern", "effect": "shield-slot log-dependent utility; current lit-log and ownership state must be observed"},
+      {"item_or_capability": "weight-reducing gear and run-energy support", "effect": "optional community strategy setup, not a minigame requirement or deterministic output"},
+      {"item_or_capability": "altar access quests/talismans", "effect": "opening a portal does not bypass the relevant altar's access requirements; unavailable portal choices are a per-round readiness boundary"}
+    ],
+    "round_phases": [
+      {"phase": "setup", "duration": "two minutes", "facts": ["mine guardian fragments", "create guardian essence and obtain uncharged cells", "weak barriers/guardians may be built during setup but give neither Runecraft XP nor energy"]},
+      {"phase": "rift active", "facts": ["use guardian essence at active elemental or catalytic portals to craft runes and receive guardian stones", "use stones on the Great Guardian for energy", "use charged cells to build, recharge, strengthen barriers, or create guardians", "abyssal creatures drain the Great Guardian and damage barriers/guardians"]},
+      {"phase": "60 percent guardian charge", "facts": ["all active barriers lose 50 health in a mass game", "the rift produces relatively more guardians and walkers"]},
+      {"phase": "success closeout", "facts": ["at 100 percent charge the rift seals", "abyssal creatures and rift guardians automatically die", "a short exit/reposition interval follows"]}
+    ],
+    "energy_and_contribution": {
+      "guardian_stone": "Each ordinary elemental or catalytic guardian stone gives 2 energy of its matching type and 5 Runecraft XP when used on the Great Guardian. A combination-rune polyelemental stone gives 3 elemental energy.",
+      "cell_actions": "Building, recharging, and strengthening barriers award equal elemental and catalytic energy. Creating a guardian awards only its alignment's energy. Building a barrier always awards 2 of each energy; higher-tier cells otherwise give more. The current full-barrier cell contribution cap is 2,500 Runecraft XP and 450 energy per game.",
+      "repair": "Repairing a broken cell tile consumes 12 guardian fragments and gives 25 elemental plus 25 catalytic energy.",
+      "caps": "Maximum total energy is 1,200 per game, or 1,320 with a lantern burning yew logs. Each energy type is capped at 1,000. Reaching a cap prevents further energy until the rift closes.",
+      "mining_xp_boundary": "Guardian-fragment Mining XP is capped after the first 250 fragments mined in a game; mined amount is not inferred."
+    },
+    "completion_or_reward_events": [
+      {"event": "successful round with at least 300 total energy personally gained", "deterministic_formula": "end-of-round Runecraft XP = current Runecraft level x 45", "point_formula": "one elemental point per 100 elemental energy and one catalytic point per 100 catalytic energy; every fractional hundred independently has an equal-percent chance to round up", "state_rule": "never compute, grant, or infer XP, energy, points, searches, or a successful round without player-reported observations"},
+      {"event": "Rewards Guardian search", "requirements": "spend exactly one elemental point and one catalytic point; Big-Search spends five of each for five independent searches", "state_rule": "a search count and each result are player-observed; neither follows just from activity completion"},
+      {"event": "pearl-funded extra search", "requirements": "spend exactly 25 abyssal pearls to receive one elemental point and one catalytic point, sufficient for one search", "state_rule": "deterministic only after an observed 25-pearl balance; it does not grant a reward result"}
+    ],
+    "failure_and_death": {
+      "failure": "If the Great Guardian reaches 0 percent energy, the encounter fails. The 300-total-energy end reward threshold is not met merely by joining; any earned session value must be observed.",
+      "player_combat_and_death": "This is a non-combat minigame. The described abyssal creatures attack the Great Guardian, barriers, and rift guardians, not a player as a normal death/reclaim encounter. No player death, grave, reclaim fee, or supply loss is modeled without a separately observed exceptional event.",
+      "leaving_or_reset": "At the start of a new game and on leaving the minigame area, guardian fragments, guardian essence, and portal talismans acquired during that game are removed. They must never be modeled as persistent account items.",
+      "persistent_items": "Personal equipment, runes made, reward points, abyssal pearls, searches already completed, and reward items are not session-only, but their existence/quantities remain observed account state."
+    },
+    "repeatability": {
+      "activity": "repeatable indefinitely after access is unlocked",
+      "round_entry": "no stated GP fee or consumable ticket",
+      "world_scaling": "games beginning below 100 participants lock after start; games at 100 or more permit entry/exit and recalculate the charge requirement. For players beyond the twentieth, each contributes a 20 percent scaling penalty to the required charge.",
+      "daily_or_weekly_limit": "none stated by current primary activity documentation"
+    }
+  },
+  "currencies": [
+    {
+      "id": "gotr-elemental-points",
+      "acquisition": "mixed",
+      "spend_behavior": "One elemental point is paired with one catalytic point per Rewards Guardian search. Points are calculated at a qualifying successful round from elemental energy, including fractional-hundred RNG rounding; balance is player-observed.",
+      "persistent": true,
+      "not_currency_for_shop": true
+    },
+    {
+      "id": "gotr-catalytic-points",
+      "acquisition": "mixed",
+      "spend_behavior": "One catalytic point is paired with one elemental point per Rewards Guardian search. Points are calculated at a qualifying successful round from catalytic energy, including fractional-hundred RNG rounding; balance is player-observed.",
+      "persistent": true,
+      "not_currency_for_shop": true
+    },
+    {
+      "id": "abyssal-pearls",
+      "acquisition": "rng",
+      "spend_behavior": "Rewards Guardian has a 1-in-7 pearl outcome; a successful pearl roll gives 14-16 pearls. Pearls buy Temple Supplies goods and may buy one extra matched search for 25 pearls. Never infer pearl quantity from searches or games.",
+      "persistent": true,
+      "shop_currency": true,
+      "drop_protection": "No pity, threshold, or other dry protection was found for pearl rolls; deterministic shop purchases only protect the availability of selected rewards after actual pearl accumulation."
+    },
+    {
+      "id": "portal-talismans",
+      "acquisition": "rng",
+      "spend_behavior": "Each guardian essence imbued has a 1-in-250 chance to yield a portal talisman usable on the matching Portal Guardian after its portal closes. It is session-only and cannot be retained after the game.",
+      "persistent": false
+    }
+  ],
+  "rewards": [
+    {
+      "id": "standard-rewards-guardian-loot",
+      "acquisition": "rng",
+      "utility": ["variable rune, talisman, essence, and other standard loot", "may include intricate pouch and Atlax's diary"],
+      "model_boundary": "Do not create inventory, rune, talisman, GP, clue, or collection-log state from a search without an explicit observed reward."
+    },
+    {
+      "id": "abyssal-pearls",
+      "acquisition": "rng",
+      "utility": ["Temple Supplies currency", "25 pearls can buy one additional matched search"],
+      "rate": "1 in 7 searches; 14-16 on a pearl result"
+    },
+    {
+      "id": "raiments-of-the-eye",
+      "acquisition": "shop",
+      "utility": ["10% more runes while Runecrafting for each worn piece", "additional 20% with all four pieces, for 60% total", "no Runecraft XP bonus"],
+      "deterministic_costs": {"hat_of_the_eye": 400, "robe_top_of_the_eye": 350, "robe_bottoms_of_the_eye": 350, "boots_of_the_eye": 250, "full_set_total": 1350},
+      "model_boundary": "Each purchase is deterministic after observed pearls; no outfit piece or full-set state is inferred from minigame participation."
+    },
+    {
+      "id": "ring-of-the-elements",
+      "acquisition": "shop",
+      "utility": ["teleports south of Air, west of Water, west of Earth, and north of Fire altars", "transport capability for elemental altar Runecraft"],
+      "deterministic_cost": {"abyssal_pearls": 400},
+      "charges": {"maximum": 10000, "per_teleport": ["1 air rune", "1 water rune", "1 earth rune", "1 fire rune", "1 law rune"]},
+      "model_boundary": "Ring possession and charge balance are observed; availability of charging runes is not inferred."
+    },
+    {
+      "id": "abyssal-needle",
+      "acquisition": "mixed",
+      "utility": ["combines four ordinary essence pouches into a colossal pouch"],
+      "rng_path": "1 in 300 per Rewards Guardian search; no rate-based guarantee or pity found",
+      "deterministic_path": {"abyssal_pearls": 750, "introduced": "2026-08-19"},
+      "recovery": "If a colossal pouch or its needle is lost, using an ordinary needle on the Rewards Guardian supplies another abyssal needle.",
+      "model_boundary": "The current 750-pearl shop path is a deterministic availability guarantee after observed pearls, not a claim that a needle was dropped or purchased."
+    },
+    {
+      "id": "colossal-pouch",
+      "acquisition": "mixed",
+      "utility": ["combines small, medium, large, and giant pouches into one inventory item", "reduces pouch-management inventory slots and clicks"],
+      "creation": {"requirements": ["Runecraft 25", "unboosted Crafting 56", "abyssal needle", "small pouch", "medium pouch", "large pouch", "giant pouch"], "consumes_or_combines": ["abyssal needle", "small pouch", "medium pouch", "large pouch", "giant pouch"]},
+      "capacity": {"Runecraft_25": 8, "Runecraft_50": 16, "Runecraft_75": 27, "Runecraft_85": 40},
+      "decay_and_repair": "Degrades after 320 essence stored. Its persistent condition is observed; repair access and the specific repair action remain separate facts.",
+      "model_boundary": "Creation is deterministic when every observed requirement is met; do not infer the component pouches or their condition."
+    },
+    {
+      "id": "abyssal-lantern",
+      "acquisition": "mixed",
+      "utility": ["shield-slot, log-configured Runecraft utility", "redwood configuration stops essence-pouch degradation", "selected configurations now also work outside GOTR where stated"],
+      "rng_path": "1 in 700 per Rewards Guardian search; no rate-based guarantee or pity found",
+      "deterministic_path": {"abyssal_pearls": 1500, "introduced": "2026-08-19"},
+      "lighting": "Six matching logs, a tinderbox, and the unboosted Firemaking level for the selected log are required to light or relight it.",
+      "effects": {
+        "normal": "10% increased portal-talisman chance within GOTR only",
+        "oak": "5% more elemental and catalytic energy within GOTR only",
+        "willow": "5% more runes crafted, including outside GOTR after the August 2026 change",
+        "maple": "20% increased portal-talisman chance within GOTR only",
+        "yew": "10% more elemental and catalytic energy within GOTR only; raises the game total-energy cap to 1,320",
+        "blisterwood": "20% more blood runes crafted, including outside GOTR after the August 2026 change",
+        "magic": "10% more runes crafted, including outside GOTR after the August 2026 change",
+        "redwood": "5% more elemental and catalytic energy, 5% more runes crafted, and essence pouches do not degrade; rune and pouch effects work outside GOTR after the August 2026 change"
+      },
+      "model_boundary": "Lantern ownership, currently inserted log, charges/condition, and selected effect are all observed account state."
+    },
+    {
+      "id": "talismans-and-altar-access",
+      "acquisition": "mixed",
+      "utility": ["elemental and catalytic talismans can open eligible corresponding altars", "Temple Supplies provides deterministic standard-talisman purchases", "blood talisman is shop-exclusive among standard talismans"],
+      "shop_costs": {"air_water_earth_fire_mind_body": 10, "chaos_cosmic": 30, "nature_law": 50, "death": 80, "blood": 100},
+      "conditions": "Death and blood talismans appear only after their prerequisite quests are completed. Elemental, catalytic, and wrath talismans are not sold. A catalytic talisman does not override quest access for restricted catalytic altars.",
+      "model_boundary": "A random talisman or shop purchase is not inferred from a search or a pearl balance."
+    },
+    {
+      "id": "intricate-pouch-chain",
+      "acquisition": "rng",
+      "utility": ["intricate pouch can contain an amulet of the eye through tarnished locket, providing unlimited lobby teleports", "lost bag and dyes are cosmetic or collection-log relevant"],
+      "known_rates": {"intricate_pouch": "1 in 25 searches", "tarnished_locket_from_intricate_pouch": "1 in 40", "lost_bag_from_intricate_pouch": "1 in 60"},
+      "reclaim": "Apprentice Felix can return a previously acquired lost tarnished locket or lost bag; possession and prior acquisition must be observed.",
+      "model_boundary": "Do not infer an amulet, locket, bag, dyes, dragon loot, hard clue, or collection-log completion from an intricate pouch."
+    },
+    {
+      "id": "search-uniques-and-cosmetics",
+      "acquisition": "rng",
+      "utility": ["abyssal protector pet", "red, green, and blue abyssal dyes for eligible cosmetic recolours", "Guardian's Eye cosmetic metamorphosis purchase"],
+      "known_rates": {"abyssal_protector": "1 in 4000 searches", "catalytic_talisman": "1 in 200 searches", "each_abyssal_dye": "1 in 1200 searches"},
+      "guardians_eye": {"shop_cost_abyssal_pearls": 3000, "current_effect": "permanently unlocks the Greatish guardian metamorphosis for the rift guardian pet", "precondition": "rift guardian pet ownership is player-observed"},
+      "drop_protection": "No pity or rate-based dry protection was found for pet, dye, talisman, or intricate-pouch rolls. Guardian's Eye is a deterministic cosmetic purchase but only useful after observed rift guardian ownership."
+    }
+  ],
+  "dependencies_and_bypasses": [
+    {"target": "quest:temple-of-the-eye", "relationship": "requires", "detail": "Requires Rune Mysteries -> Enter the Abyss and Runecraft 10."},
+    {"target": "activity:guardians-of-the-rift", "relationship": "unlocks", "detail": "Temple of the Eye completion unlocks the activity."},
+    {"target": "item:pickaxe", "relationship": "requires", "detail": "Any pickaxe is a hard participation input."},
+    {"target": "item:medium-pouch", "relationship": "produces", "detail": "Temple of the Eye supplies a medium pouch only if the player did not already have one."},
+    {"target": "goal:raiments", "relationship": "produces", "detail": "Observed abyssal pearls make deterministic outfit purchases available."},
+    {"target": "goal:ring-of-the-elements", "relationship": "produces", "detail": "Observed abyssal pearls make the deterministic ring purchase available."},
+    {"target": "goal:abyssal-needle", "relationship": "makes_obtainable", "detail": "Rewards Guardian searches retain the 1-in-300 RNG path."},
+    {"target": "goal:abyssal-needle", "relationship": "produces", "detail": "Observed 750 abyssal pearls make a deterministic shop purchase available."},
+    {"target": "goal:abyssal-lantern", "relationship": "makes_obtainable", "detail": "Rewards Guardian searches retain the 1-in-700 RNG path."},
+    {"target": "goal:abyssal-lantern", "relationship": "produces", "detail": "Observed 1,500 abyssal pearls make a deterministic shop purchase available."},
+    {"target": "goal:colossal-pouch", "relationship": "requires", "detail": "Needs observed needle, four ordinary pouches, Runecraft 25, and unboosted Crafting 56."},
+    {"target": "transport:guardians-of-the-rift-lobby", "relationship": "alternative_to", "detail": "Amulet of the eye, minigame teleport, Wizards' Tower necklace of passage, fairy ring DIS, Draynor glory, Lumbridge Home Teleport, and Scar route are alternative travel paths with their own gates."}
+  ],
+  "afk_and_attention": {
+    "attention_class": "active",
+    "measured_interaction_interval_seconds": null,
+    "logout_or_idle_constraints": [
+      "The activity has time-sensitive setup, portal, mining, crafting, barrier, guardian, and Great-Guardian interactions.",
+      "Round success and personal reward eligibility depend on active contribution; no validated fixed idle interval is asserted.",
+      "Leaving or a new-game reset removes session-only guardian fragments, guardian essence, and portal talismans.",
+      "Community descriptions of mass worlds as relaxed or solo rounds as manageable are strategy observations, not AFK guarantees."
+    ],
+    "source_boundary": "No official source establishes a safe AFK duration. Treat as active until player-specific observed interaction data supports a narrower label."
+  },
+  "community_strategy_observations": [
+    {"claim": "A current Ironman route uses Guardians of the Rift until the full Raiments set and colossal pouch are obtained.", "source_ids": ["community-bruhsailer-current"], "treatment": "strategy-candidate-not-fact"},
+    {"claim": "Early Ironman participation is viable before broad altar-quest coverage, while pouch repair and later altar access can create friction.", "source_ids": ["community-reddit-ironman-early-gotr"], "treatment": "strategy-candidate-not-fact"},
+    {"claim": "Solo or small-team rotations can be practical after player-specific setup and execution familiarity, with a colossal pouch commonly named as a useful milestone.", "source_ids": ["community-reddit-gotr-solo", "community-wiki-strategies"], "treatment": "strategy-candidate-not-fact"},
+    {"claim": "Common community targets such as 400 pearls for ring, 1,350 for outfit, 750 for needle, or 1,500 for lantern are purchase thresholds, not universally correct stop conditions.", "source_ids": ["community-bruhsailer-current", "community-wiki-strategies"], "treatment": "strategy-candidate-not-fact"}
+  ],
+  "state_boundaries": [
+    "Do not infer minigame access from quest XP; check observed quest completion, skill level, and pickaxe independently.",
+    "Do not infer a successful round, personal energy, XP, elemental points, catalytic points, Searches, or pearls from the fact that the activity was played.",
+    "Do not infer any RNG reward, portal talisman, talisman, rune, clue, pet, dye, intricate-pouch outcome, collection-log entry, needle, lantern, locket, bag, or amulet of the eye.",
+    "Treat guardian fragments, guardian essence, uncharged/charged cells, and portal talismans as round-local state only; remove them on exit or reset.",
+    "Treat pearl totals, point balances, search count, round attempts/successes, selected lantern log, pouch condition, charges, and transport-item possession as observed account state.",
+    "Do not infer combat readiness or death recovery: ordinary activity enemies do not create the documented player-death loop.",
+    "Treat shop prices as deterministic costs only after the account's actual pearl balance and purchase result are observed."
+  ],
+  "proposed_normalization": {
+    "facts": [
+      {"id": "guardians-of-the-rift-current-round-mechanics", "category": "minigame", "status": "proposed", "source_ids": ["wiki-gotr-current", "official-gotr-minigame-makeover-2024"], "summary": "Access, local setup, phases, contribution mechanics, caps, qualifying end reward, point rounding, failure, scaling, and session-only items."},
+      {"id": "guardians-of-the-rift-current-rewards-and-shop", "category": "reward", "status": "proposed", "source_ids": ["wiki-gotr-current", "wiki-rewards-guardian-current", "wiki-temple-supplies-current", "official-summer-sweep-up-2026"], "summary": "RNG search outputs and deterministic pearl shop costs, including 2026 needle and lantern paths."},
+      {"id": "guardians-of-the-rift-utility-and-transport", "category": "transport", "status": "proposed", "source_ids": ["wiki-gotr-current", "wiki-colossal-pouch-current", "wiki-abyssal-lantern-current"], "summary": "Amulet/minigame/nearby travel, ring of the elements, pouch, lantern, Raiments, and talisman utility."}
+    ],
+    "actions": [
+      {"id": "action:guardians-of-the-rift-round-proposed", "kind": "activity", "requirements": ["Temple of the Eye completed", "observed Runecraft >= 27", "observed pickaxe"], "repeatable": true, "transition": "No automatic output. Report user-observed round attempt, success/failure, personal energy, point deltas, XP, searches, and rewards separately."},
+      {"id": "action:search-rewards-guardian-proposed", "kind": "activity", "requirements": ["observed elemental point balance >= 1", "observed catalytic point balance >= 1"], "repeatable": true, "transition": "Consume one of each observed point; record result only when player-observed; no automatic reward output."},
+      {"id": "action:buy-gotr-shop-reward-proposed", "kind": "unlock", "requirements": ["Temple of the Eye completed", "observed pearl balance at or above item cost"], "repeatable": "depends on item", "transition": "Use exact shop cost and record selected item only after confirmed purchase; separate actions for outfit piece, ring, needle, lantern, talisman, and Guardian's Eye."},
+      {"id": "action:create-colossal-pouch-proposed", "kind": "unlock", "requirements": ["observed Runecraft >= 25", "observed unboosted Crafting >= 56", "observed needle and four ordinary pouches"], "repeatable": "only after loss/recovery need", "transition": "Consume/combine the observed needle and ordinary pouches and confirm a colossal pouch; no component assumption."},
+      {"id": "action:light-abyssal-lantern-proposed", "kind": "configuration", "requirements": ["observed lantern", "six matching observed logs", "tinderbox", "unboosted Firemaking level for logs"], "repeatable": true, "transition": "Record selected log effect only after player-confirmed lighting; never infer outside-GOTR effect or pouch-decay exemption."}
+    ],
+    "graph_nodes": [
+      "activity:guardians-of-the-rift",
+      "activity:rewards-guardian-search",
+      "currency:gotr-elemental-points",
+      "currency:gotr-catalytic-points",
+      "currency:abyssal-pearls",
+      "goal:raiments",
+      "goal:ring-of-the-elements",
+      "goal:abyssal-needle",
+      "goal:colossal-pouch",
+      "goal:abyssal-lantern",
+      "capability:gotr-lobby-transport",
+      "capability:elemental-altar-teleport",
+      "capability:raiments-rune-output",
+      "capability:lantern-pouch-decay-prevention"
+    ],
+    "graph_edges": [
+      {"from": "quest:temple-of-the-eye", "to": "activity:guardians-of-the-rift", "relation": "unlocks", "evidence": "access.requirements"},
+      {"from": "condition:runecraft-27", "to": "activity:guardians-of-the-rift", "relation": "requires", "evidence": "access.requirements.minigame_gate"},
+      {"from": "condition:any-pickaxe", "to": "activity:guardians-of-the-rift", "relation": "requires", "evidence": "activity_loop.entry_inputs"},
+      {"from": "activity:guardians-of-the-rift", "to": "currency:gotr-elemental-points", "relation": "produces", "evidence": "activity_loop.completion_or_reward_events; output amount is observed"},
+      {"from": "activity:guardians-of-the-rift", "to": "currency:gotr-catalytic-points", "relation": "produces", "evidence": "activity_loop.completion_or_reward_events; output amount is observed"},
+      {"from": "currency:gotr-elemental-points", "to": "activity:rewards-guardian-search", "relation": "requires", "evidence": "one elemental point per search"},
+      {"from": "currency:gotr-catalytic-points", "to": "activity:rewards-guardian-search", "relation": "requires", "evidence": "one catalytic point per search"},
+      {"from": "activity:rewards-guardian-search", "to": "currency:abyssal-pearls", "relation": "makes_obtainable", "evidence": "1-in-7 reward outcome; not a deterministic production edge"},
+      {"from": "currency:abyssal-pearls", "to": "goal:raiments", "relation": "requires", "evidence": "shop costs 400/350/350/250"},
+      {"from": "currency:abyssal-pearls", "to": "goal:ring-of-the-elements", "relation": "requires", "evidence": "400-pearl shop cost"},
+      {"from": "currency:abyssal-pearls", "to": "goal:abyssal-needle", "relation": "requires", "evidence": "750-pearl current shop cost"},
+      {"from": "currency:abyssal-pearls", "to": "goal:abyssal-lantern", "relation": "requires", "evidence": "1,500-pearl current shop cost"},
+      {"from": "activity:rewards-guardian-search", "to": "goal:abyssal-needle", "relation": "makes_obtainable", "evidence": "1-in-300 RNG path"},
+      {"from": "activity:rewards-guardian-search", "to": "goal:abyssal-lantern", "relation": "makes_obtainable", "evidence": "1-in-700 RNG path"},
+      {"from": "goal:abyssal-needle", "to": "goal:colossal-pouch", "relation": "requires", "evidence": "needs observed needle and pouch recipe inputs"},
+      {"from": "goal:ring-of-the-elements", "to": "capability:elemental-altar-teleport", "relation": "unlocks", "evidence": "ring transport utility"},
+      {"from": "goal:raiments", "to": "capability:raiments-rune-output", "relation": "unlocks", "evidence": "outfit utility"},
+      {"from": "goal:abyssal-lantern", "to": "capability:lantern-pouch-decay-prevention", "relation": "improves", "evidence": "redwood lantern effect only after observed configuration"}
+    ],
+    "account_observations": [
+      {"field": "encounter_observations.guardians_of_the_rift", "shape": {"observed_at": "RFC 3339 date-time", "attempts": "integer", "successful_completions": "integer or null", "elapsed_minutes": "integer or null", "supply_use": "object", "deaths": "integer or null", "banking_trips": "integer or null"}, "rule": "Use existing generic encounter observation only for values supplied by the player; do not synthesize success, time, banking, or death counts."},
+      {"field": "guardians_of_the_rift_observation (proposed new optional field)", "shape": {"observed_at": "RFC 3339 date-time", "elemental_points": "integer or null", "catalytic_points": "integer or null", "reward_searches_available": "integer or null", "abyssal_pearls": "integer or null", "last_round": {"status": "unknown|success|failure", "elemental_energy": "integer or null", "catalytic_energy": "integer or null", "runecraft_xp": "integer or null"}, "session_items_present": "boolean or null"}, "rule": "All numeric values are report-only. A calculator may validate supplied values against factual caps/formulas but must not infer them from quests, level, or activity history."},
+      {"field": "unique_item_observations", "keys": ["raiments_hat", "raiments_top", "raiments_bottoms", "raiments_boots", "ring_of_the_elements", "abyssal_needle", "colossal_pouch", "abyssal_lantern", "amulet_of_the_eye", "abyssal_protector", "rift_guardian"], "rule": "Use the existing possession/collection-log/quantity/variant/charges/condition/usable/reclaimable shape; record only player-confirmed ownership and condition."},
+      {"field": "transport_flags", "keys": ["gotr_minigame_teleport_available", "amulet_of_the_eye_owned", "ring_of_the_elements_owned"], "rule": "Flags represent confirmed capability only. They do not guarantee current charges or an item being carried."}
+    ]
+  },
+  "conflicts_and_unknowns": [
+    {"id": "needle-old-rng-only-model", "status": "current-production-record-needs-scope-note", "detail": "Existing production data correctly records the 1-in-300 search path and the current 750-pearl purchase. Older external guides that call it RNG-only are stale after the 2026-08-19 shop addition. Preserve both acquisition paths; do not describe the purchase as a drop or dry protection."},
+    {"id": "lantern-old-rng-only-model", "status": "current-production-record-needs-scope-note", "detail": "Existing production data records the 1-in-700 search path and 1,500-pearl shop path. Any source predating the 2026-08-19 update that treats the lantern as drop-only is stale. The added shop path does not remove the RNG path."},
+    {"id": "guardians-eye-item-vs-permanent-unlock", "status": "production-fact-is-current", "detail": "The August 2026 update converted Guardian's Eye from a banked cosmetic item into a permanent Rift Guardian metamorphosis unlock and refunds duplicate pre-update items. Do not model it as a persistent inventory item after a new purchase."},
+    {"id": "lantern-outside-activity-scope", "status": "production-fact-is-current", "detail": "Only Willow, Blisterwood, Magic, and Redwood effects that extend beyond GOTR work outside it after the August 2026 update. Normal, Oak, Maple, and Yew remain activity-only. Avoid the stale blanket claim that every lit lantern effect works outside GOTR."},
+    {"id": "portal-access-not-bypass", "status": "intentional-model-boundary", "detail": "A portal appearing in a round does not establish that the player can enter its altar. Quest/altar restrictions and related readiness remain independent, observed conditions."},
+    {"id": "rewards-and-round-output", "status": "intentional-model-boundary", "detail": "The 300-energy threshold, level-times-45 formula, and fractional rounding are factual formulas, but energy split, qualifying success, point balances, XP, searches, and every reward remain player-observed. No automatic activity action may manufacture them."},
+    {"id": "rune-output-and-community-rates", "status": "intentional-model-boundary", "detail": "Rune types, altar availability, personal route, performance rates, and stop conditions vary with quests, pouches, strategy, and execution. They require observations and future scoring rather than factual defaults."}
+  ],
+  "coverage": {
+    "access": true,
+    "loop": true,
+    "currencies": true,
+    "rewards": true,
+    "failure_state": true,
+    "sources": true,
+    "normalization": true,
+    "checked_source_count": 12,
+    "production_files_modified": 0
+  }
+}
