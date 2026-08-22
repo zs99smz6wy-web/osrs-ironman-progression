@@ -1,0 +1,377 @@
+{
+  "package_schema_version": 1,
+  "package_type": "minigame-research",
+  "package_id": "research-minigame-shades-of-mortton",
+  "activity": "Shades of Mort'ton",
+  "status": "research-proposal",
+  "checked_at": "2026-08-22",
+  "scope": "Current factual package for the dangerous Mort'ton combat and skilling minigame. It covers the temple, sacred-oil, cremation, catacomb, chest, and permanent-unlock chains. It proposes integration records only; it does not choose a route, target a chest count, or infer an account result.",
+  "facts_strategy_boundary": {
+    "included": [
+      "quest access, current transport alternatives, temple repair resources, shared Repair State, personal Sanctity, sacred oil, pyre-log, cremation, key, chest, lock, door, and reward mechanics",
+      "the deterministic versus RNG boundary for temple conversions, shade drops, cremation outcomes, chest loot, unique rewards, and permanent recipe or storage unlocks",
+      "current diary links, local danger and death rules, team/attention boundaries, and explicit account-observation requirements",
+      "proposed facts, actions, nodes, edges, and observed account fields for central integration"
+    ],
+    "excluded": [
+      "whether to rush the minigame, choose a world, use Temple Trekking, farm a particular shade tier, pursue Zealot's robes, or stop at any target",
+      "any assumed temple condition, Sanctity, materials, sacred oil, pyre logs, kills, shade remains, keys, doors, chest loot, coins, XP, recipes, collection-log result, death, or combat readiness",
+      "expected keys, rates, time, profit, XP, supplies, or success claims from any community setup or guide",
+      "automatic readiness, equipment replacement, banking, travel, or loss/reclaim transitions"
+    ]
+  },
+  "source_catalog": [
+    {
+      "id": "wiki-shades-minigame-current",
+      "publisher": "Old School RuneScape Wiki",
+      "kind": "wiki",
+      "url": "https://oldschool.runescape.wiki/w/Shades_of_Mort%27ton_(minigame)",
+      "checked_at": "2026-08-22",
+      "use": "Primary mechanics authority: quest gate, transport, temple resources and Sanctity, oil, pyre logs, shade tiers, keys, chests, rewards, coffin capacities, diary effects, death warning, and 2024 quality-of-life changes."
+    },
+    {
+      "id": "wiki-shades-quest-current",
+      "publisher": "Old School RuneScape Wiki",
+      "kind": "wiki",
+      "url": "https://oldschool.runescape.wiki/w/Shades_of_Mort%27ton",
+      "checked_at": "2026-08-22",
+      "use": "Quest completion, quest XP, permanent access to the minigame teleport, and the initial Ulsquire/Razmire/temple sequence."
+    },
+    {
+      "id": "wiki-shade-catacombs-current",
+      "publisher": "Old School RuneScape Wiki",
+      "kind": "wiki",
+      "url": "https://oldschool.runescape.wiki/w/Shade_Catacombs",
+      "checked_at": "2026-08-22",
+      "use": "Catacomb progression, key/door behavior, chests, undead zealots, and altar context."
+    },
+    {
+      "id": "official-shades-rework-2021",
+      "publisher": "Jagex",
+      "kind": "official",
+      "url": "https://secure.runescape.com/m=news/shades-of-mortton-rework?oldschool=1",
+      "checked_at": "2026-08-22",
+      "use": "Official rework authority for Urium shades, gold-key endgame access, coffins, gold-chest Zealot's robes, and bark recipe additions."
+    },
+    {
+      "id": "official-shades-qol-2024",
+      "publisher": "Jagex",
+      "kind": "official",
+      "url": "https://secure.runescape.com/m=news/project-rebalance-continued?oldschool=1",
+      "checked_at": "2026-08-22",
+      "use": "Official reference for 2024 sanctification and pyre-log quality-of-life changes. The primary mechanics page records the current behavior."
+    },
+    {
+      "id": "wiki-runescroll-swampbark-current",
+      "publisher": "Old School RuneScape Wiki",
+      "kind": "wiki",
+      "url": "https://oldschool.runescape.wiki/w/Runescroll_of_swampbark",
+      "checked_at": "2026-08-22",
+      "use": "Swampbark recipe-unlock origin and chest RNG boundary."
+    },
+    {
+      "id": "wiki-swampbark-current",
+      "publisher": "Old School RuneScape Wiki",
+      "kind": "wiki",
+      "url": "https://oldschool.runescape.wiki/w/Swampbark_armour",
+      "checked_at": "2026-08-22",
+      "use": "Swampbark conversion, Nature Altar, Runecraft/rune costs, wear gates, and utility."
+    },
+    {
+      "id": "wiki-runescroll-bloodbark-current",
+      "publisher": "Old School RuneScape Wiki",
+      "kind": "wiki",
+      "url": "https://oldschool.runescape.wiki/w/Runescroll_of_bloodbark",
+      "checked_at": "2026-08-22",
+      "use": "Bloodbark recipe-unlock origin and higher-tier chest/Ring of wealth boundary."
+    },
+    {
+      "id": "wiki-bloodbark-current",
+      "publisher": "Old School RuneScape Wiki",
+      "kind": "wiki",
+      "url": "https://oldschool.runescape.wiki/w/Bloodbark_armour",
+      "checked_at": "2026-08-22",
+      "use": "Bloodbark conversion, Blood Altar, Runecraft/rune costs, wear gates, and blood-spell utility."
+    },
+    {
+      "id": "wiki-amulet-damned-current",
+      "publisher": "Old School RuneScape Wiki",
+      "kind": "wiki",
+      "url": "https://oldschool.runescape.wiki/w/Amulet_of_the_damned",
+      "checked_at": "2026-08-22",
+      "use": "Silver/gold chest source and Barrows-equipment utility boundary."
+    },
+    {
+      "id": "official-poll-79-zealots",
+      "publisher": "Jagex",
+      "kind": "official",
+      "url": "https://secure.runescape.com/m=news/poll-79-point-based-combat-achievements--more?oldschool=1",
+      "checked_at": "2026-08-22",
+      "use": "Official one-piece 1.25 percent Zealot's robe preservation effect and Ectofuntus extension."
+    },
+    {
+      "id": "reddit-ironscape-shades-setup-2026",
+      "publisher": "r/ironscape",
+      "kind": "reddit",
+      "url": "https://www.reddit.com/r/ironscape/comments/1qxnw6m/shades_of_morton_strategy/",
+      "checked_at": "2026-08-22",
+      "use": "Recent player-reported Temple Trekking, gold-key, coffin, log, and prayer setup discussion. Strategy candidate only."
+    },
+    {
+      "id": "reddit-ironscape-shades-ironman-2025",
+      "publisher": "r/ironscape",
+      "kind": "reddit",
+      "url": "https://www.reddit.com/r/ironscape/comments/1j78a6q/shades_of_morton_on_ironman/",
+      "checked_at": "2026-08-22",
+      "use": "Player-reported Ironman batches, supplies, temporary world advice, and long-grind perceptions. Strategy candidate only."
+    }
+  ],
+  "access": {
+    "requirements": {
+      "membership": true,
+      "quest_prerequisites": [
+        {
+          "quest": "Shades of Mort'ton",
+          "requirement": "completed",
+          "effects": ["minigame access", "Shades of Mort'ton minigame teleport availability", "quest rewards of 3 quest points, 2,000 Herblore XP, and 2,000 Crafting XP"]
+        }
+      ],
+      "skill_gates": [
+        "No universal skill gate beyond the quest; pyre-log creation and desired shade tiers have separate Firemaking, combat, equipment, and travel realities.",
+        "Do not treat the combat level 81 anti-aggro recommendation as an access requirement or readiness proof."
+      ],
+      "recommended_but_not_required": ["Serum 208 used on Razmire Keelgan for permanent general and builder shop access", "observed combat supplies and an explicit death-risk choice"],
+      "reference_existing_production_facts": ["morytania-diary-hard", "morytania-diary-elite", "teleport-mortton", "teleport-burgh-de-rott", "fairy-ring-network"],
+      "reference_existing_action": "action:shades-of-mortton (proposed; confirm before integration)"
+    },
+    "location_and_transport": [
+      "Mort'ton teleport and the post-quest Shades of Mort'ton minigame teleport are direct options with their own item/cooldown observations.",
+      "Fairy ring BKR then Swamp Boaty; Canifis/Myreque-base shortcut then Swamp Boaty; Morytania legs 3 or 4 to Burgh de Rott then run north; and Barrows Teleport are factual alternatives.",
+      "The Shade Catacombs entrance is north-west of Mort'ton. Entering deeper areas requires a player-held key that opens the relevant door tier; doors do not consume that key.",
+      "Hard Temple Trekking/Burgh de Rott Ramble can expose Fiyr shades as an alternative encounter route. It does not grant a key, remain, combat success, or safe bypass automatically."
+    ],
+    "unlock_transition": {
+      "event": "observed completion of Shades of Mort'ton",
+      "deterministic_effects": ["the player can participate in the minigame", "the minigame teleport becomes an available transport capability"],
+      "non_effects": ["does not prove that the temple is repaired or lit, that shops are permanently unlocked, that Sanctity/oil/materials exist, or that any shade/key/chest/reward state exists"]
+    }
+  },
+  "activity_loop": {
+    "entry_inputs": [
+      {"item": "hammer, Imcando hammer, or Flamtaer hammer", "quantity": 1, "behavior": "One observed compatible hammer is needed to repair/reinforce the temple; Flamtaer hammer is an alternative tool, not an assumed purchase."},
+      {"item": "timber beam or plank", "quantity": 1, "behavior": "One contributes 5 percent personal temple resources when repairing."},
+      {"item": "limestone brick", "quantity": 1, "behavior": "One contributes 5 percent personal temple resources when repairing."},
+      {"item": "swamp paste", "quantity": 5, "behavior": "Five contribute 5 percent personal temple resources when repairing."},
+      {"item": "olive oil", "quantity": "player-selected", "behavior": "Becomes sacred oil only at a lit fire altar with observed sufficient current Sanctity."},
+      {"item": "logs, sacred oil, shade remains, and tinderbox", "quantity": "player-selected", "behavior": "The cremation chain consumes an appropriate pyre log and one selected shade remains; exact results are separately observed."}
+    ],
+    "reusable_setup": [
+      {"item_or_capability": "Flamtaer bracelet", "effect": "Optional temple-repair tool that improves repair/Sanctity behavior; possession, charges, and any use are observed."},
+      {"item_or_capability": "Flamtaer bag", "effect": "Observed chest reward that stores up to 60 timber beams, 60 limestone bricks, and 500 swamp paste; it does not create materials."},
+      {"item_or_capability": "Serum 208 permanent Razmire cure", "effect": "An observed dose used on Razmire gives permanent access to his general and builder supplies shops; it is separate from temporary cures of other afflicted residents."},
+      {"item_or_capability": "Salve amulet or imbued Salve amulet", "effect": "Undead-target accuracy/damage alternative for shades; independently observed gear/readiness."},
+      {"item_or_capability": "observed highest-tier retained key", "effect": "A high-tier key can reopen matching and lower-tier catacomb doors without being consumed; this is access preservation, not a chest reward."},
+      {"item_or_capability": "wearable coffin", "effect": "Observed cape-slot remains storage. Bronze/steel/black/silver/gold locks set capacities 3/8/14/20/28 respectively."}
+    ],
+    "temple_and_sanctity": {
+      "shared_repair_state": "The temple Repair State is shared between players and falls as shades attack. The current global state must be observed, never assumed from a plan or a past visit.",
+      "personal_resources": "Each compatible material set consumes 1 beam or plank, 1 limestone brick, and 5 swamp paste and adds 5 percent to the player's personal Resources counter.",
+      "personal_sanctity": "Starts at 0 percent, is gained by temple work or nearby shade kills, decays by 1 percent per minute, and resets to 0 on logout. Approximate source figures are 5 percent Sanctity per 1 percent resources spent and 2 percent per nearby shade kill; live results still require observation.",
+      "reset_state": "During a temple-reset phase, repairs may be outpaced by decay. Treat it as an observed current state, not an action failure that destroys account items or history.",
+      "lighting": "A fully repaired temple can be lit at the fire altar. Lit status is shared/current and must be observed before sanctification."
+    },
+    "conversion_chain": [
+      {
+        "step": "sanctify olive oil",
+        "input": "olive oil at a lit altar with at least 10 percent observed Sanctity",
+        "deterministic_output": "same-dose sacred oil",
+        "cost": "0.9 percent Sanctity per oil dose; 4-dose vial costs 3.6 percent",
+        "boundary": "Use of the altar does not claim availability, sufficient Sanctity, or an unchanged global temple state without account observation."
+      },
+      {
+        "step": "make Serum 208",
+        "input": "Serum 207 at a lit altar with at least 20 percent observed Sanctity",
+        "deterministic_output": "same-dose Serum 208",
+        "cost": "5 percent Sanctity per dose",
+        "boundary": "A Serum 208 use can be permanent only when an observed dose is used on Razmire or Ulsquire; other afflicted cures are temporary and their small rewards are RNG/observed."
+      },
+      {
+        "step": "make pyre logs",
+        "input": "eligible logs plus sacred-oil doses",
+        "deterministic_output": "matching pyre logs and 5 Firemaking XP per sacred-oil dose consumed",
+        "requirements": "Normal/Achey 5 Firemaking and 2 doses; oak 20/2; willow 35/3; teak 40/3; arctic pine 47/2; maple 50/3; mahogany 55/3; yew 65/4; magic 80/4; redwood 95/4. Current Sailing-era log types must be sourced separately before an automated log table expands beyond this confirmed minigame table.",
+        "boundary": "Make-all and automatic continued sanctification are interface conveniences, not permission to infer input stock, output count, XP, or selected tier."
+      }
+    ],
+    "shade_and_cremation": {
+      "shade_tiers": [
+        {"shade": "Loar", "combat_level": 40, "catacomb_key_required": "none", "minimum_confirmed_pyre_log": "normal"},
+        {"shade": "Phrin", "combat_level": 60, "catacomb_key_required": "bronze", "minimum_confirmed_pyre_log": "willow"},
+        {"shade": "Riyl", "combat_level": 80, "catacomb_key_required": "steel", "minimum_confirmed_pyre_log": "willow"},
+        {"shade": "Asyn", "combat_level": 100, "catacomb_key_required": "black", "minimum_confirmed_pyre_log": "yew"},
+        {"shade": "Fiyr", "combat_level": 120, "catacomb_key_required": "silver", "minimum_confirmed_pyre_log": "magic"},
+        {"shade": "Urium", "combat_level": 140, "catacomb_key_required": "gold", "minimum_confirmed_pyre_log": "redwood"}
+      ],
+      "cremation": "At Mort'ton funeral pyres, a tinderbox plus selected compatible pyre log and selected remains completes one cremation. Prayer XP depends on the observed shade/log pairing. Morytania Hard gives 50 percent more cremation Prayer XP and Morytania Elite gives 50 percent more pyre-log Firemaking XP; neither diary infers a burn or XP outcome.",
+      "key_or_coin_rng": "Each remains has a 0.21 probability of coins; otherwise it yields a key. Loar and Urium yield their single key-metal tier. Phrin, Riyl, Asyn, and Fiyr can yield one of two metal tiers according to their trim tables. Key/coin identity, count, value, pickup, and five-minute pedestal despawn are observed events.",
+      "death_and_failure": "This is a dangerous activity. Death can create a grave and removes Hardcore Ironman status. Combat loss, kill result, remains, current location, and recovery must be reported; no combat success or death is inferred from entering Mort'ton or a catacomb."
+    },
+    "catacomb_and_chest_loop": {
+      "doors": "Bronze opens bronze; steel opens steel and bronze; black opens black and below; silver opens silver and below; gold opens every door. Door opening does not consume a key. A key needs to be retained to return after leaving/dying.",
+      "chests": "A matching metal-and-lock-colour key opens a matching chest and is consumed. Every chest outcome is RNG and observed. Key trim quality ranks Red < Brown < Crimson < Black < Purple for valuable-loot probability within a metal tier.",
+      "tiered_loot": "Bronze: steel-to-mithril and easy clues; steel: steel-to-adamant and medium clues; black: black-to-adamant and medium clues; silver: black-to-rune and hard clues; gold: adamant-to-dragon, elite clues, and Zealot's robes. Chests may also provide coins, runes, armour, swamp paste, fine cloth, locks, or special rewards depending on their tables.",
+      "repeatability": "Temple repair, oil conversion, pyre production, combat, cremation, door use, and chest opening are repeatable only while the observed inputs/current state remain valid. No currency or automatic reward counter is created by this package."
+    },
+    "completion_or_reward_events": [
+      {"event": "observed compatible temple repair", "outputs": ["current material delta", "Crafting XP", "personal resource/Sanctity delta", "shared Repair State delta"], "certainty": "execution and live-state observed"},
+      {"event": "observed sacred-oil or Serum 208 conversion", "outputs": ["selected deterministic conversion", "Sanctity delta"], "certainty": "confirmed inputs/state required"},
+      {"event": "observed shade kill", "outputs": ["combat result, combat XP, shade remains if dropped"], "certainty": "kill/remains are not guaranteed by an attempt"},
+      {"event": "observed cremation", "outputs": ["Prayer XP", "key or coins"], "certainty": "one result is produced but identity/value/pickup must be recorded"},
+      {"event": "observed chest opening", "outputs": ["one table-specific random loot bundle and possible unique/zealot/zealot spawn"], "certainty": "RNG result and collection-log change require observation"}
+    ],
+    "failure_and_death": {
+      "activity_risk": "dangerous combat and skilling area; combat can interrupt tasks and player death follows normal grave/Hardcore rules",
+      "non_death_failures": ["temple reset/decay can outpace repairs", "personal Sanctity decays and resets on logout", "a cremation can produce coins rather than the desired key", "chest opening can miss every desired unique", "a consumed chest key cannot later be used as a door key"],
+      "temporary_or_local_state": "Repair State, current altar-lit status, Sanctity, temporary afflicted condition, active hostile shades, and pedestal loot are not durable account unlocks."
+    },
+    "repeatability": {"kind": "repeatable", "boundary": "Every loop consumes or requires player-observed inputs and uses observed outcomes. World population and shared Repair State are current external state, not account inventory."}
+  },
+  "currencies": [
+    {"id": "sanctity-percent", "acquisition": "mixed", "spend_behavior": "Personal temporary percentage consumed by sacred-oil and Serum 208 conversions; decays over time and resets on logout. Never model it as banked currency."},
+    {"id": "temple-repair-resources-percent", "acquisition": "deterministic", "spend_behavior": "Personal resource contribution shown during repair, acquired by consuming material sets; current value is observed and does not transfer between players."},
+    {"id": "shade-keys", "acquisition": "rng", "spend_behavior": "Cremation can yield a key or coins. A retained key opens compatible doors without consumption; one matching key is consumed per chest opening."},
+    {"id": "coffin-locks", "acquisition": "rng", "spend_behavior": "Chest reward used by Dampe to create/upgrade an observed broken coffin; lock tier determines storage capacity."}
+  ],
+  "rewards": [
+    {"id": "sacred-oil", "acquisition": "fixed", "utility": ["creates pyre logs", "supports repeatable cremation loop"], "boundary": "requires observed current temple/altar/Sanctity/input state"},
+    {"id": "serum-208-permanent-npc-cure", "acquisition": "fixed", "utility": ["permanent Razmire/Ulsquire cure when an observed dose is used", "permanent Razmire general and builder shop access"], "boundary": "the conversion and selected NPC use are separate observed transitions"},
+    {"id": "shade-keys-and-catacomb-access", "acquisition": "rng", "utility": ["makes matching chest loot obtainable", "higher tiers unlock lower-tier doors", "a retained gold key gives unrestricted catacomb door access"], "boundary": "key identity/count/retention are observed"},
+    {"id": "flamtaer-bag", "acquisition": "rng", "utility": ["stores temple repair supplies: 60 beams, 60 bricks, 500 swamp paste"], "boundary": "does not imply contents or a successful chest"},
+    {"id": "wearable-coffin", "acquisition": "mixed", "utility": ["cape-slot shade-remains storage of 3/8/14/20/28 by bronze/steel/black/silver/gold lock tier"], "boundary": "Dampe gives an observed broken coffin; lock drop, repair, tier, and contents require observations"},
+    {"id": "fine-cloth-and-splitbark-path", "acquisition": "rng", "utility": ["fine cloth is a splitbark-armour material"], "boundary": "chest quantity and any downstream crafting inputs are observed"},
+    {"id": "runescroll-swampbark", "acquisition": "rng", "utility": ["reading unlocks Swampbark conversion from splitbark at the Nature Altar"], "requirements_after_read": "observed selected splitbark piece, Nature Altar access, 42/46/48 Runecraft and 100/250/500 nature runes by piece"},
+    {"id": "runescroll-bloodbark", "acquisition": "rng", "utility": ["reading unlocks Bloodbark conversion from splitbark at true or Kourend Blood Altar"], "requirements_after_read": "observed selected splitbark piece, Blood Altar access, 77/79/81 Runecraft and 100/250/500 blood runes by piece"},
+    {"id": "swampbark-armour", "acquisition": "mixed", "utility": ["50 Magic/50 Defence magic armour", "helm/body/legs each extend bind-spell duration by 2 ticks"], "boundary": "recipe read, component, altar, rune, level, crafted item, and equip state are distinct observations"},
+    {"id": "bloodbark-armour", "acquisition": "mixed", "utility": ["60 Magic/60 Defence magic armour", "helm/body/legs each give 1 percent magic damage", "each piece adds blood-spell healing; full set totals 35 percent of damage dealt"], "boundary": "recipe read, component, altar, rune, level, crafted item, spell output, and equip state are distinct observations"},
+    {"id": "amulet-of-the-damned", "acquisition": "rng", "utility": ["amulet-of-glory-equivalent stats plus Barrows-equipment set effects"], "boundary": "available from silver and gold chest tables; possession/charges/equip use are observed"},
+    {"id": "zealots-robes", "acquisition": "rng", "utility": ["gold-chest-only untradeable prayer armour", "each equipped piece has 1.25 percent chance to preserve applicable bones or ensouled heads; full set is 5 percent", "full set also applies 5 percent preservation to Ectofuntus bonemeal and buckets of slime"], "boundary": "each piece, wear state, individual proc, and any stack interaction are observed; never convert the chance into saved supplies automatically"},
+    {"id": "undead-zealot-and-bleached-bones", "acquisition": "rng", "utility": ["a rare chest-open event can spawn an undead zealot; its bleached bones can fully restore Prayer at the Catacombs altar"], "boundary": "spawn, defeat, bones, altar use, and restored Prayer are observed"},
+    {"id": "collection-log-rewards", "acquisition": "rng", "utility": ["records separately confirmed collection-log items and variants"], "boundary": "no chest/opening history implies a collection-log entry"}
+  ],
+  "dependencies_and_bypasses": [
+    {"target": "Shades of Mort'ton quest", "relationship": "requires", "detail": "Only explicit activity gate; completion unlocks participation and minigame teleport."},
+    {"target": "Flamtaer temple live state", "relationship": "requires", "detail": "Sacred-oil/Serum conversion requires a currently fully repaired and lit altar plus personal current Sanctity; shared temple state is not player-owned."},
+    {"target": "temple-material set", "relationship": "requires", "detail": "1 beam/plank + 1 limestone brick + 5 swamp paste is the deterministic repair-resource input."},
+    {"target": "Flamtaer hammer and bracelet", "relationship": "improves", "detail": "Optional temple tools; they improve work flow but do not replace materials, live temple state, or account observations."},
+    {"target": "Morytania Hard Diary", "relationship": "improves", "detail": "Gives 50 percent more Prayer XP from cremating shades; it is not key or loot protection."},
+    {"target": "Morytania Elite Diary", "relationship": "improves", "detail": "Gives 50 percent more Firemaking XP from creating pyre logs; it is not oil, key, or loot protection."},
+    {"target": "Bronze/steel/black/silver keys", "relationship": "requires", "detail": "Progressively open their own and lower catacomb door tiers while retained."},
+    {"target": "gold key", "relationship": "alternative_to", "detail": "A retained gold key opens every catacomb door, bypassing the need to hold lower-tier door keys; it does not bypass chest-key consumption or make gold chest loot deterministic."},
+    {"target": "Temple Trekking Fiyr encounter", "relationship": "alternative_to", "detail": "Possible alternative source of Fiyr remains that can make silver/gold key progression obtainable. Encounter, kill, remains, and keys stay observed/RNG."},
+    {"target": "Salve amulet", "relationship": "improves", "detail": "Shades are undead, so independently observed Salve gear can improve combat; it does not prove combat readiness."},
+    {"target": "runescrolls", "relationship": "unlocks", "detail": "Reading observed Swampbark/Bloodbark scrolls permanently unlocks their recipe capability, while actual armour crafting has separate hard gates."},
+    {"target": "Zealot's robes", "relationship": "makes_obtainable", "detail": "Gold chests can roll the four untradeable robe pieces. RNG does not establish ownership, full-set completion, or bone saving."}
+  ],
+  "afk_and_attention": {
+    "attention_class": "mixed",
+    "measured_interaction_interval_seconds": null,
+    "logout_or_idle_constraints": ["Sanctity decays 1 percent per minute and resets on logout.", "Temple Repair State is shared and can decay/enter a reset state while the player is inactive.", "Combat aggro, material repair, altar conversions, selected cremations, catacomb combat/doors, and chest clicks need direct input and can create dangerous outcomes.", "No source-backed fixed AFK interval or reliable low-attention classification is asserted."],
+    "source_boundary": "Some portions can be batch-processed with make-all/continuous altar actions, but the whole chain is not modeled as AFK. Player-reported world, inventory, and batching methods remain strategy candidates."
+  },
+  "community_strategy_observations": [
+    {
+      "claim": "Players use official World 377 or coordinate groups to make temple rebuilding easier, especially at lower combat levels.",
+      "source_ids": ["wiki-shades-minigame-current", "reddit-ironscape-shades-ironman-2025"],
+      "treatment": "strategy-candidate-not-fact",
+      "boundary": "World population, team behavior, temple condition, player safety, material cost, and outcome vary; no world selection is a route instruction."
+    },
+    {
+      "claim": "Some Ironmen use a hard Temple Trekking route from Burgh de Rott to seek Fiyr remains and a first higher-tier key, then retain a gold key to re-enter all catacomb areas.",
+      "source_ids": ["wiki-shades-minigame-current", "reddit-ironscape-shades-setup-2026"],
+      "treatment": "strategy-candidate-not-fact",
+      "boundary": "The factual alternative encounter and gold-door capability are included. Encounter frequency, kill success, key odds, travel choice, and suitability are not guaranteed."
+    },
+    {
+      "claim": "Players often batch oil, pyre logs, remains, keys, and chests using a Flamtaer bag, coffin, log basket, teleports, prayer supplies, and alchemy.",
+      "source_ids": ["reddit-ironscape-shades-ironman-2025", "reddit-ironscape-shades-setup-2026"],
+      "treatment": "strategy-candidate-not-fact",
+      "boundary": "Item ownership, inventory capacity, safety, exact batch size, time, and any profit/XP claim need player observations and strategy scoring."
+    },
+    {
+      "claim": "Some players delay Zealot's-robe pursuit until high Firemaking/Woodcutting and gold-key access, while others pursue bark scrolls or collection-log rewards earlier.",
+      "source_ids": ["reddit-ironscape-shades-setup-2026", "reddit-ironscape-shades-ironman-2025"],
+      "treatment": "strategy-candidate-not-fact",
+      "boundary": "Gold chests are factually the Zealot's source, but target tier, stop condition, expected keys, and priority are future scoring choices."
+    }
+  ],
+  "state_boundaries": [
+    "Quest completion, access, transport capability, current physical location, current temple state, personal Sanctity, materials, oil, logs, and combat readiness are distinct states.",
+    "Shared Repair State and altar-lit condition must be recorded as a current observation; neither persists as an account-owned unlock simply because another player repaired the temple.",
+    "Sanctity is per player, temporary, decays over time, and resets on logout. It cannot be derived from materials, elapsed time, a guide, or a prior repair session.",
+    "Every shade kill, remains drop, cremation, key/coin reward, key pickup, chest result, lock, unique, clue, zealot spawn, collection-log update, and XP amount is an observed event.",
+    "Door keys are reusable for doors but chest keys are consumed. Retaining a high-tier key must be observed; an action that opens a chest cannot silently preserve it.",
+    "Recipe knowledge from a read runescroll is permanent, but components, Runecraft levels, altars, runes, crafted armour, wear state, and spell effects require independent observations.",
+    "Danger, actual deaths, graves, Lost Hardcore status, reclaim, food/prayer use, and combat success cannot be inferred from a planned activity or minigame access.",
+    "Diary completion modifies the relevant observed XP event only. It does not create cremations, pyre logs, keys, oil, or readiness."
+  ],
+  "proposed_normalization": {
+    "facts": [
+      {"id": "shades-of-mortton-current-access-temple-and-sanctity", "category": "minigame", "status": "proposed", "source_ids": ["wiki-shades-minigame-current", "wiki-shades-quest-current", "official-shades-qol-2024"], "summary": "Quest gate, transport, shared temple state, transient individual Sanctity, repair materials, altar, oil, Serum 208, and current quality-of-life mechanics."},
+      {"id": "shades-of-mortton-current-cremation-and-catacombs", "category": "minigame", "status": "proposed", "source_ids": ["wiki-shades-minigame-current", "wiki-shade-catacombs-current", "official-shades-rework-2021"], "summary": "Shade tiers, pyre compatibility, RNG key-or-coin results, scalable door access, consumed chest keys, chest tables, and danger boundaries."},
+      {"id": "shades-of-mortton-current-permanent-utilities", "category": "utility", "status": "proposed", "source_ids": ["wiki-shades-minigame-current", "wiki-swampbark-current", "wiki-bloodbark-current", "wiki-amulet-damned-current", "official-poll-79-zealots"], "summary": "Razmire shop cure, Flamtaer bag, coffins, bark-scroll recipes, Amulet of the damned, Zealot's robes, and observed utility boundaries."}
+    ],
+    "actions": [
+      {"id": "action:repair-flamtaer-temple-proposed", "kind": "activity", "requirements": ["observed quest completion", "observed compatible hammer", "observed material inputs", "observed current temple interface/state"], "repeatable": true, "transition": "Consume only selected observed material inputs. Record current Repair State, personal resource/Sanctity deltas, and XP only from player-observed results; never force a repair success while the temple resets."},
+      {"id": "action:sanctify-olive-oil-proposed", "kind": "activity", "requirements": ["observed lit altar", "observed Sanctity >= 10 percent", "observed olive oil"], "repeatable": true, "transition": "Convert selected observed oil doses to sacred oil, decrement observed Sanctity by 0.9 percent per dose, and record the actual result. No output without current confirmation."},
+      {"id": "action:make-pyre-logs-proposed", "kind": "activity", "requirements": ["observed selected eligible logs", "observed sacred oil doses", "observed Firemaking level for selected log"], "repeatable": true, "transition": "Convert selected inputs deterministically and record the exact count/Firemaking XP from observed inputs only."},
+      {"id": "action:cremate-shade-remains-proposed", "kind": "activity", "requirements": ["observed compatible selected pyre log", "observed selected shade remains", "observed tinderbox", "observed current Mort'ton pyre access"], "repeatable": true, "transition": "Consume selected pyre log/remains. Record Prayer XP and one player-observed key-or-coin result; do not add a key automatically from the published probability."},
+      {"id": "action:open-shade-chest-proposed", "kind": "activity", "requirements": ["observed matching key", "observed reachable matching chest"], "repeatable": true, "transition": "Consume exactly the selected observed key. Record chest contents, locks, unique/collection-log result, spawn, and coins only after player confirmation."},
+      {"id": "action:upgrade-shade-coffin-proposed", "kind": "unlock", "requirements": ["observed broken/current coffin", "observed selected tier lock", "observed Dampe access"], "repeatable": "tier-dependent", "transition": "Apply only the confirmed lock upgrade and record current storage capacity; never infer contained remains."},
+      {"id": "action:read-bark-runescroll-proposed", "kind": "unlock", "requirements": ["observed matching runescroll or first-drop journal/notes"], "repeatable": false, "transition": "Record permanent learned Swampbark or Bloodbark recipe capability after the player confirms reading it. Do not add armour."}
+    ],
+    "graph_nodes": [
+      "activity:shades-of-mortton", "state:flamtaer-temple-current", "resource:sanctity-temporary", "item:sacred-oil", "item:pyre-log", "activity:shade-cremation", "item:shade-key", "activity:shade-catacomb-chest", "capability:gold-key-unrestricted-doors", "goal:flamtaer-bag", "goal:gold-coffin", "goal:runescroll-swampbark", "goal:runescroll-bloodbark", "goal:zealots-robes", "goal:amulet-of-the-damned", "capability:swampbark-recipe", "capability:bloodbark-recipe"],
+    "graph_edges": [
+      {"from": "quest:shades-of-mortton", "to": "activity:shades-of-mortton", "relation": "requires", "evidence": "access.requirements.quest_prerequisites"},
+      {"from": "activity:shades-of-mortton", "to": "resource:sanctity-temporary", "relation": "produces", "evidence": "activity_loop.temple_and_sanctity; observed temporary delta only"},
+      {"from": "state:flamtaer-temple-current", "to": "item:sacred-oil", "relation": "requires", "evidence": "activity_loop.conversion_chain; lit altar and personal Sanctity required"},
+      {"from": "item:sacred-oil", "to": "item:pyre-log", "relation": "produces", "evidence": "activity_loop.conversion_chain"},
+      {"from": "item:pyre-log", "to": "activity:shade-cremation", "relation": "requires", "evidence": "activity_loop.shade_and_cremation"},
+      {"from": "activity:shade-cremation", "to": "item:shade-key", "relation": "makes_obtainable", "evidence": "key-or-coin RNG; no guarantee"},
+      {"from": "item:shade-key", "to": "activity:shade-catacomb-chest", "relation": "requires", "evidence": "matching key is consumed per chest"},
+      {"from": "activity:shade-catacomb-chest", "to": "goal:zealots-robes", "relation": "makes_obtainable", "evidence": "gold chests only; RNG"},
+      {"from": "activity:shade-catacomb-chest", "to": "goal:amulet-of-the-damned", "relation": "makes_obtainable", "evidence": "silver/gold chest tables; RNG"},
+      {"from": "activity:shade-catacomb-chest", "to": "goal:flamtaer-bag", "relation": "makes_obtainable", "evidence": "chest unique; RNG"},
+      {"from": "activity:shade-catacomb-chest", "to": "goal:gold-coffin", "relation": "makes_obtainable", "evidence": "gold locks then observed Dampe upgrade; RNG"},
+      {"from": "activity:shade-catacomb-chest", "to": "goal:runescroll-swampbark", "relation": "makes_obtainable", "evidence": "chest RNG"},
+      {"from": "activity:shade-catacomb-chest", "to": "goal:runescroll-bloodbark", "relation": "makes_obtainable", "evidence": "chest RNG"},
+      {"from": "goal:runescroll-swampbark", "to": "capability:swampbark-recipe", "relation": "unlocks", "evidence": "read runescroll transition"},
+      {"from": "goal:runescroll-bloodbark", "to": "capability:bloodbark-recipe", "relation": "unlocks", "evidence": "read runescroll transition"},
+      {"from": "item:gold-key", "to": "capability:gold-key-unrestricted-doors", "relation": "unlocks", "evidence": "retained gold key opens all catacomb doors"}
+    ],
+    "account_observations": [
+      {"field": "shades_of_mortton_observation (proposed optional field)", "shape": {"observed_at": "RFC 3339 date-time", "quest_completed": "boolean or null", "current_location": "unknown|mortton|catacombs|elsewhere", "temple": {"repair_state_percent": "number or null", "altar_lit": "boolean or null", "personal_resources_percent": "number or null", "personal_sanctity_percent": "number or null", "resetting": "boolean or null"}, "last_activity": {"kind": "unknown|repair|sanctify|pyre_log|shade_kill|cremation|door|chest", "result": "player-recorded descriptor"}, "deaths": "integer or null"}, "rule": "Current-state and event-reporting only. Validators may enforce ranges/non-negative counts but never derive progress or inventory."},
+      {"field": "shade_assets_observation (proposed optional field)", "shape": {"materials": "explicit player-recorded counts", "sacred_oil_doses": "integer or null", "pyre_logs_by_type": "explicit player-recorded counts", "remains_by_tier": "explicit player-recorded counts", "keys_by_metal_and_trim": "explicit player-recorded counts", "retained_door_key_tier": "none|bronze|steel|black|silver|gold|unknown", "coffin": {"tier": "none|broken|bronze|steel|black|silver|gold|unknown", "contained_remains": "integer or null"}}, "rule": "No loot, stored count, or retained key is implied by activity participation."},
+      {"field": "shades_reward_observation (proposed optional field)", "shape": {"opened_chests_by_metal_and_trim": "integer counts or null", "unique_items": "confirmed item ids/counts", "learned_recipes": "swampbark|bloodbark booleans or null", "zealot_pieces": "confirmed pieces", "collection_log": "confirmed entries only", "last_chest_result": "player-recorded descriptor or null"}, "rule": "Each chest output, recipe read, collection-log tick, and Zealot piece is individually report-only."},
+      {"field": "encounter_observations", "rule": "Use existing generic combat observation for attempts, time, supplies, deaths, and combat result only when supplied by the player. Do not derive readiness from combat level, a weapon, or a plan."}
+    ]
+  },
+  "conflicts_and_unknowns": [
+    {"id": "spelling-and-id-normalization", "status": "requires-central-reconciliation", "detail": "The game title is Shades of Mort'ton. This package filename intentionally follows the requested `shades-of-mortton.json` path. Canonical production identifiers should choose one explicit apostrophe-free spelling and alias the other."},
+    {"id": "sailing-era-pyre-log-expansion", "status": "requires-targeted-fact-before-automation", "detail": "Current general Firemaking sources list newer log types, but the complete authoritative minigame compatibility table captured here confirms normal through redwood. Do not invent an extended shade-compatibility table until a current source explicitly connects each newer log to Shades of Mort'ton."},
+    {"id": "chest-rate-and-table-granularity", "status": "intentional-observation-boundary", "detail": "Chest and key probability tables are extensive and some public rates are estimated. This package stores tiered availability and preserves all results as RNG observations instead of auto-generating a reward expectation."},
+    {"id": "temple-interface-live-state", "status": "requires-observation-model", "detail": "Repair State is shared, while Sanctity/resources are per-player and transient. Central integration needs a current-state snapshot convention rather than durable account fields or route prerequisites."},
+    {"id": "morytania-diary-action-aliases", "status": "requires-central-reconciliation", "detail": "This package references existing Morytania diary utility facts by descriptive id. Confirm actual production ids before graph insertion and keep diary reward claims separate from observed XP events."}
+  ],
+  "coverage": {
+    "access": true,
+    "loop": true,
+    "currencies": true,
+    "rewards": true,
+    "failure_state": true,
+    "sources": true,
+    "normalization": true,
+    "checked_source_count": 13,
+    "production_files_modified": 0
+  }
+}
