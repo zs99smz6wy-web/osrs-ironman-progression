@@ -1,0 +1,502 @@
+{
+  "package_schema_version": 1,
+  "package_type": "minigame-research",
+  "package_id": "research-minigame-last-man-standing",
+  "activity": "Last Man Standing",
+  "status": "research-proposal",
+  "checked_at": "2026-08-22",
+  "scope": "Current factual package for the safe PvP battle-royale minigame at Ferox Enclave. It models access, supplied builds, competitive point gates, the current shop, and state observations. It proposes no route timing, PvP strategy, target, expected rate, or purchase order.",
+  "facts_strategy_boundary": {
+    "included": [
+      "current Casual, Competitive, and High Stakes mode rules; account, world, queue, and reward-shop restrictions; transport; supplied loadouts; maps; fog; keys, chests, and loot crates; safe-death, forfeiture, repeatability, and point mechanics",
+      "the complete current Justine shop catalog, fixed point prices and packs, tradeable-reward win gate, 48-hour member-playtime store gate, current Ironman High Stakes restriction, current Rune pouch and note rows, current collection-log boundary, and sourced alternative acquisition paths",
+      "explicit account observations for access, available queue, mode, opponent and match outcome, kills, placement, points, shop transactions, PvP readiness, and player-measured time",
+      "proposed facts, actions, dependency nodes, edges, and observations that distinguish fixed shop costs from player- and opponent-dependent point acquisition"
+    ],
+    "excluded": [
+      "whether to play LMS, select a world, mode, build, spellbook, loadout, chest route, opponent, fight, queue time, reward, stop target, or route timing",
+      "any inferred membership, total level, quest points, member playtime, Competitive eligibility, shop eligibility, queue availability, build, opponent, kill, placement, win, loss, point award, rating, High Stakes availability, purchase, item ownership, collection-log state, PvP readiness, food use, or elapsed time",
+      "points per hour, games per hour, win rate, opponent or bot population, expected chest result, GP valuation, safe setup, skill level, activity availability, and all community advice"
+    ]
+  },
+  "source_catalog": [
+    {
+      "id": "wiki-last-man-standing-current",
+      "publisher": "Old School RuneScape Wiki",
+      "kind": "wiki",
+      "url": "https://oldschool.runescape.wiki/w/Last_Man_Standing",
+      "checked_at": "2026-08-22",
+      "use": "Primary current mechanics authority for modes, requirements, maps, supplied builds, supply-chest constraints, keys/chests/crates, fog, forfeits, safety, current competitive point table, ranking, and High Stakes boundary. Current Wiki API revision was read during this pass."
+    },
+    {
+      "id": "wiki-justine-shop-current",
+      "publisher": "Old School RuneScape Wiki",
+      "kind": "wiki",
+      "url": "https://oldschool.runescape.wiki/w/Justine%27s_stuff_for_the_Last_Shopper_Standing",
+      "checked_at": "2026-08-22",
+      "use": "Primary current shop authority for all stock, point costs, 48-hour member-playtime gate, one-win tradeable-reward gate, 80 percent untradeable resale statement, cosmetic claims, and collection-log note. Current Wiki API revision was read during this pass."
+    },
+    {
+      "id": "official-remaining-getting-around-apr-2026",
+      "publisher": "Jagex",
+      "kind": "official",
+      "url": "https://secure.runescape.com/m=news/remaining-getting-around-changes?oldschool=1",
+      "checked_at": "2026-08-22",
+      "use": "Official April 2026 authority for the current 20-minute forced-end timer, revised placement and kill points, maximum nine-point award, two-Sanfew setup limit, and fog changes."
+    },
+    {
+      "id": "official-sailing-lms-eligibility-may-2026",
+      "publisher": "Jagex",
+      "kind": "official",
+      "url": "https://secure.runescape.com/m=news/changes-to-sailing--lms-rewards-eligibility?oldschool=1",
+      "checked_at": "2026-08-22",
+      "use": "Official provenance for the May 2026 requirement to win at least one LMS game before buying tradeable Justine-shop rewards."
+    },
+    {
+      "id": "official-bank-tags-trouver-jun-2026",
+      "publisher": "Jagex",
+      "kind": "official",
+      "url": "https://secure.runescape.com/m=news/bank-tags-trouver-system-rework--more?oldschool=1",
+      "checked_at": "2026-08-22",
+      "use": "Official provenance for current Max/Med starter changes, default new-player setup, spellbook default, and loot-pool adjustments."
+    },
+    {
+      "id": "wiki-rune-pouch-current",
+      "publisher": "Old School RuneScape Wiki",
+      "kind": "wiki",
+      "url": "https://oldschool.runescape.wiki/w/Rune_pouch",
+      "checked_at": "2026-08-22",
+      "use": "Current Rune pouch behavior, LMS note exchange, Slayer alternative, MTA alternative, one-pouch ownership restriction, and Wilderness/PvP loss boundary."
+    },
+    {
+      "id": "wiki-mage-training-arena-current",
+      "publisher": "Old School RuneScape Wiki",
+      "kind": "wiki",
+      "url": "https://oldschool.runescape.wiki/w/Mage_Training_Arena",
+      "checked_at": "2026-08-22",
+      "use": "Current MTA Rune pouch alternative: 150 Telekinetic, 150 Graveyard, 1,500 Enchantment, and 200 Alchemist pizazz points when the account does not already own a pouch."
+    },
+    {
+      "id": "wiki-imbuing-current",
+      "publisher": "Old School RuneScape Wiki",
+      "kind": "wiki",
+      "url": "https://oldschool.runescape.wiki/w/Imbuing",
+      "checked_at": "2026-08-22",
+      "use": "Current magic-shortbow and ring-of-wealth LMS scroll behavior and the separate Emir's Arena scroll-of-imbuing alternative."
+    },
+    {
+      "id": "reddit-ironscape-rune-pouch-experience",
+      "publisher": "r/ironscape",
+      "kind": "reddit",
+      "url": "https://www.reddit.com/r/ironscape/comments/1cgnxea/",
+      "checked_at": "2026-08-22",
+      "use": "Community discussion of LMS versus Slayer Rune pouch paths. It is strategy-only; reports of opponents, bots, time, points, and outcomes are not mechanic authority."
+    },
+    {
+      "id": "youtube-lms-guide-discovery",
+      "publisher": "YouTube creators",
+      "kind": "youtube",
+      "url": "https://www.youtube.com/results?search_query=OSRS+Last+Man+Standing+guide",
+      "checked_at": "2026-08-22",
+      "use": "Community guide discovery source for interface, switching, and setup claims. No video advice is normalized as a factual output or readiness assertion."
+    }
+  ],
+  "access": {
+    "requirements": {
+      "membership_and_worlds": {
+        "casual": "Casual can start with four players and has no reward or highscores effect. Current designated Casual worlds include free-to-play worlds, but the supplied mechanics remain LMS mechanics.",
+        "competitive": "Competitive is playable only on members' worlds, requires 24 participants to start, grants the described points only on an observed qualifying result, and updates an observed rating after a game.",
+        "high_stakes": "High Stakes is a discretionary Old School Team mode, requires 500,000 coins to enter when active, needs 24 participants to start, and cannot be played by Ironman accounts."
+      },
+      "competitive_and_high_stakes_account_gate": "An account needs either at least 750 total level and 30 Quest points, or at least 1,500 total level when it has fewer than 30 Quest points. Total level and Quest points are not boostable account observations.",
+      "reward_shop_gate": "Purchasing any Justine reward requires 48 hours of playtime as a member. Purchasing a tradeable shop reward additionally requires at least one observed LMS win. Store time, a prior win, item tradeability, and transaction success must be observed separately.",
+      "ironman_boundary": "Current sources explicitly bar Ironman accounts from High Stakes. Competitive access and Justine purchases remain subject to the current account, membership-playtime, one-win-for-tradeables, item, and transaction observations; the package does not assert a purchase without a confirmed result.",
+      "anti_abuse_and_activity": "Forfeiting three times in one day bans the account from Competitive and High Stakes for the remainder of that day. The package records this as observed account state and does not calculate or assume an available queue."
+    },
+    "location_and_transport": [
+      "The LMS lobby and Justine are at Ferox Enclave. Any physical arrival method is an account-selected transport observation.",
+      "A ring of dueling can teleport to Ferox Enclave; its ownership, charge state, and successful teleport are separate observations.",
+      "The Grouping interface can be used only when the account reports the relevant interface access and cooldown state. Opening or selecting it does not prove lobby arrival, queue availability, or a match result.",
+      "The Ferox Enclave Pool of Restoration and bank are local conveniences, but entering LMS supplies a distinct minigame loadout and does not consume or prove the player's external equipment or supplies."
+    ],
+    "unlock_transition": {
+      "event": "an observed account meets the selected mode's account/world gate and joins an available lobby",
+      "deterministic_effects": [
+        "The account may wait for that mode's observed population and start condition.",
+        "A player who enters a started LMS game receives the selected supplied account-build environment rather than using external combat gear."
+      ],
+      "non_effects": [
+        "does not prove sufficient players, queue duration, active mode, selected map, enemy identity, supplied preset selection, readiness, match start, activity, kill, chest result, placement, survival, win, point award, rating change, or shop purchase"
+      ]
+    }
+  },
+  "activity_loop": {
+    "entry_inputs": [
+      {
+        "item_or_capability": "selected mode and observed lobby availability",
+        "behavior": "Casual needs four players; Competitive and High Stakes need 24. A player cannot create opponents, queue population, mode availability, or match start through this model."
+      },
+      {
+        "item_or_capability": "Competitive or High Stakes account gate",
+        "behavior": "Competitive and High Stakes require the sourced total-level/Quest-point condition. High Stakes also needs observed 500,000 coins when active and excludes Ironman accounts."
+      },
+      {
+        "item_or_capability": "external inventory and equipment",
+        "behavior": "No external weapon, armour, food, rune, or combat level is a match loadout requirement. The game supplies an LMS build; outside supplies neither determine an LMS result nor are they modeled as consumed inputs."
+      }
+    ],
+    "reusable_setup": [
+      {
+        "item_or_capability": "account build selection",
+        "effect": "The supplied build categories are Max/Med, Zerker, and 1 Def Pure. Current source tables list distinct starting equipment and inventories. The selected build is a per-match observation, not an account progression conclusion."
+      },
+      {
+        "item_or_capability": "supply chest configuration",
+        "effect": "The chest near Lisa permits a player to arrange the supplied inventory, equipment loadout, and spellbook. Standard, Ancient Magicks, and Lunar are available; Lunar cannot be activated for 1 Def Pure. Selection is observed."
+      },
+      {
+        "item_or_capability": "current supplied resources",
+        "effect": "The normal supplied environment includes LMS-specific combat gear, combat runes through a unique LMS Rune pouch, super restore, super combat potion, Saradomin brews, ranging potion, food, and build-specific switches. Current limits are 10 sharks, 3 Saradomin brews, 2 Sanfew serums, and one of every other potion. Slain opponents do not drop supplies."
+      },
+      {
+        "item_or_capability": "current default starter examples",
+        "effect": "Max/Med currently starts with a dragon crossbow and opal dragon bolts, abyssal whip, dragon claws, Staff of the Dead, Dragon defender, Barrows switches, and LMS supplies. Zerker and 1 Def Pure have their own lower-defence supplied kits. These exact preset contents are source-versioned game facts, not external item ownership."
+      }
+    ],
+    "round_phases": [
+      {
+        "phase": "lobby, launch, and map",
+        "facts": [
+          "LMS is a battle royale of four to 24 players depending on mode; a Competitive or High Stakes game starts with 24 participants.",
+          "One of two current maps is selected at random: Desert Island or Wild Varrock, with a stated 50 percent chance for each. The actual map is a match observation.",
+          "The player configures an LMS-only supplied preset before entry. Outside gear, spell unlocks, supply count, and combat readiness are not inferred from a selected build."
+        ]
+      },
+      {
+        "phase": "combat, elimination, and restoration",
+        "facts": [
+          "Players fight supplied-build opponents for survival. A player's kill, opponent logout kill credit, death, and placement are observed events.",
+          "An observed opponent kill restores the killer's health, run energy, special attack energy, and supplies. The killer receives a bloody key, or a bloodier key when fewer than six players remain, plus 20 seconds of protection from player attacks.",
+          "A kill key can open an LMS chest. Bloody keys select from basic offensive or defensive tables; bloodier keys use an upgraded offensive table. Exact chest result is random and player-observed."
+        ]
+      },
+      {
+        "phase": "loot crates and upgrades",
+        "facts": [
+          "Broadcast loot crates can appear. On Desert Island their locations are random; on Wild Varrock they spawn near the safe zone. Crates use the upgraded loot table.",
+          "Chest/crate table selection and duplicate avoidance are factual mechanics, but exact availability, reachability, keys, item rolls, looting, switches, and resulting combat capability are not calculated by this package."
+        ]
+      },
+      {
+        "phase": "fog and forced conclusion",
+        "facts": [
+          "After one minute the game announces incoming lethal fog and a safe zone, marked by fog markers and a yellow arrow.",
+          "At two minutes 30 seconds, greater fog activates. Fewer than 16 tiles into fog deals 1 to 3 damage every other tick, increasing over six ticks; 16 or more tiles in can deal up to 10 damage every other tick.",
+          "After 10 minutes, players outside the safe zone take rapidly increasing damage, beginning at roughly one per tick and increasing to 10 per tick. The forced-end timer is 20 minutes. Actual movement, damage, survival, and outcome remain observed."
+        ]
+      },
+      {
+        "phase": "completion, points, and return",
+        "facts": [
+          "Casual grants no rewards. Competitive points require an observed kill of at least one player and then use the observed placement or qualifying kill count.",
+          "Current Competitive placement awards are: first 6, second 5, third or fourth 4, fifth through ninth 3, and tenth through nineteenth 1. A three-kill bonus is 2 points and a five-kill bonus is 3 points; bonuses do not stack. The current maximum is 9 points.",
+          "High Stakes prizes and free-entry outcomes apply only if the discretionary mode was active, the non-Ironman account entered, and the final placement is observed. This package does not treat such prizes as an Ironman output."
+        ]
+      }
+    ],
+    "completion_or_reward_events": [
+      {
+        "event": "observed Competitive result with at least one player kill",
+        "outcomes": [
+          "reported placement", "reported kill count", "reported non-stacking bonus tier", "reported LMS point delta", "reported rating change", "reported win state"],
+        "boundary": "The fixed table can validate a supplied result, but no action manufactures a kill, placement, point award, rating, win, or shop eligibility."
+      },
+      {
+        "event": "observed Justine-shop transaction",
+        "outcomes": [
+          "exact LMS-point debit", "the confirmed fixed item, pack, cosmetic unlock, or player-observed item state", "optional observed 80-percent resale transaction where the item is eligible"],
+        "boundary": "A purchase requires observed store eligibility, balance, selection, any item requirement, and player confirmation. The model never prescribes a spend or assumes Ironman availability."
+      },
+      {
+        "event": "observed Rune pouch note exchange at a bank",
+        "outcomes": [
+          "one Rune pouch note is exchanged for one Rune pouch if the account may receive it"],
+        "boundary": "The player cannot own more than one Rune pouch. Existing pouch ownership, note ownership, bank interaction, and exchange success are observations."
+      }
+    ],
+    "failure_and_death": {
+      "round_failure": "Casual provides no reward. A Competitive participant with no player kill receives no LMS points regardless of placement. A player may forfeit by logout or a Desert Island rowboat; a forfeiter receives no reward. Three observed forfeits in a day ban Competitive and High Stakes participation for the remainder of that day.",
+      "player_death": "LMS is a safe PvP activity: external items are not risked by its supplied match loadout. The package still records actual death/forfeit/end state rather than treating safe status as a victory or reward. Hardcore Group Iron danger is an account-mode risk boundary that must be separately confirmed.",
+      "repeatability_boundary": "A new match remains contingent on selected mode, account eligibility, daily-forfeit state, world/mode availability, and a sufficient actual queue. Build, map, fog, enemies, loot, kills, points, and outcomes do not persist as assumed automatic outputs."
+    },
+    "repeatability": {
+      "is_repeatable": true,
+      "reset": "Each started match receives a new supplied build context and player-dependent opponent/map/loot/outcome state. External account inventory is not consumed by supplied equipment, while the persistent LMS point balance, victory history, cosmetic unlocks, store gates, rating, and daily-forfeit restriction are report-only state.",
+      "player_dependency": "Queue creation, opponents, combat behavior, player disconnects, kills, chest access, placement, successful completion, and award are other-player/execution dependent. They cannot be projected as deterministic progression."
+    }
+  },
+  "currencies": [
+    {
+      "id": "last-man-standing-points",
+      "acquisition": "player_observed",
+      "spend_behavior": "Competitive-only persistent reward currency. An observed result needs at least one player kill; then the fixed April 2026 placement and non-stacking kill-bonus table validates a supplied point delta. Spend only after an observed balance, Justine eligibility, selected row, exact quantity, and confirmed purchase.",
+      "award_table": {
+        "placement": {"first": 6, "second": 5, "third_or_fourth": 4, "fifth_to_ninth": 3, "tenth_to_nineteenth": 1},
+        "non_stacking_kill_bonus": {"three_kills": 2, "five_kills": 3},
+        "maximum_points_per_game": 9,
+        "minimum_kills_for_any_award": 1
+      },
+      "boundary": "There is no points-per-hour or automatic points formula because a match, opponent, kill, placement, and award are not guaranteed."
+    },
+    {
+      "id": "high-stakes-coins",
+      "acquisition": "player_observed",
+      "spend_behavior": "High Stakes, when enabled, uses a 500,000-coin entry fee. Its first and second prizes are 7,500,000 and 2,500,000 coins, respectively; third through fifth receive a free next entry. Ironman accounts cannot enter, so this is catalogued only as a mode fact and not as an Ironman economic output.",
+      "boundary": "Availability, entry, coin balance, placement, chest claim, and account mode must all be observed."
+    }
+  ],
+  "rewards": [
+    {
+      "id": "justine-shop-eligibility-and-resale",
+      "acquisition": "shop",
+      "utility": [
+        "The current shop is at the LMS lobby and requires 48 hours of member playtime for every purchase.",
+        "Current tradeable reward rows require at least one observed LMS win in addition to their point cost.",
+        "Most untradeable rewards can be sold back to the shop for 80 percent of buy cost; eligibility and transaction result are observed.",
+        "No automatic conclusion is made that a particular Ironman can or should buy a row. High Stakes is the explicit Ironman mode exclusion."
+      ]
+    },
+    {
+      "id": "justine-shop-complete-current-catalog",
+      "acquisition": "shop",
+      "utility": ["Complete current point catalog follows. Each row is a potential exact shop result after observed eligibility and purchase, not an assumed account item."],
+      "catalog": [
+        {"item": "Deadman's chest", "points": 160, "members_flag": false, "category": "cosmetic"},
+        {"item": "Deadman's legs", "points": 160, "members_flag": false, "category": "cosmetic"},
+        {"item": "Deadman's cape", "points": 160, "members_flag": false, "category": "cosmetic"},
+        {"item": "Swift blade", "points": 350, "members_flag": false, "category": "weapon"},
+        {"item": "Guthixian icon", "points": 500, "members_flag": true, "category": "staff-of-balance-component"},
+        {"item": "Trouver parchment", "points": 18, "members_flag": true, "category": "Wilderness-item-protection-input"},
+        {"item": "Wilderness crabs teleport", "quantity": 1, "points": 1, "members_flag": true, "category": "transport"},
+        {"item": "Blighted entangle sack", "quantity": 70, "points": 1, "members_flag": true, "category": "Wilderness-castable-supply"},
+        {"item": "Blighted teleport spell sack", "quantity": 50, "points": 1, "members_flag": true, "category": "Wilderness-castable-supply"},
+        {"item": "Blighted vengeance sack", "quantity": 50, "points": 1, "members_flag": true, "category": "Wilderness-castable-supply"},
+        {"item": "Blighted ancient ice sack", "quantity": 30, "points": 1, "members_flag": true, "category": "Wilderness-castable-supply"},
+        {"item": "Adamant arrow", "quantity": 350, "points": 1, "members_flag": false, "category": "ammunition"},
+        {"item": "Bolt rack", "quantity": 200, "points": 1, "members_flag": true, "category": "ammunition"},
+        {"item": "Rune arrow", "quantity": 300, "points": 3, "members_flag": true, "category": "ammunition"},
+        {"item": "Dragonstone bolts (e)", "quantity": 20, "points": 3, "members_flag": true, "category": "ammunition"},
+        {"item": "Blighted karambwan", "quantity": 12, "points": 1, "members_flag": true, "category": "Wilderness-food"},
+        {"item": "Blighted manta ray", "quantity": 15, "points": 1, "members_flag": true, "category": "Wilderness-food"},
+        {"item": "Blighted anglerfish", "quantity": 15, "points": 1, "members_flag": true, "category": "Wilderness-food"},
+        {"item": "Blighted super restore(4)", "quantity": 4, "points": 1, "members_flag": true, "category": "Wilderness-potion"},
+        {"item": "Climbing boots", "quantity": 20, "points": 1, "members_flag": true, "category": "equipment"},
+        {"item": "Looting bag", "points": 1, "members_flag": true, "category": "Wilderness-storage"},
+        {"item": "Looting bag note", "points": 1, "members_flag": true, "category": "tradeable-Wilderness-storage-note"},
+        {"item": "Ring of wealth scroll", "points": 5, "members_flag": true, "category": "imbue-scroll"},
+        {"item": "Magic shortbow scroll", "points": 5, "members_flag": true, "category": "imbue-scroll"},
+        {"item": "Clue box", "points": 5, "members_flag": true, "category": "Wilderness-clue-protection"},
+        {"item": "Crystal weapon seed", "points": 12, "members_flag": true, "category": "weapon-seed"},
+        {"item": "Granite clamp", "points": 25, "members_flag": true, "category": "granite-maul-upgrade"},
+        {"item": "Ornate maul handle", "points": 15, "members_flag": true, "category": "granite-maul-upgrade"},
+        {"item": "Steam staff upgrade kit", "points": 13, "members_flag": true, "category": "staff-upgrade"},
+        {"item": "Lava staff upgrade kit", "points": 13, "members_flag": true, "category": "staff-upgrade"},
+        {"item": "Dragon pickaxe upgrade kit", "points": 14, "members_flag": true, "category": "pickaxe-upgrade"},
+        {"item": "Ward upgrade kit", "points": 20, "members_flag": true, "category": "ward-upgrade"},
+        {"item": "Green dark bow paint", "points": 25, "members_flag": true, "category": "cosmetic"},
+        {"item": "Yellow dark bow paint", "points": 25, "members_flag": true, "category": "cosmetic"},
+        {"item": "White dark bow paint", "points": 25, "members_flag": true, "category": "cosmetic"},
+        {"item": "Blue dark bow paint", "points": 25, "members_flag": true, "category": "cosmetic"},
+        {"item": "Volcanic whip mix", "points": 25, "members_flag": true, "category": "cosmetic"},
+        {"item": "Frozen whip mix", "points": 25, "members_flag": true, "category": "cosmetic"},
+        {"item": "Rune pouch", "points": 75, "members_flag": true, "category": "permanent-rune-storage"},
+        {"item": "Rune pouch note", "points": 75, "members_flag": true, "category": "tradeable-rune-storage-note"},
+        {"item": "Decorative emblem", "points": 100, "members_flag": true, "category": "cosmetic"},
+        {"item": "Saradomin's tear", "points": 150, "members_flag": true, "category": "item-upgrade-input"},
+        {"item": "Target teleport scroll", "points": 250, "members_flag": true, "category": "PvP-transport"},
+        {"item": "Vesta's longsword (inactive)", "points": 300, "members_flag": true, "category": "PvP-weapon", "known_requirement": "75 Attack to buy"},
+        {"item": "Armadyl halo", "points": 450, "members_flag": true, "category": "cosmetic"},
+        {"item": "Bandos halo", "points": 450, "members_flag": true, "category": "cosmetic"},
+        {"item": "Seren halo", "points": 450, "members_flag": true, "category": "cosmetic"},
+        {"item": "Ancient halo", "points": 450, "members_flag": true, "category": "cosmetic"},
+        {"item": "Brassica halo", "points": 450, "members_flag": true, "category": "cosmetic"},
+        {"item": "Paddewwa teleport (tablet)", "quantity": 2, "points": 1, "members_flag": true, "category": "Ancient-teleport"},
+        {"item": "Senntisten teleport (tablet)", "quantity": 2, "points": 1, "members_flag": true, "category": "Ancient-teleport"},
+        {"item": "Annakarl teleport (tablet)", "quantity": 2, "points": 1, "members_flag": true, "category": "Ancient-teleport"},
+        {"item": "Carrallanger teleport (tablet)", "quantity": 2, "points": 1, "members_flag": true, "category": "Ancient-teleport"},
+        {"item": "Dareeyak teleport (tablet)", "quantity": 2, "points": 1, "members_flag": true, "category": "Ancient-teleport"},
+        {"item": "Ghorrock teleport (tablet)", "quantity": 2, "points": 1, "members_flag": true, "category": "Ancient-teleport"},
+        {"item": "Kharyrll teleport (tablet)", "quantity": 2, "points": 1, "members_flag": true, "category": "Ancient-teleport"},
+        {"item": "Lassar teleport (tablet)", "quantity": 2, "points": 1, "members_flag": true, "category": "Ancient-teleport"},
+        {"item": "Target teleport", "points": 1, "members_flag": true, "category": "PvP-teleport"},
+        {"item": "Golden Armadyl Special override", "points": 75, "members_flag": false, "category": "permanent-godsword-animation-unlock"},
+        {"item": "Golden Saradomin Special override", "points": 75, "members_flag": false, "category": "permanent-godsword-animation-unlock"},
+        {"item": "Golden Bandos Special override", "points": 75, "members_flag": false, "category": "permanent-godsword-animation-unlock"},
+        {"item": "Golden Zamorak Special override", "points": 75, "members_flag": false, "category": "permanent-godsword-animation-unlock"}
+      ],
+      "collection_log_boundary": "The current shop source states that 32 listed collection-log items are present and describes a full collection target as 1,000 wins and 4,130 points before resale assumptions. It is catalog information only: all purchases, wins, log slots, and resale choices require explicit observation. Victor capes are free claims at 1, 10, 50, 100, 500, and 1,000 Competitive wins; Casual wins do not count."
+    },
+    {
+      "id": "lms-rune-pouch-and-note",
+      "acquisition": "shop",
+      "utility": [
+        "Rune pouch and Rune pouch note both cost 75 LMS points. A note is exchanged at a bank for a pouch; the account cannot own more than one pouch.",
+        "The Rune pouch stores up to 16,000 each of three rune types and saves inventory space. Its downstream use is a capability, not proof of supplies or casting readiness.",
+        "A Rune pouch can be lost in the Wilderness or PvP worlds unless protected by a Trouver parchment; stored runes are not protected by the parchment."
+      ],
+      "alternatives": [
+        "Any Slayer master sells a Rune pouch for 750 Slayer reward points; the account's points, master access, existing pouch state, and purchase result remain observed.",
+        "Mage Training Arena sells a Rune pouch, only when the account does not already own one, for 150 Telekinetic, 150 Graveyard, 1,500 Enchantment, and 200 Alchemist pizazz points.",
+        "A player-to-player or Grand Exchange note path exists for accounts permitted to trade; it is not an Ironman account output and is not modeled as one."
+      ]
+    },
+    {
+      "id": "lms-imbue-and-blighted-supply-utility",
+      "acquisition": "shop",
+      "utility": [
+        "The current LMS shop sells a Magic shortbow scroll for 5 points and a Ring of wealth scroll for 5 points. The magic-shortbow scroll creates magic shortbow(i); the ring scroll combines with a Ring of wealth and 50,000 coins for Ring of wealth(i).",
+        "The shop's current blighted food, restore, and spell sacks are consumable Wilderness supplies. Their purchase does not establish Wilderness readiness, spell prerequisites, food availability, or a planned activity.",
+        "The current LMS catalog does not list Emir's Arena's reusable Scroll of imbuing or blighted surge sacks as a completed LMS reward. The March 2026 official discussion proposed them for LMS; proposal text is not treated as current stock."
+      ],
+      "alternatives": [
+        "A reusable Scroll of imbuing is a separate Emir's Arena reward-shop path, costing 200 Emir's Arena points. It can be uncharged to return the scroll and is not an LMS reward in the checked current shop catalog.",
+        "Nightmare Zone and Soul Wars provide other specified item-imbue paths. Exact item eligibility, origin, cost, and diary effects are activity-specific and must be joined through their own packages."
+      ]
+    },
+    {
+      "id": "lms-collection-log-and-cosmetic-utility",
+      "acquisition": "mixed",
+      "utility": [
+        "Justine rows include Deadman cosmetics, halos, decorative emblem, weapon paints/mixes, godsword special-animation overrides, and Victor capes. These are factual availability and collection-log-related records only.",
+        "Victor capes are claim milestones tied to observed Competitive wins: 1, 10, 50, 100, 500, and 1,000. Casual wins do not count.",
+        "A collection-log item or cosmetic unlock has no presumed combat, economic, or route score in this research package."
+      ]
+    }
+  ],
+  "dependencies_and_bypasses": [
+    {"target": "Competitive Last Man Standing", "relationship": "requires", "detail": "Observed members world, 750 total plus 30 Quest points or 1,500 total, an actual 24-player lobby, daily-forfeit availability, and player-confirmed entry."},
+    {"target": "LMS points", "relationship": "produces", "detail": "Only an observed Competitive result with at least one player kill can produce a point delta; placement/kill bonus is then validated from the current non-stacking table."},
+    {"target": "Justine tradeable rewards", "relationship": "requires", "detail": "Requires observed 48 hours member playtime, at least one observed LMS win, observed LMS balance, selected row, and confirmed transaction."},
+    {"target": "Rune pouch", "relationship": "produces", "detail": "LMS direct pouch or note is a fixed 75-point shop result after observed eligibility; the note needs a confirmed bank exchange and the account must not already own a pouch."},
+    {"target": "Slayer Rune pouch", "relationship": "alternative_to", "detail": "A Slayer master offers the same pouch for 750 observed Slayer reward points."},
+    {"target": "Mage Training Arena Rune pouch", "relationship": "alternative_to", "detail": "MTA offers the pouch for the current four-pizazz-currency price only when the account does not already own one."},
+    {"target": "Magic shortbow(i)", "relationship": "produces", "detail": "LMS Magic shortbow scroll is a deterministic 5-point shop row, requiring an observed base shortbow and confirmed use; the item is not granted by merely planning a purchase."},
+    {"target": "Ring of wealth(i)", "relationship": "produces", "detail": "LMS Ring of wealth scroll is a deterministic 5-point shop row, requiring an observed base ring, 50,000 coins, and confirmed combination."},
+    {"target": "Emir's Arena Scroll of imbuing", "relationship": "alternative_to", "detail": "Separate 200-point Emir's Arena path for reusable item imbues. It is explicitly not present in the checked current LMS shop catalog."},
+    {"target": "Wilderness supplies and transports", "relationship": "produces", "detail": "The shop has fixed blighted pack, tablet, teleport, looting-bag, clue-box, and Trouver rows; acquisition does not imply Wilderness plan, safety, or use."},
+    {"target": "High Stakes LMS", "relationship": "requires", "detail": "Requires observed Team-enabled availability, 500,000 coins, 24 participants, Competitive/High-Stakes account gate, and a non-Ironman account. It cannot be used as an Ironman bypass."}
+  ],
+  "afk_and_attention": {
+    "attention_class": "active",
+    "measured_interaction_interval_seconds": null,
+    "logout_or_idle_constraints": [
+      "LMS is real-time PvP with opponent, fog, safe-zone, chest, spellbook, switching, supplies, movement, kill, placement, and forfeiture events. It must not be represented as AFK or passive progression.",
+      "Logging out or using a Desert Island rowboat forfeits a game and yields no reward. Three observed daily forfeits block Competitive and High Stakes for that day.",
+      "Player skill, supplied-loadout choices, opponent behavior, client tools, connection, route, reaction time, chest access, and actual attention period must be player-reported before a later strategy layer compares LMS with another activity."
+    ],
+    "source_boundary": "Community guides about switches, prayers, map positions, hiding, bots, target selection, point rate, or a Rune-pouch stop point are strategy candidates only; they do not prove readiness, availability, safety, output, or time."
+  },
+  "community_strategy_observations": [
+    {
+      "claim": "Ironman community discussions compare LMS points with saving 750 Slayer reward points for a Rune pouch, often describing particular opponents, hours, worlds, or hiding/kill tactics.",
+      "source_ids": ["reddit-ironscape-rune-pouch-experience"],
+      "treatment": "strategy-candidate-not-fact",
+      "boundary": "Opponent mix, bots, world population, player PvP skill, queue, kill count, points, purchase time, and whether either path is better are all variable and must not be imported as a route conclusion."
+    },
+    {
+      "claim": "Video guides commonly teach build setup, spellbook choice, gear/prayer switches, fog movement, chest routing, and fight sequences.",
+      "source_ids": ["youtube-lms-guide-discovery"],
+      "treatment": "strategy-candidate-not-fact",
+      "boundary": "The supplied build makes the advice mechanically possible in a match, but it does not establish player execution, opponents, accessibility, win chance, attention, points, or a recommended account target."
+    },
+    {
+      "claim": "Some established Ironman guides frame LMS Rune pouch, rune arrows, blighted supplies, or imbue scrolls as early progression targets.",
+      "source_ids": ["reddit-ironscape-rune-pouch-experience", "youtube-lms-guide-discovery"],
+      "treatment": "strategy-candidate-not-fact",
+      "boundary": "The central strategy model must later compare provided account state, alternative costs, observed PvP readiness, player preference, and current mechanics. This package records no stop target or timing."
+    }
+  ],
+  "state_boundaries": [
+    "Never infer membership, total level, Quest points, 48-hour member playtime, existing shop access, previous Competitive win, tradeable-reward eligibility, daily forfeit count, current world, available mode, High Stakes activation, queue population, or a match start.",
+    "Never infer account build, supplied loadout, spellbook, selected map, fog position, food, potion, rune, prayer, special attack, switch, client setup, connection, external inventory, PvP readiness, opponent identity, bot presence, player skill, combat safety, or attention from a plan or guide.",
+    "Never infer kills, logout kill credit, keys, chest/crate rolls, loot, damage, death, survival, forfeit, placement, victory, rating, high-stakes prize, next-entry waiver, point award, elapsed time, or Competitive availability. The fixed point table only validates player-reported match observations.",
+    "Never infer LMS point balance, shop item ownership, tradeability, one-win gate, store playtime gate, Rune pouch ownership, bank note exchange, imbue origin, loot-bag state, collection-log slot, Victor-cape claim, cosmetic unlock, or resale. Each is an explicit observation or confirmed transaction.",
+    "Safe LMS death means the supplied match does not risk external gear; it does not make a match successful, a Hardcore Group Iron outcome safe, a Wilderness use case safe, or a later external item-loss result safe.",
+    "Official proposals and historic shop/reward sources may document context but do not alter the checked current catalog. The March 2026 proposed LMS Scroll of imbuing and blighted surge sacks are intentionally not normalized as present shop stock."
+  ],
+  "proposed_normalization": {
+    "facts": [
+      {"id": "last-man-standing-current-access-and-match-mechanics", "treatment": "proposed-new", "content": "Current Ferox LMS mode rules, Casual/Competitive/High Stakes gates, members-world restriction, 750-total-plus-30-QP or 1,500-total alternative, queue thresholds, maps, supplied builds, supply limits, loot/key/crate, fog, safe-death, forfeiture, repeatability, and observation boundary."},
+      {"id": "last-man-standing-current-point-and-shop-mechanics", "treatment": "proposed-new", "content": "Current April 2026 point table and one-kill requirement, maximum nine points, Justine 48-hour member-playtime gate, May 2026 one-win tradeable gate, complete shop rows/costs, resale boundary, current Rune pouch/note paths, collection-log statements, and current non-stock proposal conflict."},
+      {"id": "last-man-standing-rune-pouch-alternative-bridge", "treatment": "proposed-new", "content": "Explicit alternatives across LMS, Slayer, and MTA, with existing-pouch and current-currency conditions. Preserve the path choice for strategy rather than hard-coding LMS as optimal."},
+      {"id": "last-man-standing-imbue-alternative-bridge", "treatment": "proposed-new", "content": "Separate LMS magic-shortbow/ring-of-wealth scrolls from Emir's Arena reusable Scroll of imbuing and other minigame imbue paths. Record LMS's proposed-but-not-current Scroll of imbuing as a conflict, not an acquisition action."}
+    ],
+    "actions": [
+      {"id": "action:record-last-man-standing-observation", "treatment": "proposed-new", "requirements": "player-reported access, selected mode, optional queue/match/result/shop observations", "transition": "store report-only facts and validate current fixed gates, point table, and catalog references; never create a player, match, kill, point, item, purchase, readiness, or timer result."},
+      {"id": "action:start-last-man-standing-match", "treatment": "proposed-new", "requirements": "observed mode availability, selected mode, observed account gate, observed sufficient queue/start, observed daily-forfeit eligibility, High Stakes constraints where relevant, and player-confirmed entry", "transition": "record a started supplied-match context only after confirmation; create no kill, item, point, survival, win, rating, or shop state."},
+      {"id": "action:record-last-man-standing-result", "treatment": "proposed-new", "requirements": "player-reported started match, mode, result, kill count, placement, point delta, and optional rating/win/forfeit state", "transition": "validate Competitive point-table compatibility where facts are supplied and update only reported persistent observations. Never calculate an omitted result or award points automatically."},
+      {"id": "action:buy-last-man-standing-reward", "treatment": "proposed-new", "requirements": "observed Justine access, 48-hour member-playtime gate, current LMS point balance, selected catalog row/quantity, one-win tradeable gate where applicable, item-specific conditions, and player-confirmed purchase", "transition": "subtract only the exact confirmed point cost and add only the confirmed fixed shop item/pack/unlock. Do not infer use, resale, collection-log result, or route value."},
+      {"id": "action:exchange-last-man-standing-rune-pouch-note", "treatment": "proposed-new", "requirements": "observed Rune pouch note, bank interaction, no existing Rune pouch, and player-confirmed exchange", "transition": "replace the reported note with the reported Rune pouch only after confirmation; never create a note or assume pouch capacity/use."},
+      {"id": "action:claim-last-man-standing-victor-cape", "treatment": "proposed-new", "requirements": "observed Competitive win count meeting selected threshold and player-confirmed claim", "transition": "record only the confirmed cape/cosmetic claim. Casual wins do not qualify and no win total is inferred."}
+    ],
+    "graph_nodes": [
+      "activity:last-man-standing",
+      "mode:last-man-standing-casual",
+      "mode:last-man-standing-competitive",
+      "mode:last-man-standing-high-stakes",
+      "condition:last-man-standing-competitive-account-gate",
+      "condition:last-man-standing-shop-48-hour-member-playtime",
+      "condition:last-man-standing-tradeable-shop-win",
+      "currency:last-man-standing-points",
+      "goal:last-man-standing-rune-pouch",
+      "goal:last-man-standing-rune-pouch-note",
+      "goal:last-man-standing-msb-scroll",
+      "goal:last-man-standing-row-scroll",
+      "capability:last-man-standing-supplied-pvp-loadout",
+      "capability:last-man-standing-wilderness-supplies",
+      "collection-log:last-man-standing-shop"
+    ],
+    "graph_edges": [
+      {"from": "condition:last-man-standing-competitive-account-gate", "to": "mode:last-man-standing-competitive", "type": "requires", "evidence": "Competitive requires a members world and either 750 total plus 30 Quest points or 1,500 total."},
+      {"from": "mode:last-man-standing-competitive", "to": "currency:last-man-standing-points", "type": "produces", "evidence": "Only an observed Competitive result with at least one player kill can award points under the current placement/non-stacking bonus table."},
+      {"from": "condition:last-man-standing-shop-48-hour-member-playtime", "to": "goal:last-man-standing-rune-pouch", "type": "requires", "evidence": "All Justine purchases require 48 hours playtime as a member."},
+      {"from": "condition:last-man-standing-tradeable-shop-win", "to": "goal:last-man-standing-rune-pouch-note", "type": "requires", "evidence": "Current shop requires one observed LMS win for tradeable reward rows, including the note."},
+      {"from": "currency:last-man-standing-points", "to": "goal:last-man-standing-rune-pouch", "type": "requires", "evidence": "Direct Rune pouch costs 75 LMS points."},
+      {"from": "currency:last-man-standing-points", "to": "goal:last-man-standing-rune-pouch-note", "type": "requires", "evidence": "Rune pouch note costs 75 LMS points and needs later bank exchange."},
+      {"from": "currency:last-man-standing-points", "to": "goal:last-man-standing-msb-scroll", "type": "requires", "evidence": "Magic shortbow scroll costs 5 LMS points."},
+      {"from": "currency:last-man-standing-points", "to": "goal:last-man-standing-row-scroll", "type": "requires", "evidence": "Ring of wealth scroll costs 5 LMS points."},
+      {"from": "activity:last-man-standing", "to": "capability:last-man-standing-supplied-pvp-loadout", "type": "unlocks", "evidence": "A started LMS match supplies the selected temporary build environment without proving external ownership."},
+      {"from": "currency:last-man-standing-points", "to": "capability:last-man-standing-wilderness-supplies", "type": "produces", "evidence": "Current fixed-price Justine rows include blighted supplies, teleports, looting bag, clue box, and Trouver parchment."},
+      {"from": "currency:last-man-standing-points", "to": "collection-log:last-man-standing-shop", "type": "produces", "evidence": "Current shop source identifies 32 collection-log item rows; purchases and log slots remain observed."}
+    ],
+    "account_observations": [
+      {"key": "last_man_standing_access_observation", "type": "object", "shape": {"membership": "boolean_or_null", "total_level": "integer_or_null", "quest_points": "integer_or_null", "member_playtime_hours": "number_or_null", "competitive_gate_met": "boolean_or_null", "high_stakes_gate_met": "boolean_or_null", "ironman_mode": "none|ironman|hardcore_ironman|group_ironman|hardcore_group_ironman|unknown", "daily_forfeit_count": "integer_or_null", "observed_at": "RFC3339_timestamp_or_null"}, "rule": "Validate supplied gates only. Never infer membership, progression, 48-hour store eligibility, mode eligibility, or daily availability."},
+      {"key": "last_man_standing_queue_observation", "type": "object", "shape": {"world": "integer_or_null", "mode": "casual|competitive|high_stakes|unknown", "mode_active": "boolean_or_null", "lobby_count": "integer_or_null", "started": "boolean_or_null", "selected_map": "desert-island|wild-varrock|unknown", "observed_at": "RFC3339_timestamp_or_null"}, "rule": "Queue and map are live events. No model action supplies participants, a world, mode activation, or a start."},
+      {"key": "last_man_standing_match_observation", "type": "object", "shape": {"mode": "casual|competitive|high_stakes|unknown", "account_build": "max-med|zerker|one-def-pure|unknown", "spellbook": "standard|ancient|lunar|unknown", "outcome": "unknown|forfeit|death|survived|winner|completed", "kills": "integer_or_null", "placement": "integer_1_to_24_or_null", "reported_point_delta": "integer_or_null", "rating_delta": "integer_or_null", "elapsed_minutes": "number_or_null", "reported_supplied_loadout": "map_or_null", "reported_chest_or_crate_results": "list_or_null"}, "rule": "All combat, opponent, loot, point, and timing fields are report-only. The fixed table validates only fully supplied qualifying Competitive outcomes."},
+      {"key": "last_man_standing_reward_observation", "type": "object", "shape": {"points": "integer_or_null", "competitive_wins": "integer_or_null", "tradeable_reward_gate_met": "boolean_or_null", "shop_transactions": "list_or_null", "rune_pouch_owned": "boolean_or_null", "rune_pouch_note_count": "integer_or_null", "collection_log_items": "set_or_null", "cosmetic_unlocks": "set_or_null", "victor_capes_claimed": "set_or_null", "observed_at": "RFC3339_timestamp_or_null"}, "rule": "Balances, wins, purchase gates, items, collection log, and caps are never backfilled from a target or a plan."},
+      {"key": "pvp_readiness_observation", "type": "object", "shape": {"player_reported_comfort": "unknown|not-ready|learning|ready", "input_method": "unknown|keyboard-mouse|mobile|other", "connection_notes": "string_or_null", "switching_prayer_spells": "player-reported object_or_null", "observed_at": "RFC3339_timestamp_or_null"}, "rule": "This supports later player-preference and safety strategy without inferring skill, win chance, opponent quality, activity access, attention, or points."}
+    ]
+  },
+  "conflicts_and_unknowns": [
+    {"id": "lms-scroll-of-imbuing-proposal-not-current-stock", "status": "intentional-current-versus-proposal-boundary", "detail": "March 2026 material proposed adding Scroll of imbuing and blighted surge sacks to LMS, but the checked current Justine catalog does not list them. Do not create LMS acquisition actions until an authoritative current shop source changes."},
+    {"id": "lms-reward-removal-proposal-not-current-stock", "status": "intentional-current-versus-proposal-boundary", "detail": "March 2026 material proposed moving/removing several LMS rewards. The checked current shop still lists the full catalog recorded here. The central integration should source-check again before any future removal/move migration."},
+    {"id": "shop-tradeability-and-ironman-transaction-boundary", "status": "current-mechanics-boundary", "detail": "The shop's one-win gate applies to tradeable rewards and 48-hour member playtime applies to all shop purchases. This package lists current rows but does not assume that a particular Ironman account has the one-win gate, available points, item prerequisites, or a completed transaction."},
+    {"id": "pvp-throughput-and-opponent-state", "status": "intentional-model-boundary", "detail": "Queue availability, opponents, bot population, player execution, map, fog, chest rolls, kills, placement, points, and time vary per match. Source tables validate reported results; they cannot produce a deterministic rate or readiness score."},
+    {"id": "collection-log-count-versus-account-state", "status": "cross-package-boundary", "detail": "The shop source says 32 listed collection-log items and documents the full-shop aggregate. Individual current Collection Log slots, prior purchases, resale, and claim state need explicit account observations before any completion analysis."}
+  ],
+  "coverage": {
+    "access": true,
+    "loop": true,
+    "currencies": true,
+    "rewards": true,
+    "failure_state": true,
+    "sources": true,
+    "normalization": true,
+    "modes_covered": ["Casual", "Competitive", "High Stakes"],
+    "current_shop_catalog_complete": true,
+    "supplied_builds_covered": ["Max/Med", "Zerker", "1 Def Pure"],
+    "rune_pouch_alternatives_covered": ["LMS direct", "LMS note", "Slayer", "Mage Training Arena"],
+    "imbue_alternatives_covered": ["LMS Magic shortbow scroll", "LMS Ring of wealth scroll", "Emir's Arena Scroll of imbuing", "Nightmare Zone and Soul Wars activity-specific paths"],
+    "production_files_modified": 0
+  }
+}
