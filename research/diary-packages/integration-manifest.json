@@ -1,0 +1,487 @@
+{
+  "manifest_schema_version": 1,
+  "package_type": "diary-integration-manifest",
+  "status": "audit-complete",
+  "generated_at": "2026-08-22",
+  "scope": "Reconciliation manifest for the twelve regional Achievement Diary research packages. It inventories factual research and proposed normalization only. It does not rank diaries, select a route, alter production data, infer account readiness, or resolve disputed mechanics.",
+  "input_set": {
+    "package_count": 12,
+    "package_paths": [
+      "research/diary-packages/ardougne.json",
+      "research/diary-packages/desert.json",
+      "research/diary-packages/falador.json",
+      "research/diary-packages/fremennik.json",
+      "research/diary-packages/kandarin.json",
+      "research/diary-packages/karamja.json",
+      "research/diary-packages/kourend-kebos.json",
+      "research/diary-packages/lumbridge-draynor.json",
+      "research/diary-packages/morytania.json",
+      "research/diary-packages/varrock.json",
+      "research/diary-packages/western-provinces.json",
+      "research/diary-packages/wilderness.json"
+    ],
+    "task_total": 488,
+    "tier_totals": {
+      "easy": 134,
+      "medium": 152,
+      "hard": 125,
+      "elite": 77
+    },
+    "region_inventory": [
+      {"package": "ardougne.json", "region_label": "Ardougne", "account_region_key": "Ardougne", "region_slug": "ardougne", "tasks": {"easy": 10, "medium": 12, "hard": 12, "elite": 8, "total": 42}},
+      {"package": "desert.json", "region_label": "Desert", "account_region_key": "Desert", "region_slug": "desert", "tasks": {"easy": 11, "medium": 12, "hard": 10, "elite": 6, "total": 39}},
+      {"package": "falador.json", "region_label": "Falador", "account_region_key": "Falador", "region_slug": "falador", "tasks": {"easy": 11, "medium": 14, "hard": 11, "elite": 6, "total": 42}},
+      {"package": "fremennik.json", "region_label": "Fremennik Province", "account_region_key": "Fremennik", "region_slug": "fremennik", "tasks": {"easy": 10, "medium": 9, "hard": 9, "elite": 6, "total": 34}},
+      {"package": "kandarin.json", "region_label": "Kandarin", "account_region_key": "Kandarin", "region_slug": "kandarin", "tasks": {"easy": 11, "medium": 14, "hard": 11, "elite": 7, "total": 43}},
+      {"package": "karamja.json", "region_label": "Karamja", "account_region_key": "Karamja", "region_slug": "karamja", "tasks": {"easy": 10, "medium": 19, "hard": 10, "elite": 5, "total": 44}},
+      {"package": "kourend-kebos.json", "region_label": "Kourend & Kebos", "account_region_key": "Kourend & Kebos", "region_slug": "kourend-kebos", "tasks": {"easy": 12, "medium": 13, "hard": 10, "elite": 8, "total": 43}},
+      {"package": "lumbridge-draynor.json", "region_label": "Lumbridge & Draynor", "account_region_key": "Lumbridge & Draynor", "region_slug": "lumbridge-draynor", "tasks": {"easy": 12, "medium": 12, "hard": 11, "elite": 6, "total": 41}},
+      {"package": "morytania.json", "region_label": "Morytania", "account_region_key": "Morytania", "region_slug": "morytania", "tasks": {"easy": 11, "medium": 11, "hard": 10, "elite": 6, "total": 38}},
+      {"package": "varrock.json", "region_label": "Varrock", "account_region_key": "Varrock", "region_slug": "varrock", "tasks": {"easy": 13, "medium": 12, "hard": 8, "elite": 5, "total": 38}},
+      {"package": "western-provinces.json", "region_label": "Western Provinces", "account_region_key": "Western Provinces", "region_slug": "western-provinces", "tasks": {"easy": 11, "medium": 13, "hard": 13, "elite": 7, "total": 44}},
+      {"package": "wilderness.json", "region_label": "Wilderness", "account_region_key": "Wilderness", "region_slug": "wilderness", "tasks": {"easy": 12, "medium": 11, "hard": 10, "elite": 7, "total": 40}}
+    ]
+  },
+  "validation_results": {
+    "all_input_json_parses": true,
+    "all_source_task_ids_unique_across_input_set": true,
+    "all_explicit_proposed_action_ids_unique_across_input_set": true,
+    "all_task_or_claim_source_ids_are_defined_by_their_own_package_catalog": true,
+    "ascii_and_trailing_whitespace_checks": "pass",
+    "source_reference_coverage": {
+      "per_task_or_tier_source_ids": ["desert", "kourend-kebos", "varrock"],
+      "catalog_level_source_coverage_only": ["ardougne", "falador", "fremennik", "kandarin", "karamja", "lumbridge-draynor", "morytania", "western-provinces", "wilderness"],
+      "central_registry_status": "Package-local source catalogs are internally complete. Many use IDs not yet registered in research/sources.json, or current-page aliases for existing registry IDs; production integration must reconcile those before introducing fact records."
+    }
+  },
+  "canonicalization_contract": {
+    "region_identity": {
+      "account_state_rule": "Use the exact display-name keys already required by scripts/evaluate_progression.py DIARY_REGIONS for account_state.diary_tiers. Do not replace those keys with slugs.",
+      "artifact_slug_rule": "Use region_slug from input_set.region_inventory only in new IDs. A slug is an identifier namespace, not an account-state key.",
+      "tiers_in_order": ["easy", "medium", "hard", "elite"]
+    },
+    "task_identity": {
+      "source_task_id_rule": "Retain every package task.id unchanged as the research traceability key. The 488 supplied IDs are globally unique.",
+      "canonical_task_key_pattern": "diary-task:<region_slug>:<source_task_id>",
+      "canonical_task_milestone_pattern": "milestone:diary-task:<region_slug>:<source_task_id>",
+      "planned_task_action_pattern": "action:complete-diary-task:<region_slug>:<source_task_id>",
+      "no_implicit_output_rule": "A task action may add only its own task milestone and sourced deterministic consumptions or fixed XP. It must not award random loot, a combat kill, crop output, minigame points, daily collections, charges, collection-log progress, or a completed tier."
+    },
+    "tier_claim_identity": {
+      "planned_claim_action_pattern": "action:record-diary-claim:<region_slug>:<tier>",
+      "planned_claim_milestone_pattern": "milestone:diary-claim:<region_slug>:<tier>",
+      "account_state_target": "account_state.diary_tiers[account_region_key]",
+      "claim_precondition_pattern": "all current-tier task milestones, every preceding-tier claim milestone, and a player-confirmed in-game claim event",
+      "integration_status": "blocked-pending-claim-semantics-decision",
+      "reason": "The current evaluator treats diary_tiers as externally confirmed observations, while several packages propose actions that derive a claimed tier from task milestones. Preserve the external-observation rule unless a focused model change and tests explicitly approve a different policy."
+    },
+    "lamp_reporting": {
+      "canonical_entitlement_pattern": "entitlement:diary-lamp:<region_slug>:<tier>",
+      "transition_rule": "Report a player-chosen XP award; do not apply gain_xp until the recipient skill is explicitly selected.",
+      "standard_values": {
+        "easy": {"xp": 2500, "recipient_skill_minimum": 30},
+        "medium": {"xp": 7500, "recipient_skill_minimum": 40},
+        "hard": {"xp": 15000, "recipient_skill_minimum": 50},
+        "elite": {"xp": 50000, "recipient_skill_minimum": 70}
+      },
+      "karamja_exception": {
+        "easy": {"xp": 1000, "recipient_skill_minimum": 1},
+        "medium": {"xp": 5000, "recipient_skill_minimum": 30},
+        "hard": {"xp": 10000, "recipient_skill_minimum": 40},
+        "elite": {"xp": 50000, "recipient_skill_minimum": 70}
+      },
+      "authoritative_existing_fact": "achievement-diary-universal-claim-and-fixed-lamps"
+    },
+    "reward_item_and_capability_identity": {
+      "item_pattern": "item:diary-reward:<region_slug>:<tier>",
+      "capability_pattern": "capability:diary:<region_slug>:<utility_slug>",
+      "charged_or_daily_rule": "Represent a charge, daily quantity, proc chance, cooldown, or variable output as a capability and a separately observed state when the account schema supports it. Do not turn it into a free repeatable action or an inventory grant.",
+      "current_item_rule": "Where an existing model already uses a single current-tier item, preserve that ID and reference it rather than adding four competing item nodes."
+    },
+    "graph_edge_patterns": [
+      {"from": "verified prerequisite condition or existing canonical node", "to": "planned task action", "type": "requires"},
+      {"from": "planned task action", "to": "canonical task milestone", "type": "produces"},
+      {"from": "current-tier task milestones and preceding claim state", "to": "planned claim action", "type": "requires"},
+      {"from": "player-confirmed claim", "to": "claimed tier state, lamp entitlement, reward item, or durable capability", "type": "unlocks_or_produces"},
+      {"from": "existing canonical system", "to": "diary task action", "type": "requires_or_references", "rule": "Reference its existing node/action; never recreate its travel, charge, counter, combat, crop, or minigame mechanics."},
+      {"from": "RNG activity", "to": "item or collection-log outcome", "type": "makes_obtainable", "rule": "Never use produces for a random drop."}
+    ]
+  },
+  "package_schema_variation": [
+    {
+      "area": "task layout",
+      "forms": {
+        "flat_tasks_with_embedded_tier": ["ardougne", "fremennik", "kandarin", "kourend-kebos", "lumbridge-draynor", "morytania", "western-provinces", "wilderness"],
+        "nested_tiers_with_tasks": ["desert", "falador", "karamja", "varrock"]
+      },
+      "normalization_requirement": "Extract a normalized tier from tasks[].tier or the containing tiers[].tier before creating canonical task keys."
+    },
+    {
+      "area": "requirements and inputs",
+      "forms": ["nested requirements plus items", "top-level skills, quests, gates, and items", "optional alternatives or account variants"],
+      "normalization_requirement": "Normalize every requirement into typed predicates and every consumed, reusable, optional, or alternative input into a structured input list. Preserve a source text field for requirements that cannot yet be represented by the engine."
+    },
+    {
+      "area": "completion boundary",
+      "forms": ["deterministic_completion_effect", "completion_effect", "completion_boundary", "completion", "completion_determinism", "determinism"],
+      "normalization_requirement": "Map to one enum: deterministic, player_confirmed_skill_success, player_confirmed_encounter, player_confirmed_pvp, external_farming_state, daily_or_charge_state, variable_or_rng, or mixed. Never infer a more permissive result from missing detail."
+    },
+    {
+      "area": "tier reward and lamp representation",
+      "forms": ["tier_reward_claims", "tier_claims", "tier_rewards", "tiers[].reward", "claim_action", "claim_action_id", "claim_reference"],
+      "normalization_requirement": "Create one tier-reward record with tier, item, lamp, capabilities, source IDs, and existing-reference IDs."
+    },
+    {
+      "area": "source catalog metadata",
+      "forms": ["publisher", "kind", "type", "source_type", "coverage", "currentness_note", "bare id/url/use"],
+      "normalization_requirement": "The central registry must use publisher, kind, URL, checked_at, and use. Retain package-specific notes in an integration provenance field rather than silently discarding them."
+    },
+    {
+      "area": "proposed normalization",
+      "forms": ["proposed_normalization", "normalization_proposal", "proposed_normalized_action_specs", "action_convention", "action_patterns", "graph_edges", "edge_patterns"],
+      "normalization_requirement": "Treat all package proposals as inputs to the canonicalization contract above, not as executable production action definitions."
+    }
+  ],
+  "existing_canonical_references": [
+    {
+      "region_slug": "ardougne",
+      "facts": ["diary-ardougne-hard-elite-utility", "achievement-diary-universal-claim-and-fixed-lamps", "transport-network-audit", "residual-transport-network"],
+      "actions": ["action:claim-ardougne-cloak", "action:ardougne-monastery-teleport", "action:ardougne-cloak-elite-farm-teleport"],
+      "reference_reconciliation": "The package names two non-existent action IDs ending in -current and -monastery-teleport. Map only after the central integrator confirms the three listed existing actions are the intended counterparts."
+    },
+    {
+      "region_slug": "desert",
+      "facts": ["diary-desert-hard-elite-utility", "transport-network-audit"],
+      "actions": [],
+      "reference_reconciliation": "Reuse existing Camulet, carpet, eagle, redirected-tablet, Pyramid Plunder, and Kalphite access records; task milestones must not recreate those mechanics."
+    },
+    {
+      "region_slug": "falador",
+      "facts": ["diary-falador-hard-utility", "utility-motherlode-mine-access-and-nuggets", "utility-motherlode-mine-reward-milestones", "pvm-dragon-defender-foundation-audit"],
+      "actions": [],
+      "reference_reconciliation": "Motherlode, Prospector, Warriors' Guild, balloon, and existing transport facts are dependencies only. The hard Motherlode reward conflict is a blocker below."
+    },
+    {
+      "region_slug": "fremennik",
+      "facts": ["diary-fremennik-hard-utility", "throne-of-miscellania", "royal-trouble", "managing-miscellania", "enlightened-journey-and-balloon-transport", "eagles-peak-and-eagle-transport", "druidic-ritual-to-eadgars-ruse-trollheim-chain", "transport-network-audit"],
+      "actions": [],
+      "reference_reconciliation": "Do not duplicate Fremennik quest, kingdom, balloon, eagle, Trollheim, or Lunar mechanics."
+    },
+    {
+      "region_slug": "kandarin",
+      "facts": ["diary-kandarin-hard-utility", "achievement-diary-universal-claim-and-fixed-lamps"],
+      "actions": [],
+      "reference_reconciliation": "Waterfall Dungeon, fairy-ring, Barbarian Assault, player-owned house, and Lunar systems remain external canonical dependencies."
+    },
+    {
+      "region_slug": "karamja",
+      "facts": ["diary-karamja-hard-elite-utility", "achievement-diary-universal-claim-and-fixed-lamps"],
+      "actions": [],
+      "reference_reconciliation": "Preserve the current Karamja lamp exception and model Brimhaven, Fight Cave, and crop results as observed boundaries."
+    },
+    {
+      "region_slug": "kourend-kebos",
+      "facts": ["diary-kourend-kebos-hard-utility", "diary-kourend-kebos-hard-task-utility-branches", "kharedsts-memoirs-and-book-of-the-dead", "the-depths-of-despair", "the-queen-of-thieves", "tale-of-the-righteous", "the-ascent-of-arceuus", "lovakengj-minecart-network", "a-kingdom-divided", "utility-tithe-farm-access-and-currency", "utility-tithe-farm-durable-rewards", "poh-convenience-foundation"],
+      "actions": ["action:complete-kourend-hard-xerics-heart-teleport-task", "action:complete-kourend-hard-monster-examine-task", "action:claim-radas-blessing-3", "action:radas-blessing-kourend-woodland-teleport", "action:claim-ash-sanctifier", "action:build-mounted-xerics-talisman"],
+      "reference_reconciliation": "Memoir pages and charges, Xeric's Heart alternatives, Rada's blessing, Ash sanctifier, POH, Wintertodt, and Tithe Farm have existing ownership or state models. Add only unrepresented diary tasks after exact action deduplication."
+    },
+    {
+      "region_slug": "lumbridge-draynor",
+      "facts": ["achievement-diary-universal-claim-and-fixed-lamps", "diary-lumbridge-draynor-hard-elite-utility", "diary-lumbridge-draynor-task-utility-branches"],
+      "actions": ["action:claim-explorers-ring-current", "action:explorers-ring-hard-cabbage-teleport", "action:complete-lumbridge-hard-bones-to-peaches-task", "action:unlock-bones-to-peaches"],
+      "reference_reconciliation": "Explorer's Ring, daily limits, and the Bones to Peaches task are already modeled. The package must contribute only remaining task research and claim completeness, not parallel actions or nodes."
+    },
+    {
+      "region_slug": "morytania",
+      "facts": ["diary-morytania-hard-elite-utility"],
+      "actions": [],
+      "reference_reconciliation": "Reuse existing Kharyrll, Ectophial, farming, Barrows, Slayer, and transport records as dependencies rather than creating alternate access models."
+    },
+    {
+      "region_slug": "varrock",
+      "facts": ["diary-varrock-hard-utility", "varrock-museum-kudos-paths", "transport-network-audit", "poh-convenience-foundation"],
+      "actions": ["action:learn-digsite-pendant-enchantment", "action:create-digsite-pendant", "action:create-digsite-pendant-with-tablet", "action:digsite-pendant-digsite-teleport", "action:digsite-pendant-fossil-island-teleport", "action:unlock-balloon-varrock", "action:balloon-trip-varrock"],
+      "reference_reconciliation": "The package's named Museum-Kudos and Digsite-pendant action IDs are descriptive rather than exact current IDs. Map them to the listed actions or add a factual reference only after checking the intended behavior."
+    },
+    {
+      "region_slug": "western-provinces",
+      "facts": ["diary-western-provinces-hard-elite-utility"],
+      "actions": [],
+      "reference_reconciliation": "Pest Control credit, Void ownership, chompy counters, farming state, teleport-crystal charges, and boss kills need their own observed-state or ownership records."
+    },
+    {
+      "region_slug": "wilderness",
+      "facts": ["diary-wilderness-hard-elite-utility"],
+      "actions": [],
+      "reference_reconciliation": "Preserve existing hard-diary lesser-boss-lair access and model matching Slayer-task access as a separate alternative. Do not imply PvP survival, extraction, drops, or collection-log progress."
+    }
+  ],
+  "duplicate_concepts_and_conflicts": {
+    "overlapping_concepts": [
+      {"concept": "universal claim rule and lamps", "canonical_fact": "achievement-diary-universal-claim-and-fixed-lamps", "affected_packages": "all"},
+      {"concept": "Ardougne cloak and monastery/farm transport", "canonical_facts_or_actions": ["diary-ardougne-hard-elite-utility", "action:claim-ardougne-cloak", "action:ardougne-monastery-teleport", "action:ardougne-cloak-elite-farm-teleport"], "affected_packages": ["ardougne"]},
+      {"concept": "Explorer's Ring and Bones to Peaches", "canonical_facts_or_actions": ["diary-lumbridge-draynor-task-utility-branches", "action:claim-explorers-ring-current", "action:complete-lumbridge-hard-bones-to-peaches-task"], "affected_packages": ["lumbridge-draynor"]},
+      {"concept": "Kourend memoirs, Xeric's talisman, Rada's blessing, and Ash sanctifier", "canonical_facts_or_actions": ["diary-kourend-kebos-hard-task-utility-branches", "action:complete-kourend-hard-xerics-heart-teleport-task", "action:claim-radas-blessing-3", "action:claim-ash-sanctifier"], "affected_packages": ["kourend-kebos"]},
+      {"concept": "Motherlode, Prospector, and Falador reward mechanics", "canonical_facts_or_actions": ["utility-motherlode-mine-access-and-nuggets", "utility-motherlode-mine-reward-milestones", "diary-falador-hard-utility"], "affected_packages": ["falador", "varrock"]},
+      {"concept": "Museum Kudos, Digsite pendant, balloon, and Skull sceptre", "canonical_facts_or_actions": ["varrock-museum-kudos-paths", "transport-network-audit"], "affected_packages": ["varrock"]},
+      {"concept": "Farming growth, protection, harvest, and daily collection", "canonical_treatment": "external farming and recurring observations", "affected_packages": ["ardougne", "kandarin", "karamja", "morytania", "western-provinces"]},
+      {"concept": "combat, minigame, RNG, and collection-log completion", "canonical_treatment": "explicit observed success or makes_obtainable edge", "affected_packages": "all"}
+    ],
+    "unresolved_factual_conflicts": [
+      {
+        "id": "falador-hard-motherlode-pay-dirt-benefit",
+        "status": "unresolved",
+        "affected_shared_record": "data/facts/achievement-diary-utility.json#diary-falador-hard-utility",
+        "conflict": "The shared record says Falador Hard grants 10% more experience from Motherlode pay-dirt. The current Falador package says the medium and hard pay-dirt benefits were removed and the live elite reward is a higher ore-roll benefit instead.",
+        "package_evidence": "research/diary-packages/falador.json#conflicts_and_unknowns",
+        "recommended_authoritative_source_resolution": {
+          "source_priority": ["current Old School RuneScape Wiki Falador Diary page", "current Old School RuneScape Wiki Achievement Diary Rewards page", "official update or poll only when it documents the live change"],
+          "required_outcome": "Record the verified live tier and exact mechanic in the shared fact, retain a dated stale-claim note, and do not derive a pay-dirt XP multiplier until that result is verified."
+        }
+      },
+      {
+        "id": "package-to-production-action-id-aliases",
+        "status": "unresolved-identifier-conflict",
+        "affected_packages": ["ardougne", "varrock"],
+        "conflict": "Several package reference labels do not match current production action IDs. Ardougne uses action:claim-ardougne-cloak-current and action:ardougne-cloak-monastery-teleport, but production has action:claim-ardougne-cloak and action:ardougne-monastery-teleport. Varrock similarly names descriptive rather than current Museum-Kudos and Digsite-pendant action IDs.",
+        "recommended_authoritative_source_resolution": {
+          "source_priority": ["data/progression/actions.json", "linked fact record", "package source catalog"],
+          "required_outcome": "Create an explicit alias map only where the input/output behavior matches. Do not redirect an ID solely because its display name is similar."
+        }
+      },
+      {
+        "id": "diary-claim-state-semantics",
+        "status": "unresolved-model-conflict",
+        "affected_packages": "all",
+        "conflict": "Packages consistently model prerequisites for deterministic claims, while the current dependency analyzer intentionally treats diary_tiers as externally confirmed observations. Automatically setting a diary tier from task milestones would change that model contract.",
+        "recommended_authoritative_source_resolution": {
+          "source_priority": ["scripts/evaluate_progression.py account-state contract", "tests/test_analyze_dependencies.py diary-tier observation test", "project philosophy that account observations are explicit"],
+          "required_outcome": "Choose one policy in a focused change: retain player-confirmed claim observations, or add a fully tested claim-transition policy. Do not mix both within regions."
+        }
+      }
+    ],
+    "stale_claims_to_preserve_as_corrections": [
+      {"package": "desert", "claim": "Historical Desert sceptre capacities 4/5/6/8", "current_package_value": "10/25/50/100"},
+      {"package": "kandarin", "claim": "Ropes remain a recurring Waterfall Dungeon input after Medium Kandarin", "current_package_value": "post-17-September-2025 exception"},
+      {"package": "karamja", "claim": "Underground Shilo mine is a later-tier reward or hard task names Duradel", "current_package_value": "Medium mine access; Shilo Village Slayer Master assignment since 10 July 2024"},
+      {"package": "lumbridge-draynor", "claim": "Elite task pickpockets Movario or diary gates old shortcuts", "current_package_value": "Dorgesh-Kaan pylon grapple; shortcut diary gates removed"},
+      {"package": "morytania", "claim": "Canifis task names only Mazchna", "current_package_value": "Slayer Master in Canifis after While Guthix Sleeps"},
+      {"package": "varrock", "claim": "Easy/Medium armour double-mines coal/mithril or Easy unlocks Edgeville furnace", "current_package_value": "current gold/lovakite rewards and conditional furnace benefit"},
+      {"package": "wilderness", "claim": "All six boss lairs are Medium-gated, lava-dragon task requires burying bones, or Lundail gives 10/20/30/50 runes", "current_package_value": "2026 greater/lesser gates, kill task, and 40/80/120/200 runes"}
+    ]
+  },
+  "source_registry_reconciliation": {
+    "required_aliases_or_additions": [
+      {"package_id": "falador", "package_source_id": "wiki-falador-diary-current", "preferred_registry_id": "wiki-falador-diary", "treatment": "alias after URL equality check"},
+      {"package_id": "falador", "package_source_id": "wiki-achievement-diary-rewards-current", "preferred_registry_id": "wiki-achievement-diary-rewards", "treatment": "alias after URL equality check"},
+      {"package_id": "lumbridge-draynor", "package_source_id": "wiki-lumbridge-diary-current", "preferred_registry_id": "wiki-lumbridge-diary", "treatment": "alias after URL equality check"},
+      {"package_id": "lumbridge-draynor", "package_source_id": "wiki-achievement-diary-current", "preferred_registry_id": "wiki-achievement-diary", "treatment": "alias after URL equality check"},
+      {"package_id": "lumbridge-draynor", "package_source_id": "wiki-all-achievements-current", "preferred_registry_id": "wiki-achievement-diary-all-achievements", "treatment": "alias after URL equality check"},
+      {"package_id": "varrock", "package_source_id": "wiki-varrock-diary-current", "preferred_registry_id": "wiki-varrock-diary", "treatment": "alias after URL equality check"},
+      {"package_id": "varrock", "package_source_id": "wiki-achievement-diary-current", "preferred_registry_id": "wiki-achievement-diary", "treatment": "alias after URL equality check"},
+      {"package_id": "varrock", "package_source_id": "wiki-all-achievements-current", "preferred_registry_id": "wiki-achievement-diary-all-achievements", "treatment": "alias after URL equality check"},
+      {"package_id": "varrock", "package_source_id": "wiki-diary-rewards-current", "preferred_registry_id": "wiki-achievement-diary-rewards", "treatment": "alias after URL equality check"},
+      {"package_id": "kourend-kebos", "package_source_id": "wiki-kourend-kebos-diary", "preferred_registry_id": "wiki-kourend-diary", "treatment": "alias after URL equality check"},
+      {"package_id": "all", "package_source_id": "package-local current Wiki or official IDs not in research/sources.json", "preferred_registry_id": "new canonical source entry", "treatment": "add publisher, kind, URL, checked_at, and use before any production fact references it"}
+    ],
+    "non_authoritative_context_sources": [
+      {"package": "karamja", "source_id": "community-runehq-karamja", "treatment": "retain as corroboration only; do not use to override current Wiki mechanics"},
+      {"package": "wilderness", "source_id": "community-osrstoolkit-wilderness-diary", "treatment": "retain as corroboration only; do not use to override current Wiki 2026 mechanics"}
+    ],
+    "source_gap_policy": "Catalog-only packages may be integrated as region-level fact records after registry reconciliation, but a per-task production action should not be generated automatically unless it has either a task-level source ID or an explicit package-level inheritance rule recorded in the new diary package schema."
+  },
+  "observation_and_rng_boundaries": {
+    "universal": [
+      "Temporary boosts are allowed only where the current task source permits them; explicit non-boostable requirements remain hard gates.",
+      "Combat levels, items, and nominal access never prove an encounter victory or safe traversal.",
+      "RNG sources use makes_obtainable or a player-confirmed event; they never create deterministic inventory, collection-log, or kill effects.",
+      "Recurring/daily rewards, charges, cooldowns, crop timers, disease, yield, and minigame currency require dedicated observed state before they become executable transitions.",
+      "Player-versus-player availability, risk tolerance, survival, and extraction are observations, not requirements automatically satisfied by a Wilderness location node."
+    ],
+    "package_specific": [
+      {"packages": ["ardougne", "fremennik", "morytania", "western-provinces", "wilderness"], "boundary": "combat kills, catches, thefts, and boss/minigame wins are player-confirmed"},
+      {"packages": ["ardougne", "kandarin", "karamja", "morytania", "western-provinces"], "boundary": "farming maturity, protection, disease, and harvest are external farming observations"},
+      {"packages": ["ardougne", "fremennik", "kourend-kebos", "lumbridge-draynor", "morytania", "western-provinces", "wilderness"], "boundary": "daily allowances, charges, and chance effects are capabilities, not free repeatable outputs"},
+      {"packages": ["western-provinces"], "boundary": "chompy/jubbly thresholds, Pest Control credit, Void ownership, and boss kills stay explicit account observations"},
+      {"packages": ["wilderness"], "boundary": "elite boss-family sequencing needs staged-progress state; a different diary update resets staged progress"}
+    ]
+  },
+  "blockers_before_automatic_normalization": [
+    {
+      "id": "B001-diary-package-schema",
+      "severity": "blocking",
+      "blocks": ["automatic ingestion", "field validation"],
+      "issue": "There is no diary-package JSON schema, and the twelve packages use multiple incompatible field layouts.",
+      "required_resolution": "Add a research-only diary package schema and a validator that accepts the existing package provenance while requiring normalized task, claim, source, and boundary fields for future packages."
+    },
+    {
+      "id": "B002-source-registry-aliases",
+      "severity": "blocking",
+      "blocks": ["production fact creation", "validator-clean source links"],
+      "issue": "Package source catalogs are internally valid but many IDs are absent from research/sources.json or are current-page aliases for existing canonical IDs.",
+      "required_resolution": "Resolve the alias/addition table without changing URLs or checked dates by assumption."
+    },
+    {
+      "id": "B003-diary-claim-observation-policy",
+      "severity": "blocking",
+      "blocks": ["claim actions", "diary_tiers transitions", "graph producer edges"],
+      "issue": "Automatic claims proposed by packages conflict with the current external diary-tier observation model.",
+      "required_resolution": "Adopt and test one claim policy before any tier claim action is emitted."
+    },
+    {
+      "id": "B004-action-and-schema-contract",
+      "severity": "blocking",
+      "blocks": ["generated task actions"],
+      "issue": "Package proposals use diary_task and milestone notions that do not exactly match the current allowed action kinds and the JSON action schema lags the runtime's diary-tier effect support.",
+      "required_resolution": "Choose an existing action kind or add one deliberately, then align data/schemas/progression-action.schema.json, scripts/apply_action.py, scripts/validate_data.py, and focused tests."
+    },
+    {
+      "id": "B005-existing-reference-aliases",
+      "severity": "blocking",
+      "blocks": ["Ardougne and Varrock automatic deduplication"],
+      "issue": "Some package references name non-existent or descriptive production action IDs.",
+      "required_resolution": "Confirm behavior-level equivalence before mapping package labels to current action IDs."
+    },
+    {
+      "id": "B006-falador-motherlode-conflict",
+      "severity": "blocking",
+      "blocks": ["Falador reward correction", "Motherlode utility integration"],
+      "issue": "Current shared Falador Hard Motherlode text conflicts with the research package's current-page account.",
+      "required_resolution": "Perform the separately specified authoritative-source resolution; do not choose the package value silently."
+    },
+    {
+      "id": "B007-observation-model-gaps",
+      "severity": "blocking-for-automatic-transitions",
+      "blocks": ["combat/RNG/crop/daily/charge action effects"],
+      "issue": "The packages correctly retain these as observations, but the account model does not yet represent every required counter, charge, crop, boss sequence, or daily reset.",
+      "required_resolution": "Integrate factual capability records now if sourced; defer executable transitions until a bounded observation model exists."
+    },
+    {
+      "id": "B008-wilderness-staged-elite-progress",
+      "severity": "blocking",
+      "blocks": ["Wilderness elite boss-family task action"],
+      "issue": "The package records staged boss-family progress that resets after an unrelated diary update. Independent durable kill milestones would be incorrect.",
+      "required_resolution": "Add a dedicated observed staged-progress state or retain the task as player-confirmed, non-generated research."
+    },
+    {
+      "id": "B009-catalog-only-task-provenance",
+      "severity": "blocking-for-per-task-generation",
+      "blocks": ["automatic per-task source links"],
+      "issue": "Nine packages provide catalog-level rather than per-task source references.",
+      "required_resolution": "Add a documented inheritance rule in the diary schema or enrich the individual tasks before generating production actions."
+    }
+  ],
+  "facts_safe_to_integrate_directly": [
+    {
+      "id": "safe-diary-inventory-and-tier-counts",
+      "scope": "research metadata",
+      "fact": "The twelve-package set contains 488 tasks with the exact region and tier counts in input_set.region_inventory.",
+      "conditions": ["Keep this as an audited research inventory, not a claim that all task mechanics are normalized."]
+    },
+    {
+      "id": "safe-task-milestone-boundary",
+      "scope": "model policy",
+      "fact": "All packages agree that a completed task can establish its own durable milestone without fabricating variable rewards or unrelated account state.",
+      "conditions": ["Do not use for tier claim transitions until B003 is resolved."]
+    },
+    {
+      "id": "safe-universal-boundaries",
+      "scope": "model policy",
+      "fact": "Combat success, RNG, recurring/daily counters, charges, crop life cycles, PvP outcomes, and collection-log progress are explicit observations or probabilistic acquisition paths.",
+      "conditions": ["Existing detailed facts remain authoritative where they already exist."]
+    },
+    {
+      "id": "safe-standard-and-karamja-lamp-contract",
+      "scope": "reward reporting contract",
+      "fact": "Lamps are player-chosen XP awards, with the Karamja values and recipient thresholds as the documented exception.",
+      "conditions": ["Reference achievement-diary-universal-claim-and-fixed-lamps; do not generate immediate XP without an explicit recipient selection."]
+    },
+    {
+      "id": "safe-stale-claim-corrections-as-research-notes",
+      "scope": "research provenance",
+      "fact": "The stale claims listed in duplicate_concepts_and_conflicts.stale_claims_to_preserve_as_corrections are intentionally retained with current-package alternatives.",
+      "conditions": ["The Falador Motherlode correction remains excluded pending B006."]
+    }
+  ],
+  "integration_waves": [
+    {
+      "id": "W1-source-registry-reconciliation",
+      "status": "safe-after-url-check",
+      "packages": "all",
+      "target_files": ["research/sources.json"],
+      "work": "Add canonical source entries and explicit aliases from source_registry_reconciliation; do not change package source IDs in this wave.",
+      "expected_tests": ["parse all twelve package JSON files", "parse research/sources.json", "python scripts/validate_data.py"],
+      "requires_blockers_resolved": ["B002-source-registry-aliases"]
+    },
+    {
+      "id": "W2-shared-fact-correction",
+      "status": "conditional",
+      "packages": ["falador"],
+      "target_files": ["data/facts/achievement-diary-utility.json"],
+      "work": "Resolve only the Falador Motherlode claim against the specified authority and preserve a dated stale-claim note.",
+      "expected_tests": ["python scripts/validate_data.py", "python -m unittest discover -s tests -p test_*.py"],
+      "requires_blockers_resolved": ["B006-falador-motherlode-conflict"]
+    },
+    {
+      "id": "W3-north-and-west-factual-records",
+      "status": "conditional",
+      "packages": ["ardougne", "desert", "falador", "fremennik"],
+      "target_files": ["data/facts/diary-factual-ardougne-desert-falador-fremennik.json"],
+      "work": "Create research-traceable region and tier factual records only. Reference existing systems; add no generated actions or graph edges.",
+      "expected_tests": ["python scripts/validate_data.py"],
+      "requires_blockers_resolved": ["B001-diary-package-schema", "B002-source-registry-aliases", "B005-existing-reference-aliases", "B006-falador-motherlode-conflict", "B009-catalog-only-task-provenance"]
+    },
+    {
+      "id": "W4-central-and-island-factual-records",
+      "status": "conditional",
+      "packages": ["kandarin", "karamja", "kourend-kebos"],
+      "target_files": ["data/facts/diary-factual-kandarin-karamja-kourend-kebos.json"],
+      "work": "Create factual records for unrepresented tasks and tier benefits. Keep Kourend memoir, Xeric's, POH, Rada's, and Ash sanctifier as references to existing models.",
+      "expected_tests": ["python scripts/validate_data.py"],
+      "requires_blockers_resolved": ["B001-diary-package-schema", "B002-source-registry-aliases", "B009-catalog-only-task-provenance"]
+    },
+    {
+      "id": "W5-south-and-east-factual-records",
+      "status": "conditional",
+      "packages": ["lumbridge-draynor", "morytania", "varrock"],
+      "target_files": ["data/facts/diary-factual-lumbridge-draynor-morytania-varrock.json"],
+      "work": "Create only unrepresented factual records and explicit links to existing Explorer's Ring, Bones to Peaches, Kudos, Digsite, transport, farming, and POH records.",
+      "expected_tests": ["python scripts/validate_data.py"],
+      "requires_blockers_resolved": ["B001-diary-package-schema", "B002-source-registry-aliases", "B005-existing-reference-aliases", "B009-catalog-only-task-provenance"]
+    },
+    {
+      "id": "W6-high-risk-observation-factual-records",
+      "status": "conditional",
+      "packages": ["western-provinces", "wilderness"],
+      "target_files": ["data/facts/diary-factual-western-provinces-wilderness.json"],
+      "work": "Create factual capability and observation-boundary records only. Exclude auto-generated combat, PvP, boss, Void, counter, and staged-progress transitions.",
+      "expected_tests": ["python scripts/validate_data.py"],
+      "requires_blockers_resolved": ["B001-diary-package-schema", "B002-source-registry-aliases", "B007-observation-model-gaps", "B008-wilderness-staged-elite-progress", "B009-catalog-only-task-provenance"]
+    },
+    {
+      "id": "W7-shared-action-and-graph-implementation",
+      "status": "deferred-until-all-blockers-clear",
+      "packages": "all",
+      "target_files": ["data/progression/actions.json", "graph/nodes.json", "graph/edges.json", "data/schemas/progression-action.schema.json", "scripts/apply_action.py", "scripts/evaluate_progression.py", "scripts/validate_data.py", "tests/test_apply_action.py", "tests/test_analyze_dependencies.py"],
+      "work": "Implement the settled task/claim policy in a single controlled integration after regional factual records are available. Preserve current canonical actions and avoid bulk generated action insertion until model behavior is tested.",
+      "expected_tests": ["python scripts/validate_data.py", "python -m unittest discover -s tests -p test_*.py", "focused apply-action claim tests", "focused dependency-analyzer diary observation tests"],
+      "requires_blockers_resolved": ["B001-diary-package-schema", "B002-source-registry-aliases", "B003-diary-claim-observation-policy", "B004-action-and-schema-contract", "B005-existing-reference-aliases", "B006-falador-motherlode-conflict", "B007-observation-model-gaps", "B008-wilderness-staged-elite-progress", "B009-catalog-only-task-provenance"]
+    }
+  ],
+  "validation_contract_for_later_integrator": {
+    "before_merge": [
+      "Parse every package and this manifest as JSON.",
+      "Recompute the twelve region task counts and require totals of 488, 134 easy, 152 medium, 125 hard, and 77 elite.",
+      "Require globally unique source task IDs and generated canonical task/action/milestone IDs.",
+      "Require every task or claim source reference either to be in its package catalog or to use an explicitly recorded catalog-inheritance rule.",
+      "Require every production fact source ID to be in research/sources.json.",
+      "Reject non-ASCII content and trailing whitespace in the manifest and all packages."
+    ],
+    "after_each_wave": [
+      "Run python scripts/validate_data.py.",
+      "Run the wave's expected tests.",
+      "Confirm git diff changes only the wave's target files; do not absorb concurrent workspace changes.",
+      "Commit only the completed wave after its validation passes."
+    ]
+  }
+}
