@@ -1,0 +1,304 @@
+{
+  "package_schema_version": 1,
+  "package_type": "minigame-research",
+  "package_id": "research-minigame-barbarian-assault",
+  "activity": "Barbarian Assault",
+  "status": "research-proposal",
+  "checked_at": "2026-08-22",
+  "scope": "Current factual research package for the members-only, five-player combat minigame at the Barbarian Outpost. It proposes future normalized records only. It does not select a route, team, role, completion target, point target, gamble target, reward, combat setup, or readiness state.",
+  "facts_strategy_boundary": {
+    "included": [
+      "current tutorial gate, location and factual transport alternatives, team/role structure, calls, ten-wave loop, Penance Queen procedure, reset and death boundaries",
+      "role-specific honour-point mechanics, caps, level-up costs, shop costs, Queen gates, resale behavior, gamble tiers, and deterministic versus RNG distinctions",
+      "Kandarin medium, hard, and elite diary linkages, including the hard-diary 10 percent honour-point increase and the all-role-level-5 elite requirement",
+      "proposed report-only observations for participation, team state, calls, waves, point balances, role levels, Queen kills, purchases, gambles, and collection-log state"
+    ],
+    "excluded": [
+      "whether Barbarian Assault, a fighter torso, role levels, a Queen kill, gambles, Penance equipment, granite body, or collection-log entries should be pursued now",
+      "assumed team availability, accepted invite, selected role, teammate competence, calls, correct actions, wave success, death, kill, Queen completion, point gain, reward, gamble, or account readiness",
+      "fixed time, XP, GP, food, potion, ammunition, rune, death, or point-per-hour estimates, because they depend on team composition, execution, combat state, role, diary state, and chosen activity",
+      "community recruiting standards, role order, advanced tactics, team composition, stopping points, or equipment recommendations, except where explicitly marked strategy-candidate-not-fact"
+    ]
+  },
+  "source_catalog": [
+    {
+      "id": "wiki-barbarian-assault-current",
+      "publisher": "Old School RuneScape Wiki",
+      "kind": "wiki",
+      "url": "https://oldschool.runescape.wiki/w/Barbarian_Assault",
+      "checked_at": "2026-08-22",
+      "use": "Current access, team formation, roles, calls, waves, item machines, death boundary, Penance Queen loop, role points, upgrades, reward shop, resale, collection-log context, and current travel alternatives. Revalidates the diary package's wiki-barbarian-assault source."
+    },
+    {
+      "id": "wiki-barbarian-assault-points-current",
+      "publisher": "Old School RuneScape Wiki",
+      "kind": "wiki",
+      "url": "https://oldschool.runescape.wiki/w/Barbarian_assault_points",
+      "checked_at": "2026-08-22",
+      "use": "Role-specific scoring formulas, wave 10 awards, team penalties, 5,000-per-role cap, role-level costs/effects, all shop costs, resale amount, and high-gamble pet rate."
+    },
+    {
+      "id": "wiki-barbarian-assault-gambles-current",
+      "publisher": "Old School RuneScape Wiki",
+      "kind": "wiki",
+      "url": "https://oldschool.runescape.wiki/w/Barbarian_Assault/Gambles",
+      "checked_at": "2026-08-22",
+      "use": "Low, medium, and high gamble point costs, wave or Queen prerequisites, selected-role spend behavior, and RNG reward boundary."
+    },
+    {
+      "id": "wiki-barbarian-assault-strategies-current",
+      "publisher": "Old School RuneScape Wiki community guide",
+      "kind": "guide",
+      "url": "https://oldschool.runescape.wiki/w/Barbarian_Assault/Strategies",
+      "checked_at": "2026-08-22",
+      "use": "Role-call explanations, active-attention boundary, community team/role advice, and safe-instance warning. It is not used to promise success, rates, or a preferred route."
+    },
+    {
+      "id": "wiki-barbarian-assault-tutorial-current",
+      "publisher": "Old School RuneScape Wiki",
+      "kind": "wiki",
+      "url": "https://oldschool.runescape.wiki/w/Barbarian_Assault_tutorial",
+      "checked_at": "2026-08-22",
+      "use": "Tutorial completion as participation gate and the four role-specific local equipment sets."
+    },
+    {
+      "id": "wiki-kandarin-diary-current",
+      "publisher": "Old School RuneScape Wiki",
+      "kind": "wiki",
+      "url": "https://oldschool.runescape.wiki/w/Kandarin_Diary",
+      "checked_at": "2026-08-22",
+      "use": "Kandarin medium complete-a-wave task, hard-diary reward claim, and elite blackboard task after level 5 in every role."
+    },
+    {
+      "id": "official-kandarin-diaries-release",
+      "publisher": "Jagex",
+      "kind": "official",
+      "url": "https://oldschool.runescape.com/news/kandarin-achievement-diaries?oldschool=1",
+      "checked_at": "2026-08-22",
+      "use": "Official historical release context for Kandarin diaries. Current task and reward details are taken from the current Wiki."
+    },
+    {
+      "id": "reddit-ironscape-barbarian-assault-team-advice",
+      "publisher": "r/ironscape",
+      "kind": "reddit",
+      "url": "https://www.reddit.com/r/ironscape/search/?q=barbarian%20assault%20fighter%20torso&restrict_sr=1",
+      "checked_at": "2026-08-22",
+      "use": "Community examples of group finding, torso goals, and subjective role order. Used only as strategy candidates, not as a mechanics authority."
+    },
+    {
+      "id": "youtube-barbarian-assault-role-guide",
+      "publisher": "Community video guide index",
+      "kind": "youtube",
+      "url": "https://www.youtube.com/results?search_query=osrs+barbarian+assault+roles+guide",
+      "checked_at": "2026-08-22",
+      "use": "Current community role-guide discovery index. Any individual guide's tactics remain strategy candidates and must not create factual account transitions."
+    }
+  ],
+  "access": {
+    "requirements": {
+      "membership": true,
+      "tutorial": "The Barbarian Assault tutorial must be completed at least once before participating or using the Grouping teleport. Completion is player-observed.",
+      "base_entry_fee": {"coins": 0, "consumable_ticket": null},
+      "team_gate": "A normal game requires five joined players: one Collector, Defender, Healer, and Attacker, with the fifth player taking Attacker or Healer. Accept Aid must be enabled to join a team. Team availability, invitations, acceptance, roles, and leader selection are external player observations.",
+      "combat": "No universal combat-level requirement is imposed by the activity. Combat gear, supplies, survival, and any practical combat suitability remain player-confirmed rather than inferred.",
+      "reference_existing_production_facts": ["diary-kandarin-hard-utility", "residual-transport-network"],
+      "reference_existing_diary_package": "research/diary-packages/kandarin.json"
+    },
+    "location_and_transport": [
+      "Barbarian Assault is at the Barbarian Outpost, north of Baxtorian Falls in Kandarin.",
+      "Games necklace: Barbarian Outpost is a direct transport capability only when an observed charged necklace or its independently modeled source state is available.",
+      "Grouping teleport: direct Barbarian Assault transport becomes available after the player-observed tutorial completion; it does not establish a team, current lobby, game, or wave.",
+      "Lunar Barbarian Teleport: level 75 Magic on Lunar spellbook, with 3 fire, 2 astral, and 2 law runes, is a separate factual transport path.",
+      "Tree Gnome Stronghold shortcut: requires observed 37 Agility and The Grand Tree completion, then approaches from the east.",
+      "Enchanted lyre: a factual Rellekka transport alternative followed by travel through the Lighthouse approach; its charge and quest state are external transport observations."
+    ],
+    "unlock_transition": {
+      "event": "player confirms tutorial completion and an accepted team state",
+      "deterministic_effects": ["the player may be eligible to join or form a game and select a role", "the Grouping teleport becomes an available travel option after tutorial completion"],
+      "non_effects": ["does not create a five-player team", "does not choose a role", "does not establish calls, wave success, points, local equipment, Queen access, rewards, or completion"]
+    }
+  },
+  "activity_loop": {
+    "entry_inputs": [
+      {"item_or_capability": "completed Barbarian Assault tutorial", "quantity": 1, "behavior": "persistent participation gate; must be explicitly observed"},
+      {"item_or_capability": "accepted five-player team", "quantity": 1, "behavior": "external social state; normal composition contains Collector, Defender, Healer, and one or two Attackers/Healers"},
+      {"item_or_capability": "selected role", "quantity": 1, "behavior": "Attacker, Collector, Defender, or Healer; selection is player-observed and uses the matching local horn/equipment"},
+      {"item_or_capability": "personal combat equipment and supplies", "quantity": "player-selected", "behavior": "ordinary inventory/equipment may be carried into the instanced activity. No specific setup, quantity, consumption, death, or readiness is inferred."}
+    ],
+    "reusable_setup": [
+      {"item_or_capability": "Attacker horn, arrows or runes", "effect": "Attacker reads Collector calls and kills Penance Fighters/Rangers with the called attack style. Local arrows/runes are provided by the Attacker item machine; calls and kills remain observed."},
+      {"item_or_capability": "Collector horn, collection bag, eggs", "effect": "Collector reads Healer calls, collects the called red/green/blue eggs, and may load eggs into launchers. Wrong eggs can explode; collection and conversion outcomes are observed."},
+      {"item_or_capability": "Defender horn and bait", "effect": "Defender reads Attacker calls, obtains tofu/worms/crackers from the Defender item machine, lures runners, and can use the runner trap. Calls, food placement, runner behavior, and kills remain observed."},
+      {"item_or_capability": "Healer horn, healing vial, poisoned food", "effect": "Healer reads Defender calls, uses healing vial on players, takes poison food from the Healer item machine, and applies the called food to Penance Healers. Heals, food selection, poison applications, and kills remain observed."},
+      {"item_or_capability": "recruitment scroll", "effect": "A prospective leader can take a scroll, write a role, and invite four ungrouped players. It represents an attempted social transition, not a guaranteed team."}
+    ],
+    "role_actions_and_calls": [
+      {"role": "Attacker", "call_to": "Defender", "called_instruction": "food type", "core_actions": ["kill Penance Fighters and Rangers using the Collector-provided attack style", "call the Defender's food type at the changing call interval"]},
+      {"role": "Collector", "call_to": "Attacker", "called_instruction": "attack style", "core_actions": ["collect egg color requested by Healer", "load eggs into launchers or pass Queen yellow eggs through the Queen sequence", "call the Attacker's attack style"]},
+      {"role": "Defender", "call_to": "Healer", "called_instruction": "poison-food type", "core_actions": ["obtain and place called bait to direct Penance Runners", "use runner trap when applicable", "call the Healer's poison-food type"]},
+      {"role": "Healer", "call_to": "Collector", "called_instruction": "egg color", "core_actions": ["heal team members with healing vial", "use called poison food on Penance Healers", "call the Collector's requested egg color"]},
+      {"call_rule": "Each role reads the ear icon for its own current instruction and uses its horn's mouth icon to call the adjacent role's instruction. Calls change during a wave. No chosen role, call, timing, or correct execution is assumed from entry."}
+    ],
+    "round_phases": [
+      {"phase": "lobby and wave start", "facts": ["A leader recruits or players wait for an open role. The leader can keep or remove members between waves.", "If no teammate leaves or is removed after a completed wave, the next wave starts automatically after 60 seconds.", "Leaving, removing a teammate, reset, failure, or unsuccessful social coordination can end the attempted sequence. It does not award unobserved points or progress."]},
+      {"phase": "waves 1 through 9", "facts": ["The team handles Penance Fighters, Rangers, Runners, and Healers with role-specific calls/actions.", "A wave completes only after the qualifying Penance monsters are defeated. Completion, personal actions, and score remain player-observed.", "The team receives role-specific honour point results only at a successful wave completion, subject to team performance and individual role performance."]},
+      {"phase": "wave 10 Penance Queen", "facts": ["Wave 10 has a distinct layout and Queen encounter. The Queen appears after other Penance are defeated or four minutes pass.", "The Queen uses long-distance Ranged attacks against all five players, may melee nearby players, and can spawn melee Queen spawns. Damage, deaths, kills, and survival are observed.", "The team creates omega eggs: Collector collects yellow eggs; Healer poisons them; Attacker adds spikes; Defender adds lava; Collector loads the egg hopper. Eight omega-egg hits are needed to kill the Queen.", "Wrong-action point penalties do not apply on wave 10, but the Penance creatures still require correct calls. Queen completion and Queen-kill count are never inferred."]},
+      {"phase": "post-wave accounting and spending", "facts": ["At each successful wave, role-specific point deltas are displayed. They must be recorded rather than derived from selected role or time spent.", "Commander Connad spends a chosen role's points for levels, equipment, or gambles. Purchases and gambles occur only after explicit observed balances and player-confirmed choice."]}
+    ],
+    "completion_or_reward_events": [
+      {"event": "successful wave 1 through 9", "classification": "player_observed", "effect": "A displayed role-specific honour-point result may be recorded. It depends on team and personal performance and is bounded by role caps and penalties."},
+      {"event": "Penance Queen killed on wave 10", "classification": "player_observed", "effect": "Player receives 80 points in the role played and 5 points in each other role, before applicable diary bonus rules. It permits Queen-gated shop purchases and high gamble eligibility after explicit confirmation."},
+      {"event": "Commander Connad reward transaction", "classification": "deterministic_only_after_observed_preconditions", "effect": "Exact selected role-point and/or coin costs can be removed, and the selected deterministic item/level can be recorded after a player-confirmed transaction."},
+      {"event": "gamble opened", "classification": "rng", "effect": "Exact point cost and entrance prerequisite can be verified, but the reward result, quantity, and Penance pet remain player-observed."}
+    ],
+    "failure_and_death": {
+      "safe_activity": "Barbarian Assault is a safe activity in an instanced area: death does not lose carried items or items held by an Item Retrieval Service, but manually dropped ground items are lost. It remains dangerous for Hardcore Group Iron players.",
+      "wave_failure": "A failed/reset/abandoned wave, departure, kick, unavailable teammate, incorrect call, missed role action, monster escape, or player death does not automatically award a completion, point delta, or Queen kill. Actual result must be reported.",
+      "point_penalty_boundary": "For waves 1-9, escaped runners, wrong attack styles, and wrong Healer poison-food uses can reduce point scores under capped penalty rules. Team and individual point totals have a minimum of zero. The model records displayed deltas rather than calculating an unobserved performance score.",
+      "team_continuity": "The leader can change the roster between waves. The 60-second automatic next-wave start applies only if no member leaves or is removed. No future wave, team continuity, or reset timing is inferred."
+    },
+    "repeatability": {
+      "is_repeatable": true,
+      "team_dependence": "Every game requires contemporaneous coordination with a five-player team. A role choice or travel capability never establishes that team availability.",
+      "persistent_values": ["four separate role-point balances, each capped at 5,000", "role levels 1 through 5 after confirmed purchases", "confirmed Queen-kill count", "purchased Penance equipment and collection-log entries", "tutorial completion and Grouping-teleport eligibility"],
+      "session_values": ["current team roster/leader", "selected role", "current wave", "calls", "local machine supplies", "monster positions/health", "team and individual performance", "point display", "damage/death", "Queen egg sequence"],
+      "no_global_completion": "There is no universal one-time completion. Tutorial, individual waves, Queen kills, role levels, diary tasks, equipment purchases, and gambles are distinct observed states."
+    }
+  },
+  "currencies": [
+    {"id": "barbarian-assault-attacker-honour", "acquisition": "player_observed", "cap": 5000, "spend_behavior": "Role-specific balance; spent on Attacker level upgrades, four-role equipment costs, or selected-role gambles. Cannot be transferred to other role balances."},
+    {"id": "barbarian-assault-collector-honour", "acquisition": "player_observed", "cap": 5000, "spend_behavior": "Role-specific balance; spent on Collector level upgrades, four-role equipment costs, or selected-role gambles. Cannot be transferred to other role balances."},
+    {"id": "barbarian-assault-defender-honour", "acquisition": "player_observed", "cap": 5000, "spend_behavior": "Role-specific balance; spent on Defender level upgrades, four-role equipment costs, or selected-role gambles. Cannot be transferred to other role balances."},
+    {"id": "barbarian-assault-healer-honour", "acquisition": "player_observed", "cap": 5000, "spend_behavior": "Role-specific balance; spent on Healer level upgrades, four-role equipment costs, or selected-role gambles. Cannot be transferred to other role balances."},
+    {"id": "coins", "acquisition": "player_observed", "spend_behavior": "Granite body requires 95,000 observed coins in addition to each-role honour points and a confirmed Queen kill. Coins are not produced or assumed by this package."}
+  ],
+  "honour_point_rules": {
+    "general": "For waves 1-9, each player gets team-performance points plus points from individual role actions; subsequent waves yield higher base values. Role-specific point calculations and performance are not automatic account transitions.",
+    "waves_1_to_9_components": [
+      {"role": "Attacker", "components": ["Fighters killed: x - 1, capped by spawns", "Rangers killed: x - 1, capped by spawns", "incorrect-style attacks: -x + 1, capped at -10; the Attacker has one free wrong hit per wave"]},
+      {"role": "Collector", "components": ["eggs collected minus exploded: x / 4.35, with collected count capped at 60", "wrong egg explosions also damage the Collector; result remains observed"]},
+      {"role": "Defender", "components": ["Runners killed: 1.8x, capped by spawns", "Runners that get past: -3x, capped at -10 for individual scoring; team escape penalty applies separately"]},
+      {"role": "Healer", "components": ["Healers killed: 0.7x, capped by spawns", "players' hitpoints replenished: x / 18, capped at 28", "wrong poison packs: -x / 4, with wrong-pack count capped at 512"]}
+    ],
+    "team_penalties": ["Each escaped Runner subtracts 3 final honour points from everyone, to a maximum penalty of 10; the Defender's loss is doubled.", "Each wrong attack style subtracts 1 final honour point from everyone, to a maximum penalty of 10.", "Each four wrong poison packs subtracts 1 final honour point from everyone, to a maximum penalty of 10.", "Team points and total wave points cannot fall below zero."],
+    "wave_10": "A confirmed Queen kill awards 80 points in the played role and 5 points in each other role instead of waves 1-9 formulas. The 10 percent Kandarin hard bonus applies to earned points and is rounded down; implementation must use an observed diary tier and observed display rather than assume it.",
+    "storage_boundary": "Role balances cap at 5,000 each. A cap describes storage capacity, not actual points, point loss, or transaction eligibility."
+  },
+  "role_levels": {
+    "levels": [
+      {"level": 1, "cost_from_previous": 0, "collector": "bag holds 2 eggs", "healer": "heals 10 hitpoints", "attacker": "+1 bonus damage", "defender": "+4 lure-range spaces"},
+      {"level": 2, "cost_from_previous": 200, "collector": "bag holds 4 eggs; about 20 percent conversion chance", "healer": "heals 15 hitpoints", "attacker": "+2 bonus damage", "defender": "+5 lure-range spaces"},
+      {"level": 3, "cost_from_previous": 300, "collector": "bag holds 6 eggs; about 40 percent conversion chance", "healer": "heals 20 hitpoints", "attacker": "+3 bonus damage", "defender": "+5 lure-range spaces shown"},
+      {"level": 4, "cost_from_previous": 400, "collector": "bag holds 7 eggs; about 60 percent conversion chance", "healer": "heals 25 hitpoints", "attacker": "+4 bonus damage", "defender": "+5 lure-range spaces shown"},
+      {"level": 5, "cost_from_previous": 500, "collector": "bag holds 8 eggs; about 85 percent conversion chance", "healer": "heals 35 hitpoints", "attacker": "+5 bonus damage", "defender": "+5 lure-range spaces shown"}
+    ],
+    "cost_to_level_5_each_role": 1400,
+    "cost_to_level_5_all_roles": 5600,
+    "diary_link": "Kandarin elite requires reading the blackboard after player-confirmed level 5 in all four roles. It is not satisfied by planned costs, a partial role set, a Queen kill, or an inferred point history."
+  },
+  "rewards": [
+    {"id": "fighter-hat", "acquisition": "shop", "utility": ["Penance armour", "Barbarian Assault collection-log item"], "cost": {"each_role_honour": 275, "queen_kill_required": true}, "resale": {"each_role_honour": 220, "queen_kill_refunded": false}},
+    {"id": "ranger-hat", "acquisition": "shop", "utility": ["Penance armour", "Barbarian Assault collection-log item"], "cost": {"each_role_honour": 275, "queen_kill_required": true}, "resale": {"each_role_honour": 220, "queen_kill_refunded": false}},
+    {"id": "healer-hat", "acquisition": "shop", "utility": ["Penance armour", "Barbarian Assault collection-log item"], "cost": {"each_role_honour": 275, "queen_kill_required": true}, "resale": {"each_role_honour": 220, "queen_kill_refunded": false}},
+    {"id": "runner-hat", "acquisition": "shop", "utility": ["Penance armour", "Barbarian Assault collection-log item"], "cost": {"each_role_honour": 275, "queen_kill_required": true}, "resale": {"each_role_honour": 220, "queen_kill_refunded": false}},
+    {"id": "fighter-torso", "acquisition": "shop", "utility": ["melee body equipment", "Barbarian Assault collection-log item", "Falo clue-show item"], "cost": {"each_role_honour": 375, "queen_kill_required": true}, "resale": {"each_role_honour": 300, "queen_kill_refunded": false}, "equip_requirement": {"Defence": 40}},
+    {"id": "penance-skirt", "acquisition": "shop", "utility": ["Penance armour", "Barbarian Assault collection-log item"], "cost": {"each_role_honour": 375, "queen_kill_required": true}, "resale": {"each_role_honour": 300, "queen_kill_refunded": false}},
+    {"id": "runner-boots", "acquisition": "shop", "utility": ["Penance armour", "Barbarian Assault collection-log item"], "cost": {"each_role_honour": 100, "queen_kill_required": false}, "resale": {"each_role_honour": 80, "queen_kill_refunded": false}},
+    {"id": "penance-gloves", "acquisition": "shop", "utility": ["Penance armour", "Barbarian Assault collection-log item"], "cost": {"each_role_honour": 150, "queen_kill_required": false}, "resale": {"each_role_honour": 120, "queen_kill_refunded": false}},
+    {"id": "granite-body", "acquisition": "shop", "utility": ["melee body equipment", "Barbarian Assault collection-log item"], "cost": {"coins": 95000, "each_role_honour": 50, "queen_kill_required": true}, "resale": "not listed as a Penance-equipment 80-percent point refund", "equip_requirement": {"Defence": 50}},
+    {"id": "barbarian-assault-role-level", "acquisition": "threshold", "utility": ["role-specific minigame capabilities", "Kandarin elite prerequisite only when all four roles are confirmed level 5"], "cost": {"level_2": 200, "level_3": 300, "level_4": 400, "level_5": 500, "per_role_total": 1400}},
+    {"id": "barbarian-assault-low-gamble", "acquisition": "rng", "utility": ["resource and equipment gamble result; no output is guaranteed"], "cost": {"honour_from_one_selected_role": 200, "minimum_current_wave_without_reset": 3}},
+    {"id": "barbarian-assault-medium-gamble", "acquisition": "rng", "utility": ["resource and equipment gamble result; no output is guaranteed"], "cost": {"honour_from_one_selected_role": 400, "minimum_current_wave_without_reset": 6}},
+    {"id": "barbarian-assault-high-gamble", "acquisition": "rng", "utility": ["resource and equipment gamble result; may roll Penance Queen pet at 1/1000"], "cost": {"honour_from_one_selected_role": 500, "queen_kill_required": true, "minimum_current_wave_without_reset": 1}}
+  ],
+  "dependencies_and_bypasses": [
+    {"target": "activity:kandarin-medium-complete-barbarian-assault-wave", "relationship": "unlocks", "detail": "An observed completed Barbarian Assault wave can satisfy the task event after tutorial/qualifying diary state; the package must not award it automatically."},
+    {"target": "capability:kandarin-hard-barbarian-assault-point-bonus", "relationship": "improves", "detail": "Observed Kandarin hard completion provides 10 percent more honour points, rounded down. It changes a confirmed earned-point calculation/display, not team success."},
+    {"target": "activity:kandarin-elite-read-barbarian-assault-blackboard", "relationship": "unlocks", "detail": "Observed role level 5 in all four roles is required before the blackboard task can be completed; the diary task itself must be separately observed."},
+    {"target": "goal:fighter-torso", "relationship": "makes_obtainable", "detail": "Commander Connad offers a deterministic purchase after 375 observed points in each role and a confirmed Queen kill; the activity only makes the conditions obtainable."},
+    {"target": "collection-log:barbarian-assault", "relationship": "produces", "detail": "Confirmed purchases can add the eight Penance/Granite item entries. Gamble pet result is separate RNG and all log state remains observed."},
+    {"target": "transport:barbarian-assault-grouping", "relationship": "unlocks", "detail": "Tutorial completion unlocks the Grouping teleport capability, but current teleport readiness and arrival remain observed."},
+    {"target": "equipment:granite-body", "relationship": "alternative_to", "detail": "Granite body is a deterministic shop path with 95,000 coins, 50 points in each role, and Queen kill, but it is not treated as a route recommendation or a substitute for any unmodeled equipment goal."}
+  ],
+  "afk_and_attention": {
+    "attention_class": "active",
+    "measured_interaction_interval_seconds": null,
+    "logout_or_idle_constraints": ["A normal game depends on timely changing calls, role actions, movement, combat, and team coordination.", "No universal idle interval is asserted. It varies by role, wave, team execution, combat state, and player choice.", "Leaving, reset, death, team changes, and lack of teammates can interrupt an attempt; no unattended completion, points, or rewards are inferred."],
+    "source_boundary": "Community terms such as leech, casual, efficient, low-effort, service, or role-free are not factual passive-progression classifications. Every completion and balance change remains an observed event."
+  },
+  "community_strategy_observations": [
+    {"claim": "Community guides commonly suggest finishing a Queen round before seeking the hard Kandarin diary point bonus, then using that bonus for later point goals.", "source_ids": ["wiki-barbarian-assault-strategies-current"], "treatment": "strategy-candidate-not-fact"},
+    {"claim": "Community teams often use two Attackers early and sometimes switch the second Attacker to Healer for late waves or the Queen, with alternatives based on combat and team needs.", "source_ids": ["wiki-barbarian-assault-strategies-current", "reddit-ironscape-barbarian-assault-team-advice"], "treatment": "strategy-candidate-not-fact"},
+    {"claim": "Community guides propose role order, recruitment etiquette, supplied-gear choices, advanced defender food placement, Queen rotations, and torso or diary stopping goals.", "source_ids": ["wiki-barbarian-assault-strategies-current", "reddit-ironscape-barbarian-assault-team-advice", "youtube-barbarian-assault-role-guide"], "treatment": "strategy-candidate-not-fact"}
+  ],
+  "state_boundaries": [
+    "Never infer membership, tutorial completion, Accept Aid setting, location, charged Games necklace, Grouping teleport readiness, Lunar spellbook, runes, quest state, shortcut access, or arrival from a planned activity.",
+    "Never infer team availability, group composition, leader, invite, acceptance, role selection, teammate behavior, calls, correct actions, local machine supplies, current wave, elapsed time, combat setup, player health, damage, death, kill, success, reset, Queen completion, or continuation.",
+    "All honour-point balances and deltas are player-reported/display-observed. Role selection, elapsed waves, formulas, or a diary tier must never auto-credit points, losses, 10-percent bonuses, caps, or gamble eligibility.",
+    "Role levels, Queen kills, purchases, equipment possession, item resale, coins, gamble entry, gamble result, pet, collection-log entries, and diary-task completion are explicit observations. Costs may be validated only after those observations are supplied.",
+    "A reward transaction is deterministic only when all selected role balances, Queen gate where applicable, selected item, observed coin state where applicable, and player-confirmed transaction are present. It never grants team participation or prior waves.",
+    "The activity is safe for normal item-loss purposes but Hardcore Group Iron risk and manually dropped-item loss remain warnings, not automatically inferred deaths or survival state."
+  ],
+  "proposed_normalization": {
+    "facts": [
+      {"id": "barbarian-assault-current-mechanics", "treatment": "proposed-new", "content": "Current tutorial, transport, five-player role structure, calls, wave/Queen loop, safe-activity limits, team/social boundaries, and active-attention classification."},
+      {"id": "barbarian-assault-honour-and-rewards", "treatment": "proposed-new", "content": "Role-specific points, 5,000 caps, point formulas/penalties, wave-10 awards, four role-level cost/effect tables, shop rewards/costs, Queen gates, resale behavior, and gamble boundaries."},
+      {"id": "barbarian-assault-kandarin-linkage", "treatment": "amend-existing", "targets": ["diary-kandarin-hard-utility", "achievement-diary-universal-claim-and-fixed-lamps"], "content": "Connect the current medium wave task, hard 10-percent point bonus, elite all-role-level-5 blackboard task, and their explicit observed-state requirements without assigning diary priority or score."}
+    ],
+    "actions": [
+      {"id": "action:record-barbarian-assault-observation", "treatment": "proposed-new", "requirements": "player-reported tutorial/team/role/wave result, optional role-point balances/deltas, role levels, Queen kill, transaction, gamble, or diary milestone", "transition": "store report-only observations; validate caps, exact known costs, and deterministic purchase prerequisites without simulating waves or creating outcomes"},
+      {"id": "action:buy-barbarian-assault-role-level", "treatment": "proposed-new", "requirements": "observed tutorial/access, selected role, current observed level, exact observed selected-role balance, and player-confirmed Commander Connad purchase", "transition": "subtract exact role-specific point cost and raise only the confirmed selected role one level; no team or diary completion is granted"},
+      {"id": "action:buy-barbarian-assault-reward", "treatment": "proposed-new", "requirements": "observed selected reward, exact observed point balances in all required roles, observed Queen-kill state where required, observed coin state for granite body, and player-confirmed transaction", "transition": "subtract exact prescribed currencies and add only the selected deterministic reward; do not set collection-log state without separate report"},
+      {"id": "action:sell-penance-equipment", "treatment": "proposed-new", "requirements": "observed eligible Penance item and player-confirmed Commander Connad sale", "transition": "remove selected item and refund 80 percent of its point cost in each role; never refund Queen-kill state"},
+      {"id": "action:open-barbarian-assault-gamble", "treatment": "proposed-new", "requirements": "observed selected role balance, requested gamble tier, current wave/run prerequisite where relevant, confirmed Queen kill for high gamble, and player-confirmed opening", "transition": "subtract exact selected-role points and record an unresolved RNG result until player reports it"}
+    ],
+    "graph_nodes": ["activity:barbarian-assault", "condition:barbarian-assault-tutorial-complete", "transport:barbarian-assault-grouping", "currency:ba-attacker-honour", "currency:ba-collector-honour", "currency:ba-defender-honour", "currency:ba-healer-honour", "goal:ba-role-level-5-all", "goal:fighter-torso", "goal:ba-penance-equipment", "goal:ba-granite-body", "activity:kandarin-medium-complete-barbarian-assault-wave", "activity:kandarin-elite-read-barbarian-assault-blackboard", "collection-log:barbarian-assault"],
+    "graph_edges": [
+      {"from": "condition:barbarian-assault-tutorial-complete", "to": "activity:barbarian-assault", "type": "requires", "evidence": "Tutorial completion is required to participate."},
+      {"from": "condition:barbarian-assault-tutorial-complete", "to": "transport:barbarian-assault-grouping", "type": "unlocks", "evidence": "Tutorial completion enables the Grouping teleport capability."},
+      {"from": "activity:barbarian-assault", "to": "currency:ba-attacker-honour", "type": "produces", "evidence": "Observed successful waves can award Attacker honour points."},
+      {"from": "activity:barbarian-assault", "to": "currency:ba-collector-honour", "type": "produces", "evidence": "Observed successful waves can award Collector honour points."},
+      {"from": "activity:barbarian-assault", "to": "currency:ba-defender-honour", "type": "produces", "evidence": "Observed successful waves can award Defender honour points."},
+      {"from": "activity:barbarian-assault", "to": "currency:ba-healer-honour", "type": "produces", "evidence": "Observed successful waves can award Healer honour points."},
+      {"from": "currency:ba-attacker-honour", "to": "goal:ba-role-level-5-all", "type": "requires", "evidence": "Attacker level 5 costs 1,400 cumulative Attacker points."},
+      {"from": "currency:ba-collector-honour", "to": "goal:ba-role-level-5-all", "type": "requires", "evidence": "Collector level 5 costs 1,400 cumulative Collector points."},
+      {"from": "currency:ba-defender-honour", "to": "goal:ba-role-level-5-all", "type": "requires", "evidence": "Defender level 5 costs 1,400 cumulative Defender points."},
+      {"from": "currency:ba-healer-honour", "to": "goal:ba-role-level-5-all", "type": "requires", "evidence": "Healer level 5 costs 1,400 cumulative Healer points."},
+      {"from": "goal:ba-role-level-5-all", "to": "activity:kandarin-elite-read-barbarian-assault-blackboard", "type": "requires", "evidence": "Elite task needs all four roles at level 5 before reading the blackboard."},
+      {"from": "currency:ba-attacker-honour", "to": "goal:fighter-torso", "type": "requires", "evidence": "Fighter torso costs 375 Attacker points."},
+      {"from": "currency:ba-collector-honour", "to": "goal:fighter-torso", "type": "requires", "evidence": "Fighter torso costs 375 Collector points."},
+      {"from": "currency:ba-defender-honour", "to": "goal:fighter-torso", "type": "requires", "evidence": "Fighter torso costs 375 Defender points."},
+      {"from": "currency:ba-healer-honour", "to": "goal:fighter-torso", "type": "requires", "evidence": "Fighter torso costs 375 Healer points and needs a confirmed Queen kill."},
+      {"from": "goal:fighter-torso", "to": "collection-log:barbarian-assault", "type": "produces", "evidence": "Confirmed torso purchase can add its collection-log entry."}
+    ],
+    "account_observations": [
+      {"key": "barbarian_assault_access", "type": "object", "shape": {"tutorial_complete": "boolean_or_null", "accept_aid_enabled": "boolean_or_null", "current_location_or_transport_ready": "player_report_or_null"}, "rule": "Tutorial, settings, location, and transport remain reported state."},
+      {"key": "barbarian_assault_team_observation", "type": "object_or_null", "shape": {"team_available": "boolean_or_null", "leader": "player_report_or_null", "members": "five_role_assignments_or_null", "selected_role": "attacker|collector|defender|healer|unknown", "current_wave": "integer_1_to_10_or_null", "run_reset_or_end_observed": "boolean_or_null"}, "rule": "External social/session state only; never created by an action."},
+      {"key": "barbarian_assault_role_points", "type": "object", "shape": {"attacker": "integer_0_to_5000_or_null", "collector": "integer_0_to_5000_or_null", "defender": "integer_0_to_5000_or_null", "healer": "integer_0_to_5000_or_null", "observed_at": "RFC3339_timestamp_or_null"}, "rule": "Displayed balances only. No selected role or elapsed wave derives balances."},
+      {"key": "barbarian_assault_role_levels", "type": "object", "shape": {"attacker": "integer_1_to_5_or_null", "collector": "integer_1_to_5_or_null", "defender": "integer_1_to_5_or_null", "healer": "integer_1_to_5_or_null"}, "rule": "Confirmed purchased levels only; use to evaluate all-role-level-5 prerequisite but not diary completion."},
+      {"key": "barbarian_assault_run_observation", "type": "object_or_null", "shape": {"calls_made": "player_report_or_null", "correct_actions": "player_report_or_null", "wave_successes": "set_of_explicit_wave_events", "queen_kill_count": "integer_or_null", "deaths_observed": "integer_or_null", "point_deltas": "optional_role_map", "kandarin_hard_bonus_applied": "boolean_or_null"}, "rule": "Events and outcomes are report-only, including calls, waves, Queen kills, deaths, and points."},
+      {"key": "barbarian_assault_rewards", "type": "object", "shape": {"purchases": "set", "sold_items": "set", "gambles_opened": "set", "gamble_results": "player_reported_list", "collection_log_entries": "set"}, "rule": "Purchase, sale, RNG result, pet, and collection-log state are independently confirmed."}
+    ]
+  },
+  "conflicts_and_unknowns": [
+    {"id": "defender-lure-range-display", "status": "current-mechanics-conflict", "detail": "Current Wiki documentation says the in-game Defender level display is false: upgrades beyond level 2 do not actually improve lure range, even though level 5 is still required for Kandarin elite. Preserve both displayed and actual-behavior facts; do not derive an increasing post-level-2 range model."},
+    {"id": "point-formula-automation", "status": "do-not-derive-without-telemetry", "detail": "Published formulas describe components but runtime point results depend on spawns, calls, individual actions, team penalties, rounding, role, wave, and Kandarin hard state. Record displayed deltas rather than automatically calculate unobserved balances."},
+    {"id": "gambles", "status": "rng-boundary", "detail": "Gamble prices and entry gates are exact, but all reward tables, quantities, rare armour/resource results, and the 1/1000 high-gamble Penance Queen pet are RNG/player-observed. No gamble is a deterministic acquisition path."},
+    {"id": "hardcore-group-iron", "status": "safety-boundary", "detail": "The normal safe-activity wording explicitly warns that the activity remains dangerous for Hardcore Group Iron players. A future Hardcore model needs a separate death-risk policy before translating this into readiness or route advice."},
+    {"id": "existing-diary-source-aliases", "status": "needs-source-alias-reconciliation", "detail": "The existing Kandarin package uses wiki-barbarian-assault and wiki-kandarin-diary. This package uses current-suffixed IDs for dated revalidation; an integrator should alias sources rather than duplicate factual claims."},
+    {"id": "collection-log-scope", "status": "current", "detail": "This package treats the eight deterministic shop item entries as possible collection-log records after confirmed purchase. The Penance Queen pet remains a separate high-gamble RNG result; role levels and point balances are not collection-log entries."}
+  ],
+  "coverage": {
+    "access": true,
+    "loop": true,
+    "currencies": true,
+    "rewards": true,
+    "failure_state": true,
+    "sources": true,
+    "normalization": true,
+    "roles_covered": ["Attacker", "Collector", "Defender", "Healer"],
+    "waves_covered": ["waves 1-9", "wave 10 Penance Queen"],
+    "kandarin_linkage_covered": true,
+    "production_files_modified": 0
+  }
+}
