@@ -1,0 +1,427 @@
+{
+  "package_schema_version": 1,
+  "package_type": "minigame-research",
+  "package_id": "research-minigame-mahogany-homes",
+  "activity": "Mahogany Homes",
+  "status": "research-proposal",
+  "checked_at": "2026-08-22",
+  "scope": "Current factual package for the members Construction contract activity. It proposes integration records only: no route order, contract count, XP rate, travel time, material stock, points, reward ownership, or player readiness is asserted.",
+  "facts_strategy_boundary": {
+    "included": [
+      "Access, contractors, locations, contract tiers, boost boundary, required materials and reusable tools, contract lifecycle, deterministic reward tables, reward-shop stock, permanent utility, repeatability, attention boundary, and account observations.",
+      "Exact material and XP formula components are recorded, while contract layout, actual furniture, consumed quantities, game-awarded XP, and points remain reported per contract."
+    ],
+    "excluded": [
+      "A final Ironman route, preferred contract tier, expected contracts, XP/hour, contracts/hour, travel time, plank cost, collection-log completion plan, player-owned materials, teleports, points, rewards, or readiness.",
+      "Community route, plank sourcing, reward-order, and stopping advice is retained only as strategy-candidate-not-fact."
+    ]
+  },
+  "source_catalog": [
+    {
+      "id": "wiki-mahogany-homes-current",
+      "publisher": "Old School RuneScape Wiki",
+      "kind": "wiki",
+      "url": "https://oldschool.runescape.wiki/w/Mahogany_Homes",
+      "checked_at": "2026-08-22",
+      "use": "Primary current source for membership/POH access, contractors, cities, tiers, materials, tools, boost boundary, furniture process, tea, contract completion, reward points, shop stock, and collection-log context."
+    },
+    {
+      "id": "wiki-mahogany-homes-mechanics-current",
+      "publisher": "Old School RuneScape Wiki",
+      "kind": "wiki",
+      "url": "https://oldschool.runescape.wiki/w/Mahogany_Homes/Mechanics",
+      "checked_at": "2026-08-22",
+      "use": "Current contract-layout model, per-tier material/XP ranges and averages, repair/build XP components, and randomness boundary. Crowd-derived averages are not treated as a player's output."
+    },
+    {
+      "id": "wiki-construction-current",
+      "publisher": "Old School RuneScape Wiki",
+      "kind": "wiki",
+      "url": "https://oldschool.runescape.wiki/w/Construction",
+      "checked_at": "2026-08-22",
+      "use": "Carpenter outfit total Construction XP effect and wieldable-tool context."
+    },
+    {
+      "id": "official-mahogany-homes-launch",
+      "publisher": "Jagex",
+      "kind": "official",
+      "url": "https://secure.runescape.com/m=news/mahogany-homes?oldschool=1",
+      "checked_at": "2026-08-22",
+      "use": "Official launch context and original activity design; superseded values are not preferred over current Wiki mechanics."
+    },
+    {
+      "id": "official-poll-82-changes",
+      "publisher": "Jagex",
+      "kind": "official",
+      "url": "https://secure.runescape.com/m=news/poll-82-changes?oldschool=1",
+      "checked_at": "2026-08-22",
+      "use": "Official quality-of-life update context for same-tier contractor assignment and tea interaction improvements."
+    },
+    {
+      "id": "wiki-mahogany-homes-ironman-guide",
+      "publisher": "Old School RuneScape Wiki community guide",
+      "kind": "guide",
+      "url": "https://oldschool.runescape.wiki/w/Mahogany_homes_ironman",
+      "checked_at": "2026-08-22",
+      "use": "Ironman-oriented travel, plank sourcing, and reward-order claims; strategy context only."
+    },
+    {
+      "id": "reddit-ironscape-mahogany-homes-first-day",
+      "publisher": "r/ironscape",
+      "kind": "reddit",
+      "url": "https://www.reddit.com/r/ironscape/comments/igxe56/loot_from_one_hour_of_first_day_mahogany_homes/",
+      "checked_at": "2026-08-22",
+      "use": "Historical community experience report; strategy context only, never a rate or resource fact."
+    },
+    {
+      "id": "github-runelite-mahogany-homes-plugin",
+      "publisher": "runelite/runelite",
+      "kind": "github",
+      "url": "https://github.com/runelite/runelite/tree/master/runelite-client/src/main/java/net/runelite/client/plugins/mahoganyhomes",
+      "checked_at": "2026-08-22",
+      "use": "Community client implementation for visible contract-state assistance; not an authority for player observations or game-rule values."
+    }
+  ],
+  "access": {
+    "requirements": {
+      "membership": true,
+      "player_owned_house": "A player-owned house is required to participate.",
+      "quest_requirements": [],
+      "skill_tiers": [
+        {"tier": "Beginner", "Construction": 1, "plank": "plank", "carpenter_points_on_completed_contract": 2, "contract_completion_xp": 500},
+        {"tier": "Novice", "Construction": 20, "plank": "oak plank", "carpenter_points_on_completed_contract": 3, "contract_completion_xp": 1250},
+        {"tier": "Adept", "Construction": 50, "plank": "teak plank", "carpenter_points_on_completed_contract": 4, "contract_completion_xp": 2250},
+        {"tier": "Expert", "Construction": 70, "plank": "mahogany plank", "carpenter_points_on_completed_contract": 5, "contract_completion_xp": 2750}
+      ],
+      "boost_boundary": "Visible temporary Construction boosts can select a contract tier. Invisible boosts such as the crystal saw cannot select a tier. Furniture build requirements are separately boostable, including crystal-saw assistance; a contract cannot be cancelled, so a selected boosted tier must not imply future readiness."
+    },
+    "location_and_transport": [
+      "Amy is the initial contractor and company head in Falador, south of the park.",
+      "After the first assignment, Marlo in Varrock, Ellie in East Ardougne, and Angelo in Hosidius can also issue contracts. Each office is in or near that city's estate-agent area.",
+      "A contract can assign East Ardougne, south-east Falador, north-east or south Varrock, or south/central Hosidius, including the issuer's current city.",
+      "Teleport, spellbook, charge, house-location, and route availability are account observations. NPC Contact is a possible remote contractor-contact capability only when its separate quest, Magic, spellbook, rune, and accessibility requirements are observed."
+    ],
+    "unlock_transition": {
+      "from": "No player-owned-house or no observed Mahogany Homes first assignment",
+      "to": "Player-owned house present and first contract assignment observed",
+      "determinism": "Speaking to Amy produces the first contract when the access requirements are actually met; the resulting city, homeowner, layout, and required repairs/builds are not predetermined."
+    }
+  },
+  "activity_loop": {
+    "entry_inputs": [
+      {
+        "id": "selected-contract-tier",
+        "consumed": false,
+        "requirement": "Observed tier selection meeting its current/qualifying boosted Construction requirement. The assigned home and layout are randomised from fixed possibilities."
+      },
+      {
+        "id": "construction-materials",
+        "consumed": true,
+        "requirement": "The selected tier's plank type is consumed by the assigned build/repair hotspots. A repair can also consume a steel bar. Exact furniture, material type, and quantity are contract-layout observations; nails are not required."
+      },
+      {
+        "id": "contract-tools",
+        "consumed": false,
+        "requirement": "A hammer and saw are required. A normal hammer/saw, wieldable alternatives, or a one-slot Amy's saw setup must be observed rather than assumed."
+      },
+      {
+        "id": "travel-and-contact-inputs",
+        "consumed": "Any teleport charges, tablets, runes, coins, or other traversal inputs are route-dependent and are only consumed after a reported use.",
+        "requirement": "Reach the assigned client's house and later a contractor or separately available NPC Contact route."
+      }
+    ],
+    "reusable_setup": [
+      {
+        "id": "assigned-contract-state",
+        "detail": "The contract remains assigned until completed; it cannot be cancelled. A completed contract can be followed by another assignment."
+      },
+      {
+        "id": "tool-and-container-state",
+        "detail": "Hammer, saw, Amy's saw, plank sack, rune pouch, spellbook, teleports, and Carpenter outfit are reusable-state observations. They do not create materials, contact capabilities, charges, or readiness."
+      }
+    ],
+    "contract_assignment_and_work": {
+      "assignment": "Speak to Amy for the first contract; thereafter speak to an office contractor or use a separately observed eligible NPC Contact capability. The player selects an eligible tier. The client/location and one of the client's fixed layouts are assigned randomly.",
+      "houses_and_clients": {
+        "East Ardougne": ["Jess", "Noella", "Ross"],
+        "Falador": ["Larry", "Norman", "Tau"],
+        "Hosidius": ["Barbara", "Leela", "Mariah"],
+        "Varrock": ["Bob", "Jeff", "Sarah"]
+      },
+      "furniture_loop": "At the home, complete every marked repair or build. Broken repair furniture requires one selected-tier plank or one steel bar according to the assigned object; build hotspots consume the selected tier's plank quantity. Completion is blocked until all assigned work is done.",
+      "tea_and_completion": "Speak to the homeowner after all assigned furniture is complete. The completed contract awards its tier completion XP and Carpenter points; the homeowner offers tea that restores run energy to 100% when accepted. Tea use, current energy, accepted/declined state, and all game-awarded values are observations.",
+      "xp_components": {
+        "per_plank_build_xp": {"plank": 22.5, "oak_plank": 48, "teak_plank": 72, "mahogany_plank": 112},
+        "per_plank_repair_xp": {"plank": 127.5, "oak_plank": 160, "teak_plank": 190, "mahogany_plank": 240},
+        "per_steel_bar_repair_xp": 120,
+        "completion_xp_by_tier": {"Beginner": 500, "Novice": 1250, "Adept": 2250, "Expert": 2750},
+        "formula_boundary": "Total contract XP is the sum of observed build/repair events plus the selected tier's completion XP, then only documented applicable equipment bonuses. It is never estimated from a planned tier, average layout, elapsed time, or community rate."
+      }
+    },
+    "completion_or_reward_events": [
+      {
+        "id": "complete-mahogany-homes-contract",
+        "condition": "Observed assigned contract, all its marked furniture completed, and homeowner spoken to.",
+        "deterministic_effects_given_observed_tier_and_work": {
+          "Carpenter_points": {"Beginner": 2, "Novice": 3, "Adept": 4, "Expert": 5},
+          "completion_Construction_xp": {"Beginner": 500, "Novice": 1250, "Adept": 2250, "Expert": 2750},
+          "tea": "A homeowner tea offer can restore run energy to 100% if accepted."
+        },
+        "reported_effects_only": ["actual layout", "build/repair materials and quantities", "steel bars used", "total Construction XP", "point balance before/after", "tea acceptance", "run energy before/after"]
+      },
+      {
+        "id": "buy-mahogany-homes-reward",
+        "condition": "Observed Carpenter-point balance is sufficient and the specific Reward Shop purchase is confirmed.",
+        "boundary": "A purchase creates the particular deterministic reward/unlock. Supply crate contents, collection-log entry completion, later use, and player readiness remain observed."
+      }
+    ],
+    "failure_and_death": {
+      "failure": "There is no cancellation path for an assigned contract. Missing tools/materials, unreachable location, or insufficient level for an assigned build blocks progress until the player actually resolves it.",
+      "death": "Mahogany Homes itself is a non-combat city activity. Any death, dangerous travel, item loss, reclaim, or teleport interruption comes from an externally chosen route and must be handled by that route's state model.",
+      "logout_and_interruption": "This package does not infer persistence or loss from an unobserved logout/disconnection. Reported assignment/work state must be reconciled against actual game state before effects are recorded."
+    },
+    "repeatability": {
+      "repeatable": true,
+      "cycle": "After an observed completed contract, obtain another tier-selected assignment from an available contractor or separately observed NPC Contact route. Each assignment has independent random city/client/layout and independently observed material, XP, point, and travel outcomes.",
+      "rng_boundary": "The assignment and fixed layout selection are random. Supply crates have contents not fixed by their purchase price. Neither creates a guaranteed material, output, or time result."
+    }
+  },
+  "currencies": [
+    {
+      "id": "carpenter-points",
+      "acquisition": "deterministic",
+      "spend_behavior": "A completed observed contract adds 2/3/4/5 points for Beginner/Novice/Adept/Expert. Reward-shop costs are fixed; current balance and purchase readiness are observed only."
+    },
+    {
+      "id": "construction-materials-and-travel-inputs",
+      "acquisition": "mixed",
+      "spend_behavior": "Planks and occasional steel bars are per-layout consumed inputs; logs, sawmill fees, spell materials, teleport inputs, and travel source selection are separate dependencies. No material or coin balance is inferred."
+    }
+  ],
+  "rewards": [
+    {
+      "id": "contract-construction-xp-and-carpenter-points",
+      "acquisition": "fixed",
+      "utility": ["Construction XP from observed work and completion", "Carpenter-point currency for deterministic shop purchases"],
+      "boundary": "Actual contract work, materials, XP, points, and balance must be reported or independently game-verified."
+    },
+    {
+      "id": "plank-sack",
+      "acquisition": "shop",
+      "carpenter_points": 350,
+      "utility": ["Holds up to 28 planks", "Reusable carrying-capacity utility; contents and ownership are observed."],
+      "collection_log": true
+    },
+    {
+      "id": "amys-saw",
+      "acquisition": "shop",
+      "carpenter_points": 500,
+      "utility": ["Equipable/wieldable saw for Construction", "Can be swapped to off-hand; it does not provide the crystal saw's invisible Construction boost."],
+      "collection_log": true
+    },
+    {
+      "id": "carpenters-outfit",
+      "acquisition": "shop",
+      "pieces": [
+        {"item": "Carpenter's helmet", "carpenter_points": 400, "Construction_xp_bonus_percent": 0.8},
+        {"item": "Carpenter's shirt", "carpenter_points": 800, "Construction_xp_bonus_percent": 0.8},
+        {"item": "Carpenter's trousers", "carpenter_points": 600, "Construction_xp_bonus_percent": 0.6},
+        {"item": "Carpenter's boots", "carpenter_points": 200, "Construction_xp_bonus_percent": 0.3}
+      ],
+      "total_cost": 2000,
+      "utility": ["Each owned and worn piece gives its documented Construction XP bonus", "Full worn outfit totals 2.5% Construction XP bonus."],
+      "collection_log": true,
+      "boundary": "Piece ownership and worn state are separate observations; no full-set ownership or XP bonus is inferred."
+    },
+    {
+      "id": "hosidius-blueprints",
+      "acquisition": "shop",
+      "carpenter_points": 2000,
+      "utility": ["Unlocks the Hosidius Wall Kit for the player-owned house."],
+      "collection_log": true
+    },
+    {
+      "id": "supply-crate-mahogany-homes",
+      "acquisition": "shop",
+      "carpenter_points": 25,
+      "utility": ["Contains Construction materials."],
+      "collection_log": true,
+      "boundary": "The purchase is deterministic but crate contents are not. No planks, bars, nails, coins, or other contents are inferred until opened and reported."
+    }
+  ],
+  "dependencies_and_bypasses": [
+    {"target": "state:player-owned-house", "relationship": "requires", "detail": "Participation access requirement."},
+    {"target": "resource:plank-types", "relationship": "requires", "detail": "The selected contract tier requires regular/oak/teak/mahogany planks; exact assigned consumption depends on observed layout."},
+    {"target": "resource:steel-bars", "relationship": "requires", "detail": "Some repair assignments require a steel bar; exact need is observed per layout."},
+    {"target": "capability:sawmill-or-plank-make", "relationship": "alternative_to", "detail": "Deterministic plank conversion paths can supply input planks once their own logs, GP/runes, quest, skill, and location requirements are observed."},
+    {"target": "activity:tempoross", "relationship": "makes_obtainable", "detail": "Its independent reward pool can produce regular/oak planks; result contents remain RNG observations and are not a planned supply quantity."},
+    {"target": "utility:plank-sack", "relationship": "unlocks", "detail": "350 Carpenter-point deterministic shop purchase, subject to observed balance and confirmed purchase."},
+    {"target": "utility:amys-saw", "relationship": "unlocks", "detail": "500 Carpenter-point deterministic shop purchase, subject to observed balance and confirmed purchase."},
+    {"target": "utility:carpenters-outfit", "relationship": "unlocks", "detail": "Four deterministic shop purchases totaling 2,000 Carpenter points, subject to observed balance and purchases."},
+    {"target": "utility:hosidius-wall-kit", "relationship": "unlocks", "detail": "2,000 Carpenter-point blueprints purchase, subject to observed balance and confirmed purchase."}
+  ],
+  "afk_and_attention": {
+    "attention_class": "active",
+    "measured_interaction_interval_seconds": null,
+    "logout_or_idle_constraints": ["Contracts require active navigation, client-house interaction, furniture repair/build actions, and completion dialogue.", "No reliable AFK duration, contract rate, or travel time is modeled because these depend on assignment, route, input setup, execution, and external state."],
+    "source_boundary": "Current Wiki describes a travel-and-interaction contract loop; neither it nor community rate guides authorize a predicted attention interval or output rate for this account."
+  },
+  "community_strategy_observations": [
+    {
+      "claim": "Community guides commonly prioritize plank sack, then Amy's saw, then Carpenter outfit for continued Mahogany Homes training.",
+      "source_ids": ["wiki-mahogany-homes-current", "wiki-mahogany-homes-ironman-guide"],
+      "treatment": "strategy-candidate-not-fact"
+    },
+    {
+      "claim": "Community setups combine city teleports, a Hosidius access method, and NPC Contact to reduce contractor/travel downtime; exact viability depends on separately observed quests, Magic, runes, charges, house setup, and location state.",
+      "source_ids": ["wiki-mahogany-homes-current", "wiki-mahogany-homes-ironman-guide"],
+      "treatment": "strategy-candidate-not-fact"
+    },
+    {
+      "claim": "Community Ironman guidance compares forestry, Kingdom, PvM/reward sources, sawmills, and Plank Make for plank acquisition; these are alternative dependency paths, not assumed stock or a preferred route.",
+      "source_ids": ["wiki-mahogany-homes-ironman-guide", "reddit-ironscape-mahogany-homes-first-day"],
+      "treatment": "strategy-candidate-not-fact"
+    }
+  ],
+  "state_boundaries": [
+    "Do not infer a player-owned house, membership state, Construction level, visible boost, tool, plank sack, Amy's saw, Carpenter outfit, plank count/type, steel-bar count, coins, logs, sawmill access, spellbook, NPC Contact, runes, teleport, charge, house location, contractor access, contract assignment, client, layout, furniture state, tea result, XP, Carpenter points, reward purchase, supply-crate contents, collection-log state, or readiness.",
+    "The tier's point award and completion XP are deterministic only after the completed tier is observed. Build/repair XP and consumption are calculated only from observed hotspot events, never from a per-tier average.",
+    "Community cost, rate, plank-per-hour, contracts-per-hour, stop, and reward-order claims are strategy candidates only."
+  ],
+  "proposed_normalization": {
+    "facts": [
+      {
+        "id": "utility-mahogany-homes-contracts-and-rewards",
+        "name": "Mahogany Homes access, contract, points, and reward-shop facts",
+        "category": "utility",
+        "status": "proposal",
+        "source_ids": ["wiki-mahogany-homes-current", "wiki-mahogany-homes-mechanics-current", "official-poll-82-changes"],
+        "integration_note": "Normalize exact tiers, deterministic completion point/XP awards, material/tool rules, contractors/cities, reward costs, utility, and all randomness/observation boundaries. Do not normalize rates, estimates, route timing, ownership, or planned contract counts."
+      },
+      {
+        "id": "utility-mahogany-homes-observed-contract-state",
+        "name": "Observed Mahogany Homes contract, material, travel, reward, and collection-log state",
+        "category": "account-observation",
+        "status": "proposal",
+        "source_ids": ["wiki-mahogany-homes-current", "github-runelite-mahogany-homes-plugin"],
+        "integration_note": "Add observation-only state. Do not make an autonomous assignment, furniture, travel, material, XP, point, tea, crate-content, or collection-log simulator."
+      }
+    ],
+    "actions": [
+      {
+        "id": "action:request-mahogany-homes-contract",
+        "kind": "activity_setup",
+        "requires": ["observed player-owned house", "observed membership", "observed contractor or independently eligible NPC Contact capability", "observed current/qualifying visible Construction level for selected tier"],
+        "outcomes": ["observed Mahogany Homes contract assignment only"],
+        "reported_effects_only": ["selected tier", "issuer", "assigned city", "client", "fixed layout", "required furniture", "actual route"]
+      },
+      {
+        "id": "action:complete-mahogany-homes-contract",
+        "kind": "observed_activity_result",
+        "requires": ["observed active assignment", "reported all assigned furniture completed", "reported homeowner completion dialogue"],
+        "outcomes": ["deterministic point and completion-XP award from observed selected tier", "deterministic work-XP calculation from reported individual events"],
+        "reported_effects_only": ["planks/bars consumed", "total XP award", "point balance", "tea acceptance and energy result", "all future readiness"]
+      },
+      {
+        "id": "action:buy-mahogany-homes-reward",
+        "kind": "shop_purchase",
+        "requires": ["observed sufficient Carpenter-point balance", "observed confirmed named Reward Shop purchase"],
+        "outcomes": ["specific deterministic reward or unlock only"],
+        "reported_effects_only": ["supply crate contents", "collection-log state", "owned/equipped state", "later capacity or XP application"]
+      },
+      {
+        "id": "action:report-mahogany-homes-state",
+        "kind": "account_observation",
+        "requires": ["player-reported or independently verified game state"],
+        "outcomes": ["records only documented observed state"],
+        "reported_effects_only": ["assignment persistence after interruption", "materials", "teleports", "points", "purchases", "crate contents", "rates", "readiness"]
+      }
+    ],
+    "graph_nodes": [
+      "activity:mahogany-homes",
+      "state:player-owned-house",
+      "state:skill-construction-observed",
+      "state:mahogany-homes-contract-observed",
+      "state:mahogany-homes-layout-observed",
+      "resource:mahogany-homes-carpenter-points",
+      "resource:plank-types-observed",
+      "resource:steel-bars-observed",
+      "item:plank-sack",
+      "item:amys-saw",
+      "item:carpenters-outfit",
+      "unlock:hosidius-wall-kit",
+      "item:mahogany-homes-supply-crate"
+    ],
+    "graph_edges": [
+      {"from": "state:player-owned-house", "to": "activity:mahogany-homes", "relationship": "requires", "condition": "observed membership and player-owned house"},
+      {"from": "state:skill-construction-observed", "to": "state:mahogany-homes-contract-observed", "relationship": "requires", "condition": "observed selected tier meets base or qualifying visible temporary boost"},
+      {"from": "activity:mahogany-homes", "to": "state:mahogany-homes-contract-observed", "relationship": "produces", "condition": "only after observed contractor assignment"},
+      {"from": "state:mahogany-homes-contract-observed", "to": "state:mahogany-homes-layout-observed", "relationship": "produces", "condition": "only after game displays the assigned client/layout"},
+      {"from": "resource:plank-types-observed", "to": "activity:mahogany-homes", "relationship": "requires", "condition": "actual selected-tier plank use only after observed assigned hotspot"},
+      {"from": "resource:steel-bars-observed", "to": "activity:mahogany-homes", "relationship": "requires", "condition": "only if an observed repair hotspot uses a steel bar"},
+      {"from": "state:mahogany-homes-layout-observed", "to": "resource:mahogany-homes-carpenter-points", "relationship": "produces", "condition": "only after reported full contract completion; point award follows observed tier"},
+      {"from": "resource:mahogany-homes-carpenter-points", "to": "item:plank-sack", "relationship": "unlocks", "condition": "350 observed points and confirmed purchase"},
+      {"from": "resource:mahogany-homes-carpenter-points", "to": "item:amys-saw", "relationship": "unlocks", "condition": "500 observed points and confirmed purchase"},
+      {"from": "resource:mahogany-homes-carpenter-points", "to": "item:carpenters-outfit", "relationship": "unlocks", "condition": "each confirmed piece purchase at its exact cost"},
+      {"from": "resource:mahogany-homes-carpenter-points", "to": "unlock:hosidius-wall-kit", "relationship": "unlocks", "condition": "2,000 observed points and confirmed blueprints purchase"},
+      {"from": "resource:mahogany-homes-carpenter-points", "to": "item:mahogany-homes-supply-crate", "relationship": "makes_obtainable", "condition": "25 observed points and confirmed purchase; contents remain RNG observations"}
+    ],
+    "account_observations": [
+      {
+        "id": "observation:mahogany-homes-access-and-tools",
+        "fields": ["membership state", "player-owned house present", "Construction level", "visible temporary boost and remaining duration", "hammer/saw/Amy's saw/Imcando hammer availability", "plank sack ownership and actual contents", "Carpenter outfit pieces owned and worn"],
+        "prohibited_inferences": ["tier readiness from a planned boost", "tools/containers owned", "stored planks", "outfit bonus"]
+      },
+      {
+        "id": "observation:mahogany-homes-contract",
+        "fields": ["active/complete assignment state", "selected tier", "issuer", "city", "client", "assigned layout", "all marked furniture states", "required/consumed plank type and count", "steel bars used", "contract-completion dialogue"],
+        "prohibited_inferences": ["future assignment", "layout", "required materials", "completion", "XP", "points", "travel time"]
+      },
+      {
+        "id": "observation:mahogany-homes-travel-and-tea",
+        "fields": ["route actually used", "teleport/spell/charge/rune inputs actually spent", "NPC Contact eligibility and use", "tea offered/accepted", "run energy before/after"],
+        "prohibited_inferences": ["teleport availability", "charges", "runes", "route duration", "tea result"]
+      },
+      {
+        "id": "observation:mahogany-homes-points-and-rewards",
+        "fields": ["Carpenter-point balance before/after", "Construction XP shown", "each shop purchase", "supply-crate opened contents", "Hosidius Wall Kit unlock", "collection-log state"],
+        "prohibited_inferences": ["point balance", "reward ownership", "crate contents", "collection-log completion", "future XP"]
+      }
+    ]
+  },
+  "conflicts_and_unknowns": [
+    {
+      "topic": "Contract averages versus exact outcomes",
+      "conflict": "The current mechanics page publishes crowd-derived per-tier layout averages and community guides publish cost/rate estimates, while individual assignments have random client/layout and observed travel/execution.",
+      "resolution": "Use exact point and completion-XP awards by observed tier plus actual recorded hotspot events. Retain averages only as sourced context; never transition predicted plank/bar use, XP, time, or points from them.",
+      "source_ids": ["wiki-mahogany-homes-current", "wiki-mahogany-homes-mechanics-current"]
+    },
+    {
+      "topic": "Reward order and stops",
+      "conflict": "The current Wiki labels a common experience-efficient purchase order and community guides recommend tier/reward targets, but these depend on current account goals, materials, travel, and owned capability.",
+      "resolution": "Preserve as strategy-candidate-not-fact. The only normalized deterministic claim is each shop item's current point cost and stated utility after a confirmed purchase.",
+      "source_ids": ["wiki-mahogany-homes-current", "wiki-mahogany-homes-ironman-guide"]
+    },
+    {
+      "topic": "NPC Contact and teleport setups",
+      "conflict": "Guides describe rapid contractor/travel setups without proving this account's Lunar quest completion, Magic level, spellbook, runes, rune pouch, charged items, POH facilities, or city-route availability.",
+      "resolution": "Model NPC Contact and transports as independent observed capabilities. Do not use guide routes to imply travel time or contract throughput.",
+      "source_ids": ["wiki-mahogany-homes-current", "wiki-mahogany-homes-ironman-guide"]
+    },
+    {
+      "topic": "Supply crate contents",
+      "conflict": "The shop purchase is fixed at 25 points, but contents are a container outcome rather than a fixed material grant.",
+      "resolution": "Normalize the purchasable crate and mark its contents as player-observed/RNG. No crate-derived plank, bar, nail, coin, or resource transition is emitted automatically.",
+      "source_ids": ["wiki-mahogany-homes-current"]
+    }
+  ],
+  "coverage": {
+    "access": true,
+    "loop": true,
+    "currencies": true,
+    "rewards": true,
+    "failure_state": true,
+    "sources": true,
+    "normalization": true
+  }
+}
