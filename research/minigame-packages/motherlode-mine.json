@@ -1,0 +1,273 @@
+{
+  "package_schema_version": 1,
+  "package_type": "minigame-research",
+  "package_id": "research-minigame-motherlode-mine",
+  "activity": "Motherlode Mine",
+  "status": "research-proposal",
+  "checked_at": "2026-08-22",
+  "scope": "Current factual model of the members-only Motherlode Mine, its reward shop and permanent upgrades. This package is isolated research and proposes no route order, stop point, expected output, or player readiness.",
+  "facts_strategy_boundary": {
+    "included": [
+      "Current entry, level, tool, location, transport, mine-loop, water-circuit, reward, fixed-price, diary, death and state rules.",
+      "Explicit deterministic versus RNG boundaries for pay-dirt, ore conversion, golden nuggets, repairs, shop purchases and collection-log ownership.",
+      "Existing Motherlode, AFK/passive and Falador-diary facts are revalidated and referenced without altering them."
+    ],
+    "excluded": [
+      "A preferred unlock order, target number of nuggets/pay-dirt, XP/hour, profit/hour, AFK duration, expected ore count, ownership, or account-specific readiness.",
+      "Any claim that a community player can be used as evidence of the account's supplies, preference, execution speed, attention tolerance or future results."
+    ]
+  },
+  "source_catalog": [
+    {
+      "id": "wiki-motherlode-current",
+      "publisher": "Old School RuneScape Wiki",
+      "kind": "wiki",
+      "url": "https://oldschool.runescape.wiki/w/Motherlode_Mine",
+      "checked_at": "2026-08-22",
+      "use": "Primary current mechanics: access, mine geography, veins, pay-dirt, cleaning, water circuit, struts, rockfalls, sack, nugget probability, ore outcomes, upgrades, death risk and dated 2024 rework changes. Revalidates shared source id wiki-motherlode."
+    },
+    {
+      "id": "wiki-prospector-nugget-shop-current",
+      "publisher": "Old School RuneScape Wiki",
+      "kind": "wiki",
+      "url": "https://oldschool.runescape.wiki/w/Prospector_Percy%27s_Nugget_Shop",
+      "checked_at": "2026-08-22",
+      "use": "Current complete Nugget Shop stock, fixed prices, 80% resale values, permanent upgrade costs and totals. Revalidates shared source id wiki-prospector-nugget-shop."
+    },
+    {
+      "id": "official-project-rebalance-2024",
+      "publisher": "Jagex",
+      "kind": "official",
+      "url": "https://secure.runescape.com/m=news/project-rebalance---part-one-skilling?oldschool=1",
+      "checked_at": "2026-08-22",
+      "use": "Official source for the 2024 Motherlode rework: fixed lower/upper vein lifetimes, coal XP, hopper/sack behavior, super hopper, 57 Mining upper-level gate and Falador hard diary task change."
+    },
+    {
+      "id": "wiki-falador-diary-current",
+      "publisher": "Old School RuneScape Wiki",
+      "kind": "wiki",
+      "url": "https://oldschool.runescape.wiki/w/Falador_Diary",
+      "checked_at": "2026-08-22",
+      "use": "Current Falador diary Motherlode task and shield rewards: medium dark-tunnel shortcut and elite higher-ore chance. Revalidates Falador package sources."
+    },
+    {
+      "id": "wiki-achievement-diary-rewards-current",
+      "publisher": "Old School RuneScape Wiki",
+      "kind": "wiki",
+      "url": "https://oldschool.runescape.wiki/w/Achievement_Diary_Rewards",
+      "checked_at": "2026-08-22",
+      "use": "Cross-check for the live Falador elite higher-level-ore benefit and removal of historical pay-dirt XP benefits."
+    },
+    {
+      "id": "wiki-mining-training-current",
+      "publisher": "Old School RuneScape Wiki",
+      "kind": "wiki",
+      "url": "https://oldschool.runescape.wiki/w/Pay-to-play_Mining_training",
+      "checked_at": "2026-08-22",
+      "use": "Cross-check for mine approach, low-effort characterization, 23-27 and 36-40 second vein windows, bank/diary shortcut and rate variability boundary."
+    },
+    {
+      "id": "reddit-ironscape-mlm-order-2026",
+      "publisher": "r/ironscape community",
+      "kind": "reddit",
+      "url": "https://www.reddit.com/r/ironscape/comments/1uycddv/motherlode_mine/",
+      "checked_at": "2026-08-22",
+      "use": "Clearly non-authoritative current Ironman discussion of upper-level, hopper, resource-bag and Prospector purchase priorities."
+    },
+    {
+      "id": "youtube-theoatrix-mining-2026",
+      "publisher": "Theoatrix OSRS",
+      "kind": "youtube",
+      "url": "https://www.youtube.com/watch?v=6cSEZKEcXSg",
+      "checked_at": "2026-08-22",
+      "use": "Current community Mining-guide reference. Its Motherlode segment is strategy context only, not proof of exact results or an account recommendation."
+    }
+  ],
+  "access": {
+    "requirements": {
+      "membership": true,
+      "lower_level": {"Mining": 30, "boostability": "No boost assumption is made. The player must report current usable Mining level and access."},
+      "upper_level": {"Mining": 57, "golden_nuggets": 100, "boostability": "The source names 57 Mining; this package does not claim a temporary boost works for the purchase or continued access."},
+      "tools": ["Any usable pickaxe is required to mine pay-dirt and clear rockfalls."],
+      "quest_prerequisites": []
+    },
+    "location_and_transport": [
+      "The mine entrance is in the Dwarven Mine beneath Falador, adjacent to the Mining Guild area.",
+      "A Skills necklace teleport to the Mining Guild is one listed approach; walking and any independently unlocked Falador/Dwarven-Mine transport are alternatives, not assumed ownership.",
+      "A bank chest beside Prospector Percy has no stated extra requirement; pay-dirt itself cannot be banked for later cleaning.",
+      "The southern tunnel is a no-diary connection. Falador medium unlocks the dark-tunnel shortcut near the bank/hopper side, and using that shortcut requires 54 Agility."
+    ],
+    "unlock_transition": {
+      "lower_level": "The activity becomes accessible after membership, reported lower-level eligibility and a usable pickaxe.",
+      "upper_level": "After reported 57 Mining, 100 observed golden nuggets and the one-time Percy purchase, upper-floor access is permanent.",
+      "super_hopper": "After upper-level access and 50 observed nuggets, Percy sells a permanent upper-level hopper-deposit capability."
+    }
+  },
+  "activity_loop": {
+    "entry_inputs": [
+      {"id": "usable-pickaxe", "consumed": false, "requirement": "Required to mine pay-dirt and to clear obstructing rockfalls."},
+      {"id": "pay-dirt-inventory-space", "consumed": false, "requirement": "Mined pay-dirt occupies inventory slots until deposited. Quantity is not inferred."},
+      {"id": "hammer-for-struts", "consumed": false, "requirement": "A hammer is required only to attempt strut repair; three nearby crates can supply one, and an Imcando hammer is an alternative. Ownership is not assumed."}
+    ],
+    "reusable_setup": [
+      {"id": "mine-pay-dirt", "detail": "Mine an eligible lower- or upper-level vein. A successful mine gives one pay-dirt and Mining XP; exact success count, XP, pickaxe speed, vein choice and any special level are observed rather than generated."},
+      {"id": "deposit-and-clean", "detail": "Deposit inventory pay-dirt into a hopper. The water circuit carries it toward the sack while at least one wheel is operational. Search the sack to receive the cleaned outcomes."},
+      {"id": "bank-or-continue", "detail": "Ores can be banked at the local chest. Pay-dirt cannot be banked, so a reported inventory of pay-dirt remains an in-progress local state until deposited, dropped or otherwise player-resolved."}
+    ],
+    "veins_and_attention_mechanics": {
+      "lower_level": "Lower-floor veins run on a fixed random 23-27 second lifetime after first mined, rather than the former random-depletion mechanic.",
+      "upper_level": "Upper-floor veins run on a fixed random 36-40 second lifetime after first mined. Upper-level access does not itself guarantee a particular vein, output or interval for the player.",
+      "depletion": "After its lifetime, a vein becomes depleted and must respawn before it can be mined again. Time-to-depletion is a source-defined range, not a validated player-specific AFK timer.",
+      "rockfalls": "Rockfalls can obstruct paths. Clearing one requires a pickaxe and grants 10 Mining XP; a falling rock that hits the player deals 1-4 Hitpoints damage. Nearby miners can sometimes clear rockfalls, but this is not an account output.",
+      "sack_and_hopper_cap": "The unupgraded sack holds 108 pay-dirt and the permanent sack upgrade raises it to 189. Once the applicable cap is reached, mining/depositing stops until the sack is emptied below its cap. The hopper may have pay-dirt in transit; no exact occupancy is inferred."
+    },
+    "water_circuit": {
+      "normal": "Pay-dirt moves from hopper to sack while at least one water wheel remains supported.",
+      "struts": "The two wheel struts can break on a world-wide state. When both are broken, pay-dirt already in the circuit is frozen; additional pay-dirt may be deposited but does not reach the sack until repairs restore flow.",
+      "repair": "A repair attempt requires a hammer. Successful repair grants Smithing XP equal to 1.5 times the current Smithing level. Per-tick success scales from 12% at Smithing 1 to 27% at Smithing 99; attempts, current level, success and XP are report-only.",
+      "persistence": "Pay-dirt progress through the circuit persists through logout or world hop. Strut condition is world-specific, so hopping can change it but does not create an output guarantee."
+    },
+    "cleaning_and_outcomes": {
+      "pay_dirt": "Each cleaned pay-dirt independently has a 1/32 (3.125%, conventionally displayed as 3.13%) golden-nugget outcome, independent of Mining level. A golden nugget is RNG, not a guaranteed reward after any number of pay-dirt.",
+      "ore": "Non-nugget cleaning yields one ore from coal, gold, mithril, adamantite or runite. Availability and probabilities are Mining-level dependent: gold begins at 40, mithril at 55, adamantite at 70 and runite at 85; coal remains the residual outcome. The source's current level-by-level table/chart is authoritative for exact per-level probabilities.",
+      "formula_boundary": "The current source exposes a level-indexed probability table rather than a single documented player-facing formula. A future calculator may encode the source table with a versioned citation, but must not extrapolate counts or average output from level/history alone.",
+      "experience": "Mining XP is awarded for mining pay-dirt and ore XP is awarded when cleaning it; coal now awards XP after the 2024 rework. Amounts, level, pickaxe, ore rolls, diary effects and total XP remain observed.",
+      "falador_elite": "Falador elite provides a slightly higher chance for higher-level ores when cleaning pay-dirt. It changes probabilities only; it does not provide a fixed ore, fixed XP bonus, nugget bonus, or guaranteed quantity."
+    },
+    "completion_or_reward_events": [
+      {"id": "clean-pay-dirt", "condition": "Reported pay-dirt has completed the hopper/water/sack process and the player searches the sack.", "result": "One variable cleaned outcome per pay-dirt: ore or RNG golden nugget. The package never turns deposited pay-dirt into automatic inventory resources."},
+      {"id": "buy-fixed-reward", "condition": "Reported access, exact golden-nugget balance, fixed purchase cost and reward-specific gate are satisfied.", "result": "The selected permanent upgrade or shop item is deterministic; resale is a separate fixed 80% transaction where eligible."},
+      {"id": "repair-strut", "condition": "A reported broken strut, usable hammer and successful repair attempt.", "result": "World water flow is restored as applicable and the reported/validated Smithing XP can be recorded; repair success is not presumed."}
+    ],
+    "failure_and_death": {
+      "activity_failure": "There is no scored round, permit, reward-pool failure or activity-wide reset. Full sacks, depleted veins, in-transit pay-dirt and stopped water flow are loop constraints rather than failed completions.",
+      "damage_and_death": "A rockfall can hit for 1-4 damage. This package does not infer Hitpoints, food, death, reclaim, retained pay-dirt or risk tolerance. Mine mechanics provide no automatic death/reclaim result.",
+      "exit_and_logout": "Pay-dirt circuit progress persists through logout/world hop. Inventory, sack count, hopper/in-transit state, strut state, ores, nuggets, XP, repairs and unlock state must be reported after return."
+    },
+    "repeatability": {
+      "repeatable": true,
+      "cycle": "Mine -> deposit -> wait for an operative water circuit -> search sack -> bank or repeat. There is no account-independent completion count or stop condition.",
+      "rng_boundary": "Each pay-dirt outcome and repair result is independent/variable as sourced. Purchases are fixed only after observed currency and gates."
+    }
+  },
+  "currencies": [
+    {"id": "golden-nuggets", "acquisition": "rng", "spend_behavior": "Random 1/32 cleaned-pay-dirt outcome. Fixed costs can be subtracted only from a reported nugget balance; nugget history does not establish future purchases."},
+    {"id": "pay-dirt", "acquisition": "player_observed", "spend_behavior": "Temporary mined inventory/input to hopper and sack process. It cannot be banked and is not treated as ore, nugget or a guaranteed future output."}
+  ],
+  "rewards": [
+    {"id": "prospector-kit", "acquisition": "shop", "utility": ["Wearable Mining-XP outfit; helmet 0.4%, jacket 0.8%, legs 0.6%, boots 0.2%, full worn kit 2.5%.", "Prospector helmet is the current equipment required by the Falador hard diary Mining Guild task."], "costs": {"helmet": 40, "jacket": 60, "legs": 50, "boots": 30, "total": 180}, "resale": "Each shop-bought piece sells to Percy for 80% of its listed cost: 32, 48, 40 and 24 nuggets respectively. Pieces obtained elsewhere are not resellable at Percy."},
+    {"id": "coal-bag", "acquisition": "shop", "utility": ["Non-degrading coal storage: 27 coal, or 36 while a Smithing cape is equipped."], "cost": 100, "resale": "80 nuggets if bought from Percy; actual ownership/source must be reported."},
+    {"id": "gem-bag", "acquisition": "shop", "utility": ["Stores uncut sapphire, emerald, ruby, diamond and dragonstone; capacity and upgrades belong to its separate item model."], "cost": 100, "resale": "80 nuggets if bought from Percy; actual ownership/source must be reported."},
+    {"id": "soft-clay-pack", "acquisition": "shop", "utility": ["Repeatable consumable shop pack containing soft clay; opening/result/use is an inventory observation."], "cost": 10, "shop_stock": 1000, "resale": "8 nuggets each when Percy-purchased; no purchase or pack contents are assumed."},
+    {"id": "bag-full-of-gems", "acquisition": "shop", "utility": ["Repeatable variable gem container; contents and later processing are not guaranteed."], "cost": 40, "shop_stock": 100, "resale": "32 nuggets each when Percy-purchased; bags bought elsewhere cannot be resold here."},
+    {"id": "upper-level", "acquisition": "threshold", "utility": ["Permanent access to the 36-40 second upper-floor veins."], "cost": 100, "additional_requirement": "57 Mining", "resale": "Not a resellable item."},
+    {"id": "super-hopper", "acquisition": "threshold", "utility": ["Permanent ability to deposit pay-dirt into a hopper from the upper level."], "cost": 50, "additional_requirement": "Upper level unlocked", "resale": "Not a resellable item."},
+    {"id": "pay-dirt-sack-upgrade", "acquisition": "threshold", "utility": ["Permanent sack capacity increase from 108 to 189 pay-dirt."], "cost": 200, "resale": "Not a resellable item."},
+    {"id": "shop-and-upgrade-totals", "acquisition": "mixed", "utility": ["All non-consumable shop items cost 380 nuggets: Prospector kit, coal bag and gem bag.", "All permanent mine upgrades cost 350 nuggets: upper level, super hopper and sack upgrade.", "Every unique non-consumable shop item plus upgrade costs 730 nuggets before any resale; this is a cost total, not a recommended target or expected nugget result."], "cost": 730}
+  ],
+  "dependencies_and_bypasses": [
+    {"target": "Mining 30 and usable pickaxe", "relationship": "requires", "detail": "Lower Motherlode access and rockfall clearing."},
+    {"target": "Mining 57 plus 100 observed golden nuggets", "relationship": "requires", "detail": "Upper-level purchase; it is not a replacement for lower access."},
+    {"target": "upper-level", "relationship": "requires", "detail": "Super hopper purchase additionally requires this permanent unlock."},
+    {"target": "Falador medium diary plus 54 Agility", "relationship": "unlocks", "detail": "Dark-tunnel shortcut near the bank/hopper. Southern tunnel remains an alternative with no diary gate."},
+    {"target": "Falador elite diary", "relationship": "improves", "detail": "Slightly increases higher-level ore chances from cleaning; no fixed outcome is produced."},
+    {"target": "Prospector helmet", "relationship": "unlocks", "detail": "Equipment gate for one Falador hard diary task, subject to separately modeled Mining Guild entry and diary completion."},
+    {"target": "coal bag", "relationship": "makes_obtainable", "detail": "Fixed 100-nugget reward after observed balance; later Smithing utility is outside this activity's output model."},
+    {"target": "gem bag", "relationship": "makes_obtainable", "detail": "Fixed 100-nugget reward after observed balance; separate gem-bag storage/upgrades are not duplicated here."},
+    {"target": "bank chest, diary shortcut, skills-necklace approach and walking", "relationship": "alternative_to", "detail": "Approach/banking-route alternatives. No transport ownership, cost or timing is assumed."}
+  ],
+  "afk_and_attention": {
+    "attention_class": "mixed",
+    "measured_interaction_interval_seconds": null,
+    "logout_or_idle_constraints": [
+      "Veins expire in sourced random windows of 23-27 seconds below and 36-40 seconds above after first mined; movement, pathing, pickaxe, competition and player interaction are not converted into a safe AFK duration.",
+      "Inventory fills, a full sack/hopper cap, depleted veins, rockfalls, water-wheel struts and banking all require situational interaction.",
+      "The water circuit's pay-dirt progress persists through logout/world hop, but strut state is world-specific and no claim is made that a player can safely remain idle.",
+      "Existing shared fact data/facts/afk-passive.json#motherlode-mine classifies it as low_attention and player_present=true. This package preserves that classification as a high-level profile while retaining null for a measured interval."
+    ],
+    "source_boundary": "Current sources support a lower-effort/mixed interaction characterization, not a universal AFK timer, hourly output, safety claim, or unattended-play recommendation. Any account-specific cadence must be recorded from observed play."
+  },
+  "community_strategy_observations": [
+    {"claim": "Current Ironman discussion often prioritizes upper level and super hopper before the full Prospector kit or resource bags, while other players buy the helmet for the diary and resell it after the task.", "source_ids": ["reddit-ironscape-mlm-order-2026"], "treatment": "strategy-candidate-not-fact", "boundary": "This is a contested preference influenced by Mining level, intended future Motherlode time, diary state, Mining/Smithing plans, item ownership and attention preference. It does not select an order."},
+    {"claim": "Community guides describe Motherlode Mine as a low-effort Mining option and contrast it with faster or more passive alternatives such as granite, Volcanic Mine, shooting stars or calcified rocks.", "source_ids": ["youtube-theoatrix-mining-2026", "wiki-mining-training-current"], "treatment": "strategy-candidate-not-fact", "boundary": "Method comparison requires current player skills, inputs, access, objectives, execution and desired attention level. No rate or route recommendation is normalized."},
+    {"claim": "Community discussion treats coal bag, gem bag, upper floor, sack and outfit value differently depending on Blast Furnace, Slayer/mining storage, diary and collection-log goals.", "source_ids": ["reddit-ironscape-mlm-order-2026"], "treatment": "strategy-candidate-not-fact", "boundary": "The package records exact costs and effects only. It does not call any reward mandatory, efficient or a stop point."}
+  ],
+  "state_boundaries": [
+    "Do not infer Motherlode access, pickaxe, usable Mining/Smithing/Agility level, route, bank state, diary tier, upper level, hopper, sack upgrade, Prospector pieces, coal bag, gem bag, collection-log state or reward-purchase readiness.",
+    "Do not infer mined pay-dirt, vein lifetime/start, inventory, hopper/in-transit pay-dirt, sack contents, ores, nugget count, probability result, experience, strut condition, repair attempts, repair result, damage, food, death or reclaim outcome.",
+    "The 1/32 nugget probability and level-indexed ore table describe possible outcomes only. They must never be used to grant average resources, confirm a past output, or forecast a future one.",
+    "Fixed shop and upgrade costs are deterministic only after a player reports current balance and selected purchase. Consumable pack opening and bag contents remain variable.",
+    "AFK labels are descriptive constraints, not evidence of unattended safety, player-specific cadence, logout behavior, hourly results or passive/offline progression."
+  ],
+  "proposed_normalization": {
+    "facts": [
+      {"id": "motherlode-mine-current-loop", "status": "proposed", "purpose": "Expand existing Motherlode access/nugget fact with 2024 vein windows, hopper/sack/water/strut/rockfall state, cleaning boundaries and diary correction."},
+      {"id": "motherlode-nugget-shop-current", "status": "proposed", "purpose": "Normalize complete current shop stock, fixed costs, resale rules, permanent upgrades and totals; keep consumable openings variable."},
+      {"id": "motherlode-falador-diary-current", "status": "proposed", "purpose": "Correct stale shared Falador Hard pay-dirt XP wording: live hard-tier task needs only the helmet; live elite reward is increased higher-level-ore chance, not a pay-dirt XP modifier."},
+      {"id": "motherlode-attention-current", "status": "proposed", "purpose": "Retain the low-attention/shared AFK profile but add mixed-loop constraints and a null measured-interaction interval."}
+    ],
+    "actions": [
+      {"id": "action:motherlode-mine", "treatment": "amend-existing", "required_change": "Keep observation-only output. Add reportable in-progress pay-dirt/sack/water state and never generate ores, nuggets, XP, repairs or rates from elapsed play."},
+      {"id": "action:unlock-motherlode-upper-level", "treatment": "amend-existing", "required_change": "Require reported access, 57 Mining according to an explicit boostability decision, and at least 100 observed nuggets; subtract exactly 100 and add only the permanent upper-level milestone."},
+      {"id": "action:buy-motherlode-super-hopper", "treatment": "amend-existing", "required_change": "Keep 50-nugget exact transition and upper-level prerequisite; add permanent upper-hopper capability only."},
+      {"id": "action:upgrade-motherlode-pay-dirt-sack", "treatment": "amend-existing", "required_change": "Keep 200-nugget exact transition; set only sack-capacity upgrade, never a current sack fill state."},
+      {"id": "action:buy-motherlode-reward", "treatment": "proposed-new", "requirements": "Reported mine access, observed nugget balance, selected shop item fixed cost, source/ownership rule and any item-specific gate.", "transition": "Exact nugget subtraction and selected owned item/count only; soft-clay-pack opening and bag-full-of-gems contents must be separately observed."},
+      {"id": "action:sell-motherlode-reward", "treatment": "proposed-new", "requirements": "Reported eligible Percy-purchased item and selected 80% resale value.", "transition": "Remove selected eligible item and add its exact listed resale nuggets; never assume another-source pieces, packs or ownership are sellable."},
+      {"id": "action:record-motherlode-state", "treatment": "proposed-new", "requirements": "Player reports exact local state after play or return.", "transition": "Record supplied pay-dirt, sack, hopper/transit, struts, ores, nuggets, XP, repair/damage and item ownership without deriving omitted values."}
+    ],
+    "graph_nodes": [
+      "activity:motherlode-mine",
+      "condition:mining-30",
+      "condition:mining-57",
+      "condition:agility-54",
+      "resource:golden-nuggets",
+      "state:motherlode-pay-dirt-inventory",
+      "state:motherlode-sack",
+      "state:motherlode-water-circuit",
+      "state:motherlode-struts",
+      "milestone:motherlode-upper-level",
+      "milestone:motherlode-super-hopper",
+      "milestone:motherlode-sack-upgrade",
+      "item:prospector-kit",
+      "item:coal-bag",
+      "item:gem-bag",
+      "capability:falador-medium-dark-tunnel",
+      "capability:falador-elite-pay-dirt-higher-ore-chance"
+    ],
+    "graph_edges": [
+      {"from": "condition:mining-30", "to": "activity:motherlode-mine", "relationship": "requires", "determinism": "fixed_gate"},
+      {"from": "activity:motherlode-mine", "to": "state:motherlode-pay-dirt-inventory", "relationship": "produces", "determinism": "player_observed_mining_success"},
+      {"from": "state:motherlode-pay-dirt-inventory", "to": "state:motherlode-sack", "relationship": "produces", "determinism": "player_observed_deposit_and_operational_water_circuit"},
+      {"from": "state:motherlode-sack", "to": "resource:golden-nuggets", "relationship": "makes_obtainable", "determinism": "rng_1_in_32_per_cleaned_pay_dirt"},
+      {"from": "condition:mining-57", "to": "milestone:motherlode-upper-level", "relationship": "requires", "determinism": "fixed_gate"},
+      {"from": "resource:golden-nuggets", "to": "milestone:motherlode-upper-level", "relationship": "requires", "determinism": "fixed_cost_100"},
+      {"from": "milestone:motherlode-upper-level", "to": "milestone:motherlode-super-hopper", "relationship": "requires", "determinism": "fixed_gate"},
+      {"from": "resource:golden-nuggets", "to": "milestone:motherlode-super-hopper", "relationship": "requires", "determinism": "fixed_cost_50"},
+      {"from": "resource:golden-nuggets", "to": "milestone:motherlode-sack-upgrade", "relationship": "requires", "determinism": "fixed_cost_200"},
+      {"from": "resource:golden-nuggets", "to": "item:prospector-kit", "relationship": "makes_obtainable", "determinism": "fixed_piece_costs_total_180"},
+      {"from": "resource:golden-nuggets", "to": "item:coal-bag", "relationship": "makes_obtainable", "determinism": "fixed_cost_100"},
+      {"from": "resource:golden-nuggets", "to": "item:gem-bag", "relationship": "makes_obtainable", "determinism": "fixed_cost_100"},
+      {"from": "condition:agility-54", "to": "capability:falador-medium-dark-tunnel", "relationship": "requires", "determinism": "requires_Falador_medium_claim"},
+      {"from": "capability:falador-elite-pay-dirt-higher-ore-chance", "to": "activity:motherlode-mine", "relationship": "improves", "determinism": "probability_only_no_fixed_output"}
+    ],
+    "account_observations": [
+      {"key": "motherlode_access", "type": "boolean", "evidence": "Player report or verified account snapshot; no access inferred from Mining level alone."},
+      {"key": "motherlode_golden_nuggets", "type": "nonnegative_integer", "evidence": "Reported inventory/bank count; never accumulated from prior activity claims."},
+      {"key": "motherlode_unlocks", "type": "set", "evidence": "Reported upper_level, super_hopper and sack_upgrade ownership."},
+      {"key": "motherlode_shop_items", "type": "set_or_counts", "evidence": "Reported exact item/piece/count and, where resale is requested, Percy-purchase provenance."},
+      {"key": "motherlode_live_state", "type": "object_or_null", "evidence": "Reported pay-dirt inventory, sack count, in-transit/hopper state, strut condition and current floor; no missing field is inferred."},
+      {"key": "motherlode_cleaning_result", "type": "object_or_null", "evidence": "Reported ore/nugget result and XP after a specific search; probability table validates possibility but does not synthesize a result."},
+      {"key": "motherlode_repair_attempt", "type": "object_or_null", "evidence": "Reported Smithing level, attempt/success and resulting XP; repair chance cannot create an event."},
+      {"key": "motherlode_collection_log", "type": "set", "evidence": "Reported entries only; shop ownership does not imply collection-log completion."},
+      {"key": "motherlode_attention_observations", "type": "array", "evidence": "Player-recorded setup, interruption and return timestamps. No generic AFK duration is stored as fact."}
+    ]
+  },
+  "conflicts_and_unknowns": [
+    {"id": "falador-hard-pay-dirt-xp-stale-claim", "severity": "correction", "existing_shared_claim": "data/facts/achievement-diary-utility.json says Falador Hard gives 10% more experience from mining pay-dirt.", "current_source_claim": "Current Falador sources describe the active Motherlode reward as an elite higher-level-ore chance. Historical medium/hard pay-dirt benefits were removed; hard now has the helmet-only task change from the 2024 rework.", "treatment": "Do not edit shared fact under this task. Central diary/minigame integration should replace the stale wording and preserve probability-only semantics."},
+    {"id": "nugget-rate-presentation", "severity": "research-hygiene", "existing_shared_claim": "Existing facts phrase 3.13% per cleaned pay-dirt.", "current_source_claim": "Current source displays 3.13% and its chart gives 1/32 (3.125%).", "treatment": "Treat these as the same rounded probability; use exact 1/32 in calculations and never turn it into guaranteed nuggets."},
+    {"id": "ore-table-implementation", "severity": "integration-note", "existing_shared_claim": "Shared facts list only golden-nugget rate, not the current level-indexed ore table or elite modifier.", "current_source_claim": "The current Wiki contains a level-by-level probability table/chart for non-nugget ore outcomes and describes elite's higher-ore chance.", "treatment": "A future versioned table may be added after direct source-table extraction and tests. Do not approximate output or make rates a route assumption."},
+    {"id": "afk-classification-precision", "severity": "integration-note", "existing_shared_claim": "data/facts/afk-passive.json calls Motherlode Mine low_attention.", "current_source_claim": "Live vein windows and loop interruptions support a low-effort/mixed label but establish no universal safe idle interval.", "treatment": "Retain the existing high-level label pending central integration, add a null measurement field and player-observed cadence rather than a guessed timer."},
+    {"id": "shop-stock-and-resale-coverage", "severity": "integration-note", "existing_shared_claim": "Shared reward milestones omit soft clay packs, bags full of gems and item-specific resale/provenance rules.", "current_source_claim": "Current Nugget Shop lists both consumables, shop stock, 80% resale and the restriction on items bought elsewhere.", "treatment": "Central integration should add full stock/cost/resale facts without treating packs or their contents as durable rewards."}
+  ],
+  "coverage": {"access": true, "loop": true, "currencies": true, "rewards": true, "failure_state": true, "sources": true, "normalization": true}
+}
