@@ -2,9 +2,9 @@
 
 This document contains strategy, not game facts. Scores are prompts for comparison and explanations, not an automatic substitute for judgement.
 
-## Executable pilot
+## Executable scoring layer
 
-`strategy/candidates.json` assigns each normalized pilot action a 0-4 judgement for lifetime utility, content unlock, economic infrastructure, multi-output value, diversity, AFK fit, detour cost, burnout risk, and danger risk. General positive dimensions add; costs and risks subtract. AFK fit contributes only when the account's current attention window supports it. Diversity preference, intensity tolerance, and risk tolerance then produce explicit adjustments.
+`strategy/candidates.json` assigns each annotated verified action a 0-4 judgement for lifetime utility, content unlock, economic infrastructure, multi-output value, diversity, AFK fit, detour cost, burnout risk, and danger risk. Coverage expands in coherent tranches; an unannotated action remains visible as eligible but unscored. General positive dimensions add; costs and risks subtract. AFK fit contributes only when the account's current attention window supports it. Diversity preference, intensity tolerance, and risk tolerance then produce explicit adjustments.
 
 Only actions classified `eligible` by the factual evaluator may be scored. Blocked, preparation-incomplete, completed, and unverified actions are excluded. The score is a transparent comparison aid, not an optimal-route claim.
 

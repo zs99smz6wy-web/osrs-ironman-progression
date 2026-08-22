@@ -12,6 +12,7 @@ REPOSITORY_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPOSITORY_ROOT / "scripts"))
 
 from evaluate_progression import load_json  # noqa: E402
+from osrs_xp import minimum_xp_for_level  # noqa: E402
 from score_candidates import (  # noqa: E402
     ALL_DIMENSIONS,
     COST_DIMENSIONS,
@@ -48,12 +49,99 @@ class ScoreCandidatesTests(unittest.TestCase):
         ranked_ids = {candidate["action_id"] for candidate in ranked}
 
         self.assertEqual(
-            {"action:tree-gnome-village", "action:children-of-the-sun", "action:the-restless-ghost"},
+            {
+                "action:tree-gnome-village",
+                "action:children-of-the-sun",
+                "action:the-restless-ghost",
+                "action:pandemonium",
+            },
             ranked_ids,
         )
         self.assertNotIn("action:waterfall-quest", ranked_ids)  # needs_preparation
         self.assertNotIn("action:grand-tree", ranked_ids)  # blocked
         self.assertNotIn("action:fossil-island-access", ranked_ids)  # blocked
+
+    def test_infrastructure_and_sailing_tranche_scores_when_factually_eligible(self) -> None:
+        state = load_json(FIXTURES / "fresh-account.json")
+        state["skills"].update({"Firemaking": 60, "Farming": 34, "Runecraft": 27, "Sailing": 30})
+        for skill in ("Firemaking", "Farming", "Runecraft", "Sailing"):
+            state["skill_xp"][skill] = minimum_xp_for_level(state["skills"][skill])
+        state["quests_completed"].extend(
+            [
+                "The Dig Site",
+                "Bone Voyage",
+                "Heroes' Quest",
+                "The Fremennik Trials",
+                "Temple of the Eye",
+                "Sleeping Giants",
+                "Pandemonium",
+            ]
+        )
+        state["transport_flags"].append("balloon_transport")
+        state["items"].update(
+            {
+                "clean_necklace": 1,
+                "digsite_pendant_charge": 1,
+                "magic_logs": 3,
+                "iron_bar": 1,
+                "common_non_silver_ring": 1,
+                "logs": 1,
+                "spade": 1,
+                "seed_dibber": 1,
+                "watering_can": 1,
+                "pickaxe": 1,
+                "bucket": 1,
+                "salvaging_hook": 1,
+                "sailing_raft": 1,
+            }
+        )
+        state["resources"].update(
+            {
+                "coins": 15000,
+                "foundry_metal_value_bars": 2,
+                "telekinetic_pizazz": 150,
+                "graveyard_pizazz": 150,
+                "enchantment_pizazz": 1500,
+                "alchemist_pizazz": 200,
+            }
+        )
+        state["passive_loops"].update({"kingdom": True, "tears_of_guthix": True})
+        state["recurring_observations"] = {
+            "kingdom": {"state": "ready", "observed_at": "2026-08-22T10:00:00Z", "ready_at": "2026-08-22T10:00:00Z"},
+            "tears_of_guthix": {"state": "ready", "observed_at": "2026-08-22T10:00:00Z", "ready_at": "2026-08-22T10:00:00Z"},
+        }
+        state["attention_window"]["mode"] = "true_afk"
+        state["preferences"] = {"diversity_preference": 0, "intensity_tolerance": 0, "risk_tolerance": 0}
+
+        ranked = score_candidates(self.candidates_document, self.actions_document, state)
+        by_id = {candidate["action_id"]: candidate for candidate in ranked}
+
+        expected_ids = {
+            "action:learn-digsite-pendant-enchantment",
+            "action:bind-fossil-island-pendant-destination",
+            "action:unlock-balloon-grand-tree",
+            "action:throne-of-miscellania",
+            "action:collect-kingdom-resources",
+            "action:complete-tears-of-guthix-session",
+            "action:guardians-of-the-rift",
+            "action:tithe-farm",
+            "action:giants-foundry",
+            "action:buy-mta-rune-pouch",
+            "action:buy-sailing-skiff",
+            "action:sailing-bounty-task",
+            "action:salvage-shipwrecks",
+        }
+        self.assertTrue(expected_ids.issubset(by_id))
+        self.assertNotIn("action:pandemonium", by_id)  # already completed in this state
+
+        self.assertEqual(13, by_id["action:throne-of-miscellania"]["total_score"])
+        self.assertEqual(13, by_id["action:collect-kingdom-resources"]["total_score"])
+        self.assertEqual(3, by_id["action:collect-kingdom-resources"]["adjustments"]["attention_window"])
+        self.assertEqual(12, by_id["action:giants-foundry"]["total_score"])
+        self.assertEqual(3, by_id["action:buy-mta-rune-pouch"]["total_score"])
+        self.assertEqual(13, by_id["action:buy-sailing-skiff"]["total_score"])
+        self.assertEqual(10, by_id["action:sailing-bounty-task"]["total_score"])
+        self.assertEqual(10, by_id["action:salvage-shipwrecks"]["total_score"])
 
     def test_ranked_results_have_complete_signed_breakdowns_and_stable_totals(self) -> None:
         first = self.score_fixture("passive-loops-ready.json")
@@ -155,7 +243,8 @@ class ScoreCandidatesTests(unittest.TestCase):
             },
             unscored["action:tree-gnome-village"],
         )
-        self.assertIn("action:pandemonium", unscored)
+        self.assertIn("action:natural-history-quiz", unscored)
+        self.assertNotIn("action:pandemonium", unscored)
 
     def test_unknown_candidate_action_id_raises_value_error(self) -> None:
         candidates_document = copy.deepcopy(self.candidates_document)

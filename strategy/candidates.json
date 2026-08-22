@@ -1,5 +1,5 @@
 {
-  "purpose": "Strategic annotations for the current normalized pilot. These values are judgements, not game facts or eligibility rules.",
+  "purpose": "Strategic annotations for a growing subset of verified normalized actions. These values are judgements, not game facts, eligibility rules, or a generated route.",
   "dimension_scale": {
     "range": "0-4",
     "positive_dimensions": [
@@ -126,6 +126,90 @@
       "dimensions": {"lifetime_utility": 1, "content_unlock": 0, "economic_infrastructure": 3, "multi_output": 1, "diversity": 2, "afk_fit": 0, "detour_cost": 2, "burnout_risk": 3, "danger_risk": 2},
       "stop_condition": "Stop when the identified GP commitment is funded or the short cash objective is reached.",
       "reentry_condition": "Re-enter at 30 Agility only when it is a named way to meet a specific cash deadline, with travel and desert supplies prepared separately."
+    },
+    {
+      "action_id": "action:learn-digsite-pendant-enchantment",
+      "dimensions": {"lifetime_utility": 4, "content_unlock": 1, "economic_infrastructure": 1, "multi_output": 2, "diversity": 2, "afk_fit": 0, "detour_cost": 1, "burnout_risk": 0, "danger_risk": 0},
+      "stop_condition": "Stop once the permanent enchantment knowledge is recorded; making or spending individual pendants is a separate decision.",
+      "reentry_condition": "Re-enter after The Dig Site with a clean necklace when Digsite or Fossil Island transport will support nearby objectives."
+    },
+    {
+      "action_id": "action:bind-fossil-island-pendant-destination",
+      "dimensions": {"lifetime_utility": 4, "content_unlock": 2, "economic_infrastructure": 1, "multi_output": 2, "diversity": 2, "afk_fit": 0, "detour_cost": 1, "burnout_risk": 0, "danger_risk": 0},
+      "stop_condition": "Stop once the permanent Fossil Island destination is bound.",
+      "reentry_condition": "Re-enter after Bone Voyage with a charged pendant, especially before recurring Fossil Island work."
+    },
+    {
+      "action_id": "action:unlock-balloon-grand-tree",
+      "dimensions": {"lifetime_utility": 3, "content_unlock": 1, "economic_infrastructure": 0, "multi_output": 1, "diversity": 2, "afk_fit": 0, "detour_cost": 2, "burnout_risk": 0, "danger_risk": 0},
+      "stop_condition": "Stop after the route is unlocked and let later travel demand justify individual trips.",
+      "reentry_condition": "Re-enter when the balloon network, 60 Firemaking, and the three Magic logs are already available."
+    },
+    {
+      "action_id": "action:throne-of-miscellania",
+      "dimensions": {"lifetime_utility": 4, "content_unlock": 3, "economic_infrastructure": 4, "multi_output": 3, "diversity": 3, "afk_fit": 0, "detour_cost": 2, "burnout_risk": 1, "danger_risk": 1},
+      "stop_condition": "Stop after the management loop and Miscellania transport are unlocked; resource collection remains a separately observed passive decision.",
+      "reentry_condition": "Re-enter when its quest gates and one verified kingdom-work preparation path are naturally ready."
+    },
+    {
+      "action_id": "action:collect-kingdom-resources",
+      "dimensions": {"lifetime_utility": 3, "content_unlock": 0, "economic_infrastructure": 4, "multi_output": 3, "diversity": 1, "afk_fit": 3, "detour_cost": 1, "burnout_risk": 0, "danger_risk": 0},
+      "stop_condition": "Stop after the player-confirmed collection and updated Kingdom observation; do not infer resources or elapsed production.",
+      "reentry_condition": "Re-enter only when the established Kingdom loop is player-marked ready and a short present-attention window is available."
+    },
+    {
+      "action_id": "action:complete-tears-of-guthix-session",
+      "dimensions": {"lifetime_utility": 3, "content_unlock": 0, "economic_infrastructure": 1, "multi_output": 3, "diversity": 2, "afk_fit": 2, "detour_cost": 1, "burnout_risk": 0, "danger_risk": 0},
+      "stop_condition": "Stop after the player-confirmed session; its experience result and next readiness remain observations rather than inferred outputs.",
+      "reentry_condition": "Re-enter only when the established loop is player-marked ready and the account can give it a brief active session."
+    },
+    {
+      "action_id": "action:guardians-of-the-rift",
+      "dimensions": {"lifetime_utility": 2, "content_unlock": 2, "economic_infrastructure": 3, "multi_output": 4, "diversity": 3, "afk_fit": 0, "detour_cost": 1, "burnout_risk": 2, "danger_risk": 1},
+      "stop_condition": "Stop when the immediate Runecraft, rune, pearl, or variety objective is met instead of treating reward rolls as a mandatory grind.",
+      "reentry_condition": "Re-enter after Temple of the Eye at 27 Runecraft with a pickaxe when its mixed outputs serve a current need."
+    },
+    {
+      "action_id": "action:tithe-farm",
+      "dimensions": {"lifetime_utility": 2, "content_unlock": 2, "economic_infrastructure": 2, "multi_output": 3, "diversity": 3, "afk_fit": 0, "detour_cost": 1, "burnout_risk": 2, "danger_risk": 0},
+      "stop_condition": "Stop when the current Farming or points objective is met; it should not displace better-aligned farming work by default.",
+      "reentry_condition": "Re-enter at 34 Farming with the required planting and watering tools when a specific Tithe reward is useful."
+    },
+    {
+      "action_id": "action:giants-foundry",
+      "dimensions": {"lifetime_utility": 2, "content_unlock": 1, "economic_infrastructure": 4, "multi_output": 4, "diversity": 3, "afk_fit": 1, "detour_cost": 1, "burnout_risk": 2, "danger_risk": 0},
+      "stop_condition": "Stop when the chosen Smithing, coins, reputation, or reward target is met, or when the commission loop no longer fits the account's metal supply.",
+      "reentry_condition": "Re-enter after Sleeping Giants when available metal inputs and a bucket or ice gloves support a defined output need."
+    },
+    {
+      "action_id": "action:buy-mta-rune-pouch",
+      "dimensions": {"lifetime_utility": 4, "content_unlock": 1, "economic_infrastructure": 2, "multi_output": 2, "diversity": 1, "afk_fit": 0, "detour_cost": 3, "burnout_risk": 4, "danger_risk": 0},
+      "stop_condition": "Stop immediately after buying the rune pouch; the arena is not scored as an open-ended activity.",
+      "reentry_condition": "Re-enter only after all four verified pizazz balances are already held and the pouch's inventory utility matters now."
+    },
+    {
+      "action_id": "action:pandemonium",
+      "dimensions": {"lifetime_utility": 4, "content_unlock": 4, "economic_infrastructure": 3, "multi_output": 4, "diversity": 4, "afk_fit": 0, "detour_cost": 1, "burnout_risk": 0, "danger_risk": 0},
+      "stop_condition": "Stop after Sailing access and its fixed entry rewards are secured; assess its separate activities against current goals.",
+      "reentry_condition": "Do not re-enter; complete it when the account is ready to make Sailing available as an option."
+    },
+    {
+      "action_id": "action:buy-sailing-skiff",
+      "dimensions": {"lifetime_utility": 4, "content_unlock": 3, "economic_infrastructure": 3, "multi_output": 2, "diversity": 3, "afk_fit": 0, "detour_cost": 2, "burnout_risk": 0, "danger_risk": 0},
+      "stop_condition": "Stop once the Skiff is purchased; do not treat the 15,000-coin cost as a universal early deadline.",
+      "reentry_condition": "Re-enter after Pandemonium at 15 Sailing only when the Skiff enables a desired Sailing activity or access goal."
+    },
+    {
+      "action_id": "action:sailing-bounty-task",
+      "dimensions": {"lifetime_utility": 2, "content_unlock": 1, "economic_infrastructure": 3, "multi_output": 3, "diversity": 4, "afk_fit": 0, "detour_cost": 1, "burnout_risk": 1, "danger_risk": 1},
+      "stop_condition": "Stop when the current bounty objective or desired activity change is met; assigned rewards remain variable.",
+      "reentry_condition": "Re-enter after Pandemonium at 30 Sailing when a bounty's variable outputs suit a current economic or variety need."
+    },
+    {
+      "action_id": "action:salvage-shipwrecks",
+      "dimensions": {"lifetime_utility": 2, "content_unlock": 1, "economic_infrastructure": 3, "multi_output": 3, "diversity": 4, "afk_fit": 0, "detour_cost": 1, "burnout_risk": 1, "danger_risk": 1},
+      "stop_condition": "Stop when the current Sailing, salvage, or variety objective is met; no assumed loot target justifies open-ended repetition.",
+      "reentry_condition": "Re-enter after Pandemonium at 15 Sailing with a salvaging hook and a capable boat when its variable outputs fit a current need."
     }
   ]
 }

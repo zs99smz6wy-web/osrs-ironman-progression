@@ -22,6 +22,7 @@
 - Completed: normalized Tithe Farm and Auto-weed, `Sleeping Giants` and Giants' Foundry utility purchases, and Motherlode Mine reward milestones with spendable currencies separated from random acquisition.
 - Completed: strengthened Tempoross and Fish Barrel modeling so permits support reward searches while the barrel remains `makes_obtainable`, never guaranteed.
 - Completed: audited factual stop-condition inputs across Mage Training Arena, Giants' Foundry, Tempoross, Tithe Farm, and Guardians of the Rift, and normalized the two deterministic MTA utility purchases.
+- Completed: added a first broad strategy tranche for Guardians of the Rift, Tithe Farm, Giants' Foundry, the MTA rune pouch, Kingdom and Tears collections, key transport unlocks, and current Sailing access/economic activities. Scores remain transparent judgements and do not alter factual eligibility.
 - Pending: add strategic scores and account-specific stop conditions only after comparing these verified unlocks with alternative uses of their currencies and time.
 
 ### 4. Economic bottleneck and monster-drop bypass closure
