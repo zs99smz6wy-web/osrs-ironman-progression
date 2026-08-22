@@ -1,0 +1,379 @@
+{
+  "package_schema_version": 1,
+  "package_type": "minigame-research",
+  "package_id": "research-minigame-rogues-den",
+  "activity": "Rogues' Den",
+  "status": "research-proposal",
+  "checked_at": "2026-08-22",
+  "scope": "Current factual package for the members-only Rogues' Den lobby, maze, end safes, Rogue equipment, and Rogue kit. It proposes future records only. It does not choose a route, maze path, stop condition, equipment piece, or player setup, and it never assumes a maze attempt, success, reward, XP, readiness, inventory, run energy, or account ownership.",
+  "facts_strategy_boundary": {
+    "included": [
+      "current location, lobby facilities, maze entry gates, unboostable gate boundary, no-item/no-equipment maze restriction, temporary skill-point behavior, obstacle classes, exit and reset behavior",
+      "current lobby-safe and end-safe distinctions, Rogue equipment crate choice behavior, Rogue kit conversion utility, collection-log boundary, and pickpocket double-loot utility",
+      "deterministic mechanics where sources agree, explicit random and player-observed outcomes, and proposed factual normalization without shared-file integration"
+    ],
+    "excluded": [
+      "whether to obtain Rogue equipment now, whether to wait for 80 Thieving, which maze route, trap-running method, safe, Runelite plugin, video, supplies, or stop target to use",
+      "assumed maze start, obstacle execution, skill-point loss, run energy, safe success, crate, kit, selected item, outfit completion, pickpocket loot, XP, time, collection-log entry, or readiness",
+      "fixed runs-to-set, success rates, XP per hour, time per run, kits per hour, or expected-value output estimates",
+      "community maze maps, timing claims, route advice, safe-rotation theories, and personal stop advice except as fenced strategy candidates"
+    ]
+  },
+  "source_catalog": [
+    {
+      "id": "wiki-rogues-den-current",
+      "publisher": "Old School RuneScape Wiki",
+      "kind": "wiki",
+      "url": "https://oldschool.runescape.wiki/w/Rogues%27_Den",
+      "checked_at": "2026-08-22",
+      "use": "Primary current source for access, lobby, maze restrictions, obstacles, temporary skill reductions, safe outcomes, reset behavior, Rogue kit, and Rogue equipment."
+    },
+    {
+      "id": "wiki-rogue-equipment-current",
+      "publisher": "Old School RuneScape Wiki",
+      "kind": "wiki",
+      "url": "https://oldschool.runescape.wiki/w/Rogue_equipment",
+      "checked_at": "2026-08-22",
+      "use": "Rogue mask/top/trousers/gloves/boots identity, per-piece and full-set pickpocket double-loot behavior, equipment storage, and collection-log context."
+    },
+    {
+      "id": "wiki-rogues-equipment-crate-current",
+      "publisher": "Old School RuneScape Wiki",
+      "kind": "wiki",
+      "url": "https://oldschool.runescape.wiki/w/Rogue%27s_equipment_crate",
+      "checked_at": "2026-08-22",
+      "use": "Current crate behavior: player selects Rogue equipment or a Rogue kit after receiving the crate; this replaces the historical duplicate-prone bank check."
+    },
+    {
+      "id": "official-inferno-rogue-crate-2017",
+      "publisher": "Jagex",
+      "kind": "official",
+      "url": "https://secure.runescape.com/m=news/the-inferno?oldschool=1",
+      "checked_at": "2026-08-22",
+      "use": "Official 1 June 2017 change stating that a found Rogue-equipment piece became a crate that lets the player choose the piece."
+    },
+    {
+      "id": "wiki-rogue-kit-current",
+      "publisher": "Old School RuneScape Wiki",
+      "kind": "wiki",
+      "url": "https://oldschool.runescape.wiki/w/Rogue_kit",
+      "checked_at": "2026-08-22",
+      "use": "Rogue kit identity, stackability, and one-time conversion to a rope, chisel, tinderbox, or spade."
+    },
+    {
+      "id": "wiki-thieving-current",
+      "publisher": "Old School RuneScape Wiki",
+      "kind": "wiki",
+      "url": "https://oldschool.runescape.wiki/w/Thieving",
+      "checked_at": "2026-08-22",
+      "use": "Lobby wall-safe 50 Thieving gate, success/failure/loot category, and Rogues' Den classification."
+    },
+    {
+      "id": "wiki-thieving-training-current",
+      "publisher": "Old School RuneScape Wiki",
+      "kind": "wiki",
+      "url": "https://oldschool.runescape.wiki/w/Thieving_training",
+      "checked_at": "2026-08-22",
+      "use": "Full-set double-loot statement, 80 Thieving shortcut context, and community-style training context. Strategy content remains fenced."
+    },
+    {
+      "id": "wiki-rogues-den-shortcut-current",
+      "publisher": "Old School RuneScape Wiki",
+      "kind": "wiki",
+      "url": "https://oldschool.runescape.wiki/w/Door_(Rogues%27_Den_shortcut)",
+      "checked_at": "2026-08-22",
+      "use": "Level 80 Thieving shortcut door and its travel-time utility boundary."
+    },
+    {
+      "id": "wiki-stethoscope-current",
+      "publisher": "Old School RuneScape Wiki",
+      "kind": "wiki",
+      "url": "https://oldschool.runescape.wiki/w/Stethoscope",
+      "checked_at": "2026-08-22",
+      "use": "Lobby-only stethoscope shop/access behavior and the distinction from maze end safes."
+    },
+    {
+      "id": "wiki-collection-log-current",
+      "publisher": "Old School RuneScape Wiki",
+      "kind": "wiki",
+      "url": "https://oldschool.runescape.wiki/w/Collection_log",
+      "checked_at": "2026-08-22",
+      "use": "Collection Log boundary for the five Rogue-equipment pieces; individual account entries remain observed."
+    },
+    {
+      "id": "community-reddit-safe-mechanics",
+      "publisher": "r/2007scape",
+      "kind": "reddit",
+      "url": "https://www.reddit.com/r/2007scape/comments/107lon1/which_safe_to_open_in_rogues_den/",
+      "checked_at": "2026-08-22",
+      "use": "Community discussion quoting a Mod Ash explanation of end-safe RNG and rejecting unverified safe-rotation certainty. It is not a replacement for a current primary mechanics source."
+    },
+    {
+      "id": "community-reddit-ironscape-rogues-den",
+      "publisher": "r/ironscape",
+      "kind": "reddit",
+      "url": "https://www.reddit.com/r/ironscape/comments/1fcp6l6/rogues_den_what_am_i_doing_wrong/",
+      "checked_at": "2026-08-22",
+      "use": "Ironman-reported maze routes, dry streaks, and observed crate/kit outcomes. Strategy-only and not a rate authority."
+    },
+    {
+      "id": "community-youtube-rogues-den-walkthrough",
+      "publisher": "YouTube community guide",
+      "kind": "youtube",
+      "url": "https://www.youtube.com/results?search_query=osrs+rogues+den+maze+guide",
+      "checked_at": "2026-08-22",
+      "use": "Discovery source for player maze walkthroughs and tile routes. Individual route, timing, plugin, and success claims are strategy-only."
+    }
+  ],
+  "access": {
+    "requirements": {
+      "membership": true,
+      "quest": "none",
+      "lobby_entry": "No skill, item, quest, or fee is required merely to enter the basement lobby beneath the Toad and Chicken Inn in Burthorpe.",
+      "maze_entry": {
+        "skills": [
+          {"skill": "Agility", "level": 50, "boostable": false, "reason": "Maze start gate."},
+          {"skill": "Thieving", "level": 50, "boostable": false, "reason": "Maze start gate and end-safe eligibility."}
+        ],
+        "effect": "Speak to Brian O'Richard with both observed unboosted requirements to begin a maze attempt. The gate does not prove a successful traversal, sufficient temporary skill points, safe success, or reward."
+      },
+      "lobby_wall_safe": {
+        "skill": "Thieving",
+        "level": 50,
+        "boostability": "Record eligibility from an observed current level. This lobby action is distinct from starting/completing the maze and cannot produce Rogue equipment."
+      },
+      "shortcut": {
+        "skill": "Thieving",
+        "level": 80,
+        "boostability": "No boostability claim is adopted for the shortcut; record player-observed eligibility and outcome.",
+        "effect": "Pick-locking the designated shortcut doors can shorten a future maze path; it does not complete the maze or generate a reward."
+      },
+      "reference_existing_production_facts": ["utility-games-necklace", "transport-minigame-group-finder", "collection-log"],
+      "reference_existing_actions": []
+    },
+    "location_and_transport": [
+      "The Rogues' Den is under the Toad and Chicken Inn in Burthorpe, reached through the trapdoor beside the bartender.",
+      "A Games necklace Burthorpe Games Room teleport is a factual alternative arrival capability once the necklace and its charge state are observed; walk to the inn afterward.",
+      "The Minigame Group Finder Burthorpe Games Room teleport is another factual arrival capability when the player observes it as currently available; it is not an activity completion or a permanent maze unlock.",
+      "The lobby contains Emerald Benedict banking access, Martin Thwait's Lost and Found shop, and Grace's Graceful Clothing shop. Lobby access does not infer an inventory, coins, purchased item, bank visit, marks of grace, or current gear.",
+      "The interior maze is entered through Brian O'Richard, not by carrying travel or combat equipment into it."
+    ],
+    "unlock_transition": {
+      "event": "player confirms an empty inventory and equipment state, speaks to Brian O'Richard, and meets both observed unboosted level-50 gates",
+      "deterministic_effects": ["A maze attempt begins and the mystic jewel is supplied for that attempt."],
+      "non_effects": ["does not guarantee route execution, trap avoidance, sufficient temporary levels, completion, safe crack, XP, kit, equipment crate, selected Rogue piece, or return with an item."]
+    }
+  },
+  "activity_loop": {
+    "entry_inputs": [
+      {"item_or_capability": "empty inventory and no equipped items", "behavior": "The maze permits no player-carried or equipped items. The package does not assume that a player has banked, dropped, recovered, or retained any particular item."},
+      {"item_or_capability": "observed unboosted Agility 50 and Thieving 50", "behavior": "Both are start gates; the maze subsequently tracks temporary reductions as activity state."},
+      {"item_or_capability": "Brian O'Richard maze interaction", "behavior": "Supplies the temporary mystic jewel only for the maze attempt. It is a departure/reset tool, not a transport with a persistent charge state."}
+    ],
+    "reusable_setup": [
+      {"item_or_capability": "lobby bank access", "effect": "Optional pre/post-attempt item management through Emerald Benedict. It cannot be taken into the maze and does not prove a banking transaction."},
+      {"item_or_capability": "lobby run-energy recovery", "effect": "Run energy exists outside the maze as an observed player resource. No potion, restoration method, amount, or duration is prescribed or inferred."},
+      {"item_or_capability": "flash powder found in the maze", "effect": "A temporary in-maze tool that can be used against Rogue Guards. Acquisition, use, timing, and passage are separately observed."},
+      {"item_or_capability": "80 Thieving shortcut", "effect": "An optional path alternative once observed eligible; it changes future route options only."}
+    ],
+    "maze_state": {
+      "inventory_and_equipment": "No user-provided item or equipped gear may enter. The mystic jewel is the permitted attempt item. This restriction means food, potions, teleports, armour, stethoscope, and equipment bonuses cannot be assumed available inside.",
+      "temporary_levels": "Agility, Thieving, and Prayer are activity-local resources. Obstacles and traps can reduce the relevant temporary level; leaving by jewel, trap/ejection, or successful completion restores those skills to normal. The model records only player-reported reductions and never calculates a remaining level from a planned route.",
+      "obstacle_families": [
+        {"family": "dangerous Thieving traps", "examples": ["floor traps", "wall traps"], "rule": "Searching/disarming can consume temporary Thieving state. Triggering a dangerous trap ends the attempt and ejects the player to the lobby; no player death, grave, or item-loss event is inferred."},
+        {"family": "dangerous obstacles", "examples": ["spinning blades", "Rogue Guard patrol areas"], "rule": "Contact/failure ends the attempt and ejects the player. Flash powder is an in-maze response for guards, not a guaranteed bypass."},
+        {"family": "Agility obstacles", "examples": ["contortion bars", "pendulums", "blades", "walls", "ledges", "moving blades"], "rule": "Passing can reduce temporary Agility. Failure from insufficient temporary state ends the attempt and ejects the player."},
+        {"family": "route structure", "examples": ["doorways", "grills", "passageways", "viewing-gallery route", "shortcut doors"], "rule": "Grills are one-way progress boundaries. Door and path choices are player-executed; the package does not synthesize a valid route."}
+      ],
+      "puzzle_and_guard_boundaries": "Puzzle-door solution, guard movement, flash-powder timing, tile placement, and every obstacle interaction are execution-dependent observations. Do not model a video/map as a deterministic action transition."
+    },
+    "completion_or_reward_events": [
+      {"event": "lobby wall-safe crack", "facts": "The four lobby wall safes require Thieving 50 and are separate from the maze. A successful crack can yield coins and an uncut gem up to diamond; failure, stun/damage, current hitpoints, loot, and XP are player-observed. A stethoscope can improve this lobby-safe activity only when separately obtained and carried in the lobby."},
+      {"event": "maze end-safe crack", "facts": "After successfully reaching the centre, the player attempts an end wall safe. The result is not guaranteed. A safe failure can end the attempt with no item reward. A successful item outcome can be a Rogue kit or Rogue's equipment crate; outcome and selection are player-confirmed."},
+      {"event": "Rogue's equipment crate opening", "facts": "The crate gives the player a choice: one selected Rogue-equipment piece or a Rogue kit. This removes the historical bank-owned-piece selection issue and means no duplicate piece is forced by the crate itself. Receiving a crate never proves which option the player chose."},
+      {"event": "Rogue kit conversion", "facts": "A player-confirmed Rogue kit can be consumed once to make one selected rope, chisel, tinderbox, or spade. Stackability does not create a kit, tool, inventory slot, or quest/clue readiness."},
+      {"event": "successful attempt conclusion", "facts": "A successful end-safe conclusion returns the player to the lobby and awards Agility and Thieving XP related to traversed obstacle categories. Exact events and XP are observed; no run duration or output is calculated."}
+    ],
+    "failure_and_death": {
+      "safe_state": "The maze is an activity-safe ejection loop: an obstacle/trap failure, voluntary mystic-jewel exit, end-safe failure, or successful conclusion returns/ends at the lobby according to the observed event. It is not modeled as player death.",
+      "death_boundary": "No death, grave, respawn, Hardcore loss, death reclaim, protected-item calculation, or carried-item loss is produced by maze failure because player items/equipment are not admitted. Any external death before/after travel is outside this activity package and must be separately observed.",
+      "reset": "At attempt end, temporary Agility/Thieving/Prayer state is restored to normal. A new attempt requires a new player-confirmed Brian interaction and again satisfies the empty-inventory/equipment boundary. No partial route, temporary-level state, safe progress, or reward roll carries forward as fact."
+    },
+    "repeatability": {
+      "rule": "The maze and lobby safes are repeatable. Each new interaction/attempt is discrete and requires fresh player observation of available levels, location, energy, items outside the maze, and outcome.",
+      "non_carrying_state": ["maze success", "maze safe result", "temporary skill points", "run energy", "flash powder possession", "route timing", "crate", "kit", "outfit piece", "collection-log update"],
+      "persistent_state_only_when_observed": ["owned Rogue pieces", "opened crate selection", "Rogue kit count", "converted tool", "collection-log entries", "stored costume-room set", "lobby item inventory"]
+    }
+  },
+  "currencies": [
+    {
+      "id": "rogues-den-temporary-skill-state",
+      "acquisition": "player_observed",
+      "spend_behavior": "The maze starts from observed current Agility/Thieving/Prayer state and obstacle interactions can reduce it. It is temporary, restored on exit, and is not an account currency or calculable balance."
+    },
+    {
+      "id": "rogue-kit",
+      "acquisition": "rng",
+      "spend_behavior": "A successful end-safe reward can yield a stackable Rogue kit. One player-confirmed kit converts once into a selected rope, chisel, tinderbox, or spade; current kit and tool quantities are observed."
+    },
+    {
+      "id": "rogues-den-lobby-safe-loot",
+      "acquisition": "rng",
+      "spend_behavior": "Successful lobby-safe rewards can include coins and uncut gems. Exact outcome, quantity, experience, stuns, damage, and later use are observed rather than generated."
+    }
+  ],
+  "rewards": [
+    {
+      "id": "rogues-equipment-crate",
+      "acquisition": "rng",
+      "utility": ["player-directed acquisition of exactly one selected Rogue-equipment piece or one Rogue kit", "prevents historical duplicate-piece assignment after a crate has been received"],
+      "model_boundary": "The end-safe reward outcome is random and safe success is execution/state dependent. Do not infer a crate, selection, owned piece, outfit completion, or time-to-crate."
+    },
+    {
+      "id": "rogue-equipment",
+      "acquisition": "mixed",
+      "utility": ["Rogue mask, top, trousers, gloves, and boots each grant a chance to double loot from NPC pickpocketing", "wearing all five guarantees double pickpocket loot", "does not double pickpocket XP", "the complete set can be stored in a player-owned-house costume room", "five pieces are collection-log utility when player-confirmed"],
+      "pieces": ["rogue-mask", "rogue-top", "rogue-trousers", "rogue-gloves", "rogue-boots"],
+      "model_boundary": "Piece ownership, worn state, set completion, storage, pickpocket target, individual double-loot result, and collection-log entries remain observed. Full-set utility applies only while the full set is actually worn."
+    },
+    {
+      "id": "rogue-kit",
+      "acquisition": "rng",
+      "utility": ["one-time player-selected conversion into rope", "one-time player-selected conversion into chisel", "one-time player-selected conversion into tinderbox", "one-time player-selected conversion into spade", "stackable quest and clue convenience item once actually owned"],
+      "model_boundary": "A kit is not any of its four tools until a player-confirmed conversion consumes it. It never establishes that an external quest, clue, location, inventory, or tool requirement is ready."
+    },
+    {
+      "id": "rogues-den-agility-and-thieving-xp",
+      "acquisition": "mixed",
+      "utility": ["activity-local training XP after player-reported obstacle traversal and attempt conclusion"],
+      "model_boundary": "Do not create XP from an intended route. Exact obstacle events, safe result, awarded XP, and final skill levels are observed."
+    },
+    {
+      "id": "rogues-den-lobby-safe-gems-and-coins",
+      "acquisition": "rng",
+      "utility": ["possible uncut-gem and coin acquisition from separate lobby safe cracking"],
+      "model_boundary": "Lobby-safe loot is neither a maze reward nor a substitute for a maze completion. Amounts, gem type, success, damage, and XP are observed."
+    }
+  ],
+  "dependencies_and_bypasses": [
+    {"target": "condition:agility-50-unboosted", "relationship": "requires", "detail": "Maze start gate; lobby entry itself has no skill gate."},
+    {"target": "condition:thieving-50-unboosted", "relationship": "requires", "detail": "Maze start gate; Thieving 50 also gates separate lobby wall safes."},
+    {"target": "condition:thieving-80-observed", "relationship": "improves", "detail": "Enables the optional shortcut-door route; no outcome or timing estimate follows."},
+    {"target": "goal:rogue-equipment", "relationship": "makes_obtainable", "detail": "Successful end-safe reward outcomes can make a crate obtainable; opening a received crate lets the player choose a desired piece."},
+    {"target": "capability:double-pickpocket-loot", "relationship": "unlocks", "detail": "Player-confirmed full-set ownership plus actual wearing enables the guarantee for NPC pickpocket loot only."},
+    {"target": "item:rogue-kit", "relationship": "makes_obtainable", "detail": "Successful end-safe reward outcomes can make a kit obtainable; no guaranteed rate or run count is modeled."},
+    {"target": "item:rope", "relationship": "alternative_to", "detail": "An observed Rogue kit can be consumed to make a rope as an alternative item acquisition path."},
+    {"target": "item:chisel", "relationship": "alternative_to", "detail": "An observed Rogue kit can be consumed to make a chisel as an alternative item acquisition path."},
+    {"target": "item:tinderbox", "relationship": "alternative_to", "detail": "An observed Rogue kit can be consumed to make a tinderbox as an alternative item acquisition path."},
+    {"target": "item:spade", "relationship": "alternative_to", "detail": "An observed Rogue kit can be consumed to make a spade as an alternative item acquisition path."},
+    {"target": "diary:falador-hard-wall-safe", "relationship": "unlocks", "detail": "A player-confirmed lobby wall-safe crack can satisfy the named Falador Hard task subject to separate diary requirements. Maze end safes do not satisfy it."},
+    {"target": "transport:games-necklace-burthorpe", "relationship": "alternative_to", "detail": "Observed charged Games necklace offers an alternative arrival route to the Burthorpe lobby area."}
+  ],
+  "afk_and_attention": {
+    "attention_class": "active",
+    "measured_interaction_interval_seconds": null,
+    "logout_or_idle_constraints": [
+      "Maze obstacle selection, dangerous-trap avoidance, guard position, temporary skill state, run energy, puzzle/route inputs, and end-safe interaction require responsive play.",
+      "No item, food, potion, teleport, or equipment can be carried in to make unattended recovery an assumed option.",
+      "This package claims no AFK segment, repeat cadence, success interval, or stable completion time. Lobby safe cracking also has variable success/failure and must be player-observed."
+    ],
+    "source_boundary": "Sources establish an active obstacle maze and repeatable lobby/minigame facilities. Community route and time claims are fenced as strategy candidates rather than passive-progression facts."
+  },
+  "community_strategy_observations": [
+    {
+      "claim": "Community guides often recommend a known tile route, carefully timed runs across limited traps, and an optional client plugin or video walkthrough to reduce execution mistakes.",
+      "source_ids": ["community-youtube-rogues-den-walkthrough", "community-reddit-ironscape-rogues-den"],
+      "treatment": "strategy-candidate-not-fact",
+      "boundary": "A route/map is neither an account capability nor a successful action. Mobile/client availability, player execution, current state, and outcomes remain observed."
+    },
+    {
+      "claim": "Community Ironman guidance commonly values Rogue equipment before extended NPC-pickpocketing because the full worn set guarantees double loot, while some players defer the maze until 80 Thieving for the shortcut.",
+      "source_ids": ["wiki-thieving-training-current", "community-reddit-ironscape-rogues-den"],
+      "treatment": "strategy-candidate-not-fact",
+      "boundary": "This package does not choose timing, target NPC, level target, route priority, or stop condition, and it does not estimate benefit or time."
+    },
+    {
+      "claim": "Players report conflicting end-safe rotation theories and dry streaks; community advice sometimes suggests repeating a particular safe or moving to another safe.",
+      "source_ids": ["community-reddit-safe-mechanics", "community-reddit-ironscape-rogues-den"],
+      "treatment": "strategy-candidate-not-fact",
+      "boundary": "No safe-selection policy, rate, pity system, rotation, expected run count, or reward prediction is adopted without current authoritative mechanics evidence."
+    },
+    {
+      "claim": "Community guides advise waiting for run energy or using external recovery between attempts because items cannot enter the maze.",
+      "source_ids": ["community-youtube-rogues-den-walkthrough", "community-reddit-ironscape-rogues-den"],
+      "treatment": "strategy-candidate-not-fact",
+      "boundary": "No recovery source, potion quantity, timing, cost, or player run-energy balance is assumed."
+    }
+  ],
+  "state_boundaries": [
+    "Never infer membership, location, lobby entry, bank use, coins, shop access, Games necklace, Group Finder availability, run energy, marks of grace, stethoscope ownership, current inventory, equipment, or an empty-inventory/equipment state.",
+    "Never infer Agility or Thieving level, boost state, unboostable eligibility, 80-Thieving shortcut eligibility, temporary point drain, prayer, maze start, route, trap search, run trick, guard state, flash powder, puzzle result, or maze completion.",
+    "An obstacle or safe mechanics table can validate a player-reported event but cannot create skill reductions, XP, a safe crack, ejection, success, crate, kit, equipment piece, tool, item quantity, collection-log entry, or time estimate.",
+    "Maze failure is modeled as observed activity ejection/reset, not character death. Do not create death, grave, lost equipment, item reclaim, Hardcore consequence, health damage, or external travel state from a failed maze attempt.",
+    "Rogue-equipment crate choice is player-directed only after an observed received crate. It does not infer a missing piece, automatically complete a set, or select an item on the player's behalf.",
+    "Per-piece double-loot behavior and full-set guarantee concern NPC pickpocket loot only; they do not create a pickpocket, double XP, success rate, seed/gold result, or combat/collection-log state.",
+    "Rogue-kit conversion consumes a player-confirmed kit and creates only the player-confirmed selected tool. Tool use, quest/clue readiness, and replacement value remain separate observations.",
+    "Falador Hard's lobby-safe task is separate from end-safe interaction, the wider diary tier, lamps, and diary rewards. All remain separately observed until central diary integration."
+  ],
+  "proposed_normalization": {
+    "facts": [
+      {"id": "rogues-den-current-access-and-maze-state", "treatment": "proposed-new", "source_ids": ["wiki-rogues-den-current", "wiki-rogues-den-shortcut-current"], "content": "Burthorpe lobby access, unboostable 50 Agility/50 Thieving maze gates, empty inventory/equipment restriction, mystic jewel, temporary skill state, obstacle families, safe ejection/reset, repeatability, and optional 80 Thieving shortcut."},
+      {"id": "rogues-den-current-rewards-and-pickpocket-utility", "treatment": "proposed-new", "source_ids": ["wiki-rogues-den-current", "wiki-rogue-equipment-current", "wiki-rogues-equipment-crate-current", "official-inferno-rogue-crate-2017", "wiki-rogue-kit-current"], "content": "Separate lobby/end-safe effects, crate player-choice behavior, five-piece Rogue equipment utility, Rogue kit conversion, and explicit random/observed outcome boundaries."},
+      {"id": "falador-diary-rogues-den-lobby-safe", "treatment": "amend-existing", "source_ids": ["wiki-thieving-current"], "content": "Reconcile the Falador Hard task with lobby-only wall-safe cracking; an end-maze safe must not be accepted as the task event."}
+    ],
+    "actions": [
+      {"id": "action:record-rogues-den-attempt", "treatment": "proposed-new", "requirements": "player-reported entry state and any observed route/obstacle/end-safe result", "transition": "Store only supplied observation fields, validate known level/maze boundaries where values are provided, and never calculate obstacle state, success, XP, reward, or time."},
+      {"id": "action:record-rogues-den-lobby-safe", "treatment": "proposed-new", "requirements": "player-confirmed lobby wall-safe interaction with optional observed outcome", "transition": "Record only the stated lobby-safe event, loot/XP/damage if supplied, and optional Falador task event. Never create a maze completion or Rogue reward."},
+      {"id": "action:open-rogues-equipment-crate", "treatment": "proposed-new", "requirements": "observed owned crate and player-confirmed selected option", "transition": "Consume exactly one observed crate and add only the player-selected Rogue piece or Rogue kit; do not select automatically or infer missing pieces."},
+      {"id": "action:convert-rogue-kit", "treatment": "proposed-new", "requirements": "observed owned Rogue kit and player-confirmed one selected tool", "transition": "Consume exactly one observed kit and add one selected rope, chisel, tinderbox, or spade; no downstream use is implied."},
+      {"id": "action:record-rogue-equipment-state", "treatment": "proposed-new", "requirements": "player-confirmed piece ownership/worn/storage/collection-log state", "transition": "Record reported states only and derive full-set capability only while all five pieces are confirmed worn; never derive pickpocket output."}
+    ],
+    "graph_nodes": ["activity:rogues-den", "condition:agility-50-unboosted", "condition:thieving-50-unboosted", "condition:thieving-80-observed", "condition:rogues-den-empty-entry-state-observed", "activity:rogues-den-lobby-wall-safe", "goal:rogue-equipment", "item:rogues-equipment-crate", "item:rogue-kit", "capability:double-pickpocket-loot", "collection-log:rogue-equipment", "activity:falador-hard-lobby-wall-safe"],
+    "graph_edges": [
+      {"from": "condition:agility-50-unboosted", "to": "activity:rogues-den", "relation": "requires", "evidence": "Maze start gate."},
+      {"from": "condition:thieving-50-unboosted", "to": "activity:rogues-den", "relation": "requires", "evidence": "Maze start and end-safe gate."},
+      {"from": "condition:rogues-den-empty-entry-state-observed", "to": "activity:rogues-den", "relation": "requires", "evidence": "No player items/equipment are admitted into the maze."},
+      {"from": "condition:thieving-80-observed", "to": "activity:rogues-den", "relation": "improves", "evidence": "Optional shortcut doors alter a possible route only."},
+      {"from": "activity:rogues-den", "to": "item:rogues-equipment-crate", "relation": "makes_obtainable", "evidence": "Successful observed end-safe reward can yield a crate; no rate or outcome is synthesized."},
+      {"from": "activity:rogues-den", "to": "item:rogue-kit", "relation": "makes_obtainable", "evidence": "Successful observed end-safe reward can yield a kit; no rate or outcome is synthesized."},
+      {"from": "item:rogues-equipment-crate", "to": "goal:rogue-equipment", "relation": "produces", "evidence": "Player-confirmed crate opening chooses exactly one Rogue equipment piece."},
+      {"from": "goal:rogue-equipment", "to": "capability:double-pickpocket-loot", "relation": "unlocks", "evidence": "All five player-confirmed pieces worn guarantees double NPC-pickpocket loot."},
+      {"from": "goal:rogue-equipment", "to": "collection-log:rogue-equipment", "relation": "makes_obtainable", "evidence": "The five pieces are collection-log items; actual log entries remain observed."},
+      {"from": "activity:rogues-den-lobby-wall-safe", "to": "activity:falador-hard-lobby-wall-safe", "relation": "unlocks", "evidence": "Only the lobby-safe crack is the named diary task event."}
+    ],
+    "account_observations": [
+      {"key": "rogues_den_access_observation", "type": "object", "shape": {"agility_unboosted": "integer_or_null", "thieving_unboosted": "integer_or_null", "current_location": "optional_player_text", "empty_inventory_and_equipment_confirmed": "boolean_or_null", "shortcut_80_thieving_eligible": "boolean_or_null"}, "rule": "All gates and availability are player-confirmed at use time; no planned XP or past run infers them."},
+      {"key": "rogues_den_attempt_observation", "type": "object", "shape": {"attempt_started": "boolean_or_null", "exit_reason": "unknown|mystic_jewel|trap_or_obstacle_ejection|end_safe_failure|successful_conclusion", "temporary_agility_or_thieving_change": "player_reported_or_null", "route_or_obstacle_events": "array_of_player_reported_events", "agility_xp": "integer_or_null", "thieving_xp": "integer_or_null", "duration_seconds": "number_or_null"}, "rule": "Omitted state remains unknown. A route label or duration never proves completion, reward, or an active timer."},
+      {"key": "rogues_den_reward_observation", "type": "object", "shape": {"end_safe_attempted": "boolean_or_null", "end_safe_result": "unknown|failed|rogue_kit|equipment_crate", "crate_selection": "unknown|rogue_mask|rogue_top|rogue_trousers|rogue_gloves|rogue_boots|rogue_kit", "rogue_kit_delta": "integer_or_null"}, "rule": "The model records only player-confirmed result and selection; it does not roll a reward or infer a safe success."},
+      {"key": "rogue_equipment_observation", "type": "object", "shape": {"owned_pieces": "set_of_rogue_piece_ids", "currently_worn_pieces": "set_of_rogue_piece_ids", "costume_room_stored_pieces": "set_of_rogue_piece_ids", "collection_log_pieces": "set_of_rogue_piece_ids"}, "rule": "Ownership, worn state, storage, and log state are independently confirmed. Only five confirmed worn pieces enable the full-set capability."},
+      {"key": "rogue_kit_observation", "type": "object", "shape": {"owned_count": "integer_or_null", "last_conversion": "none|rope|chisel|tinderbox|spade|unknown", "converted_tool_inventory_confirmed": "boolean_or_null"}, "rule": "Kit count and each conversion are player-reported; a past conversion does not prove present inventory."},
+      {"key": "rogues_den_lobby_safe_observation", "type": "object", "shape": {"attempted": "boolean_or_null", "success": "boolean_or_null", "coins": "integer_or_null", "uncut_gem": "optional_item_id", "thieving_xp": "integer_or_null", "damage_or_stun": "player_reported_or_null", "falador_hard_task_event": "boolean_or_null"}, "rule": "Lobby safe is distinct from the maze. Results and diary event must be reported, never derived."}
+    ]
+  },
+  "conflicts_and_unknowns": [
+    {"id": "end-safe-reward-rate-source-conflict", "status": "do-not-automate", "detail": "Available sources describe a random Rogue kit/equipment-crate outcome but differ on exact reward-rate presentation, and community posts additionally quote an unarchived developer explanation. This package intentionally records no fixed end-safe reward rate, expected runs, or time-to-set until a current official or directly verifiable Wiki mechanics source is reconciled."},
+    {"id": "historical-duplicate-piece-behavior", "status": "superseded", "detail": "Before 1 June 2017, the minigame used a bank-dependent Rogue-piece allocation that could not serve Ultimate Iron players reliably. Current crate behavior lets the player choose a piece or a kit after a crate is received."},
+    {"id": "safe-rotation-theories", "status": "do-not-automate", "detail": "Community claims about a correct safe rotating after attempts conflict with community RNG explanations. No safe identity, rotation, or safe-selection policy is modeled."},
+    {"id": "temporary-level-and-route-calculation", "status": "intentional-observation-boundary", "detail": "Obstacle route, input timing, trap handling, temporary skill reductions, shortcut execution, run energy, and end-safe outcome are execution-dependent. The project must record supplied attempt events rather than calculate a route or readiness."},
+    {"id": "falador-hard-safe-alias", "status": "requires-central-reconciliation", "detail": "Diary integration must ensure that only a lobby wall-safe event satisfies Falador Hard; end-maze safe interactions are not interchangeable."},
+    {"id": "existing-production-aliases", "status": "requires-central-reconciliation", "detail": "Games necklace, Group Finder, collection log, and Falador diary canonical IDs may differ from proposed IDs. This package makes no shared-file change."}
+  ],
+  "coverage": {
+    "access": true,
+    "loop": true,
+    "currencies": true,
+    "rewards": true,
+    "failure_state": true,
+    "sources": true,
+    "normalization": true,
+    "travel_and_lobby": true,
+    "agility_thieving_gates_and_boostability": true,
+    "inventory_equipment_restriction": true,
+    "maze_traps_resets_safe_death_repeatability": true,
+    "safe_cracking_and_selection": true,
+    "rogue_equipment_missing_piece_and_double_loot": true,
+    "rogue_kit_and_other_rewards": true,
+    "attention_and_community_strategy_fencing": true,
+    "production_files_modified": 0
+  }
+}
