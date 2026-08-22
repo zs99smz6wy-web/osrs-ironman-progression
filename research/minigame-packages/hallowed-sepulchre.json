@@ -1,0 +1,490 @@
+{
+  "package_schema_version": 1,
+  "package_type": "minigame-research",
+  "package_id": "research-minigame-hallowed-sepulchre",
+  "activity": "Hallowed Sepulchre",
+  "status": "research-proposal",
+  "checked_at": "2026-08-22",
+  "scope": "Current factual package for the timed Agility activity beneath Darkmeyer. It proposes future records only. It does not alter shared data, select a route or shop order, score the activity, or infer access, clears, elapsed times, loot, marks, XP, ring rolls, survival, supplies, or readiness.",
+  "facts_strategy_boundary": {
+    "included": [
+      "current Sins of the Father access, floor gates, travel, timer, obstacles, coffin gates, failure/death/exit, repeatability, shop, and collection-log mechanics",
+      "documented deterministic costs and effects, alongside explicit random, execution-dependent, and player-observed boundaries",
+      "hallowed equipment, crystal shard, token, sack, dark dye, dark acorn, strange old lockpick, mysterious-page, and Ring of endurance utility",
+      "proposed factual records, actions, graph nodes/edges, and report-only account observations without central integration"
+    ],
+    "excluded": [
+      "whether, when, or how long to run Hallowed Sepulchre; preferred floor, coffin, tool order, food, prayer, gear, route, or stop target",
+      "assumed successful obstacles, floor completions, timing, time-bank carryover, opened coffins, marks, XP, loot, damage, deaths, exits, survival, pet, ring, collection-log state, or private-instance purchase",
+      "fixed marks-per-hour, XP-per-hour, coffins-per-hour, completion time, deaths-per-hour, expected time-to-ring, supply usage, or economic output",
+      "community floor tactics, loot targets, speed methods, equipment setups, and collection-log stopping advice except as clearly fenced strategy candidates"
+    ]
+  },
+  "source_catalog": [
+    {
+      "id": "wiki-hallowed-sepulchre-current",
+      "publisher": "Old School RuneScape Wiki",
+      "kind": "wiki",
+      "url": "https://oldschool.runescape.wiki/w/Hallowed_Sepulchre",
+      "checked_at": "2026-08-22",
+      "use": "Primary current source for access, unboostable floor gates, transport, timed course, traps, death/reclaim, coffin access, shop summary, pet floor odds, current changes, private instance, and high-level reward boundaries."
+    },
+    {
+      "id": "wiki-sins-of-the-father-current",
+      "publisher": "Old School RuneScape Wiki",
+      "kind": "wiki",
+      "url": "https://oldschool.runescape.wiki/w/Sins_of_the_Father",
+      "checked_at": "2026-08-22",
+      "use": "Current quest completion requirement for Darkmeyer and Sepulchre access."
+    },
+    {
+      "id": "wiki-mysterious-hallowed-goods-current",
+      "publisher": "Old School RuneScape Wiki",
+      "kind": "wiki",
+      "url": "https://oldschool.runescape.wiki/w/Mysterious_Hallowed_Goods",
+      "checked_at": "2026-08-22",
+      "use": "Exact current shop stock and Hallowed-mark prices."
+    },
+    {
+      "id": "wiki-hallowed-sepulchre-strategies-current",
+      "publisher": "Old School RuneScape Wiki",
+      "kind": "guide",
+      "url": "https://oldschool.runescape.wiki/w/Hallowed_Sepulchre/Strategies",
+      "checked_at": "2026-08-22",
+      "use": "Community-maintained equipment and obstacle guidance. It is used only to distinguish optional supplies and strategy from activity requirements."
+    },
+    {
+      "id": "wiki-ring-of-endurance-current",
+      "publisher": "Old School RuneScape Wiki",
+      "kind": "wiki",
+      "url": "https://oldschool.runescape.wiki/w/Ring_of_endurance",
+      "checked_at": "2026-08-22",
+      "use": "Ring of endurance acquisition boundary, 70 Agility equip gate, stamina-dose charge lifecycle, charged-state utility, and conversion boundary."
+    },
+    {
+      "id": "wiki-mysterious-page-current",
+      "publisher": "Old School RuneScape Wiki",
+      "kind": "wiki",
+      "url": "https://oldschool.runescape.wiki/w/Mysterious_page",
+      "checked_at": "2026-08-22",
+      "use": "Five floor-specific page outcomes, 1-in-10 missing-page roll boundary, strange hallowed tome recovery, and collection-log boundary."
+    },
+    {
+      "id": "official-hallowed-sepulchre-release-current",
+      "publisher": "Jagex",
+      "kind": "official",
+      "url": "https://secure.runescape.com/m=news/darkmeyer-and-hallowed-sepulchre?oldschool=1",
+      "checked_at": "2026-08-22",
+      "use": "Official release context for Darkmeyer, Sins of the Father, and the Hallowed Sepulchre activity."
+    },
+    {
+      "id": "official-hallowed-sepulchre-private-instances-current",
+      "publisher": "Jagex",
+      "kind": "official",
+      "url": "https://secure.runescape.com/m=news/project-rebalance-batch-2?oldschool=1",
+      "checked_at": "2026-08-22",
+      "use": "Official June 2024 private-instance change, cross-checked against the current activity page."
+    },
+    {
+      "id": "official-hallowed-sepulchre-loot-current",
+      "publisher": "Jagex",
+      "kind": "official",
+      "url": "https://secure.runescape.com/m=news/hallowed-sepulchre-improvements?oldschool=1",
+      "checked_at": "2026-08-22",
+      "use": "Official historical reward and tool-storage changes; current behavior is reconciled against current Wiki documentation."
+    },
+    {
+      "id": "community-ironman-guide-agility-sepulchre-current",
+      "publisher": "Old School RuneScape Wiki community guide",
+      "kind": "guide",
+      "url": "https://oldschool.runescape.wiki/w/Ironman_Guide/Agility",
+      "checked_at": "2026-08-22",
+      "use": "Community Ironman discussion of supplies, floor usage, and progression timing. It is strategy-only."
+    },
+    {
+      "id": "community-reddit-ironscape-sepulchre-current",
+      "publisher": "r/ironscape",
+      "kind": "reddit",
+      "url": "https://www.reddit.com/r/ironscape/search/?q=hallowed+sepulchre&restrict_sr=1",
+      "checked_at": "2026-08-22",
+      "use": "Community discussion of tool order, floor targets, ring dryness, and Ironman supply choices. It is never a mechanics authority."
+    },
+    {
+      "id": "community-youtube-sepulchre-guide-current",
+      "publisher": "YouTube community guide",
+      "kind": "youtube",
+      "url": "https://www.youtube.com/results?search_query=osrs+hallowed+sepulchre+guide",
+      "checked_at": "2026-08-22",
+      "use": "Community movement, floor, and timing guidance. It is a strategy-only source, not evidence for account output or readiness."
+    }
+  ],
+  "access": {
+    "requirements": {
+      "membership": true,
+      "quest": {
+        "name": "Sins of the Father",
+        "state": "completed",
+        "effect": "Completion unlocks Darkmeyer access and is required to enter the Hallowed Sepulchre. It does not prove current location, equipment, supplies, timer performance, or a course attempt."
+      },
+      "minigame_gate": {
+        "skill": "Agility",
+        "level": 52,
+        "boostability": "not boostable",
+        "rule": "Treat entry as an observed unboosted eligible level. A proposed run, XP plan, or temporary boost cannot satisfy it."
+      },
+      "floor_gates": [
+        {"floor": 1, "agility": 52, "boostable": false},
+        {"floor": 2, "agility": 62, "boostable": false},
+        {"floor": 3, "agility": 72, "boostable": false},
+        {"floor": 4, "agility": 82, "boostable": false},
+        {"floor": 5, "agility": 92, "boostable": false}
+      ],
+      "optional_coffin_challenge_gates": [
+        {"challenge": "coffin lock", "skill": "Thieving", "level": 66, "boostable": true, "rule": "A separately satisfied lock gate supports a coffin attempt only; it never grants a successful loot roll."},
+        {"challenge": "broken bridge", "skill": "Construction", "level": 56, "boostable": true, "rule": "The bridge can require planks, nails, hammer, and saw unless an applicable hallowed item replaces a tool behavior."},
+        {"challenge": "Saradomin brazier", "skill": "Prayer", "level": 54, "boostable": false, "rule": "The activity source lists this fixed skill gate; sacrifices and a successful path remain observed."},
+        {"challenge": "portal frame", "skill": "Magic", "level": 7, "boostable": false, "rule": "The hallowed focus can guarantee success, but ownership/equipping are observations and no portal completion is inferred."},
+        {"challenge": "pillar", "skill": "Ranged", "level": 62, "boostable": false, "rule": "A crossbow and grapple path, or an equipped Hallowed grapple, remains a separately observed setup and interaction."}
+      ],
+      "entry_fee": {"coins": 0, "consumable_ticket": null},
+      "reference_existing_production_facts": ["sins-of-the-father", "drakans-medallion", "morytania-transport-network"],
+      "reference_existing_actions": []
+    },
+    "location_and_transport": [
+      "The lobby is in the north-east of Darkmeyer, beneath the city unlocked by Sins of the Father.",
+      "A Drakan's medallion teleport to Darkmeyer is a nearby route. Medallion possession and teleport-charge/readiness state are separate observations.",
+      "A Hallowed crystal shard is a one-use direct teleport to the lobby. It costs one observed mark at Mysterious Hallowed Goods; using it consumes the observed shard.",
+      "On-foot movement through Darkmeyer remains available after the quest unlock, but current position, route safety, run energy, and arrival are never inferred.",
+      "Any currently available minigame/grouping or external teleport route is an alternative capability only when that account's spellbook, transport flag, inventory, charges, and player-confirmed arrival are observed."
+    ],
+    "unlock_transition": {
+      "event": "player has confirmed Sins of the Father completion, observed unboosted Agility at least 52, arrives at the lobby, and enters the course",
+      "deterministic_effects": ["A floor-one timed attempt becomes available."],
+      "non_effects": ["does not confirm the floor is completed, a timer state, obstacle success, damage avoidance, loot eligibility, coffin opening, marks, XP, exit, survival, or any reward."]
+    }
+  },
+  "activity_loop": {
+    "entry_inputs": [
+      {"item_or_capability": "access and observed unboosted Agility gate", "behavior": "required to enter the relevant floor; no GP fee or entry ticket is documented"},
+      {"item_or_capability": "optional food, poison cure, prayer, stamina/run-energy support, weight-reducing equipment, and Saradomin item", "behavior": "player-selected setup. Quantities, possession, consumption, protection, and survival are never inferred."},
+      {"item_or_capability": "optional coffin challenge supplies", "behavior": "depending on the chosen coffin path, these can include a lockpick, crossbow, grapple, planks, nails, hammer, saw, vampyre dust, and enchantment runes. Required path, stock, success, and consumption are observed."}
+    ],
+    "reusable_setup": [
+      {"item_or_capability": "Saradomin item", "effect": "The magical obelisk at a completed floor restores run energy when an applicable Saradomin item is equipped. Equipped state and actual restoration remain observed."},
+      {"item_or_capability": "Hallowed grapple", "effect": "Ammo-slot item that always succeeds on Sepulchre pillars; unusable outside the crypt."},
+      {"item_or_capability": "Hallowed focus", "effect": "Off-hand item that guarantees and accelerates portal-frame conjuring regardless of spell and Magic level; it is a permanent shop purchase but possession/equipping remain observed."},
+      {"item_or_capability": "Hallowed symbol", "effect": "Neck-slot item that halves brazier sacrifices and speeds passage through prayer barriers within the Sepulchre."},
+      {"item_or_capability": "Hallowed hammer", "effect": "Wieldable item that prevents nail breakage on Sepulchre broken bridges; it cannot be used outside the crypt."},
+      {"item_or_capability": "Hallowed ring", "effect": "Ring-slot item that prevents direct trap damage and reduces the failure time penalty within the Sepulchre. It does not make an obstacle completion, clear, timer, or survival state automatic."},
+      {"item_or_capability": "Mysterious Stranger tool storage", "effect": "The Stranger can store Hallowed tools. Storage and withdrawal are report-only inventory transitions, not evidence that a tool was earned."}
+    ],
+    "timed_floor_loop": {
+      "attempt_start": "Floor 1 starts with two minutes. Descending to each later accessible floor adds two minutes to the remaining timer.",
+      "floor_progression": "A player navigates timed, cyclical traps and obstacles. Time saved on one floor carries to the next. The timer pauses after the final obstacle of a floor.",
+      "floor_end": "The floor-end area contains a magical obelisk, optional coffin paths where applicable, stairs to descend if time remains, and an exit option. Floor XP is awarded only when descending the stairs or exiting through an obelisk.",
+      "timer_expiry": "After the timer expires, the player may finish the current floor for Agility XP, but cannot loot coffins or continue to a lower floor in that attempt.",
+      "token_extension": "Consuming one Hallowed token inside the Sepulchre adds one minute; multiple tokens may be used in an attempt. Each use consumes an observed token and does not assure a clear or loot event.",
+      "completion_boundary": "All obstacle interactions, elapsed time, time-bank carryover, floor completions, XP awards, stair descents, exits, and loot eligibility are explicit player-reported events."
+    },
+    "obstacles_and_coffins": {
+      "obstacle_families": ["cyclical statue, projectile, tile, platform, and movement hazards", "pillar, broken bridge, Saradomin brazier, and portal-frame coffin challenges"],
+      "trap_failure": "Most trap contacts return the player to a point before the trap, cost time, and deal a small amount of damage unless the Hallowed ring is equipped. Exact path, cycle, contact, damage, displacement, and recovery are runtime observations.",
+      "coffin_rule": "Coffin looting is optional and is the source of Hallowed marks and treasure outcomes. A relevant floor reached with time remaining and the required chosen obstacle path only makes a coffin attempt possible; it does not grant an open, marks, or loot.",
+      "grand_coffin_rule": "The Grand Hallowed Coffin is the floor-five end reward source and is the only Hallowed Sepulchre source for the Ring of endurance. A reported Grand Coffin open resolves its separate RNG result only when the player reports that result.",
+      "lockpick_boundary": "A lockpick can support coffin-opening attempts. The strange old lockpick raises Sepulchre coffin-loot success chance without consuming its Barrows charges; chance, use, and successful loot are still observed."
+    },
+    "completion_or_reward_events": [
+      {"event": "reported floor descent or obelisk exit", "deterministic_effect": "The relevant floor completion grants its documented Agility XP only at that event.", "state_rule": "No floor, XP, timer, or exit is inferred from eligible Agility, a route plan, or time spent in the activity."},
+      {"event": "reported eligible coffin open", "deterministic_effect": "The event may resolve marks, normal treasure, floor-specific missing mysterious page, unique encounter, and relevant RNG outcomes.", "state_rule": "Record exact reported results. Do not derive marks, XP, item quantities, clue, supplies, GP, collection-log entries, or loot rolls from an attempt."},
+      {"event": "reported Grand Hallowed Coffin open", "deterministic_effect": "The event may resolve the separate Ring of endurance RNG path in addition to other applicable floor-five treasure outcomes.", "state_rule": "The ring remains unresolved until the player reports it; a published rate is not an acquisition transition."},
+      {"event": "reported Mysterious Stranger shop purchase", "deterministic_effect": "A selected shop item is deterministic after its exact observed Hallowed-mark cost is paid.", "state_rule": "The purchase does not create the marks used, activity clears, collection-log state, or any unrelated reward."}
+    ],
+    "failure_and_death": {
+      "failure": "Timer expiry prevents further-floor progression and coffin looting while allowing the current floor to be completed for Agility XP on descent or obelisk exit. Trap contacts can cost time and deal damage unless a Hallowed ring protects the player.",
+      "death": "On death inside the Hallowed Sepulchre, items are held by the Mysterious Stranger in the lobby. Death, held items, reclaim, any fee, and survival are player-observed; this package does not assert a universal reclaim cost.",
+      "exit": "A magical obelisk at the end of each floor can exit the Sepulchre. The player can also leave by ordinary movement where the game permits. Exit/arrival, retained inventory, floor XP event, and any later re-entry are separate observations.",
+      "world_or_instance": "Public-instance trap timing can reflect other players already inside. A private instance is a permanent optional unlock for a one-time 200 Hallowed-mark payment; it does not prove a consistent run, performance, or success."
+    },
+    "repeatability": {
+      "activity": "repeatable indefinitely after access is unlocked",
+      "attempt_entry": "no stated coin fee or consumable ticket",
+      "private_instance": {"availability": "optional permanent Mysterious Stranger unlock", "cost_hallowed_marks": 200, "effect": "enables toggled private Hallowed Sepulchre instances", "boundary": "unlock state and instance use are observations"},
+      "daily_or_weekly_limit": "none stated by current activity documentation"
+    }
+  },
+  "currencies": [
+    {
+      "id": "hallowed-marks",
+      "acquisition": "rng",
+      "spend_behavior": "Obtained from reported eligible coffin-loot events. Marks pay exact Mysterious Hallowed Goods prices and the optional private-instance unlock. Balance and each earned amount are player-observed.",
+      "persistent": true,
+      "dryness_boundary": "No count, rate, attempt total, or time-to-purchase is inferred from floor eligibility, clears, or a published drop table."
+    },
+    {
+      "id": "hallowed-tokens",
+      "acquisition": "deterministic",
+      "spend_behavior": "Each token costs 10 observed Hallowed marks and, when consumed inside the Sepulchre, adds exactly one minute to the current timer. Token stock, possession, use, and resulting timer remain observed.",
+      "persistent": true
+    },
+    {
+      "id": "hallowed-crystal-shards",
+      "acquisition": "deterministic",
+      "spend_behavior": "Each shard costs one observed Hallowed mark and is consumed to teleport directly to the lobby. It is not a permanent transport flag.",
+      "persistent": true
+    }
+  ],
+  "rewards": [
+    {
+      "id": "hallowed-crystal-shard",
+      "acquisition": "shop",
+      "utility": ["single-use direct teleport to the Hallowed Sepulchre lobby"],
+      "cost": {"hallowed_marks": 1},
+      "consumption": "one shard per teleport"
+    },
+    {
+      "id": "hallowed-token",
+      "acquisition": "shop",
+      "utility": ["adds one minute to a current Sepulchre attempt when consumed inside"],
+      "cost": {"hallowed_marks": 10},
+      "consumption": "one token per one-minute extension"
+    },
+    {
+      "id": "hallowed-grapple",
+      "acquisition": "shop",
+      "utility": ["guaranteed Pillar grapples within the Sepulchre", "counts as a Saradomin item for magical-obelisk run-energy restoration when equipped", "can be stored with the Mysterious Stranger"],
+      "cost": {"hallowed_marks": 100},
+      "permanent": true
+    },
+    {
+      "id": "hallowed-focus",
+      "acquisition": "shop",
+      "utility": ["guaranteed and faster Portal Frame conjuring within the Sepulchre", "counts as a Saradomin item for magical-obelisk run-energy restoration when equipped", "can be stored with the Mysterious Stranger"],
+      "cost": {"hallowed_marks": 100},
+      "permanent": true
+    },
+    {
+      "id": "hallowed-symbol",
+      "acquisition": "shop",
+      "utility": ["halves Saradomin Brazier sacrifices", "speeds Holy-barrier passage", "counts as a Saradomin item for magical-obelisk run-energy restoration when equipped", "can be stored with the Mysterious Stranger"],
+      "cost": {"hallowed_marks": 100},
+      "permanent": true
+    },
+    {
+      "id": "hallowed-hammer",
+      "acquisition": "shop",
+      "utility": ["prevents nail breakage while repairing Sepulchre broken bridges", "can be stored with the Mysterious Stranger"],
+      "cost": {"hallowed_marks": 100},
+      "permanent": true
+    },
+    {
+      "id": "hallowed-ring",
+      "acquisition": "shop",
+      "utility": ["prevents direct Sepulchre trap damage", "reduces trap-failure time penalty", "counts as a Saradomin item for magical-obelisk run-energy restoration when equipped", "can be stored with the Mysterious Stranger"],
+      "cost": {"hallowed_marks": 250},
+      "permanent": true
+    },
+    {
+      "id": "dark-dye",
+      "acquisition": "shop",
+      "utility": ["recolours one Graceful piece to its Hallowed variant"],
+      "cost": {"hallowed_marks": 300},
+      "quantity_boundary": "Six dyes are required for a full six-piece Graceful recolour. Graceful ownership, chosen application, and cosmetic collection state are observed."
+    },
+    {
+      "id": "dark-acorn",
+      "acquisition": "shop",
+      "utility": ["recolours an observed Giant squirrel pet to its dark variant"],
+      "cost": {"hallowed_marks": 3000},
+      "boundary": "Requires an observed pet and confirmed use. Pet ownership and recolour are never inferred."
+    },
+    {
+      "id": "hallowed-sack",
+      "acquisition": "shop",
+      "utility": ["opens for Hallowed Sepulchre coffin-style loot rolls"],
+      "cost": {"hallowed_marks": 100},
+      "loot_behavior": "Each opened sack makes five low-tier, one mid-tier, and two high-tier loot-table rolls. Every result and quantity is RNG/player-observed."
+    },
+    {
+      "id": "strange-old-lockpick",
+      "acquisition": "rng",
+      "utility": ["improves Hallowed Sepulchre coffin-loot success chance without consuming its Barrows charges", "can open otherwise unpassable Barrows doors, consuming a charge", "full 50-charge version is tradeable; a used version becomes untradeable"],
+      "boundary": "Coffin result, lockpick acquisition, current charges, Barrows-door use, and trade state are observations."
+    },
+    {
+      "id": "mysterious-pages-and-strange-hallowed-tome",
+      "acquisition": "rng",
+      "utility": ["five floor-specific tome pages", "collection-log objectives", "completed tome lore state"],
+      "rate_boundary": "A coffin has a 1-in-10 chance to give the missing page associated with that coffin floor. A page already obtained for that floor is not reawarded. The tome is obtained from the lobby skeleton and can be reobtained without losing inserted-page progress.",
+      "boundary": "Page rolls, page ownership, tome insertion, and collection-log entries remain observed."
+    },
+    {
+      "id": "ring-of-endurance",
+      "acquisition": "rng",
+      "utility": ["stamina-potion effects last twice as long when a stored charge is used", "15 percent lower run-energy drain when worn with at least 500 stored charges and no active stamina effect"],
+      "source_boundary": "Available only from the floor-five Grand Hallowed Coffin. Current published rate is 1 in 200 per eligible Grand Coffin roll; the rate is not a deterministic acquisition path.",
+      "requirements": {"equip_agility": 70},
+      "charge_lifecycle": "Stores up to 1,000 stamina-potion doses, one dose per charge. One charge is consumed when drinking a stamina potion. Removing the ring during an active stamina effect halves remaining duration. Reverting to tradeable form destroys stored charges.",
+      "boundary": "Grand Coffin access, rolls, ring possession, equip state, dose balance, charges, consumption, and charged-run effect are separate observations."
+    },
+    {
+      "id": "giant-squirrel-pet",
+      "acquisition": "rng",
+      "utility": ["Agility pet", "dark-acorn cosmetic target when already owned"],
+      "floor_roll_rates": {"floor_1": "1 in 35,000", "floor_2": "1 in 16,000", "floor_3": "1 in 8,000", "floor_4": "1 in 4,000", "floor_5": "1 in 2,000"},
+      "boundary": "A floor-end return to the lobby can produce a pet roll at the documented floor rate; no clear, return, pet, insurance, or collection-log state is inferred."
+    }
+  ],
+  "dependencies_and_bypasses": [
+    {"target": "quest:sins-of-the-father", "relationship": "requires", "detail": "Sins of the Father completion is a mandatory access dependency."},
+    {"target": "transport:drakans-medallion-darkmeyer", "relationship": "alternative_to", "detail": "A currently usable Drakan's medallion is one nearby arrival path; it does not replace quest access or establish a course attempt."},
+    {"target": "transport:hallowed-crystal-shard", "relationship": "unlocks", "detail": "Observed Hallowed marks make the deterministic single-use lobby shard purchase obtainable."},
+    {"target": "activity:barrows", "relationship": "improves", "detail": "An observed strange old lockpick can open otherwise unpassable Barrows doors, consuming a charge. Sepulchre acquisition itself remains RNG."},
+    {"target": "utility:stamina-potion", "relationship": "improves", "detail": "A reported charged Ring of endurance changes stamina-potion duration only when its documented charge conditions are met."},
+    {"target": "collection-log:hallowed-sepulchre", "relationship": "produces", "detail": "Reported shop purchases, RNG outcomes, pages, and cosmetics can add relevant collection-log entries. No entry is awarded by eligibility or spend alone."},
+    {"target": "goal:dark-graceful", "relationship": "makes_obtainable", "detail": "Six deterministic dark-dye purchases make recolouring an already observed full Graceful set possible; no strategy priority is implied."},
+    {"target": "goal:dark-squirrel", "relationship": "makes_obtainable", "detail": "A deterministic dark-acorn purchase makes recolouring an already observed Giant squirrel possible; it never produces the pet."},
+    {"target": "activity:agility-training", "relationship": "produces", "detail": "Reported floor completion events can produce documented Agility XP, subject to floor gates and timing; XP is not simulated from an attempt."}
+  ],
+  "afk_and_attention": {
+    "attention_class": "active",
+    "measured_interaction_interval_seconds": null,
+    "logout_or_idle_constraints": [
+      "Timed floors require repeated movement, obstacle timing, and reaction to cyclical hazards.",
+      "Coffin routes add optional interaction gates, equipment/supply choices, and loot handling.",
+      "No universal low-attention interval is asserted: obstacle, floor, item setup, player execution, timer, and chosen loot route change the cadence.",
+      "Idle time can consume the attempt timer. No unattended clear, XP, mark, coffin, or reward is inferred."
+    ],
+    "source_boundary": "Community labels such as AFK, relaxed, consistent, learner-friendly, efficient, or low-supply are not factual passive-progression classifications. All course outcomes remain player-reported."
+  },
+  "community_strategy_observations": [
+    {
+      "claim": "Community guides suggest different Hallowed-tool purchase orders, commonly prioritizing a Hallowed ring or grapple according to comfort and targeted floors.",
+      "source_ids": ["wiki-hallowed-sepulchre-strategies-current", "community-reddit-ironscape-sepulchre-current", "community-youtube-sepulchre-guide-current"],
+      "treatment": "strategy-candidate-not-fact"
+    },
+    {
+      "claim": "Community guides recommend floor-specific coffin supplies, optional paths, and run setups based on the floors an account can access and the tools it owns.",
+      "source_ids": ["wiki-hallowed-sepulchre-strategies-current", "community-ironman-guide-agility-sepulchre-current", "community-youtube-sepulchre-guide-current"],
+      "treatment": "strategy-candidate-not-fact"
+    },
+    {
+      "claim": "Community Ironman discussion proposes floor, mark, ring, graceful, dark-acorn, collection-log, XP, and stop targets. These targets vary with player goals, execution, RNG, supplies, and desired route.",
+      "source_ids": ["community-ironman-guide-agility-sepulchre-current", "community-reddit-ironscape-sepulchre-current"],
+      "treatment": "strategy-candidate-not-fact"
+    }
+  ],
+  "state_boundaries": [
+    "Never infer membership, Sins of the Father completion, Darkmeyer location, Drakan's medallion, crystal shard, spellbook/grouping transport, arrival, current inventory, Hallowed-tool storage, or travel readiness from a planned activity.",
+    "Never infer unboosted Agility eligibility, optional Thieving or Construction boosts, Prayer/Magic/Ranged readiness, Saradomin item, food, poison cure, prayer, stamina, run energy, encumbrance, or chosen coffin supplies."
+    ,
+    "Never infer course entry, timer value, time carryover, obstacle success, trap cycle, damage, health, poison, death, survival, floor completion, stair descent, obelisk exit, private-instance use, or repeat attempt from level or elapsed time.",
+    "Coffins, Grand Coffins, marks, standard loot, clue items, page rolls, strange old lockpick, pet, Ring of endurance, and any collection-log addition are explicit event/results. Eligibility and published rates never become rewards.",
+    "Hallowed-mark balances are reported values. Shop purchases and the private-instance unlock subtract exact cost only after a selected item, observed balance, and player-confirmed transaction; they never create earned marks or course results.",
+    "Crystal shards, tokens, Hallowed sacks, Ring of endurance stamina charges, strange old lockpick charges, consumable supplies, opened bags, recolours, and all tool equip/storage states must be independently observed before an action validates a deterministic transition.",
+    "Floor XP is only recorded from a confirmed floor-end event. It is not estimated from time, an access gate, a training plan, community rate guidance, or visible course participation."
+  ],
+  "proposed_normalization": {
+    "facts": [
+      {"id": "hallowed-sepulchre-current-access-and-loop", "treatment": "proposed-new", "content": "Current Sins of the Father access, unboostable 52/62/72/82/92 floor gates, Darkmeyer travel, two-minute floor timer model, timed obstacles, floor-end XP event, timer expiry, exits, death holding, and active-attention boundary."},
+      {"id": "hallowed-sepulchre-coffin-and-rng-boundaries", "treatment": "proposed-new", "content": "Optional coffin gates, Hallowed-mark/treasure/page/lockpick RNG, Grand Hallowed Coffin Ring of endurance boundary, pet rolls, loot eligibility, and report-only outcomes."},
+      {"id": "hallowed-sepulchre-shop-and-utility", "treatment": "proposed-new", "content": "Exact mark prices, shard/token consumption, five Hallowed tools, ring, sack, dark dye, dark acorn, private-instance price, Stranger storage, and external lockpick/ring utility without route scores."},
+      {"id": "ring-of-endurance-current-lifecycle", "treatment": "proposed-new", "content": "Floor-five RNG acquisition, 70 Agility equip requirement, 1,000-dose capacity, stamina charge consumption, charged passive threshold, removal behavior, and conversion charge-loss boundary."}
+    ],
+    "actions": [
+      {"id": "action:record-hallowed-sepulchre-observation", "treatment": "proposed-new", "requirements": "player-reported access, floor events, timer/exit/death state, course/obstacle outcomes, eligible coffins, loot, marks, tools, purchases, instance state, collection log, ring, and supply observations", "transition": "store report-only observations; validate known floor gates, costs, and charge constraints without simulating attempts, rolls, marks, XP, damage, survival, or readiness"},
+      {"id": "action:buy-hallowed-sepulchre-reward", "treatment": "proposed-new", "requirements": "observed Hallowed-mark balance, selected stocked item or private-instance unlock, exact listed cost, and player-confirmed Mysterious Stranger transaction", "transition": "subtract exact marks and add only the selected deterministic purchased item/unlock; do not grant course progress, collection-log state, loot, or a stored/equipped item state"},
+      {"id": "action:consume-hallowed-crystal-shard", "treatment": "proposed-new", "requirements": "observed shard in inventory and player-confirmed lobby teleport", "transition": "remove exactly one shard and record the transport event; arrival is reported rather than inferred"},
+      {"id": "action:consume-hallowed-token", "treatment": "proposed-new", "requirements": "observed token in inventory, observed active Sepulchre attempt, and player-confirmed use", "transition": "remove exactly one token and record a one-minute timer-extension event; no exact remaining timer or floor success is inferred"},
+      {"id": "action:charge-ring-of-endurance", "treatment": "proposed-new", "requirements": "observed ring, observed stamina-potion doses, current observed charge count, capacity room, and player-confirmed charging", "transition": "transfer reported doses into ring charges up to the documented 1,000-dose maximum; never infer potions, charges, or later stamina use"},
+      {"id": "action:recolour-squirrel-dark", "treatment": "proposed-new", "requirements": "observed Giant squirrel pet, observed dark acorn, and player-confirmed use", "transition": "consume the acorn and record the cosmetic report; never create the pet or collection-log state"}
+    ],
+    "graph_nodes": [
+      "activity:hallowed-sepulchre",
+      "condition:sins-of-the-father-complete",
+      "condition:hallowed-sepulchre-floor-1-eligible",
+      "condition:hallowed-sepulchre-floor-2-eligible",
+      "condition:hallowed-sepulchre-floor-3-eligible",
+      "condition:hallowed-sepulchre-floor-4-eligible",
+      "condition:hallowed-sepulchre-floor-5-eligible",
+      "currency:hallowed-marks",
+      "transport:hallowed-crystal-shard",
+      "utility:hallowed-tools",
+      "utility:hallowed-ring",
+      "goal:ring-of-endurance",
+      "goal:dark-graceful",
+      "goal:dark-squirrel",
+      "collection-log:hallowed-sepulchre",
+      "activity:barrows",
+      "utility:stamina-potion"
+    ],
+    "graph_edges": [
+      {"from": "condition:sins-of-the-father-complete", "to": "activity:hallowed-sepulchre", "type": "requires", "evidence": "Quest completion is required for Sepulchre entry."},
+      {"from": "condition:hallowed-sepulchre-floor-1-eligible", "to": "activity:hallowed-sepulchre", "type": "requires", "evidence": "Floor 1 requires observed unboosted Agility 52."},
+      {"from": "condition:hallowed-sepulchre-floor-2-eligible", "to": "activity:hallowed-sepulchre", "type": "improves", "evidence": "Observed unboosted Agility 62 makes floor 2 available after a timed floor-1 progression event."},
+      {"from": "condition:hallowed-sepulchre-floor-3-eligible", "to": "activity:hallowed-sepulchre", "type": "improves", "evidence": "Observed unboosted Agility 72 makes floor 3 available after prior timed progression."},
+      {"from": "condition:hallowed-sepulchre-floor-4-eligible", "to": "activity:hallowed-sepulchre", "type": "improves", "evidence": "Observed unboosted Agility 82 makes floor 4 available after prior timed progression."},
+      {"from": "condition:hallowed-sepulchre-floor-5-eligible", "to": "activity:hallowed-sepulchre", "type": "improves", "evidence": "Observed unboosted Agility 92 makes floor 5 available after prior timed progression."},
+      {"from": "activity:hallowed-sepulchre", "to": "currency:hallowed-marks", "type": "produces", "evidence": "Reported eligible coffin loot can produce random Hallowed marks."},
+      {"from": "currency:hallowed-marks", "to": "transport:hallowed-crystal-shard", "type": "makes_obtainable", "evidence": "One observed mark buys one shard; each shard is consumed for a direct lobby teleport."},
+      {"from": "currency:hallowed-marks", "to": "utility:hallowed-tools", "type": "makes_obtainable", "evidence": "Exact shop purchases make the four tools and Hallowed ring obtainable after reported mark balances."},
+      {"from": "activity:hallowed-sepulchre", "to": "goal:ring-of-endurance", "type": "makes_obtainable", "evidence": "Only a reported floor-five Grand Hallowed Coffin open can resolve the ring RNG path."},
+      {"from": "goal:ring-of-endurance", "to": "utility:stamina-potion", "type": "improves", "evidence": "A charged observed ring changes stamina duration under its documented charge conditions."},
+      {"from": "activity:hallowed-sepulchre", "to": "activity:barrows", "type": "improves", "evidence": "A reported strange old lockpick RNG outcome can improve Barrows door access."},
+      {"from": "currency:hallowed-marks", "to": "goal:dark-graceful", "type": "makes_obtainable", "evidence": "Six 300-mark dye purchases can recolour a separately observed full Graceful set."},
+      {"from": "currency:hallowed-marks", "to": "goal:dark-squirrel", "type": "makes_obtainable", "evidence": "A 3,000-mark acorn purchase can recolour a separately observed Giant squirrel."},
+      {"from": "activity:hallowed-sepulchre", "to": "collection-log:hallowed-sepulchre", "type": "produces", "evidence": "Confirmed shop purchases, reported coffin RNG, pages, ring, and cosmetics may add log entries."}
+    ],
+    "account_observations": [
+      {"key": "hallowed_sepulchre_access", "type": "object", "shape": {"sins_of_the_father_complete": "boolean_or_null", "agility_level": "integer_or_null", "darkmeyer_arrival_observed": "boolean_or_null", "transport_ready": "player_report_or_null"}, "rule": "Quest, level, location, and transport are individually reported; no derived readiness."},
+      {"key": "hallowed_sepulchre_attempt", "type": "object_or_null", "shape": {"active": "boolean_or_null", "instance_mode": "public|private|unknown", "current_floor": "integer_1_to_5_or_null", "timer_seconds_observed": "integer_or_null", "time_extension_events": "integer_or_null", "floor_completion_events": "set_of_reported_floor_events", "coffins_opened": "set_of_reported_coffin_events", "exit_or_death_observed": "player_report_or_null"}, "rule": "Runtime state only. No timer, clear, exit, loot eligibility, health, or survival is calculated."},
+      {"key": "hallowed_sepulchre_resources", "type": "object", "shape": {"hallowed_marks": "integer_or_null", "crystal_shards": "integer_or_null", "tokens": "integer_or_null", "sacks": "integer_or_null", "tool_storage": "set_or_null", "equipped_hallowed_item": "player_report_or_null", "private_instance_unlocked": "boolean_or_null"}, "rule": "Balances, storage, equipped state, and instance unlock are reported values."},
+      {"key": "hallowed_sepulchre_loot", "type": "object", "shape": {"reported_coffin_results": "append_only_list", "mysterious_pages": "set_of_1_to_5_or_null", "strange_old_lockpick": "owned_and_charges_or_null", "ring_of_endurance_owned": "boolean_or_null", "giant_squirrel_owned": "boolean_or_null", "collection_log_entries": "set_or_null"}, "rule": "RNG, pages, tools, ring, pet, and log outcomes are independently reported."},
+      {"key": "ring_of_endurance_observation", "type": "object_or_null", "shape": {"owned": "boolean_or_null", "equipped": "boolean_or_null", "stamina_charges": "integer_0_to_1000_or_null", "active_stamina_effect": "boolean_or_null", "converted_to_tradeable_observed": "boolean_or_null"}, "rule": "Ring possession, dose state, charges, use, conversion, and passive effect are never inferred from Sepulchre participation."},
+      {"key": "hallowed_sepulchre_survival", "type": "object_or_null", "shape": {"health_or_damage_report": "player_report_or_null", "poison_report": "player_report_or_null", "deaths_observed": "integer_or_null", "held_items_by_stranger": "set_or_null", "reclaim_observed": "boolean_or_null"}, "rule": "Damage, death, reclaim, held items, and survival are report-only."}
+    ]
+  },
+  "conflicts_and_unknowns": [
+    {
+      "id": "historical-hallowed-sepulchre-rate-guidance",
+      "status": "strategy-or-stale-risk",
+      "detail": "Published XP, mark, loot, ring, timing, and completion-rate guidance is sensitive to updates, floor access, tools, route choices, execution, and RNG. Do not normalize a fixed per-hour output or expected time-to-reward from it."
+    },
+    {
+      "id": "private-instance-reconciliation",
+      "status": "current-mechanics",
+      "detail": "Private instances were added in June 2024 for 200 marks. Older guides that assume only public instances should be treated as stale for instance availability, though they can remain strategy candidates for movement explanations."
+    },
+    {
+      "id": "ring-drop-rate-boundary",
+      "status": "rng-boundary",
+      "detail": "The current published Ring of endurance rate is 1 in 200 per eligible Grand Hallowed Coffin roll. It establishes a source probability, not a guaranteed drop count, floor-clear count, timer target, mark target, readiness determination, or expected account result."
+    },
+    {
+      "id": "coffin-supply-variants",
+      "status": "do-not-force-one-loadout",
+      "detail": "Coffin paths vary by floor, tool ownership, and player choice. This package records possible gates and Hallowed-tool effects but intentionally does not prescribe a universal setup or assume supplies are consumed."
+    },
+    {
+      "id": "hallowed-tool-storage",
+      "status": "inventory-boundary",
+      "detail": "Mysterious Stranger storage avoids treating Hallowed tools as permanently occupying the backpack, but stored, withdrawn, and equipped states must remain independently observed."
+    },
+    {
+      "id": "collection-log-scope",
+      "status": "current-boundary",
+      "detail": "Shop items, RNG outcomes, mysterious pages, ring, and cosmetic outcomes can interact with the Hallowed Sepulchre collection-log category. Exact personal log state remains observed and is not inferred by any purchase or reward action."
+    }
+  ],
+  "coverage": {
+    "access": true,
+    "loop": true,
+    "currencies": true,
+    "rewards": true,
+    "failure_state": true,
+    "sources": true,
+    "normalization": true,
+    "floor_gates_covered": [52, 62, 72, 82, 92],
+    "shop_rewards_covered": ["crystal shard", "token", "grapple", "focus", "symbol", "hammer", "ring", "dark dye", "dark acorn", "sack"],
+    "production_files_modified": 0
+  }
+}
