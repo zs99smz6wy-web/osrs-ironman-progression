@@ -1,0 +1,539 @@
+{
+  "package_schema_version": 1,
+  "package_type": "minigame-research",
+  "package_id": "research-minigame-pest-control",
+  "activity": "Pest Control",
+  "status": "research-proposal",
+  "checked_at": "2026-08-22",
+  "scope": "Current factual package for the members-only cooperative combat minigame at the Void Knights' Outpost. It proposes future facts, actions, graph records, and observations only. It does not select a lander, world, role, purchase, XP target, or route timing.",
+  "facts_strategy_boundary": {
+    "included": [
+      "current access and travel, lander combat gates, team-dependent start boundary, portal and Void Knight objective, activity eligibility, success and failure states, safe-death rule, repeatability, points, Combat Achievement modifiers, cap, and win coin rule",
+      "all current reward-shop costs, buy/equip requirements, Void set and Elite Void transformations, resource-pack contents, XP exchange formula, resale, and relevant Western Provinces Diary linkage",
+      "explicit account observations for attempts, outcomes, activity eligibility, point deltas, combat-achievement tier, purchases, equipped items, team context, and player-recorded time",
+      "proposed dependency nodes and edges that distinguish deterministic purchases from team- and execution-dependent point acquisition"
+    ],
+    "excluded": [
+      "whether to begin Pest Control at any combat level, use any role, attend world 344, wait for a stronger lander, buy Void, exchange points for XP or packs, or pursue Elite Void",
+      "any inferred win, participation eligibility, activity-bar value, point or coin award, Combat Achievement tier, team size, combat readiness, inventory, food use, death, XP, purchase, set ownership, diary state, or elapsed time",
+      "points-per-hour, games-per-hour, success rate, role efficiency, expected resource-pack contents, route order, GP valuation, and all community stop targets"
+    ]
+  },
+  "source_catalog": [
+    {
+      "id": "wiki-pest-control-current",
+      "publisher": "Old School RuneScape Wiki",
+      "kind": "wiki",
+      "url": "https://oldschool.runescape.wiki/w/Pest_Control",
+      "checked_at": "2026-08-22",
+      "use": "Current access, landers, game objective, shield timing, activity eligibility, point award conditions, death and repeatability boundaries. This is the primary mechanics authority."
+    },
+    {
+      "id": "wiki-pest-control-strategies-current",
+      "publisher": "Old School RuneScape Wiki",
+      "kind": "guide",
+      "url": "https://oldschool.runescape.wiki/w/Pest_control_guide",
+      "checked_at": "2026-08-22",
+      "use": "Current explanatory description of portal order, pest roles, repairs, team dependence, and attention requirements. Strategic recommendations from this page are not normalized as facts."
+    },
+    {
+      "id": "wiki-void-reward-options-current",
+      "publisher": "Old School RuneScape Wiki",
+      "kind": "wiki",
+      "url": "https://oldschool.runescape.wiki/w/Void_Knights%27_Reward_Options",
+      "checked_at": "2026-08-22",
+      "use": "Current reward-shop stock, costs, buy gates, equipment resale, resource packs, XP formula and bulk bonus, 4,000-point cap, and elite-upgrade inputs."
+    },
+    {
+      "id": "wiki-void-knight-equipment-current",
+      "publisher": "Old School RuneScape Wiki",
+      "kind": "wiki",
+      "url": "https://oldschool.runescape.wiki/w/Void_Knight_equipment",
+      "checked_at": "2026-08-22",
+      "use": "Void set-piece costs, set construction, wear gates, helmet effects, full-set point totals, and official-world context."
+    },
+    {
+      "id": "wiki-elite-void-current",
+      "publisher": "Old School RuneScape Wiki",
+      "kind": "wiki",
+      "url": "https://oldschool.runescape.wiki/w/Elite_Void_Knight_equipment",
+      "checked_at": "2026-08-22",
+      "use": "Elite Void availability after the Hard Western Provinces Diary, deterministic 200-point-per-piece transformations, item effects, and storage context."
+    },
+    {
+      "id": "wiki-combat-achievements-current",
+      "publisher": "Old School RuneScape Wiki",
+      "kind": "wiki",
+      "url": "https://oldschool.runescape.wiki/w/Combat_Achievements",
+      "checked_at": "2026-08-22",
+      "use": "Current point-threshold reward system and Pest Control commendation modifiers: Easy +1, Medium +2, Hard and above +3 per eligible win."
+    },
+    {
+      "id": "official-pest-control-update-archive",
+      "publisher": "Jagex",
+      "kind": "official",
+      "url": "https://secure.runescape.com/m=news/pest-control-update?oldschool=1",
+      "checked_at": "2026-08-22",
+      "use": "Historical official source for the three-lander design. It is retained as provenance; current mechanics are taken from the current Wiki sources."
+    },
+    {
+      "id": "reddit-ironscape-pest-control-combat-achievements",
+      "publisher": "r/ironscape",
+      "kind": "reddit",
+      "url": "https://www.reddit.com/r/ironscape/comments/13oyzjj/is_pest_control_a_viable_prayer_training_method/",
+      "checked_at": "2026-08-22",
+      "use": "Community discussion of XP versus other progression and Combat Achievement modifiers. It is strategy-only and not used as a mechanic authority."
+    },
+    {
+      "id": "youtube-theoatrix-pest-control-guide",
+      "publisher": "Theoatrix",
+      "kind": "youtube",
+      "url": "https://www.youtube.com/results?search_query=Theoatrix+OSRS+Pest+Control+guide",
+      "checked_at": "2026-08-22",
+      "use": "Community video-guide discovery reference for world, role, and equipment claims. Those claims remain strategy candidates until individually source-checked."
+    }
+  ],
+  "access": {
+    "requirements": {
+      "membership": true,
+      "quest_prerequisites": [],
+      "base_entry_fee": {"coins": 0, "consumable_ticket": null},
+      "lander_combat_levels": [
+        {"lander": "novice", "minimum_combat_level": 40, "boostable": false, "base_commendation_points_per_eligible_win": 3},
+        {"lander": "intermediate", "minimum_combat_level": 70, "boostable": false, "base_commendation_points_per_eligible_win": 4},
+        {"lander": "veteran", "minimum_combat_level": 100, "boostable": false, "base_commendation_points_per_eligible_win": 5}
+      ],
+      "entry_boundary": "Combat level is the only listed hard participation gate. Lander eligibility, an available boat, a game start, a functioning team, activity eligibility, and a win are distinct observations.",
+      "reference_existing_research": ["western-provinces.json: Pest Control diary tasks and the Hard Western Provinces Diary elite-Void capability"],
+      "reference_existing_production_fact": "achievement-diary-utility"
+    },
+    "location_and_transport": [
+      "Travel to the Void Knights' Outpost by the free Squire boat from Port Sarim, then join the selected lander when its observed combat-level gate is met.",
+      "The Pest Control Minigame Teleport provides an alternative arrival path for an account with observed access to that interface and its current cooldown state. It does not prove entry into a lander or a completed game.",
+      "A player can leave the Outpost through the travel Squire. The minigame's leave route and an Outpost return do not establish a reward outcome."
+    ],
+    "unlock_transition": {
+      "event": "an observed account meets the selected lander's combat-level gate and successfully boards it",
+      "deterministic_effects": ["The player becomes eligible to wait for that lander's team-dependent game start."],
+      "non_effects": ["does not establish a start, team size, role, combat readiness, participation activity, success, commendation points, coins, XP, purchase, diary completion, or item ownership"]
+    }
+  },
+  "activity_loop": {
+    "entry_inputs": [
+      {"item_or_capability": "lander access", "behavior": "An observed combat level meeting Novice 40, Intermediate 70, or Veteran 100 is required for the selected boat. No item or entry fee is required."},
+      {"item_or_capability": "team start", "behavior": "A lander needs a sufficient current population to launch. Team size, wait time, composition, and launch outcome are player/world-observed; no package field treats them as guaranteed."},
+      {"item_or_capability": "combat or repair capability", "behavior": "No particular weapon, armour, food, rune, or supply is a listed access requirement. Damaging pests or portals, or repairing gates and barricades with a hammer and logs, are factual activity routes; readiness and supplies are separate observations."}
+    ],
+    "reusable_setup": [
+      {"item_or_capability": "combat equipment", "effect": "May support a player-selected combat role, but the game neither mandates a style nor makes possession a success guarantee."},
+      {"item_or_capability": "hammer and logs", "effect": "Enable gate/barricade repairs. Each repair gives 5 Crafting XP and contributes activity; availability, quantities, and actual repairs are observed."},
+      {"item_or_capability": "Void knight seal", "effect": "Optional 10-point amulet with eight charges. It may be operated inside Pest Control to damage nearby pests, but its damage does not satisfy the activity requirement and it does not function outside the minigame."},
+      {"item_or_capability": "dwarf multicannon or alchemy", "effect": "Neither is available inside the activity; neither can be modeled as an in-round bypass."}
+    ],
+    "round_phases": [
+      {
+        "phase": "launch and shield sequence",
+        "facts": [
+          "A launched team arrives on the island with a central Void Knight and four portals.",
+          "All portals begin shielded. The first shield drops 15 seconds after start; later shields drop at 30-second intervals, with all shields down by 1 minute 45 seconds.",
+          "A Novice portal has 200 Hitpoints; Intermediate and Veteran portals have 250 Hitpoints. Pests continue spawning from a portal until it is destroyed."
+        ]
+      },
+      {
+        "phase": "portal assault and defence",
+        "facts": [
+          "Players can damage unshielded portals and pests. Spinners heal portals and can stack their repair effect; Brawlers, Shifters, Defilers, Ravagers, Splatters, and Torchers create differing movement, gate, or damage pressure.",
+          "The Void Knight is the shared defence objective. Closing gates, killing pests near the Knight, and repairing barricades/gates are factual defensive interactions.",
+          "Destroying a portal restores 50 Void Knight Hitpoints. Personal damage, pest kills, repairs, portal order, and team outcome remain observed events."
+        ]
+      },
+      {
+        "phase": "activity eligibility",
+        "facts": [
+          "To be eligible for rewards, the player must actively participate by damaging portals or pests, or repairing barricades or gates. The activity display must not be treated as an inferred scalar account field.",
+          "Portal and Spinner attacks give higher activity increases than ordinary pest attacks; repairs also give high activity. Exact hidden increments, decay, and a player's qualifying status are not modeled as deterministic calculations."
+        ]
+      },
+      {
+        "phase": "success, failure, and return",
+        "facts": [
+          "A round ends when all four portals are destroyed, the Void Knight dies, or 20 minutes elapse. Success requires all portals destroyed or survival of the Knight through the timer; Knight death is a failed round.",
+          "An activity-eligible player on a successful round receives the selected lander's base commendation points plus the observed Combat Achievement modifier, and coins equal to ten times their combat level.",
+          "The player returns to the Outpost after the round. A completed/failed round is repeatable by boarding another lander game."
+        ]
+      }
+    ],
+    "completion_or_reward_events": [
+      {
+        "event": "observed activity-eligible successful round",
+        "outcomes": ["observed selected-lander base commendation points", "observed applicable Combat Achievement bonus", "coins equal to ten times observed combat level at the award", "return to the Outpost"],
+        "boundary": "Nothing in this package creates an award without a player-confirmed result and point delta."
+      },
+      {
+        "event": "observed reward-shop transaction",
+        "outcomes": ["explicit point debit", "explicit deterministic item/XP result or player-observed random-pack contents"],
+        "boundary": "The transaction must name the target item, pack, selected combat skill, current level, and point quantity; never infer a preferred spend."
+      }
+    ],
+    "failure_and_death": {
+      "round_failure": "Void Knight death ends the round and yields no commendation points. A player who did not satisfy activity eligibility also receives no commendation points, even if the team wins.",
+      "player_death": "Pest Control is a safe activity. Player death respawns the player without normal item loss; manually dropped ground items are not protected. Hardcore Group Ironman danger treatment is a separate account-mode risk boundary.",
+      "leave_boundary": "Leaving, disconnecting, insufficient activity, failed defence, or a failed/abandoned team result must be recorded as an observed event, not inferred from boarding a lander."
+    },
+    "repeatability": {
+      "is_repeatable": true,
+      "reset": "Each launched round is independent. The account's persistent point balance is capped, while in-round team, activity, damage, deaths, portal state, repairs, supplies, and timing do not carry as assumed outputs.",
+      "team_dependency": "A usable launch and success depend on other players and their actions. The model may describe this dependence but must never manufacture a team or completion."
+    }
+  },
+  "currencies": [
+    {
+      "id": "void-knight-commendation-points",
+      "acquisition": "player_observed",
+      "spend_behavior": "Persistent points are awarded only after an observed activity-eligible win, capped at 4,000, and spent explicitly at the Void Knight reward shop or Elite Void Knight. Base award is 3/4/5 by Novice/Intermediate/Veteran plus the observed Combat Achievement modifier.",
+      "cap": 4000,
+      "base_award_formula": "Novice 3, Intermediate 4, Veteran 5 points per eligible successful round.",
+      "combat_achievement_modifier": "No claimed tier +0; Easy +1; Medium +2; Hard, Elite, Master, and Grandmaster +3. Use only a player-observed claimed Combat Achievement reward tier.",
+      "cap_boundary": "At or near 4,000 observed points, an otherwise eligible award can be partially or wholly lost to the cap. The package does not calculate an unobserved award or force a spend."
+    },
+    {
+      "id": "pest-control-coin-award",
+      "acquisition": "deterministic",
+      "spend_behavior": "A successful, activity-eligible observed round awards coins equal to ten times the observed combat level. Coin receipt remains an account observation because a round is not assumed."
+    }
+  ],
+  "rewards": [
+    {
+      "id": "void-knight-top",
+      "acquisition": "shop",
+      "cost": {"void_knight_commendation_points": 250},
+      "requirements": {"Attack": 42, "Strength": 42, "Defence": 42, "Hitpoints": 42, "Ranged": 42, "Magic": 42, "Prayer": 22},
+      "utility": ["required regular Void body piece for the four-piece Void set effect", "deterministic input to Elite Void top after Hard Western Provinces Diary"]
+    },
+    {
+      "id": "void-knight-robe",
+      "acquisition": "shop",
+      "cost": {"void_knight_commendation_points": 250},
+      "requirements": {"Attack": 42, "Strength": 42, "Defence": 42, "Hitpoints": 42, "Ranged": 42, "Magic": 42, "Prayer": 22},
+      "utility": ["required regular Void leg piece for the four-piece Void set effect", "deterministic input to Elite Void robe after Hard Western Provinces Diary"]
+    },
+    {
+      "id": "void-knight-gloves",
+      "acquisition": "shop",
+      "cost": {"void_knight_commendation_points": 150},
+      "requirements": {"Attack": 42, "Strength": 42, "Defence": 42, "Hitpoints": 42, "Ranged": 42, "Magic": 42, "Prayer": 22},
+      "utility": ["required regular Void glove piece for the four-piece Void set effect"]
+    },
+    {
+      "id": "void-melee-helm",
+      "acquisition": "shop",
+      "cost": {"void_knight_commendation_points": 200},
+      "requirements": {"Attack": 42, "Strength": 42, "Defence": 42, "Hitpoints": 42, "Ranged": 42, "Magic": 42, "Prayer": 22},
+      "utility": ["one selectable helmet for a complete regular Void set", "when worn with required Void pieces, gives the sourced melee accuracy and damage set effect"]
+    },
+    {
+      "id": "void-ranger-helm",
+      "acquisition": "shop",
+      "cost": {"void_knight_commendation_points": 200},
+      "requirements": {"Attack": 42, "Strength": 42, "Defence": 42, "Hitpoints": 42, "Ranged": 42, "Magic": 42, "Prayer": 22},
+      "utility": ["one selectable helmet for a complete regular Void set", "when worn with required Void pieces, gives the sourced Ranged accuracy and damage set effect"]
+    },
+    {
+      "id": "void-mage-helm",
+      "acquisition": "shop",
+      "cost": {"void_knight_commendation_points": 200},
+      "requirements": {"Attack": 42, "Strength": 42, "Defence": 42, "Hitpoints": 42, "Ranged": 42, "Magic": 42, "Prayer": 22},
+      "utility": ["one selectable helmet for a complete regular Void set", "when worn with required Void pieces, gives the sourced Magic accuracy set effect"]
+    },
+    {
+      "id": "void-knight-mace",
+      "acquisition": "shop",
+      "cost": {"void_knight_commendation_points": 250},
+      "requirements": {"Attack": 42, "Strength": 42, "Defence": 42, "Hitpoints": 42, "Ranged": 42, "Magic": 42, "Prayer": 22},
+      "utility": ["can cast and autocast Claws of Guthix in place of a Guthix staff", "not required for the Void set effect"]
+    },
+    {
+      "id": "void-seal",
+      "acquisition": "shop",
+      "cost": {"void_knight_commendation_points": 10},
+      "requirements": {},
+      "utility": ["eight-charge Pest Control-only optional area-damage tool", "does not contribute to activity eligibility"]
+    },
+    {
+      "id": "elite-void-top",
+      "acquisition": "shop",
+      "cost": {"void_knight_commendation_points": 200, "void_knight_top": 1},
+      "requirements": {"western_provinces_hard_diary_claimed": true},
+      "utility": ["transforms a confirmed regular Void top", "+3 Prayer and +2.5% Ranged and Magic damage over the regular top", "continues to count as Void gear for the set effect"]
+    },
+    {
+      "id": "elite-void-robe",
+      "acquisition": "shop",
+      "cost": {"void_knight_commendation_points": 200, "void_knight_robe": 1},
+      "requirements": {"western_provinces_hard_diary_claimed": true},
+      "utility": ["transforms a confirmed regular Void robe", "+3 Prayer and +2.5% Ranged and Magic damage over the regular robe", "continues to count as Void gear for the set effect"]
+    },
+    {
+      "id": "herb-pack",
+      "acquisition": "shop",
+      "cost": {"void_knight_commendation_points": 30},
+      "requirements": {"Herblore": 25},
+      "utility": ["random noted grimy herbs", "current pack always includes varying quantities of harralander, ranarr, toadflax, irit, avantoe, and kwuarm", "Ironman purchase is allowed"],
+      "random_boundary": "Exact herb quantities and any resulting potion supplies are player-observed; a pack purchase does not assert contents beyond the current source-backed table."
+    },
+    {
+      "id": "mineral-pack",
+      "acquisition": "shop",
+      "cost": {"void_knight_commendation_points": 15},
+      "requirements": {"Mining": 25},
+      "utility": ["25 noted coal and 18 noted iron ore"],
+      "random_boundary": "The listed pack contents are fixed, but receipt follows only a player-observed purchase."
+    },
+    {
+      "id": "seed-pack",
+      "acquisition": "shop",
+      "cost": {"void_knight_commendation_points": 15},
+      "requirements": {"Farming": 25},
+      "utility": ["three random rolls from the sourced current seed table, including a possible spirit seed, magic seed, tree seeds, herb seeds, allotment seeds, and flower seeds"],
+      "random_boundary": "A seed pack creates no deterministic seed, farming state, crop, or XP result. Each opened pack and each player-held seed quantity is observed."
+    },
+    {
+      "id": "combat-skill-experience-exchange",
+      "acquisition": "threshold",
+      "cost": {"void_knight_commendation_points": "chosen positive amount"},
+      "requirements": {"target_skill": "Attack, Strength, Defence, Hitpoints, Ranged, Magic, or Prayer at observed level 25 or higher"},
+      "utility": ["deterministic selected combat-skill XP purchase at the current selected level"],
+      "formula": "XP = floor(level^2 / 600) * N * points, where N is 18 for Prayer, 32 for Magic or Ranged, and 35 for Attack, Strength, Defence, or Hitpoints. A 10-point transaction adds 1% XP; a 100-point transaction adds 10% XP.",
+      "boundary": "Target skill, level at transaction, number of points, bulk choice, and XP delta are explicit observations. No recommendation or projected XP is produced by this package."
+    },
+    {
+      "id": "void-equipment-resale",
+      "acquisition": "fixed",
+      "utility": ["The Dodgy Squire exchanges a confirmed Void Knight equipment piece for 80% of its original commendation-point cost"],
+      "boundary": "Resale is an explicit selected-item transaction and does not apply to an unobserved item or infer a desired reconfiguration."
+    }
+  ],
+  "dependencies_and_bypasses": [
+    {"target": "combat-level-40", "relationship": "requires", "detail": "Required for Novice lander participation and the Pest Control Minigame Teleport."},
+    {"target": "combat-level-70", "relationship": "requires", "detail": "Required for Intermediate lander participation; it does not guarantee a team or success."},
+    {"target": "combat-level-100", "relationship": "requires", "detail": "Required for Veteran lander participation; it does not guarantee a team or success."},
+    {"target": "combat-achievement-reward-tier", "relationship": "improves", "detail": "Observed Easy/Medium/Hard-or-above claim increases an eligible award by +1/+2/+3 rather than changing access."},
+    {"target": "void-knight-commendation-points", "relationship": "produces", "detail": "An activity-eligible player-observed successful round produces points, subject to selected lander, claimed CA tier, and point cap."},
+    {"target": "void-knight-equipment", "relationship": "unlocks", "detail": "Observed points plus named hard skill/prayer gates permit deterministic selected shop purchases."},
+    {"target": "western-provinces-hard-diary", "relationship": "requires", "detail": "Required before an Elite Void Knight can transform regular Void top or robe; the diary does not grant points or regular Void."},
+    {"target": "elite-void-knight-equipment", "relationship": "unlocks", "detail": "Hard diary plus the selected regular top/robe and 200 points per piece make the corresponding Elite Void piece obtainable deterministically."},
+    {"target": "pest-control-repairs", "relationship": "alternative_to", "detail": "Hammer-and-log gate/barricade repairs are an activity route that can support eligibility without treating a combat role as mandatory."}
+  ],
+  "afk_and_attention": {
+    "attention_class": "active",
+    "measured_interaction_interval_seconds": null,
+    "logout_or_idle_constraints": [
+      "The player must maintain qualifying active participation; portal shields, pest spawns, Spinners, gates, Knight health, repairs, player death, team execution, and success/failure can require reactive choices.",
+      "A waiting lander is not a productive passive loop, and an in-round player cannot safely be classified as AFK from mechanics alone.",
+      "World population, role, equipment, latency, team performance, and personal execution change actual cadence and time. Record any player-provided cadence separately."
+    ],
+    "source_boundary": "Current mechanics support an active, team-dependent classification. They do not support a universal attention interval, win probability, hourly rate, or unattended-play recommendation."
+  },
+  "community_strategy_observations": [
+    {
+      "claim": "World 344 is commonly used as the official community world, and players commonly use the highest lander their observed combat level permits.",
+      "source_ids": ["wiki-void-knight-equipment-current", "wiki-pest-control-strategies-current", "youtube-theoatrix-pest-control-guide"],
+      "treatment": "strategy-candidate-not-fact",
+      "boundary": "World availability, player population, boat queue, win consistency, higher-lander readiness, and route value change over time. The model must not auto-select a world or lander."
+    },
+    {
+      "claim": "Community roles often divide between portal damage, Spinner removal, Void Knight defence, and repairs; players may prefer portal-following and closed gates in mass games.",
+      "source_ids": ["wiki-pest-control-strategies-current", "youtube-theoatrix-pest-control-guide"],
+      "treatment": "strategy-candidate-not-fact",
+      "boundary": "These are coordination patterns, not hard requirements. They do not prove activity eligibility, survival, contribution, or a favorable team state."
+    },
+    {
+      "claim": "Ironman players sometimes delay a Void or Elite Void grind until higher Combat Achievement rewards or the Veteran lander, while others obtain one regular set earlier for a specific diary or equipment purpose.",
+      "source_ids": ["reddit-ironscape-pest-control-combat-achievements", "wiki-void-knight-equipment-current"],
+      "treatment": "strategy-candidate-not-fact",
+      "boundary": "Point totals and modifiers are factual; the timing, target set, diary value, comparative gear utility, expected games, and stop point require account-specific scoring."
+    },
+    {
+      "claim": "Players may spend points on combat XP, herb packs, mineral packs, or seed packs rather than equipment.",
+      "source_ids": ["wiki-void-reward-options-current", "reddit-ironscape-pest-control-combat-achievements"],
+      "treatment": "strategy-candidate-not-fact",
+      "boundary": "The shop routes are factual. Opportunity cost, need for supplies, XP value, resource-pack priority, and purchase quantity are intentionally unscored."
+    }
+  ],
+  "state_boundaries": [
+    "Combat level eligibility is distinct from a current Outpost location, selected boat, launch, viable team, combat readiness, active participation, death state, or completed round.",
+    "A successful team result plus player activity eligibility is required for commendation points. Never infer a point balance, award, coin receipt, diary task, Combat Achievement task, or set ownership from access or a planned round.",
+    "Combat Achievement modifiers use an observed claimed reward tier, not a predicted task completion or a current task-point total. Hard and above remains a +3 modifier rather than a stack of all lower bonuses.",
+    "The 4,000-point cap constrains only a player-observed balance and actual award. It must not invent a lost-point quantity or force a purchase before the cap is reached.",
+    "Void and Elite Void ownership, condition, equipped state, selected helmet, sale, storage, and collection-log status are separate account observations. A point balance does not imply a purchase.",
+    "Elite Void requires the observed Hard Western Provinces Diary claim and the observed corresponding regular piece. It is not granted by the diary and does not establish a complete set.",
+    "Resource-pack contents, seed rolls, opened packs, received herbs/ores/seeds, combat XP purchases, and current combat-skill levels are observed transactions or account state, never projected outputs.",
+    "Pest Control is safe for ordinary item-loss handling, but player death, manually dropped items, Hardcore Group Ironman risk, disconnects, and any recovery state must remain explicit observations rather than generic completion effects.",
+    "Team size, player roles, lane/portal order, waits, attacks, repairs, activity meter, item use, supplies, time, and outcomes are player/world observations; source descriptions do not make them account facts."
+  ],
+  "proposed_normalization": {
+    "facts": [
+      {
+        "id": "pest-control-current-access-and-round-loop",
+        "category": "minigame",
+        "status": "proposed",
+        "source_ids": ["wiki-pest-control-current", "wiki-pest-control-strategies-current"],
+        "summary": "Combat-gated landers, travel, team start, shields, portals, Void Knight defence, activity eligibility, safe death, failure, repeatability, and observed success boundary."
+      },
+      {
+        "id": "pest-control-commendation-economy-current",
+        "category": "currency",
+        "status": "proposed",
+        "source_ids": ["wiki-pest-control-current", "wiki-combat-achievements-current", "wiki-void-reward-options-current"],
+        "summary": "Base point table, +0/+1/+2/+3 claimed-Combat-Achievement modifier, 4,000-point cap, point-spend boundary, and win coin formula."
+      },
+      {
+        "id": "pest-control-void-reward-shop-current",
+        "category": "reward",
+        "status": "proposed",
+        "source_ids": ["wiki-void-reward-options-current", "wiki-void-knight-equipment-current", "wiki-elite-void-current"],
+        "summary": "Every current shop route, costs, gates, selected equipment transformations, resource packs, XP formula, resale, and Western Provinces linkage."
+      }
+    ],
+    "actions": [
+      {
+        "id": "action:pest-control-round-proposed",
+        "kind": "activity",
+        "requirements": ["observed selected lander combat eligibility", "observed arrival at an available lander", "observed launch/team context"],
+        "repeatable": true,
+        "transition": "Creates an attempt record only. The player reports the selected lander, start/finish, team result, activity eligibility, point delta, coin receipt, death/leave event, player-recorded elapsed time, and any XP or item effects; no output is automatic."
+      },
+      {
+        "id": "action:buy-pest-control-reward-proposed",
+        "kind": "purchase",
+        "requirements": ["observed commendation-point balance", "observed named reward buy gate", "observed selected shop target"],
+        "repeatable": true,
+        "transition": "Debits the exact known cost and produces the selected deterministic item or pack purchase only after player confirmation. Random-pack contents and all later use remain separately observed."
+      },
+      {
+        "id": "action:exchange-pest-control-points-for-xp-proposed",
+        "kind": "training",
+        "requirements": ["observed commendation-point balance", "observed eligible selected combat skill at level 25+", "observed selected point count"],
+        "repeatable": true,
+        "transition": "Debits the chosen points and records XP by the current source formula at the reported level, including only a selected 10- or 100-point bulk bonus. It never chooses a skill or transaction size."
+      },
+      {
+        "id": "action:upgrade-elite-void-piece-proposed",
+        "kind": "unlock",
+        "requirements": ["observed claimed Hard Western Provinces Diary", "observed selected regular Void top or robe", "observed commendation-point balance >= 200"],
+        "repeatable": "one transformation per selected owned regular top or robe",
+        "transition": "Consumes the explicitly selected regular piece and 200 observed points, producing its matching Elite Void piece. It does not complete a full set or infer an equipment choice."
+      },
+      {
+        "id": "action:sell-void-equipment-proposed",
+        "kind": "conversion",
+        "requirements": ["observed selected eligible Void Knight equipment piece"],
+        "repeatable": true,
+        "transition": "Removes the selected observed piece and credits 80% of its original stated point cost. The selected item and player confirmation are mandatory."
+      }
+    ],
+    "graph_nodes": [
+      "activity:pest-control",
+      "condition:combat-level-40",
+      "condition:combat-level-70",
+      "condition:combat-level-100",
+      "condition:team-launch",
+      "condition:activity-eligible-round",
+      "currency:void-knight-commendation-points",
+      "capability:combat-achievement-pest-control-modifier",
+      "goal:void-knight-equipment",
+      "goal:elite-void-knight-equipment",
+      "milestone:western-provinces-hard-diary-claimed",
+      "activity:void-knight-reward-shop",
+      "capability:pest-control-combat-xp-exchange",
+      "capability:pest-control-resource-packs",
+      "capability:pest-control-safe-death"
+    ],
+    "graph_edges": [
+      {"from": "condition:combat-level-40", "to": "activity:pest-control", "relation": "requires", "evidence": "access.requirements.lander_combat_levels novice"},
+      {"from": "condition:combat-level-70", "to": "activity:pest-control", "relation": "requires", "evidence": "access.requirements.lander_combat_levels intermediate"},
+      {"from": "condition:combat-level-100", "to": "activity:pest-control", "relation": "requires", "evidence": "access.requirements.lander_combat_levels veteran"},
+      {"from": "condition:team-launch", "to": "activity:pest-control", "relation": "requires", "evidence": "activity_loop.entry_inputs team start; external team state is observed"},
+      {"from": "condition:activity-eligible-round", "to": "currency:void-knight-commendation-points", "relation": "produces", "evidence": "successful observed round and activity eligibility only; lander and CA modifier determine actual delta"},
+      {"from": "capability:combat-achievement-pest-control-modifier", "to": "currency:void-knight-commendation-points", "relation": "improves", "evidence": "current Easy +1, Medium +2, Hard-and-above +3 modifier table"},
+      {"from": "currency:void-knight-commendation-points", "to": "activity:void-knight-reward-shop", "relation": "requires", "evidence": "all named shop prices"},
+      {"from": "activity:void-knight-reward-shop", "to": "goal:void-knight-equipment", "relation": "unlocks", "evidence": "deterministic selected-piece costs and mandatory buy gates"},
+      {"from": "milestone:western-provinces-hard-diary-claimed", "to": "goal:elite-void-knight-equipment", "relation": "requires", "evidence": "Elite Void upgrade access"},
+      {"from": "goal:void-knight-equipment", "to": "goal:elite-void-knight-equipment", "relation": "requires", "evidence": "matching regular top/robe plus 200 points per selected elite transformation"},
+      {"from": "activity:void-knight-reward-shop", "to": "capability:pest-control-combat-xp-exchange", "relation": "unlocks", "evidence": "selected eligible skill, level, and point exchange"},
+      {"from": "activity:void-knight-reward-shop", "to": "capability:pest-control-resource-packs", "relation": "unlocks", "evidence": "Herblore/Mining/Farming-gated pack transactions"},
+      {"from": "activity:pest-control", "to": "capability:pest-control-safe-death", "relation": "unlocks", "evidence": "safe minigame death rule; does not erase explicit mode-specific risk observations"}
+    ],
+    "account_observations": [
+      {
+        "field": "pest_control_observation (proposed optional field)",
+        "shape": {
+          "observed_at": "RFC 3339 date-time",
+          "combat_level": "integer or null",
+          "combat_achievement_reward_tier": "none|easy|medium|hard|elite|master|grandmaster|unknown",
+          "commendation_points_available": "integer 0..4000 or null",
+          "last_round": {"lander": "novice|intermediate|veteran|unknown", "started": "boolean or null", "team_result": "success|failure|left|unknown", "activity_eligible": "boolean or null", "point_delta": "integer or null", "coins_received": "integer or null", "player_death_occurred": "boolean or null", "elapsed_minutes": "number or null"}
+        },
+        "rule": "All values are player-reported/imported. Validator constraints may check known ranges and selected-lander eligibility, but cannot synthesize a team, result, award, modifier, or timing."
+      },
+      {
+        "field": "unique_item_observations",
+        "keys": ["void_knight_top", "void_knight_robe", "void_knight_gloves", "void_melee_helm", "void_ranger_helm", "void_mage_helm", "void_knight_mace", "void_seal", "elite_void_top", "elite_void_robe"],
+        "rule": "Use the existing ownership/quantity/condition/equipped/reclaimable convention. A normal purchase, diary claim, or point balance never infers ownership or an equipped complete set."
+      },
+      {
+        "field": "pest_control_purchase_observations (proposed optional ledger)",
+        "shape": {"observed_at": "RFC 3339 date-time", "kind": "void_piece|elite_upgrade|resource_pack|xp_exchange|resale", "selected_target": "known item or target skill", "points_delta": "integer", "item_delta": "explicit selected item counts", "xp_delta": "integer or null", "random_contents": "player-recorded array or null"},
+        "rule": "Use one record per selected transaction. Never infer consumption, pack contents, XP, sale, or upgrade from an intended purchase."
+      },
+      {
+        "field": "achievement_diary_observations.western_provinces",
+        "rule": "Hard-tier claimed state is required for Elite Void transformations. Preserve the diary package's task, claim, Void ownership, and Pest Control result observations rather than deriving them here."
+      },
+      {
+        "field": "team_and_attention_observations",
+        "shape": {"world": "integer or null", "team_size": "integer or null", "role": "portal|spinner|defence|repair|mixed|unknown", "wait_minutes": "number or null", "active_attention_notes": "string or null"},
+        "rule": "Optional player context only. It is not a performance benchmark and never gates a factual purchase or route decision."
+      }
+    ]
+  },
+  "conflicts_and_unknowns": [
+    {
+      "id": "western-diary-complete-versus-point-earning-wording",
+      "status": "requires-central-reconciliation",
+      "detail": "The existing Western Provinces package encodes named lander tasks as point-earning completion. The diary/all-achievements source describes game-completion credit separately from a win. Central integration must check current in-game diary credit precisely and keep diary credit distinct from commendation eligibility; this package does not modify the diary package."
+    },
+    {
+      "id": "activity-meter-internal-formula",
+      "status": "intentional-model-boundary",
+      "detail": "Current sources define qualifying actions and the reward eligibility boundary but do not provide a stable public deterministic formula for every activity increment, decay, and threshold outcome. Model the result as player-observed rather than reverse-engineering a hidden meter."
+    },
+    {
+      "id": "team-start-and-world-population",
+      "status": "external-state-boundary",
+      "detail": "Community sources describe 5-25 participant lander launches and world 344 practice, but live population, queues, launch conditions, player roles, and win likelihood vary. No current account record may infer them."
+    },
+    {
+      "id": "older-pest-control-source-staleness",
+      "status": "source-qualified",
+      "detail": "Older official and third-party guides can show pre-OSRS point values, outdated Void-seal damage, historical point caps, or obsolete Void effects. Current Wiki mechanics and reward-shop pages control this package; older pages are provenance or strategy context only."
+    },
+    {
+      "id": "elite-void-effect-wording",
+      "status": "requires-central-reconciliation",
+      "detail": "Existing achievement-diary utility text summarizes the elite upgrades as +3 Prayer and +2.5% Ranged and Magic damage. The current Elite Void page describes the total two-piece bonus as +6 Prayer, +2.5% Ranged damage, and +5% Magic damage. Integration should model per-piece and full-set effects without collapsing them into an ambiguous single claim."
+    }
+  ],
+  "coverage": {
+    "access": true,
+    "loop": true,
+    "currencies": true,
+    "rewards": true,
+    "failure_state": true,
+    "sources": true,
+    "normalization": true,
+    "landers_covered": ["novice", "intermediate", "veteran"],
+    "shop_routes_covered": ["Void equipment", "Elite Void upgrades", "Herb pack", "Mineral pack", "Seed pack", "combat-skill XP", "Void-equipment resale"],
+    "production_files_modified": 0
+  }
+}
