@@ -1,0 +1,55 @@
+{
+  "records": [
+    {
+      "id": "poh-convenience-foundation",
+      "name": "Player-owned house convenience foundation",
+      "category": "transport",
+      "status": "verified",
+      "verified_at": "2026-08-22",
+      "scope": "Factual POH ownership, room, utility-furniture, and persistent-transport mechanics. It does not recommend a house location, build order, or route.",
+      "ownership_and_location": {
+        "initial_purchase": {"Construction": 1, "coins": 1000, "alternative": "Daddy's Home grants the initial Rimmington house without the 1,000-coin purchase."},
+        "relocations": {
+          "Rimmington": {"Construction": 1, "coins": 5000}, "Taverley": {"Construction": 10, "coins": 5000},
+          "Pollnivneach": {"Construction": 20, "coins": 7500}, "Hosidius": {"Construction": 25, "coins": 8750},
+          "Rellekka": {"Construction": 30, "coins": 10000}, "Aldarin": {"Construction": 35, "coins": 12500},
+          "Brimhaven": {"Construction": 40, "coins": 15000}, "Yanille": {"Construction": 50, "coins": 25000},
+          "Prifddinas": {"Construction": 70, "coins": 50000}
+        },
+        "location_gate": "House-location Construction requirements are unboostable. A location is exclusive current state; the present generic account schema records ownership and a relocation event but intentionally does not retain a mutually-exclusive current-location value."
+      },
+      "rooms": {
+        "quest_hall": {"Construction": 35, "coins": 25000}, "chapel": {"Construction": 45, "coins": 50000},
+        "portal_chamber": {"Construction": 50, "coins": 100000}, "superior_garden": {"Construction": 65, "coins": 75000},
+        "portal_nexus": {"Construction": 72, "coins": 200000, "boost_notes": "The room can be built at 67 with a +5 stew or 69 with +3 tea; crystal saw does not boost room construction."},
+        "achievement_gallery": {"Construction": 80, "coins": 200000, "boost_notes": "The room can be built at 75 with a +5 stew; crystal saw does not boost room construction."}
+      },
+      "furniture": {
+        "gilded_altar": {"room": "chapel", "Construction": 75, "materials": {"marble_block": 2, "bolt_of_cloth": 2, "gold_leaf": 4}, "tools": ["hammer", "saw"], "boost_notes": "Furniture may use crystal saw plus visible boosts; 67 Construction is possible with crystal saw and +5 stew, or 69 with crystal saw and +3 tea.", "effect": "250% Prayer XP, 300% with one lit burner, 350% with two; lighting a burner consumes marrentill and is repeatable."},
+        "pools": {
+          "restoration": {"Construction": 65, "materials": {"limestone_brick": 5, "bucket_of_water": 5, "soul_rune": 1000, "body_rune": 1000}, "effect": "Restores special attack."},
+          "revitalisation": {"Construction": 70, "upgrade_from": "restoration", "materials": {"stamina_potion_4": 10}, "effect": "Also restores run energy."},
+          "rejuvenation": {"Construction": 80, "upgrade_from": "revitalisation", "materials": {"prayer_potion_4": 10}, "effect": "Also restores Prayer."},
+          "fancy_rejuvenation": {"Construction": 85, "upgrade_from": "rejuvenation", "materials": {"marble_block": 2, "super_restore_4": 10}, "effect": "Also restores reduced stats other than Hitpoints."},
+          "ornate_rejuvenation": {"Construction": 90, "upgrade_from": "fancy_rejuvenation", "materials": {"gold_leaf": 5, "anti_venom_4": 10, "blood_rune": 1000}, "effect": "Also restores Hitpoints and cures disease, venom, poison, and bleed; it does not remove corruption."},
+          "tools_and_boosts": "Each pool requires a hammer and saw. The garden/pool requirements can share boosts; a crystal saw cannot boost the room itself. The cited pages document lower boosted thresholds from 60, 62, 72, 77, and 82 Construction respectively."
+        },
+        "portal_network": {
+          "portal_chamber": {"room": "portal_chamber", "destinations": "Each portal direction consumes 100 times that spell's normal runes and retains the destination; it retains the spell's Magic and quest requirements. Elemental staves, combination runes, and rune pouches cannot pay setup costs."},
+          "nexus": {"room": "portal_nexus", "tiers": {"marble": {"Construction": 72, "materials": {"marble_block": 4}, "capacity": 4}, "gilded": {"Construction": 82, "upgrade_from": "marble", "materials": {"marble_block": 4, "gold_leaf": 2}, "capacity": 8}, "crystalline": {"Construction": 92, "upgrade_from": "gilded", "materials": {"magic_stone": 2, "gold_leaf": 2}, "capacity": 41, "current_as_of": "2026-08-22"}}, "destination_cost": "1,000 times the normal spell runes per selected destination; destination spell levels and quest gates remain individual hard gates.", "boost_notes": "Nexus furniture can use crystal saw plus visible boosts; cited lower thresholds are 64, 74, and 84 Construction."}
+        },
+        "superior_garden_transport": {
+          "fairy_ring": {"Construction": 85, "materials": {"mushroom": 10, "fairy_enchantment": 1}, "tool": "watering can with at least one water dose", "quest_gate": "Fairytale II - Cure a Queen completion is needed to buy the fairy enchantment and use the network.", "boost_notes": "Crystal saw cannot apply; +5 stew permits level 80 and +3 tea permits level 82.", "effect": "Persistent POH fairy-ring access, still subject to normal network permissions and staff/elite-diary rule."},
+          "spirit_tree": {"Construction": 75, "Farming": 83, "materials": {"spirit_sapling": 1}, "tool": "watering can", "boost_notes": "Both skills are boostable; crystal saw does not apply.", "effect": "Grows immediately, does not count against player-grown tree limits, and users need Tree Gnome Village to use it."},
+          "combined_hub": {"Construction": 95, "Farming": 83, "materials": {"spirit_sapling": 1, "mushroom": 10, "fairy_enchantment": 1}, "tool": "watering can", "boost_notes": "Both skills are boostable; crystal saw does not apply.", "effect": "Provides both networks in one teleport-space hotspot."}
+        },
+        "mounted_glory": {"room": "quest_hall", "Construction": 47, "materials": {"teak_plank": 3, "amulet_of_glory_uncharged": 1}, "tools": ["hammer", "saw"], "boost_notes": "Furniture boosts including crystal saw apply.", "effect": "Unlimited Edgeville, Karamja, Draynor, and Al Kharid teleports. Heroes' Quest is not required."},
+        "jewellery_boxes": {"room": "achievement_gallery", "basic": {"Construction": 81, "materials": {"bolt_of_cloth": 1, "steel_bar": 1, "games_necklace_8": 3, "ring_of_dueling_8": 3}, "effect": "Unlimited games-necklace and ring-of-dueling destinations."}, "fancy": {"Construction": 86, "upgrade_from": "basic", "materials": {"gold_leaf": 1, "skills_necklace_4": 5, "combat_bracelet_4": 5}, "effect": "Adds unlimited skills-necklace and combat-bracelet destinations."}, "ornate": {"Construction": 91, "upgrade_from": "fancy", "materials": {"gold_leaf": 2, "amulet_of_glory_4": 8, "ring_of_wealth_5": 8}, "effect": "Adds unlimited amulet-of-glory and ring-of-wealth destinations."}, "boost_notes": "Boxes require their previous tier; furniture boosts apply. They do not store ring of returning, necklace of passage, burning amulet, or Digsite pendant."},
+        "mounted_digsite_pendant": {"room": "portal_nexus", "Construction": 82, "materials": {"mahogany_plank": 1, "gold_leaf": 1, "curators_medallion": 1}, "tools": ["hammer", "saw"], "medallion_acquisition": {"inputs": {"digsite_pendant_charge": 1, "ruby": 250, "cosmic_rune": 100, "fire_rune": 500}, "effect": "Haig Halen's deterministic exchange permanently records partial rubies but the normalized action requires the exact full set."}, "effect": "Unlimited normal Digsite-pendant destinations; only one may be mounted."},
+        "mounted_xerics_talisman": {"room": "portal_nexus", "Construction": 72, "materials": {"mahogany_plank": 1, "gold_leaf": 1, "xerics_talisman_inert": 1, "lizardman_fang": 5000}, "tools": ["hammer", "saw"], "effect": "Unlimited charged-talisman destinations. Xeric's Honour remains an Ancient-tablet unlock for the individual account.", "rng_boundary": "Inert talisman acquisition and the many lizardman-fang inputs are external variable acquisition paths, never action outputs."}
+      },
+      "source_ids": ["wiki-player-owned-house", "wiki-house-portal", "wiki-estate-agent", "wiki-gilded-altar", "wiki-restoration-pool", "wiki-rejuvenation-pool", "wiki-ornate-rejuvenation-pool", "wiki-portal-nexus", "wiki-crystalline-portal-nexus", "wiki-achievement-gallery", "wiki-fairy-ring-construction", "wiki-spirit-tree-construction", "wiki-mounted-glory", "wiki-mounted-digsite-pendant", "wiki-mounted-xerics-talisman", "wiki-xerics-talisman"],
+      "confidence": "high"
+    }
+  ]
+}

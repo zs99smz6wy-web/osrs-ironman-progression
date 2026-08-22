@@ -35,6 +35,7 @@
 
 ## Continuing validation queue
 
+- Completed: added a bounded current-source POH convenience foundation: ownership and relocation costs, six enabling rooms, gilded altar, all restoration-pool upgrades, portal chamber and current 41-destination crystalline nexus, superior-garden transport, mounted glory, jewellery boxes, and both portal-nexus mounted amulets. The current generic state intentionally records POH ownership and relocation events rather than an exclusive current house location; individual spell destinations and unrelated jewellery/spell networks remain separate future branches.
 - Completed: expanded the early Fossil Island chain with detailed Dig Site inputs and rewards, exact Natural History Quiz and cleaned-find Kudos contributions, random clean-necklace discovery, permanent Digsite-pendant enchant knowledge, five-charge pendant creation, barge travel, four independent Magic Mushtree discoveries, pendant destination binding, and all six Museum Camp builds.
 - Completed: normalized all 15 independent Historian Minas Kudos claims and separate 51/101-Kudos threshold reward claims. Player-chosen lamps remain reported rather than assigned automatically, and the confirmed-100-Kudos import action remains available for account combinations not yet fully represented by normalized quest-claim actions.
 - Completed: revalidated birdhouse, giant-seaweed, farming-contract, and Tears passive-loop requirements, reusable and consumed inputs, offline waiting, active interaction, recurrence gates, and fixed-versus-variable outputs.

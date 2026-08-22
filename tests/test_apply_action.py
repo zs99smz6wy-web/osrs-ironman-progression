@@ -1466,6 +1466,135 @@ class ApplyActionTests(unittest.TestCase):
         self.assertEqual("mounted-talisman", mounted["selected_option_id"])
         self.assertNotIn("xerics_talisman_charge", mounted["next_state"]["items"])
 
+    def test_poh_establishment_and_relocation_spend_exact_coins_without_fake_location_state(self) -> None:
+        self.state["resources"]["coins"] = 26000
+        self.state["skills"]["Construction"] = 10
+        self.state["skill_xp"]["Construction"] = minimum_xp_for_level(10)
+
+        established = apply_action(self.actions_document, self.state, "action:establish-player-owned-house")
+        self.assertEqual("applied", established["status"])
+        self.assertEqual("buy-rimmington-house", established["selected_option_id"])
+        self.assertEqual(25000, established["next_state"]["resources"]["coins"])
+        self.assertIn("poh_owned", established["next_state"]["milestones"])
+
+        relocated = apply_action(
+            self.actions_document,
+            established["next_state"],
+            "action:relocate-player-owned-house",
+            option_id="taverley",
+        )
+        self.assertEqual("applied", relocated["status"])
+        self.assertEqual(20000, relocated["next_state"]["resources"]["coins"])
+        self.assertNotIn("poh_location_taverley", relocated["next_state"]["milestones"])
+
+    def test_poh_pool_chain_consumes_each_upgrade_input_and_preserves_tools(self) -> None:
+        self.state["skills"]["Construction"] = 90
+        self.state["skill_xp"]["Construction"] = minimum_xp_for_level(90)
+        self.state["milestones"] = ["poh_superior_garden"]
+        self.state["items"] = {
+            "hammer": 1,
+            "saw": 1,
+            "limestone_brick": 5,
+            "bucket_of_water": 5,
+            "soul_rune": 1000,
+            "body_rune": 1000,
+            "stamina_potion_4": 10,
+            "prayer_potion_4": 10,
+            "marble_block": 2,
+            "super_restore_4": 10,
+            "gold_leaf": 5,
+            "anti_venom_4": 10,
+            "blood_rune": 1000,
+        }
+
+        state = self.state
+        for action_id in (
+            "action:build-restoration-pool",
+            "action:upgrade-revitalisation-pool",
+            "action:upgrade-rejuvenation-pool",
+            "action:upgrade-fancy-rejuvenation-pool",
+            "action:upgrade-ornate-rejuvenation-pool",
+        ):
+            result = apply_action(self.actions_document, state, action_id)
+            self.assertEqual("applied", result["status"])
+            state = result["next_state"]
+
+        self.assertIn("poh_ornate_rejuvenation_pool", state["milestones"])
+        self.assertEqual(1, state["items"]["hammer"])
+        self.assertEqual(1, state["items"]["saw"])
+        for item in ("limestone_brick", "soul_rune", "prayer_potion_4", "anti_venom_4", "blood_rune"):
+            self.assertEqual(0, state["items"][item])
+
+    def test_poh_nexus_and_mounted_amulets_keep_rng_inputs_external(self) -> None:
+        self.state["skills"]["Construction"] = 92
+        self.state["skill_xp"]["Construction"] = minimum_xp_for_level(92)
+        self.state["milestones"] = ["poh_portal_nexus_room", "digsite_pendant_enchantment_knowledge"]
+        self.state["items"] = {
+            "hammer": 1,
+            "saw": 1,
+            "marble_block": 8,
+            "gold_leaf": 6,
+            "magic_stone": 2,
+            "digsite_pendant_charge": 1,
+            "ruby": 250,
+            "cosmic_rune": 100,
+            "fire_rune": 500,
+            "mahogany_plank": 2,
+            "xerics_talisman_inert": 1,
+            "lizardman_fang": 5000,
+        }
+
+        state = self.state
+        for action_id in (
+            "action:build-marble-portal-nexus",
+            "action:upgrade-gilded-portal-nexus",
+            "action:upgrade-crystalline-portal-nexus",
+            "action:obtain-curators-medallion",
+            "action:build-mounted-digsite-pendant",
+            "action:build-mounted-xerics-talisman",
+        ):
+            result = apply_action(self.actions_document, state, action_id)
+            self.assertEqual("applied", result["status"])
+            state = result["next_state"]
+
+        self.assertIn("poh_portal_nexus_capacity_41", state["milestones"])
+        self.assertIn("poh_mounted_digsite_pendant", state["milestones"])
+        self.assertIn("mounted_xerics_talisman_heart_teleport_available", state["milestones"])
+        self.assertEqual(0, state["items"]["xerics_talisman_inert"])
+        self.assertEqual(0, state["items"]["lizardman_fang"])
+
+    def test_poh_jewellery_box_upgrade_chain_consumes_charged_jewellery(self) -> None:
+        self.state["skills"]["Construction"] = 91
+        self.state["skill_xp"]["Construction"] = minimum_xp_for_level(91)
+        self.state["milestones"] = ["poh_achievement_gallery"]
+        self.state["items"] = {
+            "hammer": 1,
+            "saw": 1,
+            "bolt_of_cloth": 1,
+            "steel_bar": 1,
+            "games_necklace_8": 3,
+            "ring_of_dueling_8": 3,
+            "gold_leaf": 3,
+            "skills_necklace_4": 5,
+            "combat_bracelet_4": 5,
+            "amulet_of_glory_4": 8,
+            "ring_of_wealth_5": 8,
+        }
+
+        state = self.state
+        for action_id in (
+            "action:build-basic-jewellery-box",
+            "action:upgrade-fancy-jewellery-box",
+            "action:upgrade-ornate-jewellery-box",
+        ):
+            result = apply_action(self.actions_document, state, action_id)
+            self.assertEqual("applied", result["status"])
+            state = result["next_state"]
+
+        self.assertIn("poh_ornate_jewellery_box", state["milestones"])
+        self.assertEqual(0, state["items"]["amulet_of_glory_4"])
+        self.assertEqual(0, state["items"]["ring_of_wealth_5"])
+
 
 if __name__ == "__main__":
     unittest.main()
