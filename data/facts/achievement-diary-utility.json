@@ -234,7 +234,7 @@
       "name": "Falador hard utility",
       "category": "reward",
       "status": "verified",
-      "verified_at": "2026-08-21",
+      "verified_at": "2026-08-22",
       "requirements": {
         "hard_claim": "All Falador easy, medium, and hard tasks.",
         "hard_dependency_highlights": {
@@ -248,9 +248,17 @@
         "falador_shield_3": "Restores 100% of Prayer once per day.",
         "banking": "A bank deposit box becomes available in the Crafting Guild.",
         "pvm_effects": ["The Giant Mole drops noted skins and claws.", "The Giant Mole is easier to locate."],
-        "other_permanent_effects": ["10% more experience from mining pay-dirt at Motherlode Mine.", "Access to the Heroes' Guild fountain shortcut."]
+        "other_permanent_effects": ["Falador Hard does not grant a Motherlode Mine pay-dirt experience modifier.", "Access to the Heroes' Guild fountain shortcut."]
       },
-      "source_ids": ["wiki-falador-diary", "wiki-achievement-diary-rewards", "wiki-prospector-nugget-shop"],
+      "corrections": [
+        {
+          "checked_at": "2026-08-22",
+          "replaces": "10% more experience from mining pay-dirt at Motherlode Mine.",
+          "verified_live_mechanic": "Current Falador and Motherlode sources describe the higher-level-ore chance when cleaning pay-dirt as an Elite reward, not a Falador Hard experience multiplier.",
+          "model_boundary": "No percentage, ore output, Mining experience, or diary readiness is inferred from this correction. The Elite chance remains a factual capability for a later bounded integration."
+        }
+      ],
+      "source_ids": ["wiki-falador-diary", "wiki-achievement-diary-rewards", "wiki-motherlode", "wiki-prospector-nugget-shop"],
       "confidence": "high"
     },
     {
