@@ -1,0 +1,242 @@
+{
+  "manifest_schema_version": 1,
+  "package_type": "minigame-integration-manifest",
+  "status": "audit-complete",
+  "generated_at": "2026-08-22",
+  "scope": "Reconciliation manifest for every current minigame research package. It inventories factual research and proposed normalization only. It does not rank activities, select a route, grant player outcomes, modify production data, or resolve disputed mechanics.",
+  "input_set": {
+    "package_count": 17,
+    "source_catalog_entries": 182,
+    "unique_package_source_ids": 174,
+    "proposed_fact_records": 54,
+    "proposed_action_records": 84,
+    "proposed_graph_nodes": 239,
+    "proposed_graph_edges": 209,
+    "proposed_account_observation_specs": 99,
+    "packages": [
+      {"path": "research/minigame-packages/barbarian-assault.json", "package_id": "research-minigame-barbarian-assault", "activity": "Barbarian Assault", "domain": "team-role minigame", "facts": 3, "actions": 5, "nodes": 14, "edges": 16, "observations": 6},
+      {"path": "research/minigame-packages/fishing-trawler.json", "package_id": "research-minigame-fishing-trawler", "activity": "Fishing Trawler", "domain": "team Fishing minigame", "facts": 5, "actions": 4, "nodes": 18, "edges": 15, "observations": 10},
+      {"path": "research/minigame-packages/giants-foundry.json", "package_id": "research-minigame-giants-foundry", "activity": "Giants' Foundry", "domain": "Smithing commission loop", "facts": 3, "actions": 4, "nodes": 13, "edges": 8, "observations": 9},
+      {"path": "research/minigame-packages/guardians-of-the-rift.json", "package_id": "research-minigame-guardians-of-the-rift", "activity": "Guardians of the Rift", "domain": "Runecraft encounter and reward shop", "facts": 3, "actions": 5, "nodes": 14, "edges": 18, "observations": 4},
+      {"path": "research/minigame-packages/hallowed-sepulchre.json", "package_id": "research-minigame-hallowed-sepulchre", "activity": "Hallowed Sepulchre", "domain": "Agility encounter and reward shop", "facts": 4, "actions": 6, "nodes": 17, "edges": 15, "observations": 6},
+      {"path": "research/minigame-packages/last-man-standing.json", "package_id": "research-minigame-last-man-standing", "activity": "Last Man Standing", "domain": "PvP match and reward shop", "facts": 4, "actions": 6, "nodes": 15, "edges": 11, "observations": 5},
+      {"path": "research/minigame-packages/mage-training-arena.json", "package_id": "research-minigame-mage-training-arena", "activity": "Mage Training Arena", "domain": "Magic rooms and point shop", "facts": 2, "actions": 4, "nodes": 10, "edges": 11, "observations": 5},
+      {"path": "research/minigame-packages/mahogany-homes.json", "package_id": "research-minigame-mahogany-homes", "activity": "Mahogany Homes", "domain": "Construction contract loop", "facts": 2, "actions": 4, "nodes": 13, "edges": 12, "observations": 4},
+      {"path": "research/minigame-packages/motherlode-mine.json", "package_id": "research-minigame-motherlode-mine", "activity": "Motherlode Mine", "domain": "Mining loop and nugget shop", "facts": 4, "actions": 7, "nodes": 17, "edges": 14, "observations": 9},
+      {"path": "research/minigame-packages/nightmare-zone.json", "package_id": "research-minigame-nightmare-zone", "activity": "Nightmare Zone", "domain": "combat dream and imbue shop", "facts": 3, "actions": 5, "nodes": 11, "edges": 7, "observations": 5},
+      {"path": "research/minigame-packages/pest-control.json", "package_id": "research-minigame-pest-control", "activity": "Pest Control", "domain": "team combat minigame and Void shop", "facts": 3, "actions": 5, "nodes": 15, "edges": 13, "observations": 5},
+      {"path": "research/minigame-packages/pyramid-plunder.json", "package_id": "research-minigame-pyramid-plunder", "activity": "Pyramid Plunder", "domain": "Thieving encounter and sceptre path", "facts": 3, "actions": 4, "nodes": 11, "edges": 9, "observations": 6},
+      {"path": "research/minigame-packages/rogues-den.json", "package_id": "research-minigame-rogues-den", "activity": "Rogues' Den", "domain": "Agility and Thieving maze", "facts": 3, "actions": 5, "nodes": 12, "edges": 10, "observations": 6},
+      {"path": "research/minigame-packages/shades-of-mortton.json", "package_id": "research-minigame-shades-of-mortton", "activity": "Shades of Mort'ton", "domain": "temple, cremation, and catacomb loop", "facts": 3, "actions": 7, "nodes": 17, "edges": 16, "observations": 4},
+      {"path": "research/minigame-packages/tempoross.json", "package_id": "research-minigame-tempoross", "activity": "Tempoross", "domain": "Fishing encounter and reward pool", "facts": 3, "actions": 5, "nodes": 13, "edges": 12, "observations": 5},
+      {"path": "research/minigame-packages/tithe-farm.json", "package_id": "research-minigame-tithe-farm", "activity": "Tithe Farm", "domain": "Farming session and point shop", "facts": 3, "actions": 4, "nodes": 15, "edges": 10, "observations": 5},
+      {"path": "research/minigame-packages/wintertodt.json", "package_id": "research-minigame-wintertodt", "activity": "Wintertodt", "domain": "Firemaking encounter and Reward Cart", "facts": 3, "actions": 4, "nodes": 14, "edges": 12, "observations": 5}
+    ]
+  },
+  "coverage_inventory": {
+    "covered_activity_families": [
+      "team and PvP activities: Barbarian Assault, Fishing Trawler, Pest Control, and Last Man Standing",
+      "reactive encounters: Guardians of the Rift, Tempoross, Wintertodt, Nightmare Zone, and Hallowed Sepulchre",
+      "shop-backed skilling: Giants' Foundry, Mage Training Arena, Mahogany Homes, Motherlode Mine, and Tithe Farm",
+      "location-specific utility and collection-log paths: Pyramid Plunder, Rogues' Den, and Shades of Mort'ton"
+    ],
+    "cross-system coverage": [
+      "quest and skill access gates",
+      "currencies, fixed shop prices, and reward ownership boundaries",
+      "transport alternatives and durable utility unlocks",
+      "achievement-diary hooks",
+      "RNG and collection-log boundaries",
+      "team, PvP, encounter, charge, and attention-state observations"
+    ],
+    "scope_boundary": "This is an inventory of the 17 on-disk packages, not a claim that every OSRS minigame has a research package. Activities without a current package are intentionally outside this manifest."
+  },
+  "validation_results": {
+    "all_input_json_parses": true,
+    "all_17_packages_pass_research_package_schema": true,
+    "all_package_ids_unique": true,
+    "all_activity_labels_unique": true,
+    "all_proposed_fact_ids_unique": true,
+    "all_proposed_action_ids_unique": true,
+    "all_proposed_graph_node_ids_unique": true,
+    "all_explicit_source_ids_resolve_to_package_catalog_or_research_registry": true,
+    "all_package_source_catalog_ids_unique_within_package": true,
+    "package_source_catalog_duplicates": {
+      "status": "consistent duplicates only",
+      "ids": [
+        "community-bruhsailer-current",
+        "wiki-ardougne-diary-current",
+        "wiki-collection-log-current",
+        "wiki-imbuing-current",
+        "wiki-rune-pouch-current",
+        "wiki-thieving-training-current"
+      ],
+      "rule": "Each duplicate ID has one URL and one checked date across its packages. Register once centrally and retain package-local provenance."
+    },
+    "non_ascii_or_trailing_whitespace_in_input_packages": false,
+    "graph_edge_contract_findings": {
+      "allowed_by_minigame_schema": ["requires", "unlocks", "produces", "makes_obtainable", "alternative_to", "improves"],
+      "proposed_outside_contract": [
+        {"package": "wintertodt.json", "relationship": "uses", "count": 1, "handling": "Represent Warmth as an observed encounter state, not a structural output edge."},
+        {"package": "wintertodt.json", "relationship": "contributes_to", "count": 1, "handling": "Collection-log state is player-confirmed; do not create a derived graph edge from outfit ownership."}
+      ]
+    }
+  },
+  "canonicalization_contract": {
+    "activity_ids": "Use activity:<kebab-case-activity>. Existing production IDs take precedence. Normalize the package-only activity:Giants_Foundry alias to existing activity:giants-foundry; do not create a second Foundry node.",
+    "currency_ids": "Use currency:<domain>:<kebab-case-name>, except retain an established production ID exactly when one exists. Coins are always currency:coins with an activity-specific ledger or condition, never a new activity coin currency.",
+    "resource_ids": "Use resource:<domain>:<name> for consumed inputs and stackable materials, not currency. Use item:<name> for transferable tokens, keys, pages, kits, shards, and one-off consumables.",
+    "reward_ids": "Use item:<name> for owned equipment, unlock:<name> for permanent account changes, capability:<domain>:<effect> for an ongoing benefit, and collection-log:<activity> only for an explicitly observed set of entries.",
+    "observation_ids": "Use observation:<activity>:<subject> for report shapes. Store live round, team, local inventory, charge, death, travel, and result state as optional observations. A missing field means unknown, never false or zero.",
+    "state_and_charge_ids": "Use state:<activity>:<subject> for live or account state and charge:<item> for finite charges. A charge cap, daily reset, or cooldown is a factual constraint; it does not create a free repeatable transition.",
+    "canonical_activities": [
+      {"package": "barbarian-assault.json", "activity_id": "activity:barbarian-assault", "currencies": ["currency:barbarian-assault:attacker-honour", "currency:barbarian-assault:collector-honour", "currency:barbarian-assault:defender-honour", "currency:barbarian-assault:healer-honour"], "reward_and_capability_rule": "role levels and shop equipment are observed purchases; gambles are RNG"},
+      {"package": "fishing-trawler.json", "activity_id": "activity:fishing-trawler", "currencies": [], "reward_and_capability_rule": "contribution is state:fishing-trawler:contribution; fish, Angler pieces, and pet results are observed/RNG"},
+      {"package": "giants-foundry.json", "activity_id": "activity:giants-foundry", "currencies": ["currency:foundry-reputation", "currency:coins"], "reward_and_capability_rule": "commission inputs are resources; moulds, uniform, and double-ammo mould are fixed observed purchases"},
+      {"package": "guardians-of-the-rift.json", "activity_id": "activity:guardians-of-the-rift", "currencies": ["currency:gotr-elemental-points", "currency:gotr-catalytic-points", "currency:abyssal-pearls"], "reward_and_capability_rule": "portal talismans are round-local items; Pearl purchases are fixed only after an observed balance and confirmed transaction"},
+      {"package": "hallowed-sepulchre.json", "activity_id": "activity:hallowed-sepulchre", "currencies": ["currency:hallowed-sepulchre:marks"], "reward_and_capability_rule": "tokens, shards, sacks, and ring charges are items or charge state; chest and coffin outcomes remain RNG observations"},
+      {"package": "last-man-standing.json", "activity_id": "activity:last-man-standing", "currencies": ["currency:last-man-standing:points", "currency:coins"], "reward_and_capability_rule": "High Stakes coins are an entry cost, not a distinct currency; supplied match gear is not account ownership"},
+      {"package": "mage-training-arena.json", "activity_id": "activity:mage-training-arena", "currencies": ["currency:mta-telekinetic-pizazz", "currency:mta-graveyard-pizazz", "currency:mta-enchantment-pizazz", "currency:mta-alchemist-pizazz"], "reward_and_capability_rule": "retain the existing Rune pouch and Bones to Peaches goal/capability IDs"},
+      {"package": "mahogany-homes.json", "activity_id": "activity:mahogany-homes", "currencies": ["currency:mahogany-homes:carpenter-points"], "reward_and_capability_rule": "planks and steel bars are resources; supply-crate contents are observed RNG"},
+      {"package": "motherlode-mine.json", "activity_id": "activity:motherlode-mine", "currencies": ["currency:golden-nuggets"], "reward_and_capability_rule": "pay-dirt is resource:motherlode-mine:pay-dirt; retain existing upgrade and reward IDs"},
+      {"package": "nightmare-zone.json", "activity_id": "activity:nightmare-zone", "currencies": ["currency:nightmare-zone:points", "currency:coins"], "reward_and_capability_rule": "coffer balance and potion-barrel doses are observed state; an imbue is an observed item transformation"},
+      {"package": "pest-control.json", "activity_id": "activity:pest-control", "currencies": ["currency:pest-control:commendation-points", "currency:coins"], "reward_and_capability_rule": "Void ownership and set effects require observed purchases and equipped-state reporting"},
+      {"package": "pyramid-plunder.json", "activity_id": "activity:pyramid-plunder", "currencies": [], "reward_and_capability_rule": "artefacts are resources and Pharaoh's sceptre uses charge:pharaohs-sceptre; entrance, loot, and sceptre results are observed"},
+      {"package": "rogues-den.json", "activity_id": "activity:rogues-den", "currencies": [], "reward_and_capability_rule": "temporary skill state, crates, kits, lobby-safe loot, and gear are state or item observations, not currencies"},
+      {"package": "shades-of-mortton.json", "activity_id": "activity:shades-of-mortton", "currencies": [], "reward_and_capability_rule": "sanctity and temple repair are live state; keys and coffin locks are items; chest outcomes are RNG"},
+      {"package": "tempoross.json", "activity_id": "activity:tempoross", "currencies": ["currency:tempoross-reward-permits"], "reward_and_capability_rule": "contribution is state:tempoross:contribution; spirit flakes and soaked pages are items; retain current Fish Barrel goal"},
+      {"package": "tithe-farm.json", "activity_id": "activity:tithe-farm", "currencies": ["currency:tithe-farm-points"], "reward_and_capability_rule": "session fruit is a transient resource and Bologa's blessings are reward observations; retain existing activity ID"},
+      {"package": "wintertodt.json", "activity_id": "activity:wintertodt", "currencies": ["currency:wintertodt:reward-cart-rolls"], "reward_and_capability_rule": "Warmth and rejuvenation doses are observed state; cart searches create observed result events, not automatic items"}
+    ],
+    "edge_semantics": [
+      {"relationship": "requires", "meaning": "a sourced static gate, selected observed input, or confirmed prerequisite; it never proves arrival, readiness, or success"},
+      {"relationship": "unlocks", "meaning": "a confirmed deterministic quest, purchase, or milestone enables a durable fact or capability"},
+      {"relationship": "produces", "meaning": "only a fixed result after a player-confirmed event and complete observed inputs; it cannot represent probability, predicted XP, inferred points, or unobserved team success"},
+      {"relationship": "makes_obtainable", "meaning": "an RNG roll, variable container, random encounter result, or external team result can yield the target; it never awards the target"},
+      {"relationship": "alternative_to", "meaning": "another sourced path satisfies the same requirement; it does not imply the alternative is held, preferred, or ready"},
+      {"relationship": "improves", "meaning": "a documented modifier or convenience affects a future observed activity; it produces neither a result nor a recommendation"},
+      {"relationship": "observation_only", "meaning": "for live team, encounter, travel, death, charge, crop, timer, and local-inventory state. Do not emit a graph edge until the production graph has an explicit observed-event contract."}
+    ]
+  },
+  "production_overlap_map": {
+    "existing_action_and_graph_reuse": [
+      {"packages": ["giants-foundry.json"], "actions": ["action:giants-foundry"], "nodes": ["activity:giants-foundry", "currency:foundry-reputation"], "handling": "amend the existing action and nodes; do not add the proposed duplicate form"},
+      {"packages": ["guardians-of-the-rift.json"], "actions": ["action:guardians-of-the-rift", "action:buy-abyssal-needle", "action:buy-abyssal-lantern", "action:buy-full-raiments-of-the-eye", "action:buy-ring-of-the-elements", "action:create-colossal-pouch", "action:charge-ring-of-the-elements"], "nodes": ["activity:guardians-of-the-rift", "activity:rewards-guardian-search", "currency:gotr-elemental-points", "currency:gotr-catalytic-points", "currency:abyssal-pearls", "goal:raiments", "goal:ring-of-the-elements", "goal:abyssal-needle", "goal:abyssal-lantern", "goal:colossal-pouch"], "handling": "extend the existing current model rather than add parallel GOTR actions or goals"},
+      {"packages": ["mage-training-arena.json", "last-man-standing.json"], "actions": ["action:buy-mta-rune-pouch", "action:unlock-bones-to-peaches"], "nodes": ["activity:mage-training-arena", "goal:mta-rune-pouch", "goal:bones-to-peaches", "capability:rune-pouch-storage", "capability:bones-to-peaches-spell"], "handling": "the three Rune pouch paths are alternatives to one ownership goal; preserve the one-pouch constraint"},
+      {"packages": ["motherlode-mine.json"], "actions": ["action:motherlode-mine", "action:unlock-motherlode-upper-level", "action:buy-motherlode-super-hopper", "action:upgrade-motherlode-pay-dirt-sack", "action:buy-coal-bag", "action:buy-gem-bag"], "nodes": ["activity:motherlode-mine", "currency:golden-nuggets", "milestone:motherlode-upper-level", "goal:coal-bag", "goal:gem-bag"], "handling": "use the current upgrade/reward actions and reconcile only their factual detail"},
+      {"packages": ["tempoross.json"], "actions": ["action:tempoross"], "nodes": ["activity:tempoross", "activity:tempoross-reward-pool", "currency:tempoross-reward-permits", "goal:fish-barrel"], "handling": "preserve existing permit and Fish Barrel records; package detail is an expansion, not a replacement"},
+      {"packages": ["tithe-farm.json"], "actions": ["action:tithe-farm", "action:buy-auto-weed"], "nodes": ["activity:tithe-farm", "currency:tithe-farm-points", "goal:auto-weed", "goal:herb-sack"], "handling": "reconcile current shop and session facts without duplicate action IDs"},
+      {"packages": ["wintertodt.json"], "actions": ["action:wintertodt"], "nodes": ["activity:wintertodt", "condition:firemaking-50"], "handling": "amend the existing observation-only activity; introduce cart-search behavior only after its observation contract exists"}
+    ],
+    "existing_fact_file_reconciliation": [
+      {"packages": ["guardians-of-the-rift.json"], "files": ["data/facts/guardians-of-the-rift.json"], "focus": "round mechanics, current shop, permanent Guardian's Eye, and transport utility"},
+      {"packages": ["giants-foundry.json", "motherlode-mine.json", "tempoross.json", "tithe-farm.json"], "files": ["data/facts/utility-skilling-minigames.json", "data/facts/progression-loops.json", "data/facts/utility-stop-inputs.json"], "focus": "current loops, shops, fixed inputs, no calculated output, and removal of stale stop assumptions"},
+      {"packages": ["mage-training-arena.json", "wintertodt.json"], "files": ["data/facts/core-unlocks.json", "data/facts/achievement-diary-utility.json"], "focus": "existing permanent utility plus diary-dependent consequences"},
+      {"packages": ["fishing-trawler.json", "barbarian-assault.json", "nightmare-zone.json", "pest-control.json", "pyramid-plunder.json", "rogues-den.json", "shades-of-mortton.json"], "files": ["data/facts/achievement-diary-utility.json", "data/facts/diary-factual-lumbridge-draynor-morytania-varrock.json", "data/facts/diary-factual-western-provinces-wilderness.json"], "focus": "only sourced diary task/reward links; do not derive diary credit from an activity attempt"},
+      {"packages": ["mahogany-homes.json", "hallowed-sepulchre.json", "last-man-standing.json", "nightmare-zone.json", "pest-control.json", "pyramid-plunder.json", "rogues-den.json", "shades-of-mortton.json"], "files": ["data/schemas/account-state.schema.json", "scripts/evaluate_progression.py"], "focus": "new optional report-only observations before any transition is considered"}
+    ],
+    "shared_concept_collisions": [
+      {"concept": "Rune pouch", "packages": ["mage-training-arena.json", "last-man-standing.json"], "resolution": "one ordinary-pouch ownership state; MTA, LMS note, and Slayer points are alternative acquisition paths"},
+      {"concept": "Angler and Fishing utility", "packages": ["fishing-trawler.json", "tempoross.json"], "resolution": "keep Fishing Trawler Angler acquisition, Tempoross Spirit Angler conversion, and Aerial Fishing alternatives separate"},
+      {"concept": "diary-controlled activity modifiers", "packages": ["fishing-trawler.json", "barbarian-assault.json", "motherlode-mine.json", "nightmare-zone.json", "pest-control.json", "pyramid-plunder.json", "rogues-den.json", "shades-of-mortton.json"], "resolution": "a diary claim is externally observed; it changes a future observed result and never grants points, loot, a kill, or task completion"},
+      {"concept": "POH and transport convenience", "packages": ["mahogany-homes.json", "guardians-of-the-rift.json", "hallowed-sepulchre.json", "fishing-trawler.json"], "resolution": "reuse the POH and transport-network models as prerequisites or alternatives; no activity package asserts current arrival"},
+      {"concept": "collection-log state", "packages": ["all 17 packages"], "resolution": "record only explicit player-confirmed rows. Shop eligibility, an activity attempt, an owned set, or a published rate never completes a log entry"}
+    ]
+  },
+  "safe_factual_integration": {
+    "safe_now": [
+      "source provenance, current page dates, package-local source aliases, static access requirements, fixed shop stock, fixed costs, item use gates, and documented capacity limits",
+      "bounded factual corrections listed below, provided each change retains its checked package source IDs",
+      "deterministic purchase specifications that require an observed balance, chosen item, any prerequisite ownership state, and a player-confirmed transaction",
+      "RNG, variable-container, team, and encounter availability as makes_obtainable or observation-only facts rather than executable outcomes"
+    ],
+    "recent_corrections_to_preserve": [
+      {"area": "Guardians of the Rift", "correction": "The 2026 update gives deterministic shop paths for Abyssal needle at 750 pearls and Abyssal lantern at 1,500 pearls. Retain their independent RNG search paths and the permanent Guardian's Eye change."},
+      {"area": "Wintertodt", "correction": "The 2024 rework uses Warmth rather than Hitpoints and stores qualifying rewards as Reward Cart rolls rather than one Supply Crate per game. Low-Hitpoints rush logic is stale strategy, not current mechanics."},
+      {"area": "Fishing Trawler", "correction": "The current 0-255 contribution meter does not decay. Reward eligibility needs 50 contribution; full contribution increases fish relative to the 50-point baseline. Do not restore the old decaying-meter model."},
+      {"area": "Tithe Farm", "correction": "The point cap is 16,000, not 1,000. Preserve current free shop can refills, current shop stock, Auto-weed reactivation, and 80-percent outfit resale without inferring crop outcomes."},
+      {"area": "Falador and Motherlode Mine", "correction": "Falador Hard does not grant a 10 percent pay-dirt XP modifier. The higher-level ore benefit is Elite-only; retain the already corrected shared fact and do not reintroduce the stale claim."},
+      {"area": "Last Man Standing", "correction": "The checked current shop does not contain the proposed reusable Scroll of imbuing or blighted surge sacks. Proposals and historic reward-removal material are not available stock."}
+    ]
+  },
+  "blockers_and_nonautomatic_boundaries": [
+    {"id": "B001-source-registry-reconciliation", "category": "source provenance", "status": "required before production facts", "detail": "Package catalogs are internally valid, but package-local IDs and current-page aliases must be registered or aliased in research/sources.json before production records cite them. The six repeated package IDs are consistent and should be centralized once."},
+    {"id": "B002-graph-edge-contract", "category": "schema", "status": "required before graph insertion", "detail": "Wintertodt proposes uses and contributes_to, which are outside the minigame package contract. Convert them to observation-only boundaries; do not silently widen the graph relationship vocabulary."},
+    {"id": "B003-foundry-quality-terminology", "category": "mechanic conflict", "status": "source resolution required", "detail": "The package records current -10 quality per damage event while older shared wording uses -5 per mistake. Resolve the term and authority before any quality calculation or action validation."},
+    {"id": "B004-team-pvp-and-encounter-state", "category": "account observation", "status": "no inferred transitions", "detail": "Barbarian Assault, Fishing Trawler, Pest Control, Last Man Standing, Guardians of the Rift, Tempoross, Wintertodt, Nightmare Zone, and Hallowed Sepulchre require observed teams, queues, start state, success, point deltas, local supplies, damage, survival, and rewards."},
+    {"id": "B005-rng-and-container-results", "category": "RNG", "status": "no deterministic acquisition", "detail": "Reward pools, carts, searches, crates, gambles, chests, coffins, pets, uniques, clue items, and collection-log rows remain explicit observed results. Use makes_obtainable for the source activity only."},
+    {"id": "B006-charge-daily-and-cooldown-state", "category": "state semantics", "status": "observation contract required", "detail": "Reward Cart rolls, Pharaoh's sceptre charges, Ring of endurance charges, Hallowed tokens/shards, Tithe sessions, daily LMS forfeits, diary modifiers, and temporary activity supplies need observed balances and reset/charge semantics. Caps are not balances and do not regenerate or spend themselves."},
+    {"id": "B007-diary-credit-and-special-provenance", "category": "cross-package semantics", "status": "source and observation resolution required", "detail": "Keep start-only Fishing Trawler credit, Barbarian Assault wave credit, Pest Control diary credit, Rogues' Den lobby-safe credit, Pyramid Plunder task state, Shades tasks, and NMZ-origin Salve provenance separate from generic activity success or equivalent items."},
+    {"id": "B008-pest-control-and-elite-void-wording", "category": "mechanic conflict", "status": "source resolution required", "detail": "Verify the exact Western diary credit condition and encode Elite Void per-piece/full-set effects without collapsing the current Prayer, Magic, and Ranged wording into one ambiguous claim."},
+    {"id": "B009-pyramid-plunder-world-state", "category": "live world state", "status": "observation-only", "detail": "Guardian mummy entrance state, chest/sarcophagus success, hazards, rates, and sceptre results are live or RNG state. Preserve current 3/10/25/50/100 charge capacities and do not automate historic rotation claims."},
+    {"id": "B010-rogues-den-rate-and-safe-alias", "category": "source gap", "status": "source resolution required", "detail": "End-safe reward-rate claims conflict across sources, and the Falador Hard lobby wall-safe event is not interchangeable with an end-maze safe. Do not encode a rate or generic safe completion."},
+    {"id": "B011-shades-live-temple-and-sailing-compatibility", "category": "live state and source gap", "status": "observation-only", "detail": "Temple repair is shared while sanctity/resources are per-player. Pyre-log compatibility beyond the source-backed table must not be inferred from newer Sailing-era log types."},
+    {"id": "B012-strategy-not-fact", "category": "strategy", "status": "intentionally excluded", "detail": "AFK labels, rates, expected runs, target unlocks, reward order, world choice, team composition, low-supply claims, collection-log stops, and route timing remain strategy candidates after account observations, not production facts or actions."}
+  ],
+  "unsafe_transition_catalog": [
+    "Selecting an activity must not create XP, points, coins, contribution, permits, honour, Pizazz, Reputation, cart rolls, loot, a crop, a quest state, a diary task, an arrival, or an account-owned item.",
+    "A published drop rate, a missing collection-log entry, a reward-table eligibility condition, or a point cap must not create the reward or calculate an expected completion count.",
+    "A transport alternative, warm item, optional tool, diary bonus, purchased capability, or supplied LMS loadout must not certify combat readiness, survival, a successful round, or player location.",
+    "A shop price permits a deterministic selected transaction only after observed balance, prerequisite ownership, and confirmation; it cannot manufacture the currency that pays it.",
+    "A daily, cooldown, charge, timer, session, team, or world state cannot be advanced from elapsed time or plan intent. It is reported or remains unknown."
+  ],
+  "integration_waves": [
+    {
+      "id": "W0-source-provenance-and-contract",
+      "input_packages": ["all 17 packages"],
+      "target_files": ["research/sources.json", "scripts/validate_minigame_packages.py", "tests/test_validate_minigame_packages.py"],
+      "safe_scope": "Register package sources and aliases, codify package count/ID/source validation, and preserve the research-only boundary.",
+      "must_not_do": "Do not create production facts, actions, graph nodes, or account-state fields in this wave.",
+      "expected_tests": ["all 17 packages parse", "minigame package schema validation", "package ID/action ID/node ID uniqueness", "source-reference integrity", "ASCII and trailing-whitespace checks"]
+    },
+    {
+      "id": "W1-current-factual-corrections",
+      "input_packages": ["guardians-of-the-rift.json", "fishing-trawler.json", "tithe-farm.json", "motherlode-mine.json", "wintertodt.json", "last-man-standing.json"],
+      "target_files": ["data/facts/guardians-of-the-rift.json", "data/facts/utility-skilling-minigames.json", "data/facts/progression-loops.json", "data/facts/utility-stop-inputs.json", "data/facts/achievement-diary-utility.json"],
+      "safe_scope": "Reconcile source-backed current mechanics, capacities, reward-shop catalogs, and stale factual wording only. Preserve observed-result boundaries.",
+      "must_not_do": "Do not calculate points, rewards, XP, expected runs, or player readiness.",
+      "expected_tests": ["scripts/validate_data.py", "full test suite", "focused regression checks for GOTR purchases, Wintertodt Reward Cart, Trawler meter, Tithe cap/shop, Falador/MLM, and LMS current stock"]
+    },
+    {
+      "id": "W2-static-access-and-fixed-shops",
+      "input_packages": ["barbarian-assault.json", "giants-foundry.json", "mage-training-arena.json", "mahogany-homes.json", "nightmare-zone.json", "pest-control.json", "hallowed-sepulchre.json"],
+      "target_files": ["data/facts/minigame-access-and-fixed-shops.json", "data/facts/minigame-durable-utilities.json", "data/facts/core-unlocks.json"],
+      "safe_scope": "Add only fixed entry facts, selected deterministic shop specifications, and durable utility descriptions with explicit observed-balance and confirmed-transaction conditions.",
+      "must_not_do": "Do not encode team availability, combat success, NPC contract selection, supplied loadouts, or activity output formulas as transitions.",
+      "expected_tests": ["source IDs present in registry", "fixed cost/input tests", "no duplicate existing Rune pouch, MTA, Foundry, or POH concepts", "full validation suite"]
+    },
+    {
+      "id": "W3-observation-contracts",
+      "input_packages": ["all 17 packages"],
+      "target_files": ["data/schemas/account-state.schema.json", "scripts/evaluate_progression.py", "tests/test_account_state.py", "tests/test_evaluate_progression.py"],
+      "safe_scope": "Introduce optional, report-only activity observations for balances, purchases, live sessions, teams, encounter results, charges, local supplies, and collection-log rows. Validate supplied values without filling absent fields.",
+      "must_not_do": "Do not infer successful activities or roll rewards from levels, elapsed time, current facts, or strategy candidates.",
+      "expected_tests": ["partial observation accepted", "unknown state remains unknown", "no output generated from plan intent", "charge/cap/daily fields reject invalid bounds"]
+    },
+    {
+      "id": "W4-remaining-location-specific-facts",
+      "input_packages": ["pyramid-plunder.json", "rogues-den.json", "shades-of-mortton.json", "tempoross.json", "fishing-trawler.json", "pest-control.json", "nightmare-zone.json"],
+      "target_files": ["data/facts/minigame-location-state.json", "data/facts/minigame-rng-boundaries.json", "data/facts/achievement-diary-utility.json"],
+      "safe_scope": "Add access, static reward-shop, current capacity, and explicit RNG/live-state facts after source and diary aliases are reconciled.",
+      "must_not_do": "Do not resolve the Foundry conflict, Rogue rate gap, Pyramid world state, Pest Control diary ambiguity, or Shades state from inference.",
+      "expected_tests": ["diary action alias tests", "makes_obtainable versus produces tests", "collection-log observation tests", "full validation suite"]
+    },
+    {
+      "id": "W5-actions-and-graph-after-observation-support",
+      "input_packages": ["all packages with a resolved W1-W4 dependency"],
+      "target_files": ["data/progression/actions.json", "graph/nodes.json", "graph/edges.json", "tests/test_progression_actions.py", "tests/test_graph_integrity.py"],
+      "safe_scope": "Amend existing actions first, then add only confirmed-transaction and explicit-report actions. Insert canonical nodes and edges using the contract above.",
+      "must_not_do": "Do not add an autonomous round, reward search, team, crop, combat, or RNG simulator. Keep all unresolved packages blocked rather than partially executable.",
+      "expected_tests": ["no duplicate action/node IDs", "all edge endpoints exist", "only allowed edge relationships", "RNG uses makes_obtainable", "existing actions retain behavior", "full validation suite"]
+    }
+  ],
+  "wave_execution_rule": "Waves are disjoint by package ownership and intended fact domain. Central registries, actions, and graph files are serial integration surfaces: one integrator edits them after the preceding wave is green; no two waves write them concurrently.",
+  "deferred_decisions": [
+    "strategy scores, route order, stop conditions, AFK recommendations, and account-specific opportunity cost",
+    "the exact Foundry damage-event quality treatment",
+    "Pest Control diary credit and Elite Void wording",
+    "Rogues' Den end-safe reward rate",
+    "Pyramid Plunder entrance rotation behavior",
+    "Shades of Mort'ton temple snapshot and extended pyre-log compatibility",
+    "which currently optional observation fields should become first-class evaluator inputs"
+  ]
+}
