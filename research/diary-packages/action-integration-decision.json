@@ -1,0 +1,399 @@
+{
+  "decision_schema_version": 1,
+  "package_type": "diary-action-integration-decision",
+  "decision_id": "W7-diary-action-and-observation-contract",
+  "status": "recommended-design",
+  "audited_at": "2026-08-22",
+  "scope": "Research-only design decision for W7. It resolves blockers B003, B004, B005, B007, and B008 without creating production actions, graph records, account-state fields, routes, scores, commits, or pushes.",
+  "inputs": {
+    "manifest": "research/diary-packages/integration-manifest.json",
+    "integrated_fact_files": [
+      "data/facts/diary-factual-ardougne-desert-falador-fremennik.json",
+      "data/facts/diary-factual-kandarin-karamja-kourend-kebos.json",
+      "data/facts/diary-factual-lumbridge-draynor-morytania-varrock.json",
+      "data/facts/diary-factual-western-provinces-wilderness.json"
+    ],
+    "task_inventory": {
+      "total": 488,
+      "tiers": {"easy": 134, "medium": 152, "hard": 125, "elite": 77},
+      "regions": {
+        "ardougne": 42,
+        "desert": 39,
+        "falador": 42,
+        "fremennik": 34,
+        "kandarin": 43,
+        "karamja": 44,
+        "kourend-kebos": 43,
+        "lumbridge-draynor": 41,
+        "morytania": 38,
+        "varrock": 38,
+        "western-provinces": 44,
+        "wilderness": 40
+      }
+    }
+  },
+  "facts_strategy_boundary": {
+    "included": [
+      "account-state, action-runtime, schema, graph, and test compatibility analysis",
+      "a factual action and observation contract",
+      "verified behavior-level aliases and explicit non-aliases",
+      "conservative task execution eligibility"
+    ],
+    "excluded": [
+      "diary order",
+      "route generation",
+      "priority or scoring",
+      "combat-readiness conclusions",
+      "resource-acquisition recommendations",
+      "automatic diary-tier claims"
+    ]
+  },
+  "blocker_decisions": [
+    {
+      "id": "B003-diary-claim-observation-policy",
+      "decision": "Keep account_state.diary_tiers as the sole authoritative, externally player-confirmed highest-claimed-tier snapshot. W7 must not derive, set, or advance a diary tier from task milestones.",
+      "rationale": [
+        "The evaluator and dependency analyzer already treat diary_tier_at_least as an external input when no explicit producer exists.",
+        "A player may import a valid diary claim without having recorded every individual task in this project.",
+        "Task completion and the in-game tier-claim interaction are distinct events; deriving one from incomplete local task records would be false certainty."
+      ],
+      "allowed_existing_transition": {
+        "op": "set_diary_tier",
+        "state": "diary_tiers",
+        "permitted_only_for": "a deliberately invoked player-confirmed import or record action outside generated diary task actions",
+        "required_rule": "may only advance a canonical region tier and may never downgrade it"
+      },
+      "prohibited_w7_transition": "No generated diary task action or task-milestone action may use set_diary_tier, create a claimed-tier milestone, award a tier reward, or create a lamp entitlement.",
+      "reward_rule": "Existing reward-claim actions continue to require diary_tier_at_least. They may claim the current-tier item or durable capability after the externally confirmed tier exists, but must not infer the tier or select a lamp recipient."
+    },
+    {
+      "id": "B004-action-and-schema-contract",
+      "decision": "Use the existing verified action kind activity for a curated deterministic diary task. Do not add a diary_task kind.",
+      "task_action_contract": {
+        "id_pattern": "action:complete-diary-task:<region_slug>:<source_task_id>",
+        "state_milestone_key_pattern": "diary-task:<region_slug>:<source_task_id>",
+        "graph_milestone_node_pattern": "milestone:diary-task:<region_slug>:<source_task_id>",
+        "kind": "activity",
+        "status": "verified",
+        "repeatable": false,
+        "completion": "one milestone predicate using the state_milestone_key_pattern",
+        "outcomes": "one milestone outcome using the state_milestone_key_pattern",
+        "required_effect": "one set_add effect to milestones using the state_milestone_key_pattern",
+        "fact_link": "one or more verified production fact IDs; a research package ID alone is insufficient"
+      },
+      "allowed_preconditions": [
+        "skill_at_least when the source has an exact level and a normal level gate is sufficient",
+        "quest_completed for an exact completed-quest gate",
+        "milestone or transport_flag only when the referenced canonical producer already exists",
+        "item_at_least or resource_at_least for an exact known quantity",
+        "counter_at_least only for an existing durable counter with a sourced exact threshold",
+        "an explicit any group for a fully specified alternative, including a separately player-confirmed temporary-boost milestone"
+      ],
+      "allowed_effects": [
+        "delta for exact deterministic item or resource consumption or creation",
+        "gain_xp only for a sourced, guaranteed integer award",
+        "set_add to the task milestone",
+        "reported_effects for fractional XP, player-selected XP, variable outputs, and recorded progress"
+      ],
+      "prohibited_effects": [
+        "set_diary_tier in a generated diary task action",
+        "a random drop, loot roll, fish, ore, crop yield, monster kill, collection-log entry, minigame point award, or daily reset",
+        "a charge, cooldown, team result, staged sequence, or location state that lacks a dedicated exact model",
+        "a task output whose amount, retention, or success is conditional on an observation"
+      ],
+      "schema_alignment": {
+        "required": [
+          "Add diary_tier_at_least to data/schemas/progression-action.schema.json with a canonical region key and one of none, easy, medium, hard, or elite as its value.",
+          "Add the already-runtime-supported set_diary_tier effect to data/schemas/progression-action.schema.json with state diary_tiers, a canonical region key, and one of none, easy, medium, hard, or elite as its value.",
+          "Keep scripts/apply_action.py, scripts/evaluate_progression.py, scripts/analyze_dependencies.py, and scripts/validate_data.py behaviorally aligned with that schema; their current runtime rules are the reference behavior."
+        ],
+        "not_required": [
+          "A new action kind",
+          "A generic effect that mutates arbitrary observations",
+          "A claim action generated from task milestones",
+          "An automatic task-action generator"
+        ]
+      }
+    },
+    {
+      "id": "B005-existing-reference-aliases",
+      "decision": "Use only behavior-level one-to-one aliases. Preserve non-one-to-one descriptions as references, not aliases.",
+      "verified_aliases": [
+        {
+          "package_reference": "action:claim-ardougne-cloak-current",
+          "canonical_action_id": "action:claim-ardougne-cloak",
+          "equivalence": "Both claim the current Ardougne cloak after an externally confirmed eligible Ardougne tier; neither claims the tier or a lamp."
+        },
+        {
+          "package_reference": "action:ardougne-cloak-monastery-teleport",
+          "canonical_action_id": "action:ardougne-monastery-teleport",
+          "equivalence": "Both are the unlimited Ardougne-cloak monastery teleport and consume no charge or daily use."
+        },
+        {
+          "package_task_key": "diary-task:varrock:digsite-pendant-teleport",
+          "canonical_action_id": "action:digsite-pendant-digsite-teleport",
+          "equivalence": "Both consume one observed Digsite-pendant charge to teleport to the Digsite; enchantment and pendant creation remain separate actions."
+        }
+      ],
+      "explicit_non_aliases": [
+        {
+          "package_reference": "action:claim-varrock-museum-kudos and Museum-display actions",
+          "reason": "This names a set of distinct counter-producing and reward-claim actions, not one behavior. Keep varrock-museum-kudos-paths and its action set canonical."
+        },
+        {
+          "package_reference": "action:enchant-digsite-pendant",
+          "reason": "Production deliberately separates enchantment knowledge, spell creation, and tablet creation. Mapping this label to one action would erase a material alternative."
+        },
+        {
+          "package_reference": "balloon travel actions for the Varrock diary task",
+          "reason": "The task requires a journey from Varrock, while action:balloon-trip-varrock is a journey to Varrock. Direction and consumed logs are material."
+        }
+      ]
+    },
+    {
+      "id": "B007-observation-model-gaps",
+      "decision": "Do not make an observation an action requirement or graph producer. Reuse existing strict snapshots where they fit, and introduce one future diary_task_observations field only when a player-import workflow needs to preserve a task-specific external completion record.",
+      "existing_observation_ownership": [
+        {
+          "boundary": "combat and encounter completion",
+          "owner": "encounter_observations plus combat_readiness_observation",
+          "recording_rule": "Use a task-specific encounter key only to record attempts, confirmed completions, supplies, deaths, and elapsed time. It never establishes readiness, future throughput, loot, extraction, or a diary task milestone."
+        },
+        {
+          "boundary": "RNG items, drops, and collection log",
+          "owner": "unique_item_observations",
+          "recording_rule": "Keep possession, log confirmation, quantity, variant, charges, condition, usability, and reclaimability separate. An RNG source may have a makes_obtainable graph edge but never a produces edge."
+        },
+        {
+          "boundary": "crop, patch, Hespori, and anima state",
+          "owner": "farming_recurrence_observation",
+          "recording_rule": "Use the existing patch, disease, protection, growth, harvest-life, and readiness snapshot. Do not advance time, infer a grown crop, or infer harvest quantity."
+        },
+        {
+          "boundary": "daily use, cooldown, and recurring availability",
+          "owner": "recurring_observations",
+          "recording_rule": "Use state, observed_at, and ready_at only as a player snapshot. A capability is not a free repeatable action and an observation does not advance its timer."
+        },
+        {
+          "boundary": "charged items and known capacity",
+          "owner": "unique_item_observations, kourend_memoir, or the existing dedicated charged-item action model",
+          "recording_rule": "Use exact charge transitions only where a dedicated model already owns the item. Otherwise record a nullable charge observation and do not decrement it from a diary task."
+        },
+        {
+          "boundary": "team activity, points, credit, and role-dependent completion",
+          "owner": "no current account-state field",
+          "recording_rule": "Pest Control, Barbarian Assault, raids, and comparable team tasks stay observation-only until a task-specific imported record is needed. Do not synthesize a team, role, activity meter, credit, or reward from account stats."
+        }
+      ],
+      "future_single_field_contract": {
+        "when_to_add": "Only when importing a player-confirmed diary-task record is a real user workflow. Do not add it merely to unblock generated actions.",
+        "field": "diary_task_observations",
+        "key": "canonical task key, for example diary-task:wilderness:wilderness-elite-kill-big-three",
+        "common_fields": {
+          "observed_at": "RFC 3339 timestamp",
+          "status": "unknown, in_progress, completed, or reset",
+          "mode": "combat, rng, crop, daily, charge, team, or staged",
+          "completion_confirmed": "nullable boolean"
+        },
+        "mode_payloads": {
+          "combat": ["encounter_key", "qualifying_successes"],
+          "rng": ["qualifying_event_confirmed", "unique_item_observation_key"],
+          "crop": ["patch_id", "ready_observed", "harvest_confirmed"],
+          "daily": ["capability_key", "availability_state", "ready_at"],
+          "charge": ["item_observation_key", "charges_before", "charges_after"],
+          "team": ["activity_key", "role", "credit_or_points", "completion_confirmed"],
+          "staged": ["stage_ids", "completed_stage_ids", "invalidated_by_diary_update", "reset_observed_at"]
+        },
+        "validation_rule": "Each mode is a closed object: it has the common fields and exactly its declared payload fields. Unknown is represented with null only where the individual field is nullable; additional properties are rejected.",
+        "non_implication_rule": "Neither a completed observation nor any payload member changes inventory, counters, collection log, diary_tiers, completed_actions, milestones, graph reachability, or action eligibility."
+      }
+    },
+    {
+      "id": "B008-wilderness-staged-elite-progress",
+      "decision": "Retain the Wilderness elite boss-family task as player-confirmed, non-generated research in W7. Do not model Callisto/Artio, Venenatis/Spindel, and Vet'ion/Calvar'ion as independent durable task milestones.",
+      "task": {
+        "canonical_task_key": "diary-task:wilderness:wilderness-elite-kill-big-three",
+        "source_task_id": "wilderness-elite-kill-big-three",
+        "required_families": ["callisto_or_artio", "venenatis_or_spindel", "vetion_or_calvarion"],
+        "reset_condition": "Completing or updating any other diary task before the final qualifying family kill resets the staged progress.",
+        "w7_action_status": "observation-only"
+      },
+      "future_observation_instance": {
+        "mode": "staged",
+        "status": "unknown, in_progress, completed, or reset",
+        "stage_ids": ["callisto_or_artio", "venenatis_or_spindel", "vetion_or_calvarion"],
+        "completed_stage_ids": "unique subset of stage_ids in observed order",
+        "invalidated_by_diary_update": "nullable boolean",
+        "reset_observed_at": "nullable RFC 3339 timestamp",
+        "completion_rule": "Only a player-confirmed in-game completion can set status completed. The model never infers completion from three boss kill observations.",
+        "prohibited": ["independent durable kill milestones", "boss drops", "collection-log entries", "lair-fee persistence", "PvP survival", "an automatic elite-tier claim"]
+      }
+    }
+  ],
+  "task_execution_inventory": {
+    "decision": "Only already-curated, behavior-verified task actions are executable now. Raw deterministic wording in a research task is not sufficient: the action must also have typed preconditions, exact input fate, a verified production fact link, and a bounded deterministic transition.",
+    "executable_now": [
+      {
+        "canonical_task_key": "diary-task:lumbridge-draynor:lumbridge-draynor-hard-bones-to-peaches",
+        "source_task_id": "lumbridge-draynor-hard-bones-to-peaches",
+        "canonical_action_id": "action:complete-lumbridge-hard-bones-to-peaches-task",
+        "reason": "Existing action has exact spell unlock, spellbook, boost alternative, rune inputs, one-bone transition, and a dedicated completion milestone. Fractional Magic XP is reported rather than fabricated."
+      },
+      {
+        "canonical_task_key": "diary-task:kourend-kebos:kourend-kebos-hard-monster-examine-troll",
+        "source_task_id": "kourend-kebos-hard-monster-examine-troll",
+        "canonical_action_id": "action:complete-kourend-hard-monster-examine-task",
+        "reason": "Existing action has exact quest, spellbook, boost alternative, three-rune cost, integer XP, and a dedicated completion milestone."
+      },
+      {
+        "canonical_task_key": "diary-task:kourend-kebos:kourend-kebos-hard-xerics-heart",
+        "source_task_id": "kourend-kebos-hard-xerics-heart",
+        "canonical_action_id": "action:complete-kourend-hard-xerics-heart-teleport-task",
+        "reason": "Existing action models the exact charged-talisman and mounted-talisman alternatives without inventing talisman acquisition or a charge."
+      }
+    ],
+    "observation_only_now": {
+      "membership_rule": "Every task in the twelve-region, 488-task inventory other than the three executable_now canonical task keys remains observation-only in W7.",
+      "total": 485,
+      "by_region": {
+        "ardougne": 42,
+        "desert": 39,
+        "falador": 42,
+        "fremennik": 34,
+        "kandarin": 43,
+        "karamja": 44,
+        "kourend-kebos": 41,
+        "lumbridge-draynor": 40,
+        "morytania": 38,
+        "varrock": 38,
+        "western-provinces": 44,
+        "wilderness": 40
+      },
+      "reason": "No bulk action generation. The remaining records include either a player-confirmed success boundary, an RNG or variable output, crop/daily/charge/team/staged state, an untyped in-game gate, an incomplete input-fate contract, catalog-only source provenance, or an existing canonical system that must not be duplicated."
+    },
+    "promotion_requirements": [
+      "The exact task has an authoritative task-level source reference or a documented production-grade source inheritance rule approved for actions.",
+      "Every hard requirement is expressible by an existing typed predicate or an explicit, separately confirmed boundary.",
+      "Every consumed input has an exact item or resource key and quantity, including a selected alternative where relevant.",
+      "The action has no variable success, output, retention, team, timer, charge, or staged-progress dependency unless its dedicated state model is complete and tested.",
+      "The action produces only its own milestone plus exact deterministic effects and cites a verified production fact record.",
+      "A behavior-level alias check confirms it does not duplicate a current action."
+    ]
+  },
+  "graph_contract": {
+    "node_identity": {
+      "action_node": "activity:complete-diary-task:<region_slug>:<source_task_id>",
+      "task_milestone_node": "milestone:diary-task:<region_slug>:<source_task_id>",
+      "tier_claim_condition": "condition:diary-tier:<region_slug>:<tier>:confirmed"
+    },
+    "state_to_graph_rule": "The account milestone stores diary-task:<region_slug>:<source_task_id>; the graph node adds only the milestone: prefix. This follows the existing action-state versus graph-node naming convention.",
+    "allowed_edges": [
+      "A typed prerequisite node to a curated task activity uses requires.",
+      "A curated deterministic task activity to its own task milestone uses produces.",
+      "An externally confirmed diary-tier condition to an existing reward-claim action or capability uses requires or unlocks as appropriate.",
+      "An RNG activity to an item or collection-log possibility uses makes_obtainable only.",
+      "A fully verified alternate input or access method uses alternative or bypass only when it satisfies the same bounded condition."
+    ],
+    "forbidden_edges": [
+      "Any individual task milestone to a diary-tier condition or a diary reward.",
+      "An observation node or observation payload to an action, milestone, item, counter, tier, or capability.",
+      "A boss kill, crop, team result, daily state, charge state, or staged substep to an item, completion, or tier when its result is observed or variable.",
+      "A random activity to a guaranteed inventory or collection-log node with produces."
+    ]
+  },
+  "migration_and_backward_compatibility": {
+    "account_state": [
+      "Do not replace, rename, or derive account_state.diary_tiers. Existing snapshots with a confirmed tier remain valid even when no diary task milestones are present.",
+      "Do not add diary task milestones retroactively from diary_tiers, completed_actions, quest lists, gear, counters, or inventory.",
+      "If the future diary_task_observations field is introduced, make it required in the strict account schema only with an empty-object default added together to graph/account-state.example.json and every fixture. Existing snapshots migrate by adding an empty object; no observation is inferred."
+    ],
+    "actions": [
+      "Keep the three listed existing task action IDs and milestone keys stable; do not rename them to the proposed generic pattern.",
+      "Do not add compatibility alias actions. Store aliases in research metadata and have future validators resolve package references before checking for duplicates.",
+      "Existing diary reward-claim actions remain backward compatible because they continue to consume only externally confirmed diary_tiers and their current item/capability rules."
+    ],
+    "graphs": [
+      "Do not add 488 placeholder activity or milestone nodes in W7.",
+      "When a future curated task action is added, add its action node, milestone node, and only the edges justified by its own typed action contract."
+    ]
+  },
+  "exact_w7_target_files": {
+    "required": [
+      "data/schemas/progression-action.schema.json",
+      "tests/test_apply_action.py",
+      "tests/test_analyze_dependencies.py",
+      "tests/test_validate_diary_packages.py"
+    ],
+    "conditional_only_if_a_player-imported-task-observation_workflow_is_approved": [
+      "data/schemas/account-state.schema.json",
+      "scripts/evaluate_progression.py",
+      "scripts/validate_data.py",
+      "graph/account-state.example.json",
+      "tests/fixtures/fresh-account.json",
+      "tests/test_apply_action.py",
+      "tests/test_analyze_dependencies.py"
+    ],
+    "intentionally_unchanged_in_w7": [
+      "data/progression/actions.json",
+      "graph/nodes.json",
+      "graph/edges.json",
+      "all data/facts/diary-factual-*.json files",
+      "all regional diary packages",
+      "strategy/"
+    ],
+    "later_curated_task_target_files": [
+      "data/facts/<specific-task-fact-file>.json",
+      "data/progression/actions.json",
+      "graph/nodes.json",
+      "graph/edges.json",
+      "tests/test_apply_action.py",
+      "tests/test_analyze_dependencies.py"
+    ]
+  },
+  "validation_contract": {
+    "decision_file_checks": [
+      "JSON parses as one object.",
+      "The inventory equals 488 tasks: 134 easy, 152 medium, 125 hard, and 77 elite.",
+      "executable_now has exactly three unique canonical task keys and three unique canonical action IDs.",
+      "observation_only_now total is 485 and its region counts sum to 485.",
+      "The executable and observation-only sets are disjoint and sum to 488.",
+      "Every verified alias target exists in data/progression/actions.json.",
+      "ASCII only and no trailing whitespace."
+    ],
+    "focused_w7_tests": [
+      "test_apply_action: an explicit set_diary_tier record may advance a confirmed claim and rejects a downgrade.",
+      "test_apply_action: the three existing diary task actions retain exact inputs, options, and task milestones without changing diary_tiers.",
+      "test_analyze_dependencies: diary_tier_at_least remains an external input with no modeled producer.",
+      "test_analyze_dependencies: a diary task milestone does not produce a diary tier, lamp, or reward claim.",
+      "test_validate_diary_packages: retain the twelve-package, 488-task inventory assertion and validate the three decision action mappings."
+    ],
+    "full_matrix": [
+      "python scripts/validate_diary_packages.py",
+      "python scripts/validate_data.py",
+      "python -m unittest discover -s tests -p test_*.py"
+    ]
+  },
+  "unresolved_facts_and_deferred_work": [
+    {
+      "id": "B009-task-level-action-provenance",
+      "status": "still blocks automatic task generation",
+      "detail": "Catalog inheritance is sufficient for regional factual records but not a per-task executable action. Nine packages remain catalog-inheritance packages."
+    },
+    {
+      "id": "typed-task-contracts",
+      "status": "deferred per task",
+      "detail": "The 485 observation-only tasks need individually normalized item/resource keys, alternatives, exact output fate, and typed preconditions before promotion."
+    },
+    {
+      "id": "player-imported-diary-task-observations",
+      "status": "workflow decision deferred",
+      "detail": "The future closed diary_task_observations field is specified here but is not needed for W7's schema alignment and must not be added until imported task-completion records are an active user workflow."
+    },
+    {
+      "id": "team-and-staged-activity-telemetry",
+      "status": "observation-only",
+      "detail": "No current source or account snapshot establishes team composition, role performance, instance result, or staged sequence state automatically."
+    }
+  ],
+  "summary": "W7 should align the action schema with the already-tested diary-tier runtime, preserve diary tiers as external player-confirmed claims, retain only the three existing curated diary-task actions, resolve three behavior-level references, and deliberately leave all other regional task records observation-only."
+}
