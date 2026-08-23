@@ -197,7 +197,7 @@
       "name": "Tithe Farm utility-unlock inputs",
       "category": "minigame",
       "status": "verified",
-      "verified_at": "2026-08-21",
+      "verified_at": "2026-08-22",
       "hard_gates": {
         "membership": true,
         "Farming": 34,
@@ -217,16 +217,24 @@
           "seed_box": 250,
           "herb_sack": 250
         },
-        "all_listed_durable_utility_rewards_total": 1150
+        "all_listed_durable_utility_rewards_total": 1150,
+        "current_shop_coverage": {
+          "grape_seed": 2,
+          "bologas_blessing_bundle": {"cost": 1, "quantity": 20, "additional_gate": "50 Prayer, a one-time 75,000-coin fee, and one Zamorak-affiliated item."},
+          "compost": 1,
+          "supercompost": 5,
+          "herb_box": {"cost": 30, "contents": "observed random herbs"},
+          "seed_pack": {"cost": 30, "contents": "observed random tier-3 Farming Contract seed-pack contents", "introduced": "2025"}
+        }
       },
       "random_reward_behavior": {
         "utility_unlock_purchase": "The listed durable rewards are deterministic point purchases; no reward-roll RNG applies.",
         "point_acquisition": "Deposited fruit award the stated points deterministically. Fruit deposited after reaching the point cap still award Farming experience but no points."
       },
       "fixed_utility_effects": {
-        "auto_weed": "Permanent, toggleable prevention of new weeds in Farming patches; it does not remove existing weeds and does not affect Managing Miscellania patches.",
+        "auto_weed": "Permanent, toggleable prevention of new weeds in Farming patches; it does not remove existing weeds and does not affect Managing Miscellania patches. Reactivating an already purchased perk is free; purchase and toggle state are observed separately.",
         "farmers_outfit": "A complete worn set grants 2.5% additional Farming experience.",
-        "gricollers_can": "A watering can holding 1,000 water doses; it can be refilled by using it on a water source.",
+        "gricollers_can": "A watering can holding 1,000 water doses; it can be refilled at a water source or for free through the current Tithe Farm shop.",
         "seed_box": "Stores an unlimited quantity of up to six seed types.",
         "herb_sack": {
           "effect": "Stores up to 30 of each grimy herb type, 420 grimy herbs in total.",
@@ -235,9 +243,47 @@
       },
       "uncertainties": [
         "The 1,150-point total covers the listed durable utility rewards only; it excludes consumable shop stock and any future reward additions.",
+        "The former 1,000-point cap is historical and superseded by the current 16,000-point cap.",
         "This record does not estimate fruit, time, or attention required to obtain a given point balance."
       ],
       "source_ids": ["wiki-tithe-farm", "wiki-tithe-rewards"],
+      "confidence": "high"
+    },
+    {
+      "id": "utility-stop-last-man-standing-current-shop-boundary",
+      "name": "Last Man Standing current shop boundary",
+      "category": "minigame",
+      "status": "verified",
+      "verified_at": "2026-08-22",
+      "hard_gates": {
+        "shop_access": "Every Justine purchase requires an observed 48 hours of member playtime.",
+        "tradeable_rows": "Current tradeable reward rows also require at least one observed LMS win.",
+        "account_boundary": "No membership, playtime, win, point balance, purchase, ownership, or Ironman eligibility is inferred."
+      },
+      "deterministic_reward_costs": {
+        "confirmed_current_imbue_rows": {
+          "magic_shortbow_scroll": 5,
+          "ring_of_wealth_scroll": 5
+        },
+        "excluded_unimplemented_proposals": [
+          "Emir's Arena reusable Scroll of imbuing",
+          "Blighted surge sacks"
+        ]
+      },
+      "random_reward_behavior": {
+        "match_and_shop_boundary": "Match outcomes, points, queue state, supplied loadouts, shop transactions, and collection-log rows are player-observed. The current catalog does not turn a proposal into a shop result."
+      },
+      "fixed_utility_effects": {
+        "current_catalog": "The checked LMS shop retains its current rows, including the two listed imbue scrolls and existing blighted supplies. A reusable Scroll of imbuing remains a separate Emir's Arena path."
+      },
+      "uncertainties": [
+        "The March 2026 proposal to add a reusable Scroll of imbuing and blighted surge sacks to LMS is not current shop stock.",
+        "This record does not calculate a match result, points, purchases, readiness, or a route choice."
+      ],
+      "source_ids": [
+        "wiki-last-man-standing-current",
+        "official-sailing-lms-eligibility-may-2026"
+      ],
       "confidence": "high"
     },
     {

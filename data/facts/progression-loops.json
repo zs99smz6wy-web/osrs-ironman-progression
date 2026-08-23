@@ -79,6 +79,53 @@
       "confidence": "high"
     },
     {
+      "id": "fishing-trawler-current-contribution-boundary",
+      "name": "Fishing Trawler current contribution boundary",
+      "category": "minigame",
+      "status": "verified",
+      "verified_at": "2026-08-22",
+      "requirements": {
+        "activity_state": "A live Trawler voyage, repair opportunities, contribution, success, and inspection result are player-observed."
+      },
+      "mechanics": {
+        "contribution_meter": {
+          "minimum": 0,
+          "maximum": 255,
+          "decays": false,
+          "reward_eligibility_threshold": 50,
+          "boundary": "The threshold applies at the end of a successful voyage. Meter value, repair success, survival, contribution actions, and threshold crossing are never inferred."
+        },
+        "inspection_boundary": "An eligible successful inspection can yield variable fish, junk, Angler's outfit, and pet outcomes. The model records only reported results; a voyage or contribution value does not generate items, experience, diary credit, or collection-log progress."
+      },
+      "historical_stale_notes": [
+        "The replaced activity bar model decayed and was associated with inactivity guidance. Current Fishing Trawler uses a non-depleting contribution meter.",
+        "The current 50-contribution reward threshold does not make a planned or started voyage successful."
+      ],
+      "source_ids": ["wiki-fishing-trawler", "official-fishing-trawler-improvements-2021"],
+      "confidence": "high"
+    },
+    {
+      "id": "wintertodt-current-warmth-and-reward-cart-boundary",
+      "name": "Wintertodt current Warmth and Reward Cart boundary",
+      "category": "minigame",
+      "status": "verified",
+      "verified_at": "2026-08-22",
+      "requirements": {
+        "activity_state": "Warmth, attacks, supplies, personal points, subdual outcome, stored Reward Cart rolls, and searched results are player-observed."
+      },
+      "mechanics": {
+        "survival_resource": "Since the 2024 rework, Wintertodt damage affects Warmth rather than Hitpoints. Reaching 0% Warmth causes death; the model does not infer damage, survival, death, food use, or readiness.",
+        "reward_storage": "Current qualifying rewards are stored as Reward Cart rolls. A player-initiated cart search consumes an observed stored roll and records its exact observed result; it does not generate materials, uniques, experience, or a collection-log entry automatically.",
+        "persistent_boundary": "The Reward Cart is external persistent storage, not a carried Supply Crate or an inventory item. Its balance and any search are distinct observations."
+      },
+      "historical_stale_notes": [
+        "Pre-9-October-2024 low-Hitpoints damage logic is superseded by the current Warmth model.",
+        "The former one-Supply-Crate-per-qualifying-game model is superseded by stored Reward Cart rolls."
+      ],
+      "source_ids": ["wiki-wintertodt", "wiki-reward-cart", "official-wintertodt-updates-2024-mirror"],
+      "confidence": "high"
+    },
+    {
       "id": "perilous-moons",
       "name": "Moons of Peril",
       "category": "activity",

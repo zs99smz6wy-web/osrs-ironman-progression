@@ -5,7 +5,7 @@
       "name": "Tithe Farm access and point currency",
       "category": "minigame",
       "status": "verified",
-      "verified_at": "2026-08-20",
+      "verified_at": "2026-08-22",
       "requirements": {
         "membership": true,
         "skills": {"Farming": 34},
@@ -16,7 +16,8 @@
         "currency": "Tithe Farm points",
         "point_award": "1 point per 3 deposited plants, plus 2 additional points per 100 deposited plants.",
         "point_cap": 16000,
-        "acquisition_type": "Points are earned deterministically from deposited plants; there is no reward-roll RNG for shop purchases."
+        "historical_stale_point_cap": "The former 1,000-point cap is superseded and is not a fallback rule.",
+        "acquisition_type": "Points are earned from player-observed deposited plants; there is no reward-roll RNG for fixed shop purchases. The record does not calculate deposited fruit, points, or account balances."
       },
       "source_ids": ["wiki-tithe-rewards", "wiki-tithe-farm"],
       "confidence": "high"
@@ -26,14 +27,22 @@
       "name": "Tithe Farm durable utility rewards",
       "category": "reward",
       "status": "verified",
-      "verified_at": "2026-08-20",
+      "verified_at": "2026-08-22",
       "requirements": {"activity": "Tithe Farm", "currency": "Tithe Farm points"},
       "rewards": {
-        "auto_weed": {"cost": 50, "effect": "Permanent toggleable prevention of new weeds in Farming patches; it does not remove existing weeds and does not affect Managing Miscellania patches."},
-        "farmers_outfit": {"cost_total": 400, "pieces": {"strawhat": 75, "jacket_or_shirt": 150, "boro_trousers": 125, "boots": 50}, "effect": "A complete worn set grants 2.5% additional Farming experience."},
-        "gricollers_can": {"cost": 200, "effect": "Watering can with 1,000 water doses; it is refilled by using it on a water source."},
+        "auto_weed": {"cost": 50, "effect": "Permanent toggleable prevention of new weeds in Farming patches; it does not remove existing weeds and does not affect Managing Miscellania patches.", "reactivation": "Reactivating an already purchased perk is free; purchase and current toggle state remain separate observations."},
+        "farmers_outfit": {"cost_total": 400, "pieces": {"strawhat": 75, "jacket_or_shirt": 150, "boro_trousers": 125, "boots": 50}, "effect": "A complete worn set grants 2.5% additional Farming experience.", "resale": "A spare shop-bought piece may be sold to Gricoller for 80% of its listed point cost; ownership, provenance, and transaction result remain observed."},
+        "gricollers_can": {"cost": 200, "effect": "Watering can with 1,000 water doses; it can be refilled at a water source or for free through the current Tithe Farm shop."},
         "seed_box": {"cost": 250, "effect": "Stores an unlimited quantity of up to six seed types."},
-        "herb_sack": {"cost": 250, "additional_requirement": {"Herblore": 58}, "effect": "Stores up to 30 of each grimy herb type, 420 grimy herbs in total."}
+        "herb_sack": {"cost": 250, "additional_requirement": {"Herblore": 58}, "effect": "Stores up to 30 of each grimy herb type, 420 grimy herbs in total."},
+        "current_consumables_and_containers": {
+          "grape_seed": {"cost": 2, "fixed_purchase": "One grape seed; later vine-patch progression remains separate and observed."},
+          "bologas_blessing_bundle": {"cost": 1, "quantity": 20, "additional_gate": {"Prayer": 50, "coins_one_time": 75000, "equipment": "one item affiliated with Zamorak"}, "boundary": "Each use requires the separate Bologa access condition; no grape pick is inferred."},
+          "compost": {"cost": 1, "boundary": "A purchase does not infer later patch treatment, crop survival, or yield."},
+          "supercompost": {"cost": 5, "boundary": "A purchase does not infer later patch treatment, crop survival, or yield."},
+          "herb_box": {"cost": 30, "contents": "Ten random grimy herbs", "boundary": "The purchase is fixed, but contents are observed RNG."},
+          "seed_pack": {"cost": 30, "contents": "Equivalent to a tier-3 Farming Contract seed pack", "introduced": "2025", "boundary": "The purchase is fixed, but contents are observed RNG."}
+        }
       },
       "guarantee": "Each listed reward is a guaranteed purchase once its exact point cost and any stated use requirement are met.",
       "source_ids": ["wiki-tithe-rewards", "wiki-tithe-farm"],
@@ -81,13 +90,18 @@
       "name": "Motherlode Mine access and golden nuggets",
       "category": "minigame",
       "status": "verified",
-      "verified_at": "2026-08-20",
+      "verified_at": "2026-08-22",
       "requirements": {"membership": true, "lower_level_skills": {"Mining": 30}, "upper_level_skills": {"Mining": 57}},
       "mechanics": {
         "currency": "Golden nuggets",
         "currency_source": "Golden nuggets are obtained from the sack after cleaned pay-dirt.",
         "golden_nugget_rate": "3.13% per cleaned pay-dirt, independent of Mining level (an average of one per 32 pay-dirt).",
-        "acquisition_type": "Golden nuggets are RNG drops; purchases and upgrades made with accumulated nuggets are guaranteed."
+        "acquisition_type": "Golden nuggets are RNG drops; purchases and upgrades made with accumulated nuggets are guaranteed.",
+        "falador_diary_distinction": {
+          "hard": "Falador Hard has no Motherlode Mine pay-dirt experience modifier.",
+          "elite": "Falador Elite slightly increases the chance of higher-level ores when cleaning pay-dirt. It changes probabilities only and does not guarantee ore, Mining experience, nuggets, or quantity."
+        },
+        "historical_stale_note": "Earlier pay-dirt experience-modifier claims are superseded; do not restore them as a Hard reward."
       },
       "source_ids": ["wiki-motherlode", "wiki-prospector-nugget-shop"],
       "confidence": "high"

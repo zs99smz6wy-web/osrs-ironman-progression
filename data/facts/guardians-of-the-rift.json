@@ -194,7 +194,7 @@
       "name": "Abyssal needle and colossal pouch",
       "category": "reward",
       "status": "verified",
-      "verified_at": "2026-08-20",
+      "verified_at": "2026-08-22",
       "acquisition": {
         "abyssal_needle": {
           "rng_method": {
@@ -250,7 +250,7 @@
       "name": "Abyssal lantern",
       "category": "reward",
       "status": "verified",
-      "verified_at": "2026-08-20",
+      "verified_at": "2026-08-22",
       "acquisition": {
         "rng_method": {
           "source": "Rewards Guardian",
@@ -260,7 +260,8 @@
         "currency_method": {
           "source": "Temple Supplies",
           "abyssal_pearl_cost": 1500,
-          "guaranteed_after_required_currency": true
+          "guaranteed_after_required_currency": true,
+          "introduced_live": "2026-08-19"
         }
       },
       "requirements": {
@@ -322,7 +323,7 @@
       "name": "Guardian's Eye permanent pet metamorphosis",
       "category": "reward",
       "status": "verified",
-      "verified_at": "2026-08-20",
+      "verified_at": "2026-08-22",
       "requirements": {
         "currency": "3000 Abyssal pearls",
         "item": "Rift guardian pet"
