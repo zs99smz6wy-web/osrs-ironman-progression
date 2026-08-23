@@ -37,10 +37,27 @@ Observation fields are strict snapshots of what the player recorded, not claims 
 | `sailing_observation` | A timestamped vessel snapshot, observed component tiers and facilities, hull and cargo state, accepted task records, and the last recorded recovery event. | Cargo loss, task rewards, repair costs, future task selection, or Sailing throughput. |
 | `perilous_moons_observation` | A recorded run, boss defeat order, dungeon-local supplies, and death/recovery state. Moon equipment remains in `unique_item_observations`. | Chest loot, reclaim fees, future completion, set completion, or encounter readiness. |
 | `farming_recurrence_observation` | Generic patch snapshots plus nullable Hespori and anima-patch observations. | Growth since the timestamp, disease outcomes, harvest yield, seed supply, or current readiness. |
+| `diary_task_observations` | Optional, player-imported records for canonical diary tasks. Each is one closed `combat`, `rng`, `crop`, `daily`, `charge`, `team`, or `staged` snapshot. | A task milestone, diary claim, tier reward, item, counter, collection-log entry, action eligibility, or graph reachability. |
 
 `analyze_combat_observations.py` may divide explicit successes by explicit elapsed minutes to display a measured rate. It returns `null` when either measurement is missing or elapsed time is zero, and marks all readiness, supply, and collection-log inference as false.
 
 `analyze_activity_observations.py` returns deep copies of the three structural observations. Its Moon-equipment view selects existing entries from `unique_item_observations`; it never creates a second possession or collection-log state. It does not advance clocks, infer growth or readiness, create loot, calculate reclaim fees, complete equipment sets, or turn community throughput into facts.
+
+### Diary task imports
+
+`diary_task_observations` is optional so older account snapshots remain valid. When supplied, its keys are checked against the 488 integrated factual task keys and its mode payload is closed. A completed imported task still does not write `milestones`, `completed_actions`, `diary_tiers`, inventory, counters, or graph state. `diary_tiers` remains the sole externally player-confirmed claimed-tier snapshot.
+
+The Wilderness elite three-boss-family task is report-only staged state. Its fixed family list is Callisto/Artio, Venenatis/Spindel, and Vet'ion/Calvar'ion. A diary update invalidation must be explicitly observed, and the model does not retain independent boss-family kill milestones or infer final completion from the stage list.
+
+Only these diary-package action labels have behavior-equivalent canonical aliases:
+
+| Package reference | Canonical action |
+| --- | --- |
+| `action:claim-ardougne-cloak-current` | `action:claim-ardougne-cloak` |
+| `action:ardougne-cloak-monastery-teleport` | `action:ardougne-monastery-teleport` |
+| `diary-task:varrock:digsite-pendant-teleport` | `action:digsite-pendant-digsite-teleport` |
+
+Descriptive Museum, Digsite-enchantment, and balloon-travel references remain unmapped because each represents multiple or materially different behaviors.
 
 ## Normalized progression actions
 

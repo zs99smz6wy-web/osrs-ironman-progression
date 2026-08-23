@@ -11,7 +11,13 @@ from pathlib import Path
 REPOSITORY_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPOSITORY_ROOT / "scripts"))
 
-from evaluate_progression import evaluate_actions, evaluate_condition, load_json, validate_account_state  # noqa: E402
+from evaluate_progression import (  # noqa: E402
+    evaluate_actions,
+    evaluate_condition,
+    load_json,
+    report_diary_task_observations,
+    validate_account_state,
+)
 from validate_data import validate_condition  # noqa: E402
 
 
@@ -444,6 +450,165 @@ class EvaluateProgressionScenarioTests(unittest.TestCase):
         )
         self.assertFalse(satisfied)
         self.assertEqual(["Falador diary elite (confirmed: hard)"], missing)
+
+    def test_diary_task_observations_are_optional_report_only_snapshots(self) -> None:
+        state = copy.deepcopy(load_json(FIXTURES / "fresh-account.json"))
+        validate_account_state(state)
+
+        state["diary_task_observations"] = {
+            "diary-task:ardougne:ardougne-easy-steal-cake": {
+                "observed_at": "2026-08-22T14:00:00Z",
+                "status": "in_progress",
+                "mode": "combat",
+                "completion_confirmed": False,
+                "encounter_key": "ardougne-market-stall",
+                "qualifying_successes": 0,
+            },
+            "diary-task:ardougne:ardougne-easy-sell-silk": {
+                "observed_at": "2026-08-22T14:00:00Z",
+                "status": "in_progress",
+                "mode": "rng",
+                "completion_confirmed": False,
+                "qualifying_event_confirmed": False,
+                "unique_item_observation_key": "silk",
+            },
+            "diary-task:ardougne:ardougne-medium-harvest-strawberries": {
+                "observed_at": "2026-08-22T14:00:00Z",
+                "status": "in_progress",
+                "mode": "crop",
+                "completion_confirmed": False,
+                "patch_id": "ardougne-allotment",
+                "ready_observed": False,
+                "harvest_confirmed": False,
+            },
+            "diary-task:ardougne:ardougne-medium-cast-ardougne-teleport": {
+                "observed_at": "2026-08-22T14:00:00Z",
+                "status": "in_progress",
+                "mode": "daily",
+                "completion_confirmed": False,
+                "capability_key": "ardougne-teleport",
+                "availability_state": "cooldown",
+                "ready_at": "2026-08-22T15:00:00Z",
+            },
+            "diary-task:ardougne:ardougne-medium-balloon-castle-wars": {
+                "observed_at": "2026-08-22T14:00:00Z",
+                "status": "in_progress",
+                "mode": "charge",
+                "completion_confirmed": False,
+                "item_observation_key": "balloon-log-supply",
+                "charges_before": 2,
+                "charges_after": 1,
+            },
+            "diary-task:ardougne:ardougne-easy-start-fishing-trawler": {
+                "observed_at": "2026-08-22T14:00:00Z",
+                "status": "completed",
+                "mode": "team",
+                "completion_confirmed": True,
+                "activity_key": "fishing-trawler",
+                "role": None,
+                "credit_or_points": 50,
+            },
+        }
+        original = copy.deepcopy(state)
+
+        validate_account_state(state)
+        report = report_diary_task_observations(state)
+        results = {result["id"]: result for result in evaluate_actions(self.actions_document, state)}
+
+        self.assertEqual(state["diary_task_observations"], report["observations"])
+        self.assertEqual(6, report["observation_count"])
+        for key in (
+            "milestones_inferred",
+            "diary_tiers_inferred",
+            "completed_actions_inferred",
+            "inventory_inferred",
+            "counters_inferred",
+            "action_eligibility_inferred",
+        ):
+            self.assertFalse(report[key])
+        self.assertEqual("blocked", results["action:claim-ardougne-cloak"]["status"])
+        self.assertEqual(original, state)
+        self.assertEqual([], state["milestones"])
+        self.assertEqual([], state["completed_actions"])
+        self.assertTrue(all(tier == "none" for tier in state["diary_tiers"].values()))
+
+    def test_diary_task_observations_reject_invalid_region_task_status_and_mode_shape(self) -> None:
+        state = copy.deepcopy(load_json(FIXTURES / "fresh-account.json"))
+        key = "diary-task:ardougne:ardougne-easy-steal-cake"
+        observation = {
+            "observed_at": "2026-08-22T14:00:00Z",
+            "status": "in_progress",
+            "mode": "combat",
+            "completion_confirmed": False,
+            "encounter_key": "ardougne-market-stall",
+            "qualifying_successes": 0,
+        }
+
+        state["diary_task_observations"] = {key.replace("ardougne", "tirannwn", 1): observation}
+        with self.assertRaisesRegex(ValueError, "invalid diary region"):
+            validate_account_state(state)
+
+        state["diary_task_observations"] = {"diary-task:ardougne:not-a-real-task": observation}
+        with self.assertRaisesRegex(ValueError, "unknown diary task"):
+            validate_account_state(state)
+
+        invalid_status = copy.deepcopy(observation)
+        invalid_status["status"] = "ready"
+        state["diary_task_observations"] = {key: invalid_status}
+        with self.assertRaisesRegex(ValueError, "status is invalid"):
+            validate_account_state(state)
+
+        invalid_shape = copy.deepcopy(observation)
+        invalid_shape["unexpected"] = True
+        state["diary_task_observations"] = {key: invalid_shape}
+        with self.assertRaisesRegex(ValueError, "invalid fields for its observation mode"):
+            validate_account_state(state)
+
+    def test_wilderness_elite_staged_observation_is_report_only_and_strict(self) -> None:
+        state = copy.deepcopy(load_json(FIXTURES / "fresh-account.json"))
+        key = "diary-task:wilderness:wilderness-elite-kill-big-three"
+        observation = {
+            "observed_at": "2026-08-22T14:00:00Z",
+            "status": "in_progress",
+            "mode": "staged",
+            "completion_confirmed": False,
+            "stage_ids": ["callisto_or_artio", "venenatis_or_spindel", "vetion_or_calvarion"],
+            "completed_stage_ids": ["callisto_or_artio", "venenatis_or_spindel"],
+            "invalidated_by_diary_update": False,
+            "reset_observed_at": None,
+        }
+        state["diary_task_observations"] = {key: observation}
+        validate_account_state(state)
+        report = report_diary_task_observations(state)
+        self.assertEqual(observation, report["wilderness_elite_big_three"])
+        self.assertFalse(report["wilderness_elite_big_three_durable_boss_kills_inferred"])
+        self.assertEqual([], state["milestones"])
+        self.assertEqual("none", state["diary_tiers"]["Wilderness"])
+
+        invalid_mode = copy.deepcopy(observation)
+        invalid_mode["mode"] = "combat"
+        del invalid_mode["stage_ids"]
+        del invalid_mode["completed_stage_ids"]
+        del invalid_mode["invalidated_by_diary_update"]
+        del invalid_mode["reset_observed_at"]
+        invalid_mode["encounter_key"] = "callisto"
+        invalid_mode["qualifying_successes"] = 3
+        state["diary_task_observations"] = {key: invalid_mode}
+        with self.assertRaisesRegex(ValueError, "must use staged observation mode"):
+            validate_account_state(state)
+
+        invalid_stages = copy.deepcopy(observation)
+        invalid_stages["stage_ids"] = ["callisto_or_artio"]
+        invalid_stages["completed_stage_ids"] = ["callisto_or_artio"]
+        state["diary_task_observations"] = {key: invalid_stages}
+        with self.assertRaisesRegex(ValueError, "must match the three Wilderness boss families"):
+            validate_account_state(state)
+
+        invalid_reset = copy.deepcopy(observation)
+        invalid_reset["status"] = "reset"
+        state["diary_task_observations"] = {key: invalid_reset}
+        with self.assertRaisesRegex(ValueError, "requires an observed diary-update invalidation"):
+            validate_account_state(state)
 
     def test_kourend_memoir_is_a_nullable_strict_account_observation(self) -> None:
         state = copy.deepcopy(load_json(FIXTURES / "fresh-account.json"))

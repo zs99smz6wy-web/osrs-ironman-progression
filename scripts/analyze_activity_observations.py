@@ -8,7 +8,12 @@ import json
 from pathlib import Path
 from typing import Any
 
-from evaluate_progression import DEFAULT_STATE, load_json, validate_account_state
+from evaluate_progression import (
+    DEFAULT_STATE,
+    load_json,
+    report_diary_task_observations,
+    validate_account_state,
+)
 
 
 MOON_EQUIPMENT_SET_IDS = {
@@ -52,6 +57,7 @@ def analyze_activity_observations(account_state: dict[str, Any]) -> dict[str, An
         "perilous_moons_observation": copy.deepcopy(account_state["perilous_moons_observation"]),
         "moon_equipment_observations": moon_equipment,
         "farming_recurrence_observation": copy.deepcopy(account_state["farming_recurrence_observation"]),
+        "diary_task_observation_report": report_diary_task_observations(account_state),
         "clocks_advanced": False,
         "growth_inferred": False,
         "readiness_inferred": False,
@@ -59,6 +65,9 @@ def analyze_activity_observations(account_state: dict[str, Any]) -> dict[str, An
         "reclaim_fee_calculated": False,
         "set_completion_inferred": False,
         "throughput_inferred": False,
+        "diary_task_milestones_inferred": False,
+        "diary_tiers_inferred": False,
+        "wilderness_elite_big_three_durable_boss_kills_inferred": False,
     }
 
 
@@ -86,6 +95,7 @@ def main() -> int:
         "Farming recurrence observation: "
         f"{'yes' if result['farming_recurrence_observation'] is not None else 'no'}"
     )
+    print(f"Diary task observations: {result['diary_task_observation_report']['observation_count']}")
     print("Clocks advanced: false")
     print("Readiness inferred: false")
     return 0

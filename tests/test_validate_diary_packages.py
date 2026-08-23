@@ -19,6 +19,10 @@ class DiaryPackageValidationTests(unittest.TestCase):
         self.assertEqual(12, report["packages"])
         self.assertEqual(488, report["tasks"])
         self.assertEqual(
+            ["action-integration-decision.json", "integration-manifest.json"],
+            report["recognized_non_package_artifacts"],
+        )
+        self.assertEqual(
             {
                 "ardougne",
                 "falador",

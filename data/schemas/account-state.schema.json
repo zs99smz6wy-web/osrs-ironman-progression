@@ -18,6 +18,73 @@
         "Agility": {"type": "integer", "minimum": 0, "maximum": 200000000}, "Attack": {"type": "integer", "minimum": 0, "maximum": 200000000}, "Construction": {"type": "integer", "minimum": 0, "maximum": 200000000}, "Cooking": {"type": "integer", "minimum": 0, "maximum": 200000000}, "Crafting": {"type": "integer", "minimum": 0, "maximum": 200000000}, "Defence": {"type": "integer", "minimum": 0, "maximum": 200000000}, "Farming": {"type": "integer", "minimum": 0, "maximum": 200000000}, "Firemaking": {"type": "integer", "minimum": 0, "maximum": 200000000}, "Fishing": {"type": "integer", "minimum": 0, "maximum": 200000000}, "Fletching": {"type": "integer", "minimum": 0, "maximum": 200000000}, "Herblore": {"type": "integer", "minimum": 0, "maximum": 200000000}, "Hitpoints": {"type": "integer", "minimum": 0, "maximum": 200000000}, "Hunter": {"type": "integer", "minimum": 0, "maximum": 200000000}, "Magic": {"type": "integer", "minimum": 0, "maximum": 200000000}, "Mining": {"type": "integer", "minimum": 0, "maximum": 200000000}, "Prayer": {"type": "integer", "minimum": 0, "maximum": 200000000}, "Ranged": {"type": "integer", "minimum": 0, "maximum": 200000000}, "Runecraft": {"type": "integer", "minimum": 0, "maximum": 200000000}, "Sailing": {"type": "integer", "minimum": 0, "maximum": 200000000}, "Slayer": {"type": "integer", "minimum": 0, "maximum": 200000000}, "Smithing": {"type": "integer", "minimum": 0, "maximum": 200000000}, "Strength": {"type": "integer", "minimum": 0, "maximum": 200000000}, "Thieving": {"type": "integer", "minimum": 0, "maximum": 200000000}, "Woodcutting": {"type": "integer", "minimum": 0, "maximum": 200000000}
       },
       "additionalProperties": false
+    },
+    "nullableNonNegativeInteger": {"type": ["integer", "null"], "minimum": 0},
+    "nullableTrimmedString": {"type": ["string", "null"], "minLength": 1, "pattern": "^\\S(?:.*\\S)?$"},
+    "nullableBoolean": {"type": ["boolean", "null"]},
+    "nullableTimestamp": {"type": ["string", "null"], "format": "date-time"},
+    "diaryTaskObservationBase": {
+      "type": "object",
+      "required": ["observed_at", "status", "mode", "completion_confirmed"],
+      "properties": {
+        "observed_at": {"type": "string", "format": "date-time"},
+        "status": {"type": "string", "enum": ["unknown", "in_progress", "completed", "reset"]},
+        "mode": {"type": "string", "enum": ["combat", "rng", "crop", "daily", "charge", "team", "staged"]},
+        "completion_confirmed": {"$ref": "#/$defs/nullableBoolean"}
+      }
+    },
+    "diaryTaskObservation": {
+      "oneOf": [
+        {
+          "allOf": [
+            {"$ref": "#/$defs/diaryTaskObservationBase"},
+            {"type": "object", "required": ["encounter_key", "qualifying_successes"], "properties": {"mode": {"const": "combat"}, "encounter_key": {"$ref": "#/$defs/nullableTrimmedString"}, "qualifying_successes": {"$ref": "#/$defs/nullableNonNegativeInteger"}}}
+          ],
+          "unevaluatedProperties": false
+        },
+        {
+          "allOf": [
+            {"$ref": "#/$defs/diaryTaskObservationBase"},
+            {"type": "object", "required": ["qualifying_event_confirmed", "unique_item_observation_key"], "properties": {"mode": {"const": "rng"}, "qualifying_event_confirmed": {"$ref": "#/$defs/nullableBoolean"}, "unique_item_observation_key": {"$ref": "#/$defs/nullableTrimmedString"}}}
+          ],
+          "unevaluatedProperties": false
+        },
+        {
+          "allOf": [
+            {"$ref": "#/$defs/diaryTaskObservationBase"},
+            {"type": "object", "required": ["patch_id", "ready_observed", "harvest_confirmed"], "properties": {"mode": {"const": "crop"}, "patch_id": {"$ref": "#/$defs/nullableTrimmedString"}, "ready_observed": {"$ref": "#/$defs/nullableBoolean"}, "harvest_confirmed": {"$ref": "#/$defs/nullableBoolean"}}}
+          ],
+          "unevaluatedProperties": false
+        },
+        {
+          "allOf": [
+            {"$ref": "#/$defs/diaryTaskObservationBase"},
+            {"type": "object", "required": ["capability_key", "availability_state", "ready_at"], "properties": {"mode": {"const": "daily"}, "capability_key": {"$ref": "#/$defs/nullableTrimmedString"}, "availability_state": {"type": ["string", "null"], "enum": ["needs_inputs", "in_progress", "ready", "cooldown", "unknown", null]}, "ready_at": {"$ref": "#/$defs/nullableTimestamp"}}}
+          ],
+          "unevaluatedProperties": false
+        },
+        {
+          "allOf": [
+            {"$ref": "#/$defs/diaryTaskObservationBase"},
+            {"type": "object", "required": ["item_observation_key", "charges_before", "charges_after"], "properties": {"mode": {"const": "charge"}, "item_observation_key": {"$ref": "#/$defs/nullableTrimmedString"}, "charges_before": {"$ref": "#/$defs/nullableNonNegativeInteger"}, "charges_after": {"$ref": "#/$defs/nullableNonNegativeInteger"}}}
+          ],
+          "unevaluatedProperties": false
+        },
+        {
+          "allOf": [
+            {"$ref": "#/$defs/diaryTaskObservationBase"},
+            {"type": "object", "required": ["activity_key", "role", "credit_or_points"], "properties": {"mode": {"const": "team"}, "activity_key": {"$ref": "#/$defs/nullableTrimmedString"}, "role": {"$ref": "#/$defs/nullableTrimmedString"}, "credit_or_points": {"$ref": "#/$defs/nullableNonNegativeInteger"}}}
+          ],
+          "unevaluatedProperties": false
+        },
+        {
+          "allOf": [
+            {"$ref": "#/$defs/diaryTaskObservationBase"},
+            {"type": "object", "required": ["stage_ids", "completed_stage_ids", "invalidated_by_diary_update", "reset_observed_at"], "properties": {"mode": {"const": "staged"}, "stage_ids": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}, "uniqueItems": true}, "completed_stage_ids": {"type": "array", "items": {"type": "string", "minLength": 1}, "uniqueItems": true}, "invalidated_by_diary_update": {"$ref": "#/$defs/nullableBoolean"}, "reset_observed_at": {"$ref": "#/$defs/nullableTimestamp"}}}
+          ],
+          "unevaluatedProperties": false
+        }
+      ]
     }
   },
   "required": ["skills", "skill_xp", "quests_completed", "completed_actions", "transport_flags", "milestones", "gear_thresholds", "items", "resources", "counters", "passive_loops", "recurring_observations", "kingdom_observation", "combat_readiness_observation", "encounter_observations", "slayer_task", "unique_item_observations", "sailing_observation", "perilous_moons_observation", "farming_recurrence_observation", "diary_tiers", "kourend_memoir", "attention_window", "notable_drops", "preferences", "cash_commitments"],
@@ -277,6 +344,11 @@
       "additionalProperties": false
     },
     "diary_tiers": {"type": "object"},
+    "diary_task_observations": {
+      "type": "object",
+      "propertyNames": {"pattern": "^diary-task:(ardougne|desert|falador|fremennik|kandarin|karamja|kourend-kebos|lumbridge-draynor|morytania|varrock|western-provinces|wilderness):[a-z0-9]+(?:-[a-z0-9]+)*$"},
+      "additionalProperties": {"$ref": "#/$defs/diaryTaskObservation"}
+    },
     "kourend_memoir": {"type": ["object", "null"]},
     "attention_window": {
       "type": "object",

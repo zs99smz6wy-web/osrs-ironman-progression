@@ -200,6 +200,32 @@ class AnalyzeActivityObservationsTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "must be RFC 3339 or null"):
             validate_account_state(state)
 
+    def test_diary_task_observations_are_reported_without_progress_inference(self) -> None:
+        self.state["diary_task_observations"] = {
+            "diary-task:wilderness:wilderness-elite-kill-big-three": {
+                "observed_at": "2026-08-22T14:00:00Z",
+                "status": "in_progress",
+                "mode": "staged",
+                "completion_confirmed": False,
+                "stage_ids": ["callisto_or_artio", "venenatis_or_spindel", "vetion_or_calvarion"],
+                "completed_stage_ids": ["callisto_or_artio"],
+                "invalidated_by_diary_update": False,
+                "reset_observed_at": None,
+            }
+        }
+        original = copy.deepcopy(self.state)
+
+        result = analyze_activity_observations(self.state)
+
+        self.assertEqual(
+            self.state["diary_task_observations"],
+            result["diary_task_observation_report"]["observations"],
+        )
+        self.assertFalse(result["diary_task_observation_report"]["milestones_inferred"])
+        self.assertFalse(result["diary_task_observation_report"]["diary_tiers_inferred"])
+        self.assertFalse(result["wilderness_elite_big_three_durable_boss_kills_inferred"])
+        self.assertEqual(original, self.state)
+
 
 if __name__ == "__main__":
     unittest.main()

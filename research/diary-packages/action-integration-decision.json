@@ -2,9 +2,9 @@
   "decision_schema_version": 1,
   "package_type": "diary-action-integration-decision",
   "decision_id": "W7-diary-action-and-observation-contract",
-  "status": "recommended-design",
+  "status": "implemented-w7-observation-boundary",
   "audited_at": "2026-08-22",
-  "scope": "Research-only design decision for W7. It resolves blockers B003, B004, B005, B007, and B008 without creating production actions, graph records, account-state fields, routes, scores, commits, or pushes.",
+  "scope": "W7's bounded implementation preserves the no-generated-action and no-claim-derivation policy. It adds only optional report-only diary task observations, their validation/reporting support, verified alias documentation, and focused validator coverage; it creates no diary task actions, claim actions, graph records, routes, scores, or inferred account effects.",
   "inputs": {
     "manifest": "research/diary-packages/integration-manifest.json",
     "integrated_fact_files": [
@@ -152,7 +152,7 @@
     },
     {
       "id": "B007-observation-model-gaps",
-      "decision": "Do not make an observation an action requirement or graph producer. Reuse existing strict snapshots where they fit, and introduce one future diary_task_observations field only when a player-import workflow needs to preserve a task-specific external completion record.",
+      "decision": "Do not make an observation an action requirement or graph producer. Reuse existing strict snapshots where they fit, and provide one optional diary_task_observations field only for player-imported task-specific external completion records.",
       "existing_observation_ownership": [
         {
           "boundary": "combat and encounter completion",
@@ -186,7 +186,7 @@
         }
       ],
       "future_single_field_contract": {
-        "when_to_add": "Only when importing a player-confirmed diary-task record is a real user workflow. Do not add it merely to unblock generated actions.",
+        "when_to_add": "Implemented as an optional player-import field. It does not unblock generated actions.",
         "field": "diary_task_observations",
         "key": "canonical task key, for example diary-task:wilderness:wilderness-elite-kill-big-three",
         "common_fields": {
@@ -305,7 +305,7 @@
     "account_state": [
       "Do not replace, rename, or derive account_state.diary_tiers. Existing snapshots with a confirmed tier remain valid even when no diary task milestones are present.",
       "Do not add diary task milestones retroactively from diary_tiers, completed_actions, quest lists, gear, counters, or inventory.",
-      "If the future diary_task_observations field is introduced, make it required in the strict account schema only with an empty-object default added together to graph/account-state.example.json and every fixture. Existing snapshots migrate by adding an empty object; no observation is inferred."
+      "diary_task_observations is optional in the strict account schema. Existing snapshots remain valid without it, and omitted state remains unknown; no empty object or observation is inferred."
     ],
     "actions": [
       "Keep the three listed existing task action IDs and milestone keys stable; do not rename them to the proposed generic pattern.",

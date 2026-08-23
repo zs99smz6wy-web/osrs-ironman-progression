@@ -1,7 +1,9 @@
 from __future__ import annotations
 
 import argparse
+import copy
 from datetime import datetime
+from functools import lru_cache
 import json
 from pathlib import Path
 import re
@@ -80,6 +82,24 @@ HESPORI_OBSERVATION_FIELDS = {"seed_present", "planted_at", "state", "last_defea
 HESPORI_STATES = {"unknown", "seeded", "growing", "ready", "defeated", "harvested"}
 ANIMA_PATCH_FIELDS = {"seed_id", "planted_at", "state", "active_effect", "ready_observed"}
 ANIMA_PATCH_STATES = {"unknown", "active", "expired", "cleared"}
+DIARY_TASK_OBSERVATION_COMMON_FIELDS = {"observed_at", "status", "mode", "completion_confirmed"}
+DIARY_TASK_OBSERVATION_STATUSES = {"unknown", "in_progress", "completed", "reset"}
+DIARY_TASK_OBSERVATION_MODES = {"combat", "rng", "crop", "daily", "charge", "team", "staged"}
+DIARY_TASK_OBSERVATION_MODE_FIELDS = {
+    "combat": {"encounter_key", "qualifying_successes"},
+    "rng": {"qualifying_event_confirmed", "unique_item_observation_key"},
+    "crop": {"patch_id", "ready_observed", "harvest_confirmed"},
+    "daily": {"capability_key", "availability_state", "ready_at"},
+    "charge": {"item_observation_key", "charges_before", "charges_after"},
+    "team": {"activity_key", "role", "credit_or_points"},
+    "staged": {"stage_ids", "completed_stage_ids", "invalidated_by_diary_update", "reset_observed_at"},
+}
+WILDERNESS_ELITE_BIG_THREE_TASK_KEY = "diary-task:wilderness:wilderness-elite-kill-big-three"
+WILDERNESS_ELITE_BIG_THREE_STAGE_IDS = (
+    "callisto_or_artio",
+    "venenatis_or_spindel",
+    "vetion_or_calvarion",
+)
 SLAYER_TASK_FIELDS = {
     "target", "remaining", "initial_count", "master", "streak", "points",
     "blocked_targets", "observed_at",
@@ -119,6 +139,34 @@ RFC_3339_TIMESTAMP = re.compile(
 def load_json(path: str | Path) -> dict[str, Any]:
     with Path(path).open(encoding="utf-8") as handle:
         return json.load(handle)
+
+
+@lru_cache
+def diary_task_catalog() -> tuple[frozenset[str], frozenset[str]]:
+    """Read canonical task keys from the integrated factual diary records."""
+    regions: set[str] = set()
+    task_keys: set[str] = set()
+    for path in sorted((ROOT / "data" / "facts").glob("diary-factual-*.json")):
+        document = load_json(path)
+        for record in document.get("records", []):
+            record_id = record.get("id") if isinstance(record, dict) else None
+            if not isinstance(record_id, str) or not record_id.startswith("diary-factual-"):
+                continue
+            region_slug = record_id.removeprefix("diary-factual-")
+            task_records = record.get("tasks", record.get("task_records", []))
+            if not isinstance(task_records, list):
+                continue
+            regions.add(region_slug)
+            for task in task_records:
+                if not isinstance(task, dict):
+                    continue
+                task_id = task.get("source_task_id", task.get("package_task_id"))
+                if not isinstance(task_id, str):
+                    continue
+                key = task.get("canonical_task_key", f"diary-task:{region_slug}:{task_id}")
+                if isinstance(key, str):
+                    task_keys.add(key)
+    return frozenset(regions), frozenset(task_keys)
 
 
 def _is_rfc_3339_timestamp(value: Any) -> bool:
@@ -176,6 +224,108 @@ def _validate_unique_trimmed_strings(values: Any, context: str) -> None:
         or len(values) != len(set(values))
     ):
         raise ValueError(f"{context} must be unique trimmed strings")
+
+
+def _validate_diary_task_observations(observations: Any) -> None:
+    if observations is None:
+        return
+    if not isinstance(observations, dict):
+        raise ValueError("Account state diary_task_observations must be an object when supplied")
+
+    region_slugs, canonical_task_keys = diary_task_catalog()
+    for task_key, observation in observations.items():
+        context = f"Account state diary_task_observations.{task_key}"
+        if not isinstance(task_key, str) or not task_key.strip() or task_key != task_key.strip():
+            raise ValueError("Account state diary_task_observations has an invalid task key")
+        task_key_parts = task_key.split(":", 2)
+        if len(task_key_parts) != 3 or task_key_parts[0] != "diary-task" or not task_key_parts[2]:
+            raise ValueError(f"{context} must use a canonical diary-task:<region>:<task> key")
+        if task_key_parts[1] not in region_slugs:
+            raise ValueError(f"{context} has an invalid diary region")
+        if task_key not in canonical_task_keys:
+            raise ValueError(f"{context} references an unknown diary task")
+        if not isinstance(observation, dict):
+            raise ValueError(f"{context} must be an object")
+
+        mode = observation.get("mode")
+        expected_fields = DIARY_TASK_OBSERVATION_COMMON_FIELDS | DIARY_TASK_OBSERVATION_MODE_FIELDS.get(mode, set())
+        if mode not in DIARY_TASK_OBSERVATION_MODES or set(observation) != expected_fields:
+            raise ValueError(f"{context} has invalid fields for its observation mode")
+        if not _is_rfc_3339_timestamp(observation["observed_at"]):
+            raise ValueError(f"{context}.observed_at must be RFC 3339")
+        status = observation["status"]
+        if status not in DIARY_TASK_OBSERVATION_STATUSES:
+            raise ValueError(f"{context}.status is invalid")
+        _validate_nullable_boolean(observation["completion_confirmed"], f"{context}.completion_confirmed")
+        if status == "completed" and observation["completion_confirmed"] is not True:
+            raise ValueError(f"{context}.completed status requires completion_confirmed true")
+        if status != "completed" and observation["completion_confirmed"] is True:
+            raise ValueError(f"{context}.completion_confirmed true requires completed status")
+        if status == "unknown" and observation["completion_confirmed"] is not None:
+            raise ValueError(f"{context}.unknown status requires null completion_confirmed")
+
+        if mode == "combat":
+            _validate_nullable_trimmed_string(observation["encounter_key"], f"{context}.encounter_key")
+            _validate_nullable_non_negative_integer(
+                observation["qualifying_successes"], f"{context}.qualifying_successes"
+            )
+        elif mode == "rng":
+            _validate_nullable_boolean(
+                observation["qualifying_event_confirmed"], f"{context}.qualifying_event_confirmed"
+            )
+            _validate_nullable_trimmed_string(
+                observation["unique_item_observation_key"], f"{context}.unique_item_observation_key"
+            )
+        elif mode == "crop":
+            _validate_nullable_trimmed_string(observation["patch_id"], f"{context}.patch_id")
+            _validate_nullable_boolean(observation["ready_observed"], f"{context}.ready_observed")
+            _validate_nullable_boolean(observation["harvest_confirmed"], f"{context}.harvest_confirmed")
+        elif mode == "daily":
+            _validate_nullable_trimmed_string(observation["capability_key"], f"{context}.capability_key")
+            if observation["availability_state"] is not None and observation["availability_state"] not in RECURRING_OBSERVATION_STATES:
+                raise ValueError(f"{context}.availability_state is invalid")
+            _validate_nullable_timestamp(observation["ready_at"], f"{context}.ready_at")
+        elif mode == "charge":
+            _validate_nullable_trimmed_string(
+                observation["item_observation_key"], f"{context}.item_observation_key"
+            )
+            _validate_nullable_non_negative_integer(observation["charges_before"], f"{context}.charges_before")
+            _validate_nullable_non_negative_integer(observation["charges_after"], f"{context}.charges_after")
+        elif mode == "team":
+            _validate_nullable_trimmed_string(observation["activity_key"], f"{context}.activity_key")
+            _validate_nullable_trimmed_string(observation["role"], f"{context}.role")
+            _validate_nullable_non_negative_integer(observation["credit_or_points"], f"{context}.credit_or_points")
+        else:
+            _validate_unique_trimmed_strings(observation["stage_ids"], f"{context}.stage_ids")
+            completed_stage_ids = observation["completed_stage_ids"]
+            if (
+                not isinstance(completed_stage_ids, list)
+                or any(
+                    not isinstance(stage_id, str) or not stage_id.strip() or stage_id != stage_id.strip()
+                    for stage_id in completed_stage_ids
+                )
+                or len(completed_stage_ids) != len(set(completed_stage_ids))
+                or not set(completed_stage_ids).issubset(observation["stage_ids"])
+            ):
+                raise ValueError(f"{context}.completed_stage_ids must be a unique subset of stage_ids")
+            _validate_nullable_boolean(
+                observation["invalidated_by_diary_update"], f"{context}.invalidated_by_diary_update"
+            )
+            _validate_nullable_timestamp(observation["reset_observed_at"], f"{context}.reset_observed_at")
+            reset_observed = observation["reset_observed_at"] is not None
+            invalidated = observation["invalidated_by_diary_update"]
+            if status == "reset" and (invalidated is not True or not reset_observed):
+                raise ValueError(f"{context}.reset status requires an observed diary-update invalidation")
+            if status != "reset" and (invalidated is True or reset_observed):
+                raise ValueError(f"{context}.diary-update invalidation requires reset status")
+            if status == "completed" and set(completed_stage_ids) != set(observation["stage_ids"]):
+                raise ValueError(f"{context}.completed staged status requires every declared stage")
+
+        if task_key == WILDERNESS_ELITE_BIG_THREE_TASK_KEY:
+            if mode != "staged":
+                raise ValueError(f"{context} must use staged observation mode")
+            if tuple(observation["stage_ids"]) != WILDERNESS_ELITE_BIG_THREE_STAGE_IDS:
+                raise ValueError(f"{context}.stage_ids must match the three Wilderness boss families")
 
 
 def validate_account_state(state: dict[str, Any]) -> None:
@@ -587,6 +737,8 @@ def validate_account_state(state: dict[str, Any]) -> None:
         if tier not in DIARY_TIER_ORDER:
             raise ValueError(f"Account state diary_tiers.{region} has an invalid tier")
 
+    _validate_diary_task_observations(state.get("diary_task_observations"))
+
     kourend_memoir = state["kourend_memoir"]
     if kourend_memoir is not None:
         if not isinstance(kourend_memoir, dict) or set(kourend_memoir) != KOUREND_MEMOIR_FIELDS:
@@ -769,6 +921,26 @@ def evaluate_actions(actions_document: dict[str, Any], account_state: dict[str, 
     return results
 
 
+def report_diary_task_observations(account_state: dict[str, Any]) -> dict[str, Any]:
+    """Return imported diary-task snapshots without deriving durable progress."""
+    validate_account_state(account_state)
+    observations = copy.deepcopy(account_state.get("diary_task_observations", {}))
+    return {
+        "observations": observations,
+        "observation_count": len(observations),
+        "milestones_inferred": False,
+        "diary_tiers_inferred": False,
+        "completed_actions_inferred": False,
+        "inventory_inferred": False,
+        "counters_inferred": False,
+        "action_eligibility_inferred": False,
+        "wilderness_elite_big_three": copy.deepcopy(
+            observations.get(WILDERNESS_ELITE_BIG_THREE_TASK_KEY)
+        ),
+        "wilderness_elite_big_three_durable_boss_kills_inferred": False,
+    }
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="Evaluate verified progression actions for an account state.")
     parser.add_argument("state", nargs="?", default=DEFAULT_STATE, type=Path)
@@ -776,9 +948,11 @@ def main() -> int:
     parser.add_argument("--json", action="store_true", help="Emit machine-readable JSON.")
     args = parser.parse_args()
 
-    results = evaluate_actions(load_json(args.actions), load_json(args.state))
+    account_state = load_json(args.state)
+    results = evaluate_actions(load_json(args.actions), account_state)
+    diary_observation_report = report_diary_task_observations(account_state)
     if args.json:
-        print(json.dumps({"results": results}, indent=2))
+        print(json.dumps({"results": results, "diary_task_observations": diary_observation_report}, indent=2))
         return 0
 
     for result in results:
@@ -787,6 +961,9 @@ def main() -> int:
             print(f"  - missing: {missing}")
         for missing in result["missing_preparation"]:
             print(f"  - prepare: {missing}")
+    print(f"Diary task observations: {diary_observation_report['observation_count']}")
+    print("Diary task milestones inferred: false")
+    print("Diary tiers inferred: false")
     return 0
 
 

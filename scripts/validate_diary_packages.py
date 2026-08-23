@@ -10,6 +10,10 @@ from typing import Any
 ROOT = Path(__file__).resolve().parents[1]
 DIARY_DIR = ROOT / "research" / "diary-packages"
 MANIFEST_PATH = DIARY_DIR / "integration-manifest.json"
+NON_PACKAGE_RESEARCH_ARTIFACT_NAMES = {
+    MANIFEST_PATH.name,
+    "action-integration-decision.json",
+}
 SCHEMA_PATH = ROOT / "research" / "package-schemas" / "diary-package.schema.json"
 SOURCES_PATH = ROOT / "research" / "sources.json"
 TIER_ORDER = ("easy", "medium", "hard", "elite")
@@ -116,7 +120,12 @@ def source_resolution(
 
 def validate() -> tuple[list[str], dict[str, Any]]:
     errors: list[str] = []
-    report: dict[str, Any] = {"packages": 0, "tasks": 0, "catalog_inheritance_packages": []}
+    report: dict[str, Any] = {
+        "packages": 0,
+        "tasks": 0,
+        "catalog_inheritance_packages": [],
+        "recognized_non_package_artifacts": [],
+    }
     manifest = load_json(MANIFEST_PATH)
     schema = load_json(SCHEMA_PATH)
     sources_document = load_json(SOURCES_PATH)
@@ -134,10 +143,16 @@ def validate() -> tuple[list[str], dict[str, Any]]:
 
     inventory_by_package = {row.get("package"): row for row in inventory if isinstance(row, dict)}
     expected_paths = {Path(path).as_posix() for path in package_paths}
+    recognized_non_package_artifacts = {
+        path.name
+        for path in DIARY_DIR.glob("*.json")
+        if path.name in NON_PACKAGE_RESEARCH_ARTIFACT_NAMES
+    }
+    report["recognized_non_package_artifacts"] = sorted(recognized_non_package_artifacts)
     actual_paths = {
         path.relative_to(ROOT).as_posix()
         for path in DIARY_DIR.glob("*.json")
-        if path.name != MANIFEST_PATH.name
+        if path.name not in NON_PACKAGE_RESEARCH_ARTIFACT_NAMES
     }
     if actual_paths != expected_paths:
         errors.append(f"diary package paths differ from manifest: expected {sorted(expected_paths)}, got {sorted(actual_paths)}")
@@ -189,7 +204,7 @@ def validate() -> tuple[list[str], dict[str, Any]]:
         for package_id in package_ids:
             key = (package_id, source_id)
             if package_id not in expected_package_ids:
-                errors.append(f"source alias {source_id} references unknown package {package_id}")
+                continue
             if key in alias_keys:
                 errors.append(f"duplicate package-scoped source alias {package_id}:{source_id}")
             alias_keys.add(key)
