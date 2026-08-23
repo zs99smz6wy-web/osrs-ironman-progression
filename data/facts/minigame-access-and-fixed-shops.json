@@ -1,0 +1,191 @@
+{
+  "integration_wave": "W2-static-access-and-fixed-shops",
+  "scope": "Verified static entry gates and selected deterministic minigame shop specifications. A listed shop row requires the stated observed balance and a player-confirmed transaction; this factual catalog does not create account transitions, activity outputs, or route recommendations.",
+  "records": [
+    {
+      "id": "minigame-barbarian-assault-static-access-and-shop",
+      "name": "Barbarian Assault static access and selected shop specifications",
+      "category": "minigame",
+      "status": "verified",
+      "verified_at": "2026-08-22",
+      "access": {
+        "membership": true,
+        "tutorial": "Completion of the Barbarian Assault tutorial is required before participation or use of its Grouping teleport. Tutorial completion is player-confirmed.",
+        "entry_fee": {"coins": 0, "consumable_ticket": null},
+        "team_boundary": "A normal game needs five joined players in valid roles. Team availability, invitations, role selection, calls, waves, Queen kills, and success are external observations.",
+        "combat_boundary": "The activity has no universal combat-level entry requirement. Equipment, supplies, and practical combat readiness are never inferred."
+      },
+      "currency_boundary": {
+        "role_honour": "Attacker, Collector, Defender, and Healer honour balances are separate observed balances, each capped at 5,000. W2 does not calculate or award any balance."
+      },
+      "selected_fixed_shop_rows": {
+        "role_level_upgrade": {
+          "per_selected_role_costs": {"level_2": 200, "level_3": 300, "level_4": 400, "level_5": 500, "level_1_to_5_total": 1400},
+          "transaction_condition": "The selected role, current observed role level, exact selected-role honour balance, and confirmed Commander Connad transaction are required."
+        },
+        "fighter_torso": {
+          "cost": {"each_role_honour": 375},
+          "requirements": {"confirmed_penance_queen_kill": true, "Defence_to_equip": 40},
+          "transaction_condition": "All four observed honour balances and the separately observed Queen-kill requirement must be present before a confirmed purchase can establish ownership."
+        }
+      },
+      "source_ids": ["wiki-barbarian-assault", "wiki-barbarian-assault-points-current", "wiki-barbarian-assault-tutorial-current"],
+      "confidence": "high"
+    },
+    {
+      "id": "minigame-giants-foundry-canonical-boundary",
+      "name": "Giants' Foundry W2 canonical ownership boundary",
+      "category": "minigame",
+      "status": "verified",
+      "verified_at": "2026-08-22",
+      "access": {
+        "membership": true,
+        "quest": {"name": "Sleeping Giants", "Smithing": 15},
+        "commission_input_boundary": "A commission needs eligible metal worth at least two bars and a bucket of water or ice gloves to retrieve the moulded preform. The selected metal, mould, quality, mistakes, completion, and reward remain observed."
+      },
+      "canonical_fact_references": [
+        "utility-sleeping-giants-fixed-rewards",
+        "utility-giants-foundry-currency-and-unlocks",
+        "utility-stop-giants-foundry"
+      ],
+      "integration_boundary": "Sleeping Giants access, Foundry reputation, moulds, double ammo mould, Smiths' uniform, and their fixed costs already have canonical factual records. W2 deliberately does not duplicate those records or create a second Foundry purchase model.",
+      "blocked_conflict": "The source-package quality-damage terminology conflict remains unresolved: existing shared wording says minus 5 per mistake while the current package identifies minus 10 quality per damage event. No quality, reputation, coin, XP, input, or completion formula is encoded here.",
+      "source_ids": ["wiki-giants-foundry", "wiki-sleeping-giants", "wiki-smiths-uniform"],
+      "confidence": "high"
+    },
+    {
+      "id": "minigame-mta-static-access-and-canonical-utilities",
+      "name": "Mage Training Arena static access and canonical utility boundary",
+      "category": "minigame",
+      "status": "verified",
+      "verified_at": "2026-08-22",
+      "access": {
+        "membership": true,
+        "first_usable_room_spell_gate": {"Magic": 7, "spell": "Lvl-1 Enchant"},
+        "all_room_spell_gate": {"Magic": 33, "spell": "Telekinetic Grab"},
+        "spellbook": "All four room spells use the Standard spellbook. The active spellbook, runes, room choice, and room performance are observed separately."
+      },
+      "canonical_fact_references": [
+        "utility-stop-mage-training-arena",
+        "mta-rune-pouch",
+        "bones-to-peaches",
+        "diary-lumbridge-draynor-task-utility-branches"
+      ],
+      "integration_boundary": "The canonical MTA records own the Rune pouch and Bones to Peaches exact four-currency costs, one-pouch rule, spell details, and diary linkage. W2 does not duplicate either reward, infer Pizazz, or add a reward transition.",
+      "source_ids": ["wiki-mta", "wiki-pizazz-points-current", "wiki-rune-pouch", "wiki-bones-to-peaches"],
+      "confidence": "high"
+    },
+    {
+      "id": "minigame-mahogany-homes-static-access-and-shop",
+      "name": "Mahogany Homes static access and selected shop specifications",
+      "category": "minigame",
+      "status": "verified",
+      "verified_at": "2026-08-22",
+      "access": {
+        "membership": true,
+        "player_owned_house": "Required; ownership and current location are owned by the existing POH model.",
+        "tier_selection": [
+          {"tier": "Beginner", "Construction": 1, "plank": "plank"},
+          {"tier": "Novice", "Construction": 20, "plank": "oak plank"},
+          {"tier": "Adept", "Construction": 50, "plank": "teak plank"},
+          {"tier": "Expert", "Construction": 70, "plank": "mahogany plank"}
+        ],
+        "boost_boundary": "A visible temporary Construction boost can select a contract tier. An invisible boost such as the crystal saw cannot. Selecting a tier does not establish an NPC assignment, materials, travel, contract completion, points, XP, or future readiness."
+      },
+      "selected_fixed_shop_rows": {
+        "plank_sack": {"carpenter_points": 350},
+        "amys_saw": {"carpenter_points": 500},
+        "carpenters_outfit": {"helmet": 400, "shirt": 800, "trousers": 600, "boots": 200, "total": 2000},
+        "hosidius_blueprints": {"carpenter_points": 2000}
+      },
+      "transaction_boundary": "Each listed purchase requires an observed Carpenter-point balance, the selected exact shop row, and a player-confirmed transaction. Contract assignment, repair/build inputs, tea, completion, XP, and point accrual remain observations.",
+      "canonical_fact_references": ["poh-convenience-foundation"],
+      "source_ids": ["wiki-mahogany-homes-current", "wiki-construction-current"],
+      "confidence": "high"
+    },
+    {
+      "id": "minigame-nightmare-zone-static-access-and-shop",
+      "name": "Nightmare Zone static access and selected shop specifications",
+      "category": "minigame",
+      "status": "verified",
+      "verified_at": "2026-08-22",
+      "access": {
+        "membership": true,
+        "eligible_quest_gate": "At least five completed quests from the current Nightmare Zone eligible roster are required. The five qualifying quests, selected bosses, dream mode, party, coffer payment, combat readiness, and encounter outcome are separately observed."
+      },
+      "selected_fixed_shop_rows": {
+        "scroll_of_redirection": {"nightmare_zone_points": 775, "ironman_purchase_allowed": true},
+        "black_mask_or_slayer_helmet_imbue": {"normal_points": 1250000, "hard_combat_achievements_claimed_points": 625000, "requires_observed_base_item": true},
+        "salve_amulet_imbue": {"normal_points": 800000, "hard_combat_achievements_claimed_points": 400000, "requires_observed_base_item": true, "ardougne_elite_boundary": "Only an observed Nightmare Zone origin can satisfy the diary's Salve requirement."},
+        "ring_of_suffering_imbue": {"normal_points": 725000, "hard_combat_achievements_claimed_points": 362500, "requires_observed_base_item": true},
+        "ring_of_the_gods_or_standard_fremennik_ring_imbue": {"normal_points": 650000, "hard_combat_achievements_claimed_points": 325000, "requires_observed_base_item": true},
+        "granite_ring_imbue": {"normal_points": 500000, "hard_combat_achievements_claimed_points": 250000, "requires_observed_base_item": true}
+      },
+      "transaction_boundary": "Every listed shop result requires an observed NMZ-point balance, an observed selected base item where applicable, the current observed Hard Combat Achievement claim state, and a confirmed transaction. W2 does not calculate points, start a dream, select bosses, or infer an imbue.",
+      "canonical_fact_references": ["residual-transport-network", "ardougne-diary-utility-branches"],
+      "source_ids": ["wiki-nightmare-zone", "wiki-nightmare-zone-upgrades-current", "wiki-salve-amulet-i-current", "wiki-ardougne-diary"],
+      "confidence": "high"
+    },
+    {
+      "id": "minigame-pest-control-static-access-and-shop",
+      "name": "Pest Control static access and selected shop specifications",
+      "category": "minigame",
+      "status": "verified",
+      "verified_at": "2026-08-22",
+      "access": {
+        "membership": true,
+        "entry_fee": {"coins": 0, "consumable_ticket": null},
+        "landers": [
+          {"name": "novice", "minimum_combat_level": 40},
+          {"name": "intermediate", "minimum_combat_level": 70},
+          {"name": "veteran", "minimum_combat_level": 100}
+        ],
+        "session_boundary": "A qualifying lander, boat, team, game start, activity eligibility, win, and commendation-point award are distinct player observations."
+      },
+      "selected_fixed_shop_rows": {
+        "regular_void_set": {
+          "void_knight_top": 250,
+          "void_knight_robe": 250,
+          "void_knight_gloves": 150,
+          "one_combat_helmet": 200,
+          "one_complete_set_total": 850,
+          "purchase_skill_requirements": {"Attack": 42, "Strength": 42, "Defence": 42, "Hitpoints": 42, "Ranged": 42, "Magic": 42, "Prayer": 22}
+        },
+        "elite_void_top": {"commendation_points": 200, "consumes": "observed Void knight top", "requires_observed_western_provinces_hard_diary_claim": true},
+        "elite_void_robe": {"commendation_points": 200, "consumes": "observed Void knight robe", "requires_observed_western_provinces_hard_diary_claim": true}
+      },
+      "transaction_boundary": "Each purchase or upgrade needs the exact observed commendation-point balance, required observed equipment, skill gates, diary claim where applicable, and a confirmed transaction. It does not infer a win, set ownership, equipped state, combat benefit, collection-log entry, or diary completion.",
+      "canonical_fact_references": ["diary-western-provinces-hard-elite-utility"],
+      "source_ids": ["wiki-pest-control", "wiki-void-reward-options-current", "wiki-void-knight-equipment-current", "wiki-elite-void"],
+      "confidence": "high"
+    },
+    {
+      "id": "minigame-hallowed-sepulchre-static-access-and-shop",
+      "name": "Hallowed Sepulchre static access and selected shop specifications",
+      "category": "minigame",
+      "status": "verified",
+      "verified_at": "2026-08-22",
+      "access": {
+        "membership": true,
+        "quest": "Sins of the Father completed is required to enter the Hallowed Sepulchre.",
+        "unboostable_agility_floor_gates": {"floor_1": 52, "floor_2": 62, "floor_3": 72, "floor_4": 82, "floor_5": 92},
+        "entry_fee": {"coins": 0, "consumable_ticket": null},
+        "attempt_boundary": "Arrival, an active course attempt, timer state, obstacle success, damage, death, coffins, loot, marks, and floor completion remain player observations."
+      },
+      "selected_fixed_shop_rows": {
+        "hallowed_crystal_shard": {"hallowed_marks": 1, "consumption": "one per direct lobby teleport"},
+        "hallowed_token": {"hallowed_marks": 10, "consumption": "one per one-minute extension during an observed active attempt"},
+        "hallowed_grapple": {"hallowed_marks": 100},
+        "hallowed_focus": {"hallowed_marks": 100},
+        "hallowed_symbol": {"hallowed_marks": 100},
+        "hallowed_hammer": {"hallowed_marks": 100},
+        "hallowed_ring": {"hallowed_marks": 250},
+        "private_instance_unlock": {"hallowed_marks": 200}
+      },
+      "transaction_boundary": "Every listed row needs the exact observed Hallowed-mark balance, selected item or unlock, and a confirmed Mysterious Hallowed Goods transaction. A purchase does not create an attempt, timer, loot, tool-storage state, collection-log entry, or transport arrival.",
+      "canonical_fact_references": ["poh-convenience-foundation", "residual-transport-network"],
+      "source_ids": ["wiki-hallowed-sepulchre-current", "wiki-sins-of-the-father-current", "wiki-mysterious-hallowed-goods-current", "official-hallowed-sepulchre-private-instances-current"],
+      "confidence": "high"
+    }
+  ]
+}

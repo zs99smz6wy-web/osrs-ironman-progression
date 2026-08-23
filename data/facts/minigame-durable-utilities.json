@@ -1,0 +1,85 @@
+{
+  "integration_wave": "W2-static-access-and-fixed-shops",
+  "scope": "Durable utility descriptions for selected deterministic minigame shop results. Ownership, equipped state, current balances, transactions, charges, collection-log state, and all activity outputs remain explicit observations until supported by a later observation and action wave.",
+  "records": [
+    {
+      "id": "minigame-barbarian-assault-durable-utilities",
+      "name": "Barbarian Assault durable selected shop utilities",
+      "category": "reward",
+      "status": "verified",
+      "verified_at": "2026-08-22",
+      "utilities": {
+        "fighter_torso": {
+          "purchase_specification_reference": "minigame-barbarian-assault-static-access-and-shop.selected_fixed_shop_rows.fighter_torso",
+          "effect": "A Defence-40 melee body item. Its collection-log state and any clue-show use are independently observed."
+        },
+        "role_levels": {
+          "purchase_specification_reference": "minigame-barbarian-assault-static-access-and-shop.selected_fixed_shop_rows.role_level_upgrade",
+          "effect": "Role levels are persistent Barbarian Assault role capabilities. All four level-5 roles are a separately observed prerequisite for the Kandarin elite blackboard task; they do not claim the diary tier."
+        }
+      },
+      "source_ids": ["wiki-barbarian-assault", "wiki-barbarian-assault-points-current"],
+      "confidence": "high"
+    },
+    {
+      "id": "minigame-mahogany-homes-durable-utilities",
+      "name": "Mahogany Homes durable selected shop utilities",
+      "category": "reward",
+      "status": "verified",
+      "verified_at": "2026-08-22",
+      "utilities": {
+        "plank_sack": {"capacity": 28, "effect": "Reusable storage for up to 28 planks; ownership and its actual contents are observed."},
+        "amys_saw": {"effect": "Equipable or wieldable Construction saw that can occupy the off-hand. It does not provide the crystal saw's invisible Construction boost."},
+        "carpenters_outfit": {"worn_piece_bonus_percent": {"helmet": 0.8, "shirt": 0.8, "trousers": 0.6, "boots": 0.3}, "full_worn_set_bonus_percent": 2.5, "boundary": "Piece ownership and worn state are separate observations; no XP output is calculated."},
+        "hosidius_blueprints": {"effect": "Permanently unlocks the Hosidius Wall Kit in the player-owned house.", "canonical_poh_reference": "poh-convenience-foundation"}
+      },
+      "source_ids": ["wiki-mahogany-homes-current", "wiki-construction-current"],
+      "confidence": "high"
+    },
+    {
+      "id": "minigame-nightmare-zone-durable-utilities",
+      "name": "Nightmare Zone durable selected shop utilities",
+      "category": "reward",
+      "status": "verified",
+      "verified_at": "2026-08-22",
+      "utilities": {
+        "imbued_black_mask_or_slayer_helmet": {"effect": "An NMZ imbue upgrades a separately observed eligible base item. Its on-task combat application is not inferred from ownership or a planned task."},
+        "imbued_salve": {"effect": "An NMZ-origin Salve imbue upgrades a separately observed eligible Salve item. Only this confirmed origin can satisfy the Ardougne elite diary's Salve requirement; that task and diary claim remain separate observations."},
+        "imbued_rings": {"effect": "Each selected exact shop row upgrades only its separately observed base ring. Equipping, combat effect, loss, reversal, and any later re-imbue are outside W2."},
+        "scroll_of_redirection": {"effect": "A deterministic stackable transport-planning input. Its actual tablet conversion and transport use remain owned by the existing transport model.", "canonical_transport_reference": "residual-transport-network"}
+      },
+      "source_ids": ["wiki-nightmare-zone-upgrades-current", "wiki-salve-amulet-i-current", "wiki-ardougne-diary"],
+      "confidence": "high"
+    },
+    {
+      "id": "minigame-pest-control-durable-utilities",
+      "name": "Pest Control durable selected shop utilities",
+      "category": "reward",
+      "status": "verified",
+      "verified_at": "2026-08-22",
+      "utilities": {
+        "regular_void_set": {"effect": "The top, robe, gloves, and one combat helmet form a regular Void set only when the required observed pieces are worn. W2 does not infer possession, equipment state, or combat modifiers."},
+        "elite_void_top_and_robe": {"effect": "Each confirmed upgrade transforms its observed regular counterpart after the separately observed Western Provinces hard diary claim. The resulting item continues to count as Void gear; wear state and combat effect remain observed.", "canonical_diary_reference": "diary-western-provinces-hard-elite-utility"}
+      },
+      "source_ids": ["wiki-void-knight-equipment-current", "wiki-elite-void", "wiki-western-provinces-diary"],
+      "confidence": "high"
+    },
+    {
+      "id": "minigame-hallowed-sepulchre-durable-utilities",
+      "name": "Hallowed Sepulchre durable selected shop utilities",
+      "category": "reward",
+      "status": "verified",
+      "verified_at": "2026-08-22",
+      "utilities": {
+        "hallowed_grapple": {"effect": "Guarantees pillar grapples inside the Sepulchre and can be stored with the Mysterious Stranger."},
+        "hallowed_focus": {"effect": "Guarantees and speeds Portal Frame conjuring inside the Sepulchre and can be stored with the Mysterious Stranger."},
+        "hallowed_symbol": {"effect": "Halves Saradomin Brazier sacrifices and speeds Holy-barrier passage inside the Sepulchre; it can be stored with the Mysterious Stranger."},
+        "hallowed_hammer": {"effect": "Prevents nail breakage while repairing Sepulchre broken bridges and can be stored with the Mysterious Stranger."},
+        "hallowed_ring": {"effect": "Prevents direct Sepulchre trap damage and reduces trap-failure time penalty; it can be stored with the Mysterious Stranger."},
+        "private_instance": {"effect": "A one-time 200-mark unlock makes a private Sepulchre instance available. Current instance selection, attempt state, and performance remain observed."}
+      },
+      "source_ids": ["wiki-hallowed-sepulchre-current", "wiki-mysterious-hallowed-goods-current", "official-hallowed-sepulchre-private-instances-current"],
+      "confidence": "high"
+    }
+  ]
+}
