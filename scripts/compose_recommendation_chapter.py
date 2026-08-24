@@ -12,6 +12,7 @@ from analyze_transport_bundles import DEFAULT_TRANSPORT_BUNDLES, analyze_transpo
 from analyze_sailing_economics import DEFAULT_CONTEXTS as DEFAULT_SAILING_ECONOMICS_CONTEXTS, analyze_sailing_economics
 from analyze_durable_utility_items import DEFAULT_CONTEXTS as DEFAULT_DURABLE_UTILITY_CONTEXTS, analyze_durable_utility_items
 from analyze_pvm_readiness import DEFAULT_CONTEXTS as DEFAULT_PVM_READINESS_CONTEXTS, analyze_pvm_readiness
+from analyze_mastering_mixology import analyze_mastering_mixology
 from evaluate_progression import DEFAULT_ACTIONS, DEFAULT_STATE, evaluate_actions, load_json, validate_account_state
 from score_candidates import DEFAULT_CANDIDATES, score_candidates
 
@@ -188,6 +189,7 @@ def compose_recommendation_chapter(
     pvm_readiness = analyze_pvm_readiness(
         load_json(DEFAULT_PVM_READINESS_CONTEXTS), actions_document, account_state
     )
+    mastering_mixology_timing = analyze_mastering_mixology(account_state)
     quest_xp_timing = analyze_quest_xp_timing(
         account_state, actions_document, nodes_document, edges_document
     )
@@ -251,6 +253,7 @@ def compose_recommendation_chapter(
         "sailing_economics_timing": list(sailing_economics.values()),
         "durable_utility_item_timing": durable_utility_items,
         "pvm_readiness": pvm_readiness,
+        "mastering_mixology_timing": mastering_mixology_timing,
         "gaps": {
             "preparation": preparation_gaps[:preparation_limit],
             "preparation_coverage": preparation_coverage,
@@ -269,6 +272,8 @@ def compose_recommendation_chapter(
             "utility_demand_inferred": False,
             "utility_purchase_path_selected": False,
             "pvm_readiness_inferred": False,
+            "mixology_inputs_inferred": False,
+            "mixology_reward_selected": False,
         },
     }
 
@@ -327,6 +332,12 @@ def _print_human_chapter(chapter: dict[str, Any]) -> None:
         print(f"  [{context['readiness_status'].upper()}] {context['name']}")
         print(f"    formal access: {context['factual_access']['status']}")
         print(f"    timing: {context['timing_status']}")
+    mixology = chapter["mastering_mixology_timing"]
+    print("\nMastering Mixology timing:")
+    print(f"  hard access: {mixology['hard_access']['status']}")
+    print(f"  timing: {mixology['timing']['status']}")
+    print(f"  recipe coverage through 81: {mixology['recipe_coverage']['full_recipe_set_available']}")
+    print(f"  stop/re-entry: {mixology['stop_reentry']['status']}")
     preparation_coverage = chapter["gaps"]["preparation_coverage"]
     print(
         "Preparation gaps: "

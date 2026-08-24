@@ -111,6 +111,7 @@ WILDERNESS_ELITE_BIG_THREE_STAGE_IDS = (
 MINIGAME_ACTIVITY_IDS = frozenset({
     "barbarian-assault", "fishing-trawler", "giants-foundry", "guardians-of-the-rift",
     "hallowed-sepulchre", "last-man-standing", "mage-training-arena", "mahogany-homes",
+    "mastering-mixology",
     "motherlode-mine", "nightmare-zone", "pest-control", "pyramid-plunder", "rogues-den",
     "shades-of-mortton", "tempoross", "tithe-farm", "wintertodt",
 })
@@ -159,6 +160,11 @@ MINIGAME_ACTIVITY_CURRENCIES = {
         "currency:mta-enchantment-pizazz", "currency:mta-alchemist-pizazz",
     }),
     "mahogany-homes": frozenset({"currency:mahogany-homes:carpenter-points"}),
+    "mastering-mixology": frozenset({
+        "currency:mixology:mox-resin",
+        "currency:mixology:aga-resin",
+        "currency:mixology:lye-resin",
+    }),
     "motherlode-mine": frozenset({"currency:golden-nuggets"}),
     "nightmare-zone": frozenset({"currency:nightmare-zone:points", "currency:coins"}),
     "pest-control": frozenset({"currency:pest-control:commendation-points", "currency:coins"}),

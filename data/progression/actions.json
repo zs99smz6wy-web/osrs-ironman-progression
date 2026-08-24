@@ -3674,7 +3674,7 @@
       "requirements": {"all": [{"type": "skill_at_least", "key": "Herblore", "value": 60}, {"type": "quest_completed", "key": "Children of the Sun"}, {"type": "resource_at_least", "key": "mixology_mox_resin", "value": 8600}, {"type": "resource_at_least", "key": "mixology_aga_resin", "value": 7000}, {"type": "resource_at_least", "key": "mixology_lye_resin", "value": 9350}]},
       "preparation": {"all": []},
       "completion": {"all": [{"type": "item_at_least", "key": "prescription_goggles", "value": 1}]},
-      "outcomes": [{"type": "item", "key": "prescription_goggles"}],
+      "outcomes": [],
       "repeatable": false,
       "transition": {
         "effects": [{"op": "delta", "state": "resources", "key": "mixology_mox_resin", "amount": -8600, "fact_id": "mastering-mixology-access-session-and-rewards"}, {"op": "delta", "state": "resources", "key": "mixology_aga_resin", "amount": -7000, "fact_id": "mastering-mixology-access-session-and-rewards"}, {"op": "delta", "state": "resources", "key": "mixology_lye_resin", "amount": -9350, "fact_id": "mastering-mixology-access-session-and-rewards"}, {"op": "ensure_min", "state": "items", "key": "prescription_goggles", "value": 1, "fact_id": "mastering-mixology-access-session-and-rewards"}],
@@ -3691,7 +3691,7 @@
       "requirements": {"all": [{"type": "skill_at_least", "key": "Herblore", "value": 60}, {"type": "quest_completed", "key": "Children of the Sun"}, {"type": "resource_at_least", "key": "mixology_mox_resin", "value": 13800}, {"type": "resource_at_least", "key": "mixology_aga_resin", "value": 11200}, {"type": "resource_at_least", "key": "mixology_lye_resin", "value": 15100}]},
       "preparation": {"all": []},
       "completion": {"all": [{"type": "item_at_least", "key": "reagent_pouch", "value": 1}]},
-      "outcomes": [{"type": "item", "key": "reagent_pouch"}],
+      "outcomes": [],
       "repeatable": false,
       "transition": {
         "effects": [{"op": "delta", "state": "resources", "key": "mixology_mox_resin", "amount": -13800, "fact_id": "mastering-mixology-access-session-and-rewards"}, {"op": "delta", "state": "resources", "key": "mixology_aga_resin", "amount": -11200, "fact_id": "mastering-mixology-access-session-and-rewards"}, {"op": "delta", "state": "resources", "key": "mixology_lye_resin", "amount": -15100, "fact_id": "mastering-mixology-access-session-and-rewards"}, {"op": "ensure_min", "state": "items", "key": "reagent_pouch", "value": 1, "fact_id": "mastering-mixology-access-session-and-rewards"}],
@@ -3708,7 +3708,7 @@
       "requirements": {"all": [{"type": "skill_at_least", "key": "Herblore", "value": 60}, {"type": "quest_completed", "key": "Children of the Sun"}, {"type": "resource_at_least", "key": "mixology_mox_resin", "value": 7750}, {"type": "resource_at_least", "key": "mixology_aga_resin", "value": 6300}, {"type": "resource_at_least", "key": "mixology_lye_resin", "value": 8950}]},
       "preparation": {"all": []},
       "completion": {"all": [{"type": "item_at_least", "key": "potion_storage", "value": 1}]},
-      "outcomes": [{"type": "item", "key": "potion_storage"}],
+      "outcomes": [],
       "repeatable": false,
       "transition": {
         "effects": [{"op": "delta", "state": "resources", "key": "mixology_mox_resin", "amount": -7750, "fact_id": "mastering-mixology-access-session-and-rewards"}, {"op": "delta", "state": "resources", "key": "mixology_aga_resin", "amount": -6300, "fact_id": "mastering-mixology-access-session-and-rewards"}, {"op": "delta", "state": "resources", "key": "mixology_lye_resin", "amount": -8950, "fact_id": "mastering-mixology-access-session-and-rewards"}, {"op": "ensure_min", "state": "items", "key": "potion_storage", "value": 1, "fact_id": "mastering-mixology-access-session-and-rewards"}],
@@ -3725,7 +3725,7 @@
       "requirements": {"all": [{"type": "skill_at_least", "key": "Herblore", "value": 60}, {"type": "quest_completed", "key": "Children of the Sun"}, {"type": "resource_at_least", "key": "mixology_mox_resin", "value": 6900}, {"type": "resource_at_least", "key": "mixology_aga_resin", "value": 5650}, {"type": "resource_at_least", "key": "mixology_lye_resin", "value": 7400}]},
       "preparation": {"all": []},
       "completion": {"all": [{"type": "item_at_least", "key": "alchemists_amulet", "value": 1}]},
-      "outcomes": [{"type": "item", "key": "alchemists_amulet"}],
+      "outcomes": [],
       "repeatable": false,
       "transition": {
         "effects": [{"op": "delta", "state": "resources", "key": "mixology_mox_resin", "amount": -6900, "fact_id": "mastering-mixology-access-session-and-rewards"}, {"op": "delta", "state": "resources", "key": "mixology_aga_resin", "amount": -5650, "fact_id": "mastering-mixology-access-session-and-rewards"}, {"op": "delta", "state": "resources", "key": "mixology_lye_resin", "amount": -7400, "fact_id": "mastering-mixology-access-session-and-rewards"}, {"op": "ensure_min", "state": "items", "key": "alchemists_amulet", "value": 1, "fact_id": "mastering-mixology-access-session-and-rewards"}],
@@ -3742,7 +3742,7 @@
       "requirements": {"all": [{"type": "skill_at_least", "key": "Herblore", "value": 60}, {"type": "quest_completed", "key": "Children of the Sun"}, {"type": "resource_at_least", "key": "mixology_mox_resin", "value": 17250}, {"type": "resource_at_least", "key": "mixology_aga_resin", "value": 14000}, {"type": "resource_at_least", "key": "mixology_lye_resin", "value": 18600}]},
       "preparation": {"all": []},
       "completion": {"all": [{"type": "item_at_least", "key": "chugging_barrel", "value": 1}]},
-      "outcomes": [{"type": "item", "key": "chugging_barrel"}],
+      "outcomes": [],
       "repeatable": false,
       "transition": {
         "effects": [{"op": "delta", "state": "resources", "key": "mixology_mox_resin", "amount": -17250, "fact_id": "mastering-mixology-access-session-and-rewards"}, {"op": "delta", "state": "resources", "key": "mixology_aga_resin", "amount": -14000, "fact_id": "mastering-mixology-access-session-and-rewards"}, {"op": "delta", "state": "resources", "key": "mixology_lye_resin", "amount": -18600, "fact_id": "mastering-mixology-access-session-and-rewards"}, {"op": "ensure_min", "state": "items", "key": "chugging_barrel", "value": 1, "fact_id": "mastering-mixology-access-session-and-rewards"}],

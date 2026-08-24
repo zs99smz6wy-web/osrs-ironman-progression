@@ -173,6 +173,9 @@ class ComposeRecommendationChapterTests(unittest.TestCase):
                 "player_chosen_xp_allocated": False,
                 "utility_demand_inferred": False,
                 "utility_purchase_path_selected": False,
+                "pvm_readiness_inferred": False,
+                "mixology_inputs_inferred": False,
+                "mixology_reward_selected": False,
             },
             chapter["boundaries"],
         )

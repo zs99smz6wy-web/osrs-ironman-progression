@@ -635,7 +635,6 @@
     {"id": "item:axe", "kind": "item", "label": "Usable axe"},
     {"id": "activity:shooting-stars", "kind": "activity", "label": "Mine an observed Shooting Star"},
     {"id": "activity:safe-combat-training", "kind": "activity", "label": "Train combat at an observed crab method"},
-    {"id": "condition:mining-10", "kind": "condition", "label": "At least 10 Mining"},
     {"id": "condition:shooting-stars-observed-available", "kind": "condition", "label": "Shooting Star availability observed"},
     {"id": "condition:shooting-stars-observed-safe", "kind": "condition", "label": "Shooting Star safety observed acceptable"},
     {"id": "condition:safe-combat-training-observed-available", "kind": "condition", "label": "Crab method availability observed"},

@@ -99,6 +99,7 @@ class ScoreCandidatesTests(unittest.TestCase):
                 "action:children-of-the-sun",
                 "action:the-restless-ghost",
                 "action:pandemonium",
+                "action:royal-titans",
             },
             ranked_ids,
         )

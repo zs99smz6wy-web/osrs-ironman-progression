@@ -15,11 +15,11 @@ from validate_afk_method_packages import validate  # noqa: E402
 
 
 class AfkMethodPackageValidationTests(unittest.TestCase):
-    def test_pending_manifest_validates_without_research_packages(self) -> None:
+    def test_completed_manifest_validates_all_research_packages(self) -> None:
         errors, report = validate()
         self.assertEqual([], errors)
         self.assertEqual(5, report["planned_packages"])
-        self.assertEqual(0, report["completed_packages"])
+        self.assertEqual(5, report["completed_packages"])
 
     def test_completed_package_rejects_invalid_source_reference(self) -> None:
         root = self.make_completed_fixture()

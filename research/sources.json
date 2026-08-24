@@ -1,6 +1,86 @@
 {
   "sources": [
     {
+      "id": "wiki-royal-titans-current",
+      "publisher": "Old School RuneScape Wiki",
+      "url": "https://oldschool.runescape.wiki/w/Royal_Titans",
+      "kind": "wiki",
+      "checked_at": "2026-08-24",
+      "use": "Current Royal Titans access, encounter, death, loot-choice, and reward mechanics."
+    },
+    {
+      "id": "wiki-royal-titans-strategies-current",
+      "publisher": "Old School RuneScape Wiki",
+      "url": "https://oldschool.runescape.wiki/w/Royal_Titans/Strategies",
+      "kind": "guide",
+      "checked_at": "2026-08-24",
+      "use": "Royal Titans mechanics and non-binding practical readiness context."
+    },
+    {
+      "id": "jagex-royal-titans-release-2025",
+      "publisher": "Jagex, mirrored by Old School RuneScape Wiki",
+      "url": "https://oldschool.runescape.wiki/w/Update:Royal_Titans",
+      "kind": "official_mirror",
+      "checked_at": "2026-08-24",
+      "use": "Official Royal Titans release and reward-function context."
+    },
+    {
+      "id": "wiki-barrows-current",
+      "publisher": "Old School RuneScape Wiki",
+      "url": "https://oldschool.runescape.wiki/w/Barrows",
+      "kind": "wiki",
+      "checked_at": "2026-08-24",
+      "use": "Current Barrows access, encounter, travel, and reward mechanics."
+    },
+    {
+      "id": "wiki-barrows-strategies-current",
+      "publisher": "Old School RuneScape Wiki",
+      "url": "https://oldschool.runescape.wiki/w/Barrows/Strategies",
+      "kind": "guide",
+      "checked_at": "2026-08-24",
+      "use": "Barrows underground mechanics and non-binding practical context."
+    },
+    {
+      "id": "wiki-barrows-chest-current",
+      "publisher": "Old School RuneScape Wiki",
+      "url": "https://oldschool.runescape.wiki/w/Chest_(Barrows)",
+      "kind": "wiki",
+      "checked_at": "2026-08-24",
+      "use": "Current Barrows chest eligibility and variable reward mechanics."
+    },
+    {
+      "id": "wiki-gauntlet",
+      "publisher": "Old School RuneScape Wiki",
+      "url": "https://oldschool.runescape.wiki/w/The_Gauntlet",
+      "kind": "wiki",
+      "checked_at": "2026-08-24",
+      "use": "Current Gauntlet access, instance, preparation, encounter, death, and reward mechanics."
+    },
+    {
+      "id": "wiki-gauntlet-strategies",
+      "publisher": "Old School RuneScape Wiki",
+      "url": "https://oldschool.runescape.wiki/w/The_Gauntlet/Strategies",
+      "kind": "guide",
+      "checked_at": "2026-08-24",
+      "use": "Gauntlet encounter mechanics and non-binding practical readiness context."
+    },
+    {
+      "id": "wiki-reward-chest",
+      "publisher": "Old School RuneScape Wiki",
+      "url": "https://oldschool.runescape.wiki/w/Reward_Chest_(The_Gauntlet)",
+      "kind": "wiki",
+      "checked_at": "2026-08-24",
+      "use": "Current Gauntlet completion and variable reward boundaries."
+    },
+    {
+      "id": "jagex-song-of-elves-rewards-poll",
+      "publisher": "Jagex",
+      "url": "https://oldschool.runescape.com/polls/2019/1558",
+      "kind": "official",
+      "checked_at": "2026-08-24",
+      "use": "Official historical Song of the Elves and Gauntlet reward context; current mechanics use current Wiki sources."
+    },
+    {
       "id": "wiki-mastering-mixology-current-2026",
       "publisher": "Old School RuneScape Wiki",
       "url": "https://oldschool.runescape.wiki/w/Mastering_Mixology",

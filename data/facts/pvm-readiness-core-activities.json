@@ -3,9 +3,21 @@
     {
       "id": "pvm-readiness-core-activities",
       "name": "Royal Titans, Barrows, and Corrupted Gauntlet factual access boundaries",
-      "category": "pvm",
+      "category": "activity",
       "status": "verified",
       "verified_at": "2026-08-24",
+      "source_ids": [
+        "wiki-royal-titans-current",
+        "wiki-royal-titans-strategies-current",
+        "jagex-royal-titans-release-2025",
+        "wiki-barrows-current",
+        "wiki-barrows-strategies-current",
+        "wiki-barrows-chest-current",
+        "wiki-gauntlet",
+        "wiki-gauntlet-strategies",
+        "wiki-reward-chest",
+        "jagex-song-of-elves-rewards-poll"
+      ],
       "scope": "Normalized high-value factual access, encounter, recovery, and reward boundaries for three PvM activities. Practical readiness, gear, supplies, competence, wins, loot, drop targets, and timing remain player-observed strategy questions.",
       "activities": {
         "royal_titans": {

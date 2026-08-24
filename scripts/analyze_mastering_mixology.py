@@ -17,6 +17,11 @@ RESOURCE_KEYS = {
     "aga": "mixology_aga_resin",
     "lye": "mixology_lye_resin",
 }
+CURRENCY_KEYS = {
+    "currency:mixology:mox-resin": "mox",
+    "currency:mixology:aga-resin": "aga",
+    "currency:mixology:lye-resin": "lye",
+}
 POTION_REVIEW_EVENT = "potion-opportunity-cost-reviewed"
 OBJECTIVE_PREFIXES = ("reward:", "xp", "enjoyment")
 
@@ -43,8 +48,18 @@ def mixology_observation(state: dict[str, Any]) -> tuple[dict[str, Any] | None, 
     return (copy.deepcopy(observation), isinstance(observation, dict))
 
 
-def observed_resin(resources: dict[str, Any]) -> dict[str, int | None]:
-    return {resin: non_negative_integer(resources.get(key)) for resin, key in RESOURCE_KEYS.items()}
+def observed_resin(
+    resources: dict[str, Any], observation: dict[str, Any] | None
+) -> dict[str, int | None]:
+    balances = {resin: non_negative_integer(resources.get(key)) for resin, key in RESOURCE_KEYS.items()}
+    rows = observation.get("currency_balances", []) if observation else []
+    for row in rows if isinstance(rows, list) else []:
+        if not isinstance(row, dict) or row.get("currency_id") not in CURRENCY_KEYS:
+            continue
+        resin = CURRENCY_KEYS[row["currency_id"]]
+        if balances[resin] is None:
+            balances[resin] = non_negative_integer(row.get("amount"))
+    return balances
 
 
 def recipe_coverage(herblore_level: int | None, context: dict[str, Any]) -> dict[str, Any]:
@@ -128,7 +143,7 @@ def analyze_mastering_mixology(account_state: dict[str, Any]) -> dict[str, Any]:
     objective_present = isinstance(objective, str) and objective.startswith(OBJECTIVE_PREFIXES)
     purchases = observation.get("confirmed_purchases") if observation_present else []
     purchases = purchases if isinstance(purchases, list) else []
-    resin = observed_resin(resources)
+    resin = observed_resin(resources, observation)
     rewards = reward_readiness(items, resin, purchases, context["reward_targets"])
 
     selected_reward = objective.removeprefix("reward:") if isinstance(objective, str) and objective.startswith("reward:") else None
@@ -165,7 +180,7 @@ def analyze_mastering_mixology(account_state: dict[str, Any]) -> dict[str, Any]:
         "recipe_coverage": recipe_coverage(herblore_level, context),
         "observation_boundary": {
             "raw_mixology_observation_present": observation_present,
-            "globally_registered_in_shared_evaluator": False,
+            "globally_registered_in_shared_evaluator": True,
             "local_supplies_observed": local_supplies,
             "input_signal_present": input_signal_present,
             "potion_opportunity_cost_review_observed": opportunity_review_observed,

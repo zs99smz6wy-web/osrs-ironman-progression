@@ -10,7 +10,7 @@
   },
   "observation_conventions": {
     "container": "minigame_activity_observations.mastering-mixology",
-    "registration_boundary": "The shared evaluator does not yet register this optional activity identifier. The standalone analyzer may report a raw supplied observation, but it labels it unregistered rather than validated global account state.",
+    "registration_boundary": "The shared evaluator validates this optional activity identifier and its generic observation fields. Validation confirms shape only; it does not prove inputs are expendable, select an objective, or infer activity output.",
     "input_signal": "local_supplies is an observed snapshot only. Its keys and counts describe no conversion, reservation, or expendability by themselves.",
     "potion_opportunity_cost_review": "An existing session.last_event value of potion-opportunity-cost-reviewed is a player-reported acknowledgement that ordinary-potion competing uses were reviewed. It does not record the chosen reserve policy or make any herb expendable.",
     "named_objective": "An existing session.mode value of reward:<reward_id>, xp, or enjoyment is a player-reported objective label. Unknown or omitted values mean no objective is inferred.",

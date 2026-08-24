@@ -479,6 +479,7 @@
         "last-man-standing": {"$ref": "#/$defs/minigameActivityObservation"},
         "mage-training-arena": {"$ref": "#/$defs/minigameActivityObservation"},
         "mahogany-homes": {"$ref": "#/$defs/minigameActivityObservation"},
+        "mastering-mixology": {"$ref": "#/$defs/minigameActivityObservation"},
         "motherlode-mine": {"$ref": "#/$defs/minigameActivityObservation"},
         "nightmare-zone": {"$ref": "#/$defs/minigameActivityObservation"},
         "pest-control": {"$ref": "#/$defs/minigameActivityObservation"},

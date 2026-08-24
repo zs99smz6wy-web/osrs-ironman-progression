@@ -34,6 +34,7 @@ class MinigameW5ActionsGraphTests(unittest.TestCase):
     def test_tithe_utility_purchases_consume_reported_points_without_session_output(self) -> None:
         state = load_json(FRESH_ACCOUNT)
         self._set_level(state, "Farming", 34)
+        self._set_level(state, "Herblore", 58)
         state["resources"]["tithe_farm_points"] = 700
 
         for action_id, item_key, remaining in (
