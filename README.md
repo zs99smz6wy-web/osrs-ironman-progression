@@ -44,6 +44,7 @@ python scripts/analyze_dependencies.py graph/account-state.example.json --goal a
 python scripts/analyze_cash_commitments.py graph/account-state.example.json --json
 python scripts/analyze_passive_status.py graph/account-state.example.json --json
 python scripts/analyze_quest_xp_timing.py graph/account-state.example.json --json
+python scripts/compose_recommendation_chapter.py graph/account-state.example.json --active-limit 5 --afk-limit 5 --afk-mode low_attention --json
 python scripts/transfer_kingdom_coffer.py path/to/account-state.json deposit 10000
 ```
 
