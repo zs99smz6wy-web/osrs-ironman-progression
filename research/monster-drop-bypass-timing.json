@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "scope": "Research index for account-aware timing analysis of selected monster-drop bypasses. It reuses verified fact records and normalized actions; it does not add a drop rate, normal path, combat requirement, or throughput claim.",
+  "factual_inputs": {
+    "readiness_fact_file": "data/facts/drop-bypass-readiness.json",
+    "bypass_fact_file": "data/facts/monster-drop-bypasses.json",
+    "policy_file": "strategy/bypass-policy.md",
+    "normalized_actions_file": "data/progression/actions.json"
+  },
+  "selected_bypasses": [
+    {
+      "id": "tree-spirit-rune-axe",
+      "readiness_path_id": "tree-spirit-rune-axe-readiness",
+      "bypass_fact_id": "enchanted-valley-rune-axe-drop",
+      "access_action_id": "action:fight-enchanted-valley-tree-spirits"
+    },
+    {
+      "id": "armoured-zombie-zombie-axe",
+      "readiness_path_id": "armoured-zombie-zombie-axe-readiness",
+      "bypass_fact_id": "zombie-axe-armoured-zombies",
+      "access_action_id": "action:fight-armoured-zombies"
+    },
+    {
+      "id": "warped-creatures-warped-sceptre",
+      "readiness_path_id": "warped-creatures-warped-sceptre-readiness",
+      "bypass_fact_id": "warped-sceptre-warped-creatures",
+      "access_action_id": "action:fight-warped-creatures"
+    },
+    {
+      "id": "zamorak-warrior-rune-scimitar",
+      "readiness_path_id": "zamorak-warrior-rune-scimitar-readiness",
+      "bypass_fact_id": "rune-scimitar-drop-paths",
+      "access_action_id": "action:fight-zamorak-warriors-for-rune-scimitar"
+    },
+    {
+      "id": "fire-giant-rune-scimitar",
+      "readiness_path_id": "fire-giant-rune-scimitar-readiness",
+      "bypass_fact_id": "rune-scimitar-drop-paths",
+      "access_action_id": "action:fight-fire-giants-for-rune-scimitar"
+    },
+    {
+      "id": "warriors-guild-dragon-defender",
+      "readiness_path_id": "warriors-guild-dragon-defender-readiness",
+      "bypass_fact_id": "dragon-defender-warriors-guild",
+      "access_action_id": "action:fight-warriors-guild-cyclopes-for-dragon-defender"
+    }
+  ],
+  "analysis_boundaries": [
+    "A listed rate supplies probability context only; it never grants a drop, a number of kills, expected completion, or an account-specific completion forecast.",
+    "Combat snapshots and encounter observations are player-supplied context, not a proof of combat readiness, success, safety, supply sufficiency, or player competence.",
+    "Observed encounter duration and attempts are not converted into kills per hour, time to drop, or time to completion.",
+    "A rare drop is not selected by default. A caller must record an explicit objective before an otherwise accessible path becomes a bounded candidate.",
+    "Where the verified facts do not model a deterministic normal alternative, the comparison remains explicitly incomplete rather than inventing one."
+  ]
+}
