@@ -31,7 +31,16 @@
 - Completed: normalized concrete cash commitments and added a deadline-aware account-state analyzer that reports funding shortfalls without choosing a money-making method or route.
 - Completed: verified and graphed Rune axe, Zombie axe, Warped sceptre, Rune scimitar, and Dragon defender acquisition paths; random drops use `makes_obtainable`, while purchases, smithing, and repairs remain deterministic.
 - Completed: added transparent expected-kill and cumulative-drop probability inputs plus sourced encounter facts for the selected bypasses without inventing kills per hour or declaring account readiness.
+- Completed: added bounded economic-method comparisons against declared cash commitments and attention constraints without selecting an earning method or inferring rates.
+- Completed: added bounded monster-drop bypass timing context to the current recommendation chapter, preserving explicit objectives, access gates, probability inputs, and readiness observations without inferring completion time or combat throughput.
 - Pending: supply an actual account combat snapshot and measured or sourced encounter throughput before estimating time, then score the verified economic methods and bypasses in the strategy layer.
+
+### 5. Recommendation chapter sequencing context
+
+- Completed: added quest-XP threshold sequencing with explicit skill, item, quest, and other blockers so fixed quest XP is not treated as free when the account cannot yet claim it.
+- Completed: added bounded Void and Elite Void timing context, including the distinction between access, set acquisition, and later upgrade timing without making Void a universal early requirement.
+- Completed: integrated the quest-XP, Void/Elite Void, economic, and monster-drop analyses into the current recommendation chapter without generating a final route.
+- Pending: expand the factual dataset, account-specific readiness observations, and measured throughput before making broader timing or route claims.
 
 ## Continuing validation queue
 
