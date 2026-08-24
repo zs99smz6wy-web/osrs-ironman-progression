@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "scope": "Strategy-only visibility context for the bounded quest-XP package. It chooses modeled skill gates worth exposing as timing landmarks. It does not change factual eligibility, rank quests, choose a route, prescribe training, or allocate any player-chosen XP.",
+  "thresholds": [
+    {"skill": "Agility", "level": 10, "action_ids": ["action:the-dig-site"], "timing_note": "Expose this as a low threshold before training beyond it, because a fixed-XP quest in the bounded package can contribute afterwards."},
+    {"skill": "Agility", "level": 25, "action_ids": ["action:grand-tree"], "timing_note": "Expose the Grand Tree gate next; its fixed Agility reward may cross later modeled gates but does not make the quest automatically timely."},
+    {"skill": "Crafting", "level": 31, "action_ids": ["action:lost-city"], "timing_note": "Expose this downstream utility gate when Nature Spirit fixed Crafting XP is being considered."},
+    {"skill": "Herblore", "level": 10, "action_ids": ["action:the-dig-site"], "timing_note": "Expose the Dig Site entry threshold before treating its fixed Herblore XP as a later skip."},
+    {"skill": "Herblore", "level": 31, "action_ids": ["action:eadgars-ruse"], "timing_note": "Expose this later quest gate after fixed Herblore rewards, without selecting Eadgar's Ruse or its preparation path."},
+    {"skill": "Runecraft", "level": 10, "action_ids": ["action:temple-of-the-eye"], "timing_note": "Expose Temple of the Eye's entry gate before treating its fixed Runecraft reward as a threshold skip."},
+    {"skill": "Smithing", "level": 15, "action_ids": ["action:sleeping-giants"], "timing_note": "Expose the Giants' Foundry quest entry gate as a modeled timing landmark."},
+    {"skill": "Thieving", "level": 25, "action_ids": ["action:the-dig-site"], "timing_note": "Expose this Dig Site entry threshold before treating its fixed rewards as later progression."},
+    {"skill": "Woodcutting", "level": 36, "action_ids": ["action:lost-city"], "timing_note": "Expose this downstream Fairy-ring path gate when evaluating bounded quest XP, without recommending a Woodcutting method."}
+  ],
+  "decision_boundary": {
+    "fixed_quest_xp": "The analyzer may show current XP, resulting XP, level change, crossed visibility thresholds, direct quest prerequisites, transitive modeled quest closure, and outstanding preparation.",
+    "player_chosen_xp": "Every player-chosen XP award must be emitted with allocated_skill null and must never alter skill_xp, skills, thresholds, status, or a recommendation.",
+    "no_route_claim": "Output is a comparison input. It cannot say which quest should be completed next or that a level should be trained by a particular method."
+  }
+}

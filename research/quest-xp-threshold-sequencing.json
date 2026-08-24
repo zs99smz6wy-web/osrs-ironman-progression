@@ -1,0 +1,45 @@
+{
+  "package_version": 1,
+  "package_id": "quest-xp-threshold-sequencing",
+  "checked_at": "2026-08-24",
+  "scope": "Bounded factual inventory for interpreting existing one-time quest XP transitions. It reuses normalized action facts and does not add requirements, create a route, rank a quest, assign player-chosen XP, or infer training, supplies, combat readiness, or completion.",
+  "authoritative_inputs": {
+    "normalized_actions": "data/progression/actions.json",
+    "fixed_xp_semantics": "A transition effect with op gain_xp and state skill_xp is a deterministic modeled reward. The action's requirements and preparation conditions remain the authoritative gates.",
+    "chosen_xp_semantics": "A reported effect with type xp_choice_award is deliberately non-transitional. Its description may be exposed, but no skill, XP, level, or action-state mutation may be inferred from it."
+  },
+  "bounded_fixed_xp_actions": [
+    {"action_id": "action:waterfall-quest", "fact_ids": ["waterfall-quest"]},
+    {"action_id": "action:tree-gnome-village", "fact_ids": ["tree-gnome-village"]},
+    {"action_id": "action:grand-tree", "fact_ids": ["grand-tree"]},
+    {"action_id": "action:the-restless-ghost", "fact_ids": ["the-restless-ghost"]},
+    {"action_id": "action:priest-in-peril", "fact_ids": ["priest-in-peril"]},
+    {"action_id": "action:nature-spirit", "fact_ids": ["nature-spirit"]},
+    {"action_id": "action:fairytale-i-growing-pains", "fact_ids": ["fairytale-i-growing-pains"]},
+    {"action_id": "action:the-dig-site", "fact_ids": ["the-dig-site", "the-dig-site-quest-detail"]},
+    {"action_id": "action:enter-the-abyss", "fact_ids": ["enter-abyss-temple-eye-prerequisite"]},
+    {"action_id": "action:temple-of-the-eye", "fact_ids": ["temple-of-the-eye-access-and-rewards"]},
+    {"action_id": "action:sleeping-giants", "fact_ids": ["utility-sleeping-giants-fixed-rewards"]},
+    {"action_id": "action:the-forsaken-tower", "fact_ids": ["lovakengj-minecart-network", "kharedsts-memoirs-and-book-of-the-dead"]}
+  ],
+  "factual_boundary": [
+    "The package may calculate a level before and after a fixed transition using the repository XP table.",
+    "The package may report modeled hard requirements, prerequisite quest closure, preparation conditions, evaluator status, and missing preparation from existing actions.",
+    "A requirement crossing is only a modeled threshold crossing; it does not establish a recommended training method, route order, or practical readiness.",
+    "A quest with a formally eligible status is not assumed safe, enjoyable, strategically timely, or complete.",
+    "A selectable XP reward remains player-owned and unallocated until a later explicit decision model supplies an allocation."
+  ],
+  "source_provenance": [
+    {"source_id": "wiki-waterfall-quest", "use": "Waterfall Quest requirements and fixed rewards already normalized by action:waterfall-quest."},
+    {"source_id": "wiki-tree-gnome-village", "use": "Tree Gnome Village requirements and fixed Attack reward already normalized by action:tree-gnome-village."},
+    {"source_id": "wiki-grand-tree", "use": "The Grand Tree requirement and fixed rewards already normalized by action:grand-tree."},
+    {"source_id": "wiki-dig-site", "use": "The Dig Site gates and fixed XP already normalized by action:the-dig-site."},
+    {"source_id": "wiki-temple-of-the-eye", "use": "Temple of the Eye fixed Runecraft XP already normalized by action:temple-of-the-eye."},
+    {"source_id": "wiki-quest-experience-rewards", "use": "Current quest XP and player-chosen reward context for normalized quest facts."}
+  ],
+  "deferred_questions": [
+    "Whether a fixed-XP quest should be done now is strategy and belongs in a future integrated decision surface.",
+    "Whether a player-chosen lamp should target Herblore or another skill requires explicit account-specific opportunity-cost analysis.",
+    "Combat, travel, inventory, and attention practicality remain separate observations even where an action is formally eligible."
+  ]
+}
