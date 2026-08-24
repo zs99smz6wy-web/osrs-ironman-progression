@@ -1505,7 +1505,7 @@
       "name": "Play Tithe Farm",
       "kind": "activity",
       "status": "verified",
-      "fact_ids": ["utility-tithe-farm-access-and-currency"],
+      "fact_ids": ["utility-tithe-farm-access-and-currency", "utility-stop-tithe-farm"],
       "requirements": {"all": [{"type": "skill_at_least", "key": "Farming", "value": 34}]},
       "preparation": {"all": [{"type": "item_at_least", "key": "spade", "value": 1}, {"any": [{"type": "item_at_least", "key": "seed_dibber", "value": 1}, {"type": "milestone", "key": "bare_handed_tithe_planting"}]}, {"any": [{"type": "item_at_least", "key": "watering_can", "value": 1}, {"type": "item_at_least", "key": "gricollers_can", "value": 1}]}]},
       "completion": {"all": []},
@@ -1515,7 +1515,7 @@
         "effects": [],
         "options": [],
         "reported_effects": [
-          {"type": "variable_activity_output", "description": "Tithe Farm points are deterministic from the deposited-plant total, but that total and Farming experience are session-dependent and are not applied automatically.", "fact_id": "utility-tithe-farm-access-and-currency"}
+          {"type": "variable_activity_output", "description": "Tithe Farm points are deterministic only after a player-reported deposited-plant total. Session state, crops, fruit, points, and Farming experience are never applied by this action.", "fact_id": "utility-stop-tithe-farm"}
         ]
       }
     },
@@ -1568,7 +1568,7 @@
       "name": "Play Giants' Foundry",
       "kind": "activity",
       "status": "verified",
-      "fact_ids": ["utility-giants-foundry-currency-and-unlocks"],
+      "fact_ids": ["utility-giants-foundry-currency-and-unlocks", "minigame-giants-foundry-canonical-boundary"],
       "requirements": {"all": [{"type": "quest_completed", "key": "Sleeping Giants"}]},
       "preparation": {"all": [{"type": "resource_at_least", "key": "foundry_metal_value_bars", "value": 2}, {"any": [{"type": "item_at_least", "key": "bucket", "value": 1}, {"type": "item_at_least", "key": "ice_gloves", "value": 1}]}]},
       "completion": {"all": []},
@@ -1578,7 +1578,7 @@
         "effects": [],
         "options": [],
         "reported_effects": [
-          {"type": "variable_activity_output", "description": "Commission inputs, sword quality, reputation, Smithing experience, and coins depend on the submitted sword and performance; no Foundry reputation or rewards are applied automatically.", "fact_id": "utility-giants-foundry-currency-and-unlocks"}
+          {"type": "variable_activity_output", "description": "Commission inputs, sword quality, reputation, Smithing experience, and coins require player reports. The unresolved quality-event terminology is not calculated, and no Foundry reputation or rewards are applied automatically.", "fact_id": "minigame-giants-foundry-canonical-boundary"}
         ]
       }
     },
@@ -1587,7 +1587,7 @@
       "name": "Buy the double ammo mould",
       "kind": "unlock",
       "status": "verified",
-      "fact_ids": ["utility-giants-foundry-currency-and-unlocks"],
+      "fact_ids": ["utility-giants-foundry-currency-and-unlocks", "utility-stop-giants-foundry", "minigame-giants-foundry-canonical-boundary"],
       "requirements": {"all": [{"type": "quest_completed", "key": "Sleeping Giants"}, {"type": "quest_completed", "key": "Dwarf Cannon"}, {"type": "resource_at_least", "key": "foundry_reputation", "value": 2000}]},
       "preparation": {"all": []},
       "completion": {"all": [{"type": "item_at_least", "key": "double_ammo_mould", "value": 1}]},
@@ -1599,15 +1599,17 @@
           {"op": "ensure_min", "state": "items", "key": "double_ammo_mould", "value": 1, "fact_id": "utility-giants-foundry-currency-and-unlocks"}
         ],
         "options": [],
-        "reported_effects": []
+        "reported_effects": [
+          {"type": "recorded_progress", "description": "Applying this transition records a confirmed Kovac's Grog Shop purchase against an explicitly supplied Foundry Reputation balance; it does not model a commission or derive reputation.", "fact_id": "utility-stop-giants-foundry"}
+        ]
       }
     },
     {
       "id": "action:buy-full-smiths-uniform",
-      "name": "Buy the full Smiths' Uniform",
+      "name": "Record confirmed full Smiths' Uniform purchases",
       "kind": "unlock",
       "status": "verified",
-      "fact_ids": ["utility-giants-foundry-currency-and-unlocks"],
+      "fact_ids": ["utility-giants-foundry-currency-and-unlocks", "utility-stop-giants-foundry", "minigame-giants-foundry-canonical-boundary"],
       "requirements": {"all": [{"type": "quest_completed", "key": "Sleeping Giants"}, {"type": "resource_at_least", "key": "foundry_reputation", "value": 15000}]},
       "preparation": {"all": []},
       "completion": {"all": [{"type": "item_at_least", "key": "smiths_tunic", "value": 1}, {"type": "item_at_least", "key": "smiths_trousers", "value": 1}, {"type": "item_at_least", "key": "smiths_boots", "value": 1}, {"type": "item_at_least", "key": "smiths_gloves", "value": 1}]},
@@ -1622,7 +1624,9 @@
           {"op": "ensure_min", "state": "items", "key": "smiths_gloves", "value": 1, "fact_id": "utility-giants-foundry-currency-and-unlocks"}
         ],
         "options": [],
-        "reported_effects": []
+        "reported_effects": [
+          {"type": "recorded_progress", "description": "This atomic checkpoint is valid only after all four exact Smiths' Uniform piece purchases are confirmed. It does not model commission quality, reputation generation, or outfit wear state.", "fact_id": "utility-stop-giants-foundry"}
+        ]
       }
     },
     {
@@ -3265,6 +3269,226 @@
       "id": "action:use-ghommals-hilt-mor-ul-rek-teleport", "name": "Use Ghommal's hilt unlimited Mor Ul Rek teleport", "kind": "activity", "status": "verified", "fact_ids": ["residual-transport-network"],
       "requirements": {"all": [{"type": "milestone", "key": "combat_achievements_grandmaster_claimed"}]}, "preparation": {"all": [{"type": "item_at_least", "key": "ghommals_hilt_current", "value": 1}]}, "completion": {"all": []}, "outcomes": [], "repeatable": true,
       "transition": {"effects": [], "options": [], "reported_effects": [{"type": "recorded_progress", "description": "Ghommal's hilt 6 gives unlimited Mor Ul Rek teleports. Hilt 4 and 5 daily limits are documented but have no automatic counter or reset.", "fact_id": "residual-transport-network"}]}
+    },
+    {
+      "id": "action:buy-gricollers-can",
+      "name": "Buy Gricoller's can",
+      "kind": "unlock",
+      "status": "verified",
+      "fact_ids": ["utility-tithe-farm-durable-rewards", "utility-stop-tithe-farm"],
+      "requirements": {"all": [{"type": "skill_at_least", "key": "Farming", "value": 34}, {"type": "resource_at_least", "key": "tithe_farm_points", "value": 200}]},
+      "preparation": {"all": []},
+      "completion": {"all": [{"type": "item_at_least", "key": "gricollers_can", "value": 1}]},
+      "outcomes": [],
+      "repeatable": false,
+      "transition": {
+        "effects": [
+          {"op": "delta", "state": "resources", "key": "tithe_farm_points", "amount": -200, "fact_id": "utility-tithe-farm-durable-rewards"},
+          {"op": "ensure_min", "state": "items", "key": "gricollers_can", "value": 1, "fact_id": "utility-tithe-farm-durable-rewards"}
+        ],
+        "options": [],
+        "reported_effects": [
+          {"type": "recorded_progress", "description": "Applying this transition records a confirmed 200-point Tithe Farm shop purchase. Remaining water doses and later refills remain player observations.", "fact_id": "utility-stop-tithe-farm"}
+        ]
+      }
+    },
+    {
+      "id": "action:buy-tithe-seed-box",
+      "name": "Buy a Tithe Farm seed box",
+      "kind": "unlock",
+      "status": "verified",
+      "fact_ids": ["utility-tithe-farm-durable-rewards", "utility-stop-tithe-farm"],
+      "requirements": {"all": [{"type": "skill_at_least", "key": "Farming", "value": 34}, {"type": "resource_at_least", "key": "tithe_farm_points", "value": 250}]},
+      "preparation": {"all": []},
+      "completion": {"all": [{"type": "item_at_least", "key": "seed_box", "value": 1}]},
+      "outcomes": [],
+      "repeatable": false,
+      "transition": {
+        "effects": [
+          {"op": "delta", "state": "resources", "key": "tithe_farm_points", "amount": -250, "fact_id": "utility-tithe-farm-durable-rewards"},
+          {"op": "ensure_min", "state": "items", "key": "seed_box", "value": 1, "fact_id": "utility-tithe-farm-durable-rewards"}
+        ],
+        "options": [],
+        "reported_effects": [
+          {"type": "recorded_progress", "description": "Applying this transition records a confirmed 250-point Tithe Farm shop purchase. Stored seed types and counts remain player observations.", "fact_id": "utility-stop-tithe-farm"}
+        ]
+      }
+    },
+    {
+      "id": "action:buy-tithe-herb-sack",
+      "name": "Buy a Tithe Farm herb sack",
+      "kind": "unlock",
+      "status": "verified",
+      "fact_ids": ["utility-tithe-farm-durable-rewards", "utility-stop-tithe-farm"],
+      "requirements": {"all": [{"type": "skill_at_least", "key": "Farming", "value": 34}, {"type": "resource_at_least", "key": "tithe_farm_points", "value": 250}]},
+      "preparation": {"all": []},
+      "completion": {"all": [{"type": "item_at_least", "key": "herb_sack", "value": 1}]},
+      "outcomes": [],
+      "repeatable": false,
+      "transition": {
+        "effects": [
+          {"op": "delta", "state": "resources", "key": "tithe_farm_points", "amount": -250, "fact_id": "utility-tithe-farm-durable-rewards"},
+          {"op": "ensure_min", "state": "items", "key": "herb_sack", "value": 1, "fact_id": "utility-tithe-farm-durable-rewards"}
+        ],
+        "options": [],
+        "reported_effects": [
+          {"type": "recorded_progress", "description": "Applying this transition records a confirmed 250-point Tithe Farm shop purchase. The separate Herblore 58 use gate and stored herb contents remain evaluated or reported separately.", "fact_id": "utility-stop-tithe-farm"}
+        ]
+      }
+    },
+    {
+      "id": "action:buy-void-knight-top",
+      "name": "Buy a Void knight top",
+      "kind": "unlock",
+      "status": "verified",
+      "fact_ids": ["minigame-pest-control-static-access-and-shop", "minigame-pest-control-durable-utilities"],
+      "requirements": {"all": [{"type": "skill_at_least", "key": "Attack", "value": 42}, {"type": "skill_at_least", "key": "Strength", "value": 42}, {"type": "skill_at_least", "key": "Defence", "value": 42}, {"type": "skill_at_least", "key": "Hitpoints", "value": 42}, {"type": "skill_at_least", "key": "Ranged", "value": 42}, {"type": "skill_at_least", "key": "Magic", "value": 42}, {"type": "skill_at_least", "key": "Prayer", "value": 22}, {"type": "resource_at_least", "key": "pest_control_commendation_points", "value": 250}]},
+      "preparation": {"all": []},
+      "completion": {"all": [{"type": "item_at_least", "key": "void_knight_top", "value": 1}]},
+      "outcomes": [],
+      "repeatable": false,
+      "transition": {
+        "effects": [
+          {"op": "delta", "state": "resources", "key": "pest_control_commendation_points", "amount": -250, "fact_id": "minigame-pest-control-static-access-and-shop"},
+          {"op": "ensure_min", "state": "items", "key": "void_knight_top", "value": 1, "fact_id": "minigame-pest-control-static-access-and-shop"}
+        ],
+        "options": [],
+        "reported_effects": [
+          {"type": "recorded_progress", "description": "Applying this transition records a confirmed Pest Control reward-shop purchase against an explicitly supplied commendation-point balance. It does not infer a win, team, set completion, equipment state, or combat effect.", "fact_id": "minigame-pest-control-durable-utilities"}
+        ]
+      }
+    },
+    {
+      "id": "action:buy-void-knight-robe",
+      "name": "Buy a Void knight robe",
+      "kind": "unlock",
+      "status": "verified",
+      "fact_ids": ["minigame-pest-control-static-access-and-shop", "minigame-pest-control-durable-utilities"],
+      "requirements": {"all": [{"type": "skill_at_least", "key": "Attack", "value": 42}, {"type": "skill_at_least", "key": "Strength", "value": 42}, {"type": "skill_at_least", "key": "Defence", "value": 42}, {"type": "skill_at_least", "key": "Hitpoints", "value": 42}, {"type": "skill_at_least", "key": "Ranged", "value": 42}, {"type": "skill_at_least", "key": "Magic", "value": 42}, {"type": "skill_at_least", "key": "Prayer", "value": 22}, {"type": "resource_at_least", "key": "pest_control_commendation_points", "value": 250}]},
+      "preparation": {"all": []},
+      "completion": {"all": [{"type": "item_at_least", "key": "void_knight_robe", "value": 1}]},
+      "outcomes": [],
+      "repeatable": false,
+      "transition": {
+        "effects": [
+          {"op": "delta", "state": "resources", "key": "pest_control_commendation_points", "amount": -250, "fact_id": "minigame-pest-control-static-access-and-shop"},
+          {"op": "ensure_min", "state": "items", "key": "void_knight_robe", "value": 1, "fact_id": "minigame-pest-control-static-access-and-shop"}
+        ],
+        "options": [],
+        "reported_effects": [
+          {"type": "recorded_progress", "description": "Applying this transition records a confirmed Pest Control reward-shop purchase against an explicitly supplied commendation-point balance. It does not infer a win, team, set completion, equipment state, or combat effect.", "fact_id": "minigame-pest-control-durable-utilities"}
+        ]
+      }
+    },
+    {
+      "id": "action:buy-void-knight-gloves",
+      "name": "Buy Void knight gloves",
+      "kind": "unlock",
+      "status": "verified",
+      "fact_ids": ["minigame-pest-control-static-access-and-shop", "minigame-pest-control-durable-utilities"],
+      "requirements": {"all": [{"type": "skill_at_least", "key": "Attack", "value": 42}, {"type": "skill_at_least", "key": "Strength", "value": 42}, {"type": "skill_at_least", "key": "Defence", "value": 42}, {"type": "skill_at_least", "key": "Hitpoints", "value": 42}, {"type": "skill_at_least", "key": "Ranged", "value": 42}, {"type": "skill_at_least", "key": "Magic", "value": 42}, {"type": "skill_at_least", "key": "Prayer", "value": 22}, {"type": "resource_at_least", "key": "pest_control_commendation_points", "value": 150}]},
+      "preparation": {"all": []},
+      "completion": {"all": [{"type": "item_at_least", "key": "void_knight_gloves", "value": 1}]},
+      "outcomes": [],
+      "repeatable": false,
+      "transition": {
+        "effects": [
+          {"op": "delta", "state": "resources", "key": "pest_control_commendation_points", "amount": -150, "fact_id": "minigame-pest-control-static-access-and-shop"},
+          {"op": "ensure_min", "state": "items", "key": "void_knight_gloves", "value": 1, "fact_id": "minigame-pest-control-static-access-and-shop"}
+        ],
+        "options": [],
+        "reported_effects": [
+          {"type": "recorded_progress", "description": "Applying this transition records a confirmed Pest Control reward-shop purchase against an explicitly supplied commendation-point balance. It does not infer a win, team, set completion, equipment state, or combat effect.", "fact_id": "minigame-pest-control-durable-utilities"}
+        ]
+      }
+    },
+    {
+      "id": "action:buy-void-knight-melee-helm",
+      "name": "Buy a Void melee helm",
+      "kind": "unlock",
+      "status": "verified",
+      "fact_ids": ["minigame-pest-control-static-access-and-shop", "minigame-pest-control-durable-utilities"],
+      "requirements": {"all": [{"type": "skill_at_least", "key": "Attack", "value": 42}, {"type": "skill_at_least", "key": "Strength", "value": 42}, {"type": "skill_at_least", "key": "Defence", "value": 42}, {"type": "skill_at_least", "key": "Hitpoints", "value": 42}, {"type": "skill_at_least", "key": "Ranged", "value": 42}, {"type": "skill_at_least", "key": "Magic", "value": 42}, {"type": "skill_at_least", "key": "Prayer", "value": 22}, {"type": "resource_at_least", "key": "pest_control_commendation_points", "value": 200}]},
+      "preparation": {"all": []},
+      "completion": {"all": [{"type": "item_at_least", "key": "void_melee_helm", "value": 1}]},
+      "outcomes": [],
+      "repeatable": false,
+      "transition": {
+        "effects": [
+          {"op": "delta", "state": "resources", "key": "pest_control_commendation_points", "amount": -200, "fact_id": "minigame-pest-control-static-access-and-shop"},
+          {"op": "ensure_min", "state": "items", "key": "void_melee_helm", "value": 1, "fact_id": "minigame-pest-control-static-access-and-shop"}
+        ],
+        "options": [],
+        "reported_effects": [
+          {"type": "recorded_progress", "description": "Applying this transition records a confirmed Pest Control reward-shop purchase against an explicitly supplied commendation-point balance. It does not infer a win, team, set completion, equipment state, or combat effect.", "fact_id": "minigame-pest-control-durable-utilities"}
+        ]
+      }
+    },
+    {
+      "id": "action:buy-nmz-scroll-of-redirection",
+      "name": "Buy a Scroll of redirection",
+      "kind": "unlock",
+      "status": "verified",
+      "fact_ids": ["minigame-nightmare-zone-static-access-and-shop", "minigame-nightmare-zone-durable-utilities"],
+      "requirements": {"all": [{"type": "resource_at_least", "key": "nightmare_zone_points", "value": 775}]},
+      "preparation": {"all": []},
+      "completion": {"all": []},
+      "outcomes": [],
+      "repeatable": true,
+      "transition": {
+        "effects": [
+          {"op": "delta", "state": "resources", "key": "nightmare_zone_points", "amount": -775, "fact_id": "minigame-nightmare-zone-static-access-and-shop"},
+          {"op": "delta", "state": "items", "key": "scroll_of_redirection", "amount": 1, "fact_id": "minigame-nightmare-zone-static-access-and-shop"}
+        ],
+        "options": [],
+        "reported_effects": [
+          {"type": "recorded_progress", "description": "Applying this transition records a confirmed Nightmare Zone shop purchase against an explicitly supplied point balance. It does not start a dream, select bosses, create points, or convert a tablet.", "fact_id": "minigame-nightmare-zone-durable-utilities"}
+        ]
+      }
+    },
+    {
+      "id": "action:buy-hallowed-focus",
+      "name": "Buy a Hallowed focus",
+      "kind": "unlock",
+      "status": "verified",
+      "fact_ids": ["minigame-hallowed-sepulchre-static-access-and-shop", "minigame-hallowed-sepulchre-durable-utilities"],
+      "requirements": {"all": [{"type": "quest_completed", "key": "Sins of the Father"}, {"type": "resource_at_least", "key": "hallowed_sepulchre_marks", "value": 100}]},
+      "preparation": {"all": []},
+      "completion": {"all": [{"type": "item_at_least", "key": "hallowed_focus", "value": 1}]},
+      "outcomes": [],
+      "repeatable": false,
+      "transition": {
+        "effects": [
+          {"op": "delta", "state": "resources", "key": "hallowed_sepulchre_marks", "amount": -100, "fact_id": "minigame-hallowed-sepulchre-static-access-and-shop"},
+          {"op": "ensure_min", "state": "items", "key": "hallowed_focus", "value": 1, "fact_id": "minigame-hallowed-sepulchre-static-access-and-shop"}
+        ],
+        "options": [],
+        "reported_effects": [
+          {"type": "recorded_progress", "description": "Applying this transition records a confirmed Mysterious Hallowed Goods purchase against an explicitly supplied mark balance. It does not create an attempt, tool-storage state, or floor completion.", "fact_id": "minigame-hallowed-sepulchre-durable-utilities"}
+        ]
+      }
+    },
+    {
+      "id": "action:unlock-hallowed-sepulchre-private-instance",
+      "name": "Unlock a private Hallowed Sepulchre instance",
+      "kind": "unlock",
+      "status": "verified",
+      "fact_ids": ["minigame-hallowed-sepulchre-static-access-and-shop", "minigame-hallowed-sepulchre-durable-utilities"],
+      "requirements": {"all": [{"type": "quest_completed", "key": "Sins of the Father"}, {"type": "resource_at_least", "key": "hallowed_sepulchre_marks", "value": 200}]},
+      "preparation": {"all": []},
+      "completion": {"all": [{"type": "milestone", "key": "hallowed_sepulchre_private_instance_unlocked"}]},
+      "outcomes": [{"type": "milestone", "key": "hallowed_sepulchre_private_instance_unlocked"}],
+      "repeatable": false,
+      "transition": {
+        "effects": [
+          {"op": "delta", "state": "resources", "key": "hallowed_sepulchre_marks", "amount": -200, "fact_id": "minigame-hallowed-sepulchre-static-access-and-shop"},
+          {"op": "set_add", "state": "milestones", "key": "hallowed_sepulchre_private_instance_unlocked", "fact_id": "minigame-hallowed-sepulchre-static-access-and-shop"}
+        ],
+        "options": [],
+        "reported_effects": [
+          {"type": "recorded_progress", "description": "Applying this transition records a confirmed private-instance unlock. Instance selection, travel, attempts, timers, and performance remain player observations.", "fact_id": "minigame-hallowed-sepulchre-durable-utilities"}
+        ]
+      }
     }
   ]
 }
