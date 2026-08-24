@@ -1,0 +1,83 @@
+{
+  "scope": "Current factual acquisition, storage, and account-state boundaries for five durable utility items. This catalog records alternatives and fixed purchase requirements only; it does not rank a path, produce currency, infer a shop transaction, or select a route stop.",
+  "records": [
+    {
+      "id": "durable-utility-herb-sack",
+      "name": "Herb sack acquisition alternatives and storage",
+      "category": "reward",
+      "status": "verified",
+      "verified_at": "2026-08-24",
+      "acquisition_alternatives": [
+        {"id": "tithe-farm", "currency": "Tithe Farm points", "cost": 250, "use_gate": {"Herblore": 58, "boostable": false}},
+        {"id": "slayer-rewards", "currency": "Slayer reward points", "cost": 750, "use_gate": {"Herblore": 58, "boostable": false}}
+      ],
+      "ownership_and_storage": {"ownership_limit": 1, "stores": "Up to 30 each of the 15 normal grimy herb types, for 450 total. Noted or cleaned herbs cannot be stored.", "automatic_pickup_boundary": "Only an open sack automatically accepts eligible picked-up or herb-patch/Herbiboar grimy herbs when there is space."},
+      "upgrade_boundary": "A silklined upgrade exists, but its pristine-spider-silk acquisition and resulting capacity are outside this utility-item timing pass.",
+      "source_ids": ["wiki-herb-sack", "wiki-tithe-farm"],
+      "confidence": "high"
+    },
+    {
+      "id": "durable-utility-seed-box",
+      "name": "Seed box acquisition and storage",
+      "category": "reward",
+      "status": "verified",
+      "verified_at": "2026-08-24",
+      "acquisition_alternatives": [
+        {"id": "tithe-farm", "currency": "Tithe Farm points", "cost": 250, "activity_gate": {"Farming": 34}}
+      ],
+      "ownership_and_storage": {"ownership_limit": 1, "stores": "An unlimited quantity of up to six seed types.", "automatic_pickup_boundary": "Whether a selected seed type is stored, its quantity, box open state, and later retrieval are player-observed."},
+      "source_ids": ["wiki-tithe-farm", "wiki-tithe-rewards"],
+      "confidence": "high"
+    },
+    {
+      "id": "durable-utility-gem-bag",
+      "name": "Gem bag acquisition and storage",
+      "category": "reward",
+      "status": "verified",
+      "verified_at": "2026-08-24",
+      "acquisition_alternatives": [
+        {"id": "prospector-percy-nugget-shop", "currency": "Golden nuggets", "cost": 100, "activity_gate": {"Mining": 30}}
+      ],
+      "ownership_and_storage": {"ownership_limit": 1, "stores": "Up to 60 each of uncut sapphire, emerald, ruby, diamond, and dragonstone, for 300 total.", "automatic_pickup_boundary": "Only an open bag automatically accepts eligible picked-up gems when there is space."},
+      "exclusions": ["Uncut opal, jade, and red topaz are not included in the base bag storage record.", "Any later upgrade path is intentionally outside this pass and is not modeled here."],
+      "source_ids": ["wiki-motherlode", "wiki-prospector-nugget-shop"],
+      "confidence": "high"
+    },
+    {
+      "id": "durable-utility-coal-bag",
+      "name": "Coal bag acquisition and storage",
+      "category": "reward",
+      "status": "verified",
+      "verified_at": "2026-08-24",
+      "acquisition_alternatives": [
+        {"id": "prospector-percy-nugget-shop", "currency": "Golden nuggets", "cost": 100, "activity_gate": {"Mining": 30}}
+      ],
+      "ownership_and_storage": {"ownership_limit": 1, "stores": "27 coal, or 36 while a Smithing cape is equipped. It does not degrade.", "consumption_order": "When smelting or superheating, stored coal is used after inventory coal."},
+      "source_ids": ["wiki-coal-bag", "wiki-motherlode", "wiki-prospector-nugget-shop"],
+      "confidence": "high"
+    },
+    {
+      "id": "durable-utility-rune-pouch",
+      "name": "Rune pouch acquisition alternatives and storage",
+      "category": "reward",
+      "status": "verified",
+      "verified_at": "2026-08-24",
+      "acquisition_alternatives": [
+        {"id": "mage-training-arena", "currencies": {"telekinetic_pizazz": 150, "graveyard_pizazz": 150, "enchantment_pizazz": 1500, "alchemist_pizazz": 200}},
+        {"id": "last-man-standing", "currency": "LMS points", "cost": 75, "shop_access_gate": "48 observed hours of member playtime and an observed available Justine shop row"},
+        {"id": "slayer-rewards", "currency": "Slayer reward points", "cost": 750}
+      ],
+      "ownership_and_storage": {"ownership_limit": 1, "stores": "16,000 each of three rune types, excluding Nightmare Zone runes.", "spellcasting": "Stored runes can be consumed for spellcasting."},
+      "non_ironman_path": "A rune pouch note can be acquired through player trading/Grand Exchange and exchanged at a bank, but it is not an Ironman acquisition path.",
+      "source_ids": ["wiki-rune-pouch", "wiki-mta", "wiki-last-man-standing-current", "wiki-justine-shop-current", "official-summer-sweep-up-slayer-more"],
+      "confidence": "high"
+    }
+  ],
+  "account_state_contract": {
+    "ownership": "Use items.herb_sack, items.seed_box, items.gem_bag, items.coal_bag, and items.rune_pouch only after an explicit confirmed purchase/import observation.",
+    "observed_spendable_balances": ["resources.tithe_farm_points", "resources.golden_nuggets", "resources.telekinetic_pizazz", "resources.graveyard_pizazz", "resources.enchantment_pizazz", "resources.alchemist_pizazz", "resources.slayer_reward_points", "resources.last_man_standing_points"],
+    "minigame_snapshots": "When available, retain the matching minigame_activity_observations currency balance and confirmed purchase snapshot. The evaluator does not copy an observation balance into resources or infer a purchase from it.",
+    "lms_shop_readiness": "Last Man Standing's 48-hour member-playtime and current shop-row access must remain explicit observations. They are not currently converted into an executable purchase predicate.",
+    "prohibited_inferences": ["currency from a minigame session, Slayer task, planned activity, or elapsed time", "shop access, member playtime, purchase, item ownership, stored contents, open/closed state, or equipped-state bonus", "RNG, collection-log state, or strategic priority"]
+  }
+}

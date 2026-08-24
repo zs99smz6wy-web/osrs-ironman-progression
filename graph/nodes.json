@@ -641,6 +641,9 @@
     {"id": "condition:safe-combat-training-observed-available", "kind": "condition", "label": "Crab method availability observed"},
     {"id": "condition:safe-combat-training-observed-safe", "kind": "condition", "label": "Crab method safety observed acceptable"},
     {"id": "condition:combat-readiness-observed", "kind": "condition", "label": "Combat readiness observation recorded"},
-    {"id": "item:pickaxe", "kind": "item", "label": "Usable pickaxe"}
+    {"id": "item:pickaxe", "kind": "item", "label": "Usable pickaxe"},
+    {"id": "condition:herblore-58", "kind": "condition", "label": "At least 58 Herblore"},
+    {"id": "activity:last-man-standing", "kind": "activity", "label": "Last Man Standing"},
+    {"id": "currency:last-man-standing:points", "kind": "currency", "label": "Last Man Standing points"}
   ]
 }

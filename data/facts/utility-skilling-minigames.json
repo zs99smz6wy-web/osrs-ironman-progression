@@ -34,7 +34,7 @@
         "farmers_outfit": {"cost_total": 400, "pieces": {"strawhat": 75, "jacket_or_shirt": 150, "boro_trousers": 125, "boots": 50}, "effect": "A complete worn set grants 2.5% additional Farming experience.", "resale": "A spare shop-bought piece may be sold to Gricoller for 80% of its listed point cost; ownership, provenance, and transaction result remain observed."},
         "gricollers_can": {"cost": 200, "effect": "Watering can with 1,000 water doses; it can be refilled at a water source or for free through the current Tithe Farm shop."},
         "seed_box": {"cost": 250, "effect": "Stores an unlimited quantity of up to six seed types."},
-        "herb_sack": {"cost": 250, "additional_requirement": {"Herblore": 58}, "effect": "Stores up to 30 of each grimy herb type, 420 grimy herbs in total."},
+        "herb_sack": {"cost": 250, "additional_requirement": {"Herblore": 58, "boostable": false}, "effect": "Stores up to 30 each of the 15 normal grimy herb types, 450 grimy herbs in total. The separate Slayer-shop alternative is canonical in durable-utility-herb-sack."},
         "current_consumables_and_containers": {
           "grape_seed": {"cost": 2, "fixed_purchase": "One grape seed; later vine-patch progression remains separate and observed."},
           "bologas_blessing_bundle": {"cost": 1, "quantity": 20, "additional_gate": {"Prayer": 50, "coins_one_time": 75000, "equipment": "one item affiliated with Zamorak"}, "boundary": "Each use requires the separate Bologa access condition; no grape pick is inferred."},
@@ -119,7 +119,7 @@
         "pay_dirt_sack_upgrade": {"cost": 200, "effect": "Permanently increases sack capacity from 108 to 189 pay-dirt."},
         "prospector_kit": {"cost_total": 180, "pieces": {"helmet": 40, "jacket": 60, "legs": 50, "boots": 30}, "effect": "A complete worn set grants 2.5% additional Mining experience."},
         "coal_bag": {"cost": 100, "effect": "Non-degrading storage for 27 coal, or 36 while a Smithing cape is equipped."},
-        "gem_bag": {"cost": 100, "effect": "Storage for uncut sapphire, emerald, ruby, diamond, and dragonstone."}
+        "gem_bag": {"cost": 100, "effect": "Storage for up to 60 each of uncut sapphire, emerald, ruby, diamond, and dragonstone. The base bag does not store opal, jade, or red topaz."}
       },
       "cost_totals": {"all_non_consumable_shop_items": 380, "all_permanent_mine_upgrades": 350, "all_listed_unique_non_consumable_items_and_upgrades": 730},
       "guarantee": "Every listed milestone is a guaranteed purchase or permanent upgrade once its exact golden-nugget cost and any stated requirement are met.",

@@ -731,6 +731,11 @@
     {"from": "condition:shooting-stars-observed-safe", "to": "activity:shooting-stars", "type": "requires", "evidence": "The selected star requires an explicit acceptable-safety observation; this is not an unattended-safety claim."},
     {"from": "condition:safe-combat-training-observed-available", "to": "activity:safe-combat-training", "type": "requires", "evidence": "A selected Sand Crab or Ammonite Crab method and location must be explicitly observed available; access is not inferred."},
     {"from": "condition:safe-combat-training-observed-safe", "to": "activity:safe-combat-training", "type": "requires", "evidence": "The selected crab method requires an explicit acceptable-safety observation; survival is not inferred."},
-    {"from": "condition:combat-readiness-observed", "to": "activity:safe-combat-training", "type": "requires", "evidence": "A non-null combat readiness observation is required before a bounded crab-training session is eligible; its fields are not converted into a survival claim."}
+    {"from": "condition:combat-readiness-observed", "to": "activity:safe-combat-training", "type": "requires", "evidence": "A non-null combat readiness observation is required before a bounded crab-training session is eligible; its fields are not converted into a survival claim."},
+    {"from": "condition:herblore-58", "to": "item:herb-sack", "type": "requires", "evidence": "Buying and using a Herb sack requires an unboostable Herblore level of 58."},
+    {"from": "currency:slayer-reward-points", "to": "item:herb-sack", "type": "alternative", "evidence": "A Slayer Rewards Herb sack purchase costs exactly 750 observed Slayer reward points; the 250-point Tithe Farm purchase remains a separate path."},
+    {"from": "currency:slayer-reward-points", "to": "goal:mta-rune-pouch", "type": "alternative", "evidence": "A Slayer Rewards Rune pouch purchase costs exactly 750 observed Slayer reward points."},
+    {"from": "activity:last-man-standing", "to": "currency:last-man-standing:points", "type": "makes_obtainable", "evidence": "Competitive Last Man Standing may award points only after observed qualifying match results; no activity action generates a balance."},
+    {"from": "currency:last-man-standing:points", "to": "goal:mta-rune-pouch", "type": "alternative", "evidence": "Justine sells a Rune pouch for 75 observed LMS points, subject to observed 48-hour member-playtime and shop access."}
   ]
 }
