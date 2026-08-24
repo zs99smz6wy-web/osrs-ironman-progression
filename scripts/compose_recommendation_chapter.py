@@ -15,6 +15,8 @@ from score_candidates import DEFAULT_CANDIDATES, score_candidates
 AFK_MODES = ("true_afk", "low_attention", "semi_afk")
 DEFAULT_ACTIVE_LIMIT = 5
 DEFAULT_AFK_LIMIT = 5
+DEFAULT_PREPARATION_LIMIT = 5
+DEFAULT_QUEST_XP_LIMIT = 5
 
 
 def _validate_limit(value: int, name: str) -> None:
@@ -29,18 +31,76 @@ def _scenario_state(account_state: dict[str, Any], attention_mode: str) -> dict[
     return scenario
 
 
-def _preparation_gaps(evaluated_actions: list[dict[str, Any]]) -> list[dict[str, Any]]:
-    return [
+def _strategic_action_order(candidates_document: dict[str, Any]) -> dict[str, int]:
+    """Keep the curated strategy subset ahead of unannotated preparation gaps."""
+    return {
+        candidate["action_id"]: index
+        for index, candidate in enumerate(candidates_document["candidates"])
+    }
+
+
+def _preparation_gaps(
+    evaluated_actions: list[dict[str, Any]], candidates_document: dict[str, Any]
+) -> tuple[list[dict[str, Any]], dict[str, Any]]:
+    strategic_order = _strategic_action_order(candidates_document)
+    all_gaps = [
         {
             "action_id": action["id"],
             "name": action["name"],
             "kind": action["kind"],
+            "status": action["status"],
             "fact_ids": action["fact_ids"],
             "missing_preparation": action["missing_preparation"],
         }
         for action in evaluated_actions
         if action["status"] == "needs_preparation"
     ]
+    all_gaps.sort(
+        key=lambda gap: (
+            0 if gap["action_id"] in strategic_order else 1,
+            strategic_order.get(gap["action_id"], 0),
+            gap["action_id"],
+        )
+    )
+    strategic_total = sum(gap["action_id"] in strategic_order for gap in all_gaps)
+    return all_gaps, {
+        "prioritized_by": ["strategic_annotation", "annotation_order", "action_id"],
+        "total_count": len(all_gaps),
+        "strategically_annotated_total": strategic_total,
+    }
+
+
+def _quest_xp_priority(quest: dict[str, Any]) -> tuple[int, int, int, str]:
+    levels_skipped = sum(skill["levels_skipped"] for skill in quest["skills"])
+    requirements_crossed = sum(
+        len(skill["modeled_requirements_crossed"]) for skill in quest["skills"]
+    )
+    return (
+        0 if quest["status"] == "eligible" else 1,
+        -levels_skipped,
+        -requirements_crossed,
+        quest["action_id"],
+    )
+
+
+def _quest_xp_opportunities(
+    quest_xp_timing: dict[str, Any]
+) -> tuple[list[dict[str, Any]], dict[str, Any]]:
+    opportunities = sorted(
+        quest_xp_timing["quest_xp_timing_inputs"], key=_quest_xp_priority
+    )
+    eligible_count = sum(quest["status"] == "eligible" for quest in opportunities)
+    return opportunities, {
+        "prioritized_by": [
+            "evaluator_status:eligible_before_needs_preparation",
+            "levels_skipped_descending",
+            "modeled_requirement_levels_crossed_descending",
+            "action_id",
+        ],
+        "total_count": len(opportunities),
+        "eligible_total": eligible_count,
+        "needs_preparation_total": len(opportunities) - eligible_count,
+    }
 
 
 def _eligible_unscored_gaps(
@@ -68,12 +128,16 @@ def compose_recommendation_chapter(
     *,
     active_limit: int = DEFAULT_ACTIVE_LIMIT,
     afk_limit: int = DEFAULT_AFK_LIMIT,
+    preparation_limit: int = DEFAULT_PREPARATION_LIMIT,
+    quest_xp_limit: int = DEFAULT_QUEST_XP_LIMIT,
     afk_mode: str = "low_attention",
 ) -> dict[str, Any]:
     """Compose bounded recommendation options without selecting or applying an action."""
     validate_account_state(account_state)
     _validate_limit(active_limit, "active_limit")
     _validate_limit(afk_limit, "afk_limit")
+    _validate_limit(preparation_limit, "preparation_limit")
+    _validate_limit(quest_xp_limit, "quest_xp_limit")
     if afk_mode not in AFK_MODES:
         raise ValueError(f"afk_mode must be one of: {', '.join(AFK_MODES)}")
 
@@ -87,6 +151,28 @@ def compose_recommendation_chapter(
     passive_status = analyze_passive_status(account_state)
     quest_xp_timing = analyze_quest_xp_timing(
         account_state, actions_document, nodes_document, edges_document
+    )
+    preparation_gaps, preparation_coverage = _preparation_gaps(
+        evaluated_actions, candidates_document
+    )
+    quest_xp_opportunities, quest_xp_coverage = _quest_xp_opportunities(quest_xp_timing)
+    preparation_coverage.update(
+        {
+            "limit": preparation_limit,
+            "shown_count": len(preparation_gaps[:preparation_limit]),
+            "omitted_count": max(0, len(preparation_gaps) - preparation_limit),
+            "strategically_annotated_shown": sum(
+                gap["action_id"] in _strategic_action_order(candidates_document)
+                for gap in preparation_gaps[:preparation_limit]
+            ),
+        }
+    )
+    quest_xp_coverage.update(
+        {
+            "limit": quest_xp_limit,
+            "shown_count": len(quest_xp_opportunities[:quest_xp_limit]),
+            "omitted_count": max(0, len(quest_xp_opportunities) - quest_xp_limit),
+        }
     )
 
     return {
@@ -117,9 +203,14 @@ def compose_recommendation_chapter(
             ],
             "elapsed_time_inferred": passive_status["elapsed_time_inferred"],
         },
-        "quest_xp_timing_opportunities": quest_xp_timing["quest_xp_timing_inputs"],
+        "quest_xp_timing_opportunities": quest_xp_opportunities[:quest_xp_limit],
+        "quest_xp_timing_coverage": quest_xp_coverage,
+        "unallocated_player_chosen_xp_rewards": quest_xp_timing[
+            "unallocated_player_chosen_xp_rewards"
+        ],
         "gaps": {
-            "preparation": _preparation_gaps(evaluated_actions),
+            "preparation": preparation_gaps[:preparation_limit],
+            "preparation_coverage": preparation_coverage,
             "eligible_unscored": _eligible_unscored_gaps(evaluated_actions, active_ranked),
         },
         "boundaries": {
@@ -131,6 +222,7 @@ def compose_recommendation_chapter(
             "combat_wins_inferred": False,
             "minigame_outputs_inferred": False,
             "account_state_mutated": False,
+            "player_chosen_xp_allocated": False,
         },
     }
 
@@ -148,9 +240,36 @@ def _print_human_chapter(chapter: dict[str, Any]) -> None:
 
     check_ins = chapter["passive_and_recurring_check_ins"]
     print(f"\nExplicit passive check-ins: {len(check_ins['explicit_observations'])}")
-    print(f"Preparation gaps: {len(chapter['gaps']['preparation'])}")
+    preparation_coverage = chapter["gaps"]["preparation_coverage"]
+    print(
+        "Preparation gaps: "
+        f"{preparation_coverage['shown_count']} of {preparation_coverage['total_count']} shown"
+    )
     print(f"Eligible unscored gaps: {len(chapter['gaps']['eligible_unscored'])}")
-    print(f"Quest-XP timing opportunities: {len(chapter['quest_xp_timing_opportunities'])}")
+    quest_xp_coverage = chapter["quest_xp_timing_coverage"]
+    print(
+        "\nQuest-XP timing opportunities: "
+        f"{quest_xp_coverage['shown_count']} of {quest_xp_coverage['total_count']} shown"
+    )
+    for quest in chapter["quest_xp_timing_opportunities"]:
+        print(f"  [{quest['status'].upper()}] {quest['quest_name']}")
+        if quest["missing_preparation"]:
+            print(f"    prepare: {_concise_list(quest['missing_preparation'])}")
+        for skill in quest["skills"]:
+            crossed = [str(item["level"]) for item in skill["modeled_requirements_crossed"]]
+            crossed_text = ", ".join(crossed) if crossed else "none"
+            print(
+                f"    {skill['skill']}: level {skill['current_level']} -> "
+                f"{skill['resulting_level']} (crossed modeled requirement levels: {crossed_text})"
+            )
+    lamps = chapter["unallocated_player_chosen_xp_rewards"]
+    print(f"Player-chosen XP rewards remain unallocated: {len(lamps)}")
+
+
+def _concise_list(values: list[str], limit: int = 3) -> str:
+    shown = values[:limit]
+    omitted = len(values) - len(shown)
+    return "; ".join(shown) + (f"; +{omitted} more" if omitted else "")
 
 
 def main() -> int:
@@ -164,6 +283,8 @@ def main() -> int:
     parser.add_argument("--edges", default=DEFAULT_EDGES, type=Path)
     parser.add_argument("--active-limit", default=DEFAULT_ACTIVE_LIMIT, type=int)
     parser.add_argument("--afk-limit", default=DEFAULT_AFK_LIMIT, type=int)
+    parser.add_argument("--preparation-limit", default=DEFAULT_PREPARATION_LIMIT, type=int)
+    parser.add_argument("--quest-xp-limit", default=DEFAULT_QUEST_XP_LIMIT, type=int)
     parser.add_argument("--afk-mode", choices=AFK_MODES, default="low_attention")
     parser.add_argument("--json", action="store_true", help="Emit machine-readable JSON.")
     args = parser.parse_args()
@@ -177,6 +298,8 @@ def main() -> int:
             load_json(args.edges),
             active_limit=args.active_limit,
             afk_limit=args.afk_limit,
+            preparation_limit=args.preparation_limit,
+            quest_xp_limit=args.quest_xp_limit,
             afk_mode=args.afk_mode,
         )
     except ValueError as error:

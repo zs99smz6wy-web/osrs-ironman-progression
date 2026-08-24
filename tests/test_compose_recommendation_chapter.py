@@ -1,6 +1,8 @@
 from __future__ import annotations
 
 import copy
+import contextlib
+import io
 import json
 import subprocess
 import sys
@@ -12,7 +14,11 @@ from pathlib import Path
 REPOSITORY_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPOSITORY_ROOT / "scripts"))
 
-from compose_recommendation_chapter import compose_recommendation_chapter  # noqa: E402
+from compose_recommendation_chapter import (  # noqa: E402
+    _print_human_chapter,
+    _quest_xp_opportunities,
+    compose_recommendation_chapter,
+)
 from evaluate_progression import load_json  # noqa: E402
 
 
@@ -80,7 +86,7 @@ class ComposeRecommendationChapterTests(unittest.TestCase):
             }
         }
 
-        chapter = self.compose(state)
+        chapter = self.compose(state, quest_xp_limit=20)
 
         check_ins = chapter["passive_and_recurring_check_ins"]
         self.assertEqual(state["recurring_observations"], check_ins["explicit_observations"])
@@ -89,15 +95,69 @@ class ComposeRecommendationChapterTests(unittest.TestCase):
         self.assertTrue(
             any(item["action_id"] == "action:waterfall-quest" for item in chapter["quest_xp_timing_opportunities"])
         )
+        self.assertFalse(chapter["boundaries"]["player_chosen_xp_allocated"])
+
+    def test_quest_xp_shortlist_is_prioritized_bounded_and_deterministic(self) -> None:
+        state = load_json(FIXTURES / "fresh-account.json")
+
+        first = self.compose(state, quest_xp_limit=3)
+        second = self.compose(state, quest_xp_limit=3)
+        opportunities = first["quest_xp_timing_opportunities"]
+
+        self.assertEqual(first["quest_xp_timing_opportunities"], second["quest_xp_timing_opportunities"])
+        self.assertEqual(3, len(opportunities))
+        self.assertTrue(all(item["status"] == "eligible" for item in opportunities))
+        self.assertEqual(
+            sorted(
+                opportunities,
+                key=lambda quest: (
+                    0 if quest["status"] == "eligible" else 1,
+                    -sum(skill["levels_skipped"] for skill in quest["skills"]),
+                    -sum(len(skill["modeled_requirements_crossed"]) for skill in quest["skills"]),
+                    quest["action_id"],
+                ),
+            ),
+            opportunities,
+        )
+        coverage = first["quest_xp_timing_coverage"]
+        self.assertEqual(3, coverage["limit"])
+        self.assertEqual(coverage["total_count"] - 3, coverage["omitted_count"])
+
+    def test_quest_xp_priority_uses_action_id_as_deterministic_final_tie_break(self) -> None:
+        base_quest = {
+            "status": "eligible",
+            "skills": [{"levels_skipped": 2, "modeled_requirements_crossed": []}],
+        }
+        opportunities, coverage = _quest_xp_opportunities(
+            {
+                "quest_xp_timing_inputs": [
+                    {**base_quest, "action_id": "action:zeta"},
+                    {**base_quest, "action_id": "action:alpha"},
+                ]
+            }
+        )
+
+        self.assertEqual(["action:alpha", "action:zeta"], [item["action_id"] for item in opportunities])
+        self.assertEqual(2, coverage["eligible_total"])
 
     def test_gaps_explain_unprepared_and_unscored_options_without_simulation(self) -> None:
         state = load_json(FIXTURES / "fresh-account.json")
 
-        chapter = self.compose(state)
+        chapter = self.compose(state, preparation_limit=2)
 
         preparation = {gap["action_id"]: gap for gap in chapter["gaps"]["preparation"]}
         self.assertIn("action:waterfall-quest", preparation)
+        self.assertEqual("needs_preparation", preparation["action:waterfall-quest"]["status"])
         self.assertTrue(preparation["action:waterfall-quest"]["missing_preparation"])
+        annotated_ids = {candidate["action_id"] for candidate in self.candidates["candidates"]}
+        self.assertTrue(all(action_id in annotated_ids for action_id in preparation))
+        coverage = chapter["gaps"]["preparation_coverage"]
+        self.assertEqual(2, coverage["limit"])
+        self.assertEqual(2, coverage["shown_count"])
+        self.assertGreater(coverage["omitted_count"], 0)
+        self.assertGreaterEqual(
+            coverage["strategically_annotated_total"], coverage["strategically_annotated_shown"]
+        )
         unscored_ids = {gap["action_id"] for gap in chapter["gaps"]["eligible_unscored"]}
         self.assertIn("action:natural-history-quiz", unscored_ids)
         self.assertEqual(
@@ -110,9 +170,28 @@ class ComposeRecommendationChapterTests(unittest.TestCase):
                 "combat_wins_inferred": False,
                 "minigame_outputs_inferred": False,
                 "account_state_mutated": False,
+                "player_chosen_xp_allocated": False,
             },
             chapter["boundaries"],
         )
+
+    def test_human_output_explains_quest_xp_preparation_and_unallocated_choice_rewards(self) -> None:
+        state = load_json(FIXTURES / "fresh-account.json")
+        chapter = self.compose(state, quest_xp_limit=20)
+        output = io.StringIO()
+
+        with contextlib.redirect_stdout(output):
+            _print_human_chapter(chapter)
+
+        text = output.getvalue()
+        self.assertIn("Quest-XP timing opportunities:", text)
+        self.assertIn("[NEEDS_PREPARATION] Plague City", text)
+        self.assertIn("prepare: 1 x hangover_cure", text)
+        self.assertIn("Mining: level 1 -> 15", text)
+        self.assertIn("crossed modeled requirement levels: 10", text)
+        self.assertIn("Player-chosen XP rewards remain unallocated: 1", text)
+        choice_rewards = chapter["unallocated_player_chosen_xp_rewards"]
+        self.assertEqual(None, choice_rewards[0]["allocated_skill"])
 
     def test_cli_json_and_limit_validation(self) -> None:
         state = load_json(FIXTURES / "fresh-account.json")
@@ -126,6 +205,10 @@ class ComposeRecommendationChapterTests(unittest.TestCase):
                 "--active-limit",
                 "1",
                 "--afk-limit",
+                "1",
+                "--preparation-limit",
+                "1",
+                "--quest-xp-limit",
                 "1",
                 "--afk-mode",
                 "semi_afk",
@@ -143,12 +226,38 @@ class ComposeRecommendationChapterTests(unittest.TestCase):
                 capture_output=True,
                 text=True,
             )
+            invalid_preparation = subprocess.run(
+                [
+                    sys.executable,
+                    str(REPOSITORY_ROOT / "scripts" / "compose_recommendation_chapter.py"),
+                    str(state_path),
+                    "--preparation-limit",
+                    "0",
+                ],
+                capture_output=True,
+                text=True,
+            )
+            invalid_quest_xp = subprocess.run(
+                [
+                    sys.executable,
+                    str(REPOSITORY_ROOT / "scripts" / "compose_recommendation_chapter.py"),
+                    str(state_path),
+                    "--quest-xp-limit",
+                    "0",
+                ],
+                capture_output=True,
+                text=True,
+            )
 
         chapter = json.loads(completed.stdout)
         self.assertEqual(1, len(chapter["lanes"]["active"]["ranked_options"]))
+        self.assertEqual(1, len(chapter["gaps"]["preparation"]))
+        self.assertEqual(1, len(chapter["quest_xp_timing_opportunities"]))
         self.assertEqual("semi_afk", chapter["lanes"]["afk_or_low_attention"]["attention_mode"])
         self.assertNotEqual(0, invalid.returncode)
         self.assertIn("active_limit must be a positive integer", invalid.stderr)
+        self.assertIn("preparation_limit must be a positive integer", invalid_preparation.stderr)
+        self.assertIn("quest_xp_limit must be a positive integer", invalid_quest_xp.stderr)
 
 
 if __name__ == "__main__":
