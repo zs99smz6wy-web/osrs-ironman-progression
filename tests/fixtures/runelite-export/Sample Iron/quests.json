@@ -1,0 +1,11 @@
+{
+  "exported_at": "2026-08-24T12:00:00Z",
+  "plugin_version": "0.6.0",
+  "session_id": "11111111-2222-3333-4444-555555555555",
+  "reason": "manual_panel",
+  "quests": [
+    {"id": 1, "name": "The Restless Ghost", "state": "FINISHED"},
+    {"id": 2, "name": "Waterfall Quest", "state": "IN_PROGRESS"},
+    {"id": 3, "name": "Cook's Assistant", "state": "NOT_STARTED"}
+  ]
+}

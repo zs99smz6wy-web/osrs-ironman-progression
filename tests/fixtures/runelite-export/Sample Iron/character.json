@@ -1,0 +1,33 @@
+{
+  "exported_at": "2026-08-24T12:00:00Z",
+  "plugin_version": "0.6.0",
+  "session_id": "11111111-2222-3333-4444-555555555555",
+  "reason": "manual_panel",
+  "account_name": "Sample Iron",
+  "stats": {
+    "Agility": {"real_level": 1, "boosted_level": 1, "experience": 0},
+    "Attack": {"real_level": 1, "boosted_level": 1, "experience": 0},
+    "Construction": {"real_level": 1, "boosted_level": 1, "experience": 0},
+    "Cooking": {"real_level": 1, "boosted_level": 1, "experience": 0},
+    "Crafting": {"real_level": 1, "boosted_level": 1, "experience": 0},
+    "Defence": {"real_level": 1, "boosted_level": 1, "experience": 0},
+    "Farming": {"real_level": 1, "boosted_level": 1, "experience": 0},
+    "Firemaking": {"real_level": 1, "boosted_level": 1, "experience": 0},
+    "Fishing": {"real_level": 1, "boosted_level": 1, "experience": 0},
+    "Fletching": {"real_level": 1, "boosted_level": 1, "experience": 0},
+    "Herblore": {"real_level": 1, "boosted_level": 1, "experience": 0},
+    "Hitpoints": {"real_level": 10, "boosted_level": 12, "experience": 1154},
+    "Hunter": {"real_level": 1, "boosted_level": 1, "experience": 0},
+    "Magic": {"real_level": 1, "boosted_level": 1, "experience": 0},
+    "Mining": {"real_level": 1, "boosted_level": 1, "experience": 0},
+    "Prayer": {"real_level": 1, "boosted_level": 1, "experience": 0},
+    "Ranged": {"real_level": 1, "boosted_level": 1, "experience": 0},
+    "Runecraft": {"real_level": 1, "boosted_level": 1, "experience": 0},
+    "Sailing": {"real_level": 10, "boosted_level": 10, "experience": 1154},
+    "Slayer": {"real_level": 1, "boosted_level": 1, "experience": 0},
+    "Smithing": {"real_level": 1, "boosted_level": 1, "experience": 0},
+    "Strength": {"real_level": 1, "boosted_level": 1, "experience": 0},
+    "Thieving": {"real_level": 1, "boosted_level": 1, "experience": 0},
+    "Woodcutting": {"real_level": 1, "boosted_level": 1, "experience": 0}
+  }
+}
