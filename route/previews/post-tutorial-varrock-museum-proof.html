@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>Post-Tutorial Varrock Museum Natural History Quiz proof segment | OSRS progression research</title>
+  <style>
+    :root { --page: #111619; --panel: #192125; --panel-alt: #151c20; --line: #37444a; --text: #e8ede8; --muted: #aab6b4; --accent: #d6b45d; --green: #89b56e; --amber: #e5af53; --red: #dc7777; --focus: #f2d77d; }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--page); color: var(--text); font: 15px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif; }
+    a { color: #a9d5e3; }
+    a:focus-visible, button:focus-visible, input:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+    code { color: #d9cb9b; overflow-wrap: anywhere; }
+    .shell { max-width: 1080px; margin: 0 auto; padding: 18px; display: grid; grid-template-columns: minmax(210px, 260px) minmax(0, 1fr); gap: 14px; }
+    .sidebar, .reader { border: 1px solid var(--line); border-radius: 6px; background: var(--panel); }
+    .sidebar { align-self: start; position: sticky; top: 14px; padding: 16px; }
+    .reader { overflow: hidden; }
+    .titlebar { padding: 18px 20px; background: #202a2f; border-bottom: 1px solid var(--line); }
+    .eyebrow { margin: 0 0 7px; color: var(--accent); font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+    h1, h2, h3 { margin: 0; line-height: 1.25; } h1 { font-size: 22px; } h2 { font-size: 16px; } h3 { font-size: 14px; }
+    .title-meta, .muted, small { color: var(--muted); } .title-meta { margin: 8px 0 0; font-size: 13px; }
+    .badge { display: inline-flex; align-items: center; min-height: 24px; padding: 2px 7px; border: 1px solid currentColor; border-radius: 4px; font-size: 12px; font-weight: 700; white-space: nowrap; }
+    .badge-normalized_action { color: var(--green); } .badge-sourced_unmodeled_substep { color: var(--accent); } .badge-unresolved { color: var(--amber); }
+    .status-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+    .nav-title { font-size: 12px; color: var(--muted); margin: 0 0 7px; text-transform: uppercase; letter-spacing: .06em; }
+    .sidebar nav a { display: block; padding: 5px 0; color: var(--text); text-decoration: none; } .sidebar nav a:hover { color: var(--accent); }
+    .reset { width: 100%; min-height: 36px; margin-top: 18px; border: 1px solid var(--line); border-radius: 4px; background: #263238; color: var(--text); font: inherit; cursor: pointer; } .reset:hover { border-color: var(--accent); }
+    .local-note { margin: 10px 0 0; font-size: 12px; color: var(--muted); }
+    .section, .branch { padding: 18px 20px; border-bottom: 1px solid var(--line); } .section:last-child { border-bottom: 0; }
+    .section-heading, .item-line { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+    .section-heading { margin-bottom: 10px; } .section p { margin: 7px 0; }
+    .plain-list, .checkpoints, .sources { margin: 10px 0 0; padding-left: 21px; } .plain-list li + li { margin-top: 6px; }
+    .requirements { display: grid; grid-template-columns: minmax(110px, 150px) minmax(0, 1fr); margin: 12px 0 0; border-top: 1px solid var(--line); } .requirements dt, .requirements dd { margin: 0; padding: 8px 0; border-bottom: 1px solid var(--line); } .requirements dt { color: var(--muted); }
+    .checkpoint-item { padding: 10px 0; border-bottom: 1px solid var(--line); } .checkpoint-item:last-child { border-bottom: 0; }
+    .boundary { color: var(--muted); font-size: 13px; } .boundary span { color: var(--amber); font-weight: 700; }
+    .steps { list-style: none; padding: 0; margin: 0; counter-reset: guide; } .step { display: grid; grid-template-columns: 22px minmax(0, 1fr) auto; column-gap: 10px; padding: 13px 0; border-top: 1px solid var(--line); }
+    .step-check { width: 18px; height: 18px; margin: 2px 0 0; accent-color: var(--green); } .step label { display: flex; gap: 9px; cursor: pointer; } .step-number { flex: 0 0 22px; color: var(--accent); font-weight: 700; } .step-text { min-width: 0; }
+    .step:has(.step-check:checked) .step-text { color: var(--muted); text-decoration: line-through; } .step:has(.step-check:checked) .step-number { color: var(--green); }
+    .step-meta { grid-column: 3; } .step > p { grid-column: 2 / -1; margin: 7px 0 0; } .action-ref, .checkpoint-ref { color: var(--muted); font-size: 13px; }
+    .branch { background: var(--panel-alt); } .when { margin: 0 0 10px; } .branch-steps .step { border-color: var(--line); }
+    .policy { margin: 8px 0 0; display: grid; grid-template-columns: 80px minmax(0, 1fr); gap: 6px 10px; } .policy dt { color: var(--muted); } .policy dd { margin: 0; }
+    .sources li { padding: 10px 0; border-bottom: 1px solid var(--line); } .sources li:last-child { border-bottom: 0; } .sources p { margin: 4px 0; }
+    .reader-footer { padding: 14px 20px; color: var(--muted); font-size: 13px; background: var(--panel-alt); }
+    @media (max-width: 760px) { .shell { display: block; padding: 10px; } .sidebar { position: static; margin-bottom: 10px; } .sidebar nav { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 14px; } .titlebar, .section, .branch { padding: 15px; } .step { grid-template-columns: 22px minmax(0, 1fr); } .step-meta { grid-column: 2; margin-top: 7px; } .requirements { grid-template-columns: 105px minmax(0, 1fr); } }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <aside class="sidebar" aria-label="Guide navigation">
+      <p class="nav-title">Research reader</p>
+      <nav>
+        <a href="#purpose">Purpose</a><a href="#preparation">Preparation</a><a href="#checkpoints">Checkpoints</a><a href="#steps">Steps</a><a href="#safety">Safety</a><a href="#sources">Sources</a>
+      </nav>
+      <button class="reset" type="button" id="reset-checks">Reset step checks</button>
+      <p class="local-note" id="storage-status">Step checks are stored only in this browser.</p>
+    </aside>
+    <article class="reader">
+      <header class="titlebar">
+        <p class="eyebrow">OSRS progression research</p>
+        <h1>Post-Tutorial Varrock Museum Natural History Quiz proof segment</h1>
+        <p class="title-meta"><code>segment:post-tutorial-varrock-museum-proof</code></p>
+        <div class="status-row"><span class="badge badge-unresolved">Research-only</span><span class="badge badge-unresolved">research-proof</span><span class="badge badge-unresolved">Not estimated</span></div>
+      </header>
+      <section class="section" id="purpose">
+        <div class="section-heading"><h2>Purpose and why now</h2><span class="badge badge-unresolved">Not route selection</span></div>
+        <h3>What this fragment documents</h3><ul class="plain-list"><li>Documents the sourced, local quiz interactions below the existing Natural History Quiz completion action.</li><li>Preserves the distinction between the quiz completion record and separately observed Rune Mysteries progress or Museum claims.</li></ul>
+        <h3>When it may be relevant</h3><ul class="plain-list"><li>The player observes that they want a fixed, no-player-provided-item Museum contribution fragment.</li><li>The player observes that a post-Tutorial account may reach the stated location and chooses to consider this activity.</li></ul>
+        <p class="boundary"><span>Timing boundary:</span> These facts can make the fragment relevant to inspect, but they neither select it now nor rank it above any other eligible content.</p>
+      </section>
+      <section class="section" id="preparation">
+        <div class="section-heading"><h2>Preparation</h2><span class="badge badge-sourced_unmodeled_substep">Observed state</span></div>
+        <h3>Assumptions</h3><ul class="plain-list"><li>The player declares a post-Tutorial standard Ironman account state.</li><li>The player is present and may stop at any checkpoint.</li><li>No travel method, prior museum visit, quest start, quest completion, item acquisition, or combat result is assumed.</li></ul>
+        <dl class="requirements"><dt>Carried items</dt><dd>None recorded</dd><dt>Banked items</dt><dd>None recorded</dd><dt>Carried GP</dt><dd>0</dd><dt>Banked GP</dt><dd>0</dd></dl>
+      </section>
+      <section class="section" id="checkpoints">
+        <div class="section-heading"><h2>Checkpoints</h2><span class="badge badge-unresolved">Includes unresolved state</span></div>
+        <ul class="checkpoints"><li class="checkpoint-item"><div class="item-line"><strong>The sourced quiz location is the first basement floor of Varrock Museum.</strong><span class="badge badge-sourced_unmodeled_substep">Sourced substep</span></div><p class="boundary"><span>Boundary:</span> The canonical action records quiz completion, not arrival or travel to the museum.</p></li><li class="checkpoint-item"><div class="item-line"><strong>This fact record lists no player-provided quiz items or coins; it does not require, assert, or model a bank interaction.</strong><span class="badge badge-sourced_unmodeled_substep">Sourced substep</span></div><p class="boundary"><span>Boundary:</span> An empty exact item and GP requirement is not evidence of a bank visit or of bank contents.</p></li><li class="checkpoint-item"><div class="item-line"><strong>A Rune Mysteries start or partial-progress checkpoint may be recorded externally by the player, but this account model has no start/progress state for it.</strong><span class="badge badge-unresolved">Unresolved</span></div><p class="boundary"><span>Boundary:</span> It cannot establish Rune Mysteries completion, Historian Minas claim eligibility, a normalized completion action, or an applied transition.</p></li><li class="checkpoint-item"><div class="item-line"><strong>A player-observed Rune Mysteries completion can be supplied separately when considering the Museum claim action.</strong><span class="badge badge-sourced_unmodeled_substep">Sourced substep</span></div><p class="boundary"><span>Boundary:</span> The fact supports the claim relationship only; it does not supply the quest&#x27;s path, start, items, skill checks, completion, or claim observation.</p></li></ul>
+      </section>
+      <section class="section" id="steps">
+        <div class="section-heading"><h2>Steps</h2><span class="badge badge-unresolved">Manual confirmation</span></div>
+        <ol class="steps"><li class="step"><input class="step-check" type="checkbox" id="guide-segment-post-tutorial-varrock-museum-proof-step-reach-quiz-location" data-step-id="step:reach-quiz-location"><label for="guide-segment-post-tutorial-varrock-museum-proof-step-reach-quiz-location"><span class="step-number">1</span><span class="step-text">Reach the sourced Natural History Quiz location on the Varrock Museum first basement floor.</span></label><div class="step-meta"><span class="badge badge-sourced_unmodeled_substep">Sourced substep</span></div><p class="checkpoint-ref">Checkpoint: <code>checkpoint:varrock-museum-first-basement</code></p><p class="boundary"><span>Boundary:</span> Travel routing and arrival are below the normalized action and are not represented as completed state.</p></li><li class="step"><input class="step-check" type="checkbox" id="guide-segment-post-tutorial-varrock-museum-proof-step-receive-orlando-lecture" data-step-id="step:receive-orlando-lecture"><label for="guide-segment-post-tutorial-varrock-museum-proof-step-receive-orlando-lecture"><span class="step-number">2</span><span class="step-text">Talk to Orlando Smith and receive the lecture before answering display plaques.</span></label><div class="step-meta"><span class="badge badge-sourced_unmodeled_substep">Sourced substep</span></div><p class="boundary"><span>Boundary:</span> This interaction does not by itself prove any completed display, fixed reward, or normalized action completion.</p></li><li class="step"><input class="step-check" type="checkbox" id="guide-segment-post-tutorial-varrock-museum-proof-step-answer-all-display-quizzes" data-step-id="step:answer-all-display-quizzes"><label for="guide-segment-post-tutorial-varrock-museum-proof-step-answer-all-display-quizzes"><span class="step-number">3</span><span class="step-text">Answer the three required questions for each of the 14 Natural History Quiz displays, then talk to Orlando Smith for the stated full-quiz claim condition.</span></label><div class="step-meta"><span class="badge badge-sourced_unmodeled_substep">Sourced substep</span></div><p class="boundary"><span>Boundary:</span> The documented mechanics support the instruction, but the player must separately observe whether every answer and the final conversation occurred.</p></li><li class="step"><input class="step-check" type="checkbox" id="guide-segment-post-tutorial-varrock-museum-proof-step-record-confirmed-quiz-completion" data-step-id="step:record-confirmed-quiz-completion"><label for="guide-segment-post-tutorial-varrock-museum-proof-step-record-confirmed-quiz-completion"><span class="step-number">4</span><span class="step-text">Only after the player observes full quiz completion may they record the linked normalized Natural History Quiz completion through its separate confirmation workflow.</span></label><div class="step-meta"><span class="badge badge-normalized_action">Normalized action</span></div><p class="action-ref">Linked record: <code>action:natural-history-quiz</code></p><p class="boundary"><span>Boundary:</span> This segment never applies the action. The linked action is a coarse completion record and does not capture travel, individual answers, quest starts, or external quest progress.</p></li></ol>
+      </section>
+      <section class="branch" aria-labelledby="optional-branch"><div class="section-heading"><h2 id="optional-branch">Optional branch</h2><span class="badge badge-unresolved">Player choice</span></div><p class="when"><strong>When:</strong> Only when the player separately observes Rune Mysteries completed and deliberately selects the Museum claim interaction.</p><ol class="steps branch-steps"><li class="step branch-step"><input class="step-check" type="checkbox" id="guide-segment-post-tutorial-varrock-museum-proof-step-record-confirmed-minas-claim" data-step-id="step:record-confirmed-minas-claim"><label for="guide-segment-post-tutorial-varrock-museum-proof-step-record-confirmed-minas-claim"><span class="step-number">1</span><span class="step-text">Only after the player observes the separate Historian Minas interaction may they record the linked normalized claim action through its separate confirmation workflow.</span></label><div class="step-meta"><span class="badge badge-normalized_action">Normalized action</span></div><p class="action-ref">Linked record: <code>action:claim-minas-rune-mysteries</code></p><p class="checkpoint-ref">Checkpoint: <code>external:rune-mysteries-completed</code></p><p class="boundary"><span>Boundary:</span> The claim action cannot prove Rune Mysteries start or completion, and it cannot turn an unmodeled partial-quest checkpoint into a completed quest.</p></li></ol><p class="boundary"><span>Boundary:</span> The branch is an optional factual claim relationship, not a recommendation to complete Rune Mysteries or claim Kudos now.</p></section>
+      <section class="section" id="safety">
+        <div class="section-heading"><h2>Safety and passive checks</h2><span class="badge badge-unresolved">Player judgment required</span></div>
+        <h3>Current observations</h3><ul class="plain-list"><li>The player must currently observe their own location, supplies, account mode, and any travel risk before moving.</li><li>No death, escape, safe travel, or successful return is assumed from the absence of a sourced quiz hazard.</li></ul>
+        <h3>Risk acceptance</h3><ul class="plain-list"><li>The player must decide whether their current account mode and risk tolerance permit leaving their present activity and travelling to the Museum.</li></ul>
+        <p class="boundary"><span>Survival boundary:</span> No death, escape, safe travel, or return is inferred.</p>
+        <h3>Passive-check policy</h3><ul class="plain-list"><li><strong>check:player-attention</strong><dl class="policy"><dt>Trigger</dt><dd>A player notices a possible passive or recurring timer while considering this segment.</dd><dt>Observe</dt><dd>The player confirms the timer or opportunity is currently available and independently decides whether it is worth handling.</dd><dt>Policy</dt><dd>Do not leave a quest, Slayer task, combat encounter, or other committed activity merely because a timer may be ready; defer the check until a player-chosen safe stopping point.</dd></dl></li></ul>
+      </section>
+      <section class="section" id="stop-reentry">
+        <div class="section-heading"><h2>Stop and re-entry</h2><span class="badge badge-unresolved">No completion inferred</span></div>
+        <h3>Stop conditions</h3><ul class="plain-list"><li>Stop before any step when the player does not want to continue.</li><li>Stop the optional Rune Mysteries claim branch unless its external completion and separate interaction are both player-observed.</li></ul>
+        <h3>Re-entry conditions</h3><ul class="plain-list"><li>Re-enter the quiz fragment only after returning to the sourced Museum location and re-observing the intended checkpoint.</li><li>Re-enter the Rune Mysteries claim branch only after separately observing its completion state and choosing the claim interaction.</li></ul>
+      </section>
+      <section class="section" id="sources">
+        <div class="section-heading"><h2>Sources</h2><span class="badge badge-sourced_unmodeled_substep">Research evidence</span></div>
+        <ul class="sources"><li><a href="https://oldschool.runescape.wiki/w/Kudos" target="_blank" rel="noopener noreferrer">wiki-kudos</a><p>Natural History Quiz location, Orlando Smith start and claim flow, 14 display mechanics, fixed rewards, and the separate Historian Minas Rune Mysteries claim.</p><small>Verified: 2026-08-21</small></li></ul>
+      </section>
+      <footer class="reader-footer">This reader visualizes research evidence. It does not select a route, apply an action, claim items or GP, or infer completion, timing, combat success, travel, or safety.</footer>
+    </article>
+  </main>
+  <script>
+    (() => {
+      const storageKey = "osrs-progression-guide:segment:post-tutorial-varrock-museum-proof";
+      const checks = [...document.querySelectorAll(".step-check")];
+      const status = document.getElementById("storage-status");
+      let saved = {};
+      try { saved = JSON.parse(localStorage.getItem(storageKey) || "{}"); } catch (_) { status.textContent = "Local step storage is unavailable in this browser."; }
+      checks.forEach((check) => {
+        check.checked = saved[check.dataset.stepId] === true;
+        check.addEventListener("change", () => {
+          try {
+            const next = Object.fromEntries(checks.map((item) => [item.dataset.stepId, item.checked]));
+            localStorage.setItem(storageKey, JSON.stringify(next));
+          } catch (_) { status.textContent = "Local step storage is unavailable in this browser."; }
+        });
+      });
+      document.getElementById("reset-checks").addEventListener("click", () => {
+        checks.forEach((check) => { check.checked = false; });
+        try { localStorage.removeItem(storageKey); } catch (_) { status.textContent = "Local step storage is unavailable in this browser."; }
+      });
+    })();
+  </script>
+</body>
+</html>
