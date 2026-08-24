@@ -736,6 +736,11 @@
     {"from": "currency:slayer-reward-points", "to": "item:herb-sack", "type": "alternative", "evidence": "A Slayer Rewards Herb sack purchase costs exactly 750 observed Slayer reward points; the 250-point Tithe Farm purchase remains a separate path."},
     {"from": "currency:slayer-reward-points", "to": "goal:mta-rune-pouch", "type": "alternative", "evidence": "A Slayer Rewards Rune pouch purchase costs exactly 750 observed Slayer reward points."},
     {"from": "activity:last-man-standing", "to": "currency:last-man-standing:points", "type": "makes_obtainable", "evidence": "Competitive Last Man Standing may award points only after observed qualifying match results; no activity action generates a balance."},
-    {"from": "currency:last-man-standing:points", "to": "goal:mta-rune-pouch", "type": "alternative", "evidence": "Justine sells a Rune pouch for 75 observed LMS points, subject to observed 48-hour member-playtime and shop access."}
+    {"from": "currency:last-man-standing:points", "to": "goal:mta-rune-pouch", "type": "alternative", "evidence": "Justine sells a Rune pouch for 75 observed LMS points, subject to observed 48-hour member-playtime and shop access."},
+    {"from": "quest:priest-in-peril", "to": "activity:barrows", "type": "requires", "evidence": "Priest in Peril completion is required to enter Morytania for Barrows."},
+    {"from": "quest:his-faithful-servants-started", "to": "activity:barrows", "type": "requires", "evidence": "His Faithful Servants must be started before digging into Barrows crypts."},
+    {"from": "quest:song-of-elves", "to": "activity:corrupted-gauntlet", "type": "requires", "evidence": "Song of the Elves completion grants access to The Gauntlet."},
+    {"from": "state:corrupted-gauntlet-unlocked", "to": "activity:corrupted-gauntlet", "type": "requires", "evidence": "A completed normal Gauntlet unlocks Corrupted Gauntlet; this unlock remains explicitly confirmed."},
+    {"from": "activity:royal-titans", "to": "goal:perilous-moons", "type": "improves", "evidence": "Observed Royal Titans rewards may have later account utility, but no reward receipt or timing is inferred."}
   ]
 }

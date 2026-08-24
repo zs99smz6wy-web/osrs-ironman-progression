@@ -23,6 +23,11 @@ from analyze_durable_utility_items import (
     analyze_durable_utility_items,
     context_by_action as durable_utility_context_by_action,
 )
+from analyze_pvm_readiness import (
+    DEFAULT_CONTEXTS as DEFAULT_PVM_READINESS_CONTEXTS,
+    analyze_pvm_readiness,
+    context_by_action as pvm_readiness_context_by_action,
+)
 from evaluate_progression import DEFAULT_ACTIONS, DEFAULT_STATE, evaluate_actions, load_json
 
 
@@ -120,6 +125,7 @@ def _rank_eligible_annotations(
     combat_quest_contexts: dict[str, dict[str, Any]],
     sailing_economics_contexts: dict[str, dict[str, Any]],
     durable_utility_contexts: dict[str, dict[str, Any]],
+    pvm_readiness_contexts: dict[str, dict[str, Any]],
 ) -> list[dict[str, Any]]:
     eligible = {result["id"]: result for result in evaluated if result["status"] == "eligible"}
     transport_bonus_by_action = contextual_bonus_by_action(transport_bundles)
@@ -167,6 +173,7 @@ def _rank_eligible_annotations(
                 "practical_readiness_context": combat_quest_contexts.get(action_id),
                 "sailing_economics_context": sailing_economics_contexts.get(action_id),
                 "durable_utility_context": durable_utility_contexts.get(action_id),
+                "pvm_readiness_context": pvm_readiness_contexts.get(action_id),
                 "base_score": base_score,
                 "total_score": total_score,
                 "stop_condition": annotation["stop_condition"],
@@ -197,9 +204,14 @@ def score_candidates(
             load_json(DEFAULT_DURABLE_UTILITY_CONTEXTS), actions_document, evaluated, account_state
         )
     )
+    pvm_context_document = load_json(DEFAULT_PVM_READINESS_CONTEXTS)
+    pvm_readiness_contexts = pvm_readiness_context_by_action(
+        analyze_pvm_readiness(pvm_context_document, actions_document, account_state),
+        pvm_context_document,
+    )
     return _rank_eligible_annotations(
         annotations, evaluated, account_state, transport_bundles, combat_quest_contexts,
-        sailing_economics_contexts, durable_utility_contexts,
+        sailing_economics_contexts, durable_utility_contexts, pvm_readiness_contexts,
     )
 
 
@@ -239,9 +251,14 @@ def _result_document(
         load_json(DEFAULT_DURABLE_UTILITY_CONTEXTS), actions_document, evaluated, account_state
     )
     durable_utility_contexts = durable_utility_context_by_action(durable_utility_items)
+    pvm_context_document = load_json(DEFAULT_PVM_READINESS_CONTEXTS)
+    pvm_readiness_contexts = pvm_readiness_context_by_action(
+        analyze_pvm_readiness(pvm_context_document, actions_document, account_state),
+        pvm_context_document,
+    )
     ranked = _rank_eligible_annotations(
         annotations, evaluated, account_state, transport_bundles, combat_quest_contexts,
-        sailing_economics_contexts, durable_utility_contexts,
+        sailing_economics_contexts, durable_utility_contexts, pvm_readiness_contexts,
     )
     return {
         "formula": {
@@ -254,6 +271,7 @@ def _result_document(
             "combat_quest_readiness": "a sourced strategy-only context appended after factual eligibility and scoring; it never adds a hard gate or score adjustment",
             "sailing_economics": "a source-backed strategy-only timing context appended after factual eligibility and scoring; it reports only fixed objective shortfalls and never penalizes entry or assumes future purchases, materials, income, or loot",
             "durable_utility_items": "a zero-point strategy context that groups fixed acquisition alternatives and requires explicit current demand before treating purchase readiness as timing advice",
+            "pvm_readiness": "a zero-point observation-only context appended after factual eligibility and scoring; it does not prove readiness, infer outcomes, or select timing",
         },
         "transport_bundles": transport_bundles,
         "durable_utility_items": durable_utility_items,

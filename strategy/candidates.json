@@ -368,6 +368,24 @@
       "reentry_condition": "Re-enter only while player-present when Mining 10, a usable pickaxe, and a fresh available and acceptable selected-star observation are all recorded."
     },
     {
+      "action_id": "action:royal-titans",
+      "dimensions": {"lifetime_utility": 2, "content_unlock": 1, "economic_infrastructure": 1, "multi_output": 2, "diversity": 3, "afk_fit": 0, "detour_cost": 3, "burnout_risk": 3, "danger_risk": 4},
+      "stop_condition": "Stop at the player-selected learning, reward, page, or collection boundary; do not turn targetable loot into an assumed drop or grind length.",
+      "reentry_condition": "Re-enter only with a current player-selected objective and observed access, recovery, tactical, and optional duo plan."
+    },
+    {
+      "action_id": "action:barrows",
+      "dimensions": {"lifetime_utility": 2, "content_unlock": 1, "economic_infrastructure": 2, "multi_output": 3, "diversity": 3, "afk_fit": 0, "detour_cost": 2, "burnout_risk": 2, "danger_risk": 3},
+      "stop_condition": "Stop at the player-selected learning, rune, equipment, diary, or collection boundary; chest contents remain variable.",
+      "reentry_condition": "Re-enter only with a current player-selected objective and observed travel, tactical, supply, and recovery plan."
+    },
+    {
+      "action_id": "action:corrupted-gauntlet",
+      "dimensions": {"lifetime_utility": 3, "content_unlock": 1, "economic_infrastructure": 2, "multi_output": 3, "diversity": 4, "afk_fit": 0, "detour_cost": 3, "burnout_risk": 4, "danger_risk": 4},
+      "stop_condition": "Stop at the player-selected learning, attention, risk, resource, equipment, or collection boundary; no seed or completion target is assumed.",
+      "reentry_condition": "Re-enter only after formal unlock confirmation, a current high-attention window, and an observed player-selected objective."
+    },
+    {
       "action_id": "action:safe-combat-training",
       "dimensions": {"lifetime_utility": 1, "content_unlock": 0, "economic_infrastructure": 1, "multi_output": 1, "diversity": 2, "afk_fit": 2, "detour_cost": 0, "burnout_risk": 1, "danger_risk": 2},
       "stop_condition": "Stop when the current combat or low-attention window ends, or when the selected method, safety, or readiness observation changes; no kill, drop, XP, or 99 target is assumed.",

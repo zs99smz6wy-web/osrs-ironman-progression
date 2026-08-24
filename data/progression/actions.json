@@ -3751,6 +3751,45 @@
       }
     },
     {
+      "id": "action:royal-titans",
+      "name": "Attempt Royal Titans with an observed plan",
+      "kind": "activity",
+      "status": "verified",
+      "fact_ids": ["pvm-readiness-core-activities"],
+      "requirements": {"all": []},
+      "preparation": {"all": []},
+      "completion": {"all": []},
+      "outcomes": [],
+      "repeatable": true,
+      "transition": {"effects": [], "options": [], "reported_effects": [{"type": "variable_activity_output", "description": "A selected route, combat styles, tactics, supplies, recovery plan, optional partner, attempts, contribution, deaths, loot choice, rewards, and outcomes must be player-observed. This action creates no win, drop, supply, or timing claim.", "fact_id": "pvm-readiness-core-activities"}]}
+    },
+    {
+      "id": "action:barrows",
+      "name": "Run Barrows with an observed plan",
+      "kind": "activity",
+      "status": "verified",
+      "fact_ids": ["pvm-readiness-core-activities"],
+      "requirements": {"all": [{"type": "quest_completed", "key": "Priest in Peril"}, {"type": "milestone", "key": "his_faithful_servants_started"}]},
+      "preparation": {"all": []},
+      "completion": {"all": []},
+      "outcomes": [],
+      "repeatable": true,
+      "transition": {"effects": [], "options": [], "reported_effects": [{"type": "variable_activity_output", "description": "Travel, crypt and tunnel state, Prayer drain, killed enemies, chest eligibility, supplies, deaths, recovery, chest contents, and all rewards must be player-observed. This action creates no clear, loot, rune, equipment, or timing claim.", "fact_id": "pvm-readiness-core-activities"}]}
+    },
+    {
+      "id": "action:corrupted-gauntlet",
+      "name": "Attempt Corrupted Gauntlet after confirmed unlock",
+      "kind": "activity",
+      "status": "verified",
+      "fact_ids": ["pvm-readiness-core-activities"],
+      "requirements": {"all": [{"type": "quest_completed", "key": "Song of the Elves"}, {"type": "milestone", "key": "corrupted_gauntlet_unlocked"}]},
+      "preparation": {"all": []},
+      "completion": {"all": []},
+      "outcomes": [],
+      "repeatable": true,
+      "transition": {"effects": [], "options": [], "reported_effects": [{"type": "variable_activity_output", "description": "The normal-Gauntlet unlock, account-type risk acceptance, in-instance preparation, tactics, attempts, deaths, failures, completion, chest contents, shards, seeds, cape, and all rewards must be player-observed. This action creates no readiness, outcome, or timing claim.", "fact_id": "pvm-readiness-core-activities"}]}
+    },
+    {
       "id": "action:unlock-hallowed-sepulchre-private-instance",
       "name": "Unlock a private Hallowed Sepulchre instance",
       "kind": "unlock",

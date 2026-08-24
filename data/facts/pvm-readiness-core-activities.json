@@ -1,0 +1,35 @@
+{
+  "records": [
+    {
+      "id": "pvm-readiness-core-activities",
+      "name": "Royal Titans, Barrows, and Corrupted Gauntlet factual access boundaries",
+      "category": "pvm",
+      "status": "verified",
+      "verified_at": "2026-08-24",
+      "scope": "Normalized high-value factual access, encounter, recovery, and reward boundaries for three PvM activities. Practical readiness, gear, supplies, competence, wins, loot, drop targets, and timing remain player-observed strategy questions.",
+      "activities": {
+        "royal_titans": {
+          "formal_access": "Members-only; no formal quest, skill, or combat requirement is listed. The north-west Asgarnian Ice Dungeon approach is the default route; the 60 Agility shortcut and a charged Giantsoul amulet are optional arrival alternatives.",
+          "encounter_boundary": "Instanced Eldric and Branda encounter with melee, Ranged, and Magic/barrier mechanics. Solo or group participation, contribution, tactics, damage, survival, and outcomes are not inferred.",
+          "recovery_boundary": "Instance death places unprotected items at a grave outside the entrance; ground items in the instance are lost. A recovery plan remains account-specific.",
+          "reward_boundary": "A completed encounter permits a player choice of Titan loot, but all regular and unique rewards remain RNG and must be observed.",
+          "source_ids": ["wiki-royal-titans-current", "wiki-royal-titans-strategies-current", "jagex-royal-titans-release-2025"]
+        },
+        "barrows": {
+          "formal_access": "Members-only; Priest in Peril completion is required for Morytania and His Faithful Servants must be started to dig into the crypts.",
+          "encounter_boundary": "Six crypt encounters, run-specific tunnel state, door spawns, and escalating underground Prayer drain are encounter mechanics, not readiness proof.",
+          "recovery_boundary": "Death and recovery use the ordinary grave system; player-specific travel, items, fee, reachability, and recovery result remain observed.",
+          "reward_boundary": "At least one enemy must be killed for chest loot. Brother kills affect the possible equipment pool and reward rolls, while all chest contents remain RNG.",
+          "source_ids": ["wiki-barrows-current", "wiki-barrows-strategies-current", "wiki-barrows-chest-current"]
+        },
+        "corrupted_gauntlet": {
+          "formal_access": "Song of the Elves completion grants Gauntlet access; at least one completed normal Gauntlet is required before Corrupted Gauntlet can be attempted. The normal-completion unlock is explicitly confirmed rather than inferred from skills or gear.",
+          "encounter_boundary": "The activity supplies its preparation resources and equipment in-instance. Corrupted preparation, style switching, protection-prayer cycle, tornado movement, and floor hazards remain player-observed.",
+          "recovery_boundary": "External gear is not taken into the activity. Hardcore status risk and Ultimate Ironman instanced-bank risk remain explicit account-type concerns.",
+          "reward_boundary": "Only completion gives unique-reward rolls; all seed, shard, chest, cape, and failure outcomes remain observations.",
+          "source_ids": ["wiki-gauntlet", "wiki-gauntlet-strategies", "wiki-reward-chest", "jagex-song-of-elves-rewards-poll"]
+        }
+      }
+    }
+  ]
+}

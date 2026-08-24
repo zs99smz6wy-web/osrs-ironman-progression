@@ -11,6 +11,7 @@ from analyze_quest_xp_timing import DEFAULT_EDGES, DEFAULT_NODES, analyze_quest_
 from analyze_transport_bundles import DEFAULT_TRANSPORT_BUNDLES, analyze_transport_bundles
 from analyze_sailing_economics import DEFAULT_CONTEXTS as DEFAULT_SAILING_ECONOMICS_CONTEXTS, analyze_sailing_economics
 from analyze_durable_utility_items import DEFAULT_CONTEXTS as DEFAULT_DURABLE_UTILITY_CONTEXTS, analyze_durable_utility_items
+from analyze_pvm_readiness import DEFAULT_CONTEXTS as DEFAULT_PVM_READINESS_CONTEXTS, analyze_pvm_readiness
 from evaluate_progression import DEFAULT_ACTIONS, DEFAULT_STATE, evaluate_actions, load_json, validate_account_state
 from score_candidates import DEFAULT_CANDIDATES, score_candidates
 
@@ -184,6 +185,9 @@ def compose_recommendation_chapter(
     durable_utility_items = analyze_durable_utility_items(
         load_json(DEFAULT_DURABLE_UTILITY_CONTEXTS), actions_document, evaluated_actions, account_state
     )
+    pvm_readiness = analyze_pvm_readiness(
+        load_json(DEFAULT_PVM_READINESS_CONTEXTS), actions_document, account_state
+    )
     quest_xp_timing = analyze_quest_xp_timing(
         account_state, actions_document, nodes_document, edges_document
     )
@@ -246,6 +250,7 @@ def compose_recommendation_chapter(
         "transport_payoff_bundles": transport_bundles,
         "sailing_economics_timing": list(sailing_economics.values()),
         "durable_utility_item_timing": durable_utility_items,
+        "pvm_readiness": pvm_readiness,
         "gaps": {
             "preparation": preparation_gaps[:preparation_limit],
             "preparation_coverage": preparation_coverage,
@@ -263,6 +268,7 @@ def compose_recommendation_chapter(
             "player_chosen_xp_allocated": False,
             "utility_demand_inferred": False,
             "utility_purchase_path_selected": False,
+            "pvm_readiness_inferred": False,
         },
     }
 
@@ -316,6 +322,11 @@ def _print_human_chapter(chapter: dict[str, Any]) -> None:
         print(f"    demand: {context['demand_note']}")
         print(f"    stop: {context['stop_condition']}")
         print(f"    re-entry: {context['reentry_condition']}")
+    print("\nPvM readiness context:")
+    for context in chapter["pvm_readiness"]:
+        print(f"  [{context['readiness_status'].upper()}] {context['name']}")
+        print(f"    formal access: {context['factual_access']['status']}")
+        print(f"    timing: {context['timing_status']}")
     preparation_coverage = chapter["gaps"]["preparation_coverage"]
     print(
         "Preparation gaps: "

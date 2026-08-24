@@ -644,6 +644,12 @@
     {"id": "item:pickaxe", "kind": "item", "label": "Usable pickaxe"},
     {"id": "condition:herblore-58", "kind": "condition", "label": "At least 58 Herblore"},
     {"id": "activity:last-man-standing", "kind": "activity", "label": "Last Man Standing"},
-    {"id": "currency:last-man-standing:points", "kind": "currency", "label": "Last Man Standing points"}
+    {"id": "currency:last-man-standing:points", "kind": "currency", "label": "Last Man Standing points"},
+    {"id": "activity:royal-titans", "kind": "activity", "label": "Royal Titans"},
+    {"id": "activity:barrows", "kind": "activity", "label": "Barrows"},
+    {"id": "activity:corrupted-gauntlet", "kind": "activity", "label": "Corrupted Gauntlet"},
+    {"id": "quest:his-faithful-servants-started", "kind": "quest_state", "label": "His Faithful Servants started"},
+    {"id": "quest:song-of-elves", "kind": "quest", "label": "Song of the Elves completed"},
+    {"id": "state:corrupted-gauntlet-unlocked", "kind": "account_flag", "label": "Corrupted Gauntlet unlock confirmed"}
   ]
 }
