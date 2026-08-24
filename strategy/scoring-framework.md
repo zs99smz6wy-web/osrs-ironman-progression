@@ -10,6 +10,8 @@ Only actions classified `eligible` by the factual evaluator may be scored. Block
 
 `strategy/transport-bundles.json` may add one separately named contextual point to an eligible action that establishes its own distinct durable early-transport capability while the bundle remains incomplete. It never creates a prerequisite between transport actions, and charged or consumable transport items receive context but no bundle point. See `strategy/transport-bundle.md`.
 
+`strategy/durable-utility-item-contexts.json` groups fixed acquisition alternatives for account-long storage items. It adds no score by itself: a purchase-ready path still reports that current demand is unconfirmed, and simultaneous ready purchases that compete for the same observed currency are shown without choosing a purchase order.
+
 ## Priority hierarchy
 
 1. Major permanent unlocks and transport.

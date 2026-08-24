@@ -18,6 +18,11 @@ from analyze_sailing_economics import (
     DEFAULT_CONTEXTS as DEFAULT_SAILING_ECONOMICS_CONTEXTS,
     analyze_sailing_economics,
 )
+from analyze_durable_utility_items import (
+    DEFAULT_CONTEXTS as DEFAULT_DURABLE_UTILITY_CONTEXTS,
+    analyze_durable_utility_items,
+    context_by_action as durable_utility_context_by_action,
+)
 from evaluate_progression import DEFAULT_ACTIONS, DEFAULT_STATE, evaluate_actions, load_json
 
 
@@ -114,6 +119,7 @@ def _rank_eligible_annotations(
     transport_bundles: list[dict[str, Any]],
     combat_quest_contexts: dict[str, dict[str, Any]],
     sailing_economics_contexts: dict[str, dict[str, Any]],
+    durable_utility_contexts: dict[str, dict[str, Any]],
 ) -> list[dict[str, Any]]:
     eligible = {result["id"]: result for result in evaluated if result["status"] == "eligible"}
     transport_bonus_by_action = contextual_bonus_by_action(transport_bundles)
@@ -160,6 +166,7 @@ def _rank_eligible_annotations(
                 "formal_eligibility": "eligible",
                 "practical_readiness_context": combat_quest_contexts.get(action_id),
                 "sailing_economics_context": sailing_economics_contexts.get(action_id),
+                "durable_utility_context": durable_utility_contexts.get(action_id),
                 "base_score": base_score,
                 "total_score": total_score,
                 "stop_condition": annotation["stop_condition"],
@@ -185,9 +192,14 @@ def score_candidates(
     sailing_economics_contexts = analyze_sailing_economics(
         load_json(DEFAULT_SAILING_ECONOMICS_CONTEXTS), actions_document, account_state
     )
+    durable_utility_contexts = durable_utility_context_by_action(
+        analyze_durable_utility_items(
+            load_json(DEFAULT_DURABLE_UTILITY_CONTEXTS), actions_document, evaluated, account_state
+        )
+    )
     return _rank_eligible_annotations(
         annotations, evaluated, account_state, transport_bundles, combat_quest_contexts,
-        sailing_economics_contexts,
+        sailing_economics_contexts, durable_utility_contexts,
     )
 
 
@@ -223,9 +235,13 @@ def _result_document(
     sailing_economics_contexts = analyze_sailing_economics(
         load_json(DEFAULT_SAILING_ECONOMICS_CONTEXTS), actions_document, account_state
     )
+    durable_utility_items = analyze_durable_utility_items(
+        load_json(DEFAULT_DURABLE_UTILITY_CONTEXTS), actions_document, evaluated, account_state
+    )
+    durable_utility_contexts = durable_utility_context_by_action(durable_utility_items)
     ranked = _rank_eligible_annotations(
         annotations, evaluated, account_state, transport_bundles, combat_quest_contexts,
-        sailing_economics_contexts,
+        sailing_economics_contexts, durable_utility_contexts,
     )
     return {
         "formula": {
@@ -237,8 +253,10 @@ def _result_document(
             "early_transport_bundle": "a bounded 0 or 1 strategic context point for an eligible distinct durable transport capability while that bundle remains incomplete; replenishable transport items score 0",
             "combat_quest_readiness": "a sourced strategy-only context appended after factual eligibility and scoring; it never adds a hard gate or score adjustment",
             "sailing_economics": "a source-backed strategy-only timing context appended after factual eligibility and scoring; it reports only fixed objective shortfalls and never penalizes entry or assumes future purchases, materials, income, or loot",
+            "durable_utility_items": "a zero-point strategy context that groups fixed acquisition alternatives and requires explicit current demand before treating purchase readiness as timing advice",
         },
         "transport_bundles": transport_bundles,
+        "durable_utility_items": durable_utility_items,
         "ranked_eligible_candidates": ranked,
         "eligible_unscored_actions": _eligible_unscored_actions(evaluated, annotations),
     }
@@ -283,6 +301,10 @@ def main() -> int:
                     f"{entry['key']} {entry['have']}/{entry['need']} (short {entry['shortfall']})"
                     for entry in shortfalls
                 ))
+        if candidate["durable_utility_context"]:
+            context = candidate["durable_utility_context"]
+            print(f"  durable utility: {context['item_name']} ({context['status']})")
+            print(f"    demand: {context['demand_note']}")
         print(f"  stop: {candidate['stop_condition']}")
         print(f"  re-entry: {candidate['reentry_condition']}")
     return 0

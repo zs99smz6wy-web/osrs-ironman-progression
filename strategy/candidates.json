@@ -284,6 +284,30 @@
       "reentry_condition": "Re-enter when the golden-nugget balance is ready and gem storage will materially improve observed mining, gem collection, or Crafting work."
     },
     {
+      "action_id": "action:buy-tithe-seed-box",
+      "dimensions": {"lifetime_utility": 3, "content_unlock": 1, "economic_infrastructure": 3, "multi_output": 2, "diversity": 2, "afk_fit": 0, "detour_cost": 2, "burnout_risk": 1, "danger_risk": 0},
+      "stop_condition": "Stop after buying the Seed box; do not continue Tithe Farm without another named reward or Farming objective.",
+      "reentry_condition": "Re-enter when 250 observed Tithe Farm points are ready and six-type seed storage serves a current loot or Farming loop."
+    },
+    {
+      "action_id": "action:buy-tithe-herb-sack",
+      "dimensions": {"lifetime_utility": 4, "content_unlock": 1, "economic_infrastructure": 3, "multi_output": 3, "diversity": 2, "afk_fit": 0, "detour_cost": 2, "burnout_risk": 1, "danger_risk": 0},
+      "stop_condition": "Stop after buying the Herb sack; do not continue Tithe Farm solely because more shop rewards exist.",
+      "reentry_condition": "Re-enter when 58 Herblore, 250 observed Tithe Farm points, and a current grimy-herb inventory need are all present."
+    },
+    {
+      "action_id": "action:buy-slayer-herb-sack",
+      "dimensions": {"lifetime_utility": 4, "content_unlock": 1, "economic_infrastructure": 3, "multi_output": 3, "diversity": 2, "afk_fit": 0, "detour_cost": 2, "burnout_risk": 1, "danger_risk": 0},
+      "stop_condition": "Stop after buying the Herb sack; preserve remaining Slayer points for separately evaluated unlocks.",
+      "reentry_condition": "Re-enter when 58 Herblore, 750 observed Slayer points, and a current grimy-herb inventory need justify this alternative."
+    },
+    {
+      "action_id": "action:buy-slayer-rune-pouch",
+      "dimensions": {"lifetime_utility": 4, "content_unlock": 2, "economic_infrastructure": 3, "multi_output": 3, "diversity": 2, "afk_fit": 0, "detour_cost": 2, "burnout_risk": 1, "danger_risk": 0},
+      "stop_condition": "Stop after buying the Rune pouch; preserve remaining Slayer points for separately evaluated unlocks.",
+      "reentry_condition": "Re-enter when 750 observed Slayer points are ready and rune-slot compression has an immediate combat, spellbook, skilling, or transport use."
+    },
+    {
       "action_id": "action:perilous-moons-quest",
       "dimensions": {"lifetime_utility": 4, "content_unlock": 4, "economic_infrastructure": 3, "multi_output": 4, "diversity": 4, "afk_fit": 0, "detour_cost": 2, "burnout_risk": 1, "danger_risk": 2},
       "stop_condition": "Stop after the quest and its fixed access and XP are secured; treat Moons farming as a separate readiness and reward decision.",

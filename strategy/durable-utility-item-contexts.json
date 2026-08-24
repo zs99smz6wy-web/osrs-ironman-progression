@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "scope": "Strategy-only timing context for durable utility purchases. It compares already-normalized fixed acquisition paths without selecting a path, inferring demand, changing factual eligibility, or treating storage ownership as a route objective by itself.",
+  "items": [
+    {
+      "id": "herb-sack",
+      "name": "Herb sack",
+      "item_key": "herb_sack",
+      "fact_ids": ["durable-utility-herb-sack"],
+      "benefit_id": "durable-herb-storage",
+      "demand_note": "Confirm a current Slayer, Herbiboar, herb-run, or other grimy-herb inventory need before spending shared reward currency.",
+      "stop_condition": "Stop after one confirmed Herb sack purchase; do not keep grinding the source activity without another named reward or progression goal.",
+      "reentry_condition": "Reassess when 58 Herblore and one fixed currency path are ready and grimy-herb inventory pressure is a current account need.",
+      "paths": [
+        {"action_id": "action:buy-tithe-herb-sack", "name": "Tithe Farm points"},
+        {"action_id": "action:buy-slayer-herb-sack", "name": "Slayer reward points"}
+      ]
+    },
+    {
+      "id": "seed-box",
+      "name": "Seed box",
+      "item_key": "seed_box",
+      "fact_ids": ["durable-utility-seed-box"],
+      "benefit_id": "durable-seed-storage",
+      "demand_note": "Confirm current seed-loot or farming-loop inventory pressure before spending Tithe Farm points.",
+      "stop_condition": "Stop after the confirmed Seed box purchase; its six-type storage utility is the target, not open-ended Tithe Farm completion.",
+      "reentry_condition": "Reassess when the fixed Tithe Farm purchase is ready and seed storage will materially support a current loop.",
+      "paths": [
+        {"action_id": "action:buy-tithe-seed-box", "name": "Tithe Farm points"}
+      ]
+    },
+    {
+      "id": "coal-bag",
+      "name": "Coal bag",
+      "item_key": "coal_bag",
+      "fact_ids": ["durable-utility-coal-bag"],
+      "benefit_id": "durable-coal-storage",
+      "demand_note": "Confirm a current Blast Furnace, furnace, Superheat, or other coal-heavy Smithing plan before spending golden nuggets.",
+      "stop_condition": "Stop after buying the Coal bag; Motherlode Mine is a means to the utility target, not a reason to pursue 99 Mining.",
+      "reentry_condition": "Reassess when 100 observed golden nuggets are ready and a named coal-heavy pipeline will use the capacity.",
+      "paths": [
+        {"action_id": "action:buy-coal-bag", "name": "Golden nuggets"}
+      ]
+    },
+    {
+      "id": "gem-bag",
+      "name": "Gem bag",
+      "item_key": "gem_bag",
+      "fact_ids": ["durable-utility-gem-bag"],
+      "benefit_id": "durable-gem-storage",
+      "demand_note": "Confirm current mining, gem collection, or Crafting inventory pressure before spending golden nuggets.",
+      "stop_condition": "Stop after buying the Gem bag; do not continue Motherlode solely for another storage purchase without a current use.",
+      "reentry_condition": "Reassess when 100 observed golden nuggets are ready and gem storage will improve a named current activity.",
+      "paths": [
+        {"action_id": "action:buy-gem-bag", "name": "Golden nuggets"}
+      ]
+    },
+    {
+      "id": "rune-pouch",
+      "name": "Rune pouch",
+      "item_key": "rune_pouch",
+      "fact_ids": ["durable-utility-rune-pouch"],
+      "benefit_id": "durable-rune-storage",
+      "demand_note": "Confirm current combat, spellbook, skilling, or transport rune-slot pressure before committing shared points or a high-friction minigame stop.",
+      "stop_condition": "Stop after one confirmed Rune pouch purchase; do not continue an acquisition activity solely because another route also exists.",
+      "reentry_condition": "Reassess when one fixed observed currency path is ready and three-slot rune storage has an immediate account use.",
+      "paths": [
+        {"action_id": "action:buy-mta-rune-pouch", "name": "Mage Training Arena Pizazz"},
+        {"action_id": "action:buy-slayer-rune-pouch", "name": "Slayer reward points"}
+      ],
+      "unmodeled_path_note": "The factual LMS path remains non-executable until member-playtime and shop-row access observations are modeled."
+    }
+  ]
+}

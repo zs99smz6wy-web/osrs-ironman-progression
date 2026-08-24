@@ -171,6 +171,8 @@ class ComposeRecommendationChapterTests(unittest.TestCase):
                 "minigame_outputs_inferred": False,
                 "account_state_mutated": False,
                 "player_chosen_xp_allocated": False,
+                "utility_demand_inferred": False,
+                "utility_purchase_path_selected": False,
             },
             chapter["boundaries"],
         )

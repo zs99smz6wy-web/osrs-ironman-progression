@@ -10,6 +10,7 @@ from analyze_passive_status import analyze_passive_status
 from analyze_quest_xp_timing import DEFAULT_EDGES, DEFAULT_NODES, analyze_quest_xp_timing
 from analyze_transport_bundles import DEFAULT_TRANSPORT_BUNDLES, analyze_transport_bundles
 from analyze_sailing_economics import DEFAULT_CONTEXTS as DEFAULT_SAILING_ECONOMICS_CONTEXTS, analyze_sailing_economics
+from analyze_durable_utility_items import DEFAULT_CONTEXTS as DEFAULT_DURABLE_UTILITY_CONTEXTS, analyze_durable_utility_items
 from evaluate_progression import DEFAULT_ACTIONS, DEFAULT_STATE, evaluate_actions, load_json, validate_account_state
 from score_candidates import DEFAULT_CANDIDATES, score_candidates
 
@@ -180,6 +181,9 @@ def compose_recommendation_chapter(
     sailing_economics = analyze_sailing_economics(
         load_json(DEFAULT_SAILING_ECONOMICS_CONTEXTS), actions_document, account_state
     )
+    durable_utility_items = analyze_durable_utility_items(
+        load_json(DEFAULT_DURABLE_UTILITY_CONTEXTS), actions_document, evaluated_actions, account_state
+    )
     quest_xp_timing = analyze_quest_xp_timing(
         account_state, actions_document, nodes_document, edges_document
     )
@@ -241,6 +245,7 @@ def compose_recommendation_chapter(
         ],
         "transport_payoff_bundles": transport_bundles,
         "sailing_economics_timing": list(sailing_economics.values()),
+        "durable_utility_item_timing": durable_utility_items,
         "gaps": {
             "preparation": preparation_gaps[:preparation_limit],
             "preparation_coverage": preparation_coverage,
@@ -256,6 +261,8 @@ def compose_recommendation_chapter(
             "minigame_outputs_inferred": False,
             "account_state_mutated": False,
             "player_chosen_xp_allocated": False,
+            "utility_demand_inferred": False,
+            "utility_purchase_path_selected": False,
         },
     }
 
@@ -293,6 +300,22 @@ def _print_human_chapter(chapter: dict[str, Any]) -> None:
         print(f"    stop: {context['stop_condition']}")
         print(f"    re-entry: {context['reentry_condition']}")
         print(f"    material boundary: {context['material_planning']['note']}")
+    print("\nDurable utility timing:")
+    for context in chapter["durable_utility_item_timing"]:
+        print(f"  [{context['status'].upper()}] {context['name']}")
+        for path in context["paths"]:
+            print(f"    {path['name']}: {path['status']}")
+            gaps = path["missing"] + path["missing_preparation"]
+            if gaps:
+                print(f"      gaps: {_concise_list(gaps)}")
+        for contention in context["shared_currency_contention"]:
+            print(
+                f"    shared currency: {contention['resource']} has {contention['observed']} "
+                f"for {contention['combined_cost']} across ready alternatives; purchase order not selected"
+            )
+        print(f"    demand: {context['demand_note']}")
+        print(f"    stop: {context['stop_condition']}")
+        print(f"    re-entry: {context['reentry_condition']}")
     preparation_coverage = chapter["gaps"]["preparation_coverage"]
     print(
         "Preparation gaps: "
