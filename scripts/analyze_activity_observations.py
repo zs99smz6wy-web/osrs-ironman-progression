@@ -12,6 +12,7 @@ from evaluate_progression import (
     DEFAULT_STATE,
     load_json,
     report_diary_task_observations,
+    report_minigame_activity_observations,
     validate_account_state,
 )
 
@@ -58,6 +59,7 @@ def analyze_activity_observations(account_state: dict[str, Any]) -> dict[str, An
         "moon_equipment_observations": moon_equipment,
         "farming_recurrence_observation": copy.deepcopy(account_state["farming_recurrence_observation"]),
         "diary_task_observation_report": report_diary_task_observations(account_state),
+        "minigame_activity_observation_report": report_minigame_activity_observations(account_state),
         "clocks_advanced": False,
         "growth_inferred": False,
         "readiness_inferred": False,
@@ -68,6 +70,7 @@ def analyze_activity_observations(account_state: dict[str, Any]) -> dict[str, An
         "diary_task_milestones_inferred": False,
         "diary_tiers_inferred": False,
         "wilderness_elite_big_three_durable_boss_kills_inferred": False,
+        "minigame_outputs_inferred": False,
     }
 
 
@@ -96,6 +99,10 @@ def main() -> int:
         f"{'yes' if result['farming_recurrence_observation'] is not None else 'no'}"
     )
     print(f"Diary task observations: {result['diary_task_observation_report']['observation_count']}")
+    print(
+        "Minigame activity observations: "
+        f"{result['minigame_activity_observation_report']['observation_count']}"
+    )
     print("Clocks advanced: false")
     print("Readiness inferred: false")
     return 0

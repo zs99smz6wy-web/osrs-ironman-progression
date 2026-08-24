@@ -113,6 +113,18 @@ class AnalyzeActivityObservationsTests(unittest.TestCase):
             "blue_moon_spear": self._unique_item("not_owned", "confirmed", 0),
             "fish_barrel": self._unique_item("owned", "confirmed", 1),
         }
+        self.state["minigame_activity_observations"] = {
+            "tempoross": {
+                "observed_at": "2026-08-22T12:30:00Z",
+                "currency_balances": [
+                    {
+                        "currency_id": "currency:tempoross-reward-permits",
+                        "amount": 4,
+                        "capacity": 8000,
+                    }
+                ],
+            }
+        }
 
     @staticmethod
     def _unique_item(possession: str, collection_log: str, quantity: int) -> dict:
@@ -140,6 +152,11 @@ class AnalyzeActivityObservationsTests(unittest.TestCase):
             set(result["moon_equipment_observations"]["blue_moon"]),
         )
         self.assertNotIn("fish_barrel", result["moon_equipment_observations"]["blue_moon"])
+        self.assertEqual(
+            self.state["minigame_activity_observations"],
+            result["minigame_activity_observation_report"]["observations"],
+        )
+        self.assertEqual(1, result["minigame_activity_observation_report"]["observation_count"])
         for flag in (
             "clocks_advanced",
             "growth_inferred",
@@ -148,6 +165,7 @@ class AnalyzeActivityObservationsTests(unittest.TestCase):
             "reclaim_fee_calculated",
             "set_completion_inferred",
             "throughput_inferred",
+            "minigame_outputs_inferred",
         ):
             self.assertFalse(result[flag])
         self.assertEqual(original, self.state)
