@@ -8,7 +8,7 @@ Use this comparison to choose the next factual or modeling investigation for an 
 
 ## Ranked actionable gaps
 
-1. **Make quest XP thresholds visible in the chapter.** The pilot reports XP opportunities, but the human chapter should expose the next threshold, quest chain, preparation gap, and lamp target so early training can be skipped deliberately. The Wiki's Ironman guide explicitly prioritizes quest rewards over early skilling and commonly directs lamps to Herblore. This is primarily a strategic presentation gap; individual XP facts still require normal validation.
+1. **Make quest XP thresholds visible in the chapter.** The pilot reports XP opportunities, but the human chapter should expose the next threshold, quest chain, and preparation gap so early training can be skipped deliberately. Player-chosen lamps must remain explicit and unallocated until the account's opportunity cost is evaluated. The Wiki's Ironman guide explicitly prioritizes quest rewards over early skilling and commonly directs lamps to Herblore. This is primarily a strategic presentation gap; individual XP facts still require normal validation.
    - Source: [Optimal quest guide/Ironman](https://oldschool.runescape.wiki/w/Optimal_quest_guide/Ironman) (published/crawled 5 months ago; accessed 2026-08-24).
 
 2. **Represent early transport as a payoff bundle.** Spirit trees, gliders, fairy rings, Ardougne cloak, Chronicle, Games necklace, and ring of dueling are individually represented or referenced, but the first chapter can under-rank their combined travel value. This is a sequencing and payoff-model gap, not a factual disagreement.
