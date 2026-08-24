@@ -1,0 +1,63 @@
+{
+  "checked_at": "2026-08-24",
+  "scope": "RuneLite item-ID proposal for the assigned quest and transport account-state keys only; quantities are unnoted inventory/equipment item quantities unless noted otherwise.",
+  "sources": [
+    {
+      "id": "runelite_itemid",
+      "url": "https://raw.githubusercontent.com/runelite/runelite/master/runelite-api/src/main/java/net/runelite/api/ItemID.java",
+      "checked_at": "2026-08-24",
+      "use": "Primary canonical identity source for RuneLite ItemID constants."
+    },
+    {
+      "id": "osrs_wiki_karambwan_vessel",
+      "url": "https://oldschool.runescape.wiki/w/Karambwan_vessel",
+      "checked_at": "2026-08-24",
+      "use": "Distinguishes the empty and baited vessel variants and their fishing use."
+    },
+    {
+      "id": "osrs_wiki_explorers_ring",
+      "url": "https://oldschool.runescape.wiki/w/Explorer%27s_ring",
+      "checked_at": "2026-08-24",
+      "use": "Confirms the four Explorer's ring diary-tier variants."
+    },
+    {
+      "id": "osrs_wiki_antivenom",
+      "url": "https://oldschool.runescape.wiki/w/Anti-venom",
+      "checked_at": "2026-08-24",
+      "use": "Confirms the ordinary Anti-venom dose variants and their IDs."
+    }
+  ],
+  "mappings": [
+    {"model_state":"items","model_key":"air_rune","runelite_item_ids":[556],"display_names":["Air rune"],"aggregation":"sum","notes":"Stackable rune quantity.","source_ids":["runelite_itemid"]},
+    {"model_state":"items","model_key":"earth_rune","runelite_item_ids":[557],"display_names":["Earth rune"],"aggregation":"sum","notes":"Stackable rune quantity.","source_ids":["runelite_itemid"]},
+    {"model_state":"items","model_key":"water_rune","runelite_item_ids":[555],"display_names":["Water rune"],"aggregation":"sum","notes":"Stackable rune quantity.","source_ids":["runelite_itemid"]},
+    {"model_state":"items","model_key":"blood_rune","runelite_item_ids":[565],"display_names":["Blood rune"],"aggregation":"sum","notes":"Stackable rune quantity.","source_ids":["runelite_itemid"]},
+    {"model_state":"items","model_key":"rune_essence","runelite_item_ids":[1436],"display_names":["Rune essence"],"aggregation":"sum","notes":"Unnoted essence only; noted forms are not usable for the modeled crafting or hand-in requirements.","source_ids":["runelite_itemid"]},
+    {"model_state":"items","model_key":"pure_essence","runelite_item_ids":[7936],"display_names":["Pure essence"],"aggregation":"sum","notes":"Unnoted essence only; noted forms are not usable for the modeled crafting or hand-in requirements.","source_ids":["runelite_itemid"]},
+    {"model_state":"items","model_key":"dramen_staff","runelite_item_ids":[772],"display_names":["Dramen staff"],"aggregation":"presence","notes":"Reusable fairy-ring access item; one usable inventory or equipped staff is sufficient.","source_ids":["runelite_itemid"]},
+    {"model_state":"items","model_key":"lunar_staff","runelite_item_ids":[9084],"display_names":["Lunar staff"],"aggregation":"presence","notes":"Final usable Lunar staff only; the Lunar Diplomacy in-progress staff variants are excluded.","source_ids":["runelite_itemid"]},
+    {"model_state":"items","model_key":"ghostspeak_amulet","runelite_item_ids":[552],"display_names":["Ghostspeak amulet"],"aggregation":"presence","notes":"Reusable quest-access amulet; one usable inventory or equipped amulet is sufficient.","source_ids":["runelite_itemid"]},
+    {"model_state":"items","model_key":"silver_sickle","runelite_item_ids":[2961],"display_names":["Silver sickle"],"aggregation":"sum","notes":"The unblessed sickle required before Nature Spirit; Silver sickle (b) is a distinct post-quest item and is excluded.","source_ids":["runelite_itemid"]},
+    {"model_state":"items","model_key":"diving_apparatus","runelite_item_ids":[7535],"display_names":["Diving apparatus"],"aggregation":"presence","notes":"Reusable underwater equipment; one usable inventory or equipped apparatus is sufficient.","source_ids":["runelite_itemid"]},
+    {"model_state":"items","model_key":"fishbowl_helmet","runelite_item_ids":[7534],"display_names":["Fishbowl helmet"],"aggregation":"presence","notes":"Reusable underwater equipment; one usable inventory or equipped helmet is sufficient.","source_ids":["runelite_itemid"]},
+    {"model_state":"items","model_key":"karambwan_vessel","runelite_item_ids":[3157],"display_names":["Karambwan vessel"],"aggregation":"presence","notes":"Empty vessel only. The baited 3159 variant already contains karambwanji and is not the vessel-plus-separate-bait preparation state.","source_ids":["runelite_itemid","osrs_wiki_karambwan_vessel"]},
+    {"model_state":"items","model_key":"raw_karambwanji","runelite_item_ids":[3150],"display_names":["Raw karambwanji"],"aggregation":"sum","notes":"Stackable bait quantity; raw rather than cooked or paste forms.","source_ids":["runelite_itemid","osrs_wiki_karambwan_vessel"]},
+    {"model_state":"items","model_key":"digsite_pendant_charge","runelite_item_ids":[11190,11191,11192,11193,11194],"display_names":["Digsite pendant (1)","Digsite pendant (2)","Digsite pendant (3)","Digsite pendant (4)","Digsite pendant (5)"],"aggregation":"max","notes":"Represents the highest remaining-charge pendant as a readiness value. This is intentionally not a lossless reconstruction of the model's aggregate charge counter when multiple pendants are held.","source_ids":["runelite_itemid"]},
+    {"model_state":"items","model_key":"explorers_ring_current","runelite_item_ids":[13125,13126,13127,13128],"display_names":["Explorer's ring 1","Explorer's ring 2","Explorer's ring 3","Explorer's ring 4"],"aggregation":"presence","notes":"Any tier is a usable inventory or equipped Explorer's ring; the model's separately recorded diary tier determines which one is current and its capabilities.","source_ids":["runelite_itemid","osrs_wiki_explorers_ring"]},
+    {"model_state":"items","model_key":"common_non_silver_ring","runelite_item_ids":[1635,1637,1639,1641,1643,1645,6575],"display_names":["Gold ring","Sapphire ring","Emerald ring","Ruby ring","Diamond ring","Dragonstone ring","Onyx ring"],"aggregation":"presence","notes":"Usable inventory or equipped standard crafted, unenchanted non-silver rings represented by the model's common-ring key. One is sufficient; enchanted, unique, and cosmetic rings are deliberately outside this narrow key.","source_ids":["runelite_itemid"]},
+    {"model_state":"items","model_key":"defence_potion_3plus","runelite_item_ids":[133,2432],"display_names":["Defence potion(3)","Defence potion(4)"],"aggregation":"sum","notes":"Only 3- and 4-dose ordinary Defence potions satisfy the 3plus key; lower-dose, super-defence, and divine variants are excluded.","source_ids":["runelite_itemid"]},
+    {"model_state":"items","model_key":"anti_venom_4","runelite_item_ids":[12905],"display_names":["Anti-venom(4)"],"aggregation":"sum","notes":"Exact ordinary four-dose Anti-venom only. Lower doses and the separate Anti-venom+ variants are excluded.","source_ids":["runelite_itemid","osrs_wiki_antivenom"]},
+    {"model_state":"items","model_key":"iron_bar","runelite_item_ids":[2351],"display_names":["Iron bar"],"aggregation":"sum","notes":"Stackable material quantity.","source_ids":["runelite_itemid"]},
+    {"model_state":"items","model_key":"charcoal","runelite_item_ids":[973],"display_names":["Charcoal"],"aggregation":"sum","notes":"Raw charcoal item; ground charcoal is a distinct transformed quest intermediate and is excluded.","source_ids":["runelite_itemid"]},
+    {"model_state":"items","model_key":"cup_of_tea","runelite_item_ids":[712],"display_names":["Cup of tea"],"aggregation":"sum","notes":"Exact quest input item.","source_ids":["runelite_itemid"]},
+    {"model_state":"items","model_key":"clean_necklace","runelite_item_ids":[11195],"display_names":["Clean necklace"],"aggregation":"sum","notes":"Exact museum-cleaned necklace before pendant enchantment.","source_ids":["runelite_itemid"]},
+    {"model_state":"items","model_key":"opal","runelite_item_ids":[1609],"display_names":["Opal"],"aggregation":"sum","notes":"Cut opal; distinct from uncut opal.","source_ids":["runelite_itemid"]},
+    {"model_state":"items","model_key":"uncut_opal","runelite_item_ids":[1625],"display_names":["Uncut opal"],"aggregation":"sum","notes":"Uncut opal; distinct from cut opal.","source_ids":["runelite_itemid"]},
+    {"model_state":"items","model_key":"vial","runelite_item_ids":[229],"display_names":["Vial"],"aggregation":"sum","notes":"Empty vial only; vial of water and filled vials are distinct items.","source_ids":["runelite_itemid"]},
+    {"model_state":"items","model_key":"unfinished_marrentill_potion","runelite_item_ids":[93],"display_names":["Marrentill potion (unf)"],"aggregation":"sum","notes":"Exact unfinished marrentill potion used for Bone Voyage.","source_ids":["runelite_itemid"]},
+    {"model_state":"items","model_key":"vodka","runelite_item_ids":[2015],"display_names":["Vodka"],"aggregation":"sum","notes":"Exact consumable quest input.","source_ids":["runelite_itemid"]},
+    {"model_state":"items","model_key":"volcanic_sulphur","runelite_item_ids":[13571],"display_names":["Volcanic sulphur"],"aggregation":"sum","notes":"Exact material item.","source_ids":["runelite_itemid"]},
+    {"model_state":"items","model_key":"molten_glass","runelite_item_ids":[1775],"display_names":["Molten glass"],"aggregation":"sum","notes":"Exact material item.","source_ids":["runelite_itemid"]}
+  ],
+  "unresolved": []
+}

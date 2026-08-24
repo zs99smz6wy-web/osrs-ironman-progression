@@ -74,11 +74,14 @@ class RuneLiteImportTests(unittest.TestCase):
     def test_deep_copy_preserves_private_state_and_diaries_are_report_only(self):
         base = read_json(BASE_STATE)
         base["items"] = {"private_bank_marker": 7}
+        base["resources"] = {"private_resource_marker": 9, "coins": 200}
         base_before = copy.deepcopy(base)
         result = self.import_fixture(base=base)
         state = result["updated_account_state"]
         self.assertEqual(base_before, base)
-        self.assertEqual({"private_bank_marker": 7}, state["items"])
+        self.assertEqual(7, state["items"]["private_bank_marker"])
+        self.assertEqual(9, state["resources"]["private_resource_marker"])
+        self.assertEqual(200, state["resources"]["coins"])
         self.assertEqual(base_before["diary_tiers"], state["diary_tiers"])
         self.assertNotIn("diary_task_observations", state)
         diary = result["import_report"]["diaries"]
@@ -119,11 +122,32 @@ class RuneLiteImportTests(unittest.TestCase):
         with self.assertRaisesRegex(ImportError, "level/XP mismatch"):
             self.import_fixture(documents=documents)
 
-    def test_optional_file_staleness_is_a_warning_not_a_blocker(self):
+    def test_container_imports_numeric_ids_across_distinct_containers(self):
+        result = self.import_fixture()
+        state = result["updated_account_state"]
+        self.assertEqual(125, state["resources"]["coins"])
+        self.assertEqual(25, state["items"]["feathers"])
+        self.assertEqual(1, state["items"]["axe"])
+        self.assertNotIn("watering_can", state["items"])
+        self.assertEqual(50, state["items"]["low_level_birdhouse_seed"])
+        self.assertEqual(4, state["items"]["logs"])
+        containers = result["import_report"]["containers"]
+        self.assertEqual("imported", containers["datasets"]["equipment"]["status"])
+        coins = next(entry for entry in containers["resolved"] if entry["model_key"] == "coins")
+        self.assertEqual({995: 125}, coins["physical_item_quantities"])
+        self.assertEqual(["bank", "inventory"], coins["source_containers"])
+        self.assertTrue({5340, 99999}.issubset({entry["item_id"] for entry in containers["unmapped_exported_items"]}))
+        feathers = next(entry for entry in containers["resolved"] if entry["model_key"] == "feathers")
+        self.assertEqual({314: 25}, feathers["physical_item_quantities"])
+
+    def test_container_staleness_and_malformed_data_warn_without_empty_import(self):
         with tempfile.TemporaryDirectory() as temporary:
             destination = Path(temporary) / "Sample Iron"
             shutil.copytree(ACCOUNT_DIR, destination)
             (destination / "bank.json").write_text("this is deliberately not JSON", encoding="utf-8")
+            seed_vault = read_json(destination / "seed_vault.json")
+            seed_vault["session_id"] = "older-container-session"
+            (destination / "seed_vault.json").write_text(json.dumps(seed_vault), encoding="utf-8")
             diary = read_json(destination / "diaries.json")
             diary["session_id"] = "older-diary-session"
             diary["plugin_version"] = "0.5.0"
@@ -131,8 +155,11 @@ class RuneLiteImportTests(unittest.TestCase):
             documents, warnings = load_export_documents(destination)
             result = import_runelite_export(read_json(BASE_STATE), documents, warnings=warnings)
         reported_warnings = result["import_report"]["warnings"]
-        self.assertTrue(any("bank.json is present but unsupported" in warning for warning in reported_warnings))
+        self.assertTrue(any("bank.json is malformed" in warning for warning in reported_warnings))
+        self.assertTrue(any("seed_vault.json was not imported" in warning for warning in reported_warnings))
         self.assertTrue(any("diaries.json is from a different export session" in warning for warning in reported_warnings))
+        self.assertEqual("missing_or_unreadable", result["import_report"]["containers"]["datasets"]["bank"]["status"])
+        self.assertEqual("skipped", result["import_report"]["containers"]["datasets"]["seed_vault"]["status"])
         self.assertEqual("reported_only", result["import_report"]["diaries"]["status"])
 
     def test_missing_optional_files_are_warnings_not_empty_state(self):
@@ -140,11 +167,28 @@ class RuneLiteImportTests(unittest.TestCase):
             destination = Path(temporary) / "Sample Iron"
             shutil.copytree(ACCOUNT_DIR, destination)
             (destination / "diaries.json").unlink()
+            (destination / "bank.json").unlink()
             documents, warnings = load_export_documents(destination)
             result = import_runelite_export(read_json(BASE_STATE), documents, warnings=warnings)
         self.assertEqual("missing", result["import_report"]["diaries"]["status"])
         self.assertTrue(any("bank.json" in warning for warning in result["import_report"]["warnings"]))
         self.assertFalse(result["import_report"]["false_inference_flags"]["item_containers_treated_as_empty"])
+
+    def test_container_mismatch_or_bad_shape_is_skipped_and_display_names_are_not_guessed(self):
+        documents = self.documents()
+        documents["inventory"] = copy.deepcopy(documents["inventory"])
+        documents["inventory"]["item_count"] = 3
+        documents["equipment"] = copy.deepcopy(documents["equipment"])
+        documents["equipment"]["account_name"] = "Different Iron"
+        documents["bank"] = copy.deepcopy(documents["bank"])
+        documents["bank"]["items"][0] = {"slot": 0, "id": 99998, "quantity": 50, "name": "Coins"}
+        result = self.import_fixture(documents=documents)
+        state = result["updated_account_state"]
+        self.assertEqual(read_json(BASE_STATE)["resources"].get("coins", 0), state["resources"].get("coins", 0))
+        self.assertEqual("skipped", result["import_report"]["containers"]["datasets"]["inventory"]["status"])
+        self.assertEqual("skipped", result["import_report"]["containers"]["datasets"]["equipment"]["status"])
+        unmapped_ids = {entry["item_id"] for entry in result["import_report"]["containers"]["unmapped_exported_items"]}
+        self.assertIn(99998, unmapped_ids)
 
     def test_cli_stdout_and_overwrite_protection(self):
         command = [sys.executable, str(IMPORTER), "--account-directory", str(ACCOUNT_DIR)]

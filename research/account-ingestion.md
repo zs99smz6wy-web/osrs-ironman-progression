@@ -20,9 +20,15 @@ Only quest records whose state is exactly `FINISHED` are added to `quests_comple
 
 `diaries.json` is evidence only: area/tier completion, task count, named-task presence, and export provenance remain in `import_report`. Its older session or plugin version produces a warning instead of blocking the import. The importer never changes `diary_tiers` or diary-task observations.
 
+## Item containers
+
+When present, structurally valid, version-compatible, and from the same export session as `character.json`, `bank.json`, `seed_vault.json`, `inventory.json`, and `equipment.json` are imported through the versioned [production resolver](../data/import/runelite-item-resolver.v1.json). The importer aggregates only stable numeric RuneLite item IDs across those distinct containers, then applies the resolver's `sum`, `presence`, or variant `max` rule. Item display names are report-only and are never used to infer identity.
+
+Observed resolved quantities merge conservatively with the base snapshot using the larger value; missing keys are never zeroed. Mismatched, stale-session, malformed, or unavailable containers emit warnings and are omitted rather than treated as empty. The import report lists resolved values, unmapped exported IDs/names, and non-container model keys that remain unresolved. Equipment establishes only observed physical possession for that session, not usability, charges, or reclaimability.
+
 ## Deliberate phase boundary
 
-Bank, seed vault, inventory, equipment, combat achievements, and collection log are not parsed or opened by phase 1. Their presence, stale metadata, or malformed contents cannot block this import; a missing file means only that it was unavailable to the plugin, never that the account owns nothing. Character and quest exports must agree on their supported plugin version and session ID; optional diary data is report-only provenance.
+Combat achievements and collection log are not parsed or opened by phase 1. Their presence, stale metadata, or malformed contents cannot block this import; a missing file means only that it was unavailable to the plugin, never that the account owns nothing. Character and quest exports must agree on their supported plugin version and session ID; optional diary data is report-only provenance.
 
 The importer rejects malformed required data, duplicate quest IDs/names, unknown skill layouts, and permanent-level/XP disagreement. It returns JSON on stdout by default, or writes only to a new path unless `--force` is explicit.
 

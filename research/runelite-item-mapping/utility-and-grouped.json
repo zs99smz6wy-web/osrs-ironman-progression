@@ -1,0 +1,231 @@
+{
+  "checked_at": "2026-08-24",
+  "scope": "Proposal for the assigned account-state keys only. IDs identify live OSRS inventory/equipment items; minigame balances, calculated values, and vessel state are intentionally not inferred from item IDs.",
+  "sources": [
+    {
+      "id": "runelite-gameval-itemid",
+      "url": "https://raw.githubusercontent.com/runelite/runelite/master/runelite-api/src/main/java/net/runelite/api/gameval/ItemID.java",
+      "checked_at": "2026-08-24",
+      "use": "Primary current RuneLite identity source, including modern Motherlode, Tithe, rune-pouch, and Sailing entries."
+    },
+    {
+      "id": "runelite-itemid",
+      "url": "https://raw.githubusercontent.com/runelite/runelite/master/runelite-api/src/main/java/net/runelite/api/ItemID.java",
+      "checked_at": "2026-08-24",
+      "use": "Primary generated ItemID cross-check for display names and legacy constants."
+    },
+    {
+      "id": "osrs-wiki-bird-house",
+      "url": "https://oldschool.runescape.wiki/w/Bird_house",
+      "checked_at": "2026-08-24",
+      "use": "Bird-house compatible-log and seed-tier grouping semantics."
+    },
+    {
+      "id": "osrs-wiki-rune-pouch",
+      "url": "https://oldschool.runescape.wiki/w/Rune_pouch",
+      "checked_at": "2026-08-24",
+      "use": "Usable Rune pouch, protected pouch, and Divine rune pouch ownership semantics."
+    },
+    {
+      "id": "osrs-wiki-motherlode-mine",
+      "url": "https://oldschool.runescape.wiki/w/Motherlode_Mine",
+      "checked_at": "2026-08-24",
+      "use": "Golden-nugget item currency and coal/gem bag context."
+    },
+    {
+      "id": "osrs-wiki-sailing",
+      "url": "https://oldschool.runescape.wiki/w/Sailing",
+      "checked_at": "2026-08-24",
+      "use": "Boat and installed-component ownership are vessel state rather than bank inventory."
+    }
+  ],
+  "mappings": [
+    {
+      "model_state": "resources",
+      "model_key": "coins",
+      "runelite_item_ids": [995],
+      "display_names": ["Coins"],
+      "aggregation": "sum",
+      "notes": "Map the standard stackable Coins item only. Do not add coin-denomination display items, money containers, or non-item currency counters.",
+      "source_ids": ["runelite-gameval-itemid", "runelite-itemid"]
+    },
+    {
+      "model_state": "items",
+      "model_key": "coal_bag",
+      "runelite_item_ids": [12019, 24480],
+      "display_names": ["Coal bag", "Open coal bag"],
+      "aggregation": "presence",
+      "notes": "Both are usable forms of the same inventory container. Treat any positive count as owned; exclude reward-interface and dummy IDs.",
+      "source_ids": ["runelite-gameval-itemid", "runelite-itemid", "osrs-wiki-motherlode-mine"]
+    },
+    {
+      "model_state": "items",
+      "model_key": "gem_bag",
+      "runelite_item_ids": [12020, 24481],
+      "display_names": ["Gem bag", "Open gem bag"],
+      "aggregation": "presence",
+      "notes": "Both are usable forms of the same inventory container. Treat any positive count as owned; exclude reward-interface and dummy IDs.",
+      "source_ids": ["runelite-gameval-itemid", "runelite-itemid", "osrs-wiki-motherlode-mine"]
+    },
+    {
+      "model_state": "items",
+      "model_key": "rune_pouch",
+      "runelite_item_ids": [12791, 24416, 27281, 27509],
+      "display_names": ["Rune pouch", "Rune pouch (l)", "Divine rune pouch", "Divine rune pouch (l)"],
+      "aggregation": "presence",
+      "notes": "Each listed item provides the modelled usable rune-storage capability. Include protected and Divine upgrades; exclude notes, UI/temporary-mode copies, and unavailable duplicate-mode IDs.",
+      "source_ids": ["runelite-gameval-itemid", "runelite-itemid", "osrs-wiki-rune-pouch"]
+    },
+    {
+      "model_state": "items",
+      "model_key": "gricollers_can",
+      "runelite_item_ids": [13353],
+      "display_names": ["Gricoller's can"],
+      "aggregation": "presence",
+      "notes": "The 1,000-water-dose state is not a separate usable item ID. Treat any positive count as ownership; exclude the Tithe-Farm interface copy.",
+      "source_ids": ["runelite-gameval-itemid", "runelite-itemid"]
+    },
+    {
+      "model_state": "items",
+      "model_key": "gold_leaf",
+      "runelite_item_ids": [8784],
+      "display_names": ["Gold leaf"],
+      "aggregation": "sum",
+      "notes": "POH Construction material. The similarly named legacy ID is not used for this modelled material requirement.",
+      "source_ids": ["runelite-gameval-itemid", "runelite-itemid"]
+    },
+    {
+      "model_state": "items",
+      "model_key": "magic_stone",
+      "runelite_item_ids": [8788],
+      "display_names": ["Magic stone"],
+      "aggregation": "sum",
+      "notes": "POH Construction material. The similarly named legacy ID is not used for this modelled material requirement.",
+      "source_ids": ["runelite-gameval-itemid", "runelite-itemid"]
+    },
+    {
+      "model_state": "items",
+      "model_key": "ice_gloves",
+      "runelite_item_ids": [1580],
+      "display_names": ["Ice gloves"],
+      "aggregation": "presence",
+      "notes": "Reusable equipment utility; a positive inventory or equipped count proves availability.",
+      "source_ids": ["runelite-gameval-itemid", "runelite-itemid"]
+    },
+    {
+      "model_state": "items",
+      "model_key": "magic_logs",
+      "runelite_item_ids": [1513],
+      "display_names": ["Magic logs"],
+      "aggregation": "sum",
+      "notes": "Exact stackable material for balloon-route requirements. It is deliberately separate from the grouped logs mapping to prevent a single stack from being counted twice.",
+      "source_ids": ["runelite-gameval-itemid", "runelite-itemid"]
+    },
+    {
+      "model_state": "items",
+      "model_key": "logs",
+      "runelite_item_ids": [1511, 1521, 1519, 6333, 1517, 6332, 1515, 19669],
+      "display_names": ["Logs", "Oak logs", "Willow logs", "Teak logs", "Maple logs", "Mahogany logs", "Yew logs", "Redwood logs"],
+      "aggregation": "sum",
+      "notes": "Fungible grouped count for the account model's compatible bird-house log input, excluding Magic logs because that stack has its own model key. Do not use this aggregate where an action requires a specific log tier; pyre, treated, crate, lantern, and unrelated log IDs are excluded.",
+      "source_ids": ["runelite-gameval-itemid", "runelite-itemid", "osrs-wiki-bird-house"]
+    },
+    {
+      "model_state": "items",
+      "model_key": "low_level_birdhouse_seed",
+      "runelite_item_ids": [5291, 5292, 5293, 5294],
+      "display_names": ["Guam seed", "Marrentill seed", "Tarromin seed", "Harralander seed"],
+      "aggregation": "sum",
+      "notes": "Fungible low-tier bird-house seed group: ten seeds per bird house. Aggregate only these four herb-seed IDs; do not include seed-vault/interface copies.",
+      "source_ids": ["runelite-gameval-itemid", "runelite-itemid", "osrs-wiki-bird-house"]
+    },
+    {
+      "model_state": "items",
+      "model_key": "high_level_birdhouse_seed",
+      "runelite_item_ids": [5295, 5296, 5297, 5298, 5299, 5300, 5301, 5302, 5303, 5304, 30088],
+      "display_names": ["Ranarr seed", "Toadflax seed", "Irit seed", "Avantoe seed", "Kwuarm seed", "Snapdragon seed", "Cadantine seed", "Lantadyme seed", "Dwarf weed seed", "Torstol seed", "Huasca seed"],
+      "aggregation": "sum",
+      "notes": "Fungible higher-tier bird-house seed group: five seeds per bird house. This is the live herb-seed range above Harralander, including Huasca; low-tier seeds are kept in the separate group to preserve the ten-versus-five consumption rate.",
+      "source_ids": ["runelite-gameval-itemid", "runelite-itemid", "osrs-wiki-bird-house"]
+    },
+    {
+      "model_state": "items",
+      "model_key": "seaweed_spore",
+      "runelite_item_ids": [21490],
+      "display_names": ["Seaweed spore"],
+      "aggregation": "sum",
+      "notes": "Exact stackable planting input for giant seaweed patches.",
+      "source_ids": ["runelite-gameval-itemid", "runelite-itemid"]
+    },
+    {
+      "model_state": "items",
+      "model_key": "clockwork",
+      "runelite_item_ids": [8792],
+      "display_names": ["Clockwork"],
+      "aggregation": "sum",
+      "notes": "Exact bird-house construction component. Its return from dismantled bird houses is an observed activity result, not inferred from passive-loop state.",
+      "source_ids": ["runelite-gameval-itemid", "runelite-itemid", "osrs-wiki-bird-house"]
+    },
+    {
+      "model_state": "resources",
+      "model_key": "golden_nuggets",
+      "runelite_item_ids": [12012],
+      "display_names": ["Golden nugget"],
+      "aggregation": "sum",
+      "notes": "Representable as the stackable Motherlode Mine reward currency item, so it may populate the resource balance. Do not infer it from mined pay-dirt or purchase history.",
+      "source_ids": ["runelite-itemid", "osrs-wiki-motherlode-mine"]
+    }
+  ],
+  "unresolved": [
+    {
+      "model_key": "salvaging_hook",
+      "reason": "An installed Sailing salvaging-hook tier belongs in sailing_observation.vessel.component_tiers. RuneLite's Sailing item entries for hooks are skill-guide display assets, not a canonical usable inventory/equipment item for this account key.",
+      "source_ids": ["runelite-gameval-itemid", "osrs-wiki-sailing"]
+    },
+    {
+      "model_key": "sailing_raft",
+      "reason": "Raft ownership belongs in sailing_observation.vessel.boat_type. SAILING_DEED_RAFT is a deed/document item and must not be treated as the owned vessel or summed into bank aggregation.",
+      "source_ids": ["runelite-gameval-itemid", "osrs-wiki-sailing"]
+    },
+    {
+      "model_key": "sailing_skiff",
+      "reason": "Skiff ownership belongs in sailing_observation.vessel.boat_type. SAILING_DEED_SKIFF is a deed/document item and must not be treated as the owned vessel or summed into bank aggregation.",
+      "source_ids": ["runelite-gameval-itemid", "osrs-wiki-sailing"]
+    },
+    {
+      "model_key": "telekinetic_pizazz",
+      "reason": "Mage Training Arena balance is a non-item activity currency and has no usable inventory/equipment item representation.",
+      "source_ids": ["osrs-wiki-rune-pouch"]
+    },
+    {
+      "model_key": "graveyard_pizazz",
+      "reason": "Mage Training Arena balance is a non-item activity currency and has no usable inventory/equipment item representation.",
+      "source_ids": ["osrs-wiki-rune-pouch"]
+    },
+    {
+      "model_key": "enchantment_pizazz",
+      "reason": "Mage Training Arena balance is a non-item activity currency and has no usable inventory/equipment item representation.",
+      "source_ids": ["osrs-wiki-rune-pouch"]
+    },
+    {
+      "model_key": "alchemist_pizazz",
+      "reason": "Mage Training Arena balance is a non-item activity currency and has no usable inventory/equipment item representation.",
+      "source_ids": ["osrs-wiki-rune-pouch"]
+    },
+    {
+      "model_key": "tithe_farm_points",
+      "reason": "Tithe Farm points are a non-container activity currency, not a bank, inventory, or equipment item.",
+      "source_ids": []
+    },
+    {
+      "model_key": "foundry_metal_value_bars",
+      "reason": "This is a calculated commission-input value derived from selected bars, not an item or stored currency.",
+      "source_ids": []
+    },
+    {
+      "model_key": "foundry_reputation",
+      "reason": "Giants' Foundry reputation is a non-container activity counter, not a bank, inventory, or equipment item.",
+      "source_ids": []
+    }
+  ]
+}

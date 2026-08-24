@@ -1,0 +1,11 @@
+{
+  "exported_at": "2026-08-24T12:00:00Z",
+  "plugin_version": "0.6.0",
+  "session_id": "11111111-2222-3333-4444-555555555555",
+  "reason": "manual_panel",
+  "kind": "equipment",
+  "item_count": 1,
+  "items": [
+    {"slot": 3, "id": 1351, "quantity": 1, "name": "Bronze axe"}
+  ]
+}

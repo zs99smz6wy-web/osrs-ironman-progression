@@ -1,0 +1,12 @@
+{
+  "exported_at": "2026-08-24T12:00:00Z",
+  "plugin_version": "0.6.0",
+  "session_id": "11111111-2222-3333-4444-555555555555",
+  "reason": "manual_panel",
+  "kind": "inventory",
+  "item_count": 2,
+  "items": [
+    {"slot": 0, "id": 995, "quantity": 25, "name": "Coins"},
+    {"slot": 1, "id": 1511, "quantity": 4, "name": "Logs"}
+  ]
+}

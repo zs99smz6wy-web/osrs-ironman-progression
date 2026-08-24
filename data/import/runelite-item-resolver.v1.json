@@ -1,0 +1,1268 @@
+{
+  "schema_version": 1,
+  "resolver_id": "runelite-item-container-resolver",
+  "checked_at": "2026-08-24",
+  "mappings": [
+    {
+      "model_state": "items",
+      "model_key": "air_rune",
+      "runelite_item_ids": [
+        556
+      ],
+      "display_names": [
+        "Air rune"
+      ],
+      "aggregation": "sum",
+      "source_ids": [
+        "runelite-itemid-current"
+      ],
+      "checked_at": "2026-08-24",
+      "notes": "Stackable rune quantity."
+    },
+    {
+      "model_state": "items",
+      "model_key": "earth_rune",
+      "runelite_item_ids": [
+        557
+      ],
+      "display_names": [
+        "Earth rune"
+      ],
+      "aggregation": "sum",
+      "source_ids": [
+        "runelite-itemid-current"
+      ],
+      "checked_at": "2026-08-24",
+      "notes": "Stackable rune quantity."
+    },
+    {
+      "model_state": "items",
+      "model_key": "water_rune",
+      "runelite_item_ids": [
+        555
+      ],
+      "display_names": [
+        "Water rune"
+      ],
+      "aggregation": "sum",
+      "source_ids": [
+        "runelite-itemid-current"
+      ],
+      "checked_at": "2026-08-24",
+      "notes": "Stackable rune quantity."
+    },
+    {
+      "model_state": "items",
+      "model_key": "blood_rune",
+      "runelite_item_ids": [
+        565
+      ],
+      "display_names": [
+        "Blood rune"
+      ],
+      "aggregation": "sum",
+      "source_ids": [
+        "runelite-itemid-current"
+      ],
+      "checked_at": "2026-08-24",
+      "notes": "Stackable rune quantity."
+    },
+    {
+      "model_state": "items",
+      "model_key": "rune_essence",
+      "runelite_item_ids": [
+        1436
+      ],
+      "display_names": [
+        "Rune essence"
+      ],
+      "aggregation": "sum",
+      "source_ids": [
+        "runelite-itemid-current"
+      ],
+      "checked_at": "2026-08-24",
+      "notes": "Unnoted essence only; noted forms are not usable for the modeled crafting or hand-in requirements."
+    },
+    {
+      "model_state": "items",
+      "model_key": "pure_essence",
+      "runelite_item_ids": [
+        7936
+      ],
+      "display_names": [
+        "Pure essence"
+      ],
+      "aggregation": "sum",
+      "source_ids": [
+        "runelite-itemid-current"
+      ],
+      "checked_at": "2026-08-24",
+      "notes": "Unnoted essence only; noted forms are not usable for the modeled crafting or hand-in requirements."
+    },
+    {
+      "model_state": "items",
+      "model_key": "dramen_staff",
+      "runelite_item_ids": [
+        772
+      ],
+      "display_names": [
+        "Dramen staff"
+      ],
+      "aggregation": "presence",
+      "source_ids": [
+        "runelite-itemid-current"
+      ],
+      "checked_at": "2026-08-24",
+      "notes": "Reusable fairy-ring access item; one usable inventory or equipped staff is sufficient."
+    },
+    {
+      "model_state": "items",
+      "model_key": "lunar_staff",
+      "runelite_item_ids": [
+        9084
+      ],
+      "display_names": [
+        "Lunar staff"
+      ],
+      "aggregation": "presence",
+      "source_ids": [
+        "runelite-itemid-current"
+      ],
+      "checked_at": "2026-08-24",
+      "notes": "Final usable Lunar staff only; the Lunar Diplomacy in-progress staff variants are excluded."
+    },
+    {
+      "model_state": "items",
+      "model_key": "ghostspeak_amulet",
+      "runelite_item_ids": [
+        552
+      ],
+      "display_names": [
+        "Ghostspeak amulet"
+      ],
+      "aggregation": "presence",
+      "source_ids": [
+        "runelite-itemid-current"
+      ],
+      "checked_at": "2026-08-24",
+      "notes": "Reusable quest-access amulet; one usable inventory or equipped amulet is sufficient."
+    },
+    {
+      "model_state": "items",
+      "model_key": "silver_sickle",
+      "runelite_item_ids": [
+        2961
+      ],
+      "display_names": [
+        "Silver sickle"
+      ],
+      "aggregation": "sum",
+      "source_ids": [
+        "runelite-itemid-current"
+      ],
+      "checked_at": "2026-08-24",
+      "notes": "The unblessed sickle required before Nature Spirit; Silver sickle (b) is a distinct post-quest item and is excluded."
+    },
+    {
+      "model_state": "items",
+      "model_key": "diving_apparatus",
+      "runelite_item_ids": [
+        7535
+      ],
+      "display_names": [
+        "Diving apparatus"
+      ],
+      "aggregation": "presence",
+      "source_ids": [
+        "runelite-itemid-current"
+      ],
+      "checked_at": "2026-08-24",
+      "notes": "Reusable underwater equipment; one usable inventory or equipped apparatus is sufficient."
+    },
+    {
+      "model_state": "items",
+      "model_key": "fishbowl_helmet",
+      "runelite_item_ids": [
+        7534
+      ],
+      "display_names": [
+        "Fishbowl helmet"
+      ],
+      "aggregation": "presence",
+      "source_ids": [
+        "runelite-itemid-current"
+      ],
+      "checked_at": "2026-08-24",
+      "notes": "Reusable underwater equipment; one usable inventory or equipped helmet is sufficient."
+    },
+    {
+      "model_state": "items",
+      "model_key": "karambwan_vessel",
+      "runelite_item_ids": [
+        3157
+      ],
+      "display_names": [
+        "Karambwan vessel"
+      ],
+      "aggregation": "presence",
+      "source_ids": [
+        "runelite-itemid-current"
+      ],
+      "checked_at": "2026-08-24",
+      "notes": "Empty vessel only. The baited 3159 variant already contains karambwanji and is not the vessel-plus-separate-bait preparation state."
+    },
+    {
+      "model_state": "items",
+      "model_key": "raw_karambwanji",
+      "runelite_item_ids": [
+        3150
+      ],
+      "display_names": [
+        "Raw karambwanji"
+      ],
+      "aggregation": "sum",
+      "source_ids": [
+        "runelite-itemid-current"
+      ],
+      "checked_at": "2026-08-24",
+      "notes": "Stackable bait quantity; raw rather than cooked or paste forms."
+    },
+    {
+      "model_state": "items",
+      "model_key": "explorers_ring_current",
+      "runelite_item_ids": [
+        13125,
+        13126,
+        13127,
+        13128
+      ],
+      "display_names": [
+        "Explorer's ring 1",
+        "Explorer's ring 2",
+        "Explorer's ring 3",
+        "Explorer's ring 4"
+      ],
+      "aggregation": "presence",
+      "source_ids": [
+        "runelite-itemid-current"
+      ],
+      "checked_at": "2026-08-24",
+      "notes": "Any tier is a usable inventory or equipped Explorer's ring; the model's separately recorded diary tier determines which one is current and its capabilities.",
+      "grouping_rationale": "Any tier is a usable inventory or equipped Explorer's ring; the model's separately recorded diary tier determines which one is current and its capabilities."
+    },
+    {
+      "model_state": "items",
+      "model_key": "common_non_silver_ring",
+      "runelite_item_ids": [
+        1635,
+        1637,
+        1639,
+        1641,
+        1643,
+        1645,
+        6575
+      ],
+      "display_names": [
+        "Gold ring",
+        "Sapphire ring",
+        "Emerald ring",
+        "Ruby ring",
+        "Diamond ring",
+        "Dragonstone ring",
+        "Onyx ring"
+      ],
+      "aggregation": "presence",
+      "source_ids": [
+        "runelite-itemid-current"
+      ],
+      "checked_at": "2026-08-24",
+      "notes": "Usable inventory or equipped standard crafted, unenchanted non-silver rings represented by the model's common-ring key. One is sufficient; enchanted, unique, and cosmetic rings are deliberately outside this narrow key.",
+      "grouping_rationale": "Usable inventory or equipped standard crafted, unenchanted non-silver rings represented by the model's common-ring key. One is sufficient; enchanted, unique, and cosmetic rings are deliberately outside this narrow key."
+    },
+    {
+      "model_state": "items",
+      "model_key": "defence_potion_3plus",
+      "runelite_item_ids": [
+        133,
+        2432
+      ],
+      "display_names": [
+        "Defence potion(3)",
+        "Defence potion(4)"
+      ],
+      "aggregation": "sum",
+      "source_ids": [
+        "runelite-itemid-current"
+      ],
+      "checked_at": "2026-08-24",
+      "notes": "Only 3- and 4-dose ordinary Defence potions satisfy the 3plus key; lower-dose, super-defence, and divine variants are excluded.",
+      "grouping_rationale": "Only 3- and 4-dose ordinary Defence potions satisfy the 3plus key; lower-dose, super-defence, and divine variants are excluded."
+    },
+    {
+      "model_state": "items",
+      "model_key": "anti_venom_4",
+      "runelite_item_ids": [
+        12905
+      ],
+      "display_names": [
+        "Anti-venom(4)"
+      ],
+      "aggregation": "sum",
+      "source_ids": [
+        "runelite-itemid-current"
+      ],
+      "checked_at": "2026-08-24",
+      "notes": "Exact ordinary four-dose Anti-venom only. Lower doses and the separate Anti-venom+ variants are excluded."
+    },
+    {
+      "model_state": "items",
+      "model_key": "iron_bar",
+      "runelite_item_ids": [
+        2351
+      ],
+      "display_names": [
+        "Iron bar"
+      ],
+      "aggregation": "sum",
+      "source_ids": [
+        "runelite-itemid-current"
+      ],
+      "checked_at": "2026-08-24",
+      "notes": "Stackable material quantity."
+    },
+    {
+      "model_state": "items",
+      "model_key": "charcoal",
+      "runelite_item_ids": [
+        973
+      ],
+      "display_names": [
+        "Charcoal"
+      ],
+      "aggregation": "sum",
+      "source_ids": [
+        "runelite-itemid-current"
+      ],
+      "checked_at": "2026-08-24",
+      "notes": "Raw charcoal item; ground charcoal is a distinct transformed quest intermediate and is excluded."
+    },
+    {
+      "model_state": "items",
+      "model_key": "cup_of_tea",
+      "runelite_item_ids": [
+        712
+      ],
+      "display_names": [
+        "Cup of tea"
+      ],
+      "aggregation": "sum",
+      "source_ids": [
+        "runelite-itemid-current"
+      ],
+      "checked_at": "2026-08-24",
+      "notes": "Exact quest input item."
+    },
+    {
+      "model_state": "items",
+      "model_key": "clean_necklace",
+      "runelite_item_ids": [
+        11195
+      ],
+      "display_names": [
+        "Clean necklace"
+      ],
+      "aggregation": "sum",
+      "source_ids": [
+        "runelite-itemid-current"
+      ],
+      "checked_at": "2026-08-24",
+      "notes": "Exact museum-cleaned necklace before pendant enchantment."
+    },
+    {
+      "model_state": "items",
+      "model_key": "opal",
+      "runelite_item_ids": [
+        1609
+      ],
+      "display_names": [
+        "Opal"
+      ],
+      "aggregation": "sum",
+      "source_ids": [
+        "runelite-itemid-current"
+      ],
+      "checked_at": "2026-08-24",
+      "notes": "Cut opal; distinct from uncut opal."
+    },
+    {
+      "model_state": "items",
+      "model_key": "uncut_opal",
+      "runelite_item_ids": [
+        1625
+      ],
+      "display_names": [
+        "Uncut opal"
+      ],
+      "aggregation": "sum",
+      "source_ids": [
+        "runelite-itemid-current"
+      ],
+      "checked_at": "2026-08-24",
+      "notes": "Uncut opal; distinct from cut opal."
+    },
+    {
+      "model_state": "items",
+      "model_key": "vial",
+      "runelite_item_ids": [
+        229
+      ],
+      "display_names": [
+        "Vial"
+      ],
+      "aggregation": "sum",
+      "source_ids": [
+        "runelite-itemid-current"
+      ],
+      "checked_at": "2026-08-24",
+      "notes": "Empty vial only; vial of water and filled vials are distinct items."
+    },
+    {
+      "model_state": "items",
+      "model_key": "unfinished_marrentill_potion",
+      "runelite_item_ids": [
+        93
+      ],
+      "display_names": [
+        "Marrentill potion (unf)"
+      ],
+      "aggregation": "sum",
+      "source_ids": [
+        "runelite-itemid-current"
+      ],
+      "checked_at": "2026-08-24",
+      "notes": "Exact unfinished marrentill potion used for Bone Voyage."
+    },
+    {
+      "model_state": "items",
+      "model_key": "vodka",
+      "runelite_item_ids": [
+        2015
+      ],
+      "display_names": [
+        "Vodka"
+      ],
+      "aggregation": "sum",
+      "source_ids": [
+        "runelite-itemid-current"
+      ],
+      "checked_at": "2026-08-24",
+      "notes": "Exact consumable quest input."
+    },
+    {
+      "model_state": "items",
+      "model_key": "volcanic_sulphur",
+      "runelite_item_ids": [
+        13571
+      ],
+      "display_names": [
+        "Volcanic sulphur"
+      ],
+      "aggregation": "sum",
+      "source_ids": [
+        "runelite-itemid-current"
+      ],
+      "checked_at": "2026-08-24",
+      "notes": "Exact material item."
+    },
+    {
+      "model_state": "items",
+      "model_key": "molten_glass",
+      "runelite_item_ids": [
+        1775
+      ],
+      "display_names": [
+        "Molten glass"
+      ],
+      "aggregation": "sum",
+      "source_ids": [
+        "runelite-itemid-current"
+      ],
+      "checked_at": "2026-08-24",
+      "notes": "Exact material item."
+    },
+    {
+      "model_state": "items",
+      "model_key": "axe",
+      "runelite_item_ids": [
+        1351,
+        1349,
+        1353,
+        1355,
+        1357,
+        1359,
+        1361,
+        6739,
+        13241,
+        23673,
+        23279,
+        20011
+      ],
+      "display_names": [
+        "Bronze axe",
+        "Iron axe",
+        "Steel axe",
+        "Mithril axe",
+        "Adamant axe",
+        "Rune axe",
+        "Black axe",
+        "Dragon axe",
+        "Infernal axe",
+        "Crystal axe",
+        "Gilded axe",
+        "3rd age axe"
+      ],
+      "aggregation": "presence",
+      "source_ids": [
+        "runelite-itemid-current"
+      ],
+      "checked_at": "08/24/2026 17:46:20",
+      "notes": "Presence aggregation is correct because this key represents any currently usable inventory/equipment axe for pilot actions. Charged infernal/crystal forms are included; uncharged forms and non-axe weapons are excluded.",
+      "grouping_rationale": "Presence aggregation is correct because this key represents any currently usable inventory/equipment axe for pilot actions. Charged infernal/crystal forms are included; uncharged forms and non-axe weapons are excluded."
+    },
+    {
+      "model_state": "items",
+      "model_key": "pickaxe",
+      "runelite_item_ids": [
+        1265,
+        1267,
+        1269,
+        1271,
+        1273,
+        1275,
+        11920,
+        13243,
+        23680,
+        23276
+      ],
+      "display_names": [
+        "Bronze pickaxe",
+        "Iron pickaxe",
+        "Steel pickaxe",
+        "Adamant pickaxe",
+        "Mithril pickaxe",
+        "Rune pickaxe",
+        "Dragon pickaxe",
+        "Infernal pickaxe",
+        "Crystal pickaxe",
+        "Gilded pickaxe"
+      ],
+      "aggregation": "presence",
+      "source_ids": [
+        "runelite-itemid-current"
+      ],
+      "checked_at": "08/24/2026 17:46:20",
+      "notes": "Presence aggregation is correct because any usable pickaxe satisfies the generic Mining tool gate. Charged infernal/crystal forms are included; uncharged forms, broken pickaxes, handles, and heads are excluded.",
+      "grouping_rationale": "Presence aggregation is correct because any usable pickaxe satisfies the generic Mining tool gate. Charged infernal/crystal forms are included; uncharged forms, broken pickaxes, handles, and heads are excluded."
+    },
+    {
+      "model_state": "items",
+      "model_key": "hammer",
+      "runelite_item_ids": [
+        2347,
+        25631
+      ],
+      "display_names": [
+        "Hammer",
+        "Imcando hammer"
+      ],
+      "aggregation": "presence",
+      "source_ids": [
+        "runelite-itemid-current"
+      ],
+      "checked_at": "08/24/2026 17:46:20",
+      "notes": "Either usable hammer satisfies the current pilot's reusable hammer requirement; specialized hammers are included only where they remain usable as the same tool.",
+      "grouping_rationale": "Either usable hammer satisfies the current pilot's reusable hammer requirement; specialized hammers are included only where they remain usable as the same tool."
+    },
+    {
+      "model_state": "items",
+      "model_key": "saw",
+      "runelite_item_ids": [
+        8794,
+        9625,
+        24880
+      ],
+      "display_names": [
+        "Saw",
+        "Crystal saw",
+        "Amy's saw"
+      ],
+      "aggregation": "presence",
+      "source_ids": [
+        "runelite-itemid-current"
+      ],
+      "checked_at": "08/24/2026 17:46:20",
+      "notes": "Presence aggregation treats the normal, crystal, and Amy's saw as interchangeable saw capability for current Construction actions. The inactive crystal saw is excluded.",
+      "grouping_rationale": "Presence aggregation treats the normal, crystal, and Amy's saw as interchangeable saw capability for current Construction actions. The inactive crystal saw is excluded."
+    },
+    {
+      "model_state": "items",
+      "model_key": "knife",
+      "runelite_item_ids": [
+        946,
+        22158
+      ],
+      "display_names": [
+        "Knife",
+        "Fletching knife"
+      ],
+      "aggregation": "presence",
+      "source_ids": [
+        "runelite-itemid-current"
+      ],
+      "checked_at": "08/24/2026 17:46:20",
+      "notes": "Both are usable knife variants for the pilot's cutting/fletching utility; the fletching knife is not counted as a separate resource.",
+      "grouping_rationale": "Both are usable knife variants for the pilot's cutting/fletching utility; the fletching knife is not counted as a separate resource."
+    },
+    {
+      "model_state": "items",
+      "model_key": "chisel",
+      "runelite_item_ids": [
+        1755,
+        31088
+      ],
+      "display_names": [
+        "Chisel",
+        "Jeweller's chisel"
+      ],
+      "aggregation": "presence",
+      "source_ids": [
+        "runelite-itemid-current"
+      ],
+      "checked_at": "08/24/2026 17:46:20",
+      "notes": "Either item provides the ordinary chisel capability; the jeweller's chisel is included because it also functions as a regular chisel.",
+      "grouping_rationale": "Either item provides the ordinary chisel capability; the jeweller's chisel is included because it also functions as a regular chisel."
+    },
+    {
+      "model_state": "items",
+      "model_key": "small_fishing_net",
+      "runelite_item_ids": [
+        303
+      ],
+      "display_names": [
+        "Small fishing net"
+      ],
+      "aggregation": "presence",
+      "source_ids": [
+        "runelite-itemid-current"
+      ],
+      "checked_at": "08/24/2026 17:46:20",
+      "notes": "Inventory item only; the similarly named small-fishing-net scenery object is not an item ID mapping."
+    },
+    {
+      "model_state": "items",
+      "model_key": "fly_fishing_rod",
+      "runelite_item_ids": [
+        309
+      ],
+      "display_names": [
+        "Fly fishing rod"
+      ],
+      "aggregation": "presence",
+      "source_ids": [
+        "runelite-itemid-current"
+      ],
+      "checked_at": "08/24/2026 17:46:20",
+      "notes": "Reusable fly-fishing tool; feathers are mapped separately as a consumable resource."
+    },
+    {
+      "model_state": "items",
+      "model_key": "feathers",
+      "runelite_item_ids": [
+        314
+      ],
+      "display_names": [
+        "Feather"
+      ],
+      "aggregation": "sum",
+      "source_ids": [
+        "runelite-itemid-current"
+      ],
+      "checked_at": "08/24/2026 17:46:20",
+      "notes": "The model key is plural while RuneLite's item name is singular. Current progression actions use items.feathers; feathers are stackable and consumed by applicable lure-fishing attempts."
+    },
+    {
+      "model_state": "items",
+      "model_key": "harpoon",
+      "runelite_item_ids": [
+        311,
+        21028,
+        21031
+      ],
+      "display_names": [
+        "Harpoon",
+        "Dragon harpoon",
+        "Infernal harpoon"
+      ],
+      "aggregation": "presence",
+      "source_ids": [
+        "runelite-itemid-current"
+      ],
+      "checked_at": "08/24/2026 17:46:20",
+      "notes": "Usable harpoon variants for fishing actions. The infernal harpoon is included as the functional variant; charge state is not modeled as a separate quantity here.",
+      "grouping_rationale": "Usable harpoon variants for fishing actions. The infernal harpoon is included as the functional variant; charge state is not modeled as a separate quantity here."
+    },
+    {
+      "model_state": "items",
+      "model_key": "lobster_pot",
+      "runelite_item_ids": [
+        301
+      ],
+      "display_names": [
+        "Lobster pot"
+      ],
+      "aggregation": "presence",
+      "source_ids": [
+        "runelite-itemid-current"
+      ],
+      "checked_at": "08/24/2026 17:46:20",
+      "notes": "Reusable lobster-pot fishing tool."
+    },
+    {
+      "model_state": "items",
+      "model_key": "rake",
+      "runelite_item_ids": [
+        5341
+      ],
+      "display_names": [
+        "Rake"
+      ],
+      "aggregation": "presence",
+      "source_ids": [
+        "runelite-itemid-current"
+      ],
+      "checked_at": "08/24/2026 17:46:20",
+      "notes": "Reusable Farming tool; handle and head components are excluded."
+    },
+    {
+      "model_state": "items",
+      "model_key": "seed_dibber",
+      "runelite_item_ids": [
+        5343
+      ],
+      "display_names": [
+        "Seed dibber"
+      ],
+      "aggregation": "presence",
+      "source_ids": [
+        "runelite-itemid-current"
+      ],
+      "checked_at": "08/24/2026 17:46:20",
+      "notes": "Reusable planting tool."
+    },
+    {
+      "model_state": "items",
+      "model_key": "secateurs",
+      "runelite_item_ids": [
+        5329,
+        7409
+      ],
+      "display_names": [
+        "Secateurs",
+        "Magic secateurs"
+      ],
+      "aggregation": "presence",
+      "source_ids": [
+        "runelite-itemid-current"
+      ],
+      "checked_at": "08/24/2026 17:46:20",
+      "notes": "Both are usable secateurs variants for Farming actions; magic secateurs are an upgrade, not a separate consumable.",
+      "grouping_rationale": "Both are usable secateurs variants for Farming actions; magic secateurs are an upgrade, not a separate consumable."
+    },
+    {
+      "model_state": "items",
+      "model_key": "spade",
+      "runelite_item_ids": [
+        952
+      ],
+      "display_names": [
+        "Spade"
+      ],
+      "aggregation": "presence",
+      "source_ids": [
+        "runelite-itemid-current"
+      ],
+      "checked_at": "08/24/2026 17:46:20",
+      "notes": "Normal usable spade for the current pilot. Special decorative or location-specific spades are not assumed interchangeable with every spade gate."
+    },
+    {
+      "model_state": "items",
+      "model_key": "tinderbox",
+      "runelite_item_ids": [
+        590
+      ],
+      "display_names": [
+        "Tinderbox"
+      ],
+      "aggregation": "presence",
+      "source_ids": [
+        "runelite-itemid-current"
+      ],
+      "checked_at": "08/24/2026 17:46:20",
+      "notes": "Reusable fire-lighting tool."
+    },
+    {
+      "model_state": "items",
+      "model_key": "pestle_and_mortar",
+      "runelite_item_ids": [
+        233
+      ],
+      "display_names": [
+        "Pestle and mortar"
+      ],
+      "aggregation": "presence",
+      "source_ids": [
+        "runelite-itemid-current"
+      ],
+      "checked_at": "08/24/2026 17:46:20",
+      "notes": "Reusable grinding tool."
+    },
+    {
+      "model_state": "items",
+      "model_key": "bucket",
+      "runelite_item_ids": [
+        1925
+      ],
+      "display_names": [
+        "Bucket"
+      ],
+      "aggregation": "sum",
+      "source_ids": [
+        "runelite-itemid-current"
+      ],
+      "checked_at": "08/24/2026 17:46:20",
+      "notes": "Empty buckets are stack-counted as item quantity. Filled buckets are different resource states and are not silently folded into this key."
+    },
+    {
+      "model_state": "items",
+      "model_key": "rope",
+      "runelite_item_ids": [
+        954
+      ],
+      "display_names": [
+        "Rope"
+      ],
+      "aggregation": "sum",
+      "source_ids": [
+        "runelite-itemid-current"
+      ],
+      "checked_at": "08/24/2026 17:46:20",
+      "notes": "Stack-counted reusable/consumable quest and traversal item; the model uses quantity where an action requires more than one."
+    },
+    {
+      "model_state": "resources",
+      "model_key": "coins",
+      "runelite_item_ids": [
+        995
+      ],
+      "display_names": [
+        "Coins"
+      ],
+      "aggregation": "sum",
+      "source_ids": [
+        "runelite-itemid-current"
+      ],
+      "checked_at": "2026-08-24",
+      "notes": "Map the standard stackable Coins item only. Do not add coin-denomination display items, money containers, or non-item currency counters."
+    },
+    {
+      "model_state": "items",
+      "model_key": "coal_bag",
+      "runelite_item_ids": [
+        12019,
+        24480
+      ],
+      "display_names": [
+        "Coal bag",
+        "Open coal bag"
+      ],
+      "aggregation": "presence",
+      "source_ids": [
+        "runelite-itemid-current"
+      ],
+      "checked_at": "2026-08-24",
+      "notes": "Both are usable forms of the same inventory container. Treat any positive count as owned; exclude reward-interface and dummy IDs.",
+      "grouping_rationale": "Both are usable forms of the same inventory container. Treat any positive count as owned; exclude reward-interface and dummy IDs."
+    },
+    {
+      "model_state": "items",
+      "model_key": "gem_bag",
+      "runelite_item_ids": [
+        12020,
+        24481
+      ],
+      "display_names": [
+        "Gem bag",
+        "Open gem bag"
+      ],
+      "aggregation": "presence",
+      "source_ids": [
+        "runelite-itemid-current"
+      ],
+      "checked_at": "2026-08-24",
+      "notes": "Both are usable forms of the same inventory container. Treat any positive count as owned; exclude reward-interface and dummy IDs.",
+      "grouping_rationale": "Both are usable forms of the same inventory container. Treat any positive count as owned; exclude reward-interface and dummy IDs."
+    },
+    {
+      "model_state": "items",
+      "model_key": "rune_pouch",
+      "runelite_item_ids": [
+        12791,
+        24416,
+        27281,
+        27509
+      ],
+      "display_names": [
+        "Rune pouch",
+        "Rune pouch (l)",
+        "Divine rune pouch",
+        "Divine rune pouch (l)"
+      ],
+      "aggregation": "presence",
+      "source_ids": [
+        "runelite-itemid-current"
+      ],
+      "checked_at": "2026-08-24",
+      "notes": "Each listed item provides the modelled usable rune-storage capability. Include protected and Divine upgrades; exclude notes, UI/temporary-mode copies, and unavailable duplicate-mode IDs.",
+      "grouping_rationale": "Each listed item provides the modelled usable rune-storage capability. Include protected and Divine upgrades; exclude notes, UI/temporary-mode copies, and unavailable duplicate-mode IDs."
+    },
+    {
+      "model_state": "items",
+      "model_key": "gricollers_can",
+      "runelite_item_ids": [
+        13353
+      ],
+      "display_names": [
+        "Gricoller's can"
+      ],
+      "aggregation": "presence",
+      "source_ids": [
+        "runelite-itemid-current"
+      ],
+      "checked_at": "2026-08-24",
+      "notes": "The 1,000-water-dose state is not a separate usable item ID. Treat any positive count as ownership; exclude the Tithe-Farm interface copy."
+    },
+    {
+      "model_state": "items",
+      "model_key": "gold_leaf",
+      "runelite_item_ids": [
+        8784
+      ],
+      "display_names": [
+        "Gold leaf"
+      ],
+      "aggregation": "sum",
+      "source_ids": [
+        "runelite-itemid-current"
+      ],
+      "checked_at": "2026-08-24",
+      "notes": "POH Construction material. The similarly named legacy ID is not used for this modelled material requirement."
+    },
+    {
+      "model_state": "items",
+      "model_key": "magic_stone",
+      "runelite_item_ids": [
+        8788
+      ],
+      "display_names": [
+        "Magic stone"
+      ],
+      "aggregation": "sum",
+      "source_ids": [
+        "runelite-itemid-current"
+      ],
+      "checked_at": "2026-08-24",
+      "notes": "POH Construction material. The similarly named legacy ID is not used for this modelled material requirement."
+    },
+    {
+      "model_state": "items",
+      "model_key": "ice_gloves",
+      "runelite_item_ids": [
+        1580
+      ],
+      "display_names": [
+        "Ice gloves"
+      ],
+      "aggregation": "presence",
+      "source_ids": [
+        "runelite-itemid-current"
+      ],
+      "checked_at": "2026-08-24",
+      "notes": "Reusable equipment utility; a positive inventory or equipped count proves availability."
+    },
+    {
+      "model_state": "items",
+      "model_key": "magic_logs",
+      "runelite_item_ids": [
+        1513
+      ],
+      "display_names": [
+        "Magic logs"
+      ],
+      "aggregation": "sum",
+      "source_ids": [
+        "runelite-itemid-current"
+      ],
+      "checked_at": "2026-08-24",
+      "notes": "Exact stackable material for balloon-route requirements. It is deliberately separate from the grouped logs mapping to prevent a single stack from being counted twice."
+    },
+    {
+      "model_state": "items",
+      "model_key": "logs",
+      "runelite_item_ids": [
+        1511,
+        1521,
+        1519,
+        6333,
+        1517,
+        6332,
+        1515,
+        19669
+      ],
+      "display_names": [
+        "Logs",
+        "Oak logs",
+        "Willow logs",
+        "Teak logs",
+        "Maple logs",
+        "Mahogany logs",
+        "Yew logs",
+        "Redwood logs"
+      ],
+      "aggregation": "sum",
+      "source_ids": [
+        "runelite-itemid-current"
+      ],
+      "checked_at": "2026-08-24",
+      "notes": "Fungible grouped count for the account model's compatible bird-house log input, excluding Magic logs because that stack has its own model key. Do not use this aggregate where an action requires a specific log tier; pyre, treated, crate, lantern, and unrelated log IDs are excluded.",
+      "grouping_rationale": "Fungible grouped count for the account model's compatible bird-house log input, excluding Magic logs because that stack has its own model key. Do not use this aggregate where an action requires a specific log tier; pyre, treated, crate, lantern, and unrelated log IDs are excluded."
+    },
+    {
+      "model_state": "items",
+      "model_key": "low_level_birdhouse_seed",
+      "runelite_item_ids": [
+        5291,
+        5292,
+        5293,
+        5294
+      ],
+      "display_names": [
+        "Guam seed",
+        "Marrentill seed",
+        "Tarromin seed",
+        "Harralander seed"
+      ],
+      "aggregation": "sum",
+      "source_ids": [
+        "runelite-itemid-current"
+      ],
+      "checked_at": "2026-08-24",
+      "notes": "Fungible low-tier bird-house seed group: ten seeds per bird house. Aggregate only these four herb-seed IDs; do not include seed-vault/interface copies.",
+      "grouping_rationale": "Fungible low-tier bird-house seed group: ten seeds per bird house. Aggregate only these four herb-seed IDs; do not include seed-vault/interface copies."
+    },
+    {
+      "model_state": "items",
+      "model_key": "high_level_birdhouse_seed",
+      "runelite_item_ids": [
+        5295,
+        5296,
+        5297,
+        5298,
+        5299,
+        5300,
+        5301,
+        5302,
+        5303,
+        5304,
+        30088
+      ],
+      "display_names": [
+        "Ranarr seed",
+        "Toadflax seed",
+        "Irit seed",
+        "Avantoe seed",
+        "Kwuarm seed",
+        "Snapdragon seed",
+        "Cadantine seed",
+        "Lantadyme seed",
+        "Dwarf weed seed",
+        "Torstol seed",
+        "Huasca seed"
+      ],
+      "aggregation": "sum",
+      "source_ids": [
+        "runelite-itemid-current"
+      ],
+      "checked_at": "2026-08-24",
+      "notes": "Fungible higher-tier bird-house seed group: five seeds per bird house. This is the live herb-seed range above Harralander, including Huasca; low-tier seeds are kept in the separate group to preserve the ten-versus-five consumption rate.",
+      "grouping_rationale": "Fungible higher-tier bird-house seed group: five seeds per bird house. This is the live herb-seed range above Harralander, including Huasca; low-tier seeds are kept in the separate group to preserve the ten-versus-five consumption rate."
+    },
+    {
+      "model_state": "items",
+      "model_key": "seaweed_spore",
+      "runelite_item_ids": [
+        21490
+      ],
+      "display_names": [
+        "Seaweed spore"
+      ],
+      "aggregation": "sum",
+      "source_ids": [
+        "runelite-itemid-current"
+      ],
+      "checked_at": "2026-08-24",
+      "notes": "Exact stackable planting input for giant seaweed patches."
+    },
+    {
+      "model_state": "items",
+      "model_key": "clockwork",
+      "runelite_item_ids": [
+        8792
+      ],
+      "display_names": [
+        "Clockwork"
+      ],
+      "aggregation": "sum",
+      "source_ids": [
+        "runelite-itemid-current"
+      ],
+      "checked_at": "2026-08-24",
+      "notes": "Exact bird-house construction component. Its return from dismantled bird houses is an observed activity result, not inferred from passive-loop state."
+    },
+    {
+      "model_state": "resources",
+      "model_key": "golden_nuggets",
+      "runelite_item_ids": [
+        12012
+      ],
+      "display_names": [
+        "Golden nugget"
+      ],
+      "aggregation": "sum",
+      "source_ids": [
+        "runelite-itemid-current"
+      ],
+      "checked_at": "2026-08-24",
+      "notes": "Representable as the stackable Motherlode Mine reward currency item, so it may populate the resource balance. Do not infer it from mined pay-dirt or purchase history."
+    }
+  ],
+  "unresolved": [
+    {
+      "model_state": "items",
+      "model_key": "salvaging_hook",
+      "reason": "Installed Sailing component state is not a canonical bank, inventory, or equipment item.",
+      "source_ids": [
+        "runelite-itemid-current"
+      ],
+      "checked_at": "2026-08-24"
+    },
+    {
+      "model_state": "items",
+      "model_key": "sailing_raft",
+      "reason": "Vessel ownership belongs in sailing_observation, not an item-container import.",
+      "source_ids": [
+        "runelite-itemid-current"
+      ],
+      "checked_at": "2026-08-24"
+    },
+    {
+      "model_state": "items",
+      "model_key": "sailing_skiff",
+      "reason": "Vessel ownership belongs in sailing_observation, not an item-container import.",
+      "source_ids": [
+        "runelite-itemid-current"
+      ],
+      "checked_at": "2026-08-24"
+    },
+    {
+      "model_state": "resources",
+      "model_key": "telekinetic_pizazz",
+      "reason": "Mage Training Arena balance is not represented by a container item.",
+      "source_ids": [
+        "runelite-itemid-current"
+      ],
+      "checked_at": "2026-08-24"
+    },
+    {
+      "model_state": "resources",
+      "model_key": "graveyard_pizazz",
+      "reason": "Mage Training Arena balance is not represented by a container item.",
+      "source_ids": [
+        "runelite-itemid-current"
+      ],
+      "checked_at": "2026-08-24"
+    },
+    {
+      "model_state": "resources",
+      "model_key": "enchantment_pizazz",
+      "reason": "Mage Training Arena balance is not represented by a container item.",
+      "source_ids": [
+        "runelite-itemid-current"
+      ],
+      "checked_at": "2026-08-24"
+    },
+    {
+      "model_state": "resources",
+      "model_key": "alchemist_pizazz",
+      "reason": "Mage Training Arena balance is not represented by a container item.",
+      "source_ids": [
+        "runelite-itemid-current"
+      ],
+      "checked_at": "2026-08-24"
+    },
+    {
+      "model_state": "resources",
+      "model_key": "tithe_farm_points",
+      "reason": "Tithe Farm points are a non-container activity currency.",
+      "source_ids": [
+        "runelite-itemid-current"
+      ],
+      "checked_at": "2026-08-24"
+    },
+    {
+      "model_state": "resources",
+      "model_key": "foundry_metal_value_bars",
+      "reason": "This is a calculated commission-input value, not a physical item.",
+      "source_ids": [
+        "runelite-itemid-current"
+      ],
+      "checked_at": "2026-08-24"
+    },
+    {
+      "model_state": "resources",
+      "model_key": "foundry_reputation",
+      "reason": "Giants Foundry reputation is a non-container activity counter.",
+      "source_ids": [
+        "runelite-itemid-current"
+      ],
+      "checked_at": "2026-08-24"
+    },
+    {
+      "model_state": "items",
+      "model_key": "digsite_pendant_charge",
+      "reason": "Charged pendant variants are deliberately deferred: phase 2 records container possession only and does not convert a variant ID into a confirmed remaining-charge value.",
+      "source_ids": [
+        "runelite-itemid-current"
+      ],
+      "checked_at": "2026-08-24"
+    },
+    {
+      "model_state": "items",
+      "model_key": "watering_can",
+      "reason": "Watering-can dose variants are deliberately deferred: phase 2 records container possession only and does not convert a variant ID into a confirmed water-capacity value.",
+      "source_ids": [
+        "runelite-itemid-current"
+      ],
+      "checked_at": "2026-08-24"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "exported_at": "2026-08-24T12:00:00Z",
+  "plugin_version": "0.6.0",
+  "session_id": "11111111-2222-3333-4444-555555555555",
+  "reason": "manual_panel",
+  "kind": "bank",
+  "item_count": 5,
+  "items": [
+    {"slot": 0, "id": 995, "quantity": 100, "name": "Coins"},
+    {"slot": 1, "id": 1351, "quantity": 1, "name": "Bronze axe"},
+    {"slot": 2, "id": 314, "quantity": 25, "name": "Feather"},
+    {"slot": 3, "id": 5340, "quantity": 1, "name": "Watering can (8)"},
+    {"slot": 4, "id": 99999, "quantity": 2, "name": "Unmapped review item"}
+  ]
+}

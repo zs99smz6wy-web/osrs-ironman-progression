@@ -9,6 +9,14 @@
       "use": "Current Fishing method families, tools, bait, level gates, and ordinary-spot movement boundary."
     },
     {
+      "id": "runelite-itemid-current",
+      "publisher": "RuneLite",
+      "url": "https://raw.githubusercontent.com/runelite/runelite/master/runelite-api/src/main/java/net/runelite/api/ItemID.java",
+      "kind": "github",
+      "checked_at": "2026-08-24",
+      "use": "Stable numeric OSRS item identities and display-name review for the RuneLite Character Export container resolver."
+    },
+    {
       "id": "wiki-fly-fishing-current",
       "publisher": "OSRS Wiki",
       "url": "https://oldschool.runescape.wiki/w/Fly_fishing",

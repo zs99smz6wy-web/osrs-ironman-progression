@@ -1,8 +1,4 @@
-"""Import a bounded, local DZWNK Character Export snapshot into account state.
-
-Phase 1 imports only permanent skill levels/XP and finished quests. It does not
-infer unlocks, touch item containers, or convert diary data into progression.
-"""
+"""Import bounded local DZWNK Character Export data into account state."""
 
 from __future__ import annotations
 
@@ -26,6 +22,8 @@ OPTIONAL_DATASETS = (
     "diaries", "bank", "seed_vault", "inventory", "equipment",
     "combat_achievements", "collection_log",
 )
+CONTAINER_DATASETS = ("bank", "seed_vault", "inventory", "equipment")
+RESOLVER_PATH = ROOT / "data" / "import" / "runelite-item-resolver.v1.json"
 QUEST_STATES = {"NOT_STARTED", "IN_PROGRESS", "FINISHED"}
 FOLDER_UNSAFE_CHARACTERS = re.compile(r"[^A-Za-z0-9_\- ]")
 
@@ -233,20 +231,140 @@ def _load_json(path: Path) -> dict[str, Any]:
 
 
 def load_export_documents(account_directory: Path) -> tuple[dict[str, dict[str, Any]], list[str]]:
-    """Load only phase-1 datasets and identify unparsed/missing optional data."""
+    """Load required data and container candidates without treating absence as empty."""
     documents = {dataset: _load_json(account_directory / f"{dataset}.json") for dataset in REQUIRED_DATASETS}
     warnings: list[str] = []
     for dataset in OPTIONAL_DATASETS:
         path = account_directory / f"{dataset}.json"
         if dataset == "diaries" and path.is_file():
             documents[dataset] = _load_json(path)
+        elif dataset in CONTAINER_DATASETS and path.is_file():
+            try:
+                documents[dataset] = _load_json(path)
+            except ImportError as exc:
+                warnings.append(f"{dataset}.json is malformed; it was not imported: {exc}")
         elif path.is_file():
-            warnings.append(
-                f"optional {dataset}.json is present but unsupported in phase 1; it was not opened or imported"
-            )
+            warnings.append(f"optional {dataset}.json is present but unsupported; it was not opened or imported")
         else:
             warnings.append(f"optional {dataset}.json is missing; it was not treated as empty account state")
     return documents, warnings
+
+
+def load_item_resolver() -> dict[str, Any]:
+    """Load the sole production resolver; research proposals are never read here."""
+    try:
+        resolver = _load_json(RESOLVER_PATH)
+    except ImportError as exc:
+        raise ImportError(f"production item resolver is unavailable: {exc}") from exc
+    if resolver.get("schema_version") != 1 or not isinstance(resolver.get("mappings"), list):
+        raise ImportError("production item resolver has an unsupported shape")
+    return resolver
+
+
+def parse_container(document: Any, dataset: str) -> list[dict[str, Any]]:
+    """Parse physical item rows without assigning account meaning to their names."""
+    document = _require_object(document, dataset)
+    if document.get("kind") != dataset:
+        raise ImportError(f"{dataset}.kind must equal {dataset!r}")
+    item_count = document.get("item_count")
+    items = document.get("items")
+    if not _is_int(item_count) or item_count < 0 or not isinstance(items, list) or item_count != len(items):
+        raise ImportError(f"{dataset} item_count must equal a non-negative items array length")
+    slots: set[int] = set()
+    parsed: list[dict[str, Any]] = []
+    for index, item in enumerate(items):
+        context = f"{dataset}.items[{index}]"
+        if not isinstance(item, dict) or set(item) != {"slot", "id", "quantity", "name"}:
+            raise ImportError(f"{context} must contain exactly slot, id, quantity, name")
+        slot, item_id, quantity, name = item["slot"], item["id"], item["quantity"], item["name"]
+        if not _is_int(slot) or slot < 0 or slot in slots:
+            raise ImportError(f"{context}.slot must be a unique non-negative integer")
+        if not _is_int(item_id) or item_id <= 0:
+            raise ImportError(f"{context}.id must be a positive numeric RuneLite item ID")
+        if not _is_int(quantity) or quantity <= 0:
+            raise ImportError(f"{context}.quantity must be a positive integer")
+        if not isinstance(name, str) or not name.strip():
+            raise ImportError(f"{context}.name must be a non-empty display name")
+        slots.add(slot)
+        parsed.append({"id": item_id, "quantity": quantity, "name": name})
+    return parsed
+
+
+def _accepted_containers(
+    documents: dict[str, dict[str, Any]], *, reference: dict[str, str], account_name: str, warnings: list[str]
+) -> tuple[dict[str, list[dict[str, Any]]], dict[str, Any]]:
+    """Accept only structurally valid, same-session container exports."""
+    accepted: dict[str, list[dict[str, Any]]] = {}
+    report: dict[str, Any] = {}
+    for dataset in CONTAINER_DATASETS:
+        document = documents.get(dataset)
+        if document is None:
+            report[dataset] = {"status": "missing_or_unreadable"}
+            continue
+        try:
+            envelope = parse_envelope(document, dataset)
+            if envelope["plugin_version"] != reference["plugin_version"]:
+                raise ImportError("plugin version differs from character.json")
+            if envelope["session_id"] != reference["session_id"]:
+                raise ImportError("export session differs from character.json")
+            supplied_account_name = document.get("account_name")
+            if (
+                supplied_account_name is not None
+                and (not isinstance(supplied_account_name, str) or supplied_account_name.casefold() != account_name.casefold())
+            ):
+                raise ImportError("supplied account_name differs from character.json")
+            accepted[dataset] = parse_container(document, dataset)
+            report[dataset] = {"status": "imported", "freshness": envelope, "item_rows": len(accepted[dataset])}
+        except ImportError as exc:
+            warnings.append(f"{dataset}.json was not imported: {exc}")
+            report[dataset] = {"status": "skipped", "reason": str(exc)}
+    return accepted, report
+
+
+def resolve_container_items(
+    containers: dict[str, list[dict[str, Any]]], resolver: dict[str, Any], base_state: dict[str, Any]
+) -> tuple[dict[tuple[str, str], int], list[dict[str, Any]], list[dict[str, Any]]]:
+    """Aggregate numeric IDs, then apply resolver semantics without name matching."""
+    physical: dict[int, int] = {}
+    names: dict[int, set[str]] = {}
+    container_ids: dict[int, set[str]] = {}
+    for dataset, rows in containers.items():
+        for row in rows:
+            item_id = row["id"]
+            physical[item_id] = physical.get(item_id, 0) + row["quantity"]
+            names.setdefault(item_id, set()).add(row["name"])
+            container_ids.setdefault(item_id, set()).add(dataset)
+
+    resolved_ids: set[int] = set()
+    observed: dict[tuple[str, str], int] = {}
+    resolved_report: list[dict[str, Any]] = []
+    for mapping in resolver["mappings"]:
+        quantities = {item_id: physical[item_id] for item_id in mapping["runelite_item_ids"] if item_id in physical}
+        if not quantities:
+            continue
+        resolved_ids.update(quantities)
+        aggregation = mapping["aggregation"]
+        if aggregation == "sum":
+            value = sum(quantities.values())
+        elif aggregation == "presence":
+            value = 1
+        else:
+            values = mapping["item_id_values"]
+            value = max(values[str(item_id)] for item_id in quantities)
+        target = (mapping["model_state"], mapping["model_key"])
+        observed[target] = value
+        existing = base_state[target[0]].get(target[1], 0)
+        resolved_report.append({
+            "model_state": target[0], "model_key": target[1], "aggregation": aggregation,
+            "existing_confirmed_value": existing, "observed_resolved_value": value,
+            "imported_value": max(existing, value), "physical_item_quantities": quantities,
+            "source_containers": sorted({container for item_id in quantities for container in container_ids[item_id]}),
+        })
+    unmapped = [
+        {"item_id": item_id, "quantity": physical[item_id], "display_names": sorted(names[item_id]), "source_containers": sorted(container_ids[item_id])}
+        for item_id in sorted(set(physical) - resolved_ids)
+    ]
+    return observed, resolved_report, unmapped
 
 
 def _validate_export_consistency(
@@ -257,6 +375,7 @@ def _validate_export_consistency(
             document, dataset, require_supported_version=dataset in REQUIRED_DATASETS
         )
         for dataset, document in documents.items()
+        if dataset in {*REQUIRED_DATASETS, "diaries"}
     }
     reference = envelopes["character"]
     for dataset in REQUIRED_DATASETS:
@@ -303,12 +422,22 @@ def import_runelite_export(
     envelopes = _validate_export_consistency(export_documents, expected_account_name, import_warnings)
     character = parse_character(export_documents["character"])
     finished_quests = parse_quests(export_documents["quests"])
+    containers, container_report = _accepted_containers(
+        export_documents,
+        reference=envelopes["character"],
+        account_name=character["account_name"],
+        warnings=import_warnings,
+    )
+    resolver = load_item_resolver()
 
     next_state = copy.deepcopy(base_account_state)
     for skill, stat in character["stats"].items():
         next_state["skills"][skill] = stat["real_level"]
         next_state["skill_xp"][skill] = stat["experience"]
     next_state["quests_completed"] = list(dict.fromkeys([*next_state["quests_completed"], *finished_quests]))
+    observed_items, resolved_items, unmapped_items = resolve_container_items(containers, resolver, base_account_state)
+    for (model_state, model_key), observed_value in observed_items.items():
+        next_state[model_state][model_key] = max(next_state[model_state].get(model_key, 0), observed_value)
     validate_account_state(next_state)
 
     diary_report: dict[str, Any]
@@ -322,11 +451,12 @@ def import_runelite_export(
         diary_report = {"status": "missing", "areas": {}}
 
     import_warnings.append("boosted skill levels were read only for export-shape validation and were not imported")
-    import_warnings.append("item containers, equipment, combat achievements, and collection log are unsupported in phase 1")
+    import_warnings.append("equipment rows establish only physical possession in this export session; usability, charges, and reclaimability were not inferred")
+    import_warnings.append("combat achievements and collection log remain unsupported")
     return {
         "updated_account_state": next_state,
         "import_report": {
-            "phase": "runelite-character-export-phase-1",
+            "phase": "runelite-character-export-phase-1-containers",
             "account_name": character["account_name"],
             "account_directory": str(account_directory) if account_directory else None,
             "datasets": envelopes,
@@ -335,11 +465,19 @@ def import_runelite_export(
                 "skill_xp": len(character["stats"]),
                 "finished_quests": len(finished_quests),
                 "quests_added": len(set(next_state["quests_completed"]) - set(base_account_state["quests_completed"])),
+                "resolved_container_keys": len(resolved_items),
             },
             "diaries": diary_report,
+            "containers": {
+                "datasets": container_report,
+                "resolver": {"id": resolver.get("resolver_id"), "schema_version": resolver.get("schema_version")},
+                "resolved": resolved_items,
+                "unmapped_exported_items": unmapped_items,
+                "unresolved_model_keys": resolver["unresolved"],
+            },
             "omitted_private_or_unsupported_fields": [
-                "boosted skill levels", "quest steps", "bank", "seed vault", "inventory", "equipment",
-                "combat achievements", "collection log", "world and game session state",
+                "boosted skill levels", "quest steps", "combat achievements", "collection log",
+                "unique item observations", "gear usability, charges, and reclaimability", "world and game session state",
             ],
             "warnings": import_warnings,
             "false_inference_flags": {
