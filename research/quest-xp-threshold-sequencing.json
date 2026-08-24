@@ -25,6 +25,7 @@
   "factual_boundary": [
     "The package may calculate a level before and after a fixed transition using the repository XP table.",
     "The package may report modeled hard requirements, prerequisite quest closure, preparation conditions, evaluator status, and missing preparation from existing actions.",
+    "A fixed reward never makes a quest free: hard skill gates, prerequisite quests, item inputs, consumed inputs, reusable or equipment inputs, resources, milestones, and other preparation remain independent blockers. An item is called consumed only when the normalized transition records an item deduction; other required items are retained as reusable/equipment-or-unmodeled-consumption inputs rather than guessed.",
     "A requirement crossing is only a modeled threshold crossing; it does not establish a recommended training method, route order, or practical readiness.",
     "A quest with a formally eligible status is not assumed safe, enjoyable, strategically timely, or complete.",
     "A selectable XP reward remains player-owned and unallocated until a later explicit decision model supplies an allocation."

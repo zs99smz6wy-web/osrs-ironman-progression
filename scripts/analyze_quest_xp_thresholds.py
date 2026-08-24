@@ -7,7 +7,14 @@ from collections import defaultdict
 from pathlib import Path
 from typing import Any, Iterable
 
-from evaluate_progression import DEFAULT_ACTIONS, DEFAULT_STATE, evaluate_actions, load_json, validate_account_state
+from evaluate_progression import (
+    DEFAULT_ACTIONS,
+    DEFAULT_STATE,
+    evaluate_actions,
+    evaluate_condition,
+    load_json,
+    validate_account_state,
+)
 from osrs_xp import MAX_XP, level_from_xp, minimum_xp_for_level
 
 
@@ -48,6 +55,112 @@ def _quest_requirements(action: dict[str, Any]) -> list[str]:
         for predicate in _predicates(action["requirements"])
         if predicate["type"] == "quest_completed"
     ]
+
+
+def _consumed_item_effects(action: dict[str, Any]) -> list[dict[str, Any]]:
+    consumed: list[dict[str, Any]] = []
+    for effect in action["transition"]["effects"]:
+        if effect["op"] == "delta" and effect["state"] == "items" and effect["amount"] < 0:
+            consumed.append({"item_id": effect["key"], "quantity": -effect["amount"], "path": "base_transition"})
+    for option in action["transition"]["options"]:
+        for effect in option["effects"]:
+            if effect["op"] == "delta" and effect["state"] == "items" and effect["amount"] < 0:
+                consumed.append(
+                    {"item_id": effect["key"], "quantity": -effect["amount"], "path": f"option:{option['id']}"}
+                )
+    return consumed
+
+
+def _unsatisfied_predicates(condition: dict[str, Any], account_state: dict[str, Any]) -> list[dict[str, Any]]:
+    if "all" in condition:
+        return [
+            predicate
+            for child in condition["all"]
+            for predicate in _unsatisfied_predicates(child, account_state)
+        ]
+    if "any" in condition:
+        alternatives = [_unsatisfied_predicates(child, account_state) for child in condition["any"]]
+        return [] if any(not alternative for alternative in alternatives) else [
+            predicate for alternative in alternatives for predicate in alternative
+        ]
+    satisfied, _ = evaluate_condition(condition, account_state)
+    return [] if satisfied else [copy.deepcopy(condition)]
+
+
+def _blocker_inventory(action: dict[str, Any], account_state: dict[str, Any]) -> dict[str, list[dict[str, Any]]]:
+    consumed = _consumed_item_effects(action)
+    consumed_keys = {effect["item_id"] for effect in consumed}
+    inventory: dict[str, list[dict[str, Any]]] = {
+        "hard_skill_gates": [],
+        "preparation_skill_inputs": [],
+        "prerequisite_quests": [],
+        "required_item_inputs": [],
+        "consumed_item_inputs": consumed,
+        "reusable_or_equipment_inputs": [],
+        "other_hard_requirements": [],
+        "other_preparation": [],
+        "missing_hard_predicates": _unsatisfied_predicates(action["requirements"], account_state),
+        "missing_preparation_predicates": _unsatisfied_predicates(action["preparation"], account_state),
+    }
+    for scope, condition in (("hard_requirement", action["requirements"]), ("preparation", action["preparation"])):
+        for predicate in _predicates(condition):
+            predicate_copy = copy.deepcopy(predicate)
+            predicate_copy["scope"] = scope
+            if predicate["type"] == "skill_at_least":
+                current_level = level_from_xp(account_state["skill_xp"][predicate["key"]])
+                skill_input = {
+                    **predicate_copy,
+                    "current_level": current_level,
+                    "satisfied": current_level >= predicate["value"],
+                }
+                inventory["hard_skill_gates" if scope == "hard_requirement" else "preparation_skill_inputs"].append(
+                    skill_input
+                )
+            elif predicate["type"] == "quest_completed":
+                inventory["prerequisite_quests"].append(
+                    {
+                        **predicate_copy,
+                        "satisfied": predicate["key"] in account_state["quests_completed"],
+                    }
+                )
+            elif predicate["type"] == "item_at_least":
+                item = {
+                    **predicate_copy,
+                    "current_quantity": account_state["items"].get(predicate["key"], 0),
+                    "satisfied": account_state["items"].get(predicate["key"], 0) >= predicate["value"],
+                    "input_role": "consumed_input" if predicate["key"] in consumed_keys else "reusable_or_equipment_or_unmodeled_consumption_input",
+                }
+                inventory["required_item_inputs"].append(item)
+                if item["input_role"] == "reusable_or_equipment_or_unmodeled_consumption_input":
+                    inventory["reusable_or_equipment_inputs"].append(item)
+            elif scope == "hard_requirement":
+                inventory["other_hard_requirements"].append(predicate_copy)
+            else:
+                inventory["other_preparation"].append(predicate_copy)
+    return inventory
+
+
+def _timing_status(result: dict[str, Any], blockers: dict[str, list[dict[str, Any]]]) -> tuple[str, list[str]]:
+    if result["status"] == "completed":
+        return "completed", []
+    statuses: list[str] = []
+    if any(not quest["satisfied"] for quest in blockers["prerequisite_quests"]):
+        statuses.append("finish_quest_chain")
+    if any(
+        not skill["satisfied"]
+        for skill in blockers["hard_skill_gates"] + blockers["preparation_skill_inputs"]
+    ):
+        statuses.append("train_requirement")
+    missing_inputs_or_other_preparation = any(
+        predicate["type"] not in {"quest_completed", "skill_at_least"}
+        for predicate in blockers["missing_hard_predicates"] + blockers["missing_preparation_predicates"]
+    )
+    if missing_inputs_or_other_preparation:
+        statuses.append("gather_inputs")
+    if not statuses:
+        statuses.append("do_now")
+    primary_order = ("finish_quest_chain", "train_requirement", "gather_inputs", "do_now")
+    return next(status for status in primary_order if status in statuses), statuses
 
 
 def _quest_closure(action: dict[str, Any], actions_by_quest: dict[str, dict[str, Any]]) -> list[dict[str, Any]]:
@@ -168,18 +281,32 @@ def analyze_quest_xp_thresholds(
         if action["kind"] != "quest" or action["repeatable"] or not fixed_xp:
             raise ValueError(f"{action['id']} is not a non-repeatable quest with fixed skill XP")
         result = action_results[action["id"]]
+        blockers = _blocker_inventory(action, account_state)
+        primary_timing_status, timing_statuses = _timing_status(result, blockers)
         timing_windows.append(
             {
                 "action_id": action["id"],
                 "quest_name": _completed_quest(action) or action["name"],
                 "fact_ids": copy.deepcopy(entry["fact_ids"]),
                 "status": result["status"],
+                "primary_timing_status": primary_timing_status,
+                "timing_statuses": timing_statuses,
                 "hard_requirements": copy.deepcopy(action["requirements"]),
                 "missing_hard_requirements": copy.deepcopy(result["missing"]),
+                "missing_hard_predicates": blockers["missing_hard_predicates"],
+                "hard_skill_gates": blockers["hard_skill_gates"],
+                "preparation_skill_inputs": blockers["preparation_skill_inputs"],
                 "immediate_quest_prerequisites": _quest_requirements(action),
+                "prerequisite_quest_statuses": blockers["prerequisite_quests"],
                 "modeled_prerequisite_quest_closure": _quest_closure(action, actions_by_quest),
                 "preparation": copy.deepcopy(action["preparation"]),
                 "missing_preparation": copy.deepcopy(result["missing_preparation"]),
+                "missing_preparation_predicates": blockers["missing_preparation_predicates"],
+                "required_item_inputs": blockers["required_item_inputs"],
+                "consumed_item_inputs": blockers["consumed_item_inputs"],
+                "reusable_or_equipment_inputs": blockers["reusable_or_equipment_inputs"],
+                "other_hard_requirements": blockers["other_hard_requirements"],
+                "other_preparation": blockers["other_preparation"],
                 "skill_effects": [
                     _threshold_report(skill, account_state["skill_xp"][skill], xp, thresholds)
                     for skill, xp in sorted(fixed_xp.items())
@@ -214,7 +341,7 @@ def main() -> int:
         print(json.dumps(result, indent=2))
         return 0
     for quest in result["quest_xp_timing_windows"]:
-        print(f"[{quest['status'].upper()}] {quest['quest_name']}")
+        print(f"[{quest['primary_timing_status'].upper()}] {quest['quest_name']}")
         for effect in quest["skill_effects"]:
             print(
                 f"  {effect['skill']}: level {effect['current_level']} + {effect['fixed_xp']} XP -> "

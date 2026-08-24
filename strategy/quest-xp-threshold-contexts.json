@@ -13,7 +13,8 @@
     {"skill": "Woodcutting", "level": 36, "action_ids": ["action:lost-city"], "timing_note": "Expose this downstream Fairy-ring path gate when evaluating bounded quest XP, without recommending a Woodcutting method."}
   ],
   "decision_boundary": {
-    "fixed_quest_xp": "The analyzer may show current XP, resulting XP, level change, crossed visibility thresholds, direct quest prerequisites, transitive modeled quest closure, and outstanding preparation.",
+    "fixed_quest_xp": "The analyzer may show current XP, resulting XP, level change, crossed visibility thresholds, direct quest prerequisites, transitive modeled quest closure, hard skill gates, item inputs, consumed inputs, reusable or equipment inputs, and outstanding preparation. A fixed reward does not remove any of those blockers.",
+    "timing_statuses": "do_now means all currently modeled hard and preparation conditions are satisfied, not that combat, travel, player readiness, or enjoyment has been inferred. gather_inputs, train_requirement, and finish_quest_chain may be emitted together when more than one blocker remains.",
     "player_chosen_xp": "Every player-chosen XP award must be emitted with allocated_skill null and must never alter skill_xp, skills, thresholds, status, or a recommendation.",
     "no_route_claim": "Output is a comparison input. It cannot say which quest should be completed next or that a level should be trained by a particular method."
   }

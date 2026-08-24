@@ -35,6 +35,15 @@ class BoundedQuestXpThresholdPackageTests(unittest.TestCase):
         attack = next(item for item in waterfall["skill_effects"] if item["skill"] == "Attack")
 
         self.assertEqual("needs_preparation", waterfall["status"])
+        self.assertEqual("gather_inputs", waterfall["primary_timing_status"])
+        self.assertEqual(["gather_inputs"], waterfall["timing_statuses"])
+        self.assertEqual(["rope", "air_rune", "earth_rune", "water_rune"], [item["key"] for item in waterfall["required_item_inputs"]])
+        self.assertTrue(
+            all(
+                item["input_role"] == "reusable_or_equipment_or_unmodeled_consumption_input"
+                for item in waterfall["required_item_inputs"]
+            )
+        )
         self.assertEqual(13750, attack["fixed_xp"])
         self.assertEqual(30, attack["resulting_level"])
         self.assertEqual(29, attack["levels_skipped"])
@@ -50,11 +59,23 @@ class BoundedQuestXpThresholdPackageTests(unittest.TestCase):
         crafting = next(item for item in nature_spirit["skill_effects"] if item["skill"] == "Crafting")
 
         self.assertEqual("eligible", nature_spirit["status"])
+        self.assertEqual("do_now", nature_spirit["primary_timing_status"])
         self.assertEqual(["The Restless Ghost", "Priest in Peril"], nature_spirit["immediate_quest_prerequisites"])
         closure = {item["quest_name"]: item for item in nature_spirit["modeled_prerequisite_quest_closure"]}
         self.assertEqual("action:the-restless-ghost", closure["The Restless Ghost"]["modeled_action_id"])
         self.assertEqual("action:priest-in-peril", closure["Priest in Peril"]["modeled_action_id"])
         self.assertEqual(31, crafting["next_meaningful_modeled_threshold_after"]["level"])
+
+    def test_dig_site_keeps_training_and_input_blockers_separate_from_fixed_xp(self) -> None:
+        result = analyze_quest_xp_thresholds(self.state, self.actions, self.research, self.context)
+        dig_site = self._window("action:the-dig-site", result)
+
+        self.assertEqual("train_requirement", dig_site["primary_timing_status"])
+        self.assertEqual(["train_requirement", "gather_inputs"], dig_site["timing_statuses"])
+        self.assertEqual({"Agility", "Herblore", "Thieving"}, {gate["key"] for gate in dig_site["hard_skill_gates"]})
+        self.assertTrue(all(not gate["satisfied"] for gate in dig_site["hard_skill_gates"]))
+        self.assertIn("rope", [item["item_id"] for item in dig_site["consumed_item_inputs"]])
+        self.assertIn("pestle_and_mortar", [item["key"] for item in dig_site["reusable_or_equipment_inputs"]])
 
     def test_player_chosen_xp_is_exposed_but_never_allocated_or_applied(self) -> None:
         original_state = copy.deepcopy(self.state)
