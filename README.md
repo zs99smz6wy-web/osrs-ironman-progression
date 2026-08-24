@@ -28,7 +28,7 @@ This repository does **not** begin by prescribing a single linear route. It firs
 
 ## Current status
 
-The research foundation and first executable pilot are in place. The current recommendation chapter can evaluate a small verified set of quests, transport unlocks, passive loops, and activities against an account snapshot, while also reporting quest-XP blocker sequencing, Void/Elite Void timing, bounded economic-method comparisons, and monster-drop bypass timing. These reports preserve factual and strategic boundaries and do not select a final route. This remains a starting dataset, not an exhaustive fact database.
+The research foundation and first executable pilot are in place. The current recommendation chapter can evaluate a verified set of quests, transport unlocks, passive loops, and activities against an account snapshot, while also reporting quest-XP blocker sequencing, Void/Elite Void timing, bounded economic-method comparisons, and monster-drop bypass timing. An explicit decision-episode runner can replay up to 25 player-confirmed completions from a starting snapshot and regenerate the chapter before every step. These reports preserve factual and strategic boundaries and do not select a final route. This remains a starting dataset, not an exhaustive fact database.
 
 `tests/fixtures/new-ironman-post-tutorial.json` is the pilot's source-backed post-Tutorial Island Standard Ironman fixture. It is distinct from `tests/fixtures/fresh-account.json`, which remains the zero-state boundary. To inspect a bounded first chapter without selecting a route:
 
@@ -55,6 +55,7 @@ python scripts/analyze_quest_xp_timing.py graph/account-state.example.json --jso
 python scripts/analyze_economic_method_comparison.py graph/account-state.example.json --json
 python scripts/analyze_monster_drop_bypass_timing.py graph/account-state.example.json --json
 python scripts/compose_recommendation_chapter.py graph/account-state.example.json --active-limit 5 --afk-limit 5 --preparation-limit 5 --quest-xp-limit 5 --afk-mode low_attention --json
+python scripts/run_decision_episode.py path/to/starting-account-state.json path/to/confirmed-episode.json
 python scripts/transfer_kingdom_coffer.py path/to/account-state.json deposit 10000
 python scripts/import_runelite_export.py --account-directory "$env:USERPROFILE\\.runelite\\character-exporter\\Your Account"
 python scripts/import_runelite_export.py --export-root "$env:USERPROFILE\\.runelite\\character-exporter" --account-name "Your Account" --output path/to/import-report.json
