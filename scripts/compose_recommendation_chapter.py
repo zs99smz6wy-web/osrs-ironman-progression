@@ -19,6 +19,18 @@ from analyze_durable_utility_items import DEFAULT_CONTEXTS as DEFAULT_DURABLE_UT
 from analyze_pvm_readiness import DEFAULT_CONTEXTS as DEFAULT_PVM_READINESS_CONTEXTS, analyze_pvm_readiness
 from analyze_mastering_mixology import analyze_mastering_mixology
 from analyze_void_elite_void_timing import analyze_void_elite_void_timing
+from analyze_economic_method_comparison import (
+    DEFAULT_CONTEXT as DEFAULT_ECONOMIC_CONTEXT,
+    DEFAULT_FACTS as DEFAULT_ECONOMIC_FACTS,
+    DEFAULT_RESEARCH as DEFAULT_ECONOMIC_RESEARCH,
+    analyze_economic_method_comparison,
+)
+from analyze_monster_drop_bypass_timing import (
+    DEFAULT_CONTEXTS as DEFAULT_BYPASS_CONTEXTS,
+    DEFAULT_READINESS_FACTS as DEFAULT_BYPASS_READINESS_FACTS,
+    DEFAULT_RESEARCH as DEFAULT_BYPASS_RESEARCH,
+    analyze_monster_drop_bypass_timing,
+)
 from evaluate_progression import DEFAULT_ACTIONS, DEFAULT_STATE, evaluate_actions, load_json, validate_account_state
 from score_candidates import DEFAULT_CANDIDATES, score_candidates
 
@@ -183,6 +195,7 @@ def compose_recommendation_chapter(
     quest_xp_limit: int = DEFAULT_QUEST_XP_LIMIT,
     transport_bundle_limit: int = DEFAULT_TRANSPORT_BUNDLE_LIMIT,
     afk_mode: str = "low_attention",
+    bypass_objectives: dict[str, str] | None = None,
 ) -> dict[str, Any]:
     """Compose bounded recommendation options without selecting or applying an action."""
     validate_account_state(account_state)
@@ -220,6 +233,21 @@ def compose_recommendation_chapter(
     mastering_mixology_timing = analyze_mastering_mixology(account_state)
     void_elite_void_timing = analyze_void_elite_void_timing(
         account_state, DEFAULT_VOID_STRATEGY_INTENT
+    )
+    economic_method_comparison = analyze_economic_method_comparison(
+        account_state,
+        actions_document,
+        load_json(DEFAULT_ECONOMIC_RESEARCH),
+        load_json(DEFAULT_ECONOMIC_CONTEXT),
+        load_json(DEFAULT_ECONOMIC_FACTS),
+    )
+    monster_drop_bypass_timing = analyze_monster_drop_bypass_timing(
+        account_state,
+        actions_document,
+        load_json(DEFAULT_BYPASS_CONTEXTS),
+        load_json(DEFAULT_BYPASS_RESEARCH),
+        load_json(DEFAULT_BYPASS_READINESS_FACTS),
+        bypass_objectives,
     )
     quest_xp_timing = analyze_quest_xp_timing(
         account_state, actions_document, nodes_document, edges_document
@@ -300,6 +328,8 @@ def compose_recommendation_chapter(
         "pvm_readiness": pvm_readiness,
         "mastering_mixology_timing": mastering_mixology_timing,
         "void_elite_void_timing": void_elite_void_timing,
+        "economic_method_comparison": economic_method_comparison,
+        "monster_drop_bypass_timing": monster_drop_bypass_timing,
         "gaps": {
             "preparation": preparation_gaps[:preparation_limit],
             "preparation_coverage": preparation_coverage,
@@ -322,6 +352,9 @@ def compose_recommendation_chapter(
             "mixology_reward_selected": False,
             "quest_training_method_selected": False,
             "void_purchase_or_upgrade_inferred": False,
+            "economic_method_selected": False,
+            "bypass_selected_by_default": False,
+            "bypass_completion_time_inferred": False,
         },
     }
 
@@ -393,6 +426,24 @@ def _print_human_chapter(chapter: dict[str, Any]) -> None:
     lander = void["regular_void_access"]["highest_eligible_lander"]
     print(f"  highest eligible boat: {lander['id'] if lander else 'none'}")
     print(f"  Western hard observed: {void['elite_void_upgrade']['western_provinces_hard_claimed_observed']}")
+    economy = chapter["economic_method_comparison"]
+    pressure = economy["commitment_pressure"]
+    print("\nEconomic method comparison:")
+    print(f"  commitment pressure: {pressure['status']}")
+    target = pressure["named_unfunded_commitment"]
+    if target is not None:
+        print(
+            f"  target: {target['purpose']} ({target['cumulative_shortfall']} coin cumulative shortfall)"
+        )
+        for method in economy["method_comparisons"]:
+            print(f"  [{method['comparison_status'].upper()}] {method['action_name']}")
+            print(f"    attention fit: {method['attention_fit']['fit']}")
+    bypasses = chapter["monster_drop_bypass_timing"]
+    print("\nMonster-drop bypass timing:")
+    for bypass in bypasses["bypasses"]:
+        print(f"  [{bypass['timing_status'].upper()}] {bypass['name']}")
+        print(f"    formal access: {bypass['factual_access']['status']}")
+        print(f"    objective: {bypass['explicit_objective']['status']}")
     sequence_coverage = chapter["quest_xp_threshold_sequence_coverage"]
     print(
         "\nQuest-XP threshold sequencing: "
@@ -471,6 +522,11 @@ def main() -> int:
     parser.add_argument("--quest-xp-limit", default=DEFAULT_QUEST_XP_LIMIT, type=int)
     parser.add_argument("--transport-bundle-limit", default=DEFAULT_TRANSPORT_BUNDLE_LIMIT, type=int)
     parser.add_argument("--afk-mode", choices=AFK_MODES, default="low_attention")
+    parser.add_argument(
+        "--bypass-objectives",
+        type=Path,
+        help="Optional JSON object mapping known bypass IDs to explicit player objectives.",
+    )
     parser.add_argument("--json", action="store_true", help="Emit machine-readable JSON.")
     args = parser.parse_args()
 
@@ -487,6 +543,7 @@ def main() -> int:
             quest_xp_limit=args.quest_xp_limit,
             transport_bundle_limit=args.transport_bundle_limit,
             afk_mode=args.afk_mode,
+            bypass_objectives=load_json(args.bypass_objectives) if args.bypass_objectives else None,
         )
     except ValueError as error:
         parser.error(str(error))

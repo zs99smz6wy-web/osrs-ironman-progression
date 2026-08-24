@@ -178,6 +178,9 @@ class ComposeRecommendationChapterTests(unittest.TestCase):
                 "mixology_reward_selected": False,
                 "quest_training_method_selected": False,
                 "void_purchase_or_upgrade_inferred": False,
+                "economic_method_selected": False,
+                "bypass_selected_by_default": False,
+                "bypass_completion_time_inferred": False,
             },
             chapter["boundaries"],
         )
@@ -222,6 +225,49 @@ class ComposeRecommendationChapterTests(unittest.TestCase):
             "one of: 50 x rune_essence (current: 0) OR 50 x pure_essence (current: 0)",
             output.getvalue(),
         )
+
+    def test_economic_and_bypass_contexts_require_explicit_account_inputs(self) -> None:
+        state = load_json(FIXTURES / "fresh-account.json")
+        chapter = self.compose(state)
+
+        self.assertEqual(
+            "no_declared_commitments",
+            chapter["economic_method_comparison"]["commitment_pressure"]["status"],
+        )
+        self.assertTrue(
+            all(
+                method["comparison_status"] == "no_declared_unfunded_commitment"
+                for method in chapter["economic_method_comparison"]["method_comparisons"]
+            )
+        )
+        self.assertTrue(
+            all(
+                bypass["explicit_objective"]["status"] == "unselected"
+                for bypass in chapter["monster_drop_bypass_timing"]["bypasses"]
+            )
+        )
+        self.assertFalse(chapter["boundaries"]["economic_method_selected"])
+        self.assertFalse(chapter["boundaries"]["bypass_selected_by_default"])
+
+    def test_explicit_bypass_objective_records_intent_without_selecting_a_grind(self) -> None:
+        chapter = self.compose(
+            load_json(FIXTURES / "fresh-account.json"),
+            bypass_objectives={
+                "zamorak-warrior-rune-scimitar": "Compare as an early melee weapon option."
+            },
+        )
+        bypasses = {
+            bypass["bypass_id"]: bypass
+            for bypass in chapter["monster_drop_bypass_timing"]["bypasses"]
+        }
+        candidate = bypasses["zamorak-warrior-rune-scimitar"]
+
+        self.assertEqual("recorded", candidate["explicit_objective"]["status"])
+        self.assertEqual("needs_player_combat_observations", candidate["timing_status"])
+        self.assertFalse(candidate["recommended_by_default"])
+        self.assertFalse(candidate["throughput_or_completion_time_inferred"])
+        self.assertFalse(chapter["boundaries"]["bypass_selected_by_default"])
+        self.assertFalse(chapter["boundaries"]["bypass_completion_time_inferred"])
 
     def test_transport_bundle_is_bounded_and_explains_state_without_route_selection(self) -> None:
         state = load_json(FIXTURES / "fresh-account.json")
