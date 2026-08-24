@@ -32,6 +32,12 @@ Combat achievements and collection log are not parsed or opened by phase 1. Thei
 
 The importer rejects malformed required data, duplicate quest IDs/names, unknown skill layouts, and permanent-level/XP disagreement. It returns JSON on stdout by default, or writes only to a new path unless `--force` is explicit.
 
+## One-command recommendation pipeline
+
+`recommend_from_runelite.py` accepts the same account-directory forms as the importer and then passes the importer's copied state directly into the existing recommendation compositor. It emits only `import_report` and `recommendation_chapter` by default; add `--include-state` when the updated state is deliberately needed. Limits and `--afk-mode` match the compositor. Output goes to stdout unless `--output` is supplied, and an existing output requires `--force`.
+
+The pipeline adds no account inference or route policy: missing containers, diary claims, transport, quest steps, timers, random outputs, combat wins, action completion, and route selection remain outside its boundaries.
+
 ## Privacy policy
 
 The workflow is local-file based. It requires neither Jagex nor RuneLite credentials, cookies, API keys, public hiscores, nor the RuneLite configuration directory. Treat exports as private account data: keep them outside version control, pass the account folder path locally, and share only the generated report or a deliberately redacted state document when collaboration needs it.

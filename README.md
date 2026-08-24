@@ -50,6 +50,7 @@ python scripts/compose_recommendation_chapter.py graph/account-state.example.jso
 python scripts/transfer_kingdom_coffer.py path/to/account-state.json deposit 10000
 python scripts/import_runelite_export.py --account-directory "$env:USERPROFILE\\.runelite\\character-exporter\\Your Account"
 python scripts/import_runelite_export.py --export-root "$env:USERPROFILE\\.runelite\\character-exporter" --account-name "Your Account" --output path/to/import-report.json
+python scripts/recommend_from_runelite.py --export-root "$env:USERPROFILE\\.runelite\\character-exporter" --account-name "Your Account" --active-limit 5 --afk-limit 5 --preparation-limit 5 --quest-xp-limit 5 --afk-mode low_attention
 python scripts/validate_runelite_item_resolver.py
 ```
 
