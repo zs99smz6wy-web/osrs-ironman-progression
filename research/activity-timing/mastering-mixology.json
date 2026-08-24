@@ -1,0 +1,358 @@
+{
+  "package_schema_version": 1,
+  "package_type": "activity-timing-research",
+  "package_id": "research-activity-timing-mastering-mixology",
+  "activity": "Mastering Mixology",
+  "status": "research-proposal",
+  "checked_at": "2026-08-24",
+  "scope": "Current factual and strategy-separated research for Mastering Mixology. It describes entry, inputs, recipe gates, resin, rewards, account-utility tradeoffs, and bounded timing candidates. It does not create an action, account transition, route order, score, expected session result, or assumed supply plan.",
+  "facts_strategy_boundary": {
+    "factual_mechanics_included": [
+      "the unboostable level-60 Herblore and Children of the Sun participation gates",
+      "the current recipe unlock levels through the full level-81 recipe set",
+      "accepted clean-herb and matching unfinished-potion inputs, their fixed paste categories and quantities, hopper cap, and fixed six-XP refinement award",
+      "order, processing, resin, reward-shop, capacity, charge, and purchase mechanics",
+      "fixed shop prices and item behavior, including chance-based effects without predicting their results",
+      "the distinct acquisition and current capacity rules for the Herb sack and Silklined Herb sack"
+    ],
+    "strategy_only": [
+      "whether an account should sacrifice a particular herb or unfinished potion rather than make its ordinary potion",
+      "whether 60, 78, or 81 Herblore is the right personal entry point",
+      "which reward to buy first, how many orders to fulfil, which hand-in pattern to use, or when to stop",
+      "all rate, profit, resource-efficiency, XP-per-hour, attention, click, transport, or quantity claims",
+      "community herb-priority lists and tool or plugin advice"
+    ],
+    "prohibited_inferences": [
+      "account herb, unfinished-potion, paste, resin, reward, charge, equipment, bank-space, normal-potion, or quest ownership",
+      "player location, travel access, readiness, latency, click accuracy, completion, successful order fulfilment, Digweed appearance, resin gain, or Herblore XP",
+      "a Sarachnis kill, Pristine spider silk drop, Herb sack upgrade, or any collection-log result",
+      "that a published market price, GP estimate, community guide, or recipe availability makes an Ironman input expendable"
+    ]
+  },
+  "source_catalog": [
+    {
+      "id": "wiki-mastering-mixology-current-2026",
+      "publisher": "Old School RuneScape Wiki",
+      "kind": "wiki",
+      "url": "https://oldschool.runescape.wiki/w/Mastering_Mixology",
+      "page_last_modified": "2026-03-12",
+      "checked_at": "2026-08-24",
+      "use": "Primary current mechanics source for access, travel options, clean-herb and unfinished-potion refining, paste quantities, recipes, orders, processing, resin, reward costs, hopper cap, payout multipliers, and current March 2026 teleport change. Wiki-maintained content, not a Jagex primary source."
+    },
+    {
+      "id": "official-varlamore-rising-darkness-overview-mirror",
+      "publisher": "Jagex, mirrored verbatim by Old School RuneScape Wiki",
+      "kind": "official-mirror",
+      "url": "https://oldschool.runescape.wiki/w/Update:Varlamore:_The_Rising_Darkness_-_Overview",
+      "checked_at": "2026-08-24",
+      "use": "Official launch explanation that Mixology converts herbs to three pastes, requires all three to consistently satisfy orders, and does not use secondary ingredients. Current mechanics are independently rechecked on the activity page."
+    },
+    {
+      "id": "official-mixology-rewards-xp-improvements-mirror",
+      "publisher": "Jagex, mirrored verbatim by Old School RuneScape Wiki",
+      "kind": "official-mirror",
+      "url": "https://oldschool.runescape.wiki/w/Update:Rewards_and_XP_Improvements_-_Varlamore:_The_Rising_Darkness",
+      "checked_at": "2026-08-24",
+      "use": "Official October 2024 revision record for recipe and reward-cost changes, 3,000 paste cap, and multi-order hand-in behavior. It is historical support only; current values are taken from the current activity and individual reward pages."
+    },
+    {
+      "id": "wiki-ironman-herblore-current-2026",
+      "publisher": "Old School RuneScape Wiki",
+      "kind": "guide",
+      "url": "https://oldschool.runescape.wiki/w/Ironman_Guide/Herblore",
+      "checked_at": "2026-08-24",
+      "use": "Community-maintained Ironman strategy evidence: Mixology is more useful at higher Herblore, all recipes arrive at 81, it uses no secondary ingredients, and ordinary potion supplies can have downstream value. It is fenced as strategy, not an account-state or timing fact."
+    },
+    {
+      "id": "wiki-mastering-mixology-strategies-current-2026",
+      "publisher": "Old School RuneScape Wiki community guide",
+      "kind": "guide",
+      "url": "https://oldschool.runescape.wiki/w/Mastering_Mixology/Strategies",
+      "checked_at": "2026-08-24",
+      "use": "Community strategy evidence for herb selection, order handling, Digweed use, and point-per-paste claims. No rates, priorities, or execution pattern from this source is treated as a fact or recommendation."
+    },
+    {
+      "id": "wiki-potion-storage-current-2026",
+      "publisher": "Old School RuneScape Wiki",
+      "kind": "wiki",
+      "url": "https://oldschool.runescape.wiki/w/Potion_storage",
+      "page_last_modified": "2026-02-24",
+      "checked_at": "2026-08-24",
+      "use": "Current Potion storage cost, bank behavior, single-purchase limit, and Ultimate Ironman exclusion."
+    },
+    {
+      "id": "wiki-alchemists-amulet-current-2026",
+      "publisher": "Old School RuneScape Wiki",
+      "kind": "wiki",
+      "url": "https://oldschool.runescape.wiki/w/Alchemist%27s_amulet",
+      "checked_at": "2026-08-24",
+      "use": "Current amulet cost, 15-percent extra-dose chance, initial charge count, recharge rule, maximum, and no-extra-XP boundary."
+    },
+    {
+      "id": "wiki-chugging-barrel-current-2026",
+      "publisher": "Old School RuneScape Wiki",
+      "kind": "wiki",
+      "url": "https://oldschool.runescape.wiki/w/Chugging_barrel",
+      "checked_at": "2026-08-24",
+      "use": "Current barrel cost, assembled/disassembled tradeability boundary, five-potion and 100-dose-per-potion capacity, and dismantling-loss boundary."
+    },
+    {
+      "id": "wiki-herb-sack-current-2026",
+      "publisher": "Old School RuneScape Wiki",
+      "kind": "wiki",
+      "url": "https://oldschool.runescape.wiki/w/Herb_sack",
+      "page_last_modified": "2026-03-11",
+      "checked_at": "2026-08-24",
+      "use": "Current standard Herb sack costs and 58 unboostable gate, 30-per-herb capacity, February 2026 Silklined upgrade, 100-per-herb capacity, open-state behavior, and death boundary."
+    },
+    {
+      "id": "official-cow-boss-herb-sack-upgrade-mirror",
+      "publisher": "Jagex, mirrored verbatim by Old School RuneScape Wiki",
+      "kind": "official-mirror",
+      "url": "https://oldschool.runescape.wiki/w/Update:Cow_Boss_is_Out_Today!",
+      "checked_at": "2026-08-24",
+      "use": "Official February 2026 announcement that a Pristine spider silk dropped by Sarachnis permanently upgrades one standard Herb sack to the Silklined version. It does not establish a kill, a drop, or an upgrade for an account."
+    }
+  ],
+  "factual_access": {
+    "membership": true,
+    "location": "Alchemical Society laboratory, Aldarin, Varlamore.",
+    "participation_requirements": {
+      "Herblore": {
+        "level": 60,
+        "boostable": false,
+        "boundary": "A temporary boost cannot satisfy the activity entry gate."
+      },
+      "quest": {
+        "id": "Children of the Sun",
+        "completion_required": true
+      }
+    },
+    "entry_inputs": [
+      "Clean, unnoted eligible herbs and/or their corresponding unfinished potions are consumed into paste.",
+      "The laboratory has a bank chest; that fact does not establish access to, or possession of, any input.",
+      "No secondary ingredient is required by the Mixology conversion itself."
+    ],
+    "transport": {
+      "current_options": [
+        "Mastering Mixology minigame teleport through a spellbook or Grouping interface, with a 20-minute cooldown.",
+        "Fairy ring CKQ followed by travel, subject to its separate quest and staff state.",
+        "Quetzal transport to Aldarin, subject to its separate quest/access state.",
+        "Sunset Coast ship ride for 20 coins, then travel.",
+        "Aldarin player-owned-house, charter, and Pendant of Ates alternatives with independent ownership, quest, charge, and destination conditions."
+      ],
+      "boundary": "A transport possibility is not evidence of current travel access, arrival, payment, or a session."
+    }
+  },
+  "factual_recipe_and_input_model": {
+    "refining": {
+      "accepted_input": "One clean, unnoted listed herb or its matching unfinished potion.",
+      "fixed_xp_per_input": 6,
+      "paste_behavior": "Each accepted input converts into its listed one paste type and listed fixed quantity. Paste is untradeable and has no use outside Mastering Mixology.",
+      "hopper_capacity_per_type": 3000,
+      "rate_boundary": "The refiner's two-tick automatic cycle and optional clicking behavior are mechanics. Processing rate, click timing, and XP per hour are not modeled account outputs."
+    },
+    "accepted_herb_to_paste": [
+      {"herb": "Guam leaf", "paste": "Mox", "paste_quantity_per_input": 10},
+      {"herb": "Marrentill", "paste": "Mox", "paste_quantity_per_input": 13},
+      {"herb": "Tarromin", "paste": "Mox", "paste_quantity_per_input": 15},
+      {"herb": "Harralander", "paste": "Mox", "paste_quantity_per_input": 20},
+      {"herb": "Ranarr weed", "paste": "Lye", "paste_quantity_per_input": 26},
+      {"herb": "Toadflax", "paste": "Lye", "paste_quantity_per_input": 32},
+      {"herb": "Irit leaf", "paste": "Aga", "paste_quantity_per_input": 30},
+      {"herb": "Avantoe", "paste": "Lye", "paste_quantity_per_input": 30},
+      {"herb": "Kwuarm", "paste": "Lye", "paste_quantity_per_input": 33},
+      {"herb": "Huasca", "paste": "Aga", "paste_quantity_per_input": 20},
+      {"herb": "Snapdragon", "paste": "Lye", "paste_quantity_per_input": 40},
+      {"herb": "Cadantine", "paste": "Aga", "paste_quantity_per_input": 34},
+      {"herb": "Lantadyme", "paste": "Aga", "paste_quantity_per_input": 40},
+      {"herb": "Dwarf weed", "paste": "Aga", "paste_quantity_per_input": 42},
+      {"herb": "Torstol", "paste": "Aga", "paste_quantity_per_input": 44}
+    ],
+    "economic_interpretation_boundary": {
+      "deterministic": "Herb category and paste quantity are fixed for a supplied eligible input. Normal-potion ingredients are not required after conversion.",
+      "not_a_fixed_ironman_cost": "The Wiki's displayed coins-per-paste values depend on current market prices and are neither a cost nor a value for an Ironman. A clean herb or unfinished potion may instead be valuable for an ordinary potion, a quest, PvM supplies, or an unmodeled future use.",
+      "account_observation_required": [
+        "actual clean-herb and unfinished-potion counts",
+        "which inputs the player intentionally marks expendable for Mixology",
+        "known ordinary-potion, quest, and PvM reserve needs",
+        "observed current paste and resin balances"
+      ]
+    },
+    "recipe_unlocks": [
+      {"level": 60, "bases": [{"name": "Alco-augmentator", "formula": "Aga-Aga-Aga", "base_xp": 190}, {"name": "Mammoth-might mix", "formula": "Mox-Mox-Mox", "base_xp": 190}, {"name": "Liplack liquor", "formula": "Lye-Lye-Lye", "base_xp": 190}]},
+      {"level": 63, "bases": [{"name": "Mystic mana amalgam", "formula": "Mox-Mox-Aga", "base_xp": 215}]},
+      {"level": 66, "bases": [{"name": "Marley's moonlight", "formula": "Mox-Mox-Lye", "base_xp": 240}]},
+      {"level": 69, "bases": [{"name": "Azure aura mix", "formula": "Aga-Aga-Mox", "base_xp": 265}]},
+      {"level": 72, "bases": [{"name": "AquaLux amalgam", "formula": "Aga-Lye-Aga", "base_xp": 290}]},
+      {"level": 75, "bases": [{"name": "MegaLite liquid", "formula": "Lye-Lye-Mox", "base_xp": 315}]},
+      {"level": 78, "bases": [{"name": "Anti-leech lotion", "formula": "Lye-Lye-Aga", "base_xp": 340}]},
+      {"level": 81, "bases": [{"name": "Mixalot", "formula": "Mox-Aga-Lye", "base_xp": 365}]}
+    ],
+    "recipe_boundary": "The listed level unlocks are static. At 60, 63 through 77, and 78 onward the available order set changes; current source material says all recipes are available at 81. An account does not receive a recipe outcome, a balanced paste distribution, or any XP merely by meeting a level gate."
+  },
+  "factual_session_and_resin_model": {
+    "mixing": {
+      "paste_per_selected_component": 10,
+      "component_order": "Lever order does not change the selected recipe; paste is consumed only when the unfinished base is taken from the mixing vessel.",
+      "unavailable_recipe_boundary": "The game blocks taking a base when the hopper lacks the required paste. A plan or a recipe appearance does not establish hopper contents."
+    },
+    "orders_and_processing": {
+      "assignment": "Only orders whose Herblore requirements are met can be assigned. Individual order assignment is variable within the currently available set.",
+      "workstations": ["Retort/concentrate", "Agitator/homogenise", "Alembic/crystallise"],
+      "variable_execution": "Workstation speed and bonus XP depend on player input and timing. No package field may derive accuracy, session duration, or bonus XP from a selected method."
+    },
+    "hand_in": {
+      "correct_order_result": "A processed correct-order potion awards Herblore XP and Mox, Aga, and/or Lye resin according to its order outcome.",
+      "multi_order_bonus": {"two_orders": "20% more resin per potion", "three_orders": "40% more resin per potion"},
+      "incorrect_order_result": "A potion that fulfils none of the current orders gives one-third of its experience and 10 resin of its highest-tier resin type.",
+      "refresh_behavior": "Any hand-in refreshes all three displayed orders.",
+      "boundary": "Order match, number handed in, XP, resin type, resin amount, and refresh state require an observed result. The multipliers are rules, not predicted gains."
+    },
+    "digweed": {
+      "mechanic": "Digweed can appear during the activity and can affect an order outcome when used.",
+      "classification": "variable live session event",
+      "boundary": "Spawn, collection, use, and any resulting XP or resin must be individually observed; no event or bonus is inferred."
+    },
+    "currencies": [
+      {"id": "mox_resin", "persistent": true, "source": "observed completed order hand-ins", "shop_behavior": "fixed costs, but no balance or purchase is inferred"},
+      {"id": "aga_resin", "persistent": true, "source": "observed completed order hand-ins", "shop_behavior": "fixed costs, but no balance or purchase is inferred"},
+      {"id": "lye_resin", "persistent": true, "source": "observed completed order hand-ins", "shop_behavior": "fixed costs, but no balance or purchase is inferred"}
+    ]
+  },
+  "factual_reward_catalog": {
+    "purchase_rule": "Every listed price is deterministic, but an owned reward requires an observed selected purchase and sufficient observed resin balances. A chance-based item effect does not establish a future saved input or extra dose.",
+    "permanent_or_durable_rewards": [
+      {"id": "prescription-goggles", "cost": {"mox": 8600, "aga": 7000, "lye": 9350}, "effect": "10% chance to save a secondary ingredient when mixing ordinary potions.", "determinism": "purchase is fixed; each secondary-save outcome is variable."},
+      {"id": "reagent-pouch", "cost": {"mox": 13800, "aga": 11200, "lye": 15100}, "effect": "Stores up to 26 of each Herblore secondary ingredient.", "determinism": "purchase and capacity are fixed; stored contents are observed."},
+      {"id": "potion-storage", "cost": {"mox": 7750, "aga": 6300, "lye": 8950}, "effect": "One-time bank feature for potions, unfinished potions, and empty vials that does not use ordinary main-bank interface slots; supports dosage handling and up to eight favourites.", "determinism": "purchase and feature are fixed; stored contents and settings are observed.", "restrictions": ["cannot be purchased by Ultimate Ironmen", "members may deposit only on members worlds"]},
+      {"id": "alchemists-amulet", "cost": {"mox": 6900, "aga": 5650, "lye": 7400}, "effect": "While equipped, a 15% chance to make an ordinary potion with an extra dose and no extra XP; each triggered result uses one charge.", "charges": {"initial": 50, "per_amulet_of_chemistry": 10, "maximum": 5000}, "determinism": "purchase and charge additions are fixed; extra-dose outcomes and consumed charges are observed."},
+      {"id": "chugging-barrel", "cost": {"mox": 17250, "aga": 14000, "lye": 18600}, "effect": "When assembled, stores up to five different potion types, up to 100 doses each, for multi-potion consumption.", "restrictions": ["the disassembled reward is tradeable; the assembled barrel is untradeable", "dismantling loses all stored potions"], "determinism": "purchase and capacity are fixed; assembly state and contents are observed."},
+      {"id": "alchemists-outfit", "pieces": [{"name": "labcoat", "cost": {"mox": 2250, "aga": 2800, "lye": 3700}}, {"name": "pants", "cost": {"mox": 2250, "aga": 2800, "lye": 3700}}, {"name": "gloves", "cost": {"mox": 2250, "aga": 2800, "lye": 3700}}], "effect": "Cosmetic outfit. Shop-bought pieces can be refunded for 40% of their original resin cost.", "determinism": "purchase and stated refund percentage are fixed; ownership, refund choice, and result are observed."}
+    ],
+    "repeatable_or_tradeable_rewards": [
+      {"id": "aldarium", "cost": {"mox": 80, "aga": 60, "lye": 90}, "effect": "Herblore ingredient for goading potions and prayer regeneration potions.", "determinism": "shop purchase is fixed; future potion use is separate and observed."},
+      {"id": "apprentice-potion-pack", "cost": {"mox": 420, "aga": 70, "lye": 30}, "purchase_gate": "60 unboostable Herblore", "contents": "Four sets of 3-dose potions in variable quantities of two through four each.", "determinism": "price is fixed; exact contents are variable and observed."},
+      {"id": "adept-potion-pack", "cost": {"mox": 180, "aga": 440, "lye": 70}, "purchase_gate": "70 unboostable Herblore; 81 to use", "contents": "Four sets of 3-dose potions in variable quantities of two through three each.", "determinism": "price is fixed; exact contents are variable and observed."},
+      {"id": "expert-potion-pack", "cost": {"mox": 410, "aga": 320, "lye": 480}, "purchase_gate": "85 unboostable Herblore", "contents": "Four sets of 3-dose potions in variable quantities of two through four each.", "determinism": "price is fixed; exact contents are variable and observed."}
+    ],
+    "related_but_not_mixology_rewards": {
+      "standard-herb-sack": {
+        "reusable_production_fact": "data/facts/durable-utility-items.json: durable-utility-herb-sack",
+        "acquisition": "250 observed Tithe Farm points or 750 observed Slayer reward points, with 58 unboostable Herblore.",
+        "capacity": "30 of each normal grimy herb, 450 total.",
+        "relationship_to_mixology": "Not a Mixology reward and not an accepted substitute for a Mixology reagent-pouch or potion-storage purchase."
+      },
+      "silklined-herb-sack": {
+        "current_mechanic": "Using one observed Pristine spider silk on an owned standard Herb sack permanently creates a Silklined Herb sack with capacity for 100 of each normal grimy herb, 1,500 total.",
+        "acquisition_boundary": "Pristine spider silk is a Sarachnis drop; the source does not imply a kill, drop, or upgrade.",
+        "production_status": "Missing a canonical current production record and explicit observed upgrade event. Do not infer it from standard Herb sack ownership."
+      }
+    }
+  },
+  "ironman_potion_output_tradeoffs": {
+    "factual_tradeoff": "Refining consumes the supplied clean herb or matching unfinished potion and creates untradeable paste. The Mixology potion bases and completed order potions are activity products, not a replacement supply of ordinary combat or utility potions.",
+    "normal_potion_value_examples": [
+      "Ranarr weed can instead be used for prayer potions.",
+      "Avantoe can instead be used for super energies and later stamina-potion progression.",
+      "Snapdragon can instead be used for super restores.",
+      "Toadflax can instead be used for Saradomin brews.",
+      "Dwarf weed can instead be used for ranging potions.",
+      "Torstol can instead support super-combat-potion progression."
+    ],
+    "strategy_boundary": "The examples establish competing uses, not a universal preservation order. A player must expressly identify which input quantities are available to sacrifice after their own active and planned supply needs are considered.",
+    "missing_account_evidence_before_timing": [
+      "confirmed herb and unfinished-potion inventory by type",
+      "current ordinary-potion stock and named upcoming demand",
+      "input reserve policy chosen by the player or later strategy layer",
+      "resin target and purchased-reward ownership",
+      "whether the account values storage, secondary conservation, multi-potion use, a specific potion ingredient, or Herblore XP at that point"
+    ]
+  },
+  "strategy_timing_candidates": {
+    "status": "strategy-candidate-not-fact",
+    "enter_candidates": [
+      {"condition": "The account has observed level 60 unboosted Herblore, Children of the Sun complete, explicitly designated eligible inputs, and a named reason to enter.", "reason": "Establishes the minimum factually legal entry plus an explicit input and purpose boundary; it does not claim the activity is optimal at level 60."},
+      {"condition": "The account has observed level 81 Herblore and deliberately designated inputs and a reward or XP objective.", "reason": "All recipe bases are then available, avoiding an earlier partial recipe set. This is a candidate re-entry condition, not a rule that the account must wait to 81."},
+      {"condition": "A current confirmed shortfall is specifically addressed by a Mixology durable reward and the player has both a desired purchase and an observed/reported resin or input plan.", "reason": "Keeps a permanent-utility goal explicit rather than treating all resin as interchangeable."}
+    ],
+    "delay_candidates": [
+      {"condition": "The unboostable level-60 or Children of the Sun access requirement is not observed.", "reason": "Hard factual access block."},
+      {"condition": "The account has no player-designated expendable clean herbs or unfinished potions after ordinary-potion and other stated reserves.", "reason": "Conversion is irreversible for each supplied input; the model must not decide that scarce herbs are disposable."},
+      {"condition": "The player wants a broader recipe set, more balanced recipe availability, or the full level-81 set before committing a large input batch.", "reason": "Strategy preference supported by current recipe gates and community Ironman guidance, not a factual requirement."},
+      {"condition": "No named reward, XP goal, input-reduction goal, or enjoyment objective is currently identified.", "reason": "Prevents an open-ended grind from being implied by simple availability."}
+    ],
+    "bounded_stop_candidates": [
+      {"stop_when": "A player-confirmed desired reward has been purchased and no separately named Mixology objective remains.", "reenter_when": "A new confirmed reward goal or an intentionally designated input batch exists."},
+      {"stop_when": "The player-designated expendable input batch is exhausted or its reserve status changes.", "reenter_when": "New inputs are explicitly designated after normal-potion and other needs are reviewed."},
+      {"stop_when": "A reported session reveals that the attention or execution burden is not currently appropriate.", "reenter_when": "The player later reports an acceptable attention window and unchanged factual entry conditions."},
+      {"stop_when": "A resin distribution is insufficient for the named reward and the player does not wish to continue with the current inputs.", "reenter_when": "A revised target, intentional input allocation, and observed resin state are available."}
+    ],
+    "community_strategy_evidence": [
+      {"claim": "Ironman guidance describes Mixology as more efficient at higher levels, with the final recipe at 81, and useful when ordinary secondaries are difficult or unavailable.", "source_id": "wiki-ironman-herblore-current-2026", "handling": "Useful timing context only; no level, herb, or reward order is promoted to a universal route rule."},
+      {"claim": "Community strategy material advocates specific herb priorities and order hand-in patterns for points per paste.", "source_id": "wiki-mastering-mixology-strategies-current-2026", "handling": "Execution strategy only. It cannot mark an Ironman's herb stock expendable or predict resin."}
+    ]
+  },
+  "proposed_observation_contract": {
+    "status": "research-only; do not add to the shared account-state schema in this package",
+    "account_snapshot_fields": [
+      "Herblore level and XP",
+      "Children of the Sun completion",
+      "clean-herb and corresponding unfinished-potion counts, if the player elects to report them",
+      "player-designated Mixology-eligible input quantities and stated reserves",
+      "Mox, Aga, and Lye resin balances",
+      "owned Mixology rewards, amulet charge count, Potion storage status, and barrel contents only when explicitly reported/imported",
+      "standard or Silklined Herb sack ownership, contents, and open state only when explicitly reported/imported"
+    ],
+    "session_fields": [
+      "observed entry time and chosen objective",
+      "input types and quantities actually refined",
+      "starting and ending paste/resin balances",
+      "observed order hand-ins, associated XP/resin deltas, and Digweed events",
+      "reported attention/safety/stop state"
+    ],
+    "unknown_semantics": "An omitted field is unknown, not false, zero, unowned, unavailable, or exhausted. Observations validate reports; they do not simulate an order, travel, drop, purchase, or session."
+  },
+  "reconciliation": {
+    "reusable_current_production_records": [
+      {"file": "data/facts/durable-utility-items.json", "record": "durable-utility-herb-sack", "use": "Canonical standard Herb sack paths, 58 unboostable use gate, capacity, and one-item ownership limit."},
+      {"file": "data/facts/utility-skilling-minigames.json", "record": "utility-tithe-farm-durable-rewards", "use": "Tithe Farm Herb sack price and alternative shop context."},
+      {"file": "research/minigame-packages/tithe-farm.json", "record": "research-minigame-tithe-farm", "use": "Research-only Tithe Farm currency/session boundaries; no dependency on an inferred point balance."},
+      {"file": "strategy/project-philosophy.md", "record": "Project Philosophy", "use": "Existing strategy contract explicitly names a deliberate Mixology wait until appropriate Herblore level and herb stock."}
+    ],
+    "known_data_conflict": [
+      {"file": "data/facts/herb-pipeline.json", "record": "herb-sack", "issue": "It states 420 total grimy-herb capacity. Current Wiki source and durable-utility-items record state 30 of each of 15 normal grimy herbs, 450 total.", "handling": "Do not amend the shared file in this parallel tranche. Sol should reconcile it to the current source before a later broad validation sweep."}
+    ],
+    "missing_production_records": [
+      "Current Mastering Mixology access, input, recipe, resin, and reward-shop fact record.",
+      "Canonical observed Mox, Aga, and Lye resin balance contract.",
+      "Canonical observed Mixology reward purchase and charge/container state contract.",
+      "Canonical Silklined Herb sack source, capacity, and observed upgrade event.",
+      "A normalized Mastering Mixology action only after the observation contract and source-registry reconciliation are complete.",
+      "Any scorer/compositor candidate must remain blocked until actual input reserves, resin, reward ownership, and a named account purpose are observed."
+    ],
+    "explicit_non_reuse": [
+      "Do not reuse Tithe Farm Herb sack facts as though the sack is a Mixology reward.",
+      "Do not reuse market-price or profit tables as Ironman economics.",
+      "Do not reuse community recipe priorities as input ownership, supply valuation, or route timing."
+    ]
+  },
+  "uncertainties_and_deferred_work": [
+    "The source set establishes mechanics, not which herbs a new Ironman should reserve for ordinary potions at each account stage.",
+    "Exact current account inventory, resin, reward ownership, potion demand, attention tolerance, and travel access require a real account observation; none is supplied by this package.",
+    "Digweed frequency, order distribution, workstation timing, XP/resin throughput, GP value, and optimal hand-in tactics vary by order, level, strategy, execution, and sometimes market state. They should not enter a route model without a separately audited purpose and observation boundary.",
+    "The official Jagex pages were available through Wiki verbatim mirrors during this pass. A later source-registry reconciliation may replace mirror URLs with direct official archive URLs where stable direct pages are available."
+  ],
+  "coverage": {
+    "hard_access": true,
+    "recipe_thresholds": true,
+    "accepted_input_economics": true,
+    "potion_tradeoffs": true,
+    "reward_costs_and_utility": true,
+    "deterministic_vs_variable": true,
+    "session_observations": true,
+    "entry_delay_stop_reentry_candidates": true,
+    "production_reconciliation": true,
+    "shared_files_modified": 0
+  }
+}
