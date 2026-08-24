@@ -43,6 +43,7 @@ python scripts/apply_action.py graph/account-state.example.json action:the-restl
 python scripts/analyze_dependencies.py graph/account-state.example.json --goal action:fossil-island-access --include-preparation --json
 python scripts/analyze_cash_commitments.py graph/account-state.example.json --json
 python scripts/analyze_passive_status.py graph/account-state.example.json --json
+python scripts/analyze_quest_xp_timing.py graph/account-state.example.json --json
 python scripts/transfer_kingdom_coffer.py path/to/account-state.json deposit 10000
 ```
 
