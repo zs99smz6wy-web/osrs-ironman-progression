@@ -67,6 +67,9 @@ VALID_PREDICATE_TYPES = {
     "item_at_least",
     "counter_at_least",
     "passive_loop",
+    "afk_method_available",
+    "afk_method_safety_acceptable",
+    "combat_readiness_observed",
     "recurring_state",
     "slayer_task_target",
     "diary_tier_at_least",
@@ -113,6 +116,16 @@ def validate_condition(condition: dict, context: str, errors: list[str]) -> None
         errors.append(f"{context} passive_loop value must be boolean")
     if predicate_type == "recurring_state" and condition.get("value") not in RECURRING_OBSERVATION_STATES:
         errors.append(f"{context} recurring_state value is invalid")
+    if predicate_type in {"afk_method_available", "afk_method_safety_acceptable"}:
+        if (
+            set(condition) != {"type", "key"}
+            or not condition.get("key")
+            or condition["key"] != condition["key"].strip()
+        ):
+            errors.append(f"{context} {predicate_type} requires a non-empty trimmed method ID")
+    if predicate_type == "combat_readiness_observed":
+        if set(condition) != {"type", "key"} or condition.get("key") != "combat_readiness_observation":
+            errors.append(f"{context} combat_readiness_observed requires the canonical observation key")
     if predicate_type == "slayer_task_target":
         if set(condition) != {"type", "key"}:
             errors.append(f"{context} slayer_task_target must contain only type and key")

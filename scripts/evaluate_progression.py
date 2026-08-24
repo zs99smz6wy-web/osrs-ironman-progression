@@ -23,6 +23,14 @@ REQUIRED_STATE_KEYS = {
     "farming_recurrence_observation", "diary_tiers", "kourend_memoir",
     "attention_window", "notable_drops", "preferences", "cash_commitments",
 }
+AFK_METHOD_OBSERVATION_FIELDS = {
+    "observed_at", "availability", "selected_variant", "location", "safety", "session_status",
+    "interaction_interval_seconds",
+}
+AFK_METHOD_AVAILABILITY_STATES = {"unknown", "available", "unavailable"}
+AFK_METHOD_SAFETY_STATES = {"unknown", "acceptable", "unacceptable"}
+AFK_METHOD_SESSION_STATUSES = {"unknown", "not_started", "active", "ended", "interrupted"}
+COMBAT_READINESS_OBSERVATION_KEY = "combat_readiness_observation"
 LIST_STATE_KEYS = {
     "quests_completed", "completed_actions", "transport_flags", "milestones",
     "gear_thresholds", "notable_drops",
@@ -673,6 +681,61 @@ def _validate_minigame_activity_observations(observations: Any) -> None:
                     raise ValueError(f"{row_context}.observed_at must be RFC 3339")
 
 
+def _validate_afk_method_observations(observations: Any) -> None:
+    """Validate player-recorded AFK method state without deriving any outcome."""
+    if observations is None:
+        return
+    if not isinstance(observations, dict):
+        raise ValueError("Account state afk_method_observations must be an object when supplied")
+
+    for method_id, observation in observations.items():
+        context = f"Account state afk_method_observations.{method_id}"
+        _validate_trimmed_string(method_id, "Account state afk_method_observations method ID")
+        if not isinstance(observation, dict) or not set(observation).issubset(AFK_METHOD_OBSERVATION_FIELDS):
+            raise ValueError(f"{context} has invalid fields")
+        required = AFK_METHOD_OBSERVATION_FIELDS - {"interaction_interval_seconds"}
+        if set(observation) != required and set(observation) != AFK_METHOD_OBSERVATION_FIELDS:
+            raise ValueError(f"{context} is missing required fields")
+        if not _is_rfc_3339_timestamp(observation["observed_at"]):
+            raise ValueError(f"{context}.observed_at must be RFC 3339")
+        if observation["availability"] not in AFK_METHOD_AVAILABILITY_STATES:
+            raise ValueError(f"{context}.availability is invalid")
+        if observation["safety"] not in AFK_METHOD_SAFETY_STATES:
+            raise ValueError(f"{context}.safety is invalid")
+        if observation["session_status"] not in AFK_METHOD_SESSION_STATUSES:
+            raise ValueError(f"{context}.session_status is invalid")
+        for field in ("selected_variant", "location"):
+            _validate_nullable_trimmed_string(observation[field], f"{context}.{field}")
+        if "interaction_interval_seconds" in observation:
+            interval = observation["interaction_interval_seconds"]
+            if isinstance(interval, bool) or not isinstance(interval, int) or interval < 0:
+                raise ValueError(f"{context}.interaction_interval_seconds must be a non-negative integer")
+
+        availability = observation["availability"]
+        safety = observation["safety"]
+        session_status = observation["session_status"]
+        selected_variant = observation["selected_variant"]
+        location = observation["location"]
+        has_method_context = selected_variant is not None and location is not None
+
+        if availability == "available" and not has_method_context:
+            raise ValueError(f"{context}.available availability requires selected_variant and location")
+        if safety == "acceptable" and (availability != "available" or not has_method_context):
+            raise ValueError(f"{context}.acceptable safety requires available method context")
+        if session_status in {"active", "ended", "interrupted"} and (
+            availability != "available" or not has_method_context
+        ):
+            raise ValueError(f"{context}.{session_status} session requires available method context")
+        if availability == "unknown" and (
+            selected_variant is not None
+            or location is not None
+            or safety != "unknown"
+            or session_status != "unknown"
+            or "interaction_interval_seconds" in observation
+        ):
+            raise ValueError(f"{context}.unknown availability cannot include certainty")
+
+
 def validate_account_state(state: dict[str, Any]) -> None:
     missing = REQUIRED_STATE_KEYS - state.keys()
     if missing:
@@ -733,6 +796,8 @@ def validate_account_state(state: dict[str, Any]) -> None:
             raise ValueError(f"Account state recurring_observations.{system_id}.observed_at must be RFC 3339")
         if observation["ready_at"] is not None and not _is_rfc_3339_timestamp(observation["ready_at"]):
             raise ValueError(f"Account state recurring_observations.{system_id}.ready_at must be RFC 3339 or null")
+
+    _validate_afk_method_observations(state.get("afk_method_observations"))
 
     kingdom_observation = state["kingdom_observation"]
     if kingdom_observation is not None:
@@ -1173,6 +1238,19 @@ def _predicate_result(predicate: dict[str, Any], state: dict[str, Any]) -> tuple
         expected = value if value is not None else True
         current = state.get("passive_loops", {}).get(key, False)
         return current is expected, f"passive loop {key} = {str(expected).lower()}"
+    if predicate_type == "afk_method_available":
+        observation = state.get("afk_method_observations", {}).get(key)
+        current = observation["availability"] if observation is not None else "unobserved"
+        return current == "available", f"AFK method {key} available (current: {current})"
+    if predicate_type == "afk_method_safety_acceptable":
+        observation = state.get("afk_method_observations", {}).get(key)
+        current = observation["safety"] if observation is not None else "unobserved"
+        return current == "acceptable", f"AFK method {key} acceptable safety (current: {current})"
+    if predicate_type == "combat_readiness_observed":
+        if key != COMBAT_READINESS_OBSERVATION_KEY:
+            return False, f"combat readiness observation key must be {COMBAT_READINESS_OBSERVATION_KEY}"
+        observed = state["combat_readiness_observation"] is not None
+        return observed, f"combat readiness observation recorded (current: {'recorded' if observed else 'unobserved'})"
     if predicate_type == "recurring_state":
         current = state.get("recurring_observations", {}).get(key, {}).get("state", "unobserved")
         return current == value, f"recurring state {key} = {value} (current: {current})"
@@ -1302,6 +1380,21 @@ def report_minigame_activity_observations(account_state: dict[str, Any]) -> dict
         "collection_log_inferred": False,
         "charges_or_cooldowns_advanced": False,
         "action_eligibility_inferred": False,
+    }
+
+
+def report_afk_method_observations(account_state: dict[str, Any]) -> dict[str, Any]:
+    """Return AFK method snapshots without inferring method state or results."""
+    validate_account_state(account_state)
+    observations = copy.deepcopy(account_state.get("afk_method_observations", {}))
+    return {
+        "observations": observations,
+        "observation_count": len(observations),
+        "availability_inferred": False,
+        "safety_inferred": False,
+        "results_inferred": False,
+        "action_eligibility_inferred": False,
+        "outputs_inferred": False,
     }
 
 

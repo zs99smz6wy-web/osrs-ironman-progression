@@ -16,6 +16,9 @@
             "item_at_least",
             "counter_at_least",
             "passive_loop",
+            "afk_method_available",
+            "afk_method_safety_acceptable",
+            "combat_readiness_observed",
             "notable_drop",
             "gear_threshold"
           ]

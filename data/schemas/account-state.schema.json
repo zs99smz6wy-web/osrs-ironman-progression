@@ -24,6 +24,20 @@
     "nullableBoolean": {"type": ["boolean", "null"]},
     "nullableTimestamp": {"type": ["string", "null"], "format": "date-time"},
     "nullableNonNegativeNumber": {"type": ["number", "null"], "minimum": 0},
+    "afkMethodObservation": {
+      "type": "object",
+      "required": ["observed_at", "availability", "selected_variant", "location", "safety", "session_status"],
+      "properties": {
+        "observed_at": {"type": "string", "format": "date-time"},
+        "availability": {"type": "string", "enum": ["unknown", "available", "unavailable"]},
+        "selected_variant": {"$ref": "#/$defs/nullableTrimmedString"},
+        "location": {"$ref": "#/$defs/nullableTrimmedString"},
+        "safety": {"type": "string", "enum": ["unknown", "acceptable", "unacceptable"]},
+        "session_status": {"type": "string", "enum": ["unknown", "not_started", "active", "ended", "interrupted"]},
+        "interaction_interval_seconds": {"type": "integer", "minimum": 0}
+      },
+      "additionalProperties": false
+    },
     "minigameAvailabilityObservation": {
       "type": "object",
       "properties": {
@@ -476,6 +490,11 @@
         "wintertodt": {"$ref": "#/$defs/minigameActivityObservation"}
       },
       "additionalProperties": false
+    },
+    "afk_method_observations": {
+      "type": "object",
+      "propertyNames": {"pattern": "^\\S(?:.*\\S)?$"},
+      "additionalProperties": {"$ref": "#/$defs/afkMethodObservation"}
     },
     "diary_tiers": {"type": "object"},
     "diary_task_observations": {
