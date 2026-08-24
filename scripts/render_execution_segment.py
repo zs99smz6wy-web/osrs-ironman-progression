@@ -6,6 +6,7 @@ import argparse
 import html
 import json
 from pathlib import Path
+import re
 from typing import Any
 
 
@@ -46,11 +47,20 @@ def requirements_markup(requirements: dict[str, Any]) -> str:
     rows = []
     for label, key in (("Carried items", "carried_items"), ("Banked items", "banked_items")):
         values = requirements.get(key, [])
-        content = ", ".join(text(item) for item in values) if values else "None recorded"
+        content = ", ".join(
+            f"{text(item['quantity'])} x {text(item['id'])}"
+            for item in values
+            if isinstance(item, dict) and "id" in item and "quantity" in item
+        ) or "None recorded"
         rows.append(f"<dt>{label}</dt><dd>{content}</dd>")
     for label, key in (("Carried GP", "carried_gp"), ("Banked GP", "banked_gp")):
         rows.append(f"<dt>{label}</dt><dd>{text(requirements.get(key, 0))}</dd>")
     return '<dl class="requirements">' + "".join(rows) + "</dl>"
+
+
+def safe_dom_id(value: Any) -> str:
+    """Return a stable DOM-safe ID while preserving useful source identifiers."""
+    return re.sub(r"[^a-zA-Z0-9_-]+", "-", str(value)).strip("-") or "item"
 
 
 def checkpoint_markup(checkpoint: dict[str, Any]) -> str:
@@ -99,9 +109,10 @@ def render_segment(segment: dict[str, Any]) -> str:
     branch_markup = ""
     for branch in branches:
         branch_steps = "".join(step_markup(step, segment_id, branch=True) for step in branch.get("steps", []))
+        heading_id = f"optional-{safe_dom_id(branch.get('id', 'branch'))}"
         branch_markup += (
-            '<section class="branch" aria-labelledby="optional-branch">'
-            '<div class="section-heading"><h2 id="optional-branch">Optional branch</h2><span class="badge badge-unresolved">Player choice</span></div>'
+            f'<section class="branch" aria-labelledby="{text(heading_id)}">'
+            f'<div class="section-heading"><h2 id="{text(heading_id)}">Optional branch</h2><span class="badge badge-unresolved">Player choice</span></div>'
             f'<p class="when"><strong>When:</strong> {text(branch.get("when", ""))}</p>'
             f'<ol class="steps branch-steps">{branch_steps}</ol>'
             f'<p class="boundary"><span>Boundary:</span> {text(branch.get("coverage", {}).get("boundary", "No boundary recorded."))}</p>'
