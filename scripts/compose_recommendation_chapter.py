@@ -9,6 +9,7 @@ from typing import Any
 from analyze_passive_status import analyze_passive_status
 from analyze_quest_xp_timing import DEFAULT_EDGES, DEFAULT_NODES, analyze_quest_xp_timing
 from analyze_transport_bundles import DEFAULT_TRANSPORT_BUNDLES, analyze_transport_bundles
+from analyze_sailing_economics import DEFAULT_CONTEXTS as DEFAULT_SAILING_ECONOMICS_CONTEXTS, analyze_sailing_economics
 from evaluate_progression import DEFAULT_ACTIONS, DEFAULT_STATE, evaluate_actions, load_json, validate_account_state
 from score_candidates import DEFAULT_CANDIDATES, score_candidates
 
@@ -176,6 +177,9 @@ def compose_recommendation_chapter(
         candidates_document, actions_document, _scenario_state(account_state, afk_mode)
     )
     passive_status = analyze_passive_status(account_state)
+    sailing_economics = analyze_sailing_economics(
+        load_json(DEFAULT_SAILING_ECONOMICS_CONTEXTS), actions_document, account_state
+    )
     quest_xp_timing = analyze_quest_xp_timing(
         account_state, actions_document, nodes_document, edges_document
     )
@@ -236,6 +240,7 @@ def compose_recommendation_chapter(
             "unallocated_player_chosen_xp_rewards"
         ],
         "transport_payoff_bundles": transport_bundles,
+        "sailing_economics_timing": list(sailing_economics.values()),
         "gaps": {
             "preparation": preparation_gaps[:preparation_limit],
             "preparation_coverage": preparation_coverage,
@@ -274,6 +279,20 @@ def _print_human_chapter(chapter: dict[str, Any]) -> None:
 
     check_ins = chapter["passive_and_recurring_check_ins"]
     print(f"\nExplicit passive check-ins: {len(check_ins['explicit_observations'])}")
+    print("\nSailing economics timing:")
+    for context in chapter["sailing_economics_timing"]:
+        objective = context["fixed_next_objective"]
+        print(f"  [{context['status'].upper()}] {objective['name']}")
+        print(f"    timing: {context['note']}")
+        shortfalls = objective["skill_shortfalls"] + objective["resource_shortfalls"]
+        if shortfalls:
+            print("    fixed-objective shortfalls: " + "; ".join(
+                f"{entry['key']} {entry['have']}/{entry['need']} (short {entry['shortfall']})"
+                for entry in shortfalls
+            ))
+        print(f"    stop: {context['stop_condition']}")
+        print(f"    re-entry: {context['reentry_condition']}")
+        print(f"    material boundary: {context['material_planning']['note']}")
     preparation_coverage = chapter["gaps"]["preparation_coverage"]
     print(
         "Preparation gaps: "

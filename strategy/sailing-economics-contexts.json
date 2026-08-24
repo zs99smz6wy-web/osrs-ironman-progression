@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "scope": "Strategy-only account-aware timing context for factually eligible Sailing entry. It distinguishes unlocking Sailing from committing to a fixed next Sailing objective. It never changes factual eligibility, score, requirements, transitions, resource counts, or route order.",
+  "contexts": [
+    {
+      "id": "pandemonium-early-sailing-economics",
+      "action_id": "action:pandemonium",
+      "fact_ids": ["sailing-entry-pandemonium", "sailing-skiff", "sailing-shipbuilding-input-boundary"],
+      "entry_note": "Pandemonium is a self-contained entry unlock with fixed rewards. It makes Sailing available; it does not establish a funded or material-backed shipbuilding plan.",
+      "prepared_note": "A fixed Skiff purchase is now a concrete, resource-backed next Sailing objective. This is context for timing, not a route command.",
+      "unprepared_note": "Sailing is unlocked, but no fixed next objective is resource-ready. Raft practice, charting, port tasks, and later variable activities remain player-selected rather than an assumed economic plan.",
+      "material_boundary_note": "Planks, nails, swamp tar or paste, metal bars, cannonballs, rope, logs, and fabric are target-specific shipbuilding inputs. Do not calculate a stockpile or shortfall until a particular component, facility, or activity is selected.",
+      "stop_condition": "After Pandemonium, stop treating Sailing entry as a bundle of future purchases. Keep the fixed rewards and only name another Sailing target when its own hard gates and inputs are current-account facts.",
+      "reentry_condition": "Reassess when the account reaches 15 Sailing with 15,000 coins for a Skiff, or when the player explicitly chooses a sourced upgrade or activity and records its exact inputs.",
+      "objective": {
+        "id": "sailing-skiff",
+        "name": "Buy a Sailing Skiff",
+        "action_id": "action:buy-sailing-skiff",
+        "fact_ids": ["sailing-skiff"],
+        "completion_signal": {"state": "items", "key": "sailing_skiff"},
+        "requirements": {"skills": {"Sailing": 15}, "resources": {"coins": 15000}},
+        "objective_note": "The Skiff is the first modeled Sailing objective with a fixed, account-checkable economic cost. Its downstream uses do not imply a purchase deadline."
+      }
+    }
+  ]
+}

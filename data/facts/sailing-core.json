@@ -26,6 +26,29 @@
       "confidence": "high"
     },
     {
+      "id": "sailing-shipbuilding-input-boundary",
+      "name": "Sailing shipbuilding input boundary",
+      "category": "sailing",
+      "status": "verified",
+      "verified_at": "2026-08-24",
+      "requirements": {
+        "scope": "A player-selected boat component or facility upgrade at a Shipyard, after the relevant Sailing access and that upgrade's own requirements.",
+        "not_required_for": ["Pandemonium completion", "Sailing access", "Raft ownership", "Skiff purchase"]
+      },
+      "inputs": {
+        "current_upgrade_categories": ["planks", "nails", "cloth or fabric", "logs", "rope", "swamp tar", "metal bars"],
+        "ironman_planning_categories": ["reliable plank access", "swamp tar or paste", "nails", "gold", "metal bars for nails, cannonballs, and keel parts"]
+      },
+      "mechanics": {
+        "target_specificity": "The exact tier, quantity, Construction gate or shipwright fee depends on the chosen component or facility.",
+        "tools": "Shipyard work uses the required materials and, where applicable, a hammer and saw; Shipyards do not provide a bank.",
+        "cannonballs": "Cannonball inputs become relevant to selected boat cannon upgrades or activities, not to entry or a generic early-Sailing target."
+      },
+      "notes": "This record establishes an input-planning boundary only. It does not select an upgrade, estimate a stockpile, assume a resource source, or add any material requirement to Pandemonium.",
+      "source_ids": ["official-sailing-launch-guide", "wiki-sailing", "wiki-ironman-sailing-current"],
+      "confidence": "high"
+    },
+    {
       "id": "sailing-bounty-tasks",
       "name": "Sailing bounty tasks",
       "category": "sailing",

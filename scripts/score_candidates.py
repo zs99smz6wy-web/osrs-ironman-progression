@@ -14,6 +14,10 @@ from analyze_combat_quest_readiness import (
     DEFAULT_CONTEXTS as DEFAULT_COMBAT_QUEST_CONTEXTS,
     analyze_combat_quest_readiness,
 )
+from analyze_sailing_economics import (
+    DEFAULT_CONTEXTS as DEFAULT_SAILING_ECONOMICS_CONTEXTS,
+    analyze_sailing_economics,
+)
 from evaluate_progression import DEFAULT_ACTIONS, DEFAULT_STATE, evaluate_actions, load_json
 
 
@@ -109,6 +113,7 @@ def _rank_eligible_annotations(
     account_state: dict[str, Any],
     transport_bundles: list[dict[str, Any]],
     combat_quest_contexts: dict[str, dict[str, Any]],
+    sailing_economics_contexts: dict[str, dict[str, Any]],
 ) -> list[dict[str, Any]]:
     eligible = {result["id"]: result for result in evaluated if result["status"] == "eligible"}
     transport_bonus_by_action = contextual_bonus_by_action(transport_bundles)
@@ -154,6 +159,7 @@ def _rank_eligible_annotations(
                 "transport_bundle_context": transport_component_by_action.get(action_id),
                 "formal_eligibility": "eligible",
                 "practical_readiness_context": combat_quest_contexts.get(action_id),
+                "sailing_economics_context": sailing_economics_contexts.get(action_id),
                 "base_score": base_score,
                 "total_score": total_score,
                 "stop_condition": annotation["stop_condition"],
@@ -176,8 +182,12 @@ def score_candidates(
     combat_quest_contexts = analyze_combat_quest_readiness(
         load_json(DEFAULT_COMBAT_QUEST_CONTEXTS), actions_document, account_state
     )
+    sailing_economics_contexts = analyze_sailing_economics(
+        load_json(DEFAULT_SAILING_ECONOMICS_CONTEXTS), actions_document, account_state
+    )
     return _rank_eligible_annotations(
-        annotations, evaluated, account_state, transport_bundles, combat_quest_contexts
+        annotations, evaluated, account_state, transport_bundles, combat_quest_contexts,
+        sailing_economics_contexts,
     )
 
 
@@ -210,8 +220,12 @@ def _result_document(
     combat_quest_contexts = analyze_combat_quest_readiness(
         load_json(DEFAULT_COMBAT_QUEST_CONTEXTS), actions_document, account_state
     )
+    sailing_economics_contexts = analyze_sailing_economics(
+        load_json(DEFAULT_SAILING_ECONOMICS_CONTEXTS), actions_document, account_state
+    )
     ranked = _rank_eligible_annotations(
-        annotations, evaluated, account_state, transport_bundles, combat_quest_contexts
+        annotations, evaluated, account_state, transport_bundles, combat_quest_contexts,
+        sailing_economics_contexts,
     )
     return {
         "formula": {
@@ -222,6 +236,7 @@ def _result_document(
             "risk_tolerance": "min(preferences.risk_tolerance, danger_risk), reducing the practical penalty of danger the player explicitly accepts",
             "early_transport_bundle": "a bounded 0 or 1 strategic context point for an eligible distinct durable transport capability while that bundle remains incomplete; replenishable transport items score 0",
             "combat_quest_readiness": "a sourced strategy-only context appended after factual eligibility and scoring; it never adds a hard gate or score adjustment",
+            "sailing_economics": "a source-backed strategy-only timing context appended after factual eligibility and scoring; it reports only fixed objective shortfalls and never penalizes entry or assumes future purchases, materials, income, or loot",
         },
         "transport_bundles": transport_bundles,
         "ranked_eligible_candidates": ranked,
@@ -257,6 +272,17 @@ def main() -> int:
             context = candidate["transport_bundle_context"]
             print(f"  transport bundle: {context['component_name']} ({context['payoff_kind']})")
             print(f"    payoff: {context['payoff_note']}")
+        if candidate["sailing_economics_context"]:
+            context = candidate["sailing_economics_context"]
+            objective = context["fixed_next_objective"]
+            print(f"  sailing economics: {context['status']}")
+            print(f"    timing: {context['note']}")
+            if objective["skill_shortfalls"] or objective["resource_shortfalls"]:
+                shortfalls = objective["skill_shortfalls"] + objective["resource_shortfalls"]
+                print("    fixed-objective shortfalls: " + "; ".join(
+                    f"{entry['key']} {entry['have']}/{entry['need']} (short {entry['shortfall']})"
+                    for entry in shortfalls
+                ))
         print(f"  stop: {candidate['stop_condition']}")
         print(f"  re-entry: {candidate['reentry_condition']}")
     return 0

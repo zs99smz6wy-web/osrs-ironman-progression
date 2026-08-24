@@ -769,6 +769,14 @@
       "use": "Live Sailing entry mechanics, skiff details, and bounty-task availability"
     },
     {
+      "id": "wiki-ironman-sailing-current",
+      "publisher": "Old School RuneScape Wiki",
+      "url": "https://oldschool.runescape.wiki/w/Ironman_Guide/Sailing",
+      "kind": "community_guide",
+      "checked_at": "2026-08-24",
+      "use": "Current Ironman-specific shipbuilding bottlenecks, including practical access to planks, swamp tar or paste, nails, metal inputs, cannonballs, and gold; used only to bound later resource planning, not to create Pandemonium requirements."
+    },
+    {
       "id": "wiki-bounty-tasks",
       "publisher": "Old School RuneScape Wiki",
       "url": "https://oldschool.runescape.wiki/w/Bounty_tasks",
