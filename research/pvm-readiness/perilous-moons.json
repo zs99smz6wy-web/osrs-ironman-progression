@@ -1,0 +1,350 @@
+{
+  "package_id": "pvm-readiness:perilous-moons",
+  "title": "Perilous Moons readiness research package",
+  "status": "research-complete-not-integrated",
+  "researched_at": "2026-08-24",
+  "scope": "Current factual mechanics and deliberately bounded readiness evidence for the Perilous Moons quest and repeatable Moons of Peril activity. This package neither declares an account ready nor chooses a route, equipment loadout, kill target, chest value, or activity timing.",
+  "guardrails": [
+    "Do not infer player gear, supplies, combat competence, encounter clears, loot, duplicate-protection state, deaths, recovery fees, or RNG from levels, quest completion, or this package.",
+    "Do not convert community equipment or level suggestions into access requirements or automatic recommendations.",
+    "Area-made food and moonlight potions are an in-run resource loop. They are not bankable, persistent account supplies.",
+    "A practical observation is evidence only for the stated encounter and scope; it is not transferable proof for another player, another Moon, or a future account state."
+  ],
+  "production_reconciliation": {
+    "canonical_existing_fact_record": "data/facts/perilous-moons-readiness.json#perilous-moons-readiness",
+    "existing_production_data_reusable_without_change": [
+      {
+        "location": "data/facts/perilous-moons-readiness.json",
+        "coverage": "Quest chain and non-boostable start gates, quest XP, Neypotzli/campsite access, repeatable Lunar Chest gate, boss weaknesses, shared attack rules, area-supplied tools and recovery loop, death/grave boundary, unique groups, within-set duplicate protection, equipment requirements, and degradation."
+      },
+      {
+        "location": "data/progression/actions.json#action:perilous-moons-quest",
+        "coverage": "Quest completion as an observed state transition with fixed XP and persistent access unlocks, while leaving chest rewards and combat results un-applied."
+      },
+      {
+        "location": "data/progression/actions.json#action:moons-of-peril",
+        "coverage": "Repeat activity as report-only with player-observed output rather than assumed clears, supplies, rewards, or retries."
+      },
+      {
+        "location": "data/schemas/account-state.schema.json#perilous_moons_observation",
+        "coverage": "Reserved account-state observation boundary; this package does not alter its schema."
+      },
+      {
+        "location": "graph/edges.json",
+        "coverage": "Hard prerequisite and non-binding improvement edges. Existing edges correctly avoid treating Barrows, Piety, Dragon defender, or Zombie axe as mandatory."
+      }
+    ],
+    "corrections_required": [],
+    "expansion_candidates_not_integrated": [
+      "An explicit, versioned Perilous Moons practical-observation payload may be reconciled with the existing account-state field after a separate schema review.",
+      "A strategy layer may later score an observed repeat-run outcome against a user-selected objective such as quest completion, one-chest practice, or a named equipment pursuit. It must not infer the objective from account state.",
+      "A reward pursuit layer may later record owned unique pieces and known duplicate-protection state only when supplied by a trusted player observation or importer."
+    ],
+    "intentional_non_changes": [
+      "No quest requirements, graph edges, actions, candidate scores, compositor language, source catalog entries, or account-state schema are changed by this package.",
+      "No current source in this pass disproves the production record's conservative statement that ordinary-death reset, reclaim cost, and external respawn details should remain unresolved until directly sourced."
+    ]
+  },
+  "factual_mechanics": {
+    "access_and_quest": {
+      "reused_fact_id": "perilous-moons-readiness",
+      "start_gates": {
+        "membership": true,
+        "completed_quests": ["Children of the Sun", "Twilight's Promise"],
+        "non_boostable_skills": {
+          "Slayer": 48,
+          "Hunter": 20,
+          "Fishing": 20,
+          "Runecraft": 20,
+          "Construction": 10
+        }
+      },
+      "quest_completion_requires": ["Sulphur Nagua", "Eclipse Moon", "Blue Moon", "Blood Moon"],
+      "fixed_quest_rewards": {
+        "Slayer_xp": 40000,
+        "Runecraft_xp": 5000,
+        "Hunter_xp": 5000,
+        "Fishing_xp": 5000,
+        "persistent_unlocks": ["Neypotzli", "repeatable Moons of Peril", "Lunar Chest", "lesser nagua Slayer-task eligibility"]
+      },
+      "repeat_chest_gate": "The Lunar Chest requires Perilous Moons completion and at least one Moon defeated in the current run. Quest Moon defeats count as normal defeats for the initial chest.",
+      "sources": ["wiki-perilous-moons-quest", "wiki-moons-of-peril", "wiki-lunar-chest"]
+    },
+    "encounter_and_style": {
+      "shared": [
+        "Each Moon has 500 Hitpoints and a three-hit standard attack sequence. If one hit misses, the remaining hits in that sequence miss.",
+        "Protection prayers do not reduce Moon attacks.",
+        "The bosses have high Magic and Ranged Defence; their documented lower-defence melee styles are Eclipse stab, Blue crush, and Blood slash.",
+        "The glyph-position and special-attack mechanics are encounter actions, not item or level gates."
+      ],
+      "moon_specific": {
+        "Eclipse Moon": "Stab weakness. Searing Rays and Clone special phases require the documented movement/parry response; Clone return damage is melee.",
+        "Blue Moon": "Crush weakness. Weapon Freeze temporarily puts the equipped weapon in an ice block; it is broken with unarmed combat before another weapon can be equipped.",
+        "Blood Moon": "Slash weakness. Her siphon can heal her when its hits land; the documented under-boss response can avoid the final hit/heal."
+      },
+      "readiness_boundary": "Mechanics explain what a player must execute, but cannot establish that the player will execute it successfully.",
+      "sources": ["wiki-moons-of-peril", "wiki-moons-of-peril-strategies", "wiki-perilous-moons-quest"]
+    },
+    "area_supplied_resource_loop": {
+      "tools": "Campsite supply crates provide the gathering/preparation tools, including the big fishing net, rope, butterfly net, vial of water, and pestle and mortar.",
+      "food": "Raw bream and raw moss lizards can be gathered and cooked at campsites. Their healing and production properties scale with relevant skill levels as documented by the Wiki strategy material.",
+      "potions": "Moonlight grubs can become paste and then moonlight potions. The potions provide the documented prayer and combat/defence effects; higher Herblore changes their documented effectiveness and dose properties.",
+      "energy_and_prayer": "Make-cuppa restores run energy. Moonlight moths are an optional Prayer-restoration source at the documented Hunter thresholds.",
+      "persistence": "Raw/cooked dungeon food is destroyed on leaving Neypotzli, and moonlight potions become vials of water. None should be treated as an external stockpile.",
+      "sources": ["wiki-moons-of-peril", "wiki-moons-of-peril-strategies", "wiki-perilous-moons-quest"]
+    },
+    "death_and_recovery": {
+      "confirmed": [
+        "A death in Neypotzli places the player's grave in the antechamber.",
+        "A simultaneous Moon kill and player death counts as a victory; the player leaves with 1 Hitpoint.",
+        "After a Moon victory, the player is teleported to a campsite whose destination depends on kill order."
+      ],
+      "not_asserted": [
+        "Ordinary-death encounter reset state.",
+        "Any reclaim fee.",
+        "Any external respawn or travel assumption.",
+        "Whether a particular account has a safe enough recovery plan."
+      ],
+      "sources": ["wiki-moons-of-peril-strategies", "wiki-perilous-moons-quest"]
+    },
+    "chest_uniques_and_duplicate_protection": {
+      "reward_scope": "Chest reward context depends on the Moon defeats completed before looting. At least one Moon defeat is required; no chest value, unique, supply quantity, or completion count is guaranteed here.",
+      "unique_groups": [
+        "Blood moon armour and dual macuahuitl",
+        "Blue moon armour and blue moon spear",
+        "Eclipse moon armour and eclipse atlatl",
+        "Atlatl darts and ordinary resource rewards"
+      ],
+      "duplicate_protection": "The documented mitigation prevents a duplicate within a Moon equipment set until each piece in that set has been received at least once. It does not mean a complete three-set collection, a chosen item, or any given completion count is guaranteed.",
+      "item_sacrifice_boundary": "Eyatlalli can accept a Moon equipment piece for another equipment-roll chance. The replacement can be the same item, and this package does not treat the exchange as deterministic progress.",
+      "ironman_rule": "Ironmen are eligible for Lunar Chest rewards while other players are present; individual player damage contribution still applies.",
+      "sources": ["wiki-lunar-chest", "wiki-moons-of-peril", "wiki-ironman-ranged"]
+    },
+    "ironman_utility_facts": {
+      "blood": "The Blood set is melee equipment. Armour requires 50 Defence and 75 Strength; dual macuahuitl requires 70 Attack and 75 Strength.",
+      "blue": "The Blue set is Magic/Melee hybrid equipment. Armour requires 50 Defence and 75 Magic; each armour piece provides its documented 1% Magic damage bonus.",
+      "eclipse": "The Eclipse set is Ranged/Melee hybrid equipment. Armour requires 50 Defence and 75 Ranged; the atlatl and set effects have their documented usage constraints.",
+      "degradation": "Moon armour, unlike the weapons, degrades through combat and requires repair after it becomes fully degraded. Degradation cost/value is not calculated or ranked here.",
+      "ordinary_rewards": "Resource drops may have Ironman utility, but their quantities, value, and a player's need for them remain variable and unmodeled.",
+      "sources": ["wiki-blood-moon-equipment", "wiki-blue-moon-equipment", "wiki-eclipse-moon-equipment", "wiki-ironman-ranged"]
+    }
+  },
+  "practical_observations": {
+    "purpose": "Candidates for user- or importer-supplied observations. They are not required to begin the quest and cannot be synthesized from nominal skills or equipment ownership.",
+    "minimum_claim_shape": {
+      "observed_at": "ISO-8601 timestamp supplied by the account/user",
+      "scope": "quest encounter, one named Moon, one-to-three-Moon run, or chest interaction",
+      "outcome": "completed, stopped, died, retreated, or unknown",
+      "evidence_source": "user report, approved importer, or explicitly named trusted record",
+      "limitations": "Free text describing unknown gear, supplies, mechanics, or recovery variables"
+    },
+    "candidate_observations": [
+      {
+        "id": "perilous-moons:quest-combat-attempt",
+        "records": "A named quest encounter was attempted and its observed outcome.",
+        "does_not_establish": "Repeat-farm readiness, chest rewards, other Moon readiness, or future success."
+      },
+      {
+        "id": "perilous-moons:mechanic-response",
+        "records": "A named response was attempted or successfully performed: Eclipse Rays/Clone, Blue Weapon Freeze, Blood siphon positioning, or glyph positioning.",
+        "does_not_establish": "Damage consistency, player skill generally, or a complete kill."
+      },
+      {
+        "id": "perilous-moons:internal-supply-loop",
+        "records": "The account actually gathered/prepared an area resource and whether it supported the stated attempt.",
+        "does_not_establish": "A banked supply, a repeatable trip length, or a recommended skill target."
+      },
+      {
+        "id": "perilous-moons:recovery-observation",
+        "records": "An observed death/recovery result or chosen safe exit behavior in Neypotzli.",
+        "does_not_establish": "A generic reclaim cost, respawn plan, or death safety for any other account."
+      },
+      {
+        "id": "perilous-moons:lunar-chest-observation",
+        "records": "Moon count before looting, chest opened/not opened, and explicitly observed rewards or known set-piece state.",
+        "does_not_establish": "Future loot, exact drop rates, or full duplicate-protection state unless each relevant piece is explicitly observed."
+      }
+    ]
+  },
+  "bounded_stop_and_reentry_candidates": {
+    "status": "strategy-boundary candidates; no automatic route action",
+    "stop_candidates": [
+      {
+        "id": "stop:perilous-moons-quest-complete",
+        "condition": "The explicitly selected goal was quest completion and the quest is complete.",
+        "does_not_imply": "That repeatable farming, any chest target, or any Moon unique should continue."
+      },
+      {
+        "id": "stop:perilous-moons-unresolved-mechanic-or-recovery",
+        "condition": "A player observation reports an unresolved required mechanic, an unsafe recovery concern, or a voluntary retreat.",
+        "does_not_imply": "A gear deficit, a required level, an optimal upgrade, or that the content is permanently unavailable."
+      },
+      {
+        "id": "stop:perilous-moons-selected-scope-reached",
+        "condition": "An explicit player-selected scope, such as one practice run or a named observed chest outcome, is reached.",
+        "does_not_imply": "A universal kill count, expected unique, or account-wide route milestone."
+      }
+    ],
+    "reentry_candidates": [
+      {
+        "id": "reenter:perilous-moons-new-practical-observation",
+        "condition": "The account has new explicit evidence relevant to the previously stated stop condition, such as a recorded mechanic practice result or recovery plan.",
+        "does_not_imply": "Readiness without evaluating the new evidence."
+      },
+      {
+        "id": "reenter:perilous-moons-user-selected-utility-goal",
+        "condition": "The player declares a concrete goal involving the activity or one of its rewards and accepts variable output.",
+        "does_not_imply": "That the goal is timely, efficient, guaranteed, or superior to alternatives."
+      },
+      {
+        "id": "reenter:perilous-moons-quest-access-now-met",
+        "condition": "The verified hard quest and skill gates are now met for an account that previously lacked them.",
+        "does_not_imply": "Practical combat readiness."
+      }
+    ]
+  },
+  "community_strategy_fenced": {
+    "classification": "Non-binding strategy discussion. These claims may guide later human review but must never be used as factual gates or account-state inference.",
+    "themes": [
+      {
+        "claim": "Community guides often suggest approximately 70+ Attack, Strength, and Defence, 75+ Hitpoints, 34+ Prayer, and 50+ Cooking/Fishing/Hunter/Herblore for a more comfortable run; 70 Prayer and 75 Hunter are frequently presented as optional extensions.",
+        "boundary": "Comfort targets, not mechanics. The exact usefulness changes with the player's execution, goals, and observed resources.",
+        "sources": ["wiki-moons-of-peril-strategies"]
+      },
+      {
+        "claim": "Ironman discussions disagree on whether to obtain tank armour, a defender, Piety/Chivalry, Barrows gear, Zombie axe, or a Crystal shield before repeating the activity.",
+        "boundary": "This is explicitly conflicting community prioritization, not a production dependency order.",
+        "sources": ["reddit-ironscape-moons-tactic-2025", "reddit-ironscape-moons-meta-2024", "reddit-ironscape-early-priorities-2025"]
+      },
+      {
+        "claim": "Some community players regard the Moon sets and resources as high-utility midgame Ironman content; others prefer a faster Corrupted Gauntlet-oriented path that skips or minimizes it.",
+        "boundary": "This project deliberately preserves both as choice-sensitive strategies. It must not turn either into a universal route conclusion.",
+        "sources": ["reddit-ironscape-moons-meta-2024", "reddit-ironscape-guide-2026"]
+      }
+    ]
+  },
+  "source_metadata": [
+    {
+      "id": "wiki-perilous-moons-quest",
+      "title": "Perilous Moons",
+      "publisher": "Old School RuneScape Wiki",
+      "source_class": "community-maintained factual reference",
+      "url": "https://oldschool.runescape.wiki/w/Perilous_Moons",
+      "accessed_at": "2026-08-24",
+      "used_for": "Quest requirements, completion encounters, fixed rewards, Neypotzli access, and quest-counts-as-normal-defeat behavior."
+    },
+    {
+      "id": "wiki-moons-of-peril",
+      "title": "Moons of Peril",
+      "publisher": "Old School RuneScape Wiki",
+      "source_class": "community-maintained factual reference",
+      "url": "https://oldschool.runescape.wiki/w/Moons_of_Peril",
+      "accessed_at": "2026-08-24",
+      "used_for": "Encounter overview, player-instance contribution, Ironman chest eligibility, weaknesses, protection-prayer behavior, campsite supplies, and internal-resource persistence boundary."
+    },
+    {
+      "id": "wiki-moons-of-peril-strategies",
+      "title": "Moons of Peril/Strategies",
+      "publisher": "Old School RuneScape Wiki",
+      "source_class": "community-maintained mechanics and strategy reference",
+      "url": "https://oldschool.runescape.wiki/w/Moons_of_Peril/Strategies",
+      "accessed_at": "2026-08-24",
+      "used_for": "Special mechanics, Neypotzli grave location, area supply details, and explicitly non-binding readiness suggestions."
+    },
+    {
+      "id": "wiki-lunar-chest",
+      "title": "Lunar Chest",
+      "publisher": "Old School RuneScape Wiki",
+      "source_class": "community-maintained factual reference",
+      "url": "https://oldschool.runescape.wiki/w/Lunar_Chest",
+      "accessed_at": "2026-08-24",
+      "used_for": "Chest eligibility, reward grouping, and duplicate-protection boundary."
+    },
+    {
+      "id": "wiki-blood-moon-equipment",
+      "title": "Blood moon equipment",
+      "publisher": "Old School RuneScape Wiki",
+      "source_class": "community-maintained factual reference",
+      "url": "https://oldschool.runescape.wiki/w/Blood_moon_equipment",
+      "accessed_at": "2026-08-24",
+      "used_for": "Blood equipment requirements and effects."
+    },
+    {
+      "id": "wiki-blue-moon-equipment",
+      "title": "Blue moon equipment",
+      "publisher": "Old School RuneScape Wiki",
+      "source_class": "community-maintained factual reference",
+      "url": "https://oldschool.runescape.wiki/w/Blue_moon_equipment",
+      "accessed_at": "2026-08-24",
+      "used_for": "Blue equipment requirements and effects."
+    },
+    {
+      "id": "wiki-eclipse-moon-equipment",
+      "title": "Eclipse moon equipment",
+      "publisher": "Old School RuneScape Wiki",
+      "source_class": "community-maintained factual reference",
+      "url": "https://oldschool.runescape.wiki/w/Eclipse_moon_equipment",
+      "accessed_at": "2026-08-24",
+      "used_for": "Eclipse equipment requirements and effects."
+    },
+    {
+      "id": "wiki-ironman-ranged",
+      "title": "Ironman Guide/Ranged",
+      "publisher": "Old School RuneScape Wiki",
+      "source_class": "community-maintained strategy reference",
+      "url": "https://oldschool.runescape.wiki/w/Ironman_Guide/Ranged",
+      "accessed_at": "2026-08-24",
+      "used_for": "Ironman-oriented item utility context and duplicate-protection caveat; not used as a hard gate."
+    },
+    {
+      "id": "official-varlamore-rewards-poll-2024",
+      "title": "Defender of Varrock, Varlamore Rewards & More",
+      "publisher": "Jagex / Old School RuneScape",
+      "source_class": "official historical design source",
+      "url": "https://oldschool.runescape.com/polls/2024/1685",
+      "published_at": "2024-02-02",
+      "accessed_at": "2026-08-24",
+      "used_for": "Historical release-design context only; not used to override current live mechanics."
+    },
+    {
+      "id": "reddit-ironscape-moons-tactic-2025",
+      "title": "Tactic for working towards perilous moons",
+      "publisher": "r/ironscape community discussion",
+      "source_class": "community strategy discussion",
+      "url": "https://www.reddit.com/r/ironscape/comments/1pgwwpj/tactic_for_working_towards_perilous_moons/",
+      "published_at": "2025-12-07",
+      "accessed_at": "2026-08-24",
+      "used_for": "Conflicting player-reported preparation approaches; never used as factual mechanics or requirements."
+    },
+    {
+      "id": "reddit-ironscape-moons-meta-2024",
+      "title": "Is Perilous Moons Ironman Meta?",
+      "publisher": "r/ironscape community discussion",
+      "source_class": "community strategy discussion",
+      "url": "https://www.reddit.com/r/ironscape/comments/1fsja14/is_perilous_moons_ironman_meta/",
+      "published_at": "2024-09-30",
+      "accessed_at": "2026-08-24",
+      "used_for": "Contrasting Moons-versus-CG timing opinions; never used as factual mechanics or requirements."
+    },
+    {
+      "id": "reddit-ironscape-early-priorities-2025",
+      "title": "If you were starting an Ironman again, what would you prioritize early?",
+      "publisher": "r/ironscape community discussion",
+      "source_class": "community strategy discussion",
+      "url": "https://www.reddit.com/r/ironscape/comments/1pxt7nu/if_you_were_starting_an_ironman_again_what_would/",
+      "published_at": "2025-12-28",
+      "accessed_at": "2026-08-24",
+      "used_for": "Example player progression preference only; never used as a factual dependency."
+    },
+    {
+      "id": "reddit-ironscape-guide-2026",
+      "title": "What’s the best guide for ironmen in 2026 and what’s your best advice?",
+      "publisher": "r/ironscape community discussion",
+      "source_class": "community strategy discussion",
+      "url": "https://www.reddit.com/r/ironscape/comments/1rwn9yh/whats_the_best_guide_for_ironmen_in_2026_and/",
+      "published_at": "2026-03-17",
+      "accessed_at": "2026-08-24",
+      "used_for": "Example player preference for early PvM ordering only; never used as factual mechanics or requirements."
+    }
+  ]
+}
