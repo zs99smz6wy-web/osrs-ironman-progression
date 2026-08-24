@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "scope": "Strategy-only context for combat-bearing actions that are formally eligible. It never changes factual eligibility, adds requirements, selects a tactic, or infers a loadout, supplies, player skill, survival, or victory.",
+  "contexts": [
+    {
+      "id": "tree-gnome-village-khazard-warlord",
+      "action_id": "action:tree-gnome-village",
+      "fact_ids": ["tree-gnome-village-combat"],
+      "encounter_observation_key": "tree-gnome-village-khazard-warlord",
+      "formal_eligibility_note": "No numeric combat level is a hard requirement in the normalized action; factual eligibility remains the evaluator result.",
+      "tactical_options_note": "The sourced options are a Ranged-or-Magic distance safespot and melee step-out flinching. The chapter names them as player-selected tactics, not account capabilities.",
+      "unobserved_note": "The quest remains strategically ranked for spirit trees and Attack XP, but it needs a current player readiness check and a chosen, understood tactic before an attempt.",
+      "snapshot_note": "A current combat snapshot is recorded, but it does not prove supplies, positioning, tactic execution, survival, or a win. Confirm the selected tactic before attempting.",
+      "attempt_note": "An encounter attempt is recorded, but no success is recorded. Keep the quest ranked only as a formally eligible option; reassess practical readiness from the observed result.",
+      "timely_note": "A successful Khazard warlord encounter is explicitly recorded. The quest remains formally eligible until its completion is recorded; do not infer remaining dialogue, orb return, or quest completion."
+    }
+  ]
+}

@@ -3821,6 +3821,38 @@
       "kind": "wiki",
       "checked_at": "2026-08-24",
       "use": "Current Fossil Island access context, intentionally not encoded as a coupled action alternative."
+    },
+    {
+      "id": "wiki-tree-gnome-village-quick-guide-current",
+      "publisher": "Old School RuneScape Wiki",
+      "url": "https://oldschool.runescape.wiki/w/Tree_Gnome_Village/Quick_guide",
+      "kind": "wiki",
+      "checked_at": "2026-08-24",
+      "use": "Current Tree Gnome Village encounter, listed items, level-112 warlord, recommended combat level, and documented safespot/flinch techniques."
+    },
+    {
+      "id": "youtube-tree-gnome-village-hcim-safespot-2024",
+      "publisher": "Steeleygames",
+      "url": "https://www.youtube.com/watch?v=gCuStfMgo10",
+      "kind": "youtube",
+      "checked_at": "2026-08-24",
+      "use": "Community HCIM-oriented walkthrough used only to corroborate that the safespot is a practical execution technique, not a readiness guarantee or route requirement."
+    },
+    {
+      "id": "guide-ironman-early-game-current",
+      "publisher": "ironman.guide",
+      "url": "https://ironman.guide/guide/early-game",
+      "kind": "guide",
+      "checked_at": "2026-08-24",
+      "use": "Current community Ironman guide that places Tree Gnome Village in early questing and explicitly directs use of the warlord safespot; strategy context only."
+    },
+    {
+      "id": "reddit-ironscape-tree-gnome-village-early-transport",
+      "publisher": "r/ironscape",
+      "url": "https://www.reddit.com/r/ironscape/comments/q73mdc/",
+      "kind": "reddit",
+      "checked_at": "2026-08-24",
+      "use": "Community discussion identifying early spirit-tree value while advising a Khazard warlord safespot; corroborating context only, never a factual gate."
     }
   ],
   "source_aliases": [

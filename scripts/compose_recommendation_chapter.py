@@ -263,6 +263,12 @@ def _print_human_chapter(chapter: dict[str, Any]) -> None:
             print("  no scored eligible options")
         for option in lane["ranked_options"]:
             print(f"  [{option['total_score']}] {option['name']}")
+            print(f"    formal eligibility: {option['formal_eligibility']}")
+            practical = option["practical_readiness_context"]
+            if practical is not None:
+                print(f"    practical context: {practical['status']}")
+                print(f"    tactics: {practical['tactical_options_note']}")
+                print(f"    timing: {practical['note']}")
             print(f"    stop: {option['stop_condition']}")
             print(f"    re-entry: {option['reentry_condition']}")
 

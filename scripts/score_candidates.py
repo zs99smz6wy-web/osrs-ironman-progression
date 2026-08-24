@@ -10,6 +10,10 @@ from analyze_transport_bundles import (
     analyze_transport_bundles,
     contextual_bonus_by_action,
 )
+from analyze_combat_quest_readiness import (
+    DEFAULT_CONTEXTS as DEFAULT_COMBAT_QUEST_CONTEXTS,
+    analyze_combat_quest_readiness,
+)
 from evaluate_progression import DEFAULT_ACTIONS, DEFAULT_STATE, evaluate_actions, load_json
 
 
@@ -104,6 +108,7 @@ def _rank_eligible_annotations(
     evaluated: list[dict[str, Any]],
     account_state: dict[str, Any],
     transport_bundles: list[dict[str, Any]],
+    combat_quest_contexts: dict[str, dict[str, Any]],
 ) -> list[dict[str, Any]]:
     eligible = {result["id"]: result for result in evaluated if result["status"] == "eligible"}
     transport_bonus_by_action = contextual_bonus_by_action(transport_bundles)
@@ -147,6 +152,8 @@ def _rank_eligible_annotations(
                 "adjustments": adjustments,
                 "contextual_adjustments": contextual_adjustments,
                 "transport_bundle_context": transport_component_by_action.get(action_id),
+                "formal_eligibility": "eligible",
+                "practical_readiness_context": combat_quest_contexts.get(action_id),
                 "base_score": base_score,
                 "total_score": total_score,
                 "stop_condition": annotation["stop_condition"],
@@ -166,7 +173,12 @@ def score_candidates(
     transport_bundles = analyze_transport_bundles(
         load_json(DEFAULT_TRANSPORT_BUNDLES), evaluated, account_state
     )
-    return _rank_eligible_annotations(annotations, evaluated, account_state, transport_bundles)
+    combat_quest_contexts = analyze_combat_quest_readiness(
+        load_json(DEFAULT_COMBAT_QUEST_CONTEXTS), actions_document, account_state
+    )
+    return _rank_eligible_annotations(
+        annotations, evaluated, account_state, transport_bundles, combat_quest_contexts
+    )
 
 
 def _eligible_unscored_actions(
@@ -195,7 +207,12 @@ def _result_document(
     transport_bundles = analyze_transport_bundles(
         load_json(DEFAULT_TRANSPORT_BUNDLES), evaluated, account_state
     )
-    ranked = _rank_eligible_annotations(annotations, evaluated, account_state, transport_bundles)
+    combat_quest_contexts = analyze_combat_quest_readiness(
+        load_json(DEFAULT_COMBAT_QUEST_CONTEXTS), actions_document, account_state
+    )
+    ranked = _rank_eligible_annotations(
+        annotations, evaluated, account_state, transport_bundles, combat_quest_contexts
+    )
     return {
         "formula": {
             "base_score": "sum(lifetime_utility, content_unlock, economic_infrastructure, multi_output, diversity) - detour_cost - burnout_risk - danger_risk; afk_fit is applied only by attention_window",
@@ -204,6 +221,7 @@ def _result_document(
             "intensity_tolerance": "min(preferences.intensity_tolerance, burnout_risk), reducing the practical penalty of a tolerated repetitive activity",
             "risk_tolerance": "min(preferences.risk_tolerance, danger_risk), reducing the practical penalty of danger the player explicitly accepts",
             "early_transport_bundle": "a bounded 0 or 1 strategic context point for an eligible distinct durable transport capability while that bundle remains incomplete; replenishable transport items score 0",
+            "combat_quest_readiness": "a sourced strategy-only context appended after factual eligibility and scoring; it never adds a hard gate or score adjustment",
         },
         "transport_bundles": transport_bundles,
         "ranked_eligible_candidates": ranked,

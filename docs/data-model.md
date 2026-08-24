@@ -47,6 +47,10 @@ Observation fields are strict snapshots of what the player recorded, not claims 
 
 `analyze_combat_observations.py` may divide explicit successes by explicit elapsed minutes to display a measured rate. It returns `null` when either measurement is missing or elapsed time is zero, and marks all readiness, supply, and collection-log inference as false.
 
+### Practical context for combat quests
+
+`strategy/combat-quest-readiness-contexts.json` is a deliberately small strategy-layer registry for an action that is already factually eligible but has a sourced combat encounter. It consumes only an optional generic combat snapshot and an optional named encounter observation. It can describe `needs_practical_readiness`, `needs_tactical_confirmation`, or `timely_after_observed_encounter`; none changes evaluator eligibility, score, requirements, or action transition. A recorded combat snapshot does not prove a tactic, supplies, survival, competence, or victory. A recorded encounter success is an observation, never a generated result.
+
 `analyze_activity_observations.py` returns deep copies of the three structural observations. Its Moon-equipment view selects existing entries from `unique_item_observations`; it never creates a second possession or collection-log state. It does not advance clocks, infer growth or readiness, create loot, calculate reclaim fees, complete equipment sets, or turn community throughput into facts.
 
 ### Diary task imports

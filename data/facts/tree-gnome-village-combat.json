@@ -1,0 +1,44 @@
+{
+  "records": [
+    {
+      "id": "tree-gnome-village-combat",
+      "name": "Tree Gnome Village combat encounter and low-level bypasses",
+      "category": "quest",
+      "status": "verified",
+      "verified_at": "2026-08-24",
+      "scope": "Current encounter and preparation facts for Tree Gnome Village. This record does not set a route position, a combat-stat gate, a supply quantity, or a player-readiness conclusion.",
+      "formal_requirement": "The quest guide lists the ability to defeat the level 112 Khazard warlord. It does not list a numeric combat-level requirement.",
+      "listed_inputs": {
+        "logs": "Six normal logs, or an axe obtainable from goblins in the maze.",
+        "combat_and_food": "Combat equipment and food are listed by the guide, with no fixed setup or quantity."
+      },
+      "encounters": [
+        {
+          "name": "Khazard commanders",
+          "combat_level": 48,
+          "completion_boundary": "The guide says they may be ignored or killed; no combat result, damage, supplies, or death outcome is modeled."
+        },
+        {
+          "name": "Khazard warlord",
+          "combat_level": 112,
+          "completion_boundary": "Quest completion still requires the player to defeat the warlord and return the orbs. No win, damage, death, recovery, or supply use is inferred."
+        }
+      ],
+      "source_backed_tactics": [
+        {
+          "id": "ranged-or-magic-distance-safespot",
+          "summary": "After starting the fight, the guide describes moving west until the warlord de-aggros near the large dead tree, then attacking with Ranged or Magic from outside its aggression range while preserving distance.",
+          "source_ids": ["wiki-tree-gnome-village-quick-guide-current"]
+        },
+        {
+          "id": "melee-step-out-flinch",
+          "summary": "The guide describes melee flinching by stepping in and out of the warlord's walking range; it identifies a position beside the large skull south of the encounter as one option.",
+          "source_ids": ["wiki-tree-gnome-village-quick-guide-current"]
+        }
+      ],
+      "risk_and_execution_boundary": "The current Wiki includes a recommended combat level and food, while community Ironman sources place the quest early only with a safespot or flinch technique. Positioning, spell or ammunition availability, food quantity, player execution, combat outcome, damage, death, and recovery remain player-specific observations.",
+      "source_ids": ["wiki-tree-gnome-village-quick-guide-current", "youtube-tree-gnome-village-hcim-safespot-2024", "guide-ironman-early-game-current", "reddit-ironscape-tree-gnome-village-early-transport"],
+      "confidence": "high"
+    }
+  ]
+}
