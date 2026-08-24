@@ -1,0 +1,29 @@
+{
+  "research_id": "void-elite-void-timing",
+  "checked_at": "2026-08-24",
+  "scope": "Bounded current-source research supporting the standalone Void and Elite Void timing model. It records facts and source treatment, not a Pest Control route, expected points, or account recommendation.",
+  "sources": [
+    {"source_id": "wiki-pest-control", "url": "https://oldschool.runescape.wiki/w/Pest_Control", "role": "Current boat combat gates and base commendation-point values."},
+    {"source_id": "wiki-void-reward-options-current", "url": "https://oldschool.runescape.wiki/w/Void_Knights%27_Reward_Options", "role": "Current regular Void costs and 200-point-per-piece Elite upgrades."},
+    {"source_id": "wiki-void-knight-equipment-current", "url": "https://oldschool.runescape.wiki/w/Void_Knight_equipment", "role": "One-helmet regular set total and set-piece requirements."},
+    {"source_id": "wiki-elite-void", "url": "https://oldschool.runescape.wiki/w/Elite_Void_Knight_equipment", "role": "Hard Western Provinces requirement and 400-point combined upgrade cost."},
+    {"source_id": "wiki-western-provinces-diary", "url": "https://oldschool.runescape.wiki/w/Western_Provinces_Diary", "role": "Hard-diary reward that unlocks the Elite Void upgrade."},
+    {"source_id": "official-pest-control-update-archive", "url": "https://secure.runescape.com/m=news/pest-control-update?oldschool=1", "role": "Official historical provenance for the three-lander design; current mechanics defer to the Wiki."}
+  ],
+  "fact_summary": {
+    "regular_void": "A complete regular set with one combat helmet costs 850 commendation points. It requires the listed 42 combat skills and 22 Prayer, not combat level 100.",
+    "boats": "Novice, Intermediate, and Veteran open at combat 40, 70, and 100 respectively. Their base eligible-win point values are 3, 4, and 5. A higher boat is a points-rate fact, not a forecast of access to a team or successful games.",
+    "elite_void": "Hard Western Provinces unlocks a 200-point upgrade for each observed regular top and robe. Both upgrades cost 400 points and require the corresponding regular pieces."
+  },
+  "strategy_boundary": {
+    "allowed": [
+      "Treating Veteran availability as a player-selectable timing consideration.",
+      "Comparing a player-declared Elite Void objective against the currently observed diary, gear, and points state.",
+      "Reporting wait, enter, upgrade, stop, and re-entry conditions without issuing a route command."
+    ],
+    "excluded": [
+      "Selecting a boat, team, world, role, set helmet, purchase order, activity duration, or route position.",
+      "Forecasting wins, points, points per hour, attendance, combat performance, XP, coin awards, or diary completion."
+    ]
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "records": [
+    {
+      "id": "void-elite-void-factual-timing-boundaries",
+      "name": "Regular Void and Elite Void factual timing boundaries",
+      "category": "minigame",
+      "status": "verified",
+      "verified_at": "2026-08-24",
+      "source_ids": [
+        "wiki-pest-control",
+        "wiki-void-reward-options-current",
+        "wiki-void-knight-equipment-current",
+        "wiki-elite-void",
+        "wiki-western-provinces-diary",
+        "official-pest-control-update-archive"
+      ],
+      "scope": "Factual Pest Control boat gates, regular Void shop costs, and Elite Void upgrade inputs. Whether to wait for Veteran, buy any helmet, pursue Elite Void, or place this activity in a route is strategy-only.",
+      "pest_control_boats": {
+        "novice": {"minimum_combat_level": 40, "base_commendation_points_per_eligible_win": 3},
+        "intermediate": {"minimum_combat_level": 70, "base_commendation_points_per_eligible_win": 4},
+        "veteran": {"minimum_combat_level": 100, "base_commendation_points_per_eligible_win": 5},
+        "observation_boundary": "Boat availability, team formation, activity eligibility, round success, points, and elapsed time are player-observed. The boat requirement does not establish a win or outcome."
+      },
+      "regular_void": {
+        "purchase_and_wear_skill_requirements": {"Attack": 42, "Strength": 42, "Defence": 42, "Hitpoints": 42, "Ranged": 42, "Magic": 42, "Prayer": 22},
+        "one_helmet_set_cost": {"top": 250, "robe": 250, "gloves": 150, "helmet": 200, "total": 850},
+        "combat_level_100_requirement": false,
+        "boundary": "Regular Void may be purchased through any qualifying lower boat when its own purchase skill gates and an observed point balance are met. Combat 100 only opens Veteran."
+      },
+      "elite_void": {
+        "hard_western_provinces_diary_required": true,
+        "upgrade_inputs": {"elite_void_top": {"regular_piece": "Void knight top", "commendation_points": 200}, "elite_void_robe": {"regular_piece": "Void knight robe", "commendation_points": 200}},
+        "both_piece_upgrade_total": 400,
+        "full_one_helmet_elite_total_from_zero": 1250,
+        "boundary": "The two upgrades are explicit deterministic transactions only after an observed hard-diary claim, observed regular top or robe, observed point balance, and confirmed upgrade."
+      },
+      "non_inferences": [
+        "No lander, world, team, win, point award, points per hour, purchase, upgrade, equipment state, diary completion, combat readiness, or route position is inferred.",
+        "The analysis never treats Combat 100 as a regular Void requirement or treats the Veteran point rate as a guaranteed outcome."
+      ],
+      "confidence": "high"
+    }
+  ]
+}

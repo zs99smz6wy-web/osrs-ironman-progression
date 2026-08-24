@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "scope": "Strategy-only account-aware Void timing context. This file interprets supplied account observations but never selects a route, boat, helmet, purchase, or Pest Control outcome.",
+  "fact_ids": ["void-elite-void-factual-timing-boundaries", "minigame-pest-control-static-access-and-shop", "minigame-pest-control-durable-utilities", "diary-western-provinces-hard-elite-utility"],
+  "observation_conventions": {
+    "pest_control_container": "minigame_activity_observations.pest-control",
+    "point_balance": "Use observed resources.pest_control_commendation_points when present; otherwise use the current Pest Control currency balance. Missing values are unknown, not zero.",
+    "owned_pieces": "items.void_knight_top, items.void_knight_robe, items.void_knight_gloves, items.void_melee_helm, items.void_ranger_helm, and items.void_mage_helm are explicit ownership counts. The analyzer never upgrades or equips them.",
+    "diary": "diary_tiers['Western Provinces'] records only the highest confirmed claimed tier; it never proves the remaining tasks, upgrade, or any item ownership."
+  },
+  "strategic_preferences": {
+    "veteran_wait": "Waiting to start an otherwise planned Void grind until Veteran is available can be a points-rate preference. It is not an equipment requirement and lower boats remain factual regular-Void paths.",
+    "elite_alignment": "Aligning a player-declared Elite Void objective with the hard diary and the top-and-robe upgrade budget is a timing consideration, not an instruction to delay or buy regular Void.",
+    "objective_values": ["undecided", "regular_void_one_helmet", "elite_void_one_helmet"],
+    "veteran_wait_values": ["none", "consider", "prefer"]
+  },
+  "stop_reentry": {
+    "stop_conditions": [
+      "The player-declared objective changes or the required observed pieces are already owned or upgraded.",
+      "The observed point balance, team or world availability, attention, supplies, or player readiness changes.",
+      "A recorded Pest Control session ends, is interrupted, or becomes unavailable."
+    ],
+    "reentry_conditions": [
+      "The same declared objective remains useful and the hard purchase or upgrade gates are still met.",
+      "A current observed point balance and current Pest Control availability/session snapshot are supplied when the player wants them considered.",
+      "A Veteran preference may be reconsidered after the account reaches combat 100; it never invalidates lower-boat access."
+    ]
+  }
+}
