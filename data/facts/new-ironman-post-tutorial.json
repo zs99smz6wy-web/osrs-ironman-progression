@@ -1,0 +1,81 @@
+{
+  "records": [
+    {
+      "id": "new-ironman-post-tutorial-baseline",
+      "name": "New standard Ironman immediately after Learning the Ropes",
+      "category": "reward",
+      "status": "verified",
+      "verified_at": "2026-08-24",
+      "scope": "A newly created standard Ironman that completes current Tutorial Island/Learning the Ropes, selects Ironman mode before leaving, and has not taken any mainland action.",
+      "arrival": {
+        "location": "Lumbridge, east of Lumbridge Castle",
+        "fixed_unlocks": ["mainland access", "Lumbridge Home Teleport"],
+        "fixed_unmodeled_rewards": {"quest_points": 1, "tracked_quest": "Learning the Ropes"}
+      },
+      "fixed_possessions": {
+        "items": {
+          "bronze_axe": 1,
+          "bronze_pickaxe": 1,
+          "tinderbox": 1,
+          "small_fishing_net": 1,
+          "shrimps": 2,
+          "bronze_dagger": 1,
+          "bronze_sword": 1,
+          "wooden_shield": 1,
+          "shortbow": 1,
+          "bronze_arrow": 25,
+          "air_rune": 25,
+          "mind_rune": 15,
+          "bucket": 1,
+          "pot": 1,
+          "bread": 1,
+          "water_rune": 6,
+          "earth_rune": 4,
+          "body_rune": 2
+        },
+        "resources": {"coins": 25},
+        "normalized_tool_capabilities": {"axe": "bronze_axe", "pickaxe": "bronze_pickaxe"},
+        "boundary": "The 25 coins are initially banked by the tutorial reward. The account-state model treats resources as account-wide, not inventory-slot-specific. The fixture's generic axe and pickaxe keys represent these same bronze tools for generic action predicates; they are not extra physical items."
+      },
+      "mandatory_action_xp": {
+        "fixed_or_minimum": {
+          "Fishing": 10,
+          "Woodcutting": 25,
+          "Firemaking": 40,
+          "Cooking": 30,
+          "Mining": 35,
+          "Smithing": 18.7,
+          "Magic": 5.5
+        },
+        "resulting_levels": "Each listed skill remains level 1. Hitpoints starts at level 10 with 1,154 XP.",
+        "variable_or_not_normalized": [
+          "Melee style and damage during the required giant-rat kill.",
+          "Ranged damage during the required giant-rat kill and Magic damage during the required Wind Strike cast on a chicken.",
+          "Any extra Tutorial Island training, including optional repeated casts, catches, gathering, cooking, or combat."
+        ],
+        "model_boundary": "Account snapshots currently store integer XP. The fixture retains only the guaranteed whole-XP values and omits the fixed fractional Smithing and Magic remainder rather than rounding it into a false exact value. This cannot change any resulting starter level."
+      },
+      "exclusions": {
+        "not_assumed": [
+          "Mainland Ironman-tutor armour or any other tutor claim.",
+          "Adventure Paths, which are unavailable to Ironman accounts.",
+          "Any ordinary quest completion in quests_completed.",
+          "Any transport flag, achievement-diary tier, passive loop, recurring observation, combat-readiness observation, or loot/drop outcome."
+        ],
+        "reason": "Those are either optional mainland interactions, unavailable to this account type, or player-observed progression rather than a mandatory Tutorial Island outcome."
+      },
+      "source_ids": [
+        "wiki-learning-the-ropes-current",
+        "wiki-tutorial-island-current",
+        "wiki-new-player-guide-current",
+        "wiki-ironman-tutor-mainland-current",
+        "wiki-adventure-paths-current",
+        "wiki-logs-current",
+        "official-standard-mining-xp-current",
+        "wiki-raw-shrimps-current",
+        "wiki-bronze-bar-current",
+        "wiki-wind-strike-current"
+      ]
+    }
+  ]
+}

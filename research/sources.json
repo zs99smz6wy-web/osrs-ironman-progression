@@ -1,6 +1,86 @@
 {
   "sources": [
     {
+      "id": "wiki-learning-the-ropes-current",
+      "publisher": "Old School RuneScape Wiki",
+      "url": "https://oldschool.runescape.wiki/w/Learning_the_Ropes",
+      "kind": "wiki",
+      "checked_at": "2026-08-24",
+      "use": "Current tracked tutorial completion reward: mainland access, Home Teleport, fixed kit, 25 banked coins, and one quest point."
+    },
+    {
+      "id": "wiki-tutorial-island-current",
+      "publisher": "Old School RuneScape Wiki",
+      "url": "https://oldschool.runescape.wiki/w/Tutorial_Island",
+      "kind": "wiki",
+      "checked_at": "2026-08-24",
+      "use": "Current mandatory Tutorial Island sequence, optional training boundary, combat-style variation, and mainland retention rule."
+    },
+    {
+      "id": "wiki-new-player-guide-current",
+      "publisher": "Old School RuneScape Wiki",
+      "url": "https://oldschool.runescape.wiki/w/New_player_guide",
+      "kind": "wiki",
+      "checked_at": "2026-08-24",
+      "use": "Current Lumbridge arrival context and confirmation that the 25 gp is banked."
+    },
+    {
+      "id": "wiki-ironman-tutor-mainland-current",
+      "publisher": "Old School RuneScape Wiki",
+      "url": "https://oldschool.runescape.wiki/w/Ironman_tutor",
+      "kind": "wiki",
+      "checked_at": "2026-08-24",
+      "use": "Adam's optional mainland Ironman-armour and status-management interaction; no claim is made at arrival."
+    },
+    {
+      "id": "wiki-adventure-paths-current",
+      "publisher": "Old School RuneScape Wiki",
+      "url": "https://oldschool.runescape.wiki/w/Adventure_Paths",
+      "kind": "wiki",
+      "checked_at": "2026-08-24",
+      "use": "Adventure Paths eligibility boundary: Ironman accounts are not eligible."
+    },
+    {
+      "id": "wiki-logs-current",
+      "publisher": "Old School RuneScape Wiki",
+      "url": "https://oldschool.runescape.wiki/w/Logs",
+      "kind": "wiki",
+      "checked_at": "2026-08-24",
+      "use": "Normal-log Woodcutting and Firemaking XP used to document mandatory tutorial actions."
+    },
+    {
+      "id": "official-standard-mining-xp-current",
+      "publisher": "Jagex",
+      "url": "https://oldschool.runescape.wiki/w/Update:Player_Designed_Content:_Brains_over_brawn",
+      "kind": "official_mirror",
+      "checked_at": "2026-08-24",
+      "use": "Jagex update text mirrored by the Wiki confirming standard 17.5 Mining XP per copper and tin ore."
+    },
+    {
+      "id": "wiki-raw-shrimps-current",
+      "publisher": "Old School RuneScape Wiki",
+      "url": "https://oldschool.runescape.wiki/w/Raw_shrimps",
+      "kind": "wiki",
+      "checked_at": "2026-08-24",
+      "use": "Raw-shrimp catch and successful cooking XP at level 1, used to bound mandatory Tutorial Island Fishing and Cooking XP."
+    },
+    {
+      "id": "wiki-bronze-bar-current",
+      "publisher": "Old School RuneScape Wiki",
+      "url": "https://oldschool.runescape.wiki/w/Bronze_bar",
+      "kind": "wiki",
+      "checked_at": "2026-08-24",
+      "use": "Bronze-bar smelting and one-bar Smithing XP, used to document Tutorial Island's fractional Smithing total."
+    },
+    {
+      "id": "wiki-wind-strike-current",
+      "publisher": "Old School RuneScape Wiki",
+      "url": "https://oldschool.runescape.wiki/w/Wind_Strike",
+      "kind": "wiki",
+      "checked_at": "2026-08-24",
+      "use": "Wind Strike's fixed 5.5 Magic XP and required Tutorial Island chicken cast."
+    },
+    {
       "id": "wiki-fishing-current",
       "publisher": "OSRS Wiki",
       "url": "https://oldschool.runescape.wiki/w/Fishing",
@@ -6674,6 +6754,86 @@
       "use": "Recent community confirmation that the historical low-Hitpoints premise is obsolete after Warmth; not a primary mechanics source.",
       "resolution": "exact package-scoped minigame provenance; W0 research-only registry",
       "treatment": "community-strategy-candidate-not-fact"
+    },
+    {
+      "id": "wiki-new-player-guide-current",
+      "publisher": "Old School RuneScape Wiki",
+      "url": "https://oldschool.runescape.wiki/w/New_player_guide",
+      "kind": "wiki",
+      "checked_at": "2026-08-24",
+      "use": "Current Lumbridge arrival context and confirmation that the 25 gp is banked."
+    },
+    {
+      "id": "wiki-ironman-tutor-mainland-current",
+      "publisher": "Old School RuneScape Wiki",
+      "url": "https://oldschool.runescape.wiki/w/Ironman_tutor",
+      "kind": "wiki",
+      "checked_at": "2026-08-24",
+      "use": "Adam's optional mainland Ironman-armour and status-management interaction; no claim is made at arrival."
+    },
+    {
+      "id": "wiki-adventure-paths-current",
+      "publisher": "Old School RuneScape Wiki",
+      "url": "https://oldschool.runescape.wiki/w/Adventure_Paths",
+      "kind": "wiki",
+      "checked_at": "2026-08-24",
+      "use": "Adventure Paths eligibility boundary: Ironman accounts are not eligible."
+    },
+    {
+      "id": "wiki-logs-current",
+      "publisher": "Old School RuneScape Wiki",
+      "url": "https://oldschool.runescape.wiki/w/Logs",
+      "kind": "wiki",
+      "checked_at": "2026-08-24",
+      "use": "Normal-log Woodcutting and Firemaking XP used to document the mandatory tutorial actions."
+    },
+    {
+      "id": "official-standard-mining-xp-current",
+      "publisher": "Jagex",
+      "url": "https://oldschool.runescape.wiki/w/Update:Player_Designed_Content:_Brains_over_brawn",
+      "kind": "official_mirror",
+      "checked_at": "2026-08-24",
+      "use": "Jagex update text mirrored by the Wiki confirming standard 17.5 Mining XP per copper and tin ore."
+    },
+    {
+      "id": "wiki-raw-shrimps-current",
+      "publisher": "Old School RuneScape Wiki",
+      "url": "https://oldschool.runescape.wiki/w/Raw_shrimps",
+      "kind": "wiki",
+      "checked_at": "2026-08-24",
+      "use": "Raw-shrimp catch and successful cooking XP at level 1, used to bound mandatory Tutorial Island Fishing and Cooking XP."
+    },
+    {
+      "id": "wiki-bronze-bar-current",
+      "publisher": "Old School RuneScape Wiki",
+      "url": "https://oldschool.runescape.wiki/w/Bronze_bar",
+      "kind": "wiki",
+      "checked_at": "2026-08-24",
+      "use": "Bronze-bar smelting and one-bar Smithing XP, used to document Tutorial Island's fractional Smithing total."
+    },
+    {
+      "id": "wiki-tutorial-island-current",
+      "publisher": "Old School RuneScape Wiki",
+      "url": "https://oldschool.runescape.wiki/w/Tutorial_Island",
+      "kind": "wiki",
+      "checked_at": "2026-08-24",
+      "use": "Current mandatory Tutorial Island sequence, retained-versus-discarded item boundary, combat-style variation, and Ironman-mode selection boundary."
+    },
+    {
+      "id": "wiki-learning-the-ropes-current",
+      "publisher": "Old School RuneScape Wiki",
+      "url": "https://oldschool.runescape.wiki/w/Learning_the_Ropes",
+      "kind": "wiki",
+      "checked_at": "2026-08-24",
+      "use": "Current tracked tutorial completion reward: one quest point, mainland and Lumbridge Home Teleport access, fixed starter kit, and 25 banked coins."
+    },
+    {
+      "id": "wiki-wind-strike-current",
+      "publisher": "Old School RuneScape Wiki",
+      "url": "https://oldschool.runescape.wiki/w/Wind_Strike",
+      "kind": "wiki",
+      "checked_at": "2026-08-24",
+      "use": "Wind Strike's fixed 5.5 Magic XP, rune cost, variable damage, and required Tutorial Island chicken cast."
     }
   ]
 }

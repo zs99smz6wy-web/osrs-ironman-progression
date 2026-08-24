@@ -24,6 +24,12 @@ Facts must not contain route order, subjective priority, or instructions such as
 
 An account state holds skill levels, completed quests and actions, transport flags, milestones, gear thresholds, item counts, spendable resources, permanent counters, active passive loops, attention availability, preferences, and discovered drops. Items, spendable resources, and non-spendable counters are distinct so preparation and economic accounting do not silently consume permanent progress such as Kudos.
 
+### Post-tutorial pilot fixture
+
+`tests/fixtures/fresh-account.json` remains the zero-state boundary. `tests/fixtures/new-ironman-post-tutorial.json` is the recommendation pilot's Standard Ironman starting point immediately after completing `Learning the Ropes`: its fixed arrival kit, 25 banked coins, and one quest point are sourced in `data/facts/new-ironman-post-tutorial.json`. The tutorial quest is intentionally not placed in `quests_completed`, because the current progression graph has no normalized Tutorial Island action.
+
+The fixture's skill XP values deliberately remain the evaluator's level-consistent lower bounds, not a literal replay of Tutorial Island XP. Current mechanics force player-selected melee style XP and include variable Wind Strike damage; the account-state schema only accepts one integer XP value per skill. The factual record preserves the fixed event facts and this uncertainty. Its attention window and preferences are fixture policy for exercising the chapter compositor, not claims about a new account or the game.
+
 ### Player observations
 
 Observation fields are strict snapshots of what the player recorded, not claims the model can derive. Their absence, `null` value, or nullable subfields mean unknown; they must never become hard action gates, create graph edges, or silently fill an inventory field.

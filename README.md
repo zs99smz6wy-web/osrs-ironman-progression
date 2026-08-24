@@ -30,6 +30,12 @@ This repository does **not** begin by prescribing a single linear route. It firs
 
 The research foundation and first executable pilot are in place. The pilot can evaluate a small verified set of quests, transport unlocks, passive loops, and activities against an account snapshot. It is a starting dataset, not a final route or exhaustive fact database.
 
+`tests/fixtures/new-ironman-post-tutorial.json` is the pilot's source-backed post-Tutorial Island Standard Ironman fixture. It is distinct from `tests/fixtures/fresh-account.json`, which remains the zero-state boundary. To inspect a bounded first chapter without selecting a route:
+
+```powershell
+python scripts/compose_recommendation_chapter.py tests/fixtures/new-ironman-post-tutorial.json --active-limit 5 --afk-limit 5 --preparation-limit 5 --quest-xp-limit 5 --afk-mode low_attention
+```
+
 ## Validation
 
 Run:
