@@ -1,0 +1,323 @@
+{
+  "package_schema_version": 1,
+  "package_type": "pvm-readiness-research",
+  "package_id": "research-pvm-readiness-barrows",
+  "activity": "Barrows",
+  "status": "research-proposal",
+  "checked_at": "2026-08-24",
+  "scope": "Source-contained readiness research for the members-only Barrows activity in Morytania. It captures access, travel, encounter, chest, recovery, reward, and observation boundaries for later reconciliation. It does not select a route, gear loadout, supply quantity, kill target, chest count, or timing.",
+  "facts_strategy_boundary": {
+    "factual_mechanics_in_scope": [
+      "access gates, travel alternatives, crypt and tunnel mechanics, Prayer-drain mechanics, reward eligibility and roll mechanics, diary and Combat Achievement effects, and generic death/recovery rules",
+      "the distinction between deterministic access/effects and RNG chest rewards",
+      "account observations needed before a readiness decision, and mechanical stop/re-entry candidates"
+    ],
+    "strategy_out_of_scope": [
+      "whether a player should begin, grind, pause, resume, or stop Barrows at any point",
+      "a recommended level, gear, spell, combat style, prayer plan, food, potion, teleport, travel route, chest potential, target item, or number of chests",
+      "assumptions about player supplies, execution, safespot use, damage, survival, deaths, completed chests, rune income, equipment drops, or item utility on a particular account",
+      "expected time, profit, kill rate, chest rate, success rate, resource consumption, or RNG outcome"
+    ],
+    "normalization_boundary": "This file is research only. It proposes no shared action, graph edge, schema field, scoring rule, candidate, or compositor behavior. Sol must reconcile any later integration against canonical sources and account-state contracts."
+  },
+  "source_catalog": [
+    {
+      "id": "wiki-barrows-current",
+      "publisher": "Old School RuneScape Wiki",
+      "kind": "wiki",
+      "url": "https://oldschool.runescape.wiki/w/Barrows",
+      "checked_at": "2026-08-24",
+      "use": "Primary current activity source: membership, location, access gates, travel alternatives, recommended-not-required skill context, and Barrows Combat Achievements."
+    },
+    {
+      "id": "wiki-barrows-strategies-current",
+      "publisher": "Old School RuneScape Wiki",
+      "kind": "guide",
+      "url": "https://oldschool.runescape.wiki/w/Barrows/Strategies",
+      "checked_at": "2026-08-24",
+      "use": "Current explanatory source for underground Prayer drain, brother/tunnel mechanics, elemental weakness, lockpick behavior, Morytania Hard and Ghommal's hilt context. Recommendations from this page remain strategy evidence, not hard readiness gates."
+    },
+    {
+      "id": "wiki-barrows-chest-current",
+      "publisher": "Old School RuneScape Wiki",
+      "kind": "wiki",
+      "url": "https://oldschool.runescape.wiki/w/Chest_(Barrows)",
+      "checked_at": "2026-08-24",
+      "use": "Current chest eligibility, brother-linked item-pool, roll count, reward-potential formula, equipment chance, and common/tertiary reward table."
+    },
+    {
+      "id": "wiki-morytania-diary-current",
+      "publisher": "Old School RuneScape Wiki",
+      "kind": "wiki",
+      "url": "https://oldschool.runescape.wiki/w/Morytania_Diary",
+      "checked_at": "2026-08-24",
+      "use": "Current Morytania diary task/reward context, including Morytania legs 3/4 and the hard-diary Barrows rune modifier."
+    },
+    {
+      "id": "wiki-grave-current",
+      "publisher": "Old School RuneScape Wiki",
+      "kind": "wiki",
+      "url": "https://oldschool.runescape.wiki/w/Grave",
+      "checked_at": "2026-08-24",
+      "use": "Current generic non-instance death/grave recovery mechanics and timer boundary. It does not prove a particular Barrows recovery result."
+    },
+    {
+      "id": "wiki-deaths-office-current",
+      "publisher": "Old School RuneScape Wiki",
+      "kind": "wiki",
+      "url": "https://oldschool.runescape.wiki/w/Death%27s_Office",
+      "checked_at": "2026-08-24",
+      "use": "Current Death's Office recovery and fee context; actual item handling and cost remain player-observed."
+    },
+    {
+      "id": "official-old-school-home-current",
+      "publisher": "Jagex",
+      "kind": "official",
+      "url": "https://oldschool.runescape.com/",
+      "checked_at": "2026-08-24",
+      "use": "Official live-game provenance only. No encounter-specific official Barrows guide was found in this pass, so mechanical claims are attributed to the current Wiki pages above."
+    },
+    {
+      "id": "community-mootrius-ironman-guide-barrows",
+      "publisher": "Mootrius / Old School RuneScape Wiki guide namespace",
+      "kind": "community_guide",
+      "url": "https://oldschool.runescape.wiki/w/Guide:Mootrius_Ironman_Guide",
+      "checked_at": "2026-08-24",
+      "use": "Community Ironman strategy evidence for why some players seek tank equipment and rune supplies before later content. It is not a mechanic authority or route prescription."
+    },
+    {
+      "id": "community-ironman-guide-2026",
+      "publisher": "ironman.guide",
+      "kind": "community_guide",
+      "url": "https://ironman.guide/guide",
+      "checked_at": "2026-08-24",
+      "use": "Community route context that treats 43 Prayer and transport unlocks as common preparation. It is strategy evidence only."
+    },
+    {
+      "id": "community-reddit-ironscape-early-barrows-prayer",
+      "publisher": "r/ironscape",
+      "kind": "reddit",
+      "url": "https://www.reddit.com/r/ironscape/comments/1dsqngy/prayer_for_barrows_on_early_ironman/",
+      "checked_at": "2026-08-24",
+      "use": "Community experience on early Barrows Prayer sustain, restoration loops, and travel friction. It cannot establish a readiness threshold, supply requirement, or outcome."
+    },
+    {
+      "id": "community-youtube-hcim-barrows-safespot",
+      "publisher": "YouTube creator walkthrough",
+      "kind": "youtube",
+      "url": "https://www.youtube.com/watch?v=gCuStfMgo10",
+      "checked_at": "2026-08-24",
+      "use": "Community walkthrough discovery reference for tactical demonstrations. No tactic is treated as universally executable, safe, or successful."
+    }
+  ],
+  "current_factual_mechanics": {
+    "access": {
+      "membership": true,
+      "location": "Barrows is east of Mort'ton in Morytania.",
+      "hard_gates": [
+        {
+          "gate": "Priest in Peril completed",
+          "effect": "Required to enter Morytania.",
+          "source_ids": ["wiki-barrows-current"]
+        },
+        {
+          "gate": "His Faithful Servants started",
+          "effect": "Required to begin digging into the Barrows crypts.",
+          "source_ids": ["wiki-barrows-current"]
+        }
+      ],
+      "not_hard_gates": [
+        "No particular combat level, combat style, equipment item, food, Prayer potion, teleport, diary, chest count, or kill count is recorded here as an access requirement.",
+        "Recommendations such as 43 Prayer, Magic/Ranged levels, or restoration infrastructure are readiness context, not universal access gates."
+      ]
+    },
+    "travel_alternatives": [
+      {
+        "id": "barrows-teleport",
+        "claim": "Barrows Teleport can be cast from the Arceuus spellbook at 83 Magic, or reached with a Barrows teleport tablet or player-owned-house portal.",
+        "availability_boundary": "Spellbook state, Magic level, tablet ownership, house portal configuration, runes, and charges are separate account observations.",
+        "source_ids": ["wiki-barrows-current"]
+      },
+      {
+        "id": "mortton-scroll-or-group-teleport",
+        "claim": "Mort'ton teleport scrolls are an arrival alternative. The Shades of Mort'ton Grouping/minigame teleport is free, has a 20-minute cooldown, and requires completion of Shades of Mort'ton.",
+        "availability_boundary": "Scroll possession, quest completion, interface access, and cooldown are not inferred.",
+        "source_ids": ["wiki-barrows-current"]
+      },
+      {
+        "id": "burgh-de-rott-legs",
+        "claim": "Morytania legs 3 or 4 provide Burgh de Rott travel context followed by a run north through Mort'ton toward Barrows.",
+        "availability_boundary": "Diary completion, claimed legs, and the player's chosen onward travel are separate observations.",
+        "source_ids": ["wiki-barrows-current", "wiki-morytania-diary-current"]
+      },
+      {
+        "id": "canifis-fairy-ring-swamp-boaty",
+        "claim": "Kharyrll/Canifis, fairy-ring BKR, fairy-ring BIP with 50 Agility stepping stones, and swamp boaty routes are listed travel alternatives; BIP is described as the longest of the fairy-ring routes.",
+        "availability_boundary": "Quest/spellbook/rune access, fairy-ring access, Agility, route knowledge, and current location are not inferred.",
+        "source_ids": ["wiki-barrows-current"]
+      },
+      {
+        "id": "drakans-medallion-route",
+        "claim": "Drakan's medallion to Ver Sinhaza, then the Burgh de Rott boat and Mort'ton run, is listed after A Taste of Hope.",
+        "availability_boundary": "Quest completion and medallion ownership/charges are not inferred.",
+        "source_ids": ["wiki-barrows-current"]
+      },
+      {
+        "id": "walk-from-canifis",
+        "claim": "Walking south from Canifis through Morytania is listed as a slower arrival alternative.",
+        "availability_boundary": "This does not assert the player can safely, conveniently, or repeatedly use it.",
+        "source_ids": ["wiki-barrows-current"]
+      }
+    ],
+    "encounter_and_prayer_mechanics": {
+      "brothers": [
+        "The activity contains six brothers: Ahrim, Dharok, Guthan, Karil, Torag, and Verac. Their crypts can be searched; one randomly selected crypt provides tunnel access for a given run.",
+        "The source describes Ahrim as Magic, Karil as Ranged, and Dharok/Guthan/Torag/Verac as melee combat disciplines. It also documents a 50% elemental weakness to air for all brothers.",
+        "A brother may appear while opening tunnel doors. If the tunnel crypt brother has not appeared by chest opening, that brother appears and attacks."
+      ],
+      "underground_prayer_drain": {
+        "claim": "While underground anywhere in the Barrows area, a brother face can appear every 18 seconds and drain Prayer. The drain begins at 8 Prayer points and increases by 1 for each killed brother, to 14 after all six are killed.",
+        "source_ids": ["wiki-barrows-strategies-current"]
+      },
+      "drain_bypass": {
+        "claim": "A claimed Ghommal's hilt 2 or higher is documented as nullifying the Barrows Prayer-drain effect.",
+        "availability_boundary": "Claimed Combat Achievement reward tier and hilt possession/equipment state must be observed; this package does not infer either.",
+        "source_ids": ["wiki-barrows-strategies-current"]
+      },
+      "tunnels": {
+        "claim": "Opening a tunnel door can spawn a remaining brother, skeleton, bloodworm, or crypt rat. Doors may be blocked; path finding and spawned enemies are run-specific. A strange old lockpick can pass locked doors by consuming a charge, but does not replace reward-potential kills.",
+        "source_ids": ["wiki-barrows-strategies-current"]
+      },
+      "departure_boundary": "Leaving a crypt after a brother has spawned but before killing it despawns that brother; searching again requires fighting it at full health. This is a run mechanic, not a conclusion that a player can complete the encounter.",
+      "source_ids": ["wiki-barrows-strategies-current"]
+    },
+    "chest_and_rewards": {
+      "entry_and_eligibility": [
+        "The central chest is in the tunnel complex. Opening it can occur without killing its associated brother, but at least one enemy of any kind must be killed to be eligible for any loot.",
+        "Each killed brother adds that brother's equipment to the possible equipment pool; equipment belonging to un-killed brothers cannot be received."
+      ],
+      "rolls_and_equipment_rng": [
+        "The chest starts with one reward-table roll and each additional killed brother adds one, for a maximum of seven rolls after all six brothers.",
+        "The current chest source gives an equipment chance per roll of 1/(450 - 58N), where N is brothers killed: 1/392 with one brother through 1/102 with six. A successful equipment roll chooses from eligible pieces, and individual outcomes remain RNG."
+      ],
+      "reward_potential": [
+        "For non-equipment rolls, reward potential is the total combat levels of killed enemies, capped at 1,000, plus two per killed brother; maximum is 1,012.",
+        "The source's current common table includes coins, mind runes, chaos runes, death runes, blood runes, bolt racks, key halves, and dragon med helm at applicable potential thresholds. Exact rolls, quantities, and all equipment/clue outcomes remain RNG."
+      ],
+      "morytania_hard_diary": {
+        "claim": "Completed Morytania Hard Diary gives 50% more runes from each Barrows chest.",
+        "availability_boundary": "Completion/claim state and any actual chest rune outcome are separate observations.",
+        "source_ids": ["wiki-barrows-strategies-current", "wiki-barrows-chest-current", "wiki-morytania-diary-current"]
+      },
+      "inventory_boundary": "If inventory is full when the chest is looted, excess items are dropped to the ground. Inventory capacity and recovered items must be observed.",
+      "source_ids": ["wiki-barrows-chest-current"]
+    },
+    "death_and_recovery": {
+      "death_possible": true,
+      "claim": "Barrows is not asserted to be a safe-death activity by this package. Under the generic death system, items not kept, sent to Death's Office, or deleted are placed in a grave at the death location or outside an instance as applicable. The current grave source states that collection begins with a 15-minute respawn timer, which pauses while logged out, idle for more than ten seconds, or while the grave interface is open.",
+      "recovery_boundary": "The exact death location, item routing, item-protection result, grave reachability, Death's Office fee, and successful recovery are player-observed. Do not treat generic mechanics as a guarantee that a particular player can recover.",
+      "source_ids": ["wiki-grave-current", "wiki-deaths-office-current"]
+    }
+  },
+  "gear_styles_and_supplies": {
+    "factual_boundary": [
+      "The access sources do not make a specific weapon, armour setup, spell, Prayer level, food item, potion, teleport, or inventory quantity a universal Barrows entry requirement.",
+      "The strategy source documents Magic as broadly effective and documents Ahrim as a distinct style consideration; it does not prove a player owns, can supply, or can execute a particular setup.",
+      "Air-spell elemental weakness is a current encounter mechanic, not an instruction to use a particular spell or a claim that its runes are available.",
+      "Protection Prayers at 43 Prayer, higher Magic/Ranged levels, a restoration pool, Holy wrench, and specific weapons are recommendations in community/Wiki strategy material, not modeled factual prerequisites."
+    ],
+    "required_player_observations_before_attempt": [
+      "chosen travel-in and exit/recovery path, including the presently usable item, rune, charge, spellbook, interface, or walking state where relevant",
+      "current combat style(s), equipment, ammunition/runes/charges, and any item-loss concern; ownership and adequacy are never inferred",
+      "current HP, Prayer, food/restoration supplies if carried, inventory capacity, and a player-chosen stop threshold; no package threshold is supplied",
+      "whether the player understands the observed brother/tunnel state and can choose to leave; knowledge and execution are not inferred"
+    ],
+    "source_ids": ["wiki-barrows-current", "wiki-barrows-strategies-current"]
+  },
+  "ironman_utility_and_bypasses": {
+    "factual_outputs": [
+      "The chest's current common table can award mind, chaos, death, and blood runes, subject to reward potential and RNG; Morytania Hard modifies awarded rune quantities by 50%.",
+      "The chest can award Barrows equipment only from brothers killed in that run; individual pieces are RNG and remain subject to their own equip requirements outside this package.",
+      "The chest can also award coins and other RNG items described in the current table. An Ironman receives only what is actually looted; no market sale, purchase, conversion, or banking outcome is assumed."
+    ],
+    "bypass_boundary": [
+      "A potential rune or equipment drop is not a deterministic substitute for any production path, purchase path, crafting path, combat requirement, or future gear requirement.",
+      "Morytania Hard and Ghommal's hilt 2 are convenience/modifier facts, not prerequisites for a first chest or proof that repeated runs are timely.",
+      "No target set, piece, rune stockpile, completion target, or collection-log target is selected here."
+    ],
+    "community_strategy_evidence": [
+      {
+        "claim": "Some current Ironman guides value tank armour pieces for later PvM and Barrows runes for later casting needs, and may place Barrows before Perilous Moons or a zombie-axe grind.",
+        "evidence_kind": "community_strategy",
+        "source_ids": ["community-mootrius-ironman-guide-barrows"],
+        "boundary": "This is a guide author's sequence and valuation, not an account-independent optimal timing claim. It assumes neither a drop nor a later-content result."
+      },
+      {
+        "claim": "Community early-Ironman material often treats protection Prayer, travel/recovery loops, and resource sustainability as practical preparation.",
+        "evidence_kind": "community_strategy",
+        "source_ids": ["community-ironman-guide-2026", "community-reddit-ironscape-early-barrows-prayer", "community-youtube-hcim-barrows-safespot"],
+        "boundary": "No source here converts those preferences into a universal level, gear, supply, safety, or success threshold."
+      }
+    ]
+  },
+  "practical_readiness_observations": {
+    "minimum_access_observations": [
+      "Priest in Peril completion and started His Faithful Servants are explicitly confirmed.",
+      "A currently selected travel-in method reaches the mounds, and a currently selected return/exit or recovery plan is understood by the player. Arrival is not inferred from an unlock.",
+      "The player has entered or can enter a crypt and understands that the tunnel crypt/door spawns are run-specific observations."
+    ],
+    "attempt_observations": [
+      "current HP, Prayer, selected style/equipment, consumables if any, ammunition/rune/charge state if any, inventory capacity, and emergency/return plan",
+      "observed response to the first relevant brother attack style and to the underground Prayer-drain cadence; this records experience, not combat competence or future success",
+      "observed tunnel state, killed-enemy count, brother count, chest eligibility, and whether the player chooses to continue or exit",
+      "after a chest: only the observed chest opening, loot, inventory/drop-to-ground outcome, consumable change, death/recovery event, and travel result"
+    ],
+    "readiness_boundary": "Missing, stale, or unsuccessful observations are unknown or a stop signal for the player; they never become inferred gear, supplies, competence, kills, loot, RNG, or route timing."
+  },
+  "stop_and_reentry_candidates": {
+    "mechanical_stop_candidates": [
+      "A selected travel route, return route, emergency exit, or recovery plan is no longer currently usable.",
+      "The player observes unacceptable HP, Prayer, equipment, ammunition/runes/charges, consumable, inventory, connection, or death/recovery state according to their own threshold.",
+      "A spawned brother, tunnel state, attack style, or Prayer-drain pressure is not presently manageable for that player; leaving can despawn an unfinished crypt brother and resets that encounter on return.",
+      "Chest eligibility/loot capacity is not currently satisfactory, including a full inventory that would drop excess rewards."
+    ],
+    "reentry_candidates": [
+      "Reconfirm access gates, chosen travel and return/recovery route, and fresh current-state observations before a new attempt.",
+      "After a chest, a player can choose a new travel-in and attempt another independent run; no prior chest establishes supplies, safety, travel availability, kill count, or readiness for the next.",
+      "After a death, re-entry is contingent on the player-observed grave/Death's Office state and recovery result; generic grave mechanics do not establish successful recovery."
+    ],
+    "non_claim": "These are candidate observation boundaries for future account-state work, not route commands, mandatory stop conditions, or a claim that a player can re-enter safely."
+  },
+  "determinism_and_uncertainties": {
+    "deterministic_if_observed": [
+      "Priest in Peril and started His Faithful Servants gate the documented access steps.",
+      "Each killed brother adds one chest roll, up to seven total, and expands the eligible Barrows equipment pool to that brother's pieces.",
+      "Reward-potential calculation structure and Morytania Hard's 50% rune modifier are fixed mechanics when their inputs/diary state are actually observed.",
+      "Barrows Prayer drain follows the documented underground cadence and scales with killed brothers; Ghommal's hilt 2+ removes that drain if its claimed/equipped state is observed."
+    ],
+    "rng_or_run_variable": [
+      "which crypt is the tunnel entry, tunnel door availability and spawns, combat outcomes, player damage received, Prayer/supply use, and successful chest reach",
+      "chest equipment rolls, specific equipment pieces, common reward rolls and quantities, clue outcomes, inventory overflow result, and all derived rune/gear utility",
+      "travel time, player skill/execution, recovery success/cost, and all account-level timing or usefulness conclusions"
+    ],
+    "source_and_model_uncertainties": [
+      "No current official Jagex Barrows mechanics guide was located in this pass. Current runtime claims are based on the current OSRS Wiki and should be rechecked during the later canonical-source sweep.",
+      "Generic grave and Death's Office pages document recovery systems but do not expose a universal Barrows-specific item-routing guarantee; actual death state must remain observed.",
+      "Community guides differ on when, how long, and why to run Barrows. This package preserves those as fenced strategy evidence and deliberately makes no timing choice.",
+      "The account model does not yet have a reconciled Barrows observation contract; no schema or shared file is changed here."
+    ]
+  },
+  "coverage": {
+    "access_and_travel": true,
+    "prayer_and_encounters": true,
+    "chest_and_rewards": true,
+    "death_and_recovery": true,
+    "gear_style_supply_boundary": true,
+    "diary_effects": true,
+    "ironman_utility_and_bypasses": true,
+    "observations": true,
+    "stop_reentry": true,
+    "source_metadata_embedded": true,
+    "community_strategy_fenced": true
+  }
+}
