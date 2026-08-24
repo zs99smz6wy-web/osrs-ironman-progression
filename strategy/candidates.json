@@ -80,6 +80,12 @@
       "reentry_condition": "Re-enter after The Dig Site when a verified mix of Museum contributions can reach the remaining Kudos gap."
     },
     {
+      "action_id": "action:natural-history-quiz",
+      "dimensions": {"lifetime_utility": 3, "content_unlock": 2, "economic_infrastructure": 0, "multi_output": 4, "diversity": 2, "afk_fit": 0, "detour_cost": 0, "burnout_risk": 0, "danger_risk": 0},
+      "stop_condition": "Stop after the fixed 1,000 Hunter XP, fixed 1,000 Slayer XP, and 28 Kudos are secured; do not extend this action for collection-log completion.",
+      "reentry_condition": "Do not re-enter the completed quiz; revisit the Museum only for a separately named Kudos, quest-access, or other account objective."
+    },
+    {
       "action_id": "action:fairy-ring-permission",
       "dimensions": {"lifetime_utility": 4, "content_unlock": 4, "economic_infrastructure": 1, "multi_output": 3, "diversity": 3, "afk_fit": 0, "detour_cost": 2, "burnout_risk": 1, "danger_risk": 1},
       "stop_condition": "Stop once Fairy Godfather permission is recorded; actual ring use still requires a Dramen or Lunar staff unless the elite diary waives it.",

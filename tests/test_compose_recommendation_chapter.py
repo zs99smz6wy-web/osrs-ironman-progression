@@ -159,7 +159,7 @@ class ComposeRecommendationChapterTests(unittest.TestCase):
             coverage["strategically_annotated_total"], coverage["strategically_annotated_shown"]
         )
         unscored_ids = {gap["action_id"] for gap in chapter["gaps"]["eligible_unscored"]}
-        self.assertIn("action:natural-history-quiz", unscored_ids)
+        self.assertNotIn("action:natural-history-quiz", unscored_ids)
         self.assertEqual(
             {
                 "route_selected": False,
@@ -184,6 +184,25 @@ class ComposeRecommendationChapterTests(unittest.TestCase):
             },
             chapter["boundaries"],
         )
+
+    def test_post_tutorial_chapter_ranks_natural_history_quiz_transparently(self) -> None:
+        chapter = self.compose(load_json(FIXTURES / "new-ironman-post-tutorial.json"))
+        ranked = {
+            option["action_id"]: option
+            for lane in chapter["lanes"].values()
+            if isinstance(lane, dict)
+            for option in lane.get("ranked_options", [])
+        }
+
+        self.assertIn("action:natural-history-quiz", ranked)
+        quiz = ranked["action:natural-history-quiz"]
+        self.assertEqual("eligible", quiz["formal_eligibility"])
+        self.assertEqual(12, quiz["total_score"])
+        self.assertIn("1,000 Hunter XP", quiz["stop_condition"])
+        self.assertIn("1,000 Slayer XP", quiz["stop_condition"])
+        self.assertIn("collection-log completion", quiz["stop_condition"])
+        self.assertFalse(chapter["boundaries"]["action_selected"])
+        self.assertFalse(chapter["boundaries"]["action_completion_simulated"])
 
     def test_human_output_explains_quest_xp_preparation_and_unallocated_choice_rewards(self) -> None:
         state = load_json(FIXTURES / "fresh-account.json")

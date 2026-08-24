@@ -100,12 +100,27 @@ class ScoreCandidatesTests(unittest.TestCase):
                 "action:the-restless-ghost",
                 "action:pandemonium",
                 "action:royal-titans",
+                "action:natural-history-quiz",
             },
             ranked_ids,
         )
         self.assertNotIn("action:waterfall-quest", ranked_ids)  # needs_preparation
         self.assertNotIn("action:grand-tree", ranked_ids)  # blocked
         self.assertNotIn("action:fossil-island-access", ranked_ids)  # blocked
+
+    def test_natural_history_quiz_is_ranked_for_post_tutorial_fixture_with_bounded_reasoning(self) -> None:
+        ranked = self.score_fixture("new-ironman-post-tutorial.json")
+        quiz = self.candidate_by_id(ranked, "action:natural-history-quiz")
+
+        self.assertEqual(12, quiz["total_score"])
+        self.assertEqual(11, quiz["base_score"])
+        self.assertEqual(0, quiz["dimension_breakdown"]["economic_infrastructure"])
+        self.assertEqual(0, quiz["dimension_breakdown"]["afk_fit"])
+        self.assertIn("1,000 Hunter XP", quiz["stop_condition"])
+        self.assertIn("1,000 Slayer XP", quiz["stop_condition"])
+        self.assertIn("28 Kudos", quiz["stop_condition"])
+        self.assertIn("collection-log completion", quiz["stop_condition"])
+        self.assertIn("separately named", quiz["reentry_condition"])
 
     def test_infrastructure_and_sailing_tranche_scores_when_factually_eligible(self) -> None:
         state = load_json(FIXTURES / "fresh-account.json")
@@ -291,7 +306,7 @@ class ScoreCandidatesTests(unittest.TestCase):
             },
             unscored["action:tree-gnome-village"],
         )
-        self.assertIn("action:natural-history-quiz", unscored)
+        self.assertNotIn("action:natural-history-quiz", unscored)
         self.assertNotIn("action:pandemonium", unscored)
 
     def test_unknown_candidate_action_id_raises_value_error(self) -> None:
