@@ -42,6 +42,12 @@
 - Completed: integrated the quest-XP, Void/Elite Void, economic, and monster-drop analyses into the current recommendation chapter without generating a final route.
 - Pending: expand the factual dataset, account-specific readiness observations, and measured throughput before making broader timing or route claims.
 
+### 6. Execution-resolution pilot
+
+- Completed: compared current BRUHsailer and B0aty HCIM guide structure as community strategy evidence, preserving their useful episode, checkpoint, alternative, safety, and passive-trigger patterns without importing universal route assumptions.
+- Completed: added a research-only execution-segment contract and bounded Varrock Museum proof that separates sourced local instructions, normalized completion actions, and unresolved Rune Mysteries partial state.
+- Pending: normalize only the strategically useful quest starts and partial checkpoints exposed by pilot segments, beginning with the early macroquesting cluster; do not attempt exhaustive quest-step normalization before the pilot demonstrates a decision need.
+
 ## Continuing validation queue
 
 - Completed: normalized the residual transport network without producing a route: core charged jewellery; dragonstone enchant, charge, recharge, scroll, and charge-depletion lifecycles; Slayer ring; Ring of the elements; teleport crystal; Chronicle; Standard, Ancient, Lunar, and Arceuus casting/tablet families; Home Teleport readiness; and major unlimited diary and Combat Achievement teleports. Treasure Trail and elf sources remain `makes_obtainable` only.

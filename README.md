@@ -28,7 +28,7 @@ This repository does **not** begin by prescribing a single linear route. It firs
 
 ## Current status
 
-The research foundation and first executable pilot are in place. The current recommendation chapter can evaluate a verified set of quests, transport unlocks, passive loops, and activities against an account snapshot, while also reporting quest-XP blocker sequencing, Void/Elite Void timing, bounded economic-method comparisons, and monster-drop bypass timing. An explicit decision-episode runner can replay up to 25 player-confirmed completions from a starting snapshot and regenerate the chapter before every step. These reports preserve factual and strategic boundaries and do not select a final route. This remains a starting dataset, not an exhaustive fact database.
+The research foundation and first executable pilot are in place. The current recommendation chapter can evaluate a verified set of quests, transport unlocks, passive loops, and activities against an account snapshot, while also reporting quest-XP blocker sequencing, Void/Elite Void timing, bounded economic-method comparisons, and monster-drop bypass timing. An explicit decision-episode runner can replay up to 25 player-confirmed completions from a starting snapshot and regenerate the chapter before every step. Research-only execution segments now model sourced geographic, bank, inventory, safety, passive-trigger, and partial-quest checkpoints below coarse normalized actions without selecting or applying a route. These reports preserve factual and strategic boundaries and do not select a final route. This remains a starting dataset, not an exhaustive fact database.
 
 `tests/fixtures/new-ironman-post-tutorial.json` is the pilot's source-backed post-Tutorial Island Standard Ironman fixture. It is distinct from `tests/fixtures/fresh-account.json`, which remains the zero-state boundary. To inspect a bounded first chapter without selecting a route:
 
@@ -44,6 +44,7 @@ Run:
 python scripts/validate_data.py
 python scripts/validate_minigame_packages.py
 python scripts/validate_afk_method_packages.py
+python scripts/validate_execution_segments.py
 python scripts/evaluate_progression.py graph/account-state.example.json
 python scripts/score_candidates.py graph/account-state.example.json
 python scripts/apply_action.py graph/account-state.example.json action:the-restless-ghost
