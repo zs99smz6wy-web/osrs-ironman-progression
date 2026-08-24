@@ -1,0 +1,22 @@
+{
+  "template": true,
+  "inventory_policy": "This template is explicitly excluded from integration-manifest.json package inventory and is never validated as a completed research package.",
+  "package_schema_version": 1,
+  "package_type": "afk-low-attention-research",
+  "package_id": "research-afk-example",
+  "method": "Replace with one bounded method",
+  "status": "research-proposal",
+  "checked_at": "YYYY-MM-DD",
+  "facts_strategy_boundary": {"included": ["Sourced mechanics only."], "excluded": ["Strategy scoring, route order, account readiness inference, recommended 99 targets, and guaranteed RNG or hourly rates."]},
+  "source_catalog": [],
+  "access": {"requirements": {}, "tools": [], "locations": [], "transport_options": []},
+  "preparation": {"inventory_inputs": [], "bank_inputs": [], "reusable_items": [], "consumed_inputs": [], "capacity_constraints": []},
+  "attention_profile": {"class": "unknown", "interaction_cadence": [], "player_presence_required": true, "unattended_safety_claim": "never_infer"},
+  "session_mechanics": {"entry_condition": "", "duration_evidence": {}, "session_end_events": [], "repeatable": true, "offline_progression": false},
+  "outputs": {"deterministic": [], "variable": [], "player_observed": []},
+  "safety_and_logout": {"damage_sources": [], "death_possible": "unknown", "logout_behavior": [], "safe_boundary": ""},
+  "stop_reentry_mechanics": {"mechanical_stop_conditions": [], "mechanical_reentry_conditions": [], "reset_or_cleanup_requirements": []},
+  "proposed_normalization": {"facts": [], "actions": [], "nodes": [], "edges": [], "observations": []},
+  "conflicts_and_unknowns": [],
+  "coverage": {"access": true, "preparation": true, "attention": true, "session": true, "outputs": true, "safety": true, "stop_reentry": true, "sources": true, "normalization": true}
+}

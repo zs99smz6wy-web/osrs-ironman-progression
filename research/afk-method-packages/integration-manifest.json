@@ -1,0 +1,20 @@
+{
+  "manifest_schema_version": 1,
+  "package_type": "afk-low-attention-integration-manifest",
+  "status": "foundation-established",
+  "checked_at": "2026-08-24",
+  "scope": "Inventory for bounded factual AFK and low-attention research packages. Pending entries are planned research only and have no on-disk package or production integration.",
+  "template_path": "research/afk-method-packages/template.json",
+  "template_inventory_policy": "excluded",
+  "packages": [
+    {"path": "research/afk-method-packages/shooting-stars.json", "package_id": "research-afk-shooting-stars", "method": "Shooting stars", "phase": "pending"},
+    {"path": "research/afk-method-packages/basic-fishing.json", "package_id": "research-afk-basic-fishing", "method": "Basic fishing", "phase": "pending"},
+    {"path": "research/afk-method-packages/woodcutting.json", "package_id": "research-afk-woodcutting", "method": "Woodcutting", "phase": "pending"},
+    {"path": "research/afk-method-packages/motherlode-mine.json", "package_id": "research-afk-motherlode-mine", "method": "Motherlode Mine", "phase": "pending"},
+    {"path": "research/afk-method-packages/safe-combat-training.json", "package_id": "research-afk-safe-combat-training", "method": "Safe combat training", "phase": "pending"}
+  ],
+  "phase_contract": {
+    "pending": "Planned only. The path must not exist and is not package-validated.",
+    "completed": "The path must exist, validate against the AFK package schema, and remain factual research only."
+  }
+}

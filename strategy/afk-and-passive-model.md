@@ -11,6 +11,8 @@ The route model has two lanes: an active objective and a parallel passive or low
 
 No recommendation should assume unattended overnight play or accept avoidable death risk as AFK.
 
+Factual AFK or low-attention method research belongs in `research/afk-method-packages/` and uses `research/package-schemas/afk-method-package.schema.json`. That contract records mechanics, evidence cadence, safety, outputs, and proposed normalization only; timing, utility, and account-specific recommendations remain strategy-layer work.
+
 ## Recurring systems
 
 Model farming, birdhouses, giant seaweed, Managing Miscellania, Tears of Guthix, and contracts as one of:

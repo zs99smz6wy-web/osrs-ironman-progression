@@ -1,0 +1,180 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/zs99smz6wy-web/osrs-ironman-progression/research/package-schemas/afk-method-package.schema.json",
+  "title": "OSRS Ironman AFK and low-attention method research package",
+  "description": "Research-only contract for one bounded AFK or low-attention method. Packages describe sourced mechanics and proposed normalization; they do not select a route or make account-specific recommendations.",
+  "type": "object",
+  "required": [
+    "package_schema_version",
+    "package_type",
+    "package_id",
+    "method",
+    "status",
+    "checked_at",
+    "facts_strategy_boundary",
+    "source_catalog",
+    "access",
+    "preparation",
+    "attention_profile",
+    "session_mechanics",
+    "outputs",
+    "safety_and_logout",
+    "stop_reentry_mechanics",
+    "proposed_normalization",
+    "conflicts_and_unknowns",
+    "coverage"
+  ],
+  "properties": {
+    "package_schema_version": {"const": 1},
+    "package_type": {"const": "afk-low-attention-research"},
+    "package_id": {"type": "string", "pattern": "^research-afk-[a-z0-9-]+$"},
+    "method": {"type": "string", "minLength": 1},
+    "status": {"const": "research-proposal"},
+    "checked_at": {"type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$"},
+    "facts_strategy_boundary": {
+      "type": "object",
+      "required": ["included", "excluded"],
+      "properties": {
+        "included": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+        "excluded": {"type": "array", "minItems": 1, "items": {"type": "string"}}
+      },
+      "additionalProperties": false
+    },
+    "source_catalog": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "publisher", "kind", "url", "checked_at", "use"],
+        "properties": {
+          "id": {"type": "string", "minLength": 1},
+          "publisher": {"type": "string", "minLength": 1},
+          "kind": {"enum": ["official", "wiki", "github", "guide", "reddit", "youtube", "other"]},
+          "url": {"type": "string", "format": "uri"},
+          "checked_at": {"type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$"},
+          "use": {"type": "string", "minLength": 1}
+        },
+        "additionalProperties": true
+      }
+    },
+    "access": {
+      "type": "object",
+      "required": ["requirements", "tools", "locations", "transport_options"],
+      "properties": {
+        "requirements": {"type": "object"},
+        "tools": {"type": "array", "items": {"type": "object"}},
+        "locations": {"type": "array", "minItems": 1, "items": {"type": "object"}},
+        "transport_options": {"type": "array", "items": {"type": "object"}}
+      },
+      "additionalProperties": true
+    },
+    "preparation": {
+      "type": "object",
+      "required": ["inventory_inputs", "bank_inputs", "reusable_items", "consumed_inputs", "capacity_constraints"],
+      "properties": {
+        "inventory_inputs": {"type": "array", "items": {"type": "object"}},
+        "bank_inputs": {"type": "array", "items": {"type": "object"}},
+        "reusable_items": {"type": "array", "items": {"type": "object"}},
+        "consumed_inputs": {"type": "array", "items": {"type": "object"}},
+        "capacity_constraints": {"type": "array", "items": {"type": "object"}}
+      },
+      "additionalProperties": true
+    },
+    "attention_profile": {
+      "type": "object",
+      "required": ["class", "interaction_cadence", "player_presence_required", "unattended_safety_claim"],
+      "properties": {
+        "class": {"enum": ["true_afk", "low_attention", "semi_afk", "active", "mixed", "unknown"]},
+        "interaction_cadence": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["claim", "evidence_type", "source_ids"],
+            "properties": {
+              "claim": {"type": "string", "minLength": 1},
+              "evidence_type": {"enum": ["source", "player_observation"]},
+              "source_ids": {"type": "array", "items": {"type": "string"}},
+              "interval_seconds": {"type": "object"}
+            },
+            "additionalProperties": true
+          }
+        },
+        "player_presence_required": {"const": true},
+        "unattended_safety_claim": {"const": "never_infer"}
+      },
+      "additionalProperties": true
+    },
+    "session_mechanics": {
+      "type": "object",
+      "required": ["entry_condition", "duration_evidence", "session_end_events", "repeatable", "offline_progression"],
+      "properties": {
+        "entry_condition": {"type": "string", "minLength": 1},
+        "duration_evidence": {"type": "object"},
+        "session_end_events": {"type": "array", "items": {"type": "string"}},
+        "repeatable": {"type": "boolean"},
+        "offline_progression": {"type": "boolean"}
+      },
+      "additionalProperties": true
+    },
+    "outputs": {
+      "type": "object",
+      "required": ["deterministic", "variable", "player_observed"],
+      "properties": {
+        "deterministic": {"type": "array", "items": {"$ref": "#/$defs/output"}},
+        "variable": {"type": "array", "items": {"$ref": "#/$defs/output"}},
+        "player_observed": {"type": "array", "items": {"$ref": "#/$defs/output"}}
+      },
+      "additionalProperties": false
+    },
+    "safety_and_logout": {
+      "type": "object",
+      "required": ["damage_sources", "death_possible", "logout_behavior", "safe_boundary"],
+      "properties": {
+        "damage_sources": {"type": "array", "items": {"type": "string"}},
+        "death_possible": {"enum": ["yes", "no", "unknown"]},
+        "logout_behavior": {"type": "array", "items": {"type": "string"}},
+        "safe_boundary": {"type": "string", "minLength": 1}
+      },
+      "additionalProperties": true
+    },
+    "stop_reentry_mechanics": {
+      "type": "object",
+      "required": ["mechanical_stop_conditions", "mechanical_reentry_conditions", "reset_or_cleanup_requirements"],
+      "properties": {
+        "mechanical_stop_conditions": {"type": "array", "items": {"type": "string"}},
+        "mechanical_reentry_conditions": {"type": "array", "items": {"type": "string"}},
+        "reset_or_cleanup_requirements": {"type": "array", "items": {"type": "string"}}
+      },
+      "additionalProperties": true
+    },
+    "proposed_normalization": {
+      "type": "object",
+      "required": ["facts", "actions", "nodes", "edges", "observations"],
+      "properties": {
+        "facts": {"type": "array", "items": {"$ref": "#/$defs/idRecord"}},
+        "actions": {"type": "array", "items": {"$ref": "#/$defs/idRecord"}},
+        "nodes": {"type": "array", "items": {"$ref": "#/$defs/idRecord"}},
+        "edges": {"type": "array", "items": {"$ref": "#/$defs/idRecord"}},
+        "observations": {"type": "array", "items": {"$ref": "#/$defs/idRecord"}}
+      },
+      "additionalProperties": false
+    },
+    "conflicts_and_unknowns": {"type": "array", "items": {"type": "object"}},
+    "coverage": {
+      "type": "object",
+      "required": ["access", "preparation", "attention", "session", "outputs", "safety", "stop_reentry", "sources", "normalization"],
+      "properties": {
+        "access": {"const": true}, "preparation": {"const": true}, "attention": {"const": true},
+        "session": {"const": true}, "outputs": {"const": true}, "safety": {"const": true},
+        "stop_reentry": {"const": true}, "sources": {"const": true}, "normalization": {"const": true}
+      },
+      "additionalProperties": false
+    }
+  },
+  "$defs": {
+    "output": {"type": "object", "required": ["id", "description", "source_ids"], "properties": {"id": {"type": "string", "minLength": 1}, "description": {"type": "string", "minLength": 1}, "source_ids": {"type": "array", "items": {"type": "string"}}}, "additionalProperties": true},
+    "idRecord": {"type": "object", "required": ["id"], "properties": {"id": {"type": "string", "minLength": 1}}, "additionalProperties": true}
+  },
+  "additionalProperties": true
+}
