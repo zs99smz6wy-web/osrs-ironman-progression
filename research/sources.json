@@ -2987,6 +2987,24 @@
       "research_treatment": "community-strategy-candidate-not-fact"
     },
     {
+      "id": "runelite-hcim-guide-plugin-hub-current",
+      "publisher": "RuneLite Plugin Hub",
+      "kind": "official_plugin_listing",
+      "url": "https://runelite.net/plugin-hub/show/hcim-guide-plugin",
+      "checked_at": "2026-08-24",
+      "use": "Current third-party Plugin Hub listing used for the future publication and attribution boundary; not a mechanics or strategy source.",
+      "research_treatment": "architectural-and-publishing-reference-only"
+    },
+    {
+      "id": "github-nandobrazil-hcim-guide-plugin-current",
+      "publisher": "nandobrazil / ocondedev",
+      "kind": "github",
+      "url": "https://github.com/nandobrazil/hcim-guide-plugin",
+      "checked_at": "2026-08-24",
+      "use": "Implementation evidence for generated guide JSON, sidebar and timeline presentation, persistence, manual completion, conservative auto-progress, local development, publishing, and separate code/data attribution.",
+      "research_treatment": "architectural-reference-only-no-code-or-content-copying"
+    },
+    {
       "id": "community-reddit-ironman-early-gotr",
       "publisher": "r/ironscape",
       "kind": "reddit",
