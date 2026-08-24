@@ -3583,6 +3583,44 @@
       }
     },
     {
+      "id": "action:shooting-stars",
+      "name": "Mine an observed Shooting Star",
+      "kind": "activity",
+      "status": "verified",
+      "fact_ids": ["shooting-stars-observed-session"],
+      "requirements": {"all": [{"type": "skill_at_least", "key": "Mining", "value": 10}, {"type": "afk_method_available", "key": "shooting-stars"}, {"type": "afk_method_safety_acceptable", "key": "shooting-stars"}]},
+      "preparation": {"all": [{"type": "item_at_least", "key": "pickaxe", "value": 1}]},
+      "completion": {"all": []},
+      "outcomes": [],
+      "repeatable": true,
+      "transition": {
+        "effects": [],
+        "options": [],
+        "reported_effects": [
+          {"type": "variable_activity_output", "description": "Mine only the player-observed selected star while present. Its availability, selected variant and location, tier compatibility, world, travel, layer timing, stardust, XP, gems, and all shop outcomes remain observations; no output or state effect is applied. Stop when the observation changes, safety is no longer acceptable, the session ends, or the player stops. Re-enter only from a fresh available and acceptable observation with Mining 10 and a supplied pickaxe.", "fact_id": "shooting-stars-observed-session"}
+        ]
+      }
+    },
+    {
+      "id": "action:safe-combat-training",
+      "name": "Train combat at an observed crab method",
+      "kind": "activity",
+      "status": "verified",
+      "fact_ids": ["safe-combat-training-observed-session"],
+      "requirements": {"all": [{"type": "afk_method_available", "key": "safe-combat-training"}, {"type": "afk_method_safety_acceptable", "key": "safe-combat-training"}, {"type": "combat_readiness_observed", "key": "combat_readiness_observation"}]},
+      "preparation": {"all": []},
+      "completion": {"all": []},
+      "outcomes": [],
+      "repeatable": true,
+      "transition": {
+        "effects": [],
+        "options": [],
+        "reported_effects": [
+          {"type": "variable_activity_output", "description": "Train only at the player-observed selected Sand Crab or Ammonite Crab method and location while present. Availability and safety observations do not infer access, aggression, survival, supplies, XP, kills, drops, death, or recovery; no output or state effect is applied. Stop when the observation changes, safety becomes unacceptable, readiness changes, the session ends, or the player stops. Re-enter only after fresh available and acceptable method and safety observations plus a non-null combat readiness observation.", "fact_id": "safe-combat-training-observed-session"}
+        ]
+      }
+    },
+    {
       "id": "action:unlock-hallowed-sepulchre-private-instance",
       "name": "Unlock a private Hallowed Sepulchre instance",
       "kind": "unlock",

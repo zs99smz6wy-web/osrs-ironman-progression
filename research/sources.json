@@ -3677,6 +3677,62 @@
       "checked_at": "2026-08-22",
       "use": "Recent community confirmation that the historical low-Hitpoints premise is obsolete after Warmth; not a primary mechanics source.",
       "research_treatment": "community-strategy-candidate-not-fact"
+    },
+    {
+      "id": "wiki-shooting-stars-current",
+      "publisher": "Old School RuneScape Wiki",
+      "url": "https://oldschool.runescape.wiki/w/Shooting_Stars",
+      "kind": "wiki",
+      "checked_at": "2026-08-24",
+      "use": "Current Shooting Stars availability, tier, output, depletion, and safety boundaries for observation-gated integration."
+    },
+    {
+      "id": "wiki-mining-current",
+      "publisher": "Old School RuneScape Wiki",
+      "url": "https://oldschool.runescape.wiki/w/Mining",
+      "kind": "wiki",
+      "checked_at": "2026-08-24",
+      "use": "Current Mining tool boundary for a supplied usable pickaxe."
+    },
+    {
+      "id": "wiki-sand-crab-current",
+      "publisher": "Old School RuneScape Wiki",
+      "url": "https://oldschool.runescape.wiki/w/Sand_Crab",
+      "kind": "wiki",
+      "checked_at": "2026-08-24",
+      "use": "Current Sand Crab mechanics and location boundary; no account-specific safety inference."
+    },
+    {
+      "id": "wiki-ammonite-crab-current",
+      "publisher": "Old School RuneScape Wiki",
+      "url": "https://oldschool.runescape.wiki/w/Ammonite_Crab",
+      "kind": "wiki",
+      "checked_at": "2026-08-24",
+      "use": "Current Ammonite Crab mechanics and Fossil Island option boundary; no account-specific safety inference."
+    },
+    {
+      "id": "wiki-tolerance-current",
+      "publisher": "Old School RuneScape Wiki",
+      "url": "https://oldschool.runescape.wiki/w/Tolerance",
+      "kind": "wiki",
+      "checked_at": "2026-08-24",
+      "use": "Current crab tolerance and re-entry boundary, retained as mechanics rather than an outcome guarantee."
+    },
+    {
+      "id": "wiki-idle-current",
+      "publisher": "Old School RuneScape Wiki",
+      "url": "https://oldschool.runescape.wiki/w/Idle",
+      "kind": "wiki",
+      "checked_at": "2026-08-24",
+      "use": "Current idle and auto-retaliate boundary, retained without an unattended-safety claim."
+    },
+    {
+      "id": "wiki-fossil-island-current",
+      "publisher": "Old School RuneScape Wiki",
+      "url": "https://oldschool.runescape.wiki/w/Fossil_Island",
+      "kind": "wiki",
+      "checked_at": "2026-08-24",
+      "use": "Current Fossil Island access context, intentionally not encoded as a coupled action alternative."
     }
   ],
   "source_aliases": [

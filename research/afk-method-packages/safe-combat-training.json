@@ -279,68 +279,35 @@
   "proposed_normalization": {
     "facts": [
       {
-        "id": "fact:safe-combat-training-crab-tolerance",
-        "treatment": "proposed-new",
-        "claim": "The two named crab methods use a ten-minute tolerance/aggression reset boundary; it is not a safety or output timer.",
+        "id": "safe-combat-training-observed-session",
+        "treatment": "integrated",
+        "claim": "One bounded production action requires available and acceptable selected-method observations plus a non-null combat readiness observation; it does not convert tolerance, access, or combat mechanics into survival or output claims.",
         "source_ids": ["wiki-tolerance-current", "wiki-sand-crab-current", "wiki-ammonite-crab-current"]
-      },
-      {
-        "id": "fact:safe-combat-training-combat-idle",
-        "treatment": "proposed-new",
-        "claim": "Combat auto-retaliation can stop after more than twenty minutes without qualifying client interaction.",
-        "source_ids": ["wiki-idle-current"]
-      },
-      {
-        "id": "fact:safe-combat-training-fossil-island-gate",
-        "treatment": "proposed-new",
-        "claim": "The Ammonite Crab Mushroom Forest option requires Fossil Island access, and Fossil Island requires completed Bone Voyage.",
-        "source_ids": ["wiki-ammonite-crab-current", "wiki-fossil-island-current"]
       }
     ],
     "actions": [
       {
         "id": "action:safe-combat-training",
-        "treatment": "proposed-new",
-        "requirements": "Explicit selected method/location from sand-crab-hosidius-south-coast or ammonite-crab-mushroom-forest; player-observed membership/access and arrival; current observed aggression/targeting, gear, food, Prayer if any, current and maximum HP, emergency teleport or exit capability, and death/recovery state; and player-confirmed combat start.",
-        "transition": "Create a bounded observation-only session for the selected location. Store only player-reported XP, drops, consumption, HP/Prayer changes, aggression reset, exit/logout/disconnect, death, and recovery outcomes. Never simulate combat, assume survival, assert unattended safety, select a route, generate XP/drops, or create a recovery result."
-      },
-      {
-        "id": "action:record-safe-combat-training-observation",
-        "treatment": "proposed-new",
-        "requirements": "Player-reported selected method/location and any current readiness, session, stop, re-entry, XP, drop, death, or recovery observation.",
-        "transition": "Record supplied observations only; validate the selected location against this package and surface the sourced tolerance/idle boundaries where relevant. Do not fill omitted observations, calculate rates, or infer readiness."
+        "treatment": "integrated",
+        "requirements": "Available and acceptable selected Sand Crab or Ammonite Crab method/location observation plus a non-null combat readiness observation. Predicate semantics do not independently prove location access, so the action makes no access, arrival, aggression, survival, food, Prayer, death, or recovery claim.",
+        "transition": "Report-only variable output. Never simulate combat, assume survival, assert unattended safety, select a route, generate XP/drops, or create a recovery result."
       }
     ],
     "nodes": [
       {
-        "id": "node:safe-combat-training-sand-crab-hosidius",
-        "treatment": "proposed-new",
-        "location_id": "sand-crab-hosidius-south-coast",
-        "source_ids": ["wiki-sand-crab-current"]
-      },
-      {
-        "id": "node:safe-combat-training-ammonite-crab-mushroom-forest",
-        "treatment": "proposed-new",
-        "location_id": "ammonite-crab-mushroom-forest",
-        "source_ids": ["wiki-ammonite-crab-current", "wiki-fossil-island-current"]
+        "id": "activity:safe-combat-training",
+        "treatment": "integrated",
+        "source_ids": ["wiki-sand-crab-current", "wiki-ammonite-crab-current"]
       }
     ],
     "edges": [
       {
-        "id": "edge:action-safe-combat-training-requires-readiness-observation",
-        "treatment": "proposed-new",
-        "from": "action:safe-combat-training",
-        "to": "observation:safe-combat-training-readiness",
-        "meaning": "An explicit location and fresh reported readiness state are required before recording a start; this edge makes no safety inference.",
+        "id": "condition:combat-readiness-observed->activity:safe-combat-training:requires",
+        "treatment": "integrated",
+        "from": "condition:combat-readiness-observed",
+        "to": "activity:safe-combat-training",
+        "meaning": "A non-null combat readiness observation is required before the bounded report-only activity becomes eligible; it makes no safety inference.",
         "source_ids": []
-      },
-      {
-        "id": "edge:safe-combat-training-tolerance-reentry",
-        "treatment": "proposed-new",
-        "from": "fact:safe-combat-training-crab-tolerance",
-        "to": "action:record-safe-combat-training-observation",
-        "meaning": "A reported leave/re-entry and restored aggression are observations, not automatically completed movement or resumed combat.",
-        "source_ids": ["wiki-tolerance-current"]
       }
     ],
     "observations": [

@@ -632,6 +632,15 @@
     {"id": "condition:woodcutting-60", "kind": "condition", "label": "At least 60 Woodcutting"},
     {"id": "condition:woodcutting-90", "kind": "condition", "label": "At least 90 Woodcutting"},
     {"id": "milestone:woodcutting-guild-access", "kind": "milestone", "label": "Woodcutting Guild access confirmed"},
-    {"id": "item:axe", "kind": "item", "label": "Usable axe"}
+    {"id": "item:axe", "kind": "item", "label": "Usable axe"},
+    {"id": "activity:shooting-stars", "kind": "activity", "label": "Mine an observed Shooting Star"},
+    {"id": "activity:safe-combat-training", "kind": "activity", "label": "Train combat at an observed crab method"},
+    {"id": "condition:mining-10", "kind": "condition", "label": "At least 10 Mining"},
+    {"id": "condition:shooting-stars-observed-available", "kind": "condition", "label": "Shooting Star availability observed"},
+    {"id": "condition:shooting-stars-observed-safe", "kind": "condition", "label": "Shooting Star safety observed acceptable"},
+    {"id": "condition:safe-combat-training-observed-available", "kind": "condition", "label": "Crab method availability observed"},
+    {"id": "condition:safe-combat-training-observed-safe", "kind": "condition", "label": "Crab method safety observed acceptable"},
+    {"id": "condition:combat-readiness-observed", "kind": "condition", "label": "Combat readiness observation recorded"},
+    {"id": "item:pickaxe", "kind": "item", "label": "Usable pickaxe"}
   ]
 }

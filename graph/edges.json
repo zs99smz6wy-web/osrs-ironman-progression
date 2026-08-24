@@ -724,6 +724,13 @@
     {"from": "item:axe", "to": "activity:yew-woodcutting", "type": "requires", "evidence": "Yew cutting requires a usable axe; it may be carried when not wieldable."},
     {"from": "condition:woodcutting-90", "to": "activity:redwood-woodcutting-guild", "type": "requires", "evidence": "Woodcutting Guild redwoods require visible Woodcutting level 90."},
     {"from": "milestone:woodcutting-guild-access", "to": "activity:redwood-woodcutting-guild", "type": "requires", "evidence": "The player must have observed access to the Woodcutting Guild; membership and entry state are not inferred."},
-    {"from": "item:axe", "to": "activity:redwood-woodcutting-guild", "type": "requires", "evidence": "Woodcutting Guild redwoods require a usable axe; it may be carried when not wieldable."}
+    {"from": "item:axe", "to": "activity:redwood-woodcutting-guild", "type": "requires", "evidence": "Woodcutting Guild redwoods require a usable axe; it may be carried when not wieldable."},
+    {"from": "condition:mining-10", "to": "activity:shooting-stars", "type": "requires", "evidence": "Mining a Shooting Star requires at least 10 Mining; the selected current star's tier compatibility is player-observed rather than inferred."},
+    {"from": "item:pickaxe", "to": "activity:shooting-stars", "type": "requires", "evidence": "An observed Shooting Star session requires a supplied usable pickaxe."},
+    {"from": "condition:shooting-stars-observed-available", "to": "activity:shooting-stars", "type": "requires", "evidence": "A current available selected star is an explicit AFK-method observation; no star, world, route, or arrival is inferred."},
+    {"from": "condition:shooting-stars-observed-safe", "to": "activity:shooting-stars", "type": "requires", "evidence": "The selected star requires an explicit acceptable-safety observation; this is not an unattended-safety claim."},
+    {"from": "condition:safe-combat-training-observed-available", "to": "activity:safe-combat-training", "type": "requires", "evidence": "A selected Sand Crab or Ammonite Crab method and location must be explicitly observed available; access is not inferred."},
+    {"from": "condition:safe-combat-training-observed-safe", "to": "activity:safe-combat-training", "type": "requires", "evidence": "The selected crab method requires an explicit acceptable-safety observation; survival is not inferred."},
+    {"from": "condition:combat-readiness-observed", "to": "activity:safe-combat-training", "type": "requires", "evidence": "A non-null combat readiness observation is required before a bounded crab-training session is eligible; its fields are not converted into a survival claim."}
   ]
 }

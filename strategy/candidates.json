@@ -312,6 +312,18 @@
       "dimensions": {"lifetime_utility": 3, "content_unlock": 1, "economic_infrastructure": 4, "multi_output": 4, "diversity": 3, "afk_fit": 3, "detour_cost": 2, "burnout_risk": 2, "danger_risk": 0},
       "stop_condition": "Stop at the selected utility target, such as coal bag, gem bag, or a named Prospector milestone; do not recommend 99 Mining for efficiency alone.",
       "reentry_condition": "Re-enter when a current storage, Smithing, Mining, or AFK objective justifies the attention cost and the next selected utility has a defined stop point."
+    },
+    {
+      "action_id": "action:shooting-stars",
+      "dimensions": {"lifetime_utility": 2, "content_unlock": 0, "economic_infrastructure": 1, "multi_output": 2, "diversity": 2, "afk_fit": 3, "detour_cost": 1, "burnout_risk": 0, "danger_risk": 1},
+      "stop_condition": "Stop when the current player-chosen Mining or low-attention window ends, or when the observed star is no longer available or acceptable; do not turn an observed star into a stardust, gem, or 99 target.",
+      "reentry_condition": "Re-enter only while player-present when Mining 10, a usable pickaxe, and a fresh available and acceptable selected-star observation are all recorded."
+    },
+    {
+      "action_id": "action:safe-combat-training",
+      "dimensions": {"lifetime_utility": 1, "content_unlock": 0, "economic_infrastructure": 1, "multi_output": 1, "diversity": 2, "afk_fit": 2, "detour_cost": 0, "burnout_risk": 1, "danger_risk": 2},
+      "stop_condition": "Stop when the current combat or low-attention window ends, or when the selected method, safety, or readiness observation changes; no kill, drop, XP, or 99 target is assumed.",
+      "reentry_condition": "Re-enter only while player-present with fresh available and acceptable selected-method observations and a current combat readiness observation; location access and survival remain player-confirmed rather than inferred."
     }
   ]
 }

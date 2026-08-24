@@ -294,36 +294,18 @@
   "proposed_normalization": {
     "facts": [
       {
-        "id": "fact:shooting-stars-access",
-        "status": "proposed",
-        "purpose": "Normalize pickaxe use, tier-specific Mining gates, free-to-play experience boundary, and no inferred current-star availability.",
+        "id": "shooting-stars-observed-session",
+        "status": "integrated",
+        "purpose": "Production action keeps Mining 10, a supplied pickaxe, and current availability and safety observations without inferring a star, tier compatibility, world, route, duration, or output.",
         "source_ids": ["wiki-shooting-stars-current", "wiki-mining-current"]
-      },
-      {
-        "id": "fact:shooting-stars-discovery-and-depletion",
-        "status": "proposed",
-        "purpose": "Normalize world/site uncertainty, telescope as approximate discovery aid, fixed conditional layer timer, and sourced despawn/reset events without a player-duration guarantee.",
-        "source_ids": ["wiki-shooting-stars-current", "official-poll-80-shooting-stars-2023"]
-      },
-      {
-        "id": "fact:shooting-stars-output-boundaries",
-        "status": "proposed",
-        "purpose": "Normalize fixed Mining XP per successful stardust separately from variable stardust, gems, pet chance, and player-recorded totals.",
-        "source_ids": ["wiki-shooting-stars-current"]
-      },
-      {
-        "id": "fact:shooting-stars-stardust-shop-dependency",
-        "status": "proposed",
-        "purpose": "Normalize only that members may spend observed stardust with Dusuri near the Falador Mining Guild on listed fixed-price shop items; do not select a purchase or utility target.",
-        "source_ids": ["wiki-dusuri-star-shop-current"]
       }
     ],
     "actions": [
       {
         "id": "action:shooting-stars",
-        "treatment": "proposed-new",
-        "requirements": "Player-reported usable pickaxe and Mining level plus a newly observed mineable star world, site, tier, and local safety state.",
-        "transition": "Record only supplied start/end observation fields and reported outputs. Do not create a star, choose a world or route, grant stardust/XP/gems/pet, assume a first-finder bonus, or resume activity across logout/world hop."
+        "treatment": "integrated",
+        "requirements": "Mining 10, a supplied usable pickaxe, and explicit available and acceptable safety predicates for the player-selected star observation.",
+        "transition": "Report-only variable output. Do not create a star, choose a world or route, grant stardust/XP/gems/pet, assume a first-finder bonus, or resume activity across logout/world hop."
       }
     ],
     "nodes": [
@@ -332,33 +314,20 @@
         "source_ids": ["wiki-shooting-stars-current"]
       },
       {
-        "id": "state:shooting-stars-observed-star",
-        "source_ids": ["wiki-shooting-stars-current"]
-      },
-      {
-        "id": "resource:stardust",
-        "source_ids": ["wiki-shooting-stars-current", "wiki-dusuri-star-shop-current"]
-      },
-      {
-        "id": "npc:dusuri-star-shop",
-        "source_ids": ["wiki-dusuri-star-shop-current"]
+        "id": "condition:shooting-stars-observed-available",
+        "source_ids": []
       }
     ],
     "edges": [
       {
-        "id": "edge:shooting-stars-observed-star-requires-tier-and-pickaxe",
-        "relationship": "requires_observation_and_fixed_gate",
+        "id": "condition:mining-10->activity:shooting-stars:requires",
+        "relationship": "requires_fixed_gate",
         "source_ids": ["wiki-shooting-stars-current", "wiki-mining-current"]
       },
       {
-        "id": "edge:shooting-stars-produces-observed-stardust",
-        "relationship": "produces_variable_output",
-        "source_ids": ["wiki-shooting-stars-current"]
-      },
-      {
-        "id": "edge:stardust-is-dusuri-shop-currency",
-        "relationship": "spends_at_fixed_listed_prices",
-        "source_ids": ["wiki-dusuri-star-shop-current"]
+        "id": "condition:shooting-stars-observed-available->activity:shooting-stars:requires",
+        "relationship": "requires_player_observation",
+        "source_ids": []
       }
     ],
     "observations": [

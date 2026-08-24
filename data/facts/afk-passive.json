@@ -158,6 +158,43 @@
       "mechanics": {"upper_level_requirement": {"Mining": 57}, "diary": "The Falador Hard Diary requires only the Prospector helmet."},
       "source_ids": ["wiki-motherlode"],
       "confidence": "high"
+    },
+    {
+      "id": "shooting-stars-observed-session",
+      "name": "Observed Shooting Stars session boundary",
+      "category": "afk",
+      "status": "verified",
+      "verified_at": "2026-08-24",
+      "requirements": {
+        "skills": {"Mining": 10},
+        "tool": "A supplied usable pickaxe.",
+        "current_session": "The account must explicitly record a currently available selected star and acceptable local safety. The observation is the only concrete world, tier, and location input."
+      },
+      "mechanics": {
+        "attention": "Player-present low-attention only; no unattended claim is made.",
+        "outputs": "Mining experience, stardust, gems, pet rolls, layer progress, depletion, logout, and world-hop outcomes are variable or player-observed and are not applied to account state.",
+        "boundary": "This record does not infer a spawn, tier compatibility, world, travel route, seven-minute availability, shop purchase, or current stardust balance."
+      },
+      "source_ids": ["wiki-shooting-stars-current", "wiki-mining-current"],
+      "confidence": "high"
+    },
+    {
+      "id": "safe-combat-training-observed-session",
+      "name": "Observed bounded crab combat session boundary",
+      "category": "afk",
+      "status": "verified",
+      "verified_at": "2026-08-24",
+      "requirements": {
+        "current_session": "The account must explicitly record an available selected Sand Crab or Ammonite Crab method/location, acceptable local safety, and a non-null combat readiness observation.",
+        "location_access": "The optional AFK observation predicates do not encode or infer quest, membership, arrival, aggression, survival, food, Prayer, escape, death, or recovery state. Those remain player-confirmed readiness context rather than coupled alternatives."
+      },
+      "mechanics": {
+        "attention": "Player-present, bounded low-attention combat only; it is not an unattended-safety claim.",
+        "outputs": "Combat experience, kills, drops, consumption, health or Prayer changes, tolerance resets, exits, death, and recovery are variable or player-observed and are not applied to account state.",
+        "boundary": "The action never chooses a crab location or treats source mechanics as account-specific access or survival proof."
+      },
+      "source_ids": ["wiki-sand-crab-current", "wiki-ammonite-crab-current", "wiki-tolerance-current", "wiki-idle-current", "wiki-fossil-island-current"],
+      "confidence": "high"
     }
   ]
 }
