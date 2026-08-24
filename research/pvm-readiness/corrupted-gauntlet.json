@@ -1,0 +1,260 @@
+{
+  "id": "pvm-readiness:corrupted-gauntlet",
+  "title": "Corrupted Gauntlet readiness research package",
+  "package_version": 1,
+  "researched_on": "2026-08-24",
+  "scope": "Standalone research only. This package creates no actions, graph edges, account-state fields, score, candidate, recommendation, route, or ownership claim.",
+  "evidence_boundary": {
+    "facts": "Current mechanics and item properties recorded from the OSRS Wiki and official Jagex material.",
+    "strategy": "Community learning and transition advice. It is non-authoritative, optional, and must never become an automatic route condition.",
+    "prohibited_inferences": [
+      "account gear, inventory, food, potions, prayers, shards, or charges",
+      "player mechanical skill, reaction time, competence, attention, or success probability",
+      "completed attempts, kills, chest contents, seed drops, shards, or other RNG",
+      "that a specific reward should be pursued now or that any number of attempts should occur"
+    ]
+  },
+  "source_catalog": [
+    {
+      "id": "wiki-gauntlet",
+      "title": "The Gauntlet",
+      "url": "https://oldschool.runescape.wiki/w/The_Gauntlet",
+      "publisher": "Old School RuneScape Wiki contributors",
+      "source_type": "community-maintained game-mechanics reference",
+      "authority": "primary factual reference used by this project when an official encounter page is unavailable",
+      "accessed_on": "2026-08-24",
+      "used_for": ["access", "instance boundary", "normal/corrupted differences", "preparation", "encounter", "death", "reward table"],
+      "limitations": "Not a Jagex publication; pages can change. Rates and mechanics should be rechecked in a future broad sweep."
+    },
+    {
+      "id": "wiki-gauntlet-strategies",
+      "title": "The Gauntlet/Strategies",
+      "url": "https://oldschool.runescape.wiki/w/The_Gauntlet/Strategies",
+      "publisher": "Old School RuneScape Wiki contributors",
+      "source_type": "community-maintained mechanics and strategy reference",
+      "authority": "mechanics source for attacks and preparation constraints; recommendations remain non-binding",
+      "accessed_on": "2026-08-24",
+      "used_for": ["Hunllef attack cycle", "tornado/floor hazards", "in-instance preparation examples", "practical skill recommendations"],
+      "limitations": "Its recommended loadouts and levels are guidance, not formal entry requirements or an account-specific readiness proof."
+    },
+    {
+      "id": "wiki-reward-chest",
+      "title": "Reward Chest (The Gauntlet)",
+      "url": "https://oldschool.runescape.wiki/w/Reward_Chest_(The_Gauntlet)",
+      "publisher": "Old School RuneScape Wiki contributors",
+      "source_type": "community-maintained drop-table reference",
+      "authority": "factual reward and failure-outcome reference",
+      "accessed_on": "2026-08-24",
+      "used_for": ["completion roll counts", "unique rates", "failure reward boundary"],
+      "limitations": "Rates are subject to game changes and should not be interpreted as expected account outcomes."
+    },
+    {
+      "id": "wiki-bowfa",
+      "title": "Bow of faerdhinen",
+      "url": "https://oldschool.runescape.wiki/w/Bow_of_faerdhinen",
+      "publisher": "Old School RuneScape Wiki contributors",
+      "source_type": "community-maintained item reference",
+      "authority": "factual creation, charge, and skill-requirement reference",
+      "accessed_on": "2026-08-24",
+      "used_for": ["enhanced crystal weapon seed conversion", "Bow of faerdhinen charges and corruption"],
+      "limitations": "Item utility is a strategic question and is not established by its item page."
+    },
+    {
+      "id": "wiki-crystal-armour-seed",
+      "title": "Crystal armour seed",
+      "url": "https://oldschool.runescape.wiki/w/Crystal_armour_seed",
+      "publisher": "Old School RuneScape Wiki contributors",
+      "source_type": "community-maintained item reference",
+      "authority": "factual seed rate and creation reference",
+      "accessed_on": "2026-08-24",
+      "used_for": ["crystal armour seed rates", "crystal armour creation requirements"],
+      "limitations": "Does not prescribe a seed target, acquisition order, or account timing."
+    },
+    {
+      "id": "wiki-ranged-armour",
+      "title": "Armour/Ranged armour",
+      "url": "https://oldschool.runescape.wiki/w/Armour/Ranged_armour",
+      "publisher": "Old School RuneScape Wiki contributors",
+      "source_type": "community-maintained item-system reference",
+      "authority": "factual crystal-armour set interaction reference",
+      "accessed_on": "2026-08-24",
+      "used_for": ["crystal armour interaction with crystal bow and Bow of faerdhinen"],
+      "limitations": "Relative value to an account is not a factual property of the set."
+    },
+    {
+      "id": "jagex-song-of-elves-rewards-poll",
+      "title": "Song of the Elves rewards",
+      "url": "https://oldschool.runescape.com/polls/2019/1558",
+      "publisher": "Jagex",
+      "source_type": "official historical poll",
+      "authority": "official context that Song of the Elves opens Prifddinas and that Gauntlet crystal rewards were introduced with its post-quest content",
+      "accessed_on": "2026-08-24",
+      "used_for": ["official access/reward context"],
+      "limitations": "Historical proposal/poll; current mechanical values are sourced from current Wiki pages instead."
+    },
+    {
+      "id": "reddit-ironscape-normal-or-corrupted-2025",
+      "title": "Question about the gauntlet",
+      "url": "https://www.reddit.com/r/ironscape/comments/1pv424d/question_about_the_gauntlet/",
+      "publisher": "r/ironscape community",
+      "source_type": "community discussion",
+      "authority": "strategy-only anecdotal learning discussion",
+      "accessed_on": "2026-08-24",
+      "used_for": ["examples of normal-Gauntlet stepping-stone advice"],
+      "limitations": "Anecdotal, conflicting views; cannot establish skill gates, safety, completion likelihood, or route timing."
+    },
+    {
+      "id": "youtube-corrupted-gauntlet-t2-guide",
+      "title": "EASY Way to Learn Corrupted Gauntlet/Gauntlet! (T2 Armour Prep Guide)",
+      "url": "https://www.youtube.com/watch?v=o3YjO_C9jdY",
+      "publisher": "Ded Smithy",
+      "source_type": "community video guide",
+      "authority": "strategy-only example of a learning resource",
+      "accessed_on": "2026-08-24",
+      "used_for": ["identifying a player-chosen external learning resource"],
+      "limitations": "Not verified step-by-step for this package; no recommendation, setup, or outcome is imported from it."
+    }
+  ],
+  "factual_mechanics": {
+    "formal_access": {
+      "requirements": ["Members account", "Song of the Elves completed to access Prifddinas and The Gauntlet"],
+      "corrupted_unlock": "One completed normal Gauntlet is required before the Corrupted Gauntlet may be attempted.",
+      "boundary": "Song of the Elves has its own quest, skill, and item chain. This package records it as a completed-access observation rather than duplicating or assuming its preparation."
+    },
+    "instance_and_external_preparation_boundary": {
+      "mode": "Solo, procedurally generated minigame.",
+      "external_items": "Items cannot be taken into or out of the activity; preparation gear, food, potion, weapons, armour, and resources are made or acquired inside the run.",
+      "readiness_implication": "No banked external combat gear or supplies are factual Gauntlet-entry requirements."
+    },
+    "normal_gauntlet": {
+      "preparation_timer": "10 minutes before automatic transfer to the boss room unless entered earlier.",
+      "map_feature": "The inner 3x3 area adjacent to the boss has resource/weak-monster randomness mitigation: four rooms respectively contain at least three crystal deposits, linum tirinum plants, phren roots, and weak monsters.",
+      "completed_reward_structure": "Two regular-loot rolls, crystal shards, and one unique-reward roll on completion.",
+      "relationship_to_corrupted": "A required unlock step and a mechanically related alternative; it does not prove Corrupted readiness or establish a required number of completions."
+    },
+    "corrupted_gauntlet": {
+      "preparation_timer": "7 minutes 30 seconds before automatic transfer to the boss room unless entered earlier.",
+      "differences_from_normal": [
+        "All monsters and in-instance items are Corrupted; monsters have increased stats while items retain the corresponding Crystal-item stats.",
+        "The normal inner-area resource/weak-monster randomness mitigation is absent.",
+        "One inner-area room is guaranteed to contain three fishing spots.",
+        "The Corrupted Hunllef has 1,000 Hitpoints and increased aggressive stats compared with the normal encounter."
+      ],
+      "completed_reward_structure": "Three upgraded-loot-table rolls, crystal shards, and a unique-reward roll on completion; the Gauntlet cape is an always reward for a Corrupted completion."
+    },
+    "in_instance_preparation": {
+      "resources": [
+        "Crystal ore, linum tirinum, and phren bark are used for in-instance armour.",
+        "Grym leaves are used for in-instance Egniol potions that restore run energy and prayer.",
+        "Fishing spots provide raw paddlefish, which cook into food healing 20 Hitpoints and can supply vial water.",
+        "Crystalline/corrupted monsters can provide weapon frames and upgrade components; the Singing Bowl processes gathered materials."
+      ],
+      "variation": "Room layout, nodes, monster encounters, resource collection, and player choices vary by run. This package deliberately records no fixed preparation recipe, time, food count, armour tier, weapon selection, or success expectation."
+    },
+    "encounter_readiness_relevant_mechanics": {
+      "hunllef_standard_cycle": "Hunllef begins with Ranged attacks, makes four attacks, switches to Magic for four attacks, and repeats. Correct protection prayers materially reduce the corresponding damage.",
+      "hazards": [
+        "The boss room includes damaging floor tiles.",
+        "Tornadoes are a separate movement hazard; in Corrupted Gauntlet their count rises by phase, reaching four below 33% boss Hitpoints.",
+        "Hunllef changes its protection prayer, requiring use of a permitted in-instance attack style rather than the currently protected style."
+      ],
+      "armour_fact": "In-instance armour reduces Corrupted Hunllef maximum hits; damage reduction depends on the combined armour tiers. This does not make a particular armour tier mandatory or sufficient for a player."
+    },
+    "failure_death_and_recovery": {
+      "failed_attempt": "Death or leaving before completion may award a lower-value failure reward according to performance, but does not grant a chance at unique rewards.",
+      "ordinary_ironman_boundary": "The activity's external-item prohibition means the package does not model an ordinary Ironman's equipped/banked gear loss as a Gauntlet failure cost.",
+      "hardcore_ironman_boundary": "The Gauntlet is dangerous content: death removes Hardcore Ironman status. Any model must require an explicit account-type and risk-tolerance observation before exposing a Hardcore attempt as a candidate.",
+      "ultimate_ironman_boundary": "The Wiki states Ultimate Ironmen can lose items held in instanced banks on death. This package makes no claim about a particular UIM inventory or recovery state."
+    },
+    "rewards": {
+      "deterministic_on_completed_normal": ["5-9 crystal shards", "two regular loot rolls", "one unique reward roll"],
+      "deterministic_on_completed_corrupted": ["Gauntlet cape", "7-12 crystal shards", "three upgraded loot rolls", "one unique reward roll"],
+      "rng_unique_normal": ["crystal weapon seed: 1/120", "crystal armour seed: 1/120", "enhanced crystal weapon seed: 1/2,000", "Youngllef: 1/2,000"],
+      "rng_unique_corrupted": ["crystal weapon seed: 1/50", "crystal armour seed: 1/50", "enhanced crystal weapon seed: 1/400", "Youngllef: 1/800"],
+      "rng_boundary": "Rates describe independent chance, not a seed target, expected completion count, account ownership, or a reason to start/continue."
+    },
+    "crystal_equipment_utility_facts": {
+      "enhanced_seed_outputs": "At a Singing Bowl, an enhanced crystal weapon seed plus 100 crystal shards can create either a Bow of faerdhinen or a Blade of saeldor. Direct singing requires 82 Smithing and 82 Crafting (boostable); Conwenna or Reese can perform it for an additional 50 shards.",
+      "bowfa_facts": [
+        "Bow of faerdhinen creation starts the bow with 10,000 charges; shards add 100 charges each up to 20,000.",
+        "The bow requires 75 Ranged to equip.",
+        "It can be upgraded at a Singing Bowl with up to 2,000 crystal shards to stop charge consumption; amount varies with existing charge progress."
+      ],
+      "crystal_armour_facts": [
+        "Crystal armour seeds can be sung into helm, body, and legs with shards after Song of the Elves; piece creation has separate Smithing/Crafting requirements.",
+        "Crystal armour requires 70 Defence to wear.",
+        "Crystal armour gives damage and accuracy bonuses to crystal bow and Bow of faerdhinen, with a stronger full-set effect."
+      ],
+      "utility_boundary": "These properties establish possible account utility only. They do not establish that a particular item is necessary, best, owned, charged, craftable, or timely."
+    }
+  },
+  "readiness_observation_contract": {
+    "formal_observations": [
+      "Song of the Elves completion",
+      "at least one recorded normal Gauntlet completion before exposing Corrupted access",
+      "account type, with explicit Hardcore status/risk preference where applicable"
+    ],
+    "practical_observations": [
+      "player-confirmed willingness to attempt dangerous, high-attention instanced PvM",
+      "player-reported normal and/or Corrupted attempt outcome, without extrapolating a rate",
+      "player-reported preparation outcome such as entering the boss room before the timer, without treating one result as repeatable",
+      "player-reported encounter observations: prayer-cycle handling, attack-style switching, tornado movement, and damaging-floor handling",
+      "player-declared stop condition, such as a learning-session limit, attention limit, or an explicit reward/skill goal"
+    ],
+    "not_readiness_proofs": [
+      "nominal combat, Prayer, Cooking, Ranged, Magic, Defence, or Hitpoints levels alone",
+      "an unobserved suggested loadout, food count, potion count, plugin, guide, or training method",
+      "a previous kill on a different account or a community-recommended number of completions",
+      "possession or absence of any external gear, because the encounter supplies its run equipment internally"
+    ]
+  },
+  "strategy_only": {
+    "normal_gauntlet_as_stepping_stone": {
+      "community_pattern": "Some Ironman community contributors use normal Gauntlet to practice the encounter and to observe whether their preparation can finish inside Corrupted's shorter timer before making repeated Corrupted attempts.",
+      "conflicting_pattern": "Other contributors advise moving to Corrupted earlier because its resource layout and pressure differ from normal.",
+      "framework_treatment": "Expose normal and Corrupted as alternatives after formal access. Never encode a community completion count, time target, armour tier, or transition rule as universal readiness."
+    },
+    "learning_resources": {
+      "community_advice": "Community guides commonly discuss tiered in-instance armour, weapon choices, routing, and tile markers.",
+      "framework_treatment": "A player may choose a guide or accessibility tool. Its use, setup, performance effect, and safety must be observed rather than assumed."
+    },
+    "reward_timing": {
+      "strategic_question": "The enhanced seed, crystal armour, shards, and standard reward supplies can be evaluated for their realised utility after acquisition or against explicitly stated account goals.",
+      "framework_treatment": "Do not convert reward desirability into a forced grind, a completion target, or an assumed route detour."
+    }
+  },
+  "bounded_stop_and_reentry_candidates": [
+    {
+      "id": "stop:gauntlet-formal-access-missing",
+      "condition": "Song of the Elves completion or the normal-completion unlock is not observed.",
+      "reentry": "Reassess only after the missing formal completion is observed."
+    },
+    {
+      "id": "stop:gauntlet-hardcore-risk-unaccepted",
+      "condition": "Account is Hardcore Ironman and the player has not explicitly accepted permanent-status-loss risk.",
+      "reentry": "Reassess after the account type or player risk preference is explicitly updated."
+    },
+    {
+      "id": "stop:gauntlet-attention-or-learning-limit",
+      "condition": "The player declares that their current attention window, learning-session limit, or enjoyment limit has ended.",
+      "reentry": "Reassess when a new high-attention session is explicitly available."
+    },
+    {
+      "id": "stop:gauntlet-observed-preparation-or-encounter-gap",
+      "condition": "The player reports a specific in-run preparation or encounter problem but has not selected a learning response.",
+      "reentry": "Reassess after the player records a chosen response and a later attempt outcome; do not prescribe a solution here."
+    },
+    {
+      "id": "stop:gauntlet-goal-satisfied-or-changed",
+      "condition": "The player explicitly reports that their learning, collection, resource, or equipment goal is satisfied or no longer desired.",
+      "reentry": "Reassess only when a new explicit reason for this content is recorded."
+    }
+  ],
+  "uncertainties_and_future_research": [
+    "Full Song of the Elves quest-chain details belong in the quest/access package rather than this encounter package.",
+    "Combat level recommendations from guides are not formal requirements and require no translation into a route gate.",
+    "The package does not calculate expected attempts, time, GP, shard income, combat experience, or reward value.",
+    "Accessibility, connection stability, device constraints, and player comfort may materially affect risk but need explicit observation models before use.",
+    "Current rates and item conversion costs should be revalidated during the later consolidated source sweep."
+  ]
+}
