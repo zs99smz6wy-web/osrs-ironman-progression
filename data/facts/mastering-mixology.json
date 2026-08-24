@@ -1,0 +1,49 @@
+{
+  "records": [
+    {
+      "id": "mastering-mixology-access-session-and-rewards",
+      "name": "Mastering Mixology access, observation boundary, and fixed rewards",
+      "category": "minigame",
+      "status": "verified",
+      "verified_at": "2026-08-24",
+      "requirements": {
+        "membership": true,
+        "skills": {"Herblore": {"level": 60, "boostable": false}},
+        "quest": "Children of the Sun"
+      },
+      "recipe_coverage": {
+        "unlock_levels": [60, 63, 66, 69, 72, 75, 78, 81],
+        "full_recipe_set_at": 81,
+        "boundary": "A level gate only establishes which recipe bases can appear. It does not establish hopper contents, order assignment, processing, XP, resin, or a session result."
+      },
+      "session": {
+        "accepted_inputs": "A clean, unnoted eligible herb or its matching unfinished potion is consumed into a fixed category and quantity of untradeable paste.",
+        "input_boundary": "Clean-herb and unfinished-potion inventory, designated expendable quantities, paste balances, and ordinary-potion reserve needs must be explicitly observed. No input is assumed expendable.",
+        "resin_boundary": "Mox, Aga, and Lye resin are awarded only from observed order results. The model does not calculate or create paste, resin, XP, hand-ins, or output.",
+        "hopper_capacity_per_type": 3000
+      },
+      "fixed_durable_rewards": {
+        "prescription_goggles": {"cost": {"mox": 8600, "aga": 7000, "lye": 9350}, "effect": "10% chance to save a secondary ingredient when mixing ordinary potions."},
+        "reagent_pouch": {"cost": {"mox": 13800, "aga": 11200, "lye": 15100}, "effect": "Stores up to 26 of each Herblore secondary ingredient."},
+        "potion_storage": {"cost": {"mox": 7750, "aga": 6300, "lye": 8950}, "effect": "One-time potion, unfinished-potion, and vial bank storage feature.", "restriction": "Ultimate Ironmen cannot purchase it."},
+        "alchemists_amulet": {"cost": {"mox": 6900, "aga": 5650, "lye": 7400}, "effect": "15% chance for an extra ordinary-potion dose; chance outcomes and charge use are observed."},
+        "chugging_barrel": {"cost": {"mox": 17250, "aga": 14000, "lye": 18600}, "effect": "Assembled barrel stores up to five potion types, 100 doses each.", "boundary": "Assembly and stored contents are observed; dismantling loses stored potions."}
+      },
+      "herb_sack_boundary": {
+        "standard_herb_sack": "Not a Mixology reward. Canonical ownership, capacity, and acquisition paths remain durable-utility-herb-sack in data/facts/durable-utility-items.json.",
+        "silklined_herb_sack": "One observed Pristine spider silk can permanently upgrade an owned standard Herb sack. A Sarachnis kill, silk drop, upgrade, or capacity state is never inferred here."
+      },
+      "source_ids": [
+        "wiki-mastering-mixology-current-2026",
+        "official-varlamore-rising-darkness-overview-mirror",
+        "official-mixology-rewards-xp-improvements-mirror",
+        "wiki-potion-storage-current-2026",
+        "wiki-alchemists-amulet-current-2026",
+        "wiki-chugging-barrel-current-2026",
+        "wiki-herb-sack-current-2026",
+        "official-cow-boss-herb-sack-upgrade-mirror"
+      ],
+      "confidence": "high"
+    }
+  ]
+}

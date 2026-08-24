@@ -1,6 +1,86 @@
 {
   "sources": [
     {
+      "id": "wiki-mastering-mixology-current-2026",
+      "publisher": "Old School RuneScape Wiki",
+      "url": "https://oldschool.runescape.wiki/w/Mastering_Mixology",
+      "kind": "wiki",
+      "checked_at": "2026-08-24",
+      "use": "Primary current mechanics source for Mastering Mixology access, inputs, recipe gates, orders, resin, hopper capacity, and reward-shop prices. Wiki-maintained content, not a Jagex primary source."
+    },
+    {
+      "id": "official-varlamore-rising-darkness-overview-mirror",
+      "publisher": "Jagex, mirrored verbatim by Old School RuneScape Wiki",
+      "url": "https://oldschool.runescape.wiki/w/Update:Varlamore:_The_Rising_Darkness_-_Overview",
+      "kind": "official_mirror",
+      "checked_at": "2026-08-24",
+      "use": "Official launch explanation for herb-to-paste conversion and the no-secondary-ingredient boundary; current values are independently taken from the current activity page."
+    },
+    {
+      "id": "official-mixology-rewards-xp-improvements-mirror",
+      "publisher": "Jagex, mirrored verbatim by Old School RuneScape Wiki",
+      "url": "https://oldschool.runescape.wiki/w/Update:Rewards_and_XP_Improvements_-_Varlamore:_The_Rising_Darkness",
+      "kind": "official_mirror",
+      "checked_at": "2026-08-24",
+      "use": "Official October 2024 revision record for recipe, reward-cost, hopper-capacity, and multi-order changes; current values are independently taken from the current activity page."
+    },
+    {
+      "id": "wiki-ironman-herblore-current-2026",
+      "publisher": "Old School RuneScape Wiki",
+      "url": "https://oldschool.runescape.wiki/w/Ironman_Guide/Herblore",
+      "kind": "guide",
+      "checked_at": "2026-08-24",
+      "use": "Community Ironman timing context about higher Herblore, the level-81 recipe set, and ordinary potion supplies. It is strategy evidence, not a route rule or account-state fact."
+    },
+    {
+      "id": "wiki-mastering-mixology-strategies-current-2026",
+      "publisher": "Old School RuneScape Wiki community guide",
+      "url": "https://oldschool.runescape.wiki/w/Mastering_Mixology/Strategies",
+      "kind": "guide",
+      "checked_at": "2026-08-24",
+      "use": "Community input and order-handling guidance. It is retained only as non-binding strategy context and cannot establish expendable herb stock, output, or timing."
+    },
+    {
+      "id": "wiki-potion-storage-current-2026",
+      "publisher": "Old School RuneScape Wiki",
+      "url": "https://oldschool.runescape.wiki/w/Potion_storage",
+      "kind": "wiki",
+      "checked_at": "2026-08-24",
+      "use": "Current Potion storage cost, bank behavior, one-purchase boundary, and Ultimate Ironman restriction."
+    },
+    {
+      "id": "wiki-alchemists-amulet-current-2026",
+      "publisher": "Old School RuneScape Wiki",
+      "url": "https://oldschool.runescape.wiki/w/Alchemist%27s_amulet",
+      "kind": "wiki",
+      "checked_at": "2026-08-24",
+      "use": "Current Alchemist's amulet cost, effect, charge, and no-extra-XP boundaries."
+    },
+    {
+      "id": "wiki-chugging-barrel-current-2026",
+      "publisher": "Old School RuneScape Wiki",
+      "url": "https://oldschool.runescape.wiki/w/Chugging_barrel",
+      "kind": "wiki",
+      "checked_at": "2026-08-24",
+      "use": "Current Chugging barrel cost, assembly, capacity, tradeability, and dismantling-loss boundaries."
+    },
+    {
+      "id": "wiki-herb-sack-current-2026",
+      "publisher": "Old School RuneScape Wiki",
+      "url": "https://oldschool.runescape.wiki/w/Herb_sack",
+      "kind": "wiki",
+      "checked_at": "2026-08-24",
+      "use": "Current standard Herb sack capacity, use gate, and Silklined upgrade mechanics. The standard sack remains canonical in the existing durable-utility record."
+    },
+    {
+      "id": "official-cow-boss-herb-sack-upgrade-mirror",
+      "publisher": "Jagex, mirrored verbatim by Old School RuneScape Wiki",
+      "url": "https://oldschool.runescape.wiki/w/Update:Cow_Boss_is_Out_Today!",
+      "kind": "official_mirror",
+      "checked_at": "2026-08-24",
+      "use": "Official February 2026 announcement of the Pristine spider silk Silklined Herb sack upgrade. It does not establish a kill, drop, or upgrade for any account."
+    },
+    {
       "id": "wiki-learning-the-ropes-current",
       "publisher": "Old School RuneScape Wiki",
       "url": "https://oldschool.runescape.wiki/w/Learning_the_Ropes",

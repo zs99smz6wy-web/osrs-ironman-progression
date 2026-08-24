@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "scope": "Strategy-only Mastering Mixology timing context. It never selects a herb, recipe, reward, route position, or input batch; it interprets only supplied account state and optional player observations.",
+  "activity": {
+    "id": "mastering-mixology",
+    "fact_ids": ["mastering-mixology-access-session-and-rewards"],
+    "hard_access": {"quest": "Children of the Sun", "herblore_level": 60, "boostable": false},
+    "recipe_coverage_levels": [60, 63, 66, 69, 72, 75, 78, 81],
+    "full_recipe_coverage_level": 81
+  },
+  "observation_conventions": {
+    "container": "minigame_activity_observations.mastering-mixology",
+    "registration_boundary": "The shared evaluator does not yet register this optional activity identifier. The standalone analyzer may report a raw supplied observation, but it labels it unregistered rather than validated global account state.",
+    "input_signal": "local_supplies is an observed snapshot only. Its keys and counts describe no conversion, reservation, or expendability by themselves.",
+    "potion_opportunity_cost_review": "An existing session.last_event value of potion-opportunity-cost-reviewed is a player-reported acknowledgement that ordinary-potion competing uses were reviewed. It does not record the chosen reserve policy or make any herb expendable.",
+    "named_objective": "An existing session.mode value of reward:<reward_id>, xp, or enjoyment is a player-reported objective label. Unknown or omitted values mean no objective is inferred.",
+    "resin_balances": "Observed balance priority is explicitly supplied resources mixology_mox_resin, mixology_aga_resin, and mixology_lye_resin; optional observation currency rows may corroborate them. Missing values are unknown, not zero.",
+    "confirmed_purchase": "confirmed_purchases may record a player-confirmed fixed shop purchase. The analyzer never applies that purchase or manufactures the corresponding item state."
+  },
+  "reward_targets": [
+    {"id": "prescription-goggles", "item_key": "prescription_goggles", "action_id": "action:buy-mixology-prescription-goggles", "cost": {"mox": 8600, "aga": 7000, "lye": 9350}},
+    {"id": "reagent-pouch", "item_key": "reagent_pouch", "action_id": "action:buy-mixology-reagent-pouch", "cost": {"mox": 13800, "aga": 11200, "lye": 15100}},
+    {"id": "potion-storage", "item_key": "potion_storage", "action_id": "action:buy-mixology-potion-storage", "cost": {"mox": 7750, "aga": 6300, "lye": 8950}},
+    {"id": "alchemists-amulet", "item_key": "alchemists_amulet", "action_id": "action:buy-mixology-alchemists-amulet", "cost": {"mox": 6900, "aga": 5650, "lye": 7400}},
+    {"id": "chugging-barrel", "item_key": "chugging_barrel", "action_id": "action:buy-mixology-chugging-barrel", "cost": {"mox": 17250, "aga": 14000, "lye": 18600}}
+  ],
+  "enter_delay_stop_reentry": {
+    "enter_candidate": "Hard access, a player-reported named objective, an observed input signal, and a player-reported potion-opportunity-cost review are all present. This is an enter candidate, not a route command or output forecast.",
+    "delay_conditions": [
+      "Hard access is incomplete.",
+      "No player-observed input signal is available.",
+      "Ordinary-potion opportunity cost has not been player-reviewed.",
+      "No player-reported reward, XP, or enjoyment objective is present."
+    ],
+    "stop_conditions": [
+      "The player-reported target is confirmed purchased or no longer current.",
+      "The player-reported input allocation or reserve policy changes.",
+      "The active session is ended or interrupted."
+    ],
+    "reentry_conditions": [
+      "Hard access still holds.",
+      "A new player-reported objective, current input observation, and potion-opportunity-cost review are available."
+    ]
+  },
+  "herb_sack_boundary": "The existing durable Herb sack model owns standard Herb sack timing and acquisition. Silklined Herb sack needs a separately observed Sarachnis silk upgrade and is not a Mixology reward target."
+}
