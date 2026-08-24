@@ -23,6 +23,117 @@
     "nullableTrimmedString": {"type": ["string", "null"], "minLength": 1, "pattern": "^\\S(?:.*\\S)?$"},
     "nullableBoolean": {"type": ["boolean", "null"]},
     "nullableTimestamp": {"type": ["string", "null"], "format": "date-time"},
+    "nullableNonNegativeNumber": {"type": ["number", "null"], "minimum": 0},
+    "minigameAvailabilityObservation": {
+      "type": "object",
+      "properties": {
+        "world": {"type": ["integer", "null"], "minimum": 1},
+        "world_state": {"type": "string", "enum": ["unknown", "available", "unavailable", "closing"]},
+        "team_state": {"type": "string", "enum": ["unknown", "solo", "queueing", "available", "assembled", "in_progress", "unavailable"]},
+        "team_size": {"type": ["integer", "null"], "minimum": 1},
+        "location": {"$ref": "#/$defs/nullableTrimmedString"}
+      },
+      "additionalProperties": false
+    },
+    "minigameSessionObservation": {
+      "type": "object",
+      "properties": {
+        "status": {"type": "string", "enum": ["unknown", "not_started", "queued", "active", "ended", "reset", "unavailable"]},
+        "mode": {"$ref": "#/$defs/nullableTrimmedString"},
+        "round_or_floor": {"$ref": "#/$defs/nullableNonNegativeInteger"},
+        "started_at": {"$ref": "#/$defs/nullableTimestamp"},
+        "last_event": {"$ref": "#/$defs/nullableTrimmedString"}
+      },
+      "additionalProperties": false
+    },
+    "minigameBalanceObservation": {
+      "type": "object",
+      "required": ["currency_id", "amount", "capacity"],
+      "properties": {
+        "currency_id": {"type": "string", "minLength": 1},
+        "amount": {"$ref": "#/$defs/nullableNonNegativeInteger"},
+        "capacity": {"$ref": "#/$defs/nullableNonNegativeInteger"}
+      },
+      "additionalProperties": false
+    },
+    "minigamePurchaseObservation": {
+      "type": "object",
+      "required": ["purchase_id", "quantity", "currency_spent", "observed_at"],
+      "properties": {
+        "purchase_id": {"type": "string", "minLength": 1},
+        "quantity": {"type": "integer", "minimum": 1},
+        "currency_spent": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/minigameBalanceObservation"}
+        },
+        "observed_at": {"type": "string", "format": "date-time"}
+      },
+      "additionalProperties": false
+    },
+    "minigameActivityResultObservation": {
+      "type": "object",
+      "required": ["event_id", "outcome", "observed_at", "point_delta", "reported_xp", "reported_items"],
+      "properties": {
+        "event_id": {"type": "string", "minLength": 1},
+        "outcome": {"type": "string", "enum": ["unknown", "success", "failure", "left", "death", "interrupted"]},
+        "observed_at": {"type": "string", "format": "date-time"},
+        "point_delta": {"$ref": "#/$defs/nullableNonNegativeInteger"},
+        "reported_xp": {"type": "object", "additionalProperties": {"$ref": "#/$defs/nullableNonNegativeInteger"}},
+        "reported_items": {"type": "object", "additionalProperties": {"$ref": "#/$defs/nullableNonNegativeInteger"}}
+      },
+      "additionalProperties": false
+    },
+    "minigameChargeObservation": {
+      "type": "object",
+      "required": ["charge_id", "amount", "capacity", "observed_at"],
+      "properties": {
+        "charge_id": {"type": "string", "minLength": 1},
+        "amount": {"$ref": "#/$defs/nullableNonNegativeInteger"},
+        "capacity": {"$ref": "#/$defs/nullableNonNegativeInteger"},
+        "observed_at": {"type": "string", "format": "date-time"}
+      },
+      "additionalProperties": false
+    },
+    "minigameCooldownObservation": {
+      "type": "object",
+      "required": ["cooldown_id", "status", "ready_at", "uses_since_reset", "daily_limit", "observed_at"],
+      "properties": {
+        "cooldown_id": {"type": "string", "minLength": 1},
+        "status": {"type": "string", "enum": ["unknown", "ready", "cooldown", "unavailable"]},
+        "ready_at": {"$ref": "#/$defs/nullableTimestamp"},
+        "uses_since_reset": {"$ref": "#/$defs/nullableNonNegativeInteger"},
+        "daily_limit": {"type": ["integer", "null"], "minimum": 1},
+        "observed_at": {"type": "string", "format": "date-time"}
+      },
+      "additionalProperties": false
+    },
+    "minigameCollectionLogObservation": {
+      "type": "object",
+      "required": ["entry_id", "status", "observed_at"],
+      "properties": {
+        "entry_id": {"type": "string", "minLength": 1},
+        "status": {"type": "string", "enum": ["unknown", "confirmed", "not_confirmed"]},
+        "observed_at": {"type": "string", "format": "date-time"}
+      },
+      "additionalProperties": false
+    },
+    "minigameActivityObservation": {
+      "type": "object",
+      "required": ["observed_at"],
+      "properties": {
+        "observed_at": {"type": "string", "format": "date-time"},
+        "availability": {"$ref": "#/$defs/minigameAvailabilityObservation"},
+        "session": {"$ref": "#/$defs/minigameSessionObservation"},
+        "currency_balances": {"type": "array", "items": {"$ref": "#/$defs/minigameBalanceObservation"}},
+        "confirmed_purchases": {"type": "array", "items": {"$ref": "#/$defs/minigamePurchaseObservation"}},
+        "local_supplies": {"type": "object", "additionalProperties": {"$ref": "#/$defs/nullableNonNegativeInteger"}},
+        "charge_states": {"type": "array", "items": {"$ref": "#/$defs/minigameChargeObservation"}},
+        "cooldown_observations": {"type": "array", "items": {"$ref": "#/$defs/minigameCooldownObservation"}},
+        "activity_results": {"type": "array", "items": {"$ref": "#/$defs/minigameActivityResultObservation"}},
+        "collection_log_rows": {"type": "array", "items": {"$ref": "#/$defs/minigameCollectionLogObservation"}}
+      },
+      "additionalProperties": false
+    },
     "diaryTaskObservationBase": {
       "type": "object",
       "required": ["observed_at", "status", "mode", "completion_confirmed"],
@@ -340,6 +451,29 @@
           },
           "additionalProperties": false
         }
+      },
+      "additionalProperties": false
+    },
+    "minigame_activity_observations": {
+      "type": "object",
+      "properties": {
+        "barbarian-assault": {"$ref": "#/$defs/minigameActivityObservation"},
+        "fishing-trawler": {"$ref": "#/$defs/minigameActivityObservation"},
+        "giants-foundry": {"$ref": "#/$defs/minigameActivityObservation"},
+        "guardians-of-the-rift": {"$ref": "#/$defs/minigameActivityObservation"},
+        "hallowed-sepulchre": {"$ref": "#/$defs/minigameActivityObservation"},
+        "last-man-standing": {"$ref": "#/$defs/minigameActivityObservation"},
+        "mage-training-arena": {"$ref": "#/$defs/minigameActivityObservation"},
+        "mahogany-homes": {"$ref": "#/$defs/minigameActivityObservation"},
+        "motherlode-mine": {"$ref": "#/$defs/minigameActivityObservation"},
+        "nightmare-zone": {"$ref": "#/$defs/minigameActivityObservation"},
+        "pest-control": {"$ref": "#/$defs/minigameActivityObservation"},
+        "pyramid-plunder": {"$ref": "#/$defs/minigameActivityObservation"},
+        "rogues-den": {"$ref": "#/$defs/minigameActivityObservation"},
+        "shades-of-mortton": {"$ref": "#/$defs/minigameActivityObservation"},
+        "tempoross": {"$ref": "#/$defs/minigameActivityObservation"},
+        "tithe-farm": {"$ref": "#/$defs/minigameActivityObservation"},
+        "wintertodt": {"$ref": "#/$defs/minigameActivityObservation"}
       },
       "additionalProperties": false
     },

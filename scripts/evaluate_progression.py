@@ -100,6 +100,108 @@ WILDERNESS_ELITE_BIG_THREE_STAGE_IDS = (
     "venenatis_or_spindel",
     "vetion_or_calvarion",
 )
+MINIGAME_ACTIVITY_IDS = frozenset({
+    "barbarian-assault", "fishing-trawler", "giants-foundry", "guardians-of-the-rift",
+    "hallowed-sepulchre", "last-man-standing", "mage-training-arena", "mahogany-homes",
+    "motherlode-mine", "nightmare-zone", "pest-control", "pyramid-plunder", "rogues-den",
+    "shades-of-mortton", "tempoross", "tithe-farm", "wintertodt",
+})
+MINIGAME_ACTIVITY_OBSERVATION_FIELDS = {
+    "observed_at", "availability", "session", "currency_balances", "confirmed_purchases",
+    "local_supplies", "charge_states", "cooldown_observations", "activity_results",
+    "collection_log_rows",
+}
+MINIGAME_AVAILABILITY_FIELDS = {"world", "world_state", "team_state", "team_size", "location"}
+MINIGAME_SESSION_FIELDS = {"status", "mode", "round_or_floor", "started_at", "last_event"}
+MINIGAME_BALANCE_FIELDS = {"currency_id", "amount", "capacity"}
+MINIGAME_PURCHASE_FIELDS = {"purchase_id", "quantity", "currency_spent", "observed_at"}
+MINIGAME_RESULT_FIELDS = {
+    "event_id", "outcome", "observed_at", "point_delta", "reported_xp", "reported_items",
+}
+MINIGAME_CHARGE_FIELDS = {"charge_id", "amount", "capacity", "observed_at"}
+MINIGAME_COOLDOWN_FIELDS = {
+    "cooldown_id", "status", "ready_at", "uses_since_reset", "daily_limit", "observed_at",
+}
+MINIGAME_COLLECTION_LOG_FIELDS = {"entry_id", "status", "observed_at"}
+MINIGAME_WORLD_STATES = {"unknown", "available", "unavailable", "closing"}
+MINIGAME_TEAM_STATES = {
+    "unknown", "solo", "queueing", "available", "assembled", "in_progress", "unavailable",
+}
+MINIGAME_SESSION_STATES = {
+    "unknown", "not_started", "queued", "active", "ended", "reset", "unavailable",
+}
+MINIGAME_RESULT_OUTCOMES = {"unknown", "success", "failure", "left", "death", "interrupted"}
+MINIGAME_COOLDOWN_STATES = {"unknown", "ready", "cooldown", "unavailable"}
+MINIGAME_ACTIVITY_CURRENCIES = {
+    "barbarian-assault": frozenset({
+        "currency:barbarian-assault:attacker-honour",
+        "currency:barbarian-assault:collector-honour",
+        "currency:barbarian-assault:defender-honour",
+        "currency:barbarian-assault:healer-honour",
+    }),
+    "fishing-trawler": frozenset(),
+    "giants-foundry": frozenset({"currency:foundry-reputation", "currency:coins"}),
+    "guardians-of-the-rift": frozenset({
+        "currency:gotr-elemental-points", "currency:gotr-catalytic-points", "currency:abyssal-pearls",
+    }),
+    "hallowed-sepulchre": frozenset({"currency:hallowed-sepulchre:marks"}),
+    "last-man-standing": frozenset({"currency:last-man-standing:points", "currency:coins"}),
+    "mage-training-arena": frozenset({
+        "currency:mta-telekinetic-pizazz", "currency:mta-graveyard-pizazz",
+        "currency:mta-enchantment-pizazz", "currency:mta-alchemist-pizazz",
+    }),
+    "mahogany-homes": frozenset({"currency:mahogany-homes:carpenter-points"}),
+    "motherlode-mine": frozenset({"currency:golden-nuggets"}),
+    "nightmare-zone": frozenset({"currency:nightmare-zone:points", "currency:coins"}),
+    "pest-control": frozenset({"currency:pest-control:commendation-points", "currency:coins"}),
+    "pyramid-plunder": frozenset(),
+    "rogues-den": frozenset(),
+    "shades-of-mortton": frozenset(),
+    "tempoross": frozenset({"currency:tempoross-reward-permits"}),
+    "tithe-farm": frozenset({"currency:tithe-farm-points"}),
+    "wintertodt": frozenset({"currency:wintertodt:reward-cart-rolls"}),
+}
+MINIGAME_BALANCE_CAPACITIES = {
+    ("barbarian-assault", "currency:barbarian-assault:attacker-honour"): 5000,
+    ("barbarian-assault", "currency:barbarian-assault:collector-honour"): 5000,
+    ("barbarian-assault", "currency:barbarian-assault:defender-honour"): 5000,
+    ("barbarian-assault", "currency:barbarian-assault:healer-honour"): 5000,
+    ("mage-training-arena", "currency:mta-telekinetic-pizazz"): 8000,
+    ("mage-training-arena", "currency:mta-graveyard-pizazz"): 8000,
+    ("mage-training-arena", "currency:mta-enchantment-pizazz"): 32000,
+    ("mage-training-arena", "currency:mta-alchemist-pizazz"): 16000,
+    ("pest-control", "currency:pest-control:commendation-points"): 4000,
+    ("tempoross", "currency:tempoross-reward-permits"): 8000,
+    ("tithe-farm", "currency:tithe-farm-points"): 16000,
+    ("wintertodt", "currency:wintertodt:reward-cart-rolls"): 8000,
+}
+MINIGAME_ACTIVITY_CHARGES = {
+    "guardians-of-the-rift": frozenset({"ring-of-the-elements-charges"}),
+    "hallowed-sepulchre": frozenset({"ring-of-endurance-stamina"}),
+    "nightmare-zone": frozenset({"potion-barrel-doses"}),
+    "pyramid-plunder": frozenset({"pharaohs-sceptre"}),
+    "shades-of-mortton": frozenset({"sacred-oil-doses"}),
+    "tempoross": frozenset({"tome-of-water-pages"}),
+    "tithe-farm": frozenset({"gricollers-can-doses"}),
+    "wintertodt": frozenset({"rejuvenation-potion-doses"}),
+}
+MINIGAME_CHARGE_CAPACITIES = {
+    ("guardians-of-the-rift", "ring-of-the-elements-charges"): 10000,
+    ("hallowed-sepulchre", "ring-of-endurance-stamina"): 1000,
+    ("nightmare-zone", "potion-barrel-doses"): 255,
+    ("tithe-farm", "gricollers-can-doses"): 1000,
+}
+MINIGAME_CHARGE_ALLOWED_CAPACITIES = {
+    ("pyramid-plunder", "pharaohs-sceptre"): frozenset({3, 10, 25, 50, 100}),
+}
+MINIGAME_ACTIVITY_COOLDOWNS = {
+    "fishing-trawler": frozenset({"minigame-teleport"}),
+    "guardians-of-the-rift": frozenset({"minigame-teleport"}),
+    "last-man-standing": frozenset({"daily-forfeit"}),
+    "nightmare-zone": frozenset({"grouping-teleport"}),
+    "tempoross": frozenset({"minigame-teleport"}),
+    "wintertodt": frozenset({"minigame-teleport"}),
+}
 SLAYER_TASK_FIELDS = {
     "target", "remaining", "initial_count", "master", "streak", "points",
     "blocked_targets", "observed_at",
@@ -205,6 +307,20 @@ def _validate_supply_counts(values: Any, context: str) -> None:
             raise ValueError(f"{context} has an invalid item ID")
         if isinstance(count, bool) or not isinstance(count, int) or count < 0:
             raise ValueError(f"{context}.{item_id} must be a non-negative integer")
+
+
+def _validate_nullable_supply_counts(values: Any, context: str) -> None:
+    if not isinstance(values, dict):
+        raise ValueError(f"{context} must be an object")
+    for item_id, count in values.items():
+        if not isinstance(item_id, str) or not item_id.strip() or item_id != item_id.strip():
+            raise ValueError(f"{context} has an invalid item ID")
+        _validate_nullable_non_negative_integer(count, f"{context}.{item_id}")
+
+
+def _validate_trimmed_string(value: Any, context: str) -> None:
+    if not isinstance(value, str) or not value.strip() or value != value.strip():
+        raise ValueError(f"{context} must be a non-empty trimmed string")
 
 
 def _validate_nullable_timestamp(value: Any, context: str) -> None:
@@ -326,6 +442,235 @@ def _validate_diary_task_observations(observations: Any) -> None:
                 raise ValueError(f"{context} must use staged observation mode")
             if tuple(observation["stage_ids"]) != WILDERNESS_ELITE_BIG_THREE_STAGE_IDS:
                 raise ValueError(f"{context}.stage_ids must match the three Wilderness boss families")
+
+
+def _validate_minigame_currency_records(
+    records: Any,
+    activity_id: str,
+    context: str,
+) -> None:
+    if not isinstance(records, list):
+        raise ValueError(f"{context} must be an array")
+    seen_currency_ids: set[str] = set()
+    allowed_currency_ids = MINIGAME_ACTIVITY_CURRENCIES[activity_id]
+    for index, record in enumerate(records):
+        record_context = f"{context}[{index}]"
+        if not isinstance(record, dict) or set(record) != MINIGAME_BALANCE_FIELDS:
+            raise ValueError(f"{record_context} has invalid fields")
+        currency_id = record["currency_id"]
+        _validate_trimmed_string(currency_id, f"{record_context}.currency_id")
+        if currency_id not in allowed_currency_ids:
+            raise ValueError(f"{record_context}.currency_id is not valid for {activity_id}")
+        if currency_id in seen_currency_ids:
+            raise ValueError(f"{context} must not repeat a currency ID")
+        seen_currency_ids.add(currency_id)
+        for field in ("amount", "capacity"):
+            _validate_nullable_non_negative_integer(record[field], f"{record_context}.{field}")
+        amount = record["amount"]
+        capacity = record["capacity"]
+        if amount is not None and capacity is not None and amount > capacity:
+            raise ValueError(f"{record_context}.amount cannot exceed capacity")
+        known_capacity = MINIGAME_BALANCE_CAPACITIES.get((activity_id, currency_id))
+        if known_capacity is not None:
+            if capacity is not None and capacity != known_capacity:
+                raise ValueError(f"{record_context}.capacity must be {known_capacity} when supplied")
+            if amount is not None and amount > known_capacity:
+                raise ValueError(f"{record_context}.amount cannot exceed known capacity {known_capacity}")
+
+
+def _validate_minigame_activity_observations(observations: Any) -> None:
+    if observations is None:
+        return
+    if not isinstance(observations, dict):
+        raise ValueError("Account state minigame_activity_observations must be an object when supplied")
+
+    for activity_id, observation in observations.items():
+        context = f"Account state minigame_activity_observations.{activity_id}"
+        if activity_id not in MINIGAME_ACTIVITY_IDS:
+            raise ValueError(f"{context} has an unknown minigame activity ID")
+        if not isinstance(observation, dict) or "observed_at" not in observation:
+            raise ValueError(f"{context} must be an observation object with observed_at")
+        if not set(observation).issubset(MINIGAME_ACTIVITY_OBSERVATION_FIELDS):
+            raise ValueError(f"{context} has invalid fields")
+        if not _is_rfc_3339_timestamp(observation["observed_at"]):
+            raise ValueError(f"{context}.observed_at must be RFC 3339")
+
+        availability = observation.get("availability")
+        if availability is not None:
+            availability_context = f"{context}.availability"
+            if not isinstance(availability, dict) or not set(availability).issubset(MINIGAME_AVAILABILITY_FIELDS):
+                raise ValueError(f"{availability_context} has invalid fields")
+            if "world" in availability:
+                world = availability["world"]
+                if world is not None and (isinstance(world, bool) or not isinstance(world, int) or world < 1):
+                    raise ValueError(f"{availability_context}.world must be a positive integer or null")
+            if "world_state" in availability and availability["world_state"] not in MINIGAME_WORLD_STATES:
+                raise ValueError(f"{availability_context}.world_state is invalid")
+            if "team_state" in availability and availability["team_state"] not in MINIGAME_TEAM_STATES:
+                raise ValueError(f"{availability_context}.team_state is invalid")
+            if "team_size" in availability:
+                team_size = availability["team_size"]
+                if team_size is not None and (isinstance(team_size, bool) or not isinstance(team_size, int) or team_size < 1):
+                    raise ValueError(f"{availability_context}.team_size must be a positive integer or null")
+            if "location" in availability:
+                _validate_nullable_trimmed_string(availability["location"], f"{availability_context}.location")
+
+        session = observation.get("session")
+        if session is not None:
+            session_context = f"{context}.session"
+            if not isinstance(session, dict) or not set(session).issubset(MINIGAME_SESSION_FIELDS):
+                raise ValueError(f"{session_context} has invalid fields")
+            if "status" in session and session["status"] not in MINIGAME_SESSION_STATES:
+                raise ValueError(f"{session_context}.status is invalid")
+            for field in ("mode", "last_event"):
+                if field in session:
+                    _validate_nullable_trimmed_string(session[field], f"{session_context}.{field}")
+            if "round_or_floor" in session:
+                _validate_nullable_non_negative_integer(session["round_or_floor"], f"{session_context}.round_or_floor")
+            if "started_at" in session:
+                _validate_nullable_timestamp(session["started_at"], f"{session_context}.started_at")
+
+        if "currency_balances" in observation:
+            _validate_minigame_currency_records(
+                observation["currency_balances"], activity_id, f"{context}.currency_balances"
+            )
+
+        if "confirmed_purchases" in observation:
+            purchases = observation["confirmed_purchases"]
+            if not isinstance(purchases, list):
+                raise ValueError(f"{context}.confirmed_purchases must be an array")
+            for index, purchase in enumerate(purchases):
+                purchase_context = f"{context}.confirmed_purchases[{index}]"
+                if not isinstance(purchase, dict) or set(purchase) != MINIGAME_PURCHASE_FIELDS:
+                    raise ValueError(f"{purchase_context} has invalid fields")
+                _validate_trimmed_string(purchase["purchase_id"], f"{purchase_context}.purchase_id")
+                quantity = purchase["quantity"]
+                if isinstance(quantity, bool) or not isinstance(quantity, int) or quantity < 1:
+                    raise ValueError(f"{purchase_context}.quantity must be a positive integer")
+                if not _is_rfc_3339_timestamp(purchase["observed_at"]):
+                    raise ValueError(f"{purchase_context}.observed_at must be RFC 3339")
+                _validate_minigame_currency_records(
+                    purchase["currency_spent"], activity_id, f"{purchase_context}.currency_spent"
+                )
+
+        if "local_supplies" in observation:
+            _validate_nullable_supply_counts(observation["local_supplies"], f"{context}.local_supplies")
+
+        if "charge_states" in observation:
+            charges = observation["charge_states"]
+            if not isinstance(charges, list):
+                raise ValueError(f"{context}.charge_states must be an array")
+            seen_charge_ids: set[str] = set()
+            allowed_charge_ids = MINIGAME_ACTIVITY_CHARGES.get(activity_id, frozenset())
+            for index, charge in enumerate(charges):
+                charge_context = f"{context}.charge_states[{index}]"
+                if not isinstance(charge, dict) or set(charge) != MINIGAME_CHARGE_FIELDS:
+                    raise ValueError(f"{charge_context} has invalid fields")
+                charge_id = charge["charge_id"]
+                _validate_trimmed_string(charge_id, f"{charge_context}.charge_id")
+                if charge_id not in allowed_charge_ids:
+                    raise ValueError(f"{charge_context}.charge_id is not valid for {activity_id}")
+                if charge_id in seen_charge_ids:
+                    raise ValueError(f"{context}.charge_states must not repeat a charge ID")
+                seen_charge_ids.add(charge_id)
+                for field in ("amount", "capacity"):
+                    _validate_nullable_non_negative_integer(charge[field], f"{charge_context}.{field}")
+                amount = charge["amount"]
+                capacity = charge["capacity"]
+                if amount is not None and capacity is not None and amount > capacity:
+                    raise ValueError(f"{charge_context}.amount cannot exceed capacity")
+                known_capacity = MINIGAME_CHARGE_CAPACITIES.get((activity_id, charge_id))
+                if known_capacity is not None:
+                    if capacity is not None and capacity != known_capacity:
+                        raise ValueError(f"{charge_context}.capacity must be {known_capacity} when supplied")
+                    if amount is not None and amount > known_capacity:
+                        raise ValueError(f"{charge_context}.amount cannot exceed known capacity {known_capacity}")
+                allowed_capacities = MINIGAME_CHARGE_ALLOWED_CAPACITIES.get((activity_id, charge_id))
+                if capacity is not None and allowed_capacities is not None and capacity not in allowed_capacities:
+                    raise ValueError(f"{charge_context}.capacity is not a supported observed capacity")
+                if not _is_rfc_3339_timestamp(charge["observed_at"]):
+                    raise ValueError(f"{charge_context}.observed_at must be RFC 3339")
+
+        if "cooldown_observations" in observation:
+            cooldowns = observation["cooldown_observations"]
+            if not isinstance(cooldowns, list):
+                raise ValueError(f"{context}.cooldown_observations must be an array")
+            seen_cooldown_ids: set[str] = set()
+            allowed_cooldown_ids = MINIGAME_ACTIVITY_COOLDOWNS.get(activity_id, frozenset())
+            for index, cooldown in enumerate(cooldowns):
+                cooldown_context = f"{context}.cooldown_observations[{index}]"
+                if not isinstance(cooldown, dict) or set(cooldown) != MINIGAME_COOLDOWN_FIELDS:
+                    raise ValueError(f"{cooldown_context} has invalid fields")
+                cooldown_id = cooldown["cooldown_id"]
+                _validate_trimmed_string(cooldown_id, f"{cooldown_context}.cooldown_id")
+                if cooldown_id not in allowed_cooldown_ids:
+                    raise ValueError(f"{cooldown_context}.cooldown_id is not valid for {activity_id}")
+                if cooldown_id in seen_cooldown_ids:
+                    raise ValueError(f"{context}.cooldown_observations must not repeat a cooldown ID")
+                seen_cooldown_ids.add(cooldown_id)
+                if cooldown["status"] not in MINIGAME_COOLDOWN_STATES:
+                    raise ValueError(f"{cooldown_context}.status is invalid")
+                _validate_nullable_timestamp(cooldown["ready_at"], f"{cooldown_context}.ready_at")
+                _validate_nullable_non_negative_integer(
+                    cooldown["uses_since_reset"], f"{cooldown_context}.uses_since_reset"
+                )
+                daily_limit = cooldown["daily_limit"]
+                if daily_limit is not None and (
+                    isinstance(daily_limit, bool) or not isinstance(daily_limit, int) or daily_limit < 1
+                ):
+                    raise ValueError(f"{cooldown_context}.daily_limit must be a positive integer or null")
+                uses_since_reset = cooldown["uses_since_reset"]
+                if uses_since_reset is not None and daily_limit is not None and uses_since_reset > daily_limit:
+                    raise ValueError(f"{cooldown_context}.uses_since_reset cannot exceed daily_limit")
+                if cooldown["status"] != "cooldown" and cooldown["ready_at"] is not None:
+                    raise ValueError(f"{cooldown_context}.ready_at requires cooldown status")
+                if not _is_rfc_3339_timestamp(cooldown["observed_at"]):
+                    raise ValueError(f"{cooldown_context}.observed_at must be RFC 3339")
+
+        if "activity_results" in observation:
+            results = observation["activity_results"]
+            if not isinstance(results, list):
+                raise ValueError(f"{context}.activity_results must be an array")
+            seen_event_ids: set[str] = set()
+            for index, result in enumerate(results):
+                result_context = f"{context}.activity_results[{index}]"
+                if not isinstance(result, dict) or set(result) != MINIGAME_RESULT_FIELDS:
+                    raise ValueError(f"{result_context} has invalid fields")
+                event_id = result["event_id"]
+                _validate_trimmed_string(event_id, f"{result_context}.event_id")
+                if event_id in seen_event_ids:
+                    raise ValueError(f"{context}.activity_results must not repeat an event ID")
+                seen_event_ids.add(event_id)
+                if result["outcome"] not in MINIGAME_RESULT_OUTCOMES:
+                    raise ValueError(f"{result_context}.outcome is invalid")
+                if not _is_rfc_3339_timestamp(result["observed_at"]):
+                    raise ValueError(f"{result_context}.observed_at must be RFC 3339")
+                _validate_nullable_non_negative_integer(result["point_delta"], f"{result_context}.point_delta")
+                for field in ("reported_xp", "reported_items"):
+                    _validate_nullable_supply_counts(result[field], f"{result_context}.{field}")
+                if result["outcome"] == "unknown" and (
+                    result["point_delta"] is not None or result["reported_xp"] or result["reported_items"]
+                ):
+                    raise ValueError(f"{result_context}.unknown outcome cannot report generated outputs")
+
+        if "collection_log_rows" in observation:
+            rows = observation["collection_log_rows"]
+            if not isinstance(rows, list):
+                raise ValueError(f"{context}.collection_log_rows must be an array")
+            seen_entry_ids: set[str] = set()
+            for index, row in enumerate(rows):
+                row_context = f"{context}.collection_log_rows[{index}]"
+                if not isinstance(row, dict) or set(row) != MINIGAME_COLLECTION_LOG_FIELDS:
+                    raise ValueError(f"{row_context} has invalid fields")
+                entry_id = row["entry_id"]
+                _validate_trimmed_string(entry_id, f"{row_context}.entry_id")
+                if entry_id in seen_entry_ids:
+                    raise ValueError(f"{context}.collection_log_rows must not repeat an entry ID")
+                seen_entry_ids.add(entry_id)
+                if row["status"] not in COLLECTION_LOG_STATES:
+                    raise ValueError(f"{row_context}.status is invalid")
+                if not _is_rfc_3339_timestamp(row["observed_at"]):
+                    raise ValueError(f"{row_context}.observed_at must be RFC 3339")
 
 
 def validate_account_state(state: dict[str, Any]) -> None:
@@ -738,6 +1083,7 @@ def validate_account_state(state: dict[str, Any]) -> None:
             raise ValueError(f"Account state diary_tiers.{region} has an invalid tier")
 
     _validate_diary_task_observations(state.get("diary_task_observations"))
+    _validate_minigame_activity_observations(state.get("minigame_activity_observations"))
 
     kourend_memoir = state["kourend_memoir"]
     if kourend_memoir is not None:
@@ -941,6 +1287,24 @@ def report_diary_task_observations(account_state: dict[str, Any]) -> dict[str, A
     }
 
 
+def report_minigame_activity_observations(account_state: dict[str, Any]) -> dict[str, Any]:
+    """Return explicit minigame snapshots without deriving progress or outputs."""
+    validate_account_state(account_state)
+    observations = copy.deepcopy(account_state.get("minigame_activity_observations", {}))
+    return {
+        "observations": observations,
+        "observation_count": len(observations),
+        "activity_results_inferred": False,
+        "balances_inferred": False,
+        "purchases_inferred": False,
+        "inventory_inferred": False,
+        "xp_inferred": False,
+        "collection_log_inferred": False,
+        "charges_or_cooldowns_advanced": False,
+        "action_eligibility_inferred": False,
+    }
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="Evaluate verified progression actions for an account state.")
     parser.add_argument("state", nargs="?", default=DEFAULT_STATE, type=Path)
@@ -951,8 +1315,13 @@ def main() -> int:
     account_state = load_json(args.state)
     results = evaluate_actions(load_json(args.actions), account_state)
     diary_observation_report = report_diary_task_observations(account_state)
+    minigame_observation_report = report_minigame_activity_observations(account_state)
     if args.json:
-        print(json.dumps({"results": results, "diary_task_observations": diary_observation_report}, indent=2))
+        print(json.dumps({
+            "results": results,
+            "diary_task_observations": diary_observation_report,
+            "minigame_activity_observations": minigame_observation_report,
+        }, indent=2))
         return 0
 
     for result in results:
@@ -964,6 +1333,8 @@ def main() -> int:
     print(f"Diary task observations: {diary_observation_report['observation_count']}")
     print("Diary task milestones inferred: false")
     print("Diary tiers inferred: false")
+    print(f"Minigame activity observations: {minigame_observation_report['observation_count']}")
+    print("Minigame activity outputs inferred: false")
     return 0
 
 

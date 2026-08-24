@@ -16,6 +16,7 @@ from evaluate_progression import (  # noqa: E402
     evaluate_condition,
     load_json,
     report_diary_task_observations,
+    report_minigame_activity_observations,
     validate_account_state,
 )
 from validate_data import validate_condition  # noqa: E402
@@ -608,6 +609,115 @@ class EvaluateProgressionScenarioTests(unittest.TestCase):
         invalid_reset["status"] = "reset"
         state["diary_task_observations"] = {key: invalid_reset}
         with self.assertRaisesRegex(ValueError, "requires an observed diary-update invalidation"):
+            validate_account_state(state)
+
+    def test_minigame_activity_observations_are_optional_and_report_only(self) -> None:
+        state = copy.deepcopy(load_json(FIXTURES / "fresh-account.json"))
+        validate_account_state(state)
+        baseline_results = evaluate_actions(self.actions_document, state)
+
+        state["minigame_activity_observations"] = {
+            "guardians-of-the-rift": {
+                "observed_at": "2026-08-24T16:00:00Z",
+                "availability": {"world": 445, "world_state": "available", "team_state": "available"},
+                "currency_balances": [
+                    {"currency_id": "currency:abyssal-pearls", "amount": 750, "capacity": None}
+                ],
+                "confirmed_purchases": [],
+                "charge_states": [
+                    {
+                        "charge_id": "ring-of-the-elements-charges",
+                        "amount": 125,
+                        "capacity": 10000,
+                        "observed_at": "2026-08-24T16:00:00Z",
+                    }
+                ],
+                "collection_log_rows": [
+                    {
+                        "entry_id": "item:abyssal-needle",
+                        "status": "not_confirmed",
+                        "observed_at": "2026-08-24T16:00:00Z",
+                    }
+                ],
+            },
+            "wintertodt": {
+                "observed_at": "2026-08-24T16:05:00Z",
+                "session": {"status": "ended", "mode": "solo", "round_or_floor": 1},
+                "activity_results": [
+                    {
+                        "event_id": "wintertodt-session-1",
+                        "outcome": "success",
+                        "observed_at": "2026-08-24T16:05:00Z",
+                        "point_delta": None,
+                        "reported_xp": {},
+                        "reported_items": {},
+                    }
+                ],
+            },
+        }
+        original = copy.deepcopy(state)
+
+        validate_account_state(state)
+        report = report_minigame_activity_observations(state)
+        self.assertEqual(state["minigame_activity_observations"], report["observations"])
+        self.assertEqual(2, report["observation_count"])
+        for key, value in report.items():
+            if key not in {"observations", "observation_count"}:
+                self.assertFalse(value)
+        self.assertEqual(baseline_results, evaluate_actions(self.actions_document, state))
+        self.assertEqual(original, state)
+
+    def test_minigame_activity_observations_reject_unknowns_and_invalid_bounds(self) -> None:
+        state = copy.deepcopy(load_json(FIXTURES / "fresh-account.json"))
+        state["minigame_activity_observations"] = {
+            "unknown-game": {"observed_at": "2026-08-24T16:00:00Z"}
+        }
+        with self.assertRaisesRegex(ValueError, "unknown minigame activity ID"):
+            validate_account_state(state)
+
+        state["minigame_activity_observations"] = {
+            "tithe-farm": {
+                "observed_at": "2026-08-24T16:00:00Z",
+                "currency_balances": [
+                    {"currency_id": "currency:tithe-farm-points", "amount": 16001, "capacity": 16000}
+                ],
+            }
+        }
+        with self.assertRaisesRegex(ValueError, "amount cannot exceed capacity"):
+            validate_account_state(state)
+
+        state["minigame_activity_observations"] = {
+            "guardians-of-the-rift": {
+                "observed_at": "2026-08-24T16:00:00Z",
+                "charge_states": [
+                    {
+                        "charge_id": "abyssal-lantern-charges",
+                        "amount": 1,
+                        "capacity": 1,
+                        "observed_at": "2026-08-24T16:00:00Z",
+                    }
+                ],
+            }
+        }
+        with self.assertRaisesRegex(ValueError, "charge_id is not valid"):
+            validate_account_state(state)
+
+        state["minigame_activity_observations"] = {
+            "wintertodt": {
+                "observed_at": "2026-08-24T16:00:00Z",
+                "activity_results": [
+                    {
+                        "event_id": "unknown-result",
+                        "outcome": "unknown",
+                        "observed_at": "2026-08-24T16:00:00Z",
+                        "point_delta": 1,
+                        "reported_xp": {},
+                        "reported_items": {},
+                    }
+                ],
+            }
+        }
+        with self.assertRaisesRegex(ValueError, "unknown outcome cannot report generated outputs"):
             validate_account_state(state)
 
     def test_kourend_memoir_is_a_nullable_strict_account_observation(self) -> None:
