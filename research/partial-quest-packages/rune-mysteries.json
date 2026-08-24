@@ -1,0 +1,50 @@
+{
+  "package_schema_version": 1,
+  "package_type": "research-only-partial-quest",
+  "quest_id": "rune-mysteries",
+  "quest_name": "Rune Mysteries",
+  "status": "research",
+  "scope": "Current formal requirements, stable handoff checkpoints, item state, completion outputs, and separate Museum claim. This package contains no route ordering or strategic valuation.",
+  "sources": [
+    {"id": "wiki-rune-mysteries-quick-guide", "url": "https://oldschool.runescape.wiki/w/Rune_Mysteries/Quick_guide", "used_for": "Requirements, start, NPC sequence, locations, quest completion, rewards, and Museum claim relationship.", "verified_at": "2026-08-24"},
+    {"id": "wiki-research-package", "url": "https://oldschool.runescape.wiki/w/Research_package", "used_for": "Research package handoff and replacement behavior.", "verified_at": "2026-08-24"},
+    {"id": "wiki-aubury-transcript", "url": "https://oldschool.runescape.wiki/w/Transcript:Aubury", "used_for": "Package delivery, research notes receipt, and notes replacement.", "verified_at": "2026-08-24"},
+    {"id": "wiki-duke-horacio-transcript", "url": "https://oldschool.runescape.wiki/w/Transcript:Duke_Horacio", "used_for": "Quest-start and replacement air-talisman dialogue.", "verified_at": "2026-08-24"},
+    {"id": "wiki-kudos", "url": "https://oldschool.runescape.wiki/w/Kudos", "used_for": "Separate post-completion Historian Minas claim.", "verified_at": "2026-08-24"}
+  ],
+  "requirements": {"quests": [], "skills": [], "items": [], "gp": 0, "other": ["No enemy must be defeated."]},
+  "checkpoints": [
+    {
+      "id": "checkpoint:rune-mysteries-started", "sequence": 1, "state": "start", "location": "Lumbridge Castle first floor (UK), Duke Horacio", "description": "Accept Rune Mysteries from Duke Horacio and receive one air talisman.",
+      "item_changes": [{"id": "air_talisman", "quantity": 1, "disposition": "received"}], "hazards": [],
+      "observation": {"class": "player_confirmation", "instruction": "Confirm the quest was accepted and the air talisman was received.", "sufficient_by_itself": true, "runelite_boundary": "Character Exporter does not provide a stable in-progress stage; an air talisman alone is not stage-exclusive."},
+      "promotion": {"status": "research_only", "reason": "Await central review of the minimum useful macroquesting milestones."}, "source_ids": ["wiki-rune-mysteries-quick-guide", "wiki-duke-horacio-transcript"]
+    },
+    {
+      "id": "checkpoint:rune-mysteries-talisman-delivered", "sequence": 2, "state": "in_progress", "location": "Wizards' Tower basement, Archmage Sedridor", "description": "Give Sedridor the air talisman and receive one research package.",
+      "item_changes": [{"id": "air_talisman", "quantity": 1, "disposition": "removed"}, {"id": "research_package", "quantity": 1, "disposition": "received"}], "hazards": [],
+      "observation": {"class": "player_confirmation", "instruction": "Confirm the talisman handoff and research package receipt.", "sufficient_by_itself": true, "runelite_boundary": "Inventory presence is point-in-time evidence and replacement behavior prevents it from being a universal stage proof."},
+      "promotion": {"status": "research_only", "reason": "Stable factual handoff, pending usefulness and integration review."}, "source_ids": ["wiki-rune-mysteries-quick-guide", "wiki-research-package"]
+    },
+    {
+      "id": "checkpoint:rune-mysteries-package-delivered", "sequence": 3, "state": "in_progress", "location": "Aubury's Rune Shop, Varrock", "description": "Give Aubury the research package and receive one research notes.",
+      "item_changes": [{"id": "research_package", "quantity": 1, "disposition": "removed"}, {"id": "research_notes", "quantity": 1, "disposition": "received"}], "hazards": [],
+      "observation": {"class": "player_confirmation", "instruction": "Confirm Aubury accepted the package and supplied the notes.", "sufficient_by_itself": true, "runelite_boundary": "Character Exporter does not export this handoff; item observation alone does not establish its full history."},
+      "promotion": {"status": "research_only", "reason": "Stable factual handoff, pending usefulness and integration review."}, "source_ids": ["wiki-rune-mysteries-quick-guide", "wiki-aubury-transcript"]
+    },
+    {
+      "id": "checkpoint:rune-mysteries-completed", "sequence": 4, "state": "completion", "location": "Wizards' Tower basement, Archmage Sedridor", "description": "Give Sedridor the research notes and observe Rune Mysteries completion.",
+      "item_changes": [{"id": "research_notes", "quantity": 1, "disposition": "removed"}, {"id": "air_talisman", "quantity": 1, "disposition": "received"}], "hazards": [],
+      "observation": {"class": "quest_list", "instruction": "Confirm Rune Mysteries is finished in the quest list or imported as FINISHED.", "sufficient_by_itself": true, "runelite_boundary": "FINISHED safely proves completion but does not prove a Museum claim."},
+      "promotion": {"status": "research_only", "reason": "The graph has a quest node but actions.json does not yet contain a Rune Mysteries completion action."}, "source_ids": ["wiki-rune-mysteries-quick-guide"]
+    },
+    {
+      "id": "checkpoint:rune-mysteries-museum-claim", "sequence": 5, "state": "post_completion", "location": "Varrock Museum first floor (UK), Historian Minas", "description": "After quest completion, separately claim five Kudos from Historian Minas.",
+      "item_changes": [], "hazards": [],
+      "observation": {"class": "player_confirmation", "instruction": "Confirm the Historian Minas interaction separately from quest completion.", "sufficient_by_itself": true, "runelite_boundary": "Quest completion cannot prove the claim; the existing normalized claim action requires separate confirmation."},
+      "promotion": {"status": "research_only", "reason": "Already represented by a separate normalized claim action rather than partial quest state."}, "source_ids": ["wiki-rune-mysteries-quick-guide", "wiki-kudos"]
+    }
+  ],
+  "completion": {"normalized_action_id": null, "rewards": ["1 quest point", "1 air talisman"], "unlocks": ["Rune essence mine access through eligible wizard teleports", "Runecraft becomes eligible for random-event lamps and books of knowledge"], "post_completion_claims": ["5 Varrock Museum Kudos from Historian Minas through action:claim-minas-rune-mysteries"]},
+  "boundaries": {"route_selected": false, "partial_progress_is_quest_completion": false, "action_auto_applied": false, "items_or_rewards_inferred": false, "lamp_target_selected": false, "survival_inferred": false}
+}

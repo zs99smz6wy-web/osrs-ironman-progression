@@ -1,0 +1,101 @@
+{
+  "package_schema_version": 1,
+  "package_type": "research-only-partial-quest",
+  "quest_id": "the-restless-ghost",
+  "quest_name": "The Restless Ghost",
+  "status": "research",
+  "scope": "Current formal requirements, stable quest handoffs, item state, hazard, completion outputs, and RuneLite observation limits. This package contains no route ordering or strategic valuation.",
+  "sources": [
+    {"id": "wiki-the-restless-ghost", "url": "https://oldschool.runescape.wiki/w/The_Restless_Ghost", "used_for": "Quest identity, formal requirements, locations, walkthrough, Skeleton encounter, experience, quest point, amulet, and completion prerequisites.", "verified_at": "2026-08-24"},
+    {"id": "wiki-father-aereck-transcript", "url": "https://oldschool.runescape.wiki/w/Transcript:Father_Aereck", "used_for": "Quest-start dialogue, Father Urhney destination, and Lumbridge Swamp warning.", "verified_at": "2026-08-24"},
+    {"id": "wiki-restless-ghost-transcript", "url": "https://oldschool.runescape.wiki/w/Transcript:Restless_ghost", "used_for": "Amulet-gated ghost dialogue, missing-skull state, post-skull state, and coffin completion dialogue.", "verified_at": "2026-08-24"},
+    {"id": "wiki-restless-ghost-altar", "url": "https://oldschool.runescape.wiki/w/Altar_(The_Restless_Ghost)", "used_for": "Wizards' Tower basement altar, progression gate, skull retrieval, and altar state.", "verified_at": "2026-08-24"},
+    {"id": "wiki-restless-ghost-coffin", "url": "https://oldschool.runescape.wiki/w/Coffin_(The_Restless_Ghost)", "used_for": "Coffin location, open and completed states, skull return, and automatic closing behavior.", "verified_at": "2026-08-24"},
+    {"id": "wiki-restless-ghost-skeleton", "url": "https://oldschool.runescape.wiki/w/Skeleton_%28The_Restless_Ghost%29", "used_for": "Level 13 Skeleton encounter, avoidable combat, Slayer-task behavior, and combat-experience note.", "verified_at": "2026-08-24"},
+    {"id": "wiki-father-urnhey", "url": "https://oldschool.runescape.wiki/w/Father_Urhney", "used_for": "Ghostspeak amulet source, location, and replacement behavior.", "verified_at": "2026-08-24"},
+    {"id": "official-poll-restless-ghost-skeleton", "url": "https://oldschool.runescape.com/polls/2020/1602", "used_for": "Official confirmation that the level 13 Restless Ghost Skeleton was not lowered by the proposed change.", "verified_at": "2026-08-24"}
+  ],
+  "requirements": {
+    "quests": [],
+    "skills": [],
+    "items": [],
+    "gp": 0,
+    "other": ["The player must be able to kill or run from a level 13 quest Skeleton; killing it is not required."]
+  },
+  "checkpoints": [
+    {
+      "id": "checkpoint:restless-ghost-started",
+      "sequence": 1,
+      "state": "start",
+      "location": "Lumbridge church or chapel, Father Aereck",
+      "description": "Speak to Father Aereck and accept The Restless Ghost. He identifies the haunted graveyard and directs the player to Father Urhney in western Lumbridge Swamp.",
+      "item_changes": [],
+      "hazards": ["Father Aereck warns that Lumbridge Swamp may be dangerous."],
+      "observation": {"class": "player_confirmation", "instruction": "Confirm that Father Aereck accepted the conversation and The Restless Ghost is now in progress.", "sufficient_by_itself": true, "runelite_boundary": "The phase-1 importer preserves only FINISHED quests in quests_completed and does not preserve this exact in-progress stage."},
+      "promotion": {"status": "research_only", "reason": "Stable quest-start checkpoint, pending central review of whether partial progress should be represented as a durable macroquesting milestone."},
+      "source_ids": ["wiki-the-restless-ghost", "wiki-father-aereck-transcript"]
+    },
+    {
+      "id": "checkpoint:restless-ghost-amulet-received",
+      "sequence": 2,
+      "state": "in_progress",
+      "location": "Father Urhney's house, western Lumbridge Swamp",
+      "description": "Tell Father Urhney that Father Aereck sent the player about the ghost and receive one Ghostspeak amulet. The amulet must be worn to understand the Restless ghost's quest dialogue.",
+      "item_changes": [{"id": "ghostspeak_amulet", "quantity": 1, "disposition": "received"}],
+      "hazards": [],
+      "observation": {"class": "player_confirmation", "instruction": "Confirm the Father Urhney interaction and receipt of one Ghostspeak amulet; keep at least one free inventory slot for the receipt.", "sufficient_by_itself": true, "runelite_boundary": "An exported amulet can support physical possession when the relevant container is observed, but the current importer does not preserve the exact quest stage and an amulet alone is not stage-exclusive."},
+      "promotion": {"status": "research_only", "reason": "The item receipt and dialogue are stable facts, but inventory presence cannot establish the quest stage without player confirmation."},
+      "source_ids": ["wiki-the-restless-ghost", "wiki-father-urnhey"]
+    },
+    {
+      "id": "checkpoint:restless-ghost-conversation",
+      "sequence": 3,
+      "state": "in_progress",
+      "location": "Lumbridge Graveyard, small building with the marble coffin",
+      "description": "Wear the Ghostspeak amulet, open or search the coffin, and speak to the Restless ghost. The ghost explains that a warlock took his skull and directs the player toward the Wizards' Tower.",
+      "item_changes": [{"id": "ghostspeak_amulet", "quantity": 1, "disposition": "carried"}],
+      "hazards": [],
+      "observation": {"class": "player_confirmation", "instruction": "Confirm that the Ghostspeak amulet was worn and the ghost conversation established the missing-skull request.", "sufficient_by_itself": true, "runelite_boundary": "The phase-1 importer does not observe the amulet-gated dialogue, coffin interaction, travel, or exact partial quest stage; amulet possession alone does not prove this checkpoint."},
+      "promotion": {"status": "research_only", "reason": "The skull-retrieval gate is a stable factual interaction state, but it requires player confirmation until a tested client event contract exists."},
+      "source_ids": ["wiki-the-restless-ghost", "wiki-restless-ghost-transcript", "wiki-restless-ghost-coffin"]
+    },
+    {
+      "id": "checkpoint:restless-ghost-skull-retrieved",
+      "sequence": 4,
+      "state": "in_progress",
+      "location": "Wizards' Tower basement altar, south of Draynor Village",
+      "description": "After the ghost identifies the missing skull, search the altar and receive one Ghost's skull. At least one free inventory slot is required. Leaving the room or tower with the skull is a valid path; killing the Skeleton is not required.",
+      "item_changes": [{"id": "ghosts_skull", "quantity": 1, "disposition": "received"}],
+      "hazards": ["A level 13 quest Skeleton animates and attacks when the Ghost's skull is taken.", "The Skeleton can be avoided by running; killing it is not required and it does not provide the normal combat experience."],
+      "observation": {"class": "player_confirmation", "instruction": "Confirm that the altar search produced one Ghost's skull and that the player escaped or otherwise passed the level 13 Skeleton encounter.", "sufficient_by_itself": true, "runelite_boundary": "An exported skull can establish physical presence when the relevant container is observed, but the importer does not observe altar search, Skeleton aggro, running away, survival, or the exact quest stage."},
+      "promotion": {"status": "research_only", "reason": "The skull receipt and hazard are source-backed, but item presence alone cannot prove eligibility to complete the coffin interaction."},
+      "source_ids": ["wiki-the-restless-ghost", "wiki-restless-ghost-transcript", "wiki-restless-ghost-altar", "wiki-restless-ghost-skeleton", "official-poll-restless-ghost-skeleton"]
+    },
+    {
+      "id": "checkpoint:restless-ghost-completed",
+      "sequence": 5,
+      "state": "completion",
+      "location": "Lumbridge Graveyard, same marble coffin",
+      "description": "Use one Ghost's skull on the marble coffin. The ghost's spirit flies into the River Lum, the skull is returned to the coffin, and The Restless Ghost is completed. The Ghostspeak amulet remains available to the player.",
+      "item_changes": [{"id": "ghosts_skull", "quantity": 1, "disposition": "removed"}, {"id": "ghostspeak_amulet", "quantity": 1, "disposition": "retained"}],
+      "hazards": [],
+      "observation": {"class": "quest_list", "instruction": "Confirm The Restless Ghost is finished in the quest list or imported as FINISHED; record the Prayer experience and quest point as completion outputs rather than inferring them from item state.", "sufficient_by_itself": true, "runelite_boundary": "FINISHED safely proves quest completion, but the phase-1 importer does not prove the coffin interaction, the moment the skull was consumed, or the provenance of the Prayer experience."},
+      "promotion": {"status": "normalized_completion", "reason": "The existing action:the-restless-ghost records only separately confirmed coarse quest completion; it does not prove any partial checkpoint."},
+      "source_ids": ["wiki-the-restless-ghost", "wiki-restless-ghost-transcript", "wiki-restless-ghost-coffin"]
+    }
+  ],
+  "completion": {
+    "normalized_action_id": "action:the-restless-ghost",
+    "rewards": ["1 quest point", "1,125 Prayer experience"],
+    "unlocks": ["Ghostspeak amulet remains available for speaking to ghosts", "Prerequisite for Animal Magnetism, Cabin Fever, Curse of the Empty Lord, Creature of Fenkenstrain, Ghosts Ahoy, Making History, and Nature Spirit"],
+    "post_completion_claims": []
+  },
+  "boundaries": {
+    "route_selected": false,
+    "partial_progress_is_quest_completion": false,
+    "action_auto_applied": false,
+    "items_or_rewards_inferred": false,
+    "lamp_target_selected": false,
+    "survival_inferred": false
+  }
+}

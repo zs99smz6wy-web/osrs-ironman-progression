@@ -1,0 +1,320 @@
+{
+  "package_schema_version": 1,
+  "package_type": "research-only-partial-quest",
+  "quest_id": "x-marks-the-spot",
+  "quest_name": "X Marks the Spot",
+  "status": "research",
+  "scope": "Current formal requirements, the stable start, four successful dig-result handoffs, completion outputs, hazards, and observation boundaries. This package contains no route ordering, skill recommendation, or strategic valuation.",
+  "sources": [
+    {
+      "id": "wiki-x-marks-the-spot",
+      "url": "https://oldschool.runescape.wiki/w/X_Marks_the_Spot",
+      "used_for": "Quest requirements, start, four clue and dig stages, locations, completion interaction, and current rewards.",
+      "verified_at": "2026-08-24"
+    },
+    {
+      "id": "wiki-antique-lamp-x-marks-the-spot",
+      "url": "https://oldschool.runescape.wiki/w/Antique_lamp_%28X_Marks_the_Spot%29",
+      "used_for": "Lamp experience amount, player skill choice, non-bankable behavior, reclaim behavior, and item identity.",
+      "verified_at": "2026-08-24"
+    },
+    {
+      "id": "wiki-item-ids",
+      "url": "https://oldschool.runescape.wiki/w/Item_IDs",
+      "used_for": "Current item identity references for the ancient casket and X Marks the Spot antique lamp.",
+      "verified_at": "2026-08-24"
+    },
+    {
+      "id": "official-content-poll-63",
+      "url": "https://oldschool.runescape.com/polls/2019/1541",
+      "used_for": "Official quest identity, novice and very-short framing, and no formal quest requirements.",
+      "verified_at": "2026-08-24"
+    },
+    {
+      "id": "wiki-beginner-clue-guide",
+      "url": "https://oldschool.runescape.wiki/w/Treasure_Trails/Full_guide/Beginner",
+      "used_for": "Current beginner scroll-box terminology and post-completion clue reward context.",
+      "verified_at": "2026-08-24"
+    }
+  ],
+  "requirements": {
+    "quests": [],
+    "skills": [],
+    "items": [
+      {
+        "id": "functional_spade",
+        "quantity": 1,
+        "disposition": "required"
+      }
+    ],
+    "gp": 0,
+    "other": [
+      "The Eastfloor spade is not a valid substitute.",
+      "No enemy must be defeated.",
+      "Visiting Great Kourend is not required."
+    ]
+  },
+  "checkpoints": [
+    {
+      "id": "checkpoint:x-marks-the-spot-started",
+      "sequence": 1,
+      "state": "start",
+      "location": "The Sheared Ram, Lumbridge, Veos",
+      "description": "Offer to help Veos with the treasure hunt and receive the first treasure scroll.",
+      "item_changes": [
+        {
+          "id": "functional_spade",
+          "quantity": 1,
+          "disposition": "carried"
+        },
+        {
+          "id": "treasure_scroll_first_clue",
+          "quantity": 1,
+          "disposition": "received"
+        }
+      ],
+      "hazards": [],
+      "observation": {
+        "class": "player_confirmation",
+        "instruction": "Confirm that Veos accepted the offer and the first treasure scroll is now held.",
+        "sufficient_by_itself": true,
+        "runelite_boundary": "The current export does not preserve the exact in-progress quest stage; a first clue item alone does not prove the Veos interaction or quest stage."
+      },
+      "promotion": {
+        "status": "research_only",
+        "reason": "Stable factual start, pending central review of whether this partial state should become a durable macroquesting milestone."
+      },
+      "source_ids": [
+        "wiki-x-marks-the-spot",
+        "official-content-poll-63"
+      ]
+    },
+    {
+      "id": "checkpoint:x-marks-the-spot-first-dig",
+      "sequence": 2,
+      "state": "in_progress",
+      "location": "Bob's Brilliant Axes, Lumbridge",
+      "description": "Dig the first clue location north-west of the window and receive the second treasure scroll.",
+      "item_changes": [
+        {
+          "id": "functional_spade",
+          "quantity": 1,
+          "disposition": "retained"
+        },
+        {
+          "id": "treasure_scroll_first_clue",
+          "quantity": 1,
+          "disposition": "removed"
+        },
+        {
+          "id": "treasure_scroll_second_clue",
+          "quantity": 1,
+          "disposition": "received"
+        }
+      ],
+      "hazards": [],
+      "observation": {
+        "class": "player_confirmation",
+        "instruction": "Confirm that the correct first dig produced the second treasure scroll and that the spade remains available.",
+        "sufficient_by_itself": true,
+        "runelite_boundary": "Inventory can show a treasure scroll and spade, but the current bridge cannot prove the exact dig tile, clue resolution, or item replacement event."
+      },
+      "promotion": {
+        "status": "research_only",
+        "reason": "The dig result is a stable factual handoff, but exact partial quest stages are not currently normalized account state."
+      },
+      "source_ids": [
+        "wiki-x-marks-the-spot"
+      ]
+    },
+    {
+      "id": "checkpoint:x-marks-the-spot-second-dig",
+      "sequence": 3,
+      "state": "in_progress",
+      "location": "Behind Lumbridge Castle by the Cook's kitchen",
+      "description": "Dig the second clue location south-west of the large crate and receive the mysterious orb.",
+      "item_changes": [
+        {
+          "id": "functional_spade",
+          "quantity": 1,
+          "disposition": "retained"
+        },
+        {
+          "id": "treasure_scroll_second_clue",
+          "quantity": 1,
+          "disposition": "removed"
+        },
+        {
+          "id": "mysterious_orb",
+          "quantity": 1,
+          "disposition": "received"
+        }
+      ],
+      "hazards": [],
+      "observation": {
+        "class": "player_confirmation",
+        "instruction": "Confirm that the correct second dig produced the mysterious orb and that the spade remains available.",
+        "sufficient_by_itself": true,
+        "runelite_boundary": "Inventory can show the orb and spade, but the current bridge cannot prove the exact dig tile or the quest-stage transition that produced them."
+      },
+      "promotion": {
+        "status": "research_only",
+        "reason": "The orb handoff is source-backed, while orb readings and exact partial stage detection remain outside the current normalized observation contract."
+      },
+      "source_ids": [
+        "wiki-x-marks-the-spot"
+      ]
+    },
+    {
+      "id": "checkpoint:x-marks-the-spot-third-dig",
+      "sequence": 4,
+      "state": "in_progress",
+      "location": "East of Draynor Village, near Leela and north-west of the jail",
+      "description": "Use the mysterious orb to locate the area, dig four tiles north of the bush near Leela, and receive the fourth treasure scroll.",
+      "item_changes": [
+        {
+          "id": "functional_spade",
+          "quantity": 1,
+          "disposition": "retained"
+        },
+        {
+          "id": "mysterious_orb",
+          "quantity": 1,
+          "disposition": "removed"
+        },
+        {
+          "id": "treasure_scroll_fourth_clue",
+          "quantity": 1,
+          "disposition": "received"
+        }
+      ],
+      "hazards": [
+        "Jail guards near the dig area can be aggressive to lower-level players; this is a location safety hazard, not a formal quest combat requirement."
+      ],
+      "observation": {
+        "class": "player_confirmation",
+        "instruction": "Confirm that the correct third dig produced the fourth treasure scroll, and acknowledge the nearby jail-guard hazard before continuing.",
+        "sufficient_by_itself": true,
+        "runelite_boundary": "The current bridge cannot observe orb temperature readings, exact coordinates, the dig event, or the causal replacement of the orb with the fourth clue."
+      },
+      "promotion": {
+        "status": "research_only",
+        "reason": "The fourth-clue handoff and nearby hazard are factual, but exact partial progress and survival cannot be inferred from the current export."
+      },
+      "source_ids": [
+        "wiki-x-marks-the-spot"
+      ]
+    },
+    {
+      "id": "checkpoint:x-marks-the-spot-fourth-dig",
+      "sequence": 5,
+      "state": "in_progress",
+      "location": "Draynor Village market pig pen",
+      "description": "Decode the Caesar-shift clue as DRAYNOR PIG PEN, dig in the centre of the pig pen, and receive the ancient casket.",
+      "item_changes": [
+        {
+          "id": "functional_spade",
+          "quantity": 1,
+          "disposition": "retained"
+        },
+        {
+          "id": "treasure_scroll_fourth_clue",
+          "quantity": 1,
+          "disposition": "removed"
+        },
+        {
+          "id": "ancient_casket",
+          "quantity": 1,
+          "disposition": "received"
+        }
+      ],
+      "hazards": [],
+      "observation": {
+        "class": "player_confirmation",
+        "instruction": "Confirm that the decoded clue led to the correct pig-pen dig and that the ancient casket is now held.",
+        "sufficient_by_itself": true,
+        "runelite_boundary": "Inventory can show an ancient casket and spade, but the current bridge cannot prove the cipher, exact dig tile, or casket acquisition event."
+      },
+      "promotion": {
+        "status": "research_only",
+        "reason": "The casket handoff is stable factual progress, pending review of whether it should be a durable pre-completion milestone."
+      },
+      "source_ids": [
+        "wiki-x-marks-the-spot",
+        "wiki-item-ids"
+      ]
+    },
+    {
+      "id": "checkpoint:x-marks-the-spot-completed",
+      "sequence": 6,
+      "state": "completion",
+      "location": "Northernmost Port Sarim dock outside the Rusty Anchor Inn, Veos",
+      "description": "Give Veos the ancient casket and observe X Marks the Spot completion and its rewards.",
+      "item_changes": [
+        {
+          "id": "functional_spade",
+          "quantity": 1,
+          "disposition": "retained"
+        },
+        {
+          "id": "ancient_casket",
+          "quantity": 1,
+          "disposition": "removed"
+        },
+        {
+          "id": "coins",
+          "quantity": 200,
+          "disposition": "received"
+        },
+        {
+          "id": "antique_lamp_x_marks_the_spot",
+          "quantity": 1,
+          "disposition": "received"
+        }
+      ],
+      "hazards": [],
+      "observation": {
+        "class": "quest_list",
+        "instruction": "Confirm X Marks the Spot is finished in the quest list or imported as FINISHED; separately confirm the 200 coins and lamp are present if the inventory is available.",
+        "sufficient_by_itself": true,
+        "runelite_boundary": "A FINISHED quest row reliably proves completion, but does not prove reward attribution or which skill, if any, the player selected for the 300 XP lamp."
+      },
+      "promotion": {
+        "status": "normalized_completion",
+        "reason": "The existing action:x-marks-the-spot records only separately confirmed coarse quest completion; it does not prove any partial checkpoint."
+      },
+      "source_ids": [
+        "wiki-x-marks-the-spot",
+        "wiki-antique-lamp-x-marks-the-spot",
+        "wiki-item-ids",
+        "wiki-beginner-clue-guide"
+      ]
+    }
+  ],
+  "completion": {
+    "normalized_action_id": "action:x-marks-the-spot",
+    "rewards": [
+      "1 quest point",
+      "200 coins",
+      "1 Antique lamp (X Marks the Spot), granting 300 experience in a skill chosen by the player; this package does not select the skill",
+      "1 beginner scroll box when the applicable possession condition is met; it may be claimed later under the current reward rules",
+      "The player can receive scroll boxes in place of clue scrolls under the applicable rules and caps"
+    ],
+    "unlocks": [
+      "X Marks the Spot becomes a requirement for Client of Kourend",
+      "The clue-scroll cap increases by one for all tiers"
+    ],
+    "post_completion_claims": [
+      "The Antique lamp can be reclaimed from Veos if lost or destroyed",
+      "Unlocking Great Kourend is listed as auto-completing X Marks the Spot"
+    ]
+  },
+  "boundaries": {
+    "route_selected": false,
+    "partial_progress_is_quest_completion": false,
+    "action_auto_applied": false,
+    "items_or_rewards_inferred": false,
+    "lamp_target_selected": false,
+    "survival_inferred": false
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "manifest_schema_version": 1,
+  "package_type": "research-only-partial-quest",
+  "packages": [
+    "rune-mysteries.json",
+    "the-restless-ghost.json",
+    "x-marks-the-spot.json"
+  ],
+  "boundary": "Packages resolve sourced quest checkpoints only. They do not select route order, apply account transitions, or equate partial progress with quest completion."
+}

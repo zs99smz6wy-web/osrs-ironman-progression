@@ -46,7 +46,8 @@
 
 - Completed: compared current BRUHsailer and B0aty HCIM guide structure as community strategy evidence, preserving their useful episode, checkpoint, alternative, safety, and passive-trigger patterns without importing universal route assumptions.
 - Completed: added a research-only execution-segment contract and bounded Varrock Museum proof that separates sourced local instructions, normalized completion actions, and unresolved Rune Mysteries partial state.
-- Pending: normalize only the strategically useful quest starts and partial checkpoints exposed by pilot segments, beginning with the early macroquesting cluster; do not attempt exhaustive quest-step normalization before the pilot demonstrates a decision need.
+- Completed: added the partial-quest research contract and first Lumbridge-area dossiers/packages for Rune Mysteries, X Marks the Spot, and The Restless Ghost, preserving exact requirements, items, stable handoffs, hazards, completion, and RuneLite observation limits.
+- Pending: review which of those checkpoints are strategically useful enough to promote into durable milestones, then compose the first Lumbridge-to-Varrock execution episode. Do not attempt exhaustive quest-step normalization before the pilot demonstrates a decision need.
 
 ## Continuing validation queue
 
