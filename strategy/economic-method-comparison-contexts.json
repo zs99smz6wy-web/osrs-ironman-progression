@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "scope": "Strategy-only attention and secondary-benefit context for the bounded economic comparison. It ranks no method and never turns a possible output into an account-state result.",
+  "policy_reference": "strategy/economic-policy.md",
+  "methods": {
+    "agility_pyramid": {
+      "attention_profile": "active",
+      "allowed_attention_modes": ["active"],
+      "requires_player_present": true,
+      "secondary_benefit_categories": ["Agility experience"],
+      "stop_reentry": "Reassess when the named funding commitment is later observed funded, desert supplies or attention no longer fit, or a new commitment becomes earlier."
+    },
+    "giants_foundry": {
+      "attention_profile": "active_timing",
+      "allowed_attention_modes": ["active"],
+      "requires_player_present": true,
+      "secondary_benefit_categories": ["Smithing experience", "Foundry Reputation", "deterministic shop access after observed reputation"],
+      "stop_reentry": "Reassess when the named funding commitment is later observed funded, commission inputs change, or an observed shop objective takes priority."
+    },
+    "wealthy_citizen_valuables": {
+      "attention_profile": "low_to_medium",
+      "allowed_attention_modes": ["low_attention", "semi_afk", "active"],
+      "requires_player_present": true,
+      "secondary_benefit_categories": ["Thieving experience", "easy clue opportunity", "jewellery opportunity", "Prayer-material opportunity"],
+      "stop_reentry": "Reassess when the named funding commitment is later observed funded, the observed attention window changes, or a different declared commitment becomes earlier."
+    },
+    "silk_stalls": {
+      "attention_profile": "active",
+      "allowed_attention_modes": ["active"],
+      "requires_player_present": true,
+      "secondary_benefit_categories": ["Thieving experience", "silk quest-material availability"],
+      "stop_reentry": "Reassess when the named funding commitment is later observed funded, the sale delay or guard management no longer fits, or a new commitment becomes earlier."
+    },
+    "blackjacking": {
+      "attention_profile": "high_intensity",
+      "allowed_attention_modes": ["active"],
+      "requires_player_present": true,
+      "secondary_benefit_categories": ["Thieving experience"],
+      "stop_reentry": "Reassess when the named funding commitment is later observed funded, attention or risk tolerance changes, or the player no longer wants the high-intensity method."
+    },
+    "sailing_bounty_tasks": {
+      "attention_profile": "active_task_dependent",
+      "allowed_attention_modes": ["active"],
+      "requires_player_present": true,
+      "secondary_benefit_categories": ["Sailing experience", "bounty parts for current voyage context"],
+      "stop_reentry": "Reassess when the named funding commitment is later observed funded, task availability changes, or a different Sailing objective is declared."
+    },
+    "shipwreck_salvaging": {
+      "attention_profile": "low_intensity",
+      "allowed_attention_modes": ["low_attention", "semi_afk", "active"],
+      "requires_player_present": true,
+      "secondary_benefit_categories": ["Sailing experience", "farming-seed opportunity", "salvaging relic opportunity", "ship-material opportunity"],
+      "stop_reentry": "Reassess when the named funding commitment is later observed funded, shipwreck availability or boat preparation changes, or a different account objective needs the supplies."
+    },
+    "port_roberts_stalls": {
+      "attention_profile": "active_timing",
+      "allowed_attention_modes": ["active"],
+      "requires_player_present": true,
+      "secondary_benefit_categories": ["Thieving experience", "stall-specific supplies"],
+      "stop_reentry": "Reassess when the named funding commitment is later observed funded, guard timing or arrest risk no longer fits, or a different declared commitment becomes earlier."
+    }
+  },
+  "comparison_boundaries": {
+    "method_selected": false,
+    "gp_rate_inferred": false,
+    "session_output_inferred": false,
+    "funding_completion_inferred": false,
+    "commitment_order_inferred": false
+  }
+}

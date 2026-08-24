@@ -1,0 +1,67 @@
+{
+  "research_id": "bounded-account-aware-economic-method-comparison",
+  "checked_at": "2026-08-24",
+  "scope": "Maps established economic fact records to their normalized repeatable actions for account-aware comparison. It does not add GP rates, estimate session output, or recommend a funding route.",
+  "fact_source": "data/facts/economic-bottlenecks.json",
+  "methods": [
+    {
+      "id": "agility_pyramid",
+      "action_id": "action:agility-pyramid",
+      "economic_fact_id": "economic-agility-pyramid",
+      "output_boundary": "A completed top has a fixed 10,000-coin sale value, but completed tops and activity throughput are not forecast."
+    },
+    {
+      "id": "giants_foundry",
+      "action_id": "action:giants-foundry",
+      "economic_fact_id": "economic-giants-foundry-commissions",
+      "output_boundary": "Coins follow a fixed post-quality formula, while supplied metal, quality, mistakes, and net session output remain unobserved."
+    },
+    {
+      "id": "wealthy_citizen_valuables",
+      "action_id": "action:steal-valuables",
+      "economic_fact_id": "economic-stealing-valuables",
+      "output_boundary": "Individual successful pickpockets and each sold valuable have documented coin values, but keys, valuables, jewellery, catches, and session output remain variable."
+    },
+    {
+      "id": "silk_stalls",
+      "action_id": "action:steal-silk-stalls",
+      "economic_fact_id": "economic-conventional-thieving-silk",
+      "output_boundary": "A resold silk has a fixed documented merchant value after its delay, but successful thefts and sale-cycle throughput are not forecast."
+    },
+    {
+      "id": "blackjacking",
+      "action_id": "action:blackjack-bandits",
+      "economic_fact_id": "economic-blackjacking-bandits",
+      "output_boundary": "Documented coins per successful knocked-out target do not establish knock-out success, target choice, or session output."
+    },
+    {
+      "id": "sailing_bounty_tasks",
+      "action_id": "action:sailing-bounty-task",
+      "economic_fact_id": "economic-sailing-bounty-tasks",
+      "output_boundary": "A completed accepted task pays its base Sailing XP in coins, but task assignment, completion, and output are not forecast."
+    },
+    {
+      "id": "shipwreck_salvaging",
+      "action_id": "action:salvage-shipwrecks",
+      "economic_fact_id": "economic-sailing-salvaging",
+      "output_boundary": "Salvage and sorted loot are variable items rather than a fixed direct-coin output; no valuation or session output is calculated."
+    },
+    {
+      "id": "port_roberts_stalls",
+      "action_id": "action:steal-port-roberts-stalls",
+      "economic_fact_id": "economic-port-roberts-stalls",
+      "output_boundary": "Stalls produce variable items, not fixed direct coins; later sale or alchemy choices and values are outside this comparison."
+    }
+  ],
+  "boundaries": {
+    "excluded": [
+      "GP-per-hour values, expected outputs, expected success, loot valuation, travel time, session duration, and method ordering.",
+      "Automatically selecting a method, applying activity results, or treating a commitment as funded without a later observed account balance."
+    ],
+    "allowed": [
+      "Reporting normalized hard access and preparation gates against the supplied account state.",
+      "Showing declared cash pressure and the earliest named commitment with a cumulative shortfall.",
+      "Showing documented secondary outputs and strategy-only attention fit without converting them into a score or selection."
+    ]
+  }
+}
