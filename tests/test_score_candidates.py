@@ -44,6 +44,51 @@ class ScoreCandidatesTests(unittest.TestCase):
     def candidate_by_id(ranked: list[dict], action_id: str) -> dict:
         return next(candidate for candidate in ranked if candidate["action_id"] == action_id)
 
+    def test_strategy_pilot_annotations_cover_requested_actions_and_timing_policy(self) -> None:
+        target_ids = {
+            "action:a-kingdom-divided",
+            "action:establish-player-owned-house",
+            "action:build-poh-superior-garden",
+            "action:upgrade-ornate-rejuvenation-pool",
+            "action:upgrade-crystalline-portal-nexus",
+            "action:claim-explorers-ring-current",
+            "action:buy-coal-bag",
+            "action:buy-gem-bag",
+            "action:perilous-moons-quest",
+            "action:moons-of-peril",
+            "action:motherlode-mine",
+        }
+        annotations = {candidate["action_id"]: candidate for candidate in self.candidates_document["candidates"]}
+
+        self.assertTrue(target_ids.issubset(annotations))
+        for action_id in target_ids:
+            dimensions = annotations[action_id]["dimensions"]
+            self.assertEqual(set(ALL_DIMENSIONS), set(dimensions))
+            self.assertTrue(all(isinstance(value, int) and 0 <= value <= 4 for value in dimensions.values()))
+            self.assertTrue(annotations[action_id]["stop_condition"])
+            self.assertTrue(annotations[action_id]["reentry_condition"])
+
+        self.assertIn("fixed skill XP", annotations["action:a-kingdom-divided"]["stop_condition"])
+        self.assertIn("material", annotations["action:claim-explorers-ring-current"]["stop_condition"])
+        self.assertIn("demand", annotations["action:build-poh-superior-garden"]["stop_condition"])
+        self.assertIn("demand", annotations["action:upgrade-crystalline-portal-nexus"]["reentry_condition"])
+        self.assertIn("self-contained", annotations["action:moons-of-peril"]["stop_condition"])
+        self.assertIn("observed combat readiness", annotations["action:moons-of-peril"]["reentry_condition"])
+        self.assertIn("99 Mining", annotations["action:motherlode-mine"]["stop_condition"])
+
+        state = load_json(FIXTURES / "fresh-account.json")
+        state["skills"]["Mining"] = 30
+        state["skill_xp"]["Mining"] = minimum_xp_for_level(30)
+        state["resources"]["golden_nuggets"] = 100
+        ranked = score_candidates(self.candidates_document, self.actions_document, state)
+        by_id = {candidate["action_id"]: candidate for candidate in ranked}
+
+        self.assertIn("action:motherlode-mine", by_id)
+        self.assertIn("action:buy-coal-bag", by_id)
+        self.assertIn("action:buy-gem-bag", by_id)
+        self.assertEqual(11, by_id["action:motherlode-mine"]["base_score"])
+        self.assertEqual(1, by_id["action:motherlode-mine"]["adjustments"]["attention_window"])
+
     def test_only_evaluator_eligible_actions_are_ranked(self) -> None:
         ranked = self.score_fixture("fresh-account.json")
         ranked_ids = {candidate["action_id"] for candidate in ranked}

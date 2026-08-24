@@ -210,6 +210,72 @@
       "dimensions": {"lifetime_utility": 2, "content_unlock": 1, "economic_infrastructure": 3, "multi_output": 3, "diversity": 4, "afk_fit": 0, "detour_cost": 1, "burnout_risk": 1, "danger_risk": 1},
       "stop_condition": "Stop when the current Sailing, salvage, or variety objective is met; no assumed loot target justifies open-ended repetition.",
       "reentry_condition": "Re-enter after Pandemonium at 15 Sailing with a salvaging hook and a capable boat when its variable outputs fit a current need."
+    },
+    {
+      "action_id": "action:a-kingdom-divided",
+      "dimensions": {"lifetime_utility": 4, "content_unlock": 4, "economic_infrastructure": 3, "multi_output": 4, "diversity": 3, "afk_fit": 0, "detour_cost": 3, "burnout_risk": 0, "danger_risk": 3},
+      "stop_condition": "Stop after the quest, fixed skill XP, broad Kourend access, and Book of the Dead utility are secured; do not extend the detour merely to keep questing.",
+      "reentry_condition": "Re-enter when the prerequisite quest and skill state, memoir pages, preparation items, and observed combat readiness make its combined XP and access value timely."
+    },
+    {
+      "action_id": "action:establish-player-owned-house",
+      "dimensions": {"lifetime_utility": 4, "content_unlock": 3, "economic_infrastructure": 2, "multi_output": 2, "diversity": 3, "afk_fit": 0, "detour_cost": 1, "burnout_risk": 0, "danger_risk": 0},
+      "stop_condition": "Stop once house ownership is recorded; treat rooms, restoration, prayer, and transport upgrades as separate demand-driven decisions.",
+      "reentry_condition": "Re-enter when the ownership cost or Daddy's Home path is ready and a named first POH utility will immediately support account activity."
+    },
+    {
+      "action_id": "action:build-poh-superior-garden",
+      "dimensions": {"lifetime_utility": 4, "content_unlock": 3, "economic_infrastructure": 3, "multi_output": 3, "diversity": 3, "afk_fit": 0, "detour_cost": 3, "burnout_risk": 1, "danger_risk": 0},
+      "stop_condition": "Stop after the Superior Garden is built; advance the POH pool only when repeated recovery demand and the next material budget justify it.",
+      "reentry_condition": "Re-enter when the Construction gate, coins, and the next restoration or transport use are observed, rather than pursuing the garden as a blanket construction target."
+    },
+    {
+      "action_id": "action:upgrade-ornate-rejuvenation-pool",
+      "dimensions": {"lifetime_utility": 4, "content_unlock": 3, "economic_infrastructure": 2, "multi_output": 3, "diversity": 3, "afk_fit": 0, "detour_cost": 4, "burnout_risk": 1, "danger_risk": 1},
+      "stop_condition": "Stop after the ornate pool is built; its value comes from repeated PvM and travel recovery, not from reaching a Construction milestone for its own sake.",
+      "reentry_condition": "Re-enter only when the prior pool, Construction level, materials, and observed repeated recovery demand make this expensive stage pay back."
+    },
+    {
+      "action_id": "action:upgrade-crystalline-portal-nexus",
+      "dimensions": {"lifetime_utility": 4, "content_unlock": 4, "economic_infrastructure": 2, "multi_output": 3, "diversity": 3, "afk_fit": 0, "detour_cost": 4, "burnout_risk": 1, "danger_risk": 0},
+      "stop_condition": "Stop after the crystalline nexus upgrade when its selected destinations cover real travel demand; do not buy destinations or tiers without a use case.",
+      "reentry_condition": "Re-enter when the prior nexus state, Construction and material requirements, and observed destination demand show a clear travel payback over available alternatives."
+    },
+    {
+      "action_id": "action:claim-explorers-ring-current",
+      "dimensions": {"lifetime_utility": 3, "content_unlock": 2, "economic_infrastructure": 2, "multi_output": 2, "diversity": 3, "afk_fit": 0, "detour_cost": 1, "burnout_risk": 0, "danger_risk": 0},
+      "stop_condition": "Stop after claiming the current Explorer's ring tier; value the material run-energy and teleport utility rather than diary completion as an achievement.",
+      "reentry_condition": "Re-enter when the player has confirmed a new eligible tier and its material utility serves current travel or skilling demand."
+    },
+    {
+      "action_id": "action:buy-coal-bag",
+      "dimensions": {"lifetime_utility": 4, "content_unlock": 1, "economic_infrastructure": 3, "multi_output": 3, "diversity": 2, "afk_fit": 0, "detour_cost": 2, "burnout_risk": 1, "danger_risk": 0},
+      "stop_condition": "Stop immediately after buying the coal bag; Motherlode is a means to the storage utility, not a reason to pursue 99 Mining.",
+      "reentry_condition": "Re-enter when the golden-nugget balance is ready and coal capacity will improve a named Smithing, furnace, or Giants' Foundry pipeline."
+    },
+    {
+      "action_id": "action:buy-gem-bag",
+      "dimensions": {"lifetime_utility": 3, "content_unlock": 1, "economic_infrastructure": 3, "multi_output": 3, "diversity": 2, "afk_fit": 0, "detour_cost": 2, "burnout_risk": 1, "danger_risk": 0},
+      "stop_condition": "Stop immediately after buying the gem bag; do not continue Motherlode solely for another storage purchase without a current gem or Crafting need.",
+      "reentry_condition": "Re-enter when the golden-nugget balance is ready and gem storage will materially improve observed mining, gem collection, or Crafting work."
+    },
+    {
+      "action_id": "action:perilous-moons-quest",
+      "dimensions": {"lifetime_utility": 4, "content_unlock": 4, "economic_infrastructure": 3, "multi_output": 4, "diversity": 4, "afk_fit": 0, "detour_cost": 2, "burnout_risk": 1, "danger_risk": 2},
+      "stop_condition": "Stop after the quest and its fixed access and XP are secured; treat Moons farming as a separate readiness and reward decision.",
+      "reentry_condition": "Re-enter when the skill and quest gates, supplies, and observed combat readiness make its self-contained encounter preparation worthwhile now."
+    },
+    {
+      "action_id": "action:moons-of-peril",
+      "dimensions": {"lifetime_utility": 4, "content_unlock": 4, "economic_infrastructure": 4, "multi_output": 4, "diversity": 4, "afk_fit": 0, "detour_cost": 2, "burnout_risk": 2, "danger_risk": 3},
+      "stop_condition": "Stop after the current utility, gear, or supply objective is met; do not turn self-contained supplies and variable Lunar Chest rewards into an open-ended grind.",
+      "reentry_condition": "Re-enter only with observed combat readiness, a recovery and death plan, and a named reward or gear need that justifies the encounter risk now."
+    },
+    {
+      "action_id": "action:motherlode-mine",
+      "dimensions": {"lifetime_utility": 3, "content_unlock": 1, "economic_infrastructure": 4, "multi_output": 4, "diversity": 3, "afk_fit": 3, "detour_cost": 2, "burnout_risk": 2, "danger_risk": 0},
+      "stop_condition": "Stop at the selected utility target, such as coal bag, gem bag, or a named Prospector milestone; do not recommend 99 Mining for efficiency alone.",
+      "reentry_condition": "Re-enter when a current storage, Smithing, Mining, or AFK objective justifies the attention cost and the next selected utility has a defined stop point."
     }
   ]
 }
