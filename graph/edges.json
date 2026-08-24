@@ -710,6 +710,20 @@
     {"from": "currency:nightmare-zone:points", "to": "item:scroll-of-redirection", "type": "requires", "evidence": "A confirmed Nightmare Zone Scroll of redirection purchase costs exactly 775 observed points."},
     {"from": "quest:sins-of-the-father", "to": "activity:hallowed-sepulchre", "type": "unlocks", "evidence": "Sins of the Father completion unlocks Hallowed Sepulchre access."},
     {"from": "currency:hallowed-sepulchre:marks", "to": "item:hallowed-focus", "type": "requires", "evidence": "A confirmed Mysterious Hallowed Goods Hallowed focus purchase costs exactly 100 observed marks."},
-    {"from": "currency:hallowed-sepulchre:marks", "to": "unlock:hallowed-sepulchre-private-instance", "type": "requires", "evidence": "A confirmed Mysterious Hallowed Goods private-instance unlock costs exactly 200 observed marks."}
+    {"from": "currency:hallowed-sepulchre:marks", "to": "unlock:hallowed-sepulchre-private-instance", "type": "requires", "evidence": "A confirmed Mysterious Hallowed Goods private-instance unlock costs exactly 200 observed marks."},
+    {"from": "item:small-fishing-net", "to": "activity:small-net-fishing", "type": "requires", "evidence": "Small-net fishing requires a supplied small fishing net; the qualifying spot is selected and observed by the player."},
+    {"from": "item:fly-fishing-rod", "to": "activity:fly-fishing", "type": "requires", "evidence": "Fly fishing requires a supplied fly fishing rod at a qualifying lure spot."},
+    {"from": "item:feathers", "to": "activity:fly-fishing", "type": "requires", "evidence": "Fly fishing requires supplied feathers; consumption is variable and is not simulated."},
+    {"from": "condition:fishing-65", "to": "activity:karambwan-fishing", "type": "requires", "evidence": "Karambwan fishing requires at least 65 Fishing."},
+    {"from": "milestone:tai-bwo-wannai-trio-karambwan-fishing-access", "to": "activity:karambwan-fishing", "type": "requires", "evidence": "The relevant partial Tai Bwo Wannai Trio progression must be confirmed before catching karambwan; full quest completion is not inferred."},
+    {"from": "item:karambwan-vessel", "to": "activity:karambwan-fishing", "type": "requires", "evidence": "Karambwan fishing requires a supplied karambwan vessel."},
+    {"from": "item:raw-karambwanji", "to": "activity:karambwan-fishing", "type": "requires", "evidence": "Karambwan fishing requires supplied raw karambwanji as bait; consumption is variable and is not simulated."},
+    {"from": "condition:woodcutting-30", "to": "activity:willow-woodcutting", "type": "requires", "evidence": "Cutting willow trees requires at least 30 Woodcutting."},
+    {"from": "item:axe", "to": "activity:willow-woodcutting", "type": "requires", "evidence": "Willow cutting requires a usable axe; it may be carried when not wieldable."},
+    {"from": "condition:woodcutting-60", "to": "activity:yew-woodcutting", "type": "requires", "evidence": "Cutting yew trees requires at least 60 Woodcutting."},
+    {"from": "item:axe", "to": "activity:yew-woodcutting", "type": "requires", "evidence": "Yew cutting requires a usable axe; it may be carried when not wieldable."},
+    {"from": "condition:woodcutting-90", "to": "activity:redwood-woodcutting-guild", "type": "requires", "evidence": "Woodcutting Guild redwoods require visible Woodcutting level 90."},
+    {"from": "milestone:woodcutting-guild-access", "to": "activity:redwood-woodcutting-guild", "type": "requires", "evidence": "The player must have observed access to the Woodcutting Guild; membership and entry state are not inferred."},
+    {"from": "item:axe", "to": "activity:redwood-woodcutting-guild", "type": "requires", "evidence": "Woodcutting Guild redwoods require a usable axe; it may be carried when not wieldable."}
   ]
 }

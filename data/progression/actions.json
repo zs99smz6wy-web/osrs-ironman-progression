@@ -3469,6 +3469,120 @@
       }
     },
     {
+      "id": "action:small-net-fishing",
+      "name": "Fish with a small net",
+      "kind": "activity",
+      "status": "verified",
+      "fact_ids": ["low-attention-fishing-methods"],
+      "requirements": {"all": [{"type": "skill_at_least", "key": "Fishing", "value": 1}]},
+      "preparation": {"all": [{"type": "item_at_least", "key": "small_fishing_net", "value": 1}]},
+      "completion": {"all": []},
+      "outcomes": [],
+      "repeatable": true,
+      "transition": {
+        "effects": [],
+        "options": [],
+        "reported_effects": [
+          {"type": "variable_activity_output", "description": "At a player-selected qualifying small-net spot, catches, Fishing XP, spot movement, inventory fill, and any banking or drop handling must be reported from the session; no output is applied automatically. Stop when the spot moves, capacity is reached, or the player ends the session; re-enter only at a qualifying spot with the net available and player-confirmed location safety and travel.", "fact_id": "low-attention-fishing-methods"}
+        ]
+      }
+    },
+    {
+      "id": "action:fly-fishing",
+      "name": "Fly fish for trout or salmon",
+      "kind": "activity",
+      "status": "verified",
+      "fact_ids": ["low-attention-fishing-methods"],
+      "requirements": {"all": [{"type": "skill_at_least", "key": "Fishing", "value": 20}]},
+      "preparation": {"all": [{"type": "item_at_least", "key": "fly_fishing_rod", "value": 1}, {"type": "item_at_least", "key": "feathers", "value": 1}]},
+      "completion": {"all": []},
+      "outcomes": [],
+      "repeatable": true,
+      "transition": {
+        "effects": [],
+        "options": [],
+        "reported_effects": [
+          {"type": "variable_activity_output", "description": "At a player-selected qualifying lure spot, fish, feathers consumed, Fishing XP, spot movement, inventory fill, and any banking or drop handling must be reported from the session; no output is applied automatically. Stop when the spot moves, feathers are unavailable, capacity is reached, or the player ends the session; re-enter only at a qualifying lure spot with the rod and feathers available.", "fact_id": "low-attention-fishing-methods"}
+        ]
+      }
+    },
+    {
+      "id": "action:karambwan-fishing",
+      "name": "Fish karambwan",
+      "kind": "activity",
+      "status": "verified",
+      "fact_ids": ["low-attention-fishing-methods"],
+      "requirements": {"all": [{"type": "skill_at_least", "key": "Fishing", "value": 65}, {"type": "milestone", "key": "tai_bwo_wannai_trio_karambwan_fishing_access"}]},
+      "preparation": {"all": [{"type": "item_at_least", "key": "karambwan_vessel", "value": 1}, {"type": "item_at_least", "key": "raw_karambwanji", "value": 1}]},
+      "completion": {"all": []},
+      "outcomes": [],
+      "repeatable": true,
+      "transition": {
+        "effects": [],
+        "options": [],
+        "reported_effects": [
+          {"type": "variable_activity_output", "description": "At a player-selected qualifying karambwan spot, catches, bait use, Fishing XP, inventory fill, and banking results must be reported from the session; no fish, XP, bait loss, or travel result is applied automatically. Karambwan spots are static, but stop when bait or capacity is exhausted or the player chooses to bank; re-enter after loading the vessel with raw karambwanji and returning by any player-confirmed access method. A fish barrel and travel upgrade are optional, not required.", "fact_id": "low-attention-fishing-methods"}
+        ]
+      }
+    },
+    {
+      "id": "action:willow-woodcutting",
+      "name": "Cut willow trees",
+      "kind": "activity",
+      "status": "verified",
+      "fact_ids": ["low-attention-woodcutting-methods"],
+      "requirements": {"all": [{"type": "skill_at_least", "key": "Woodcutting", "value": 30}]},
+      "preparation": {"all": [{"type": "item_at_least", "key": "axe", "value": 1}]},
+      "completion": {"all": []},
+      "outcomes": [],
+      "repeatable": true,
+      "transition": {
+        "effects": [],
+        "options": [],
+        "reported_effects": [
+          {"type": "variable_activity_output", "description": "At a player-selected accessible willow, logs, Woodcutting XP, nests, Forestry events, inventory fill, and handling results must be reported from the session; no output is applied automatically. This is low-attention while present, not a true-AFK or unattended claim; stop when the tree depletes, capacity is reached, or an interruption needs attention, then re-enter with an axe at an available selected tree after handling logs.", "fact_id": "low-attention-woodcutting-methods"}
+        ]
+      }
+    },
+    {
+      "id": "action:yew-woodcutting",
+      "name": "Cut yew trees",
+      "kind": "activity",
+      "status": "verified",
+      "fact_ids": ["low-attention-woodcutting-methods"],
+      "requirements": {"all": [{"type": "skill_at_least", "key": "Woodcutting", "value": 60}]},
+      "preparation": {"all": [{"type": "item_at_least", "key": "axe", "value": 1}]},
+      "completion": {"all": []},
+      "outcomes": [],
+      "repeatable": true,
+      "transition": {
+        "effects": [],
+        "options": [],
+        "reported_effects": [
+          {"type": "variable_activity_output", "description": "At a player-selected accessible yew, logs, Woodcutting XP, nests, Forestry events, inventory fill, and handling results must be reported from the session; no output is applied automatically. This is a player-present low-attention option, not a true-AFK or unattended claim; stop when the tree depletes, capacity is reached, or an interruption needs attention, then re-enter with an axe at an available selected tree after handling logs.", "fact_id": "low-attention-woodcutting-methods"}
+        ]
+      }
+    },
+    {
+      "id": "action:redwood-woodcutting-guild",
+      "name": "Cut redwoods in the Woodcutting Guild",
+      "kind": "activity",
+      "status": "verified",
+      "fact_ids": ["low-attention-woodcutting-methods"],
+      "requirements": {"all": [{"type": "skill_at_least", "key": "Woodcutting", "value": 90}, {"type": "milestone", "key": "woodcutting_guild_access"}]},
+      "preparation": {"all": [{"type": "item_at_least", "key": "axe", "value": 1}]},
+      "completion": {"all": []},
+      "outcomes": [],
+      "repeatable": true,
+      "transition": {
+        "effects": [],
+        "options": [],
+        "reported_effects": [
+          {"type": "variable_activity_output", "description": "At an available Woodcutting Guild redwood section, logs, Woodcutting XP, nests, Forestry events, inventory fill, and handling results must be reported from the session; no output is applied automatically. This is a player-present low-attention option, not a true-AFK or unattended claim; stop when the section depletes, capacity is reached, or an interruption needs attention, then re-enter with an axe, observed guild access, and an available section after handling logs.", "fact_id": "low-attention-woodcutting-methods"}
+        ]
+      }
+    },
+    {
       "id": "action:unlock-hallowed-sepulchre-private-instance",
       "name": "Unlock a private Hallowed Sepulchre instance",
       "kind": "unlock",

@@ -1,0 +1,38 @@
+{
+  "records": [
+    {
+      "id": "low-attention-fishing-methods",
+      "name": "Bounded low-attention fishing methods",
+      "category": "afk",
+      "status": "verified",
+      "verified_at": "2026-08-24",
+      "requirements": {
+        "small_net": "Fishing 1 and a small fishing net at a qualifying selected spot.",
+        "fly": "Fishing 20, a fly fishing rod, and feathers at a qualifying selected spot.",
+        "karambwan": "Fishing 65, the partial Tai Bwo Wannai Trio karambwan-catching progression, a karambwan vessel, and raw karambwanji at a qualifying selected spot."
+      },
+      "mechanics": {
+        "travel": "Location and transport are selected and observed by the player; neither a fairy ring nor a fish barrel is a hard requirement.",
+        "outputs": "Catch items, bait loss, XP, spot movement, inventory capacity, and banking results are variable session outputs."
+      },
+      "source_ids": ["wiki-fishing-current", "wiki-fly-fishing-current", "wiki-pay-to-play-fishing-training-current", "official-karambwan-flow-poll", "wiki-tai-bwo-wannai-trio-current"]
+    },
+    {
+      "id": "low-attention-woodcutting-methods",
+      "name": "Bounded low-attention woodcutting methods",
+      "category": "afk",
+      "status": "verified",
+      "verified_at": "2026-08-24",
+      "requirements": {
+        "willow": "Woodcutting 30, a usable axe, and an accessible selected willow tree.",
+        "yew": "Woodcutting 60, a usable axe, and an accessible selected yew tree.",
+        "redwood_guild": "Visible Woodcutting 90, a usable axe, and observed Woodcutting Guild access."
+      },
+      "mechanics": {
+        "attention": "These are player-present low-attention options, not unattended or true-AFK claims. Normal and oak chopping are intentionally not normalized as low-attention methods.",
+        "outputs": "Successful chops, log quantities, XP, bird nests, Forestry events, inventory handling, and session duration are variable or player-observed."
+      },
+      "source_ids": ["wiki-woodcutting-current", "wiki-axes-current", "wiki-willow-tree-current", "wiki-redwood-tree-current", "wiki-woodcutting-guild-current"]
+    }
+  ]
+}

@@ -614,6 +614,24 @@
     {"id": "activity:hallowed-sepulchre", "kind": "activity", "label": "Hallowed Sepulchre"},
     {"id": "currency:hallowed-sepulchre:marks", "kind": "currency", "label": "Hallowed marks"},
     {"id": "item:hallowed-focus", "kind": "item", "label": "Hallowed focus"},
-    {"id": "unlock:hallowed-sepulchre-private-instance", "kind": "unlock", "label": "Hallowed Sepulchre private instance"}
+    {"id": "unlock:hallowed-sepulchre-private-instance", "kind": "unlock", "label": "Hallowed Sepulchre private instance"},
+    {"id": "activity:small-net-fishing", "kind": "activity", "label": "Small-net fishing"},
+    {"id": "activity:fly-fishing", "kind": "activity", "label": "Fly fishing"},
+    {"id": "activity:karambwan-fishing", "kind": "activity", "label": "Karambwan fishing"},
+    {"id": "condition:fishing-65", "kind": "condition", "label": "At least 65 Fishing"},
+    {"id": "milestone:tai-bwo-wannai-trio-karambwan-fishing-access", "kind": "milestone", "label": "Tai Bwo Wannai Trio karambwan fishing access confirmed"},
+    {"id": "item:small-fishing-net", "kind": "item", "label": "Small fishing net"},
+    {"id": "item:fly-fishing-rod", "kind": "item", "label": "Fly fishing rod"},
+    {"id": "item:feathers", "kind": "item", "label": "Feathers"},
+    {"id": "item:karambwan-vessel", "kind": "item", "label": "Karambwan vessel"},
+    {"id": "item:raw-karambwanji", "kind": "item", "label": "Raw karambwanji"},
+    {"id": "activity:willow-woodcutting", "kind": "activity", "label": "Willow woodcutting"},
+    {"id": "activity:yew-woodcutting", "kind": "activity", "label": "Yew woodcutting"},
+    {"id": "activity:redwood-woodcutting-guild", "kind": "activity", "label": "Woodcutting Guild redwood cutting"},
+    {"id": "condition:woodcutting-30", "kind": "condition", "label": "At least 30 Woodcutting"},
+    {"id": "condition:woodcutting-60", "kind": "condition", "label": "At least 60 Woodcutting"},
+    {"id": "condition:woodcutting-90", "kind": "condition", "label": "At least 90 Woodcutting"},
+    {"id": "milestone:woodcutting-guild-access", "kind": "milestone", "label": "Woodcutting Guild access confirmed"},
+    {"id": "item:axe", "kind": "item", "label": "Usable axe"}
   ]
 }

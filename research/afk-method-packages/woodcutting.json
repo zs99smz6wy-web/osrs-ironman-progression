@@ -229,20 +229,24 @@
       {"id": "fact:forestry-location-and-eligibility", "source_ids": ["wiki-forestry-current", "official-forestry-part-two-current"]}
     ],
     "actions": [
-      {"id": "action:woodcutting", "kind": "skill", "requirements": ["observed usable axe", "observed selected tree access", "observed Woodcutting level meets selected variant"], "transition": "Chop the explicitly selected tree variant; record only observed logs, XP, events, capacity handling, and stop/re-entry state.", "source_ids": ["wiki-woodcutting-current", "wiki-axes-current"]}
+      {"id": "action:willow-woodcutting", "kind": "skill", "requirements": ["Woodcutting 30", "supplied usable axe", "observed accessible selected willow"], "transition": "Chop the selected willow while present and report only observed session outputs.", "source_ids": ["wiki-woodcutting-current", "wiki-willow-tree-current", "wiki-axes-current"]},
+      {"id": "action:yew-woodcutting", "kind": "skill", "requirements": ["Woodcutting 60", "supplied usable axe", "observed accessible selected yew"], "transition": "Chop the selected yew while present and report only observed session outputs.", "source_ids": ["wiki-woodcutting-current", "wiki-axes-current"]},
+      {"id": "action:redwood-woodcutting-guild", "kind": "skill", "requirements": ["visible Woodcutting 90", "supplied usable axe", "observed Woodcutting Guild access", "available guild redwood section"], "transition": "Chop the selected guild redwood while present and report only observed session outputs.", "source_ids": ["wiki-redwood-tree-current", "wiki-woodcutting-guild-current", "wiki-axes-current"]}
     ],
     "nodes": [
-      {"id": "activity:woodcutting", "source_ids": ["wiki-woodcutting-current"]},
-      {"id": "condition:woodcutting-variant-access", "source_ids": ["wiki-woodcutting-current", "wiki-woodcutting-guild-current", "wiki-bone-voyage-current", "wiki-redwood-farming-current"]},
+      {"id": "activity:willow-woodcutting", "source_ids": ["wiki-willow-tree-current"]},
+      {"id": "activity:yew-woodcutting", "source_ids": ["wiki-woodcutting-current"]},
+      {"id": "activity:redwood-woodcutting-guild", "source_ids": ["wiki-redwood-tree-current", "wiki-woodcutting-guild-current"]},
       {"id": "resource:logs-by-selected-tree", "source_ids": ["wiki-woodcutting-current", "wiki-tree-cutting-guide-current"]},
       {"id": "capability:woodcutting-log-capacity", "source_ids": ["wiki-woodcutting-current", "official-forestry-part-two-current"]},
       {"id": "activity:forestry-event", "source_ids": ["wiki-forestry-current", "official-forestry-part-two-current"]}
     ],
     "edges": [
-      {"id": "edge:woodcutting-variant-access", "from": "condition:woodcutting-variant-access", "to": "activity:woodcutting", "relation": "requires", "source_ids": ["wiki-woodcutting-current", "wiki-axes-current"]},
-      {"id": "edge:woodcutting-log-output", "from": "activity:woodcutting", "to": "resource:logs-by-selected-tree", "relation": "produces_on_successful_roll", "source_ids": ["wiki-woodcutting-current"]},
-      {"id": "edge:woodcutting-capacity-constraint", "from": "capability:woodcutting-log-capacity", "to": "activity:woodcutting", "relation": "constrains_inventory", "source_ids": ["wiki-woodcutting-current"]},
-      {"id": "edge:woodcutting-forestry-event", "from": "activity:woodcutting", "to": "activity:forestry-event", "relation": "may_trigger_for_eligible_trees", "source_ids": ["wiki-forestry-current", "official-forestry-part-two-current"]}
+      {"id": "edge:willow-access", "from": "woodcutting-30-and-axe", "to": "activity:willow-woodcutting", "relation": "requires", "source_ids": ["wiki-willow-tree-current", "wiki-axes-current"]},
+      {"id": "edge:yew-access", "from": "woodcutting-60-and-axe", "to": "activity:yew-woodcutting", "relation": "requires", "source_ids": ["wiki-woodcutting-current", "wiki-axes-current"]},
+      {"id": "edge:redwood-guild-access", "from": "woodcutting-90-guild-access-and-axe", "to": "activity:redwood-woodcutting-guild", "relation": "requires", "source_ids": ["wiki-redwood-tree-current", "wiki-woodcutting-guild-current", "wiki-axes-current"]},
+      {"id": "edge:woodcutting-capacity-constraint", "from": "capability:woodcutting-log-capacity", "to": "activity:willow-woodcutting-or-yew-woodcutting-or-redwood-woodcutting-guild", "relation": "constrains_inventory", "source_ids": ["wiki-woodcutting-current"]},
+      {"id": "edge:woodcutting-forestry-event", "from": "activity:willow-woodcutting-or-yew-woodcutting-or-redwood-woodcutting-guild", "to": "activity:forestry-event", "relation": "may_trigger_for_eligible_trees", "source_ids": ["wiki-forestry-current", "official-forestry-part-two-current"]}
     ],
     "observations": [
       {"id": "observation:woodcutting-session", "shape": "selected variant, location, axe, Forestry equipment, start/end, logs, XP delta, bank/drop actions, event interactions, deaths, and observed idle intervals", "source_ids": ["wiki-woodcutting-current", "wiki-forestry-current"]},

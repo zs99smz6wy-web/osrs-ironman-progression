@@ -272,6 +272,42 @@
       "reentry_condition": "Re-enter only with observed combat readiness, a recovery and death plan, and a named reward or gear need that justifies the encounter risk now."
     },
     {
+      "action_id": "action:small-net-fishing",
+      "dimensions": {"lifetime_utility": 1, "content_unlock": 0, "economic_infrastructure": 1, "multi_output": 1, "diversity": 2, "afk_fit": 1, "detour_cost": 0, "burnout_risk": 0, "danger_risk": 0},
+      "stop_condition": "Stop at the current food, Fishing, or short low-attention objective, or when the selected spot moves or inventory capacity requires a handling choice; do not extend it into an assumed catch-rate grind.",
+      "reentry_condition": "Re-enter during a player-present low-attention window when a qualifying selected spot and small net are available and the account has a real catch or Fishing need."
+    },
+    {
+      "action_id": "action:fly-fishing",
+      "dimensions": {"lifetime_utility": 1, "content_unlock": 0, "economic_infrastructure": 1, "multi_output": 1, "diversity": 2, "afk_fit": 1, "detour_cost": 0, "burnout_risk": 1, "danger_risk": 0},
+      "stop_condition": "Stop at the current food, Fishing, or short low-attention objective, or when the spot moves, feathers run out, or inventory capacity requires a handling choice; no catch mix or XP rate is assumed.",
+      "reentry_condition": "Re-enter during a player-present low-attention window when Fishing 20, a fly rod, feathers, and a qualifying selected lure spot are all currently available."
+    },
+    {
+      "action_id": "action:karambwan-fishing",
+      "dimensions": {"lifetime_utility": 3, "content_unlock": 1, "economic_infrastructure": 2, "multi_output": 3, "diversity": 3, "afk_fit": 4, "detour_cost": 1, "burnout_risk": 1, "danger_risk": 0},
+      "stop_condition": "Stop at the current food, Cooking, or player-chosen karambwan objective, or when bait or carrying capacity is exhausted; static spots do not justify an open-ended activity assumption.",
+      "reentry_condition": "Re-enter for a player-present low-attention window only after Fishing 65, the partial Tai Bwo Wannai Trio access, a vessel, raw karambwanji, and a chosen safe access method are confirmed; fish barrel and travel upgrades remain optional."
+    },
+    {
+      "action_id": "action:willow-woodcutting",
+      "dimensions": {"lifetime_utility": 1, "content_unlock": 0, "economic_infrastructure": 1, "multi_output": 1, "diversity": 2, "afk_fit": 1, "detour_cost": 0, "burnout_risk": 1, "danger_risk": 0},
+      "stop_condition": "Stop at the current log, Firemaking, Fletching, or short Woodcutting objective, or when the tree depletes or inventory needs handling; willow cutting is never presented as unattended AFK.",
+      "reentry_condition": "Re-enter during a player-present low-attention window when Woodcutting 30, a usable axe, and an accessible selected willow are confirmed."
+    },
+    {
+      "action_id": "action:yew-woodcutting",
+      "dimensions": {"lifetime_utility": 2, "content_unlock": 0, "economic_infrastructure": 2, "multi_output": 2, "diversity": 2, "afk_fit": 2, "detour_cost": 1, "burnout_risk": 1, "danger_risk": 0},
+      "stop_condition": "Stop at the current log, banked-supply, or Woodcutting objective, or when the selected tree depletes or inventory needs handling; no nest, Forestry, XP, or log total is assumed.",
+      "reentry_condition": "Re-enter during a player-present low-attention window when Woodcutting 60, a usable axe, and an accessible selected yew are confirmed."
+    },
+    {
+      "action_id": "action:redwood-woodcutting-guild",
+      "dimensions": {"lifetime_utility": 2, "content_unlock": 0, "economic_infrastructure": 2, "multi_output": 2, "diversity": 2, "afk_fit": 4, "detour_cost": 1, "burnout_risk": 1, "danger_risk": 0},
+      "stop_condition": "Stop at the current log, Woodcutting, or low-attention objective, or when the selected section depletes or inventory needs handling; this is not a 99 recommendation or an unattended-safety claim.",
+      "reentry_condition": "Re-enter during a player-present low-attention window when visible Woodcutting 90, a usable axe, observed Woodcutting Guild access, and an available redwood section are confirmed."
+    },
+    {
       "action_id": "action:motherlode-mine",
       "dimensions": {"lifetime_utility": 3, "content_unlock": 1, "economic_infrastructure": 4, "multi_output": 4, "diversity": 3, "afk_fit": 3, "detour_cost": 2, "burnout_risk": 2, "danger_risk": 0},
       "stop_condition": "Stop at the selected utility target, such as coal bag, gem bag, or a named Prospector milestone; do not recommend 99 Mining for efficiency alone.",

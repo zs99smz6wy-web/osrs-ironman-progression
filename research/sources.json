@@ -1,6 +1,86 @@
 {
   "sources": [
     {
+      "id": "wiki-fishing-current",
+      "publisher": "OSRS Wiki",
+      "url": "https://oldschool.runescape.wiki/w/Fishing",
+      "kind": "wiki",
+      "checked_at": "2026-08-24",
+      "use": "Current Fishing method families, tools, bait, level gates, and ordinary-spot movement boundary."
+    },
+    {
+      "id": "wiki-fly-fishing-current",
+      "publisher": "OSRS Wiki",
+      "url": "https://oldschool.runescape.wiki/w/Fly_fishing",
+      "kind": "wiki",
+      "checked_at": "2026-08-24",
+      "use": "Small-net, bait, lure, and karambwan equipment mappings and Fishing level gates."
+    },
+    {
+      "id": "wiki-pay-to-play-fishing-training-current",
+      "publisher": "OSRS Wiki",
+      "url": "https://oldschool.runescape.wiki/w/Pay-to-play_Fishing_training",
+      "kind": "wiki",
+      "checked_at": "2026-08-24",
+      "use": "Karambwan Fishing requirement, static-spot behavior, bait source, and banking boundary."
+    },
+    {
+      "id": "official-karambwan-flow-poll",
+      "publisher": "Old School RuneScape",
+      "url": "https://oldschool.runescape.com/polls/2016/1325",
+      "kind": "official",
+      "checked_at": "2026-08-24",
+      "use": "Official approved change removing per-catch clicks for karambwanji and karambwan fishing."
+    },
+    {
+      "id": "wiki-tai-bwo-wannai-trio-current",
+      "publisher": "OSRS Wiki",
+      "url": "https://oldschool.runescape.wiki/w/Tai_Bwo_Wannai_Trio",
+      "kind": "wiki",
+      "checked_at": "2026-08-24",
+      "use": "Tai Bwo Wannai Trio progression boundary and karambwan vessel acquisition."
+    },
+    {
+      "id": "wiki-woodcutting-current",
+      "publisher": "Old School RuneScape Wiki",
+      "url": "https://oldschool.runescape.wiki/w/Woodcutting",
+      "kind": "wiki",
+      "checked_at": "2026-08-24",
+      "use": "Woodcutting level and axe rules, tree depletion, regeneration, and variable-output boundaries."
+    },
+    {
+      "id": "wiki-axes-current",
+      "publisher": "Old School RuneScape Wiki",
+      "url": "https://oldschool.runescape.wiki/w/Axe",
+      "kind": "wiki",
+      "checked_at": "2026-08-24",
+      "use": "Axe carrying, wielding, and tier-use boundaries."
+    },
+    {
+      "id": "wiki-willow-tree-current",
+      "publisher": "Old School RuneScape Wiki",
+      "url": "https://oldschool.runescape.wiki/w/Willow_tree",
+      "kind": "wiki",
+      "checked_at": "2026-08-24",
+      "use": "Willow level and tree-specific depletion mechanics."
+    },
+    {
+      "id": "wiki-redwood-tree-current",
+      "publisher": "Old School RuneScape Wiki",
+      "url": "https://oldschool.runescape.wiki/w/Redwood_tree",
+      "kind": "wiki",
+      "checked_at": "2026-08-24",
+      "use": "Woodcutting Guild redwood level, access, section depletion, and low-attention characterization."
+    },
+    {
+      "id": "wiki-woodcutting-guild-current",
+      "publisher": "Old School RuneScape Wiki",
+      "url": "https://oldschool.runescape.wiki/w/Woodcutting_Guild",
+      "kind": "wiki",
+      "checked_at": "2026-08-24",
+      "use": "Woodcutting Guild membership access, entry rule, and redwood-location boundary."
+    },
+    {
       "id": "wiki-fairytale-ii",
       "publisher": "Old School RuneScape Wiki",
       "url": "https://oldschool.runescape.wiki/w/Fairytale_II_-_Cure_a_Queen",

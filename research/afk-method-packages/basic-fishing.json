@@ -202,19 +202,21 @@
       {"id": "fact:karambwan-quest-gate", "description": "Karambwan fishing requires the stated Fishing level and Tai Bwo Wannai Trio progression, with a karambwan vessel and raw karambwanji.", "source_ids": ["wiki-pay-to-play-fishing-training-current", "wiki-tai-bwo-wannai-trio-current"]}
     ],
     "actions": [
-      {"id": "action:basic-fishing", "name": "Basic fishing", "description": "Start or resume one explicitly selected fishing variant at a qualifying spot; keep catch, bait, spot movement, banking, and player-observed cadence separate.", "source_ids": ["wiki-fishing-current", "wiki-fly-fishing-current", "wiki-pay-to-play-fishing-training-current"]},
-      {"id": "action:basic-fishing-handle-boundary", "name": "Handle fishing inventory boundary", "description": "Player-observed follow-up to drop, bank, cook, or otherwise handle catches before re-entry.", "source_ids": ["wiki-fishing-current"]}
+      {"id": "action:small-net-fishing", "name": "Fish with a small net", "description": "A concrete Fishing-1 small-net method with a supplied net and player-selected qualifying spot; all catches and session results remain reported.", "source_ids": ["wiki-fishing-current", "wiki-fly-fishing-current"]},
+      {"id": "action:fly-fishing", "name": "Fly fish for trout or salmon", "description": "A concrete Fishing-20 lure method with a supplied fly rod, feathers, and player-selected qualifying spot; all catches and session results remain reported.", "source_ids": ["wiki-fishing-current", "wiki-fly-fishing-current"]},
+      {"id": "action:karambwan-fishing", "name": "Fish karambwan", "description": "A concrete Fishing-65 karambwan method requiring the partial Tai Bwo Wannai Trio access, vessel, and raw karambwanji; fish barrel and travel are optional.", "source_ids": ["wiki-pay-to-play-fishing-training-current", "wiki-tai-bwo-wannai-trio-current", "official-karambwan-flow-poll"]}
     ],
     "nodes": [
-      {"id": "node:fishing-spot-net-bait", "name": "Net/bait fishing spot", "source_ids": ["wiki-fishing-current", "wiki-fly-fishing-current"]},
-      {"id": "node:fishing-spot-fly", "name": "Fly fishing spot", "source_ids": ["wiki-fishing-current", "wiki-fly-fishing-current"]},
-      {"id": "node:fishing-spot-karambwan", "name": "Karambwan fishing spot", "source_ids": ["wiki-pay-to-play-fishing-training-current"]},
+      {"id": "activity:small-net-fishing", "name": "Small-net fishing", "source_ids": ["wiki-fishing-current", "wiki-fly-fishing-current"]},
+      {"id": "activity:fly-fishing", "name": "Fly fishing", "source_ids": ["wiki-fishing-current", "wiki-fly-fishing-current"]},
+      {"id": "activity:karambwan-fishing", "name": "Karambwan fishing", "source_ids": ["wiki-pay-to-play-fishing-training-current"]},
       {"id": "node:fishing-inventory-boundary", "name": "Fishing inventory boundary", "source_ids": ["wiki-fishing-current"]}
     ],
     "edges": [
-      {"id": "edge:fishing-tool-to-spot", "from": "tool-and-bait", "to": "fishing-spot", "source_ids": ["wiki-fly-fishing-current", "wiki-pay-to-play-fishing-training-current"]},
-      {"id": "edge:fishing-spot-to-catch", "from": "fishing-spot", "to": "catch-output", "source_ids": ["wiki-fishing-current", "wiki-fly-fishing-current"]},
-      {"id": "edge:fishing-catch-to-boundary", "from": "catch-output", "to": "node:fishing-inventory-boundary", "source_ids": ["wiki-fishing-current"]}
+      {"id": "edge:small-net-tool", "from": "item:small-fishing-net", "to": "activity:small-net-fishing", "source_ids": ["wiki-fly-fishing-current"]},
+      {"id": "edge:fly-fishing-tools", "from": "item:fly-fishing-rod-and-feathers", "to": "activity:fly-fishing", "source_ids": ["wiki-fly-fishing-current"]},
+      {"id": "edge:karambwan-tools-and-access", "from": "tai-bwo-wannai-access-vessel-and-bait", "to": "activity:karambwan-fishing", "source_ids": ["wiki-pay-to-play-fishing-training-current", "wiki-tai-bwo-wannai-trio-current"]},
+      {"id": "edge:fishing-session-to-boundary", "from": "activity:small-net-fishing-or-fly-fishing-or-karambwan-fishing", "to": "node:fishing-inventory-boundary", "source_ids": ["wiki-fishing-current"]}
     ],
     "observations": [
       {"id": "observation:fishing-cadence-by-variant", "description": "Record actual interaction and inventory-fill intervals separately for variant, location, level, equipment, bait, and bank arrangement.", "source_ids": ["wiki-ironman-fishing-current"]},
