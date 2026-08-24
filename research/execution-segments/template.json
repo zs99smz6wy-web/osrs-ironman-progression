@@ -1,0 +1,23 @@
+{
+  "template": true,
+  "segment_schema_version": 1,
+  "segment_type": "research-only-execution-segment",
+  "segment_id": "segment:replace-me",
+  "name": "Replace with one bounded sourced itinerary",
+  "status": "research-template",
+  "purpose": {"accomplishes": ["Replace with the bounded account utility this fragment can support."], "account_applicability": ["Replace with player-observed account facts that make this fragment relevant."], "timing_observation": "Applicability observes current account facts and never selects this fragment or a route.", "applicability_is_not_route_selection": true},
+  "facts_strategy_boundary": {"route_selected": false, "action_auto_applied": false, "completion_inferred": false, "items_or_gp_acquired": false, "outputs_inferred": false, "timing_inferred": false, "combat_success_inferred": false},
+  "source_catalog": [],
+  "source_ids": ["replace-source-id"],
+  "starting_state": {"assumptions": ["Declare only observed account state."], "requirements": {"carried_items": [], "banked_items": [], "carried_gp": 0, "banked_gp": 0}, "geographic_checkpoint": {"id": "checkpoint:replace-location", "kind": "geographic", "description": "Replace with a sourced location checkpoint.", "coverage": {"status": "unresolved", "fact_ids": [], "source_ids": [], "boundary": "Replace with sourced coverage before use."}}, "bank_checkpoint": {"id": "checkpoint:replace-bank", "kind": "bank", "description": "Replace with an exact bank checkpoint or a sourced no-bank requirement.", "coverage": {"status": "unresolved", "fact_ids": [], "source_ids": [], "boundary": "Replace with sourced coverage before use."}}},
+  "checkpoints": [{"id": "external:replace-partial-quest", "kind": "external_partial_quest", "description": "An unmodeled quest start or partial-progress checkpoint must stay externally observed.", "coverage": {"status": "unresolved", "fact_ids": [], "source_ids": [], "boundary": "It cannot be converted into quest completion or an applied action."}}],
+  "execution_steps": [{"id": "step:replace", "sequence": 1, "instruction": "Replace with a sourced instruction.", "coverage": {"status": "unresolved", "fact_ids": [], "source_ids": [], "boundary": "Template only; do not execute or apply."}}],
+  "branches": [],
+  "safety_hcim": {"hazard_facts": [], "player_risk_requirements": ["Replace with player risk-tolerance or consent requirements."], "current_observations_required": ["Replace with current player safety observations."], "never_inferred_survival": true},
+  "passive_recurring_checks": [{"id": "replace-passive-check", "trigger_when": "Replace with a sourced or player-observed trigger.", "required_current_observation": "Replace with the current observation required before acting on the opportunity.", "interruption_policy": "Do not interrupt an active quest, Slayer task, or other committed activity merely because a timer may be ready.", "source_ids": []}],
+  "stop_reentry_conditions": {"stop_conditions": ["Stop when the factual checkpoint is not observed."], "reentry_conditions": ["Re-enter only after a sourced replacement is supplied."]},
+  "estimated_time": {"status": "not_estimated", "source_ids": [], "uncertainty": "No timing is supplied by this template."},
+  "completion_observations": [{"id": "replace-observation", "description": "Completion must be player-observed; this template has no completion claim.", "source_ids": []}],
+  "normalization_boundaries": [{"normalized_action_id": "action:replace-me", "does_not_prove": ["Template-only coarse-action boundary."], "requires_separate_player_observation": true}],
+  "boundaries": {"route_selected": false, "action_auto_applied": false, "completion_inferred": false, "items_or_gp_acquired": false, "outputs_inferred": false, "timing_inferred": false, "combat_success_inferred": false}
+}
