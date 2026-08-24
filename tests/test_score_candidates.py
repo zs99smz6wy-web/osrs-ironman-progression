@@ -204,7 +204,9 @@ class ScoreCandidatesTests(unittest.TestCase):
                 candidate["base_score"],
             )
             self.assertEqual(
-                candidate["base_score"] + sum(candidate["adjustments"].values()),
+                candidate["base_score"]
+                + sum(candidate["adjustments"].values())
+                + sum(candidate["contextual_adjustments"].values()),
                 candidate["total_score"],
             )
 

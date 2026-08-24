@@ -86,6 +86,30 @@
       "reentry_condition": "Re-enter when its prerequisite quest chain and staff preparation are complete; afterward use fairy rings to reduce travel across other eligible actions."
     },
     {
+      "action_id": "action:claim-ardougne-cloak",
+      "dimensions": {"lifetime_utility": 3, "content_unlock": 1, "economic_infrastructure": 1, "multi_output": 1, "diversity": 2, "afk_fit": 0, "detour_cost": 0, "burnout_risk": 0, "danger_risk": 0},
+      "stop_condition": "Stop after claiming the separately confirmed current cloak tier; do not extend diary work solely to improve this transport option.",
+      "reentry_condition": "Re-enter only when the diary claim is already confirmed and the cloak's current utility supports nearby work."
+    },
+    {
+      "action_id": "action:buy-chronicle",
+      "dimensions": {"lifetime_utility": 1, "content_unlock": 0, "economic_infrastructure": 1, "multi_output": 1, "diversity": 2, "afk_fit": 0, "detour_cost": 0, "burnout_risk": 0, "danger_risk": 0},
+      "stop_condition": "Stop after buying the Chronicle only when its specific access is useful; cards remain a separately supplied consumable.",
+      "reentry_condition": "Re-enter when the 300-coin purchase is already affordable and a distinct card-supported use is timely."
+    },
+    {
+      "action_id": "action:enchant-games-necklace",
+      "dimensions": {"lifetime_utility": 2, "content_unlock": 0, "economic_infrastructure": 1, "multi_output": 1, "diversity": 2, "afk_fit": 0, "detour_cost": 0, "burnout_risk": 0, "danger_risk": 0},
+      "stop_condition": "Stop at the player-chosen charged-necklace supply; never treat a replenishable teleport as a permanent unlock.",
+      "reentry_condition": "Re-enter only when Magic and the exact jewellery and rune inputs are already available for a current travel need."
+    },
+    {
+      "action_id": "action:enchant-ring-of-dueling",
+      "dimensions": {"lifetime_utility": 2, "content_unlock": 0, "economic_infrastructure": 1, "multi_output": 1, "diversity": 2, "afk_fit": 0, "detour_cost": 0, "burnout_risk": 0, "danger_risk": 0},
+      "stop_condition": "Stop at the player-chosen charged-ring supply; never treat a replenishable teleport as a permanent unlock.",
+      "reentry_condition": "Re-enter only when Magic and the exact jewellery and rune inputs are already available for a current travel need."
+    },
+    {
       "action_id": "action:fossil-island-access",
       "dimensions": {"lifetime_utility": 4, "content_unlock": 4, "economic_infrastructure": 4, "multi_output": 4, "diversity": 3, "afk_fit": 0, "detour_cost": 2, "burnout_risk": 1, "danger_risk": 0},
       "stop_condition": "Stop after Fossil Island access is unlocked; establish its individual loops separately when ready.",

@@ -8,6 +8,7 @@ from typing import Any
 
 from analyze_passive_status import analyze_passive_status
 from analyze_quest_xp_timing import DEFAULT_EDGES, DEFAULT_NODES, analyze_quest_xp_timing
+from analyze_transport_bundles import DEFAULT_TRANSPORT_BUNDLES, analyze_transport_bundles
 from evaluate_progression import DEFAULT_ACTIONS, DEFAULT_STATE, evaluate_actions, load_json, validate_account_state
 from score_candidates import DEFAULT_CANDIDATES, score_candidates
 
@@ -17,6 +18,7 @@ DEFAULT_ACTIVE_LIMIT = 5
 DEFAULT_AFK_LIMIT = 5
 DEFAULT_PREPARATION_LIMIT = 5
 DEFAULT_QUEST_XP_LIMIT = 5
+DEFAULT_TRANSPORT_BUNDLE_LIMIT = 7
 
 
 def _validate_limit(value: int, name: str) -> None:
@@ -119,6 +121,23 @@ def _eligible_unscored_gaps(
     ]
 
 
+def _bounded_transport_bundles(
+    bundles: list[dict[str, Any]], limit: int
+) -> list[dict[str, Any]]:
+    bounded: list[dict[str, Any]] = []
+    for bundle in bundles:
+        result = copy.deepcopy(bundle)
+        components = result["components"]
+        result["components"] = components[:limit]
+        result["component_coverage"] = {
+            "limit": limit,
+            "shown_count": len(result["components"]),
+            "omitted_count": max(0, len(components) - limit),
+        }
+        bounded.append(result)
+    return bounded
+
+
 def compose_recommendation_chapter(
     account_state: dict[str, Any],
     actions_document: dict[str, Any],
@@ -130,6 +149,7 @@ def compose_recommendation_chapter(
     afk_limit: int = DEFAULT_AFK_LIMIT,
     preparation_limit: int = DEFAULT_PREPARATION_LIMIT,
     quest_xp_limit: int = DEFAULT_QUEST_XP_LIMIT,
+    transport_bundle_limit: int = DEFAULT_TRANSPORT_BUNDLE_LIMIT,
     afk_mode: str = "low_attention",
 ) -> dict[str, Any]:
     """Compose bounded recommendation options without selecting or applying an action."""
@@ -138,10 +158,17 @@ def compose_recommendation_chapter(
     _validate_limit(afk_limit, "afk_limit")
     _validate_limit(preparation_limit, "preparation_limit")
     _validate_limit(quest_xp_limit, "quest_xp_limit")
+    _validate_limit(transport_bundle_limit, "transport_bundle_limit")
     if afk_mode not in AFK_MODES:
         raise ValueError(f"afk_mode must be one of: {', '.join(AFK_MODES)}")
 
     evaluated_actions = evaluate_actions(actions_document, account_state)
+    transport_bundles = _bounded_transport_bundles(
+        analyze_transport_bundles(
+            load_json(DEFAULT_TRANSPORT_BUNDLES), evaluated_actions, account_state
+        ),
+        transport_bundle_limit,
+    )
     active_ranked = score_candidates(
         candidates_document, actions_document, _scenario_state(account_state, "active")
     )
@@ -208,6 +235,7 @@ def compose_recommendation_chapter(
         "unallocated_player_chosen_xp_rewards": quest_xp_timing[
             "unallocated_player_chosen_xp_rewards"
         ],
+        "transport_payoff_bundles": transport_bundles,
         "gaps": {
             "preparation": preparation_gaps[:preparation_limit],
             "preparation_coverage": preparation_coverage,
@@ -264,6 +292,22 @@ def _print_human_chapter(chapter: dict[str, Any]) -> None:
             )
     lamps = chapter["unallocated_player_chosen_xp_rewards"]
     print(f"Player-chosen XP rewards remain unallocated: {len(lamps)}")
+    for bundle in chapter["transport_payoff_bundles"]:
+        coverage = bundle["coverage"]
+        bounded = bundle["component_coverage"]
+        print(
+            f"\n{bundle['name']}: {coverage['complete']} complete, {coverage['eligible']} eligible, "
+            f"{coverage['needs_preparation']} need preparation, {coverage['blocked']} blocked "
+            f"({bounded['shown_count']} of {coverage['total']} shown)"
+        )
+        for component in bundle["components"]:
+            print(f"  [{component['status'].upper()}] {component['name']} - {component['action_name']}")
+            print(f"    payoff: {component['payoff_note']}")
+            if component["missing_preparation"]:
+                print(f"    prepare: {_concise_list(component['missing_preparation'])}")
+            elif component["missing"]:
+                print(f"    blocked by: {_concise_list(component['missing'])}")
+            print(f"    caveat: {component['usage_caveat']}")
 
 
 def _concise_list(values: list[str], limit: int = 3) -> str:
@@ -285,6 +329,7 @@ def main() -> int:
     parser.add_argument("--afk-limit", default=DEFAULT_AFK_LIMIT, type=int)
     parser.add_argument("--preparation-limit", default=DEFAULT_PREPARATION_LIMIT, type=int)
     parser.add_argument("--quest-xp-limit", default=DEFAULT_QUEST_XP_LIMIT, type=int)
+    parser.add_argument("--transport-bundle-limit", default=DEFAULT_TRANSPORT_BUNDLE_LIMIT, type=int)
     parser.add_argument("--afk-mode", choices=AFK_MODES, default="low_attention")
     parser.add_argument("--json", action="store_true", help="Emit machine-readable JSON.")
     args = parser.parse_args()
@@ -300,6 +345,7 @@ def main() -> int:
             afk_limit=args.afk_limit,
             preparation_limit=args.preparation_limit,
             quest_xp_limit=args.quest_xp_limit,
+            transport_bundle_limit=args.transport_bundle_limit,
             afk_mode=args.afk_mode,
         )
     except ValueError as error:

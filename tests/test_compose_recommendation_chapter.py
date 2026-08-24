@@ -193,6 +193,23 @@ class ComposeRecommendationChapterTests(unittest.TestCase):
         choice_rewards = chapter["unallocated_player_chosen_xp_rewards"]
         self.assertEqual(None, choice_rewards[0]["allocated_skill"])
 
+    def test_transport_bundle_is_bounded_and_explains_state_without_route_selection(self) -> None:
+        state = load_json(FIXTURES / "fresh-account.json")
+        chapter = self.compose(state, transport_bundle_limit=2)
+        bundle = chapter["transport_payoff_bundles"][0]
+        output = io.StringIO()
+
+        with contextlib.redirect_stdout(output):
+            _print_human_chapter(chapter)
+
+        self.assertEqual("early-transport-network", bundle["id"])
+        self.assertEqual(2, len(bundle["components"]))
+        self.assertEqual(2, bundle["component_coverage"]["shown_count"])
+        self.assertEqual(5, bundle["component_coverage"]["omitted_count"])
+        self.assertIn("Early transport network:", output.getvalue())
+        self.assertIn("[ELIGIBLE] Spirit trees", output.getvalue())
+        self.assertFalse(chapter["boundaries"]["route_selected"])
+
     def test_cli_json_and_limit_validation(self) -> None:
         state = load_json(FIXTURES / "fresh-account.json")
         with tempfile.TemporaryDirectory() as directory:
@@ -248,6 +265,17 @@ class ComposeRecommendationChapterTests(unittest.TestCase):
                 capture_output=True,
                 text=True,
             )
+            invalid_transport = subprocess.run(
+                [
+                    sys.executable,
+                    str(REPOSITORY_ROOT / "scripts" / "compose_recommendation_chapter.py"),
+                    str(state_path),
+                    "--transport-bundle-limit",
+                    "0",
+                ],
+                capture_output=True,
+                text=True,
+            )
 
         chapter = json.loads(completed.stdout)
         self.assertEqual(1, len(chapter["lanes"]["active"]["ranked_options"]))
@@ -258,6 +286,7 @@ class ComposeRecommendationChapterTests(unittest.TestCase):
         self.assertIn("active_limit must be a positive integer", invalid.stderr)
         self.assertIn("preparation_limit must be a positive integer", invalid_preparation.stderr)
         self.assertIn("quest_xp_limit must be a positive integer", invalid_quest_xp.stderr)
+        self.assertIn("transport_bundle_limit must be a positive integer", invalid_transport.stderr)
 
 
 if __name__ == "__main__":

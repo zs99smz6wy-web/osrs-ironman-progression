@@ -8,6 +8,8 @@ This document contains strategy, not game facts. Scores are prompts for comparis
 
 Only actions classified `eligible` by the factual evaluator may be scored. Blocked, preparation-incomplete, completed, and unverified actions are excluded. The score is a transparent comparison aid, not an optimal-route claim.
 
+`strategy/transport-bundles.json` may add one separately named contextual point to an eligible action that establishes its own distinct durable early-transport capability while the bundle remains incomplete. It never creates a prerequisite between transport actions, and charged or consumable transport items receive context but no bundle point. See `strategy/transport-bundle.md`.
+
 ## Priority hierarchy
 
 1. Major permanent unlocks and transport.

@@ -1,0 +1,89 @@
+{
+  "purpose": "Strategic-only payoff bundles for already-normalized transport actions. A bundle compares distinct useful capabilities; it does not add factual requirements, link its actions in sequence, or choose a route.",
+  "bundles": [
+    {
+      "id": "early-transport-network",
+      "name": "Early transport network",
+      "score_policy": "Each distinct durable capability may contribute at most its own bounded contextual bonus while the network is incomplete. Replenishable item options are displayed but receive no bundle bonus.",
+      "components": [
+        {
+          "id": "spirit-trees",
+          "name": "Spirit trees",
+          "action_id": "action:tree-gnome-village",
+          "benefit_id": "permanent-spirit-tree-access",
+          "payoff_kind": "permanent",
+          "completion_signal": {"state": "transport_flags", "key": "spirit_trees"},
+          "score_bonus": 1,
+          "payoff_note": "Adds one durable early travel capability that can support later objectives without making them route dependencies.",
+          "usage_caveat": "Only the existing evaluator action determines its factual access requirements."
+        },
+        {
+          "id": "gnome-gliders",
+          "name": "Gnome gliders",
+          "action_id": "action:grand-tree",
+          "benefit_id": "permanent-gnome-glider-access",
+          "payoff_kind": "permanent",
+          "completion_signal": {"state": "transport_flags", "key": "gnome_gliders"},
+          "score_bonus": 1,
+          "payoff_note": "Adds a separate durable travel capability; it is not treated as an extension required by spirit trees.",
+          "usage_caveat": "Military-glider extensions and later content remain outside this early bundle."
+        },
+        {
+          "id": "fairy-rings",
+          "name": "Fairy rings",
+          "action_id": "action:fairy-ring-permission",
+          "benefit_id": "permanent-fairy-ring-permission",
+          "payoff_kind": "permanent",
+          "completion_signal": {"state": "milestones", "key": "fairytale_ii_fairy_godfather_permission"},
+          "score_bonus": 1,
+          "payoff_note": "Adds a broad durable travel capability once the existing action's permission and use conditions are met.",
+          "usage_caveat": "The bundle never assumes a staff, elite-diary exemption, or any separate access condition."
+        },
+        {
+          "id": "ardougne-cloak",
+          "name": "Ardougne cloak",
+          "action_id": "action:claim-ardougne-cloak",
+          "benefit_id": "durable-ardougne-cloak-claim",
+          "payoff_kind": "permanent",
+          "completion_signal": {"state": "items", "key": "ardougne_cloak_current"},
+          "score_bonus": 1,
+          "payoff_note": "Adds a durable claimable convenience capability when its separately confirmed diary state supports it.",
+          "usage_caveat": "The bundle does not infer a diary tier, cloak possession, or later-tier teleports."
+        },
+        {
+          "id": "chronicle",
+          "name": "Chronicle",
+          "action_id": "action:buy-chronicle",
+          "benefit_id": "chronicle-item-held",
+          "payoff_kind": "replenishable",
+          "completion_signal": {"state": "items", "key": "chronicle"},
+          "score_bonus": 0,
+          "payoff_note": "Shows a modest, account-state-dependent travel option alongside durable unlocks without equating it to one.",
+          "usage_caveat": "A usable teleport still requires an explicitly recorded card; cards, charges, and replacement funds are never assumed."
+        },
+        {
+          "id": "games-necklace",
+          "name": "Games necklace",
+          "action_id": "action:enchant-games-necklace",
+          "benefit_id": "games-necklace-held",
+          "payoff_kind": "replenishable",
+          "completion_signal": {"state": "items_any", "keys": ["games_necklace_1", "games_necklace_2", "games_necklace_3", "games_necklace_4", "games_necklace_5", "games_necklace_6", "games_necklace_7", "games_necklace_8"]},
+          "score_bonus": 0,
+          "payoff_note": "Shows a currently held charged-jewellery option separately from durable network access.",
+          "usage_caveat": "No jewellery, charges, gems, runes, or replacement path is inferred from bundle membership."
+        },
+        {
+          "id": "ring-of-dueling",
+          "name": "Ring of dueling",
+          "action_id": "action:enchant-ring-of-dueling",
+          "benefit_id": "ring-of-dueling-held",
+          "payoff_kind": "replenishable",
+          "completion_signal": {"state": "items_any", "keys": ["ring_of_dueling_1", "ring_of_dueling_2", "ring_of_dueling_3", "ring_of_dueling_4", "ring_of_dueling_5", "ring_of_dueling_6", "ring_of_dueling_7", "ring_of_dueling_8"]},
+          "score_bonus": 0,
+          "payoff_note": "Shows a currently held charged-jewellery option separately from durable network access.",
+          "usage_caveat": "No jewellery, charges, gems, runes, or replacement path is inferred from bundle membership."
+        }
+      ]
+    }
+  ]
+}

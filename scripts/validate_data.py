@@ -12,8 +12,10 @@ from evaluate_progression import (
     KOUREND_MEMOIR_OWNED_KEY,
     KOUREND_MEMOIR_PAGES,
     RECURRING_OBSERVATION_STATES,
+    evaluate_actions,
     validate_account_state,
 )
+from analyze_transport_bundles import DEFAULT_TRANSPORT_BUNDLES, analyze_transport_bundles
 from score_candidates import score_candidates
 from apply_action import _validate_effect
 from osrs_xp import SKILLS
@@ -343,6 +345,13 @@ def main() -> int:
         score_candidates(load_json(ROOT / "strategy" / "candidates.json"), actions_document, account_state)
     except (KeyError, TypeError, ValueError) as exc:
         errors.append(f"strategy/candidates.json: {exc}")
+
+    try:
+        analyze_transport_bundles(
+            load_json(DEFAULT_TRANSPORT_BUNDLES), evaluate_actions(actions_document, account_state), account_state
+        )
+    except (KeyError, TypeError, ValueError) as exc:
+        errors.append(f"strategy/transport-bundles.json: {exc}")
 
     edge_signatures: set[tuple[str, str, str]] = set()
     for edge in load_json(GRAPH_DIR / "edges.json")["edges"]:
