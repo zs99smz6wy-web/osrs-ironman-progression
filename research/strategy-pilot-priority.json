@@ -1,0 +1,519 @@
+{
+  "id": "strategy-pilot-priority",
+  "scope": "Compact strategy-coverage audit for the first account-specific recommendation pilot. This file is strategic planning only; it does not add facts, actions, graph edges, or candidate scores.",
+  "audit_basis": {
+    "normalized_actions_total": 247,
+    "current_strategy_candidates": 33,
+    "currently_unscored_normalized_actions": 214,
+    "pilot_priority_count": 36,
+    "sources_read": [
+      "docs/project-brief.md",
+      "docs/data-model.md",
+      "analysis/recommendation-contract.md",
+      "strategy/scoring-framework.md",
+      "strategy/afk-and-passive-model.md",
+      "strategy/economic-policy.md",
+      "strategy/bypass-policy.md",
+      "strategy/candidates.json",
+      "data/progression/actions.json"
+    ],
+    "selection_rule": "Prefer the smallest cross-cutting set that tests timing, utility, preparation, observations, alternatives, economy, content readiness, and active-plus-passive pairing. Do not score raw training or duplicate transport actions until these tests expose a need."
+  },
+  "score_tranches": [
+    {
+      "order": 1,
+      "id": "utility-storage",
+      "purpose": "Test whether durable account-wide convenience and storage outrank short-lived training gains."
+    },
+    {
+      "order": 2,
+      "id": "quest-xp-and-transport-timing",
+      "purpose": "Test threshold-aware quest sequencing, unlock timing, travel payback, and diary utility."
+    },
+    {
+      "order": 3,
+      "id": "passive-and-afk-pairing",
+      "purpose": "Test the required active objective plus safe recurring or low-attention companion lane."
+    },
+    {
+      "order": 4,
+      "id": "economy-and-skill-utility",
+      "purpose": "Compare multi-output methods against named cash, resource, and utility deadlines."
+    },
+    {
+      "order": 5,
+      "id": "pvm-readiness",
+      "purpose": "Test readiness gates, observed throughput, recovery risk, and reward timing without inferring combat success."
+    },
+    {
+      "order": 6,
+      "id": "delayed-content-and-gap-actions",
+      "purpose": "Score only after the missing action contracts, account observations, and material timing inputs exist."
+    }
+  ],
+  "priorities": [
+    {
+      "id": "pilot:quest-waterfall-xp",
+      "domain": "quest_xp_threshold_timing",
+      "normalized_action_ids": ["action:waterfall-quest"],
+      "normalized_action_exists": true,
+      "fact_ids": ["waterfall-quest"],
+      "research_refs": [],
+      "current_scoring_coverage": {"status": "scored", "candidate_action_ids": ["action:waterfall-quest"], "annotated_dimension_count": 9},
+      "recommended_score_tranche": 2,
+      "missing_observation_or_input": ["Exact current skill XP and quest state", "Verified preparation inventory", "Player attention window and current goal"],
+      "why_needed_for_first_recommendation_pilot": "Provides the low-level control case for fixed quest XP versus immediate training and tests whether the guide avoids recommending a quest merely because its nominal XP is efficient."
+    },
+    {
+      "id": "pilot:quest-gnome-transport-xp",
+      "domain": "quest_xp_threshold_timing",
+      "normalized_action_ids": ["action:tree-gnome-village", "action:grand-tree"],
+      "normalized_action_exists": true,
+      "fact_ids": ["tree-gnome-village", "grand-tree"],
+      "research_refs": [],
+      "current_scoring_coverage": {"status": "scored", "candidate_action_ids": ["action:tree-gnome-village", "action:grand-tree"], "annotated_dimension_count": 9},
+      "recommended_score_tranche": 2,
+      "missing_observation_or_input": ["Exact Agility XP and level for the Grand Tree gate", "Quest completion state", "Whether spirit-tree or glider access has an immediate downstream use"],
+      "why_needed_for_first_recommendation_pilot": "Tests bundling quest XP with durable transport and distinguishes a useful quest chain from an isolated experience purchase."
+    },
+    {
+      "id": "pilot:quest-dig-site-xp-transport",
+      "domain": "quest_xp_threshold_timing",
+      "normalized_action_ids": ["action:the-dig-site"],
+      "normalized_action_exists": true,
+      "fact_ids": ["the-dig-site", "the-dig-site-quest-detail"],
+      "research_refs": [],
+      "current_scoring_coverage": {"status": "scored", "candidate_action_ids": ["action:the-dig-site"], "annotated_dimension_count": 9},
+      "recommended_score_tranche": 2,
+      "missing_observation_or_input": ["Exact Agility, Herblore, and Thieving XP", "Inputs including the opal choice", "Kudos progress and whether Bone Voyage is a near-term goal"],
+      "why_needed_for_first_recommendation_pilot": "Tests a quest whose fixed XP, museum path, pendant path, and Fossil Island dependency can change several later thresholds at once."
+    },
+    {
+      "id": "pilot:quest-fairytale-farming-threshold",
+      "domain": "quest_xp_threshold_timing",
+      "normalized_action_ids": ["action:fairytale-i-growing-pains"],
+      "normalized_action_exists": true,
+      "fact_ids": ["fairytale-i-growing-pains"],
+      "research_refs": [],
+      "current_scoring_coverage": {"status": "scored", "candidate_action_ids": ["action:fairytale-i-growing-pains"], "annotated_dimension_count": 9},
+      "recommended_score_tranche": 2,
+      "missing_observation_or_input": ["Exact prerequisite quest and skill state", "Account-specific three-material blessing assignment", "Whether Farming XP or fairy-ring access is the current bottleneck"],
+      "why_needed_for_first_recommendation_pilot": "Tests the philosophy that a quest should be timed around the next useful threshold and permanent convenience, not rushed as a generic XP source."
+    },
+    {
+      "id": "pilot:quest-morytania-chain",
+      "domain": "quest_xp_threshold_timing",
+      "normalized_action_ids": ["action:priest-in-peril", "action:nature-spirit"],
+      "normalized_action_exists": true,
+      "fact_ids": ["priest-in-peril", "nature-spirit"],
+      "research_refs": [],
+      "current_scoring_coverage": {"status": "scored", "candidate_action_ids": ["action:priest-in-peril", "action:nature-spirit"], "annotated_dimension_count": 9},
+      "recommended_score_tranche": 2,
+      "missing_observation_or_input": ["Exact quest state and essence or sickle inputs", "Combat preparation for the quest encounters", "Whether Morytania, Ectofuntus, or Barrows is the intended downstream use"],
+      "why_needed_for_first_recommendation_pilot": "Tests prerequisite-chain timing and a transport-region unlock that can become the right bridge into prayer, Barrows, or other Morytania content."
+    },
+    {
+      "id": "pilot:quest-kourend-xp-access",
+      "domain": "quest_xp_threshold_timing",
+      "normalized_action_ids": ["action:a-kingdom-divided"],
+      "normalized_action_exists": true,
+      "fact_ids": ["a-kingdom-divided", "kharedsts-memoirs-and-book-of-the-dead"],
+      "research_refs": [],
+      "current_scoring_coverage": {"status": "unscored", "candidate_action_ids": [], "annotated_dimension_count": 0},
+      "recommended_score_tranche": 2,
+      "missing_observation_or_input": ["Exact multi-skill XP and prerequisite quest state", "Book, page, spell, and dark-essence preparation observations", "Combat readiness for the quest encounters"],
+      "why_needed_for_first_recommendation_pilot": "Adds a deliberately unscored midgame quest so the pilot can test whether fixed XP, broad Kourend access, and memoir utility justify scoring it ahead of less durable training."
+    },
+    {
+      "id": "pilot:fairy-ring-transport",
+      "domain": "transport_and_permanent_convenience",
+      "normalized_action_ids": ["action:fairy-ring-permission"],
+      "normalized_action_exists": true,
+      "fact_ids": ["fairy-rings"],
+      "research_refs": [],
+      "current_scoring_coverage": {"status": "scored", "candidate_action_ids": ["action:fairy-ring-permission"], "annotated_dimension_count": 9},
+      "recommended_score_tranche": 2,
+      "missing_observation_or_input": ["Fairytale I completion", "Dramen or lunar staff ownership unless the elite diary bypass is observed", "Near-term destinations that make the detour pay back"],
+      "why_needed_for_first_recommendation_pilot": "Directly tests lifetime travel savings and whether transport should outrank a more visible but lower-leverage activity."
+    },
+    {
+      "id": "pilot:fossil-island-and-passive-access",
+      "domain": "transport_and_permanent_convenience",
+      "normalized_action_ids": ["action:fossil-island-access"],
+      "normalized_action_exists": true,
+      "fact_ids": ["bone-voyage", "fossil-island-post-bone-voyage-barge"],
+      "research_refs": [],
+      "current_scoring_coverage": {"status": "scored", "candidate_action_ids": ["action:fossil-island-access"], "annotated_dimension_count": 9},
+      "recommended_score_tranche": 2,
+      "missing_observation_or_input": ["Exact Kudos count and quest state", "Vodka, unfinished marrentill, and combat preparation", "Whether birdhouses or giant seaweed inputs are ready"],
+      "why_needed_for_first_recommendation_pilot": "This is the gateway that lets the recommendation contract pair an active objective with the two strongest early passive systems."
+    },
+    {
+      "id": "pilot:poh-foundation",
+      "domain": "transport_and_permanent_convenience",
+      "normalized_action_ids": ["action:establish-player-owned-house"],
+      "normalized_action_exists": true,
+      "fact_ids": ["poh-convenience-foundation"],
+      "research_refs": [],
+      "current_scoring_coverage": {"status": "unscored", "candidate_action_ids": [], "annotated_dimension_count": 0},
+      "recommended_score_tranche": 1,
+      "missing_observation_or_input": ["Exact coins or Daddy's Home completion", "Construction XP and actual house ownership", "First intended POH utility and material budget"],
+      "why_needed_for_first_recommendation_pilot": "Tests whether the guide recognizes a cheap permanent foundation that enables later restoration, prayer, and transport investments."
+    },
+    {
+      "id": "pilot:poh-restoration-timing",
+      "domain": "transport_and_permanent_convenience",
+      "normalized_action_ids": ["action:build-poh-superior-garden", "action:upgrade-ornate-rejuvenation-pool"],
+      "normalized_action_exists": true,
+      "fact_ids": ["poh-convenience-foundation"],
+      "research_refs": [],
+      "current_scoring_coverage": {"status": "unscored", "candidate_action_ids": [], "annotated_dimension_count": 0},
+      "recommended_score_tranche": 1,
+      "missing_observation_or_input": ["Construction XP and temporary-boost observations", "Coins, planks, and pool materials", "Current POH room and pool tier state", "Whether repeated PvM recovery makes the upgrade timely"],
+      "why_needed_for_first_recommendation_pilot": "Tests staged utility timing: the right POH upgrade depends on actual PvM frequency and materials, not on blindly pursuing the highest possible pool."
+    },
+    {
+      "id": "pilot:poh-portal-convenience",
+      "domain": "transport_and_permanent_convenience",
+      "normalized_action_ids": ["action:upgrade-crystalline-portal-nexus"],
+      "normalized_action_exists": true,
+      "fact_ids": ["poh-convenience-foundation"],
+      "research_refs": [],
+      "current_scoring_coverage": {"status": "unscored", "candidate_action_ids": [], "annotated_dimension_count": 0},
+      "recommended_score_tranche": 1,
+      "missing_observation_or_input": ["Current nexus tier and destination list", "Construction XP, magic stones, gold leaves, hammer, and saw", "Observed destination demand and alternative transport costs"],
+      "why_needed_for_first_recommendation_pilot": "Tests travel payback and prevents the scoring layer from treating an expensive late POH upgrade as automatically better than earlier account utilities."
+    },
+    {
+      "id": "pilot:diary-utility-claim",
+      "domain": "diaries_and_permanent_convenience",
+      "normalized_action_ids": ["action:claim-explorers-ring-current"],
+      "normalized_action_exists": true,
+      "fact_ids": ["diary-lumbridge-draynor-task-utility-branches"],
+      "research_refs": ["data/facts/diary-factual-lumbridge-draynor-morytania-varrock.json"],
+      "current_scoring_coverage": {"status": "unscored", "candidate_action_ids": [], "annotated_dimension_count": 0},
+      "recommended_score_tranche": 2,
+      "missing_observation_or_input": ["Player-confirmed claimed diary tier", "Exact ring item and current charges or daily state", "Whether its run-energy or teleport utility serves the current route"],
+      "why_needed_for_first_recommendation_pilot": "Tests the explicit diary policy: claims and rewards are player-confirmed capabilities, then scored for material utility rather than for diary completion itself."
+    },
+    {
+      "id": "pilot:rune-pouch",
+      "domain": "account_long_storage_utility",
+      "normalized_action_ids": ["action:buy-mta-rune-pouch"],
+      "normalized_action_exists": true,
+      "fact_ids": ["utility-stop-mage-training-arena"],
+      "research_refs": [],
+      "current_scoring_coverage": {"status": "scored", "candidate_action_ids": ["action:buy-mta-rune-pouch"], "annotated_dimension_count": 9},
+      "recommended_score_tranche": 1,
+      "missing_observation_or_input": ["All four observed Pizazz balances", "Whether a rune pouch is already owned", "Current spellbook, combat, and travel uses that make the pouch valuable"],
+      "why_needed_for_first_recommendation_pilot": "This is the canonical test of a high-friction but account-long utility purchase that should be timed against upcoming content rather than treated as an endless minigame grind."
+    },
+    {
+      "id": "pilot:coal-bag",
+      "domain": "account_long_storage_utility",
+      "normalized_action_ids": ["action:buy-coal-bag"],
+      "normalized_action_exists": true,
+      "fact_ids": ["utility-motherlode-mine-reward-milestones"],
+      "research_refs": [],
+      "current_scoring_coverage": {"status": "unscored", "candidate_action_ids": [], "annotated_dimension_count": 0},
+      "recommended_score_tranche": 1,
+      "missing_observation_or_input": ["Mining level and golden nugget balance", "Current coal-bag ownership", "Smithing, Giants' Foundry, or furnace plans that justify the inventory expansion"],
+      "why_needed_for_first_recommendation_pilot": "Tests whether a storage utility earns priority because it improves several future activities, even when Motherlode itself is not the desired long-term training method."
+    },
+    {
+      "id": "pilot:gem-bag",
+      "domain": "account_long_storage_utility",
+      "normalized_action_ids": ["action:buy-gem-bag"],
+      "normalized_action_exists": true,
+      "fact_ids": ["utility-motherlode-mine-reward-milestones"],
+      "research_refs": [],
+      "current_scoring_coverage": {"status": "unscored", "candidate_action_ids": [], "annotated_dimension_count": 0},
+      "recommended_score_tranche": 1,
+      "missing_observation_or_input": ["Mining level and golden nugget balance", "Current gem-bag ownership", "Whether gem collection, Crafting, or mining trips are active account needs"],
+      "why_needed_for_first_recommendation_pilot": "Provides a comparison against the coal bag so the pilot can learn whether utility ranking changes with the account's actual resource pipeline."
+    },
+    {
+      "id": "pilot:fish-barrel",
+      "domain": "account_long_storage_utility",
+      "normalized_action_ids": [],
+      "normalized_action_exists": false,
+      "fact_ids": ["tempoross-fish-barrel"],
+      "research_refs": ["data/facts/progression-loops.json", "data/facts/utility-stop-inputs.json", "research/minigame-packages/tempoross.json"],
+      "current_scoring_coverage": {"status": "not_normalized", "candidate_action_ids": [], "annotated_dimension_count": 0},
+      "recommended_score_tranche": 1,
+      "missing_observation_or_input": ["A report-only or makes_obtainable Fish Barrel acquisition contract", "Current Tempoross permits and Fishing level", "Actual Fish Barrel ownership and duplicate-protection state", "Expected stop condition for the reward search"],
+      "why_needed_for_first_recommendation_pilot": "A high-value storage example is currently represented as a reward fact but cannot be compared or recommended safely until RNG, permits, and ownership are modeled separately."
+    },
+    {
+      "id": "pilot:herb-sack",
+      "domain": "account_long_storage_utility",
+      "normalized_action_ids": [],
+      "normalized_action_exists": false,
+      "fact_ids": ["herb-sack"],
+      "research_refs": ["data/facts/herb-pipeline.json", "research/minigame-packages/tithe-farm.json"],
+      "current_scoring_coverage": {"status": "not_normalized", "candidate_action_ids": [], "annotated_dimension_count": 0},
+      "recommended_score_tranche": 1,
+      "missing_observation_or_input": ["Canonical shop-cost and acquisition action", "Observed Tithe currency and Herblore 58 use gate", "Herb sack ownership and current herb pipeline", "Stop point that compares sack utility with other Tithe rewards"],
+      "why_needed_for_first_recommendation_pilot": "Tests the user's account-wide storage principle and the rule that Mastering Mixology or Tithe rewards should be timed around actual herb supply, level, and downstream use."
+    },
+    {
+      "id": "pilot:seed-box",
+      "domain": "account_long_storage_utility",
+      "normalized_action_ids": [],
+      "normalized_action_exists": false,
+      "fact_ids": [],
+      "research_refs": ["research/minigame-packages/tithe-farm.json"],
+      "current_scoring_coverage": {"status": "not_normalized", "candidate_action_ids": [], "annotated_dimension_count": 0},
+      "recommended_score_tranche": 1,
+      "missing_observation_or_input": ["Production fact record and canonical source provenance", "Canonical shop-cost and purchase action", "Observed Tithe currency and seed-box ownership", "Seed inventory and farming-loop demand"],
+      "why_needed_for_first_recommendation_pilot": "Exposes a major facts-versus-strategy gap: the utility is strategically important but cannot enter the first recommendation until its current factual purchase path is promoted out of research-only material."
+    },
+    {
+      "id": "pilot:plank-sack",
+      "domain": "account_long_storage_utility",
+      "normalized_action_ids": [],
+      "normalized_action_exists": false,
+      "fact_ids": [],
+      "research_refs": ["research/minigame-packages/mahogany-homes.json"],
+      "current_scoring_coverage": {"status": "not_normalized", "candidate_action_ids": [], "annotated_dimension_count": 0},
+      "recommended_score_tranche": 1,
+      "missing_observation_or_input": ["Production fact record and canonical source provenance", "Canonical Mahogany Homes reward and purchase action", "Observed Construction level, points, planks, and ownership", "Current Construction or POH project that makes the sack timely"],
+      "why_needed_for_first_recommendation_pilot": "Tests whether a storage utility can displace a raw Construction grind while also revealing the need for a safe stop condition in a reward-shop activity."
+    },
+    {
+      "id": "pilot:delayed-veteran-pest-control",
+      "domain": "delayed_content_timing",
+      "normalized_action_ids": [],
+      "normalized_action_exists": false,
+      "fact_ids": ["minigame-pest-control-static-access-and-shop", "pest-control-team-activity-and-diary-state", "minigame-pest-control-durable-utilities"],
+      "research_refs": ["research/minigame-packages/pest-control.json", "data/facts/minigame-location-state.json", "data/facts/minigame-durable-utilities.json"],
+      "current_scoring_coverage": {"status": "not_normalized", "candidate_action_ids": [], "annotated_dimension_count": 0},
+      "recommended_score_tranche": 6,
+      "missing_observation_or_input": ["Veteran lander access and exact combat level observation", "Player-confirmed team/activity credit and commendations", "Void ownership, target pieces, and whether Elite Void is the actual goal", "Safe stop condition at the desired reward threshold"],
+      "why_needed_for_first_recommendation_pilot": "Directly tests the user's level-100 timing example and whether the guide waits for the efficient Veteran/Elite Void window instead of sending the account to earlier Pest Control."
+    },
+    {
+      "id": "pilot:elite-void-upgrade",
+      "domain": "delayed_content_timing",
+      "normalized_action_ids": [],
+      "normalized_action_exists": false,
+      "fact_ids": ["minigame-pest-control-durable-utilities"],
+      "research_refs": ["research/minigame-packages/pest-control.json", "data/facts/minigame-durable-utilities.json"],
+      "current_scoring_coverage": {"status": "not_normalized", "candidate_action_ids": [], "annotated_dimension_count": 0},
+      "recommended_score_tranche": 6,
+      "missing_observation_or_input": ["Void set ownership and upgrade points", "Exact Elite Void upgrade eligibility and diary or combat state", "Current Ranged and Magic content plan", "Comparison with other Pest Control purchases"],
+      "why_needed_for_first_recommendation_pilot": "Separates the timing of acquiring Void from the timing of upgrading it, testing the principle that the best stopping point can change when Elite Void becomes practical."
+    },
+    {
+      "id": "pilot:mastering-mixology",
+      "domain": "delayed_content_timing",
+      "normalized_action_ids": [],
+      "normalized_action_exists": false,
+      "fact_ids": [],
+      "research_refs": [],
+      "current_scoring_coverage": {"status": "not_researched", "candidate_action_ids": [], "annotated_dimension_count": 0},
+      "recommended_score_tranche": 6,
+      "missing_observation_or_input": ["Current OSRS fact acquisition for Mastering Mixology", "Herblore level and boost state", "Actual herb inventory and which herbs are acceptable to sacrifice", "Reward shop priorities including herb sack and stop condition"],
+      "why_needed_for_first_recommendation_pilot": "This is the clearest test of delayed utility timing: the activity should wait until the account can use appropriate herbs and pursue the right permanent rewards without wasting scarce inputs."
+    },
+    {
+      "id": "pilot:perilous-moons-path",
+      "domain": "early_mid_pvm_readiness",
+      "normalized_action_ids": ["action:perilous-moons-quest", "action:moons-of-peril"],
+      "normalized_action_exists": true,
+      "fact_ids": ["perilous-moons-readiness"],
+      "research_refs": [],
+      "current_scoring_coverage": {"status": "unscored", "candidate_action_ids": [], "annotated_dimension_count": 0},
+      "recommended_score_tranche": 5,
+      "missing_observation_or_input": ["Combat readiness observation with gear, food, prayer, restoration, and recovery plan", "Quest completion and skill gates", "Observed clear/death outcomes and Lunar Chest reward state", "Desired stop point for utility sets versus open-ended farming"],
+      "why_needed_for_first_recommendation_pilot": "Tests the boundary between factual access and strategic readiness for a rewarding early PvM activity with self-contained supplies and meaningful account gear."
+    },
+    {
+      "id": "pilot:royal-titans-readiness",
+      "domain": "early_mid_pvm_readiness",
+      "normalized_action_ids": [],
+      "normalized_action_exists": false,
+      "fact_ids": [],
+      "research_refs": [],
+      "current_scoring_coverage": {"status": "not_researched", "candidate_action_ids": [], "annotated_dimension_count": 0},
+      "recommended_score_tranche": 6,
+      "missing_observation_or_input": ["Current access and requirements fact record", "Combat style, gear, supply, and recovery observations", "Encounter success and throughput measurements", "Reward utility and bypass relationships"],
+      "why_needed_for_first_recommendation_pilot": "Ensures the first PvM pilot is not biased toward already-modeled activities and identifies the factual and readiness work needed before Royal Titans can compete fairly."
+    },
+    {
+      "id": "pilot:barrows-readiness",
+      "domain": "early_mid_pvm_readiness",
+      "normalized_action_ids": [],
+      "normalized_action_exists": false,
+      "fact_ids": ["wiki-barrows"],
+      "research_refs": ["data/facts/diary-factual-lumbridge-draynor-morytania-varrock.json", "data/facts/residual-transport-network.json"],
+      "current_scoring_coverage": {"status": "not_normalized", "candidate_action_ids": [], "annotated_dimension_count": 0},
+      "recommended_score_tranche": 6,
+      "missing_observation_or_input": ["Canonical Barrows access and repeat-action record", "Combat readiness and expected clear or death outcome", "Runes, prayer restoration, teleport, and loot observations", "Morytania diary utility and reward-value comparison"],
+      "why_needed_for_first_recommendation_pilot": "Tests a low-to-midgame PvM activity whose timing depends on current Magic, prayer, travel, and reward needs rather than on a generic combat level."
+    },
+    {
+      "id": "pilot:corrupted-gauntlet-readiness",
+      "domain": "early_mid_pvm_readiness",
+      "normalized_action_ids": [],
+      "normalized_action_exists": false,
+      "fact_ids": [],
+      "research_refs": [],
+      "current_scoring_coverage": {"status": "not_researched", "candidate_action_ids": [], "annotated_dimension_count": 0},
+      "recommended_score_tranche": 6,
+      "missing_observation_or_input": ["Current access and quest fact record", "Observed combat readiness and successful-clear rate", "Death and recovery tolerance", "Crystal equipment, unique reward, and alternative gear value"],
+      "why_needed_for_first_recommendation_pilot": "Provides the high-skill readiness contrast: the guide must distinguish technically unlocked content from content that is timely and enjoyable for this account."
+    },
+    {
+      "id": "pilot:birdhouse-passive",
+      "domain": "active_and_afk_pairing",
+      "normalized_action_ids": ["action:birdhouse-loop"],
+      "normalized_action_exists": true,
+      "fact_ids": ["birdhouse-loop"],
+      "research_refs": [],
+      "current_scoring_coverage": {"status": "scored", "candidate_action_ids": ["action:birdhouse-loop"], "annotated_dimension_count": 9},
+      "recommended_score_tranche": 3,
+      "missing_observation_or_input": ["Fossil Island access", "Clockwork, logs, tools, and current birdhouse readiness", "Observed reset and harvest state", "Safe interaction frequency and available attention window"],
+      "why_needed_for_first_recommendation_pilot": "Supplies the first concrete safe recurring companion lane and tests whether the recommendation output includes duration, preparation, interaction frequency, and stop conditions."
+    },
+    {
+      "id": "pilot:giant-seaweed-passive",
+      "domain": "active_and_afk_pairing",
+      "normalized_action_ids": ["action:giant-seaweed-loop"],
+      "normalized_action_exists": true,
+      "fact_ids": ["giant-seaweed", "giant-seaweed-passive-loop"],
+      "research_refs": [],
+      "current_scoring_coverage": {"status": "scored", "candidate_action_ids": ["action:giant-seaweed-loop"], "annotated_dimension_count": 9},
+      "recommended_score_tranche": 3,
+      "missing_observation_or_input": ["Fossil Island access and Farming 23", "Spores, diving equipment, and seaweed-patch state", "Observed harvest and replant readiness", "Current Crafting or glass-pipeline demand"],
+      "why_needed_for_first_recommendation_pilot": "Tests a passive resource pipeline whose value changes with the account's glass and Crafting plans, demonstrating that AFK value is purpose-dependent."
+    },
+    {
+      "id": "pilot:kingdom-passive",
+      "domain": "active_and_afk_pairing",
+      "normalized_action_ids": ["action:collect-kingdom-resources"],
+      "normalized_action_exists": true,
+      "fact_ids": ["managing-miscellania", "kingdom-collection-and-coffer-transfer"],
+      "research_refs": [],
+      "current_scoring_coverage": {"status": "scored", "candidate_action_ids": ["action:collect-kingdom-resources"], "annotated_dimension_count": 9},
+      "recommended_score_tranche": 3,
+      "missing_observation_or_input": ["Kingdom observation with approval, workers, pause state, and observation time", "Coffer balance and named resource deadline", "Player-confirmed collection output", "Whether collection is safe and convenient during the active objective"],
+      "why_needed_for_first_recommendation_pilot": "Tests passive value without inventing elapsed production, wages, approval, or collection output, which is central to the project's evidence boundary."
+    },
+    {
+      "id": "pilot:tears-passive",
+      "domain": "active_and_afk_pairing",
+      "normalized_action_ids": ["action:complete-tears-of-guthix-session"],
+      "normalized_action_exists": true,
+      "fact_ids": ["tears-of-guthix", "tears-of-guthix-completion-and-cooldown"],
+      "research_refs": [],
+      "current_scoring_coverage": {"status": "scored", "candidate_action_ids": ["action:complete-tears-of-guthix-session"], "annotated_dimension_count": 9},
+      "recommended_score_tranche": 3,
+      "missing_observation_or_input": ["Player-confirmed ready or completed state and timestamps", "Chosen XP recipient skill", "Exact observed XP award", "Current cooldown and quest or diary modifiers"],
+      "why_needed_for_first_recommendation_pilot": "Tests a recurring weekly utility that can fill a low-attention window while preserving the rule that timers and variable XP are never inferred."
+    },
+    {
+      "id": "pilot:giants-foundry-economy",
+      "domain": "economy_and_skill_utility",
+      "normalized_action_ids": ["action:giants-foundry"],
+      "normalized_action_exists": true,
+      "fact_ids": ["utility-giants-foundry-currency-and-unlocks"],
+      "research_refs": [],
+      "current_scoring_coverage": {"status": "scored", "candidate_action_ids": ["action:giants-foundry"], "annotated_dimension_count": 9},
+      "recommended_score_tranche": 4,
+      "missing_observation_or_input": ["Current Sleeping Giants state", "Metal inputs, coins, Smithing level, and desired shop reward", "Measured or player-reported commission outputs", "Attention tolerance and stop target"],
+      "why_needed_for_first_recommendation_pilot": "Tests the economic policy by comparing GP plus Smithing plus utility rewards against a raw money method and against the storage targets."
+    },
+    {
+      "id": "pilot:guardians-rift-utility",
+      "domain": "economy_and_skill_utility",
+      "normalized_action_ids": ["action:guardians-of-the-rift"],
+      "normalized_action_exists": true,
+      "fact_ids": ["guardians-of-the-rift-minigame-access", "guardians-of-the-rift-reward-currency"],
+      "research_refs": [],
+      "current_scoring_coverage": {"status": "scored", "candidate_action_ids": ["action:guardians-of-the-rift"], "annotated_dimension_count": 9},
+      "recommended_score_tranche": 4,
+      "missing_observation_or_input": ["Temple of the Eye and Runecraft gates", "Rune and tool inventory", "Observed pearls, rewards, and current pouch or outfit ownership", "Chosen stop target between deterministic and RNG rewards"],
+      "why_needed_for_first_recommendation_pilot": "Tests multi-output utility where a deterministic needle or lantern purchase and RNG rewards should be compared without treating a rare drop as guaranteed."
+    },
+    {
+      "id": "pilot:tithe-storage-economy",
+      "domain": "economy_and_skill_utility",
+      "normalized_action_ids": ["action:tithe-farm"],
+      "normalized_action_exists": true,
+      "fact_ids": ["utility-tithe-farm-access-and-currency"],
+      "research_refs": ["research/minigame-packages/tithe-farm.json"],
+      "current_scoring_coverage": {"status": "scored", "candidate_action_ids": ["action:tithe-farm"], "annotated_dimension_count": 9},
+      "recommended_score_tranche": 4,
+      "missing_observation_or_input": ["Farming level, seed inventory, and water or tool inputs", "Observed points and desired shop reward", "Current herb sack, seed box, and auto-weed ownership", "Attention and session stop target"],
+      "why_needed_for_first_recommendation_pilot": "Acts as the shared source for farming XP, seed and herb storage, and Auto-weed timing, making it essential for comparing permanent utility against repetitive activity cost."
+    },
+    {
+      "id": "pilot:motherlode-storage-economy",
+      "domain": "economy_and_skill_utility",
+      "normalized_action_ids": ["action:motherlode-mine"],
+      "normalized_action_exists": true,
+      "fact_ids": ["utility-motherlode-mine-access-and-nuggets"],
+      "research_refs": ["research/minigame-packages/motherlode-mine.json"],
+      "current_scoring_coverage": {"status": "unscored", "candidate_action_ids": [], "annotated_dimension_count": 0},
+      "recommended_score_tranche": 4,
+      "missing_observation_or_input": ["Mining level and current nugget balance", "Current bag and Prospector ownership", "Desired coal or gem storage reward", "AFK safety and attention window"],
+      "why_needed_for_first_recommendation_pilot": "Provides the comparison activity for coal bag and gem bag timing and tests whether the guide can recommend a short utility-focused stop without prescribing a 99."
+    },
+    {
+      "id": "pilot:sailing-entry",
+      "domain": "sailing_and_economy",
+      "normalized_action_ids": ["action:pandemonium", "action:buy-sailing-skiff"],
+      "normalized_action_exists": true,
+      "fact_ids": ["sailing-entry-pandemonium", "sailing-skiff"],
+      "research_refs": [],
+      "current_scoring_coverage": {"status": "scored", "candidate_action_ids": ["action:pandemonium", "action:buy-sailing-skiff"], "annotated_dimension_count": 9},
+      "recommended_score_tranche": 4,
+      "missing_observation_or_input": ["Exact quest and Sailing XP state", "Coins for the skiff and current boat ownership", "Repair, cargo, and vessel observations", "Whether a Sailing destination, bounty, or salvage goal justifies entry now"],
+      "why_needed_for_first_recommendation_pilot": "Tests whether a newly available skill should be entered for a concrete utility or economic reason rather than because a new skill exists."
+    },
+    {
+      "id": "pilot:sailing-economic-loop",
+      "domain": "sailing_and_economy",
+      "normalized_action_ids": ["action:sailing-bounty-task", "action:salvage-shipwrecks"],
+      "normalized_action_exists": true,
+      "fact_ids": ["sailing-bounty-tasks", "economic-sailing-salvaging", "sailing-entry-pandemonium"],
+      "research_refs": [],
+      "current_scoring_coverage": {"status": "scored", "candidate_action_ids": ["action:sailing-bounty-task", "action:salvage-shipwrecks"], "annotated_dimension_count": 9},
+      "recommended_score_tranche": 4,
+      "missing_observation_or_input": ["Exact Sailing level and boat or hook state", "Observed task or shipwreck availability", "Named cash or resource deadline", "Measured or reported outputs and attention cost"],
+      "why_needed_for_first_recommendation_pilot": "Provides a direct test of the economic policy: choose Sailing only when its GP, XP, supplies, or variety beat the alternatives for a named account need."
+    }
+  ],
+  "biggest_gaps": [
+    {
+      "gap": "Storage utility action coverage",
+      "impact": "Fish Barrel, Herb Sack, Seed Box, and Plank Sack are central to the user's utility-first philosophy, but only the underlying facts or research packages exist; the recommendation layer cannot compare them yet."
+    },
+    {
+      "gap": "Delayed-content normalization",
+      "impact": "Veteran Pest Control, Elite Void timing, and Mastering Mixology are not executable or scored, so the pilot cannot yet test the user's explicit delay-until-efficient examples."
+    },
+    {
+      "gap": "PvM readiness and reward utility",
+      "impact": "Perilous Moons has factual access and mechanics but no strategic annotation; Royal Titans, Barrows, and Corrupted Gauntlet lack the needed current fact and readiness contracts."
+    },
+    {
+      "gap": "Quest-XP threshold model",
+      "impact": "Quest actions carry fixed XP, but the scoring layer does not yet compare exact current XP, target thresholds, downstream unlock timing, and alternative training cost in one recommendation explanation."
+    },
+    {
+      "gap": "Diary utility integration",
+      "impact": "Diary packages and observation contracts exist, but only a bounded subset of utility claims is normalized and scored; the pilot needs material reward claims without turning diary completion into a goal."
+    },
+    {
+      "gap": "Active-plus-passive output contract",
+      "impact": "The passive actions are scored, but the project still needs a recommendation compositor that selects a safe companion based on duration, inputs, interaction frequency, and observed readiness."
+    },
+    {
+      "gap": "Account-specific economy and combat observations",
+      "impact": "Cash deadlines, exact inventories, combat loadouts, success rates, recovery tolerance, and activity throughput are required before timing scores can become trustworthy."
+    }
+  ],
+  "audit_conclusion": "Score the existing tranches 1 through 4 first, then use the first account snapshot to test the recommendation contract. Promote the missing storage, delayed-content, and PvM actions only where that pilot exposes a real decision gap. Keep facts in data/facts and normalized actions in data/progression; this audit deliberately remains strategy-only."
+}
