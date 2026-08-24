@@ -176,6 +176,8 @@ class ComposeRecommendationChapterTests(unittest.TestCase):
                 "pvm_readiness_inferred": False,
                 "mixology_inputs_inferred": False,
                 "mixology_reward_selected": False,
+                "quest_training_method_selected": False,
+                "void_purchase_or_upgrade_inferred": False,
             },
             chapter["boundaries"],
         )
@@ -197,6 +199,29 @@ class ComposeRecommendationChapterTests(unittest.TestCase):
         self.assertIn("Player-chosen XP rewards remain unallocated: 1", text)
         choice_rewards = chapter["unallocated_player_chosen_xp_rewards"]
         self.assertEqual(None, choice_rewards[0]["allocated_skill"])
+
+    def test_chapter_exposes_quest_blockers_and_void_timing_policy(self) -> None:
+        chapter = self.compose(load_json(FIXTURES / "fresh-account.json"), quest_xp_limit=20)
+        by_id = {quest["action_id"]: quest for quest in chapter["quest_xp_threshold_sequences"]}
+        output = io.StringIO()
+
+        with contextlib.redirect_stdout(output):
+            _print_human_chapter(chapter)
+
+        dig_site = by_id["action:the-dig-site"]
+        self.assertEqual("train_requirement", dig_site["primary_timing_status"])
+        self.assertTrue(any(not gate["satisfied"] for gate in dig_site["hard_skill_gates"]))
+        self.assertTrue(any(not item["satisfied"] for item in dig_site["required_item_inputs"]))
+        self.assertEqual(
+            "delay_regular_void_purchase_skills",
+            chapter["void_elite_void_timing"]["timing"]["status"],
+        )
+        self.assertFalse(chapter["boundaries"]["quest_training_method_selected"])
+        self.assertFalse(chapter["boundaries"]["void_purchase_or_upgrade_inferred"])
+        self.assertIn(
+            "one of: 50 x rune_essence (current: 0) OR 50 x pure_essence (current: 0)",
+            output.getvalue(),
+        )
 
     def test_transport_bundle_is_bounded_and_explains_state_without_route_selection(self) -> None:
         state = load_json(FIXTURES / "fresh-account.json")

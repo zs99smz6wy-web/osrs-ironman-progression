@@ -5,7 +5,7 @@
   "observation_conventions": {
     "pest_control_container": "minigame_activity_observations.pest-control",
     "point_balance": "Use observed resources.pest_control_commendation_points when present; otherwise use the current Pest Control currency balance. Missing values are unknown, not zero.",
-    "owned_pieces": "items.void_knight_top, items.void_knight_robe, items.void_knight_gloves, items.void_melee_helm, items.void_ranger_helm, and items.void_mage_helm are explicit ownership counts. The analyzer never upgrades or equips them.",
+    "owned_pieces": "Regular top, robe, gloves and helmet item counts plus items.elite_void_top and items.elite_void_robe are explicit ownership observations. An Elite piece satisfies its corresponding set slot, but the analyzer never upgrades or equips anything.",
     "diary": "diary_tiers['Western Provinces'] records only the highest confirmed claimed tier; it never proves the remaining tasks, upgrade, or any item ownership."
   },
   "strategic_preferences": {

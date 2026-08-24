@@ -18,6 +18,7 @@ POINT_RESOURCE_KEY = "pest_control_commendation_points"
 POINT_CURRENCY_ID = "currency:pest-control:commendation-points"
 PIECE_KEYS = ("void_knight_top", "void_knight_robe", "void_knight_gloves")
 HELMET_KEYS = ("void_melee_helm", "void_ranger_helm", "void_mage_helm")
+ELITE_PIECE_KEYS = ("elite_void_top", "elite_void_robe")
 PURCHASE_REQUIREMENTS = {
     "Attack": 42,
     "Strength": 42,
@@ -99,15 +100,40 @@ def analyze_void_elite_void_timing(
     ]
     highest_lander = eligible_landers[-1] if eligible_landers else None
     points, points_source = observed_points(account_state)
-    owned = {key: non_negative_integer(items.get(key)) or 0 for key in (*PIECE_KEYS, *HELMET_KEYS)}
-    regular_complete = all(owned[key] > 0 for key in PIECE_KEYS) and any(owned[key] > 0 for key in HELMET_KEYS)
-    regular_missing = [key for key in PIECE_KEYS if owned[key] < 1]
+    owned = {
+        key: non_negative_integer(items.get(key)) or 0
+        for key in (*PIECE_KEYS, *HELMET_KEYS, *ELITE_PIECE_KEYS)
+    }
+    top_owned = owned["void_knight_top"] > 0 or owned["elite_void_top"] > 0
+    robe_owned = owned["void_knight_robe"] > 0 or owned["elite_void_robe"] > 0
+    regular_complete = top_owned and robe_owned and owned["void_knight_gloves"] > 0 and any(
+        owned[key] > 0 for key in HELMET_KEYS
+    )
+    regular_missing = []
+    if not top_owned:
+        regular_missing.append("void_knight_top_or_elite_void_top")
+    if not robe_owned:
+        regular_missing.append("void_knight_robe_or_elite_void_robe")
+    if owned["void_knight_gloves"] < 1:
+        regular_missing.append("void_knight_gloves")
     if not any(owned[key] > 0 for key in HELMET_KEYS):
         regular_missing.append("one_void_combat_helmet")
     western_hard = account_state["diary_tiers"].get("Western Provinces") in {"hard", "elite"}
-    top_upgrade_ready = owned["void_knight_top"] > 0 and western_hard and points is not None and points >= 200
-    robe_upgrade_ready = owned["void_knight_robe"] > 0 and western_hard and points is not None and points >= 200
-    both_upgrades_ready = owned["void_knight_top"] > 0 and owned["void_knight_robe"] > 0 and western_hard and points is not None and points >= 400
+    top_upgraded = owned["elite_void_top"] > 0
+    robe_upgraded = owned["elite_void_robe"] > 0
+    remaining_upgrade_cost = 200 * int(not top_upgraded) + 200 * int(not robe_upgraded)
+    top_upgrade_ready = not top_upgraded and owned["void_knight_top"] > 0 and western_hard and points is not None and points >= 200
+    robe_upgrade_ready = not robe_upgraded and owned["void_knight_robe"] > 0 and western_hard and points is not None and points >= 200
+    remaining_upgrades_ready = (
+        western_hard
+        and (top_upgraded or owned["void_knight_top"] > 0)
+        and (robe_upgraded or owned["void_knight_robe"] > 0)
+        and points is not None
+        and points >= remaining_upgrade_cost
+    )
+    elite_complete = top_upgraded and robe_upgraded and owned["void_knight_gloves"] > 0 and any(
+        owned[key] > 0 for key in HELMET_KEYS
+    )
 
     if intent["objective"] == "undecided":
         timing_status = "decision_deferred_no_objective"
@@ -122,9 +148,11 @@ def analyze_void_elite_void_timing(
             timing_status = "regular_void_enter_candidate"
     elif intent["objective"] == "regular_void_one_helmet":
         timing_status = "regular_void_objective_observed"
+    elif elite_complete:
+        timing_status = "elite_void_objective_observed"
     elif not western_hard:
         timing_status = "wait_western_provinces_hard_for_elite_upgrade"
-    elif both_upgrades_ready:
+    elif remaining_upgrades_ready:
         timing_status = "elite_void_upgrade_candidate"
     else:
         timing_status = "wait_observed_elite_upgrade_inputs"
@@ -164,11 +192,16 @@ def analyze_void_elite_void_timing(
             "western_provinces_hard_claimed_observed": western_hard,
             "regular_top_observed": owned["void_knight_top"] > 0,
             "regular_robe_observed": owned["void_knight_robe"] > 0,
+            "elite_top_observed": top_upgraded,
+            "elite_robe_observed": robe_upgraded,
+            "complete_one_helmet_elite_set_observed": elite_complete,
             "points_required_per_piece": 200,
             "points_required_for_both_pieces": 400,
+            "remaining_upgrade_point_cost": remaining_upgrade_cost,
             "top_upgrade_candidate": top_upgrade_ready,
             "robe_upgrade_candidate": robe_upgrade_ready,
-            "both_upgrades_candidate": both_upgrades_ready,
+            "remaining_upgrades_candidate": remaining_upgrades_ready,
+            "both_upgrades_candidate": remaining_upgrade_cost == 400 and remaining_upgrades_ready,
             "upgrade_inferred": False,
         },
         "timing": {

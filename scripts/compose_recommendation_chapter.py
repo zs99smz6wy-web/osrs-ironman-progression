@@ -8,11 +8,17 @@ from typing import Any
 
 from analyze_passive_status import analyze_passive_status
 from analyze_quest_xp_timing import DEFAULT_EDGES, DEFAULT_NODES, analyze_quest_xp_timing
+from analyze_quest_xp_thresholds import (
+    DEFAULT_CONTEXT as DEFAULT_QUEST_XP_THRESHOLD_CONTEXT,
+    DEFAULT_RESEARCH as DEFAULT_QUEST_XP_THRESHOLD_RESEARCH,
+    analyze_quest_xp_thresholds,
+)
 from analyze_transport_bundles import DEFAULT_TRANSPORT_BUNDLES, analyze_transport_bundles
 from analyze_sailing_economics import DEFAULT_CONTEXTS as DEFAULT_SAILING_ECONOMICS_CONTEXTS, analyze_sailing_economics
 from analyze_durable_utility_items import DEFAULT_CONTEXTS as DEFAULT_DURABLE_UTILITY_CONTEXTS, analyze_durable_utility_items
 from analyze_pvm_readiness import DEFAULT_CONTEXTS as DEFAULT_PVM_READINESS_CONTEXTS, analyze_pvm_readiness
 from analyze_mastering_mixology import analyze_mastering_mixology
+from analyze_void_elite_void_timing import analyze_void_elite_void_timing
 from evaluate_progression import DEFAULT_ACTIONS, DEFAULT_STATE, evaluate_actions, load_json, validate_account_state
 from score_candidates import DEFAULT_CANDIDATES, score_candidates
 
@@ -23,6 +29,10 @@ DEFAULT_AFK_LIMIT = 5
 DEFAULT_PREPARATION_LIMIT = 5
 DEFAULT_QUEST_XP_LIMIT = 5
 DEFAULT_TRANSPORT_BUNDLE_LIMIT = 7
+DEFAULT_VOID_STRATEGY_INTENT = {
+    "objective": "elite_void_one_helmet",
+    "veteran_wait": "prefer",
+}
 
 
 def _validate_limit(value: int, name: str) -> None:
@@ -109,6 +119,24 @@ def _quest_xp_opportunities(
     }
 
 
+def _quest_xp_threshold_sequences(report: dict[str, Any]) -> list[dict[str, Any]]:
+    status_order = {
+        "do_now": 0,
+        "gather_inputs": 1,
+        "train_requirement": 2,
+        "finish_quest_chain": 3,
+        "completed": 4,
+    }
+    return sorted(
+        report["quest_xp_timing_windows"],
+        key=lambda quest: (
+            status_order[quest["primary_timing_status"]],
+            -sum(effect["levels_skipped"] for effect in quest["skill_effects"]),
+            quest["action_id"],
+        ),
+    )
+
+
 def _eligible_unscored_gaps(
     evaluated_actions: list[dict[str, Any]], ranked_candidates: list[dict[str, Any]]
 ) -> list[dict[str, Any]]:
@@ -190,13 +218,23 @@ def compose_recommendation_chapter(
         load_json(DEFAULT_PVM_READINESS_CONTEXTS), actions_document, account_state
     )
     mastering_mixology_timing = analyze_mastering_mixology(account_state)
+    void_elite_void_timing = analyze_void_elite_void_timing(
+        account_state, DEFAULT_VOID_STRATEGY_INTENT
+    )
     quest_xp_timing = analyze_quest_xp_timing(
         account_state, actions_document, nodes_document, edges_document
+    )
+    quest_xp_threshold_report = analyze_quest_xp_thresholds(
+        account_state,
+        actions_document,
+        load_json(DEFAULT_QUEST_XP_THRESHOLD_RESEARCH),
+        load_json(DEFAULT_QUEST_XP_THRESHOLD_CONTEXT),
     )
     preparation_gaps, preparation_coverage = _preparation_gaps(
         evaluated_actions, candidates_document
     )
     quest_xp_opportunities, quest_xp_coverage = _quest_xp_opportunities(quest_xp_timing)
+    quest_xp_sequences = _quest_xp_threshold_sequences(quest_xp_threshold_report)
     preparation_coverage.update(
         {
             "limit": preparation_limit,
@@ -246,6 +284,13 @@ def compose_recommendation_chapter(
         },
         "quest_xp_timing_opportunities": quest_xp_opportunities[:quest_xp_limit],
         "quest_xp_timing_coverage": quest_xp_coverage,
+        "quest_xp_threshold_sequences": quest_xp_sequences[:quest_xp_limit],
+        "quest_xp_threshold_sequence_coverage": {
+            "limit": quest_xp_limit,
+            "shown_count": len(quest_xp_sequences[:quest_xp_limit]),
+            "total_count": len(quest_xp_sequences),
+            "omitted_count": max(0, len(quest_xp_sequences) - quest_xp_limit),
+        },
         "unallocated_player_chosen_xp_rewards": quest_xp_timing[
             "unallocated_player_chosen_xp_rewards"
         ],
@@ -254,6 +299,7 @@ def compose_recommendation_chapter(
         "durable_utility_item_timing": durable_utility_items,
         "pvm_readiness": pvm_readiness,
         "mastering_mixology_timing": mastering_mixology_timing,
+        "void_elite_void_timing": void_elite_void_timing,
         "gaps": {
             "preparation": preparation_gaps[:preparation_limit],
             "preparation_coverage": preparation_coverage,
@@ -274,6 +320,8 @@ def compose_recommendation_chapter(
             "pvm_readiness_inferred": False,
             "mixology_inputs_inferred": False,
             "mixology_reward_selected": False,
+            "quest_training_method_selected": False,
+            "void_purchase_or_upgrade_inferred": False,
         },
     }
 
@@ -338,6 +386,28 @@ def _print_human_chapter(chapter: dict[str, Any]) -> None:
     print(f"  timing: {mixology['timing']['status']}")
     print(f"  recipe coverage through 81: {mixology['recipe_coverage']['full_recipe_set_available']}")
     print(f"  stop/re-entry: {mixology['stop_reentry']['status']}")
+    void = chapter["void_elite_void_timing"]
+    print("\nVoid and Elite Void timing:")
+    print(f"  timing: {void['timing']['status']}")
+    print(f"  combat level: {void['regular_void_access']['combat_level_observed']}")
+    lander = void["regular_void_access"]["highest_eligible_lander"]
+    print(f"  highest eligible boat: {lander['id'] if lander else 'none'}")
+    print(f"  Western hard observed: {void['elite_void_upgrade']['western_provinces_hard_claimed_observed']}")
+    sequence_coverage = chapter["quest_xp_threshold_sequence_coverage"]
+    print(
+        "\nQuest-XP threshold sequencing: "
+        f"{sequence_coverage['shown_count']} of {sequence_coverage['total_count']} shown"
+    )
+    for quest in chapter["quest_xp_threshold_sequences"]:
+        print(f"  [{quest['primary_timing_status'].upper()}] {quest['quest_name']}")
+        blockers = quest["missing_hard_requirements"] + quest["missing_preparation"]
+        if blockers:
+            print(f"    blockers: {_concise_list(blockers)}")
+        for effect in quest["skill_effects"]:
+            print(
+                f"    {effect['skill']}: level {effect['current_level']} -> "
+                f"{effect['resulting_level']} from {effect['fixed_xp']} fixed XP"
+            )
     preparation_coverage = chapter["gaps"]["preparation_coverage"]
     print(
         "Preparation gaps: "

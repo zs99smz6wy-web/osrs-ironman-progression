@@ -95,6 +95,26 @@ class VoidEliteVoidTimingTests(unittest.TestCase):
         for field in ("team_inferred", "round_outcome_inferred", "points_earned_inferred", "purchase_inferred", "upgrade_inferred"):
             self.assertFalse(report["inference_guarantees"][field])
 
+    def test_owned_elite_pieces_satisfy_corresponding_regular_set_slots(self) -> None:
+        state = copy.deepcopy(self.state)
+        self._purchase_skill_state(state)
+        state["items"] = {
+            "elite_void_top": 1,
+            "elite_void_robe": 1,
+            "void_knight_gloves": 1,
+            "void_mage_helm": 1,
+        }
+        state["diary_tiers"]["Western Provinces"] = "hard"
+
+        report = analyze_void_elite_void_timing(
+            state, {"objective": "elite_void_one_helmet", "veteran_wait": "none"}
+        )
+
+        self.assertTrue(report["regular_void_set"]["complete_one_helmet_set_observed"])
+        self.assertTrue(report["elite_void_upgrade"]["complete_one_helmet_elite_set_observed"])
+        self.assertEqual(0, report["elite_void_upgrade"]["remaining_upgrade_point_cost"])
+        self.assertEqual("elite_void_objective_observed", report["timing"]["status"])
+
 
 if __name__ == "__main__":
     unittest.main()
