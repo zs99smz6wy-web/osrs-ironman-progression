@@ -7,11 +7,11 @@
   "template_path": "research/afk-method-packages/template.json",
   "template_inventory_policy": "excluded",
   "packages": [
-    {"path": "research/afk-method-packages/shooting-stars.json", "package_id": "research-afk-shooting-stars", "method": "Shooting stars", "phase": "pending"},
-    {"path": "research/afk-method-packages/basic-fishing.json", "package_id": "research-afk-basic-fishing", "method": "Basic fishing", "phase": "pending"},
-    {"path": "research/afk-method-packages/woodcutting.json", "package_id": "research-afk-woodcutting", "method": "Woodcutting", "phase": "pending"},
-    {"path": "research/afk-method-packages/motherlode-mine.json", "package_id": "research-afk-motherlode-mine", "method": "Motherlode Mine", "phase": "pending"},
-    {"path": "research/afk-method-packages/safe-combat-training.json", "package_id": "research-afk-safe-combat-training", "method": "Safe combat training", "phase": "pending"}
+    {"path": "research/afk-method-packages/shooting-stars.json", "package_id": "research-afk-shooting-stars", "method": "Shooting stars", "phase": "completed"},
+    {"path": "research/afk-method-packages/basic-fishing.json", "package_id": "research-afk-basic-fishing", "method": "Basic fishing", "phase": "completed"},
+    {"path": "research/afk-method-packages/woodcutting.json", "package_id": "research-afk-woodcutting", "method": "Woodcutting", "phase": "completed"},
+    {"path": "research/afk-method-packages/motherlode-mine.json", "package_id": "research-afk-motherlode-mine", "method": "Motherlode Mine", "phase": "completed"},
+    {"path": "research/afk-method-packages/safe-combat-training.json", "package_id": "research-afk-safe-combat-training", "method": "Safe combat training", "phase": "completed"}
   ],
   "phase_contract": {
     "pending": "Planned only. The path must not exist and is not package-validated.",

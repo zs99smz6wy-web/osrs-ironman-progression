@@ -1,0 +1,400 @@
+{
+  "package_schema_version": 1,
+  "package_type": "afk-low-attention-research",
+  "package_id": "research-afk-safe-combat-training",
+  "method": "Safe combat training",
+  "status": "research-proposal",
+  "checked_at": "2026-08-24",
+  "scope": "Two concrete, low-attention crab locations only: Sand Crabs on the southern Hosidius coast and Ammonite Crabs in the Fossil Island Mushroom Forest. The word safe is a bounded planning label, not a claim that either location is risk-free, unattended-safe, suitable for every account, or a progression recommendation.",
+  "facts_strategy_boundary": {
+    "included": [
+      "Current access, combat, tolerance, idle-combat, death-recovery, and location mechanics for the two named crab methods.",
+      "An observation-first readiness boundary covering aggression, current HP, selected gear, food, Prayer if used, emergency teleport or exit capability, and death/recovery state.",
+      "A proposed action that records an explicitly selected method/location and player-reported outcomes without simulating combat."
+    ],
+    "excluded": [
+      "Strategy scoring, preferred ordering, guaranteed hourly rates, and guaranteed RNG outcomes.",
+      "Account readiness inference, unattended safety, a guaranteed session length, XP per hour, drops per hour, food use, survival chance, or an automatic reset/re-entry result.",
+      "A recommended location, gear setup, combat style, Prayer choice, food quantity, emergency teleport, travel route, training target, route order, or level 99 target.",
+      "Any generated combat XP, kill count, item drop, death, recovery cost, transport arrival, or RNG outcome."
+    ]
+  },
+  "source_catalog": [
+    {
+      "id": "wiki-sand-crab-current",
+      "publisher": "Old School RuneScape Wiki",
+      "kind": "wiki",
+      "url": "https://oldschool.runescape.wiki/w/Sand_Crab",
+      "checked_at": "2026-08-24",
+      "use": "Current Sand Crab locations, combat profile, dormant/active behaviour, tolerance reset, and variable drop boundary."
+    },
+    {
+      "id": "wiki-ammonite-crab-current",
+      "publisher": "Old School RuneScape Wiki",
+      "kind": "wiki",
+      "url": "https://oldschool.runescape.wiki/w/Ammonite_Crab",
+      "checked_at": "2026-08-24",
+      "use": "Current Ammonite Crab locations, combat profile, tolerance reset, low-level-food note, and variable drop boundary."
+    },
+    {
+      "id": "wiki-tolerance-current",
+      "publisher": "Old School RuneScape Wiki",
+      "kind": "wiki",
+      "url": "https://oldschool.runescape.wiki/w/Tolerance",
+      "checked_at": "2026-08-24",
+      "use": "Current ten-minute standard-monster tolerance mechanic and the crab re-entry boundary."
+    },
+    {
+      "id": "wiki-idle-current",
+      "publisher": "Old School RuneScape Wiki",
+      "kind": "wiki",
+      "url": "https://oldschool.runescape.wiki/w/Idle",
+      "checked_at": "2026-08-24",
+      "use": "Current combat idle, auto-retaliate, active-combat logout, and six-hour disconnect mechanics."
+    },
+    {
+      "id": "wiki-fossil-island-current",
+      "publisher": "Old School RuneScape Wiki",
+      "kind": "wiki",
+      "url": "https://oldschool.runescape.wiki/w/Fossil_Island",
+      "checked_at": "2026-08-24",
+      "use": "Current Fossil Island members access, Bone Voyage gate, and documented transport context."
+    },
+    {
+      "id": "wiki-deaths-office-current",
+      "publisher": "Old School RuneScape Wiki",
+      "kind": "wiki",
+      "url": "https://oldschool.runescape.wiki/w/Death%27s_Office",
+      "checked_at": "2026-08-24",
+      "use": "Current Death's Office recovery boundary and ironman recovery-fee context."
+    },
+    {
+      "id": "official-great-kourend-content-poll",
+      "publisher": "Jagex",
+      "kind": "official",
+      "url": "https://oldschool.runescape.com/polls/2016/1315",
+      "checked_at": "2026-08-24",
+      "use": "Official historical provenance that Sand Crabs were added for the south Hosidius coast. Current runtime mechanics are taken from the current Wiki sources."
+    }
+  ],
+  "access": {
+    "requirements": {
+      "membership": {
+        "claim": "Both named NPC pages mark these crabs as members content.",
+        "source_ids": ["wiki-sand-crab-current", "wiki-ammonite-crab-current"]
+      },
+      "sand-crab-hosidius-south-coast": {
+        "claim": "Sand Crabs are listed along the southern Hosidius coast; the official poll describes their addition to the coast south of Hosidius. This package records arrival as an observation and does not derive a travel route or arrival from membership.",
+        "source_ids": ["wiki-sand-crab-current", "official-great-kourend-content-poll"]
+      },
+      "ammonite-crab-mushroom-forest": {
+        "claim": "Ammonite Crabs are listed in the Mushroom Forest on Fossil Island. Reaching Fossil Island requires completion of Bone Voyage.",
+        "source_ids": ["wiki-ammonite-crab-current", "wiki-fossil-island-current"]
+      },
+      "selection-boundary": {
+        "claim": "One concrete method/location must be selected: sand-crab-hosidius-south-coast or ammonite-crab-mushroom-forest. No selection is inferred from access, skill levels, inventory, or a prior observation.",
+        "source_ids": []
+      }
+    },
+    "tools": [
+      {
+        "id": "selected-combat-gear",
+        "requirement": "Player reports currently equipped combat gear and its condition before a session. This package does not prescribe gear or infer defensive adequacy.",
+        "source_ids": []
+      },
+      {
+        "id": "observed-emergency-exit",
+        "requirement": "Player reports one presently usable emergency teleport or another chosen exit plan, including relevant runes, charges, or item state if applicable. Availability and use are never inferred.",
+        "source_ids": []
+      }
+    ],
+    "locations": [
+      {
+        "id": "sand-crab-hosidius-south-coast",
+        "method_id": "sand-crab-hosidius",
+        "claim": "Sand Crabs occur on the southern Hosidius coast. Their current page lists combat level 15, 60 Hitpoints, a maximum hit of 1, crush attacks, and 30-second respawn time; dormant crabs activate when a player walks nearby.",
+        "source_ids": ["wiki-sand-crab-current"]
+      },
+      {
+        "id": "ammonite-crab-mushroom-forest",
+        "method_id": "ammonite-crab-mushroom-forest",
+        "claim": "Ammonite Crabs occur in the Fossil Island Mushroom Forest. Their current page lists combat level 25 and describes 100 Hitpoints with level 1 in the other combat stats.",
+        "source_ids": ["wiki-ammonite-crab-current"]
+      }
+    ],
+    "transport_options": [
+      {
+        "id": "fossil-island-access-context",
+        "claim": "The Fossil Island source documents the Digsite barge and a digsite-pendant route. They are access context only: neither is selected or treated as available to the player by this package.",
+        "source_ids": ["wiki-fossil-island-current"]
+      }
+    ]
+  },
+  "preparation": {
+    "inventory_inputs": [
+      {
+        "id": "current-hitpoints",
+        "requirement": "Player-reported current and maximum HP before entry and at each attention check; no survivability threshold is supplied.",
+        "source_ids": []
+      },
+      {
+        "id": "selected-food",
+        "requirement": "Player-reported food item, quantity, and remaining amount if food is carried. No food is mandatory in this package and no amount is assumed sufficient.",
+        "source_ids": []
+      },
+      {
+        "id": "emergency-teleport-or-exit",
+        "requirement": "Player-reported immediately usable teleport or exit plan, with any required item/rune/charge state. The package neither chooses nor validates it as safe.",
+        "source_ids": []
+      }
+    ],
+    "bank_inputs": [
+      {
+        "id": "recovery-resources",
+        "requirement": "Player-reported recovery funds/items and access plan, if any. Death's Office can recover eligible uncollected grave items; the player must separately observe the actual recovery state and any fee.",
+        "source_ids": ["wiki-deaths-office-current"]
+      }
+    ],
+    "reusable_items": [
+      {
+        "id": "observed-equipped-gear",
+        "requirement": "Selected equipped gear is observation-only. Ownership, charges, protection, and readiness are never inferred.",
+        "source_ids": []
+      }
+    ],
+    "consumed_inputs": [
+      {
+        "id": "food-and-prayer-if-used",
+        "requirement": "Food and any Prayer-restoration or other consumables are optional player-selected inputs. Record only reported consumption and remaining supplies; do not estimate use.",
+        "source_ids": []
+      }
+    ],
+    "capacity_constraints": [
+      {
+        "id": "inventory-capacity",
+        "requirement": "Available inventory slots and any space used by food, teleport/exit items, or drops are player-observed. This package does not auto-loot or calculate capacity.",
+        "source_ids": []
+      }
+    ]
+  },
+  "attention_profile": {
+    "class": "low_attention",
+    "interaction_cadence": [
+      {
+        "claim": "For standard monster tolerance, crabs become tolerant after ten minutes in the region; because active crabs are needed to fight them, re-entry beyond the tolerance region is required to restore crab aggression. This is a sourced mechanical reset, not an unattended-safety interval.",
+        "evidence_type": "source",
+        "source_ids": ["wiki-sand-crab-current", "wiki-ammonite-crab-current", "wiki-tolerance-current"],
+        "interval_seconds": {"maximum": 600, "meaning": "aggression/tolerance boundary only; no XP, safety, or duration guarantee"}
+      },
+      {
+        "claim": "Combat auto-retaliation stops after more than twenty minutes without qualifying client interaction, even with Auto Retaliate enabled. This is an attention requirement, not a prompt to leave the account unattended.",
+        "evidence_type": "source",
+        "source_ids": ["wiki-idle-current"],
+        "interval_seconds": {"maximum": 1200, "meaning": "auto-retaliate idle boundary only; client input, health, aggression, and location must still be observed"}
+      },
+      {
+        "claim": "Before starting, after any return, and whenever the player chooses to check, record current aggression/targeting, HP, gear, food, Prayer if used, emergency exit capability, nearby hazards/players, and death/recovery state. Exact cadence is a player observation, not a sourced guarantee.",
+        "evidence_type": "player_observation",
+        "source_ids": []
+      }
+    ],
+    "player_presence_required": true,
+    "unattended_safety_claim": "never_infer"
+  },
+  "session_mechanics": {
+    "entry_condition": "Player confirms membership, explicitly selects one listed method/location, reports arrival and current readiness observations (aggression, HP, gear, food, Prayer if any, emergency exit, and death/recovery), and confirms combat start. This does not prove safety, survival, or output.",
+    "entry_condition_source_ids": ["wiki-sand-crab-current", "wiki-ammonite-crab-current", "wiki-fossil-island-current"],
+    "duration_evidence": {
+      "tolerance": {
+        "claim": "Standard tolerance is ten minutes before these crabs become tolerant; leaving and re-entering the tolerance region resets aggression.",
+        "source_ids": ["wiki-tolerance-current", "wiki-sand-crab-current", "wiki-ammonite-crab-current"]
+      },
+      "combat-idle": {
+        "claim": "Auto-retaliation stops after more than twenty minutes of combat idle. A six-hour continuous-login disconnect can also end play, with warnings described by the idle source.",
+        "source_ids": ["wiki-idle-current"]
+      },
+      "boundary": "No session duration, survival time, reset success, combat XP, or hourly result is guaranteed or calculated."
+    },
+    "session_end_events": [
+      "Observed crab tolerance/aggression expiry or inability to continue engaging at the selected location. [wiki-sand-crab-current, wiki-ammonite-crab-current, wiki-tolerance-current]",
+      "Observed combat auto-retaliate stop after the idle-combat boundary. [wiki-idle-current]",
+      "Observed low HP, food depletion, Prayer change, gear/teleport issue, unexpected damage/hazard, player choice to exit, logout/disconnect, or death; these are report-only stops and no outcome is inferred."
+    ],
+    "repeatable": true,
+    "offline_progression": false
+  },
+  "outputs": {
+    "deterministic": [],
+    "variable": [
+      {
+        "id": "combat-xp",
+        "variation_type": "non_rng_variable",
+        "description": "Combat and Hitpoints XP are distinct from item drops. Record only the player-observed XP delta, selected style, and observed combat result; the package does not simulate hits, kills, XP, or an hourly rate.",
+        "source_ids": ["wiki-sand-crab-current", "wiki-ammonite-crab-current"]
+      },
+      {
+        "id": "random-drops",
+        "variation_type": "rng",
+        "description": "Item drops are RNG outputs, not combat XP and not guaranteed. The Sand Crab and Ammonite Crab pages document drop tables; record only player-observed items and quantities, without calculating expected value or loot rate.",
+        "source_ids": ["wiki-sand-crab-current", "wiki-ammonite-crab-current"]
+      }
+    ],
+    "player_observed": [
+      {
+        "id": "combat-session-observation",
+        "description": "Record only reported method/location, aggression/targeting state, current HP, gear, food, Prayer if used, emergency exit state, death/recovery state, XP delta, drops, consumables, logout/disconnect, and stop/re-entry result.",
+        "source_ids": []
+      }
+    ]
+  },
+  "safety_and_logout": {
+    "damage_sources": [
+      "Sand Crabs use crush attacks and can damage the player; the player must observe actual targets and HP. [wiki-sand-crab-current]",
+      "Ammonite Crab combat and any location-specific or external threat must be observed at the time of play; this package does not model damage or assert a zero-damage setup. [wiki-ammonite-crab-current]"
+    ],
+    "death_possible": "yes",
+    "death_possible_source_ids": ["wiki-sand-crab-current", "wiki-ammonite-crab-current", "wiki-deaths-office-current"],
+    "logout_behavior": [
+      "While an active combat timer is running, manual logout is unavailable; the idle source describes the timer as ten seconds and reset by further hits. [wiki-idle-current]",
+      "The idle source describes a six-hour continuous-login disconnect and the combat-disconnect handling; treat any logout or disconnect as an observed session end, not a recovery guarantee. [wiki-idle-current]",
+      "Death's Office can hold eligible uncollected grave items, with recovery fees and ironman discount details described by its current page. Actual grave, office, fee, item, and recovery outcome remain player-observed. [wiki-deaths-office-current]"
+    ],
+    "safe_boundary": "Neither candidate is declared safe or unattended-safe. Start or continue only after the player has explicitly reported the selected location and current aggression, HP, gear, food, Prayer if any, emergency exit capability, and death/recovery situation; stop when any of those observations is no longer acceptable to that player."
+  },
+  "stop_reentry_mechanics": {
+    "mechanical_stop_conditions": [
+      "Crab tolerance makes the crabs non-aggressive after ten minutes in the relevant tolerance region; active crabs are required to fight them. [wiki-sand-crab-current, wiki-ammonite-crab-current, wiki-tolerance-current]",
+      "Combat auto-retaliation stops after more than twenty minutes of client inactivity. [wiki-idle-current]",
+      "Player-observed stop: unsafe or changed aggression/targeting, HP, food, Prayer, gear, emergency exit, surrounding hazard, connection, death, or recovery state. No threshold is inferred."
+    ],
+    "mechanical_reentry_conditions": [
+      "For either crab method, the player must leave and re-enter the tolerance region to reset aggression; the actual movement and restored targeting are player-observed. [wiki-tolerance-current, wiki-sand-crab-current, wiki-ammonite-crab-current]",
+      "A new session also requires an explicit method/location selection and fresh readiness observation; no prior session establishes continuing readiness."
+    ],
+    "reset_or_cleanup_requirements": [
+      "Record remaining food/consumables, HP, Prayer if used, gear state, emergency exit state, observed XP/drops, and any death/recovery result. Do not convert unreported outcomes into state.",
+      "If a death occurred, recovery follows the observed grave/Death's Office state; the current Death's Office page describes its recovery mechanism but does not establish that the player can recover every item. [wiki-deaths-office-current]"
+    ]
+  },
+  "proposed_normalization": {
+    "facts": [
+      {
+        "id": "fact:safe-combat-training-crab-tolerance",
+        "treatment": "proposed-new",
+        "claim": "The two named crab methods use a ten-minute tolerance/aggression reset boundary; it is not a safety or output timer.",
+        "source_ids": ["wiki-tolerance-current", "wiki-sand-crab-current", "wiki-ammonite-crab-current"]
+      },
+      {
+        "id": "fact:safe-combat-training-combat-idle",
+        "treatment": "proposed-new",
+        "claim": "Combat auto-retaliation can stop after more than twenty minutes without qualifying client interaction.",
+        "source_ids": ["wiki-idle-current"]
+      },
+      {
+        "id": "fact:safe-combat-training-fossil-island-gate",
+        "treatment": "proposed-new",
+        "claim": "The Ammonite Crab Mushroom Forest option requires Fossil Island access, and Fossil Island requires completed Bone Voyage.",
+        "source_ids": ["wiki-ammonite-crab-current", "wiki-fossil-island-current"]
+      }
+    ],
+    "actions": [
+      {
+        "id": "action:safe-combat-training",
+        "treatment": "proposed-new",
+        "requirements": "Explicit selected method/location from sand-crab-hosidius-south-coast or ammonite-crab-mushroom-forest; player-observed membership/access and arrival; current observed aggression/targeting, gear, food, Prayer if any, current and maximum HP, emergency teleport or exit capability, and death/recovery state; and player-confirmed combat start.",
+        "transition": "Create a bounded observation-only session for the selected location. Store only player-reported XP, drops, consumption, HP/Prayer changes, aggression reset, exit/logout/disconnect, death, and recovery outcomes. Never simulate combat, assume survival, assert unattended safety, select a route, generate XP/drops, or create a recovery result."
+      },
+      {
+        "id": "action:record-safe-combat-training-observation",
+        "treatment": "proposed-new",
+        "requirements": "Player-reported selected method/location and any current readiness, session, stop, re-entry, XP, drop, death, or recovery observation.",
+        "transition": "Record supplied observations only; validate the selected location against this package and surface the sourced tolerance/idle boundaries where relevant. Do not fill omitted observations, calculate rates, or infer readiness."
+      }
+    ],
+    "nodes": [
+      {
+        "id": "node:safe-combat-training-sand-crab-hosidius",
+        "treatment": "proposed-new",
+        "location_id": "sand-crab-hosidius-south-coast",
+        "source_ids": ["wiki-sand-crab-current"]
+      },
+      {
+        "id": "node:safe-combat-training-ammonite-crab-mushroom-forest",
+        "treatment": "proposed-new",
+        "location_id": "ammonite-crab-mushroom-forest",
+        "source_ids": ["wiki-ammonite-crab-current", "wiki-fossil-island-current"]
+      }
+    ],
+    "edges": [
+      {
+        "id": "edge:action-safe-combat-training-requires-readiness-observation",
+        "treatment": "proposed-new",
+        "from": "action:safe-combat-training",
+        "to": "observation:safe-combat-training-readiness",
+        "meaning": "An explicit location and fresh reported readiness state are required before recording a start; this edge makes no safety inference.",
+        "source_ids": []
+      },
+      {
+        "id": "edge:safe-combat-training-tolerance-reentry",
+        "treatment": "proposed-new",
+        "from": "fact:safe-combat-training-crab-tolerance",
+        "to": "action:record-safe-combat-training-observation",
+        "meaning": "A reported leave/re-entry and restored aggression are observations, not automatically completed movement or resumed combat.",
+        "source_ids": ["wiki-tolerance-current"]
+      }
+    ],
+    "observations": [
+      {
+        "id": "observation:safe-combat-training-readiness",
+        "treatment": "proposed-new",
+        "required_fields": ["method_location", "arrival", "aggression_or_targeting", "current_hp", "maximum_hp", "gear", "food", "prayer_if_any", "emergency_teleport_or_exit", "death_recovery_state"],
+        "boundary": "All fields are player-reported at the time of use. Missing or stale fields block a start record rather than being inferred.",
+        "source_ids": []
+      },
+      {
+        "id": "observation:safe-combat-training-result",
+        "treatment": "proposed-new",
+        "optional_fields": ["xp_delta", "drops", "consumables_used", "aggression_reset", "hp_prayer_change", "exit", "logout_or_disconnect", "death", "recovery"],
+        "boundary": "Combat XP, RNG drops, and all other results remain separate reported fields; an absent field is unknown, not zero.",
+        "source_ids": []
+      }
+    ]
+  },
+  "conflicts_and_unknowns": [
+    {
+      "id": "sand-crab-infobox-aggression-label",
+      "severity": "source-presentation-conflict",
+      "detail": "The current Sand Crab page's infobox labels Aggressive as No while its body states that dormant crabs attack after a player walks nearby and become tolerant after ten minutes. This package does not normalize a static aggression boolean; it requires player-observed aggression/targeting at the chosen spot.",
+      "source_ids": ["wiki-sand-crab-current"]
+    },
+    {
+      "id": "individual-risk-and-readiness",
+      "severity": "unresolved-player-state",
+      "detail": "No source proves that either method is safe for a particular account. Combat level, Hitpoints, gear, active targets, food, Prayer, emergency exit, player attention, connection, nearby conditions, and recovery state must be observed; this package deliberately supplies no threshold or recommendation.",
+      "source_ids": ["wiki-sand-crab-current", "wiki-ammonite-crab-current", "wiki-deaths-office-current"]
+    },
+    {
+      "id": "drop-and-xp-outcomes",
+      "severity": "intentional-non-simulation",
+      "detail": "The sources establish creature/drop mechanics but do not justify generating a player's combat XP, kill count, drops, food use, session length, or hourly result. All such outcomes remain player-observed, with drops marked RNG.",
+      "source_ids": ["wiki-sand-crab-current", "wiki-ammonite-crab-current"]
+    },
+    {
+      "id": "official-current-mechanics-boundary",
+      "severity": "source-scope-note",
+      "detail": "The included Jagex source is historical provenance for the Hosidius Sand Crab addition. Current runtime combat, tolerance, access, idle, and recovery mechanics are cited to current OSRS Wiki pages; no unsupported official-current claim is added.",
+      "source_ids": ["official-great-kourend-content-poll", "wiki-sand-crab-current", "wiki-ammonite-crab-current", "wiki-tolerance-current", "wiki-idle-current", "wiki-fossil-island-current", "wiki-deaths-office-current"]
+    }
+  ],
+  "coverage": {
+    "access": true,
+    "preparation": true,
+    "attention": true,
+    "session": true,
+    "outputs": true,
+    "safety": true,
+    "stop_reentry": true,
+    "sources": true,
+    "normalization": true
+  }
+}

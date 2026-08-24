@@ -1,0 +1,243 @@
+{
+  "package_schema_version": 1,
+  "package_type": "afk-low-attention-research",
+  "package_id": "research-afk-basic-fishing",
+  "method": "Basic fishing",
+  "status": "research-proposal",
+  "checked_at": "2026-08-24",
+  "facts_strategy_boundary": {
+    "included": [
+      "Sourced mechanics for bounded net/bait, fly, and karambwan fishing variants.",
+      "Requirements, reusable tools, bait, location and transport facts, spot behavior, inventory boundaries, session stops, safety observations, and proposed normalization identifiers."
+    ],
+    "excluded": [
+      "Strategy scoring, route order, account readiness, recommended 99 targets, guaranteed RNG, guaranteed hourly rates, and unattended safety claims.",
+      "A generic cadence claim spanning different fishing variants, locations, levels, inventories, or banking arrangements."
+    ]
+  },
+  "source_catalog": [
+    {
+      "id": "wiki-fishing-current",
+      "publisher": "OSRS Wiki",
+      "kind": "wiki",
+      "url": "https://oldschool.runescape.wiki/w/Fishing",
+      "checked_at": "2026-08-24",
+      "use": "Current Fishing method table, location families, tools, bait, level gates, and the exception that ordinary fishing spots may move while karambwan spots do not."
+    },
+    {
+      "id": "wiki-fly-fishing-current",
+      "publisher": "OSRS Wiki",
+      "kind": "wiki",
+      "url": "https://oldschool.runescape.wiki/w/Fly_fishing",
+      "checked_at": "2026-08-24",
+      "use": "Net, bait, lure, and karambwan equipment mappings; fishing-level gates; and the static-fishing-spot mechanics described for karambwan and selected locations."
+    },
+    {
+      "id": "wiki-pay-to-play-fishing-training-current",
+      "publisher": "OSRS Wiki",
+      "kind": "wiki",
+      "url": "https://oldschool.runescape.wiki/w/Pay-to-play_Fishing_training",
+      "checked_at": "2026-08-24",
+      "use": "Karambwan requirements, static spots, raw karambwanji source, banking context, and fish-barrel duration observation."
+    },
+    {
+      "id": "wiki-ironman-fishing-current",
+      "publisher": "OSRS Wiki",
+      "kind": "wiki",
+      "url": "https://oldschool.runescape.wiki/w/Ironman_Guide/Fishing",
+      "checked_at": "2026-08-24",
+      "use": "Ironman-specific karambwan quest/access boundary, fairy-ring access, bank alternatives, and community-guide observations explicitly kept separate from mechanics."
+    },
+    {
+      "id": "official-karambwan-flow-poll",
+      "publisher": "Old School RuneScape",
+      "kind": "official",
+      "url": "https://oldschool.runescape.com/polls/2016/1325",
+      "checked_at": "2026-08-24",
+      "use": "Official poll record describing the approved change to make karambwanji and karambwan fishing operate without clicking each catch."
+    },
+    {
+      "id": "wiki-karambwanji-current",
+      "publisher": "OSRS Wiki",
+      "kind": "wiki",
+      "url": "https://oldschool.runescape.wiki/w/Fishing_spot_(karambwanji)",
+      "checked_at": "2026-08-24",
+      "use": "Karambwanji fishing spot, small-net requirement, bait purpose, and inventory behavior when a karambwanji slot is present."
+    },
+    {
+      "id": "wiki-tai-bwo-wannai-trio-current",
+      "publisher": "OSRS Wiki",
+      "kind": "wiki",
+      "url": "https://oldschool.runescape.wiki/w/Tai_Bwo_Wannai_Trio",
+      "checked_at": "2026-08-24",
+      "use": "Karambwan vessel acquisition and the quest progression boundary for catching karambwan."
+    }
+  ],
+  "access": {
+    "requirements": {
+      "source_ids": ["wiki-fishing-current", "wiki-fly-fishing-current", "wiki-pay-to-play-fishing-training-current", "wiki-tai-bwo-wannai-trio-current"],
+      "membership": "Variant-dependent; ordinary net/bait/fly fishing includes free-to-play locations, while karambwan fishing is members content.",
+      "variant_gates": [
+        {"variant": "net-bait", "minimum_skill_examples": [{"fish": "shrimp", "fishing": 1}, {"fish": "sardine", "fishing": 5}, {"fish": "anchovies", "fishing": 15}]},
+        {"variant": "fly", "minimum_skill_examples": [{"fish": "trout", "fishing": 20}, {"fish": "salmon", "fishing": 30}]},
+        {"variant": "karambwan", "fishing": 65, "quest_boundary": "Partial completion of Tai Bwo Wannai Trio supplies the ability to catch karambwan; quest progression also supplies the vessel path."}
+      ],
+      "account_specific_readiness": "Not inferred."
+    },
+    "tools": [
+      {"variant": "net-bait", "items": ["small fishing net", "fishing rod", "fishing bait"], "source_ids": ["wiki-fishing-current", "wiki-fly-fishing-current"]},
+      {"variant": "fly", "items": ["fly fishing rod", "feathers"], "source_ids": ["wiki-fly-fishing-current"]},
+      {"variant": "karambwan", "items": ["karambwan vessel", "raw karambwanji"], "source_ids": ["wiki-pay-to-play-fishing-training-current", "wiki-tai-bwo-wannai-trio-current"]}
+    ],
+    "locations": [
+      {"variant": "net-bait", "examples": ["Lumbridge Swamp fishing spots", "other qualifying net/bait fishing spots"], "spot_boundary": "Spot movement and the qualifying catch list are location-specific.", "source_ids": ["wiki-fishing-current", "wiki-fly-fishing-current"]},
+      {"variant": "fly", "examples": ["River Lum at Barbarian Village", "River Lum at Lumbridge"], "spot_boundary": "The spot must offer lure/bait fishing for the intended fish; spot movement remains a separate interaction boundary.", "source_ids": ["wiki-fishing-current", "wiki-fly-fishing-current"]},
+      {"variant": "karambwan", "examples": ["karambwan spots north of fairy ring DKP", "karambwanji lake north-east of fairy ring CKR"], "spot_boundary": "Karambwan spots are static; karambwanji is a separate bait-fishing location.", "source_ids": ["wiki-pay-to-play-fishing-training-current", "wiki-karambwanji-current"]}
+    ],
+    "transport_options": [
+      {"variant": "karambwan", "options": ["fairy-ring access", "Crafting cape", "Karamja gloves 3 or 4", "ring of dueling", "player-owned-house fairy ring"], "status": "Options reported by the Ironman guide; no route order or readiness is inferred.", "source_ids": ["wiki-ironman-fishing-current", "wiki-pay-to-play-fishing-training-current"]},
+      {"variant": "net-bait-or-fly", "options": "Banking and transport depend on the selected location; no universal route is proposed.", "source_ids": ["wiki-fishing-current"]}
+    ]
+  },
+  "preparation": {
+    "inventory_inputs": [
+      {"variant": "net-bait", "items": ["small fishing net"], "bait": "Fishing bait only for baitable catches; net catches do not consume bait.", "source_ids": ["wiki-fly-fishing-current"]},
+      {"variant": "fly", "items": ["fly fishing rod"], "bait": "Feathers for lure fishing.", "source_ids": ["wiki-fly-fishing-current"]},
+      {"variant": "karambwan", "items": ["karambwan vessel", "raw karambwanji"], "source_ids": ["wiki-pay-to-play-fishing-training-current", "wiki-tai-bwo-wannai-trio-current"]}
+    ],
+    "bank_inputs": [
+      {"variant": "karambwan", "items": ["raw karambwan"], "boundary": "Banking requires a chosen bank/deposit arrangement; the package does not assert a route or travel duration.", "source_ids": ["wiki-pay-to-play-fishing-training-current", "wiki-ironman-fishing-current"]},
+      {"variant": "net-bait-or-fly", "items": "The catch and remaining bait/feathers may be banked, dropped, or otherwise handled by the player; the choice is not a fishing mechanic.", "source_ids": ["wiki-fishing-current"]}
+    ],
+    "reusable_items": [
+      {"items": ["small fishing net", "fishing rod", "fly fishing rod", "karambwan vessel"], "source_ids": ["wiki-fly-fishing-current", "wiki-tai-bwo-wannai-trio-current"]}
+    ],
+    "consumed_inputs": [
+      {"variant": "bait", "items": ["fishing bait", "feathers", "raw karambwanji"], "boundary": "Use/consumption and depletion depend on the variant and fishing attempts; exact loss frequency is not asserted here.", "source_ids": ["wiki-fly-fishing-current", "wiki-pay-to-play-fishing-training-current"]}
+    ],
+    "capacity_constraints": [
+      {"variant": "all", "constraint": "Catch storage occupies inventory slots unless the player drops, banks, cooks, or otherwise handles catches; no fixed inventory cadence is inferred.", "source_ids": ["wiki-fishing-current"]},
+      {"variant": "karambwan", "constraint": "A fish barrel changes inventory capacity and is reported by the Wiki guide as changing the observed full-inventory duration; it is optional and not treated as a requirement.", "source_ids": ["wiki-pay-to-play-fishing-training-current", "wiki-ironman-fishing-current"]}
+    ]
+  },
+  "attention_profile": {
+    "class": "mixed",
+    "interaction_cadence": [
+      {"claim": "Net/bait and fly variants require player interaction to start fishing and may require re-clicking or reacquiring a spot when the spot moves or the inventory boundary is reached.", "evidence_type": "source", "source_ids": ["wiki-fishing-current", "wiki-fly-fishing-current"]},
+      {"claim": "Karambwan and karambwanji fishing were changed to remove the need to click each time a fish is caught; a player still needs to begin, monitor, stop, and handle the session.", "evidence_type": "source", "source_ids": ["official-karambwan-flow-poll", "wiki-pay-to-play-fishing-training-current"]},
+      {"claim": "A community guide reports roughly 3-5 minutes for a full karambwan inventory with a fish barrel; this is an observed guide value, not a universal cadence or guarantee.", "evidence_type": "player_observation", "source_ids": [], "interval_seconds": {"min": 180, "max": 300, "unit": "seconds", "scope": "fish barrel karambwan inventory observation"}}
+    ],
+    "player_presence_required": true,
+    "unattended_safety_claim": "never_infer"
+  },
+  "session_mechanics": {
+    "entry_condition": "Player is at a qualifying fishing spot with the variant's tool and required bait, and has selected the intended catch interaction.",
+    "duration_evidence": {
+      "source_ids": ["wiki-fishing-current", "wiki-pay-to-play-fishing-training-current", "wiki-ironman-fishing-current"],
+      "boundary": "No common duration applies across variants. Session length varies with spot movement, catch success, inventory capacity, bait depletion, player handling, banking, and transport.",
+      "community_observation": "The Ironman guide reports 3-5 minutes for a full karambwan inventory with a fish barrel; this remains player-observed and is not generalized."
+    },
+    "session_end_events": [
+      "Inventory or intended catch capacity is reached.",
+      "The fishing spot moves or the interaction becomes unavailable for the selected variant.",
+      "Required bait is unavailable or the player chooses to stop.",
+      "For a banked loop, the player reaches the chosen banking boundary or completes the bank-and-return interaction."
+    ],
+    "repeatable": true,
+    "offline_progression": false,
+    "source_ids": ["wiki-fishing-current", "wiki-fly-fishing-current", "wiki-pay-to-play-fishing-training-current"]
+  },
+  "outputs": {
+    "deterministic": [
+      {"id": "fishing:xp-on-success", "description": "A successful catch awards the Fishing experience associated with the caught fish; exact amount is fish-specific.", "source_ids": ["wiki-fishing-current", "wiki-fly-fishing-current"], "boundary": "deterministic"},
+      {"id": "fishing:tool-retained", "description": "The listed fishing tool is a reusable session input rather than a per-catch output.", "source_ids": ["wiki-fly-fishing-current", "wiki-tai-bwo-wannai-trio-current"], "boundary": "deterministic"},
+      {"id": "fishing:karambwan-spot-static", "description": "Karambwan fishing spots are treated as static by the current Fishing references.", "source_ids": ["wiki-fishing-current", "wiki-pay-to-play-fishing-training-current"], "boundary": "deterministic"}
+    ],
+    "variable": [
+      {"id": "fishing:catch-items", "description": "Catch item and quantity depend on the selected fishing spot, level, success rolls, and player handling; no fixed catch mix is asserted.", "source_ids": ["wiki-fishing-current", "wiki-fly-fishing-current"], "boundary": "variable"},
+      {"id": "fishing:bait-loss", "description": "Bait or feathers may be consumed during attempts; exact depletion is variant- and attempt-dependent and is not fixed here.", "source_ids": ["wiki-fly-fishing-current", "wiki-pay-to-play-fishing-training-current"], "boundary": "variable"},
+      {"id": "fishing:spot-movement", "description": "Ordinary fishing-spot movement and the resulting time until the next successful interaction vary by location and session state.", "source_ids": ["wiki-fishing-current", "wiki-fly-fishing-current"], "boundary": "variable"}
+    ],
+    "player_observed": [
+      {"id": "fishing:session-cadence", "description": "Observed interaction interval, inventory-fill time, and bank-return time for a named variant/location/equipment setup.", "source_ids": ["wiki-ironman-fishing-current"], "boundary": "player_observed"},
+      {"id": "fishing:player-handling", "description": "Whether the player drops, banks, cooks, or otherwise handles fish at the inventory boundary.", "source_ids": ["wiki-fishing-current"], "boundary": "player_observed"}
+    ]
+  },
+  "safety_and_logout": {
+    "damage_sources": [
+      "The ordinary fishing variants described here have no intrinsic combat step in the fishing interaction.",
+      "Location hazards, Wilderness encounters, travel, and player-selected banking routes are outside the bounded fishing mechanic and are not assumed safe."
+    ],
+    "death_possible": "unknown",
+    "logout_behavior": [
+      "Logging out or disconnecting ends the active player session; no offline fishing progression is modeled.",
+      "The package does not infer what happens after logout at every location or during travel."
+    ],
+    "safe_boundary": "The only bounded safety statement is that no unattended safety claim is made; the player must remain responsible for location, combat, travel, disconnect, and logout conditions.",
+    "source_ids": ["wiki-fishing-current", "wiki-pay-to-play-fishing-training-current"]
+  },
+  "stop_reentry_mechanics": {
+    "mechanical_stop_conditions": [
+      "Inventory or selected storage capacity is reached.",
+      "A moving spot is no longer available to the player.",
+      "Variant bait is unavailable, or the player leaves the spot.",
+      "For karambwan, the player exhausts available bait or chooses to bank; static spots do not remove the need for inventory and banking handling."
+    ],
+    "mechanical_reentry_conditions": [
+      "Return to a qualifying spot with the correct tool and any required bait.",
+      "For karambwan, load the vessel with raw karambwanji and return to the karambwan spot after banking or obtaining more bait.",
+      "For net/bait and fly variants, reselect a valid spot interaction when the prior spot has moved or the player returns from banking."
+    ],
+    "reset_or_cleanup_requirements": [
+      "Handle catches before another inventory-limited session.",
+      "Replace or replenish consumed bait/feathers/raw karambwanji as applicable.",
+      "No automatic cleanup, bank transaction, route order, or account-state transition is proposed."
+    ],
+    "source_ids": ["wiki-fishing-current", "wiki-fly-fishing-current", "wiki-pay-to-play-fishing-training-current", "wiki-tai-bwo-wannai-trio-current"]
+  },
+  "proposed_normalization": {
+    "facts": [
+      {"id": "fact:basic-fishing-variants", "description": "Represent net-bait, fly, and karambwan as separate fishing variants with their own tools, bait, spot, and stop boundaries.", "source_ids": ["wiki-fishing-current", "wiki-fly-fishing-current", "wiki-pay-to-play-fishing-training-current"]},
+      {"id": "fact:karambwan-static-spots", "description": "Karambwan spots are static, while ordinary spot movement remains location-specific.", "source_ids": ["wiki-fishing-current", "wiki-pay-to-play-fishing-training-current"]},
+      {"id": "fact:karambwan-quest-gate", "description": "Karambwan fishing requires the stated Fishing level and Tai Bwo Wannai Trio progression, with a karambwan vessel and raw karambwanji.", "source_ids": ["wiki-pay-to-play-fishing-training-current", "wiki-tai-bwo-wannai-trio-current"]}
+    ],
+    "actions": [
+      {"id": "action:basic-fishing", "name": "Basic fishing", "description": "Start or resume one explicitly selected fishing variant at a qualifying spot; keep catch, bait, spot movement, banking, and player-observed cadence separate.", "source_ids": ["wiki-fishing-current", "wiki-fly-fishing-current", "wiki-pay-to-play-fishing-training-current"]},
+      {"id": "action:basic-fishing-handle-boundary", "name": "Handle fishing inventory boundary", "description": "Player-observed follow-up to drop, bank, cook, or otherwise handle catches before re-entry.", "source_ids": ["wiki-fishing-current"]}
+    ],
+    "nodes": [
+      {"id": "node:fishing-spot-net-bait", "name": "Net/bait fishing spot", "source_ids": ["wiki-fishing-current", "wiki-fly-fishing-current"]},
+      {"id": "node:fishing-spot-fly", "name": "Fly fishing spot", "source_ids": ["wiki-fishing-current", "wiki-fly-fishing-current"]},
+      {"id": "node:fishing-spot-karambwan", "name": "Karambwan fishing spot", "source_ids": ["wiki-pay-to-play-fishing-training-current"]},
+      {"id": "node:fishing-inventory-boundary", "name": "Fishing inventory boundary", "source_ids": ["wiki-fishing-current"]}
+    ],
+    "edges": [
+      {"id": "edge:fishing-tool-to-spot", "from": "tool-and-bait", "to": "fishing-spot", "source_ids": ["wiki-fly-fishing-current", "wiki-pay-to-play-fishing-training-current"]},
+      {"id": "edge:fishing-spot-to-catch", "from": "fishing-spot", "to": "catch-output", "source_ids": ["wiki-fishing-current", "wiki-fly-fishing-current"]},
+      {"id": "edge:fishing-catch-to-boundary", "from": "catch-output", "to": "node:fishing-inventory-boundary", "source_ids": ["wiki-fishing-current"]}
+    ],
+    "observations": [
+      {"id": "observation:fishing-cadence-by-variant", "description": "Record actual interaction and inventory-fill intervals separately for variant, location, level, equipment, bait, and bank arrangement.", "source_ids": ["wiki-ironman-fishing-current"]},
+      {"id": "observation:fishing-catch-mix", "description": "Record observed catch items, quantities, bait loss, and spot movement without converting them into guaranteed rates.", "source_ids": ["wiki-fishing-current", "wiki-fly-fishing-current"]}
+    ]
+  },
+  "conflicts_and_unknowns": [
+    {"topic": "Exact cadence", "resolution": "No single cadence is valid for basic fishing. The only numeric interval captured is a clearly labeled player-observed fish-barrel karambwan guide value; it is not a guarantee and is not applied to other variants.", "source_ids": ["wiki-ironman-fishing-current", "wiki-pay-to-play-fishing-training-current"]},
+    {"topic": "Catch and bait RNG", "resolution": "Catch mix, successful-attempt timing, and bait depletion are variable. The package does not infer fixed quantities, rates, or hourly output.", "source_ids": ["wiki-fishing-current", "wiki-fly-fishing-current"]},
+    {"topic": "Banking and route order", "resolution": "The references list transport and bank options, but no universal ordering, travel duration, or snapshot-specific availability is asserted.", "source_ids": ["wiki-ironman-fishing-current", "wiki-pay-to-play-fishing-training-current"]},
+    {"topic": "Safety", "resolution": "No unattended safety conclusion is supported. Location hazards, travel, disconnects, and player-selected routes remain outside this bounded mechanic.", "source_ids": ["wiki-fishing-current"]},
+    {"topic": "Community observations", "resolution": "The Ironman guide's fish-barrel duration and banking discussion are retained as guide observations only; official and Wiki mechanics remain the factual basis.", "source_ids": ["wiki-ironman-fishing-current", "official-karambwan-flow-poll"]},
+    {"topic": "Current-content drift", "resolution": "The package was checked on 2026-08-24. Future Fishing, Sailing, or location changes require re-checking the cited live pages before integration.", "source_ids": ["wiki-fishing-current", "official-karambwan-flow-poll"]}
+  ],
+  "coverage": {
+    "access": true,
+    "preparation": true,
+    "attention": true,
+    "session": true,
+    "outputs": true,
+    "safety": true,
+    "stop_reentry": true,
+    "sources": true,
+    "normalization": true
+  }
+}

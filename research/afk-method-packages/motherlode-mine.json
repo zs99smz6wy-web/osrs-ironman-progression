@@ -1,0 +1,356 @@
+{
+  "package_schema_version": 1,
+  "package_type": "afk-low-attention-research",
+  "package_id": "research-afk-motherlode-mine",
+  "method": "Motherlode Mine",
+  "status": "research-proposal",
+  "checked_at": "2026-08-24",
+  "facts_strategy_boundary": {
+    "included": [
+      "Current sourced Motherlode Mine access, tools, pay-dirt cleaning loop, capacity constraints, shop costs, output boundaries, interaction mechanics, and stop/re-entry mechanics.",
+      "A low-attention classification that is bounded by source-defined mechanical interruptions and does not represent a measured player-specific interaction interval."
+    ],
+    "excluded": [
+      "Strategy, route order, account readiness, recommended 99 targets, reward purchase priority, world choice, and player-specific setup advice.",
+      "Guaranteed RNG, any hourly outcome, unattended safety, automatic activity completion, and inferred results from elapsed time."
+    ]
+  },
+  "source_catalog": [
+    {
+      "id": "wiki-motherlode-mine-2026-08-24",
+      "publisher": "Old School RuneScape Wiki",
+      "kind": "wiki",
+      "url": "https://oldschool.runescape.wiki/w/Motherlode_Mine",
+      "checked_at": "2026-08-24",
+      "use": "Live mechanics source for entry and Mining gates, pickaxes, lower and upper vein windows, pay-dirt cleaning, sack and water-circuit state, rockfalls, logout/world-hop persistence, output boundaries, and reward access."
+    },
+    {
+      "id": "wiki-prospector-percy-nugget-shop-2026-08-24",
+      "publisher": "Old School RuneScape Wiki",
+      "kind": "wiki",
+      "url": "https://oldschool.runescape.wiki/w/Prospector_Percy%27s_Nugget_Shop",
+      "checked_at": "2026-08-24",
+      "use": "Live fixed nugget-shop stock, prices, resale values, and permanent Motherlode Mine upgrade costs."
+    },
+    {
+      "id": "official-poll-78-motherlode-2026-08-24",
+      "publisher": "Jagex",
+      "kind": "official",
+      "url": "https://oldschool.runescape.com/polls/2023/1655",
+      "checked_at": "2026-08-24",
+      "use": "Official historical confirmation that Poll 78 approved lower-floor Motherlode Mine vein-timer and additional-vein changes. It is not used to infer the current live values; those are taken from the checked live wiki page."
+    },
+    {
+      "id": "official-project-rebalance-skilling-url-2026-08-24",
+      "publisher": "Jagex",
+      "kind": "official",
+      "url": "https://secure.runescape.com/m=news/project-rebalance---part-one-skilling?oldschool=1",
+      "checked_at": "2026-08-24",
+      "use": "Historical official Project Rebalance skilling announcement URL checked for the 2024 Motherlode changes. It now resolves to an official 404 and is retained only to document the source-availability gap."
+    }
+  ],
+  "access": {
+    "requirements": {
+      "membership": {
+        "value": true,
+        "claim": "Motherlode Mine is members-only.",
+        "source_ids": ["wiki-motherlode-mine-2026-08-24"]
+      },
+      "entry": {
+        "claim": "The area itself has no Mining-level entry requirement; 30 Mining, not boostable, is required to mine pay-dirt.",
+        "source_ids": ["wiki-motherlode-mine-2026-08-24"]
+      },
+      "upper_level": {
+        "claim": "The upper level requires base 57 Mining, not boostable, and a one-time payment of 100 golden nuggets.",
+        "source_ids": ["wiki-motherlode-mine-2026-08-24", "wiki-prospector-percy-nugget-shop-2026-08-24"]
+      }
+    },
+    "tools": [
+      {
+        "id": "usable-pickaxe",
+        "claim": "Any pickaxe can mine ore veins for pay-dirt; a pickaxe is also required to remove obstructing rockfalls.",
+        "source_ids": ["wiki-motherlode-mine-2026-08-24"]
+      },
+      {
+        "id": "hammer-for-optional-repair",
+        "claim": "Repairing a broken strut requires a hammer or Imcando hammer; nearby crates can provide a hammer, so ownership is not assumed.",
+        "source_ids": ["wiki-motherlode-mine-2026-08-24"]
+      }
+    ],
+    "locations": [
+      {
+        "id": "motherlode-mine-dwarven-mine",
+        "claim": "The members-only Motherlode Mine is in the Dwarven Mine. A bank chest near Prospector Percy has no access requirement, but pay-dirt cannot be banked.",
+        "source_ids": ["wiki-motherlode-mine-2026-08-24"]
+      },
+      {
+        "id": "motherlode-upper-floor",
+        "claim": "The upper floor is accessed by the ladder north of the bank chest after its one-time gate is met.",
+        "source_ids": ["wiki-motherlode-mine-2026-08-24"]
+      }
+    ],
+    "transport_options": [
+      {
+        "claim": "The dark tunnel by the bank chest requires 54 Agility and the Medium Falador Diary; a southern tunnel does not require the diary. No transport ownership or route is assumed.",
+        "source_ids": ["wiki-motherlode-mine-2026-08-24"]
+      }
+    ]
+  },
+  "preparation": {
+    "inventory_inputs": [
+      {
+        "id": "pickaxe",
+        "required": true,
+        "claim": "A usable pickaxe is the reusable tool for mining pay-dirt and clearing rockfalls.",
+        "source_ids": ["wiki-motherlode-mine-2026-08-24"]
+      }
+    ],
+    "bank_inputs": [
+      {
+        "id": "none-required-by-mechanic",
+        "claim": "The checked mechanics identify no bank withdrawal as a prerequisite; the nearby bank chest cannot store pay-dirt.",
+        "source_ids": ["wiki-motherlode-mine-2026-08-24"]
+      }
+    ],
+    "reusable_items": [
+      {
+        "id": "hammer-or-imcando-hammer",
+        "required": false,
+        "claim": "A hammer or Imcando hammer is only needed when the player chooses to repair a broken strut; nearby crates are a possible local hammer source.",
+        "source_ids": ["wiki-motherlode-mine-2026-08-24"]
+      }
+    ],
+    "consumed_inputs": [
+      {
+        "id": "no-mandatory-consumed-input",
+        "claim": "The checked mine loop does not require a consumed item to mine, deposit, or search pay-dirt.",
+        "source_ids": ["wiki-motherlode-mine-2026-08-24"]
+      }
+    ],
+    "capacity_constraints": [
+      {
+        "id": "inventory-pay-dirt-space",
+        "claim": "Pay-dirt occupies inventory space and cannot be banked, so the current inventory count remains player-observed.",
+        "source_ids": ["wiki-motherlode-mine-2026-08-24"]
+      },
+      {
+        "id": "sack-capacity",
+        "claim": "The standard sack holds 108 pay-dirt; the 200-nugget upgrade raises it to 189. At the applicable cap, the player cannot mine or deposit more pay-dirt until the sack is emptied below that cap.",
+        "source_ids": ["wiki-motherlode-mine-2026-08-24", "wiki-prospector-percy-nugget-shop-2026-08-24"]
+      }
+    ]
+  },
+  "attention_profile": {
+    "class": "low_attention",
+    "classification_evidence": {
+      "claim": "The Wiki calls Motherlode Mine a low-intensity Mining training area. This package classifies the method as low_attention only because the loop has source-defined interruptions; it does not make an unattended-safety claim.",
+      "source_ids": ["wiki-motherlode-mine-2026-08-24"]
+    },
+    "interaction_cadence": [
+      {
+        "claim": "A mined lower-level vein depletes 23-27 seconds after its first pay-dirt; an upper-level vein depletes after 36-40 seconds. These are vein lifetimes, not a promised player interaction interval.",
+        "evidence_type": "source",
+        "source_ids": ["wiki-motherlode-mine-2026-08-24"],
+        "interval_seconds": {"lower_vein_lifetime": [23, 27], "upper_vein_lifetime": [36, 40], "not_player_cadence": true}
+      },
+      {
+        "claim": "The player must respond to a full inventory, the applicable sack cap, a depleted vein, an obstructing rockfall, or interrupted water flow before the relevant part of the loop can continue.",
+        "evidence_type": "source",
+        "source_ids": ["wiki-motherlode-mine-2026-08-24"]
+      },
+      {
+        "claim": "Actual click spacing, response time, mining success, and player attention tolerance are player-observed and are not calculated by this package.",
+        "evidence_type": "player_observation",
+        "source_ids": []
+      }
+    ],
+    "player_presence_required": true,
+    "unattended_safety_claim": "never_infer"
+  },
+  "session_mechanics": {
+    "entry_condition": "The player must reach the mine, meet the relevant Mining gate for the chosen floor, and have a usable pickaxe; exact location, supplies, unlock state, and current mine state remain reported rather than inferred.",
+    "entry_condition_evidence": {
+      "source_ids": ["wiki-motherlode-mine-2026-08-24", "wiki-prospector-percy-nugget-shop-2026-08-24"]
+    },
+    "duration_evidence": {
+      "claim": "No account-specific duration or output duration is modeled. The only relevant source-defined time ranges here are the lower and upper vein lifetimes.",
+      "vein_lifetimes_seconds": {"lower": [23, 27], "upper": [36, 40]},
+      "source_ids": ["wiki-motherlode-mine-2026-08-24"]
+    },
+    "session_end_events": [
+      "A mechanical stop is reached when an actionable mine-loop boundary prevents the current step; detailed evidence is in session_end_event_evidence."
+    ],
+    "session_end_event_evidence": [
+      {
+        "id": "sack-full",
+        "claim": "At the current 108 or upgraded 189 sack cap, mining and hopper deposits are blocked until the sack is reduced below its cap.",
+        "source_ids": ["wiki-motherlode-mine-2026-08-24"]
+      },
+      {
+        "id": "water-flow-interrupted",
+        "claim": "When both struts are broken, pay-dirt in the circuit is frozen and newly deposited pay-dirt cannot reach the sack until the struts are repaired.",
+        "source_ids": ["wiki-motherlode-mine-2026-08-24"]
+      },
+      {
+        "id": "vein-depleted-or-path-obstructed",
+        "claim": "A depleted vein cannot continue yielding pay-dirt, and rockfalls can obstruct access until removed by a pickaxe or another source-defined actor.",
+        "source_ids": ["wiki-motherlode-mine-2026-08-24"]
+      }
+    ],
+    "repeatable": true,
+    "repeatability_evidence": {
+      "claim": "The loop is mine pay-dirt, deposit it into a hopper, allow an operating water circuit to move it to the sack, search the sack, then continue or bank the collected ores. No repeat count is inferred.",
+      "source_ids": ["wiki-motherlode-mine-2026-08-24"]
+    },
+    "offline_progression": false,
+    "offline_progression_evidence": {
+      "claim": "The source says pay-dirt circuit progress is saved through logout or a world hop; it does not describe progression continuing while the player is offline.",
+      "source_ids": ["wiki-motherlode-mine-2026-08-24"]
+    }
+  },
+  "outputs": {
+    "deterministic": [
+      {
+        "id": "motherlode-fixed-sack-capacities",
+        "boundary": "deterministic",
+        "description": "The standard sack capacity is 108 pay-dirt and the permanent sack upgrade sets it to 189. Capacity is not a current sack balance.",
+        "source_ids": ["wiki-motherlode-mine-2026-08-24", "wiki-prospector-percy-nugget-shop-2026-08-24"]
+      },
+      {
+        "id": "motherlode-fixed-nugget-shop-options",
+        "boundary": "deterministic",
+        "description": "Fixed-cost options are Prospector pieces for 40, 60, 50, and 30 nuggets; coal bag and gem bag for 100 each; soft clay pack for 10; bag full of gems for 40; upper level for 100 with 57 Mining; Super Hopper for 50 after upper-level access; and sack upgrade for 200. The 350 upgrade total and 730 all-unique-item-and-upgrade total are costs only, not targets or ownership claims.",
+        "source_ids": ["wiki-motherlode-mine-2026-08-24", "wiki-prospector-percy-nugget-shop-2026-08-24"]
+      },
+      {
+        "id": "motherlode-confirmed-purchase-transition",
+        "boundary": "deterministic",
+        "description": "A selected shop item or permanent upgrade has a fixed nugget cost once the player has an observed balance, meets its stated gate, and confirms the transaction; this package does not create either currency or ownership.",
+        "source_ids": ["wiki-prospector-percy-nugget-shop-2026-08-24"]
+      }
+    ],
+    "variable": [
+      {
+        "id": "motherlode-ore-outcome",
+        "boundary": "variable",
+        "kind": "rng",
+        "description": "Pay-dirt ore outcomes depend on Mining level, with better ores becoming more common at higher levels. The source says ore is determined when pay-dirt is mined, then collected after the pay-dirt reaches and is searched from the sack; no outcome count is inferred.",
+        "source_ids": ["wiki-motherlode-mine-2026-08-24"]
+      },
+      {
+        "id": "motherlode-golden-nugget-outcome",
+        "boundary": "variable",
+        "kind": "rng",
+        "description": "Each cleaned pay-dirt has a 3.13% golden-nugget chance regardless of Mining level. The actual nugget result is variable and must be observed when the sack is searched.",
+        "source_ids": ["wiki-motherlode-mine-2026-08-24"]
+      },
+      {
+        "id": "motherlode-strut-repair-result",
+        "boundary": "variable",
+        "kind": "repair-roll",
+        "description": "A strut repair succeeds by a Smithing-level-scaled per-tick chance, stated as 12% at Smithing 1 through 27% at Smithing 99. A repair attempt, success, and resulting Smithing experience are not inferred.",
+        "source_ids": ["wiki-motherlode-mine-2026-08-24"]
+      }
+    ],
+    "player_observed": [
+      {
+        "id": "motherlode-current-local-state",
+        "boundary": "player_observed",
+        "description": "Current pay-dirt inventory, hopper and in-transit pay-dirt, sack fill, strut condition, location, Mining and Smithing experience, and damage state are recorded only when supplied by the player.",
+        "source_ids": ["wiki-motherlode-mine-2026-08-24"]
+      },
+      {
+        "id": "motherlode-collected-results",
+        "boundary": "player_observed",
+        "description": "Collected ores, golden nuggets, shop purchases, and permanent-unlock ownership are player-confirmed results, not outputs created from an activity selection or elapsed time.",
+        "source_ids": ["wiki-motherlode-mine-2026-08-24", "wiki-prospector-percy-nugget-shop-2026-08-24"]
+      }
+    ]
+  },
+  "safety_and_logout": {
+    "damage_sources": [
+      "Rockfalls can block paths and deal 1-4 damage to a player on the affected tile. [wiki-motherlode-mine-2026-08-24]"
+    ],
+    "damage_source_evidence": {
+      "source_ids": ["wiki-motherlode-mine-2026-08-24"]
+    },
+    "death_possible": "unknown",
+    "death_boundary": {
+      "claim": "The source documents rockfall damage but does not establish the player's current Hitpoints, supplies, recovery state, or death outcome; this package therefore leaves death_possible unknown.",
+      "source_ids": ["wiki-motherlode-mine-2026-08-24"]
+    },
+    "logout_behavior": [
+      "Pay-dirt progress in the water circuit is saved when logging out or hopping worlds. [wiki-motherlode-mine-2026-08-24]",
+      "Strut state is world-specific, so a world hop can present a different strut condition without creating a result guarantee. [wiki-motherlode-mine-2026-08-24]"
+    ],
+    "safe_boundary": "No unattended-safety conclusion is made. A player must recheck local mine state after any return before resuming actions.",
+    "safe_boundary_evidence": {
+      "claim": "This boundary follows the source-defined damage, path-obstruction, water-circuit, sack-capacity, and world-specific strut mechanics.",
+      "source_ids": ["wiki-motherlode-mine-2026-08-24"]
+    }
+  },
+  "stop_reentry_mechanics": {
+    "mechanical_stop_conditions": [
+      "A vein depletes after its source-defined lower or upper lifetime and cannot keep yielding pay-dirt until it respawns. [wiki-motherlode-mine-2026-08-24]",
+      "A full inventory prevents additional pay-dirt from being held; pay-dirt cannot be banked. [wiki-motherlode-mine-2026-08-24]",
+      "At the 108 or 189 sack capacity, mining and depositing pay-dirt are blocked until the sack is below the applicable cap. [wiki-motherlode-mine-2026-08-24]",
+      "When both water-wheel struts are broken, pay-dirt cannot move from the hopper to the sack until water flow is restored. [wiki-motherlode-mine-2026-08-24]",
+      "A rockfall can obstruct an intended path until it is removed. [wiki-motherlode-mine-2026-08-24]"
+    ],
+    "mechanical_reentry_conditions": [
+      "Resume mining only after the player has a usable pickaxe, can reach an available vein, and has capacity for the current loop state. [wiki-motherlode-mine-2026-08-24]",
+      "Resume cleaning after pay-dirt is deposited and the water circuit can deliver it to the sack; the player must search the sack to collect results. [wiki-motherlode-mine-2026-08-24]",
+      "After logout or a world hop, circuit progress persists but the player must observe the returned local state; strut condition is world-specific. [wiki-motherlode-mine-2026-08-24]"
+    ],
+    "reset_or_cleanup_requirements": [
+      "Search and empty the sack below its cap before the blocked mining or deposit step can resume. [wiki-motherlode-mine-2026-08-24]",
+      "Restore water flow by successfully repairing struts with a hammer or Imcando hammer, or otherwise observe an operating circuit before expecting deposited pay-dirt to reach the sack. [wiki-motherlode-mine-2026-08-24]",
+      "There is no modeled global session reset; incomplete local state is reported rather than cleared by this package."
+    ]
+  },
+  "proposed_normalization": {
+    "facts": [],
+    "actions": [],
+    "nodes": [],
+    "edges": [],
+    "observations": []
+  },
+  "reconciliation": {
+    "existing_action": "action:motherlode-mine",
+    "existing_minigame_package": "research-minigame-motherlode-mine",
+    "handling": "Reference the existing action and minigame package only. This AFK package proposes no new or duplicate fact, action, node, edge, or observation ID. Any later amendment must preserve observation-only output and the documented capacity, water-circuit, RNG, and re-entry boundaries."
+  },
+  "conflicts_and_unknowns": [
+    {
+      "id": "unknown-exact-player-interaction-cadence",
+      "detail": "The source supplies vein lifetimes and mechanical interruptions, but not a player-specific click interval or attention tolerance. No cadence beyond those source-defined windows is modeled.",
+      "source_ids": ["wiki-motherlode-mine-2026-08-24"]
+    },
+    {
+      "id": "conflict-deposit-delay-wording",
+      "detail": "The checked Wiki page describes an 8-second hopper-to-sack travel time, while its own change log says the depositing delay was removed in 2023. This package does not encode a deposit-duration value; only the water-circuit and sack-state boundaries are used.",
+      "source_ids": ["wiki-motherlode-mine-2026-08-24"]
+    },
+    {
+      "id": "unknown-account-safety-state",
+      "detail": "Rockfall damage is sourced, but Hitpoints, food, recovery, player location, and resulting death risk are account state. They are not inferred.",
+      "source_ids": ["wiki-motherlode-mine-2026-08-24"]
+    },
+    {
+      "id": "official-current-rework-post-unavailable",
+      "detail": "The prior official Project Rebalance skilling-news URL returned an official 404 when checked on 2026-08-24. Poll 78 remains an official historical source, while the current live mechanics in this package are taken from the checked OSRS Wiki page.",
+      "source_ids": ["official-project-rebalance-skilling-url-2026-08-24", "official-poll-78-motherlode-2026-08-24", "wiki-motherlode-mine-2026-08-24"]
+    }
+  ],
+  "coverage": {
+    "access": true,
+    "preparation": true,
+    "attention": true,
+    "session": true,
+    "outputs": true,
+    "safety": true,
+    "stop_reentry": true,
+    "sources": true,
+    "normalization": true
+  }
+}

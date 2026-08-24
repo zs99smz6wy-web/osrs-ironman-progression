@@ -1,0 +1,431 @@
+{
+  "package_schema_version": 1,
+  "package_type": "afk-low-attention-research",
+  "package_id": "research-afk-shooting-stars",
+  "method": "Shooting stars",
+  "status": "research-proposal",
+  "checked_at": "2026-08-24",
+  "facts_strategy_boundary": {
+    "included": [
+      "Current sourced Shooting Stars access, discovery, tier, Mining-tool, depletion, stardust, experience, shop-dependency, logout/world-hop, and site-safety mechanics.",
+      "Explicit deterministic, variable, and player-observed output boundaries."
+    ],
+    "excluded": [
+      "Strategy scoring, route order, account readiness inference, recommended 99 targets, and guaranteed RNG or hourly rates.",
+      "Any unattended-safety, currently available-star, player-specific cadence, transport ownership, location-access, or future-output inference."
+    ]
+  },
+  "source_catalog": [
+    {
+      "id": "wiki-shooting-stars-current",
+      "publisher": "Old School RuneScape Wiki",
+      "kind": "wiki",
+      "url": "https://oldschool.runescape.wiki/w/Shooting_Stars",
+      "checked_at": "2026-08-24",
+      "use": "Primary current mechanics for star worlds and landing uncertainty, tiers, Mining outputs, experience, stardust, telescope discovery, layer depletion, despawn conditions, first-finder state, and site-risk boundary."
+    },
+    {
+      "id": "wiki-mining-current",
+      "publisher": "Old School RuneScape Wiki",
+      "kind": "wiki",
+      "url": "https://oldschool.runescape.wiki/w/Mining",
+      "checked_at": "2026-08-24",
+      "use": "General Mining tool requirement and the distinction between using a pickaxe and meeting its Attack wield requirement."
+    },
+    {
+      "id": "wiki-dusuri-star-shop-current",
+      "publisher": "Old School RuneScape Wiki",
+      "kind": "wiki",
+      "url": "https://oldschool.runescape.wiki/w/Dusuri%27s_Star_Shop",
+      "checked_at": "2026-08-24",
+      "use": "Current members-only Dusuri shop location, stardust-only currency dependency, stock, and fixed listed prices."
+    },
+    {
+      "id": "official-poll-80-shooting-stars-2023",
+      "publisher": "Jagex",
+      "kind": "official",
+      "url": "https://secure.runescape.com/m=news/poll-80--shooting-stars-changes?oldschool=1",
+      "checked_at": "2026-08-24",
+      "use": "Official confirmation that nearby miners no longer accelerate depletion, plus its historical roughly-90-minute tier-9 wording retained as a duration conflict."
+    }
+  ],
+  "access": {
+    "requirements": {
+      "mining_tier_gate": {
+        "claim": "A crashed star begins at tier 6, 7, 8, or 9, requiring Mining 60, 70, 80, or 90 respectively; successive layers reduce the tier down to tier 1, which requires Mining 10.",
+        "source_ids": ["wiki-shooting-stars-current"]
+      },
+      "minimum-possible-entry": {
+        "claim": "Mining level 10 is the lowest tier gate, but it does not establish that an accessible tier-1 star is currently present.",
+        "source_ids": ["wiki-shooting-stars-current"]
+      },
+      "membership-boundary": {
+        "claim": "Shooting Stars can appear on free-to-play worlds, where stardust Mining experience is halved; the Dusuri shop is members-only.",
+        "source_ids": ["wiki-shooting-stars-current", "wiki-dusuri-star-shop-current"]
+      }
+    },
+    "tools": [
+      {
+        "item": "usable pickaxe",
+        "claim": "Mining requires a pickaxe. A player may use one to mine without meeting its Attack wield requirement; the account's owned and usable pickaxe is not inferred.",
+        "source_ids": ["wiki-mining-current"]
+      }
+    ],
+    "locations": [
+      {
+        "name": "observed crashed-star site in a selected world",
+        "claim": "Each world selects a random site from a predetermined list on its own shooting-star cycle; the package records no currently available world or landing site.",
+        "source_ids": ["wiki-shooting-stars-current"]
+      },
+      {
+        "name": "members player-owned-house telescope result",
+        "claim": "A telescope in a study room can reveal an approximate next-landing area and time; it does not identify a confirmed active crash site.",
+        "source_ids": ["wiki-shooting-stars-current"]
+      }
+    ],
+    "transport_options": [
+      {
+        "claim": "No transport route or owned transport item is normalized. Reaching a site depends on the player-observed world, site, access state, and chosen movement method.",
+        "source_ids": ["wiki-shooting-stars-current"]
+      }
+    ]
+  },
+  "preparation": {
+    "inventory_inputs": [
+      {
+        "item": "usable pickaxe",
+        "claim": "A pickaxe is the required Mining tool; no tier or inventory placement is prescribed by this package.",
+        "source_ids": ["wiki-mining-current"]
+      }
+    ],
+    "bank_inputs": [],
+    "reusable_items": [
+      {
+        "item": "optional study-room telescope access",
+        "claim": "A members telescope can narrow the next landing's approximate area and time. It is a discovery aid, not a requirement to mine an already observed star.",
+        "source_ids": ["wiki-shooting-stars-current"]
+      }
+    ],
+    "consumed_inputs": [],
+    "capacity_constraints": [
+      {
+        "claim": "No bank, inventory, stardust balance, teleport supply, or shop-purchase capacity is assumed. Exact outputs and inventory state remain player-observed.",
+        "source_ids": []
+      }
+    ]
+  },
+  "attention_profile": {
+    "class": "low_attention",
+    "classification_evidence": {
+      "claim": "Current Wiki Mining guidance describes crashed stars as a very low-effort method and states that a player must click again when a star degrades a tier. This descriptive class does not establish unattended safety.",
+      "source_ids": ["wiki-shooting-stars-current"]
+    },
+    "interaction_cadence": [
+      {
+        "claim": "While at least one player is mining, each layer depletes after a fixed 7 minutes; reselecting the star is required when it degrades a tier.",
+        "evidence_type": "source",
+        "source_ids": ["wiki-shooting-stars-current"],
+        "interval_seconds": {
+          "fixed": 420,
+          "condition": "A layer is being mined by at least one player; arrival time, remaining progress, tier, interruptions, location risk, and player response time are not fixed."
+        }
+      },
+      {
+        "claim": "Actual time between player inputs, including discovery, travel, star selection, tier changes, combat response, logout, and world-hop checks, must be recorded from play rather than inferred from the layer timer.",
+        "evidence_type": "player_observation",
+        "source_ids": []
+      }
+    ],
+    "player_presence_required": true,
+    "unattended_safety_claim": "never_infer"
+  },
+  "session_mechanics": {
+    "entry_condition": "The player has observed a mineable crashed star in a selected world, meets its current tier's Mining gate, and has a usable pickaxe. This does not assume a star is currently available.",
+    "entry_condition_source_ids": ["wiki-shooting-stars-current", "wiki-mining-current"],
+    "duration_evidence": {
+      "current-wiki-model": {
+        "claim": "Each mined layer has a fixed 7-minute depletion window, with a size-9 star taking up to 63 minutes across nine layers when at least one player continues mining.",
+        "source_ids": ["wiki-shooting-stars-current"]
+      },
+      "official-historical-model": {
+        "claim": "The 20 September 2023 official hotfix described a tier-9 star as taking roughly up to 90 minutes to deplete under its then-described model.",
+        "source_ids": ["official-poll-80-shooting-stars-2023"]
+      },
+      "boundary": "Neither source is converted into a player-specific uninterrupted session, hourly result, or availability guarantee."
+    },
+    "session_end_events": [
+      "The tier-1 final layer fully depletes and the star crumbles.",
+      "A new shooting star crashes in the same world before the current one is fully mined, causing the existing star to disappear.",
+      "A system update resets the shooting-star cycle and removes stars already on the ground."
+    ],
+    "session_end_event_evidence": [
+      {
+        "event": "final-layer-depletion",
+        "source_ids": ["wiki-shooting-stars-current"]
+      },
+      {
+        "event": "next-star-in-same-world",
+        "source_ids": ["wiki-shooting-stars-current"]
+      },
+      {
+        "event": "system-update-cycle-reset",
+        "source_ids": ["wiki-shooting-stars-current"]
+      }
+    ],
+    "repeatable": true,
+    "offline_progression": false,
+    "offline_progression_boundary": {
+      "claim": "No source checked establishes offline Mining or an automatic resume after logout; this package does not model either.",
+      "source_ids": ["wiki-shooting-stars-current"]
+    }
+  },
+  "outputs": {
+    "deterministic": [
+      {
+        "id": "xp:mining-per-stardust",
+        "description": "Each successfully mined stardust awards 32 Mining XP on members worlds or 16 Mining XP on free-to-play worlds before stated equipment modifiers. This is a fixed per-success event, not a predicted total.",
+        "source_ids": ["wiki-shooting-stars-current"],
+        "boundary": "deterministic"
+      }
+    ],
+    "variable": [
+      {
+        "id": "item:stardust",
+        "description": "Stardust is acquired from mining a crashed star, but actual quantity is variable: the Wiki reports a Mining-level-scaled success roll from 29% to 46% between levels 1 and 99.",
+        "source_ids": ["wiki-shooting-stars-current"],
+        "boundary": "variable"
+      },
+      {
+        "id": "item:uncut-gem-from-shooting-stars",
+        "description": "The Wiki states that gems can be obtained while mining stars; no gem result or count is granted by this package.",
+        "source_ids": ["wiki-shooting-stars-current"],
+        "boundary": "variable"
+      },
+      {
+        "id": "pet:rock-golem-from-shooting-stars",
+        "description": "The Wiki lists a base rock-golem pet chance of 1/521,550 while mining stars. This probability does not predict or grant a pet.",
+        "source_ids": ["wiki-shooting-stars-current"],
+        "boundary": "variable"
+      }
+    ],
+    "player_observed": [
+      {
+        "id": "observation:shooting-stars:star-state",
+        "description": "Player-recorded world, site, observed current tier, layer progress, arrival time, and whether the star remains present.",
+        "source_ids": [],
+        "boundary": "player_observed"
+      },
+      {
+        "id": "observation:shooting-stars:mining-result",
+        "description": "Player-recorded stardust, gems, Mining XP, pet result, interruption, and end-state for a specific play interval; omitted fields are not synthesized.",
+        "source_ids": [],
+        "boundary": "player_observed"
+      },
+      {
+        "id": "observation:shooting-stars:first-finder-bonus",
+        "description": "Player-recorded first-finder notification and any remaining bonus state. The source defines the possible bonus, but this package never assumes the player was first.",
+        "source_ids": ["wiki-shooting-stars-current"],
+        "boundary": "player_observed"
+      }
+    ]
+  },
+  "safety_and_logout": {
+    "damage_sources": [
+      "Landing sites are location-dependent: the current Wiki warns that some contain aggressive monsters and that stars can fall in Wilderness or other dangerous areas. Actual combat, damage, death, food, escape, and reclaim state are not inferred."
+    ],
+    "damage_source_evidence": [
+      {
+        "source_ids": ["wiki-shooting-stars-current"]
+      }
+    ],
+    "death_possible": "unknown",
+    "logout_behavior": [
+      "The Wiki says a first-finder's remaining double-stardust bonus seems to persist after logout or a server update; the stated uncertainty is preserved.",
+      "No checked source establishes that a player remains safe, keeps mining, or automatically resumes mining after logout.",
+      "Because worlds have independently timed/random landing events, a world hop requires a fresh player observation of star presence, location, tier, and local hazards; no hop result is assumed."
+    ],
+    "logout_behavior_evidence": [
+      {
+        "topic": "first-finder-bonus-persistence-qualification",
+        "source_ids": ["wiki-shooting-stars-current"]
+      },
+      {
+        "topic": "no-automatic-resume-boundary",
+        "source_ids": ["wiki-shooting-stars-current"]
+      },
+      {
+        "topic": "world-hop-recheck-boundary",
+        "source_ids": ["wiki-shooting-stars-current"]
+      }
+    ],
+    "safe_boundary": "No unattended safety, protected location, safe logout, or safe world-hop outcome is inferred. Player presence and an observed location-specific risk state are required."
+  },
+  "stop_reentry_mechanics": {
+    "mechanical_stop_conditions": [
+      "The final tier depletes and the star disappears.",
+      "A new star lands in the same world before the current star is fully mined.",
+      "A system update resets the cycle and removes the ground star.",
+      "The observed star is no longer mineable for the player's current tier gate or is no longer present after a location/world change."
+    ],
+    "mechanical_stop_condition_evidence": [
+      {
+        "source_ids": ["wiki-shooting-stars-current"]
+      }
+    ],
+    "mechanical_reentry_conditions": [
+      "The player observes a present crashed star in a selected world, has a usable pickaxe, and meets that star's current tier Mining gate.",
+      "After logout, world hop, travel, or interruption, the player re-observes the relevant star and local safety state rather than restoring a session from assumption."
+    ],
+    "mechanical_reentry_condition_evidence": [
+      {
+        "source_ids": ["wiki-shooting-stars-current", "wiki-mining-current"]
+      }
+    ],
+    "reset_or_cleanup_requirements": [
+      "Record observed outputs and star state before treating a return as a new or continued interval.",
+      "No mandatory bank, shop, world-hop, or route reset is asserted; any such action is player- and site-dependent."
+    ],
+    "reset_or_cleanup_evidence": [
+      {
+        "source_ids": []
+      }
+    ]
+  },
+  "proposed_normalization": {
+    "facts": [
+      {
+        "id": "fact:shooting-stars-access",
+        "status": "proposed",
+        "purpose": "Normalize pickaxe use, tier-specific Mining gates, free-to-play experience boundary, and no inferred current-star availability.",
+        "source_ids": ["wiki-shooting-stars-current", "wiki-mining-current"]
+      },
+      {
+        "id": "fact:shooting-stars-discovery-and-depletion",
+        "status": "proposed",
+        "purpose": "Normalize world/site uncertainty, telescope as approximate discovery aid, fixed conditional layer timer, and sourced despawn/reset events without a player-duration guarantee.",
+        "source_ids": ["wiki-shooting-stars-current", "official-poll-80-shooting-stars-2023"]
+      },
+      {
+        "id": "fact:shooting-stars-output-boundaries",
+        "status": "proposed",
+        "purpose": "Normalize fixed Mining XP per successful stardust separately from variable stardust, gems, pet chance, and player-recorded totals.",
+        "source_ids": ["wiki-shooting-stars-current"]
+      },
+      {
+        "id": "fact:shooting-stars-stardust-shop-dependency",
+        "status": "proposed",
+        "purpose": "Normalize only that members may spend observed stardust with Dusuri near the Falador Mining Guild on listed fixed-price shop items; do not select a purchase or utility target.",
+        "source_ids": ["wiki-dusuri-star-shop-current"]
+      }
+    ],
+    "actions": [
+      {
+        "id": "action:shooting-stars",
+        "treatment": "proposed-new",
+        "requirements": "Player-reported usable pickaxe and Mining level plus a newly observed mineable star world, site, tier, and local safety state.",
+        "transition": "Record only supplied start/end observation fields and reported outputs. Do not create a star, choose a world or route, grant stardust/XP/gems/pet, assume a first-finder bonus, or resume activity across logout/world hop."
+      }
+    ],
+    "nodes": [
+      {
+        "id": "activity:shooting-stars",
+        "source_ids": ["wiki-shooting-stars-current"]
+      },
+      {
+        "id": "state:shooting-stars-observed-star",
+        "source_ids": ["wiki-shooting-stars-current"]
+      },
+      {
+        "id": "resource:stardust",
+        "source_ids": ["wiki-shooting-stars-current", "wiki-dusuri-star-shop-current"]
+      },
+      {
+        "id": "npc:dusuri-star-shop",
+        "source_ids": ["wiki-dusuri-star-shop-current"]
+      }
+    ],
+    "edges": [
+      {
+        "id": "edge:shooting-stars-observed-star-requires-tier-and-pickaxe",
+        "relationship": "requires_observation_and_fixed_gate",
+        "source_ids": ["wiki-shooting-stars-current", "wiki-mining-current"]
+      },
+      {
+        "id": "edge:shooting-stars-produces-observed-stardust",
+        "relationship": "produces_variable_output",
+        "source_ids": ["wiki-shooting-stars-current"]
+      },
+      {
+        "id": "edge:stardust-is-dusuri-shop-currency",
+        "relationship": "spends_at_fixed_listed_prices",
+        "source_ids": ["wiki-dusuri-star-shop-current"]
+      }
+    ],
+    "observations": [
+      {
+        "id": "observation:shooting-stars:state",
+        "fields": ["world", "site", "current-tier", "layer-progress", "star-present", "local-safety-state"],
+        "evidence": "Player report or verified account/session snapshot only; no absent field is inferred."
+      },
+      {
+        "id": "observation:shooting-stars:outputs",
+        "fields": ["stardust", "gems", "mining-xp", "rock-golem-result", "first-finder-bonus-state"],
+        "evidence": "Player report or verified account/session snapshot only; probabilities and fixed per-success XP never synthesize a total."
+      },
+      {
+        "id": "observation:shooting-stars:attention-and-return",
+        "fields": ["start-time", "input-times", "interruptions", "logout-or-hop", "return-observation"],
+        "evidence": "Player-recorded chronology only; no generic AFK duration, safe return, or automatic resumption is stored as fact."
+      }
+    ]
+  },
+  "conflicts_and_unknowns": [
+    {
+      "id": "tier-9-duration-source-difference",
+      "severity": "source-conflict",
+      "current-wiki-claim": "The current Wiki says each layer is seven minutes and a size-9 star is at most 63 minutes while mined.",
+      "official-2023-claim": "The official 20 September 2023 hotfix described a tier-9 star as roughly up to 90 minutes under its then-described model.",
+      "source_ids": ["wiki-shooting-stars-current", "official-poll-80-shooting-stars-2023"],
+      "treatment": "Keep both sources visible, use neither as a player-session or output guarantee, and recheck live mechanics before any duration-sensitive integration."
+    },
+    {
+      "id": "logout-and-world-hop-continuity",
+      "severity": "unknown",
+      "claim": "The checked sources do not establish action continuity, local safety, star-state restoration, or automatic mining resumption after a normal logout or world hop. The Wiki's qualified first-finder-bonus persistence note is insufficient to infer those behaviors.",
+      "source_ids": ["wiki-shooting-stars-current"],
+      "treatment": "Require a fresh player observation after return; do not model a safe or continuous background session."
+    },
+    {
+      "id": "current-star-availability-and-reachability",
+      "severity": "unknown",
+      "claim": "A source-defined landing cycle and predetermined site list do not establish which world/site is currently active, reachable, mineable at the player's level, or safe for that player.",
+      "source_ids": ["wiki-shooting-stars-current"],
+      "treatment": "The proposed action has an observed-star prerequisite and contains no world selection, transport route, or readiness inference."
+    },
+    {
+      "id": "location-dependent-danger",
+      "severity": "unknown",
+      "claim": "The Wiki identifies aggressive-monster and Wilderness/dangerous-area possibilities at some landing sites but does not provide an account-specific damage, death, protection, food, or escape result.",
+      "source_ids": ["wiki-shooting-stars-current"],
+      "treatment": "Retain death_possible as unknown and require player presence; do not classify any site as unattended-safe."
+    },
+    {
+      "id": "stardust-shop-utility-is-not-a-goal",
+      "severity": "scope-boundary",
+      "claim": "Dusuri's members shop accepts stardust for listed stock at fixed prices, but no source determines which item is appropriate for a particular account.",
+      "source_ids": ["wiki-dusuri-star-shop-current"],
+      "treatment": "Model the shop only as a factual spend dependency after an observed balance and explicit player selection; make no purchase, utility, or target recommendation."
+    }
+  ],
+  "coverage": {
+    "access": true,
+    "preparation": true,
+    "attention": true,
+    "session": true,
+    "outputs": true,
+    "safety": true,
+    "stop_reentry": true,
+    "sources": true,
+    "normalization": true
+  }
+}

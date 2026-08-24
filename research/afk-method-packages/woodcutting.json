@@ -1,0 +1,271 @@
+{
+  "package_schema_version": 1,
+  "package_type": "afk-low-attention-research",
+  "package_id": "research-afk-woodcutting",
+  "method": "Woodcutting",
+  "status": "research-proposal",
+  "checked_at": "2026-08-24",
+  "facts_strategy_boundary": {
+    "included": [
+      "Sourced tree, axe, location-access, depletion, inventory, banking, output, Forestry, and safety-boundary mechanics.",
+      "Separate deterministic, variable, RNG, and player-observed values for repeatable normalization.",
+      "A proposed woodcutting action with bounded tree variants and explicit stop/re-entry observations."
+    ],
+    "excluded": [
+      "A universal cadence, route order, account-readiness inference, hourly guarantee, guaranteed RNG outcome, unattended-safety claim, or recommendation to train to level 99.",
+      "Community-world selection, social density, tick manipulation, or other strategy observations as guaranteed mechanics."
+    ]
+  },
+  "source_catalog": [
+    {
+      "id": "wiki-woodcutting-current",
+      "publisher": "Old School RuneScape Wiki",
+      "kind": "wiki",
+      "url": "https://oldschool.runescape.wiki/w/Woodcutting",
+      "checked_at": "2026-08-24",
+      "use": "Woodcutting level and axe rules, four-tick rolls, tree depletion and regeneration, tree table, Forestry exclusions, group bonus exclusions, felling axes, log basket, and tree locations."
+    },
+    {
+      "id": "wiki-tree-cutting-guide-current",
+      "publisher": "Old School RuneScape Wiki",
+      "kind": "guide",
+      "url": "https://oldschool.runescape.wiki/w/Tree_cutting_guide",
+      "checked_at": "2026-08-24",
+      "use": "Concrete common-tree variants, level and experience comparison, location examples, and the guide's warning that rate figures are approximations rather than guarantees."
+    },
+    {
+      "id": "wiki-axes-current",
+      "publisher": "Old School RuneScape Wiki",
+      "kind": "wiki",
+      "url": "https://oldschool.runescape.wiki/w/Axe",
+      "checked_at": "2026-08-24",
+      "use": "Axe level and Attack/equip boundaries and the distinction between carrying and wielding an axe."
+    },
+    {
+      "id": "wiki-forestry-current",
+      "publisher": "Old School RuneScape Wiki",
+      "kind": "wiki",
+      "url": "https://oldschool.runescape.wiki/w/Forestry_event",
+      "checked_at": "2026-08-24",
+      "use": "Eligible tree types, event radius and timing, Forestry-kit/event eligibility, participation, event variability, and world-hopping caveat."
+    },
+    {
+      "id": "official-forestry-part-two-current",
+      "publisher": "Jagex",
+      "kind": "official",
+      "url": "https://secure.runescape.com/m=news/forestry-part-two?oldschool=1",
+      "checked_at": "2026-08-24",
+      "use": "Official Forestry event interaction, rewards, Forestry kit items, two-handed/felling axe behavior, and Log Basket changes."
+    },
+    {
+      "id": "wiki-willow-tree-current",
+      "publisher": "Old School RuneScape Wiki",
+      "kind": "wiki",
+      "url": "https://oldschool.runescape.wiki/w/Willow_tree",
+      "checked_at": "2026-08-24",
+      "use": "Willow level, experience, and tree-specific mechanics."
+    },
+    {
+      "id": "wiki-redwood-tree-current",
+      "publisher": "Old School RuneScape Wiki",
+      "kind": "wiki",
+      "url": "https://oldschool.runescape.wiki/w/Redwood_tree",
+      "checked_at": "2026-08-24",
+      "use": "Woodcutting Guild redwood access, level, experience, section depletion and respawn, and low-attention characterization."
+    },
+    {
+      "id": "wiki-redwood-farming-current",
+      "publisher": "Old School RuneScape Wiki",
+      "kind": "wiki",
+      "url": "https://oldschool.runescape.wiki/w/Redwood_tree_(Farming)",
+      "checked_at": "2026-08-24",
+      "use": "Player-grown redwood's four-slot, per-log depletion and respawn mechanics and Farming/room access boundary."
+    },
+    {
+      "id": "wiki-woodcutting-guild-current",
+      "publisher": "Old School RuneScape Wiki",
+      "kind": "wiki",
+      "url": "https://oldschool.runescape.wiki/w/Woodcutting_Guild",
+      "checked_at": "2026-08-24",
+      "use": "Woodcutting Guild 60 Woodcutting entry, invisible +7 boost, bank chest, tree inventory, and Forestry/group-bonus exclusions."
+    },
+    {
+      "id": "wiki-bone-voyage-current",
+      "publisher": "Old School RuneScape Wiki",
+      "kind": "wiki",
+      "url": "https://oldschool.runescape.wiki/w/Bone_Voyage",
+      "checked_at": "2026-08-24",
+      "use": "Fossil Island access boundary for island hardwood locations."
+    }
+  ],
+  "access": {
+    "requirements": {
+      "membership": "Variant and location dependent; normal, oak, willow, maple, and yew have free-to-play entries, while several other locations or variants are members-only. [source: wiki-woodcutting-current]",
+      "woodcutting_level": "Observed level must meet the selected tree: normal 1, oak 15, willow 30, teak 35, maple 45, yew 60, magic 75, or redwood 90. [source: wiki-woodcutting-current, wiki-tree-cutting-guide-current, wiki-willow-tree-current, wiki-redwood-tree-current]",
+      "axe": "An axe is required. A higher-tier axe improves success chance; it may be wielded when the Attack requirement is met or carried in the inventory. [source: wiki-axes-current, wiki-woodcutting-current]",
+      "location_gates": "Woodcutting Guild entry requires 60 Woodcutting and is boostable; Fossil Island hardwood access requires Bone Voyage; a player-grown Farming Guild redwood additionally requires the Farming Guild redwood/Farming state. [source: wiki-woodcutting-guild-current, wiki-bone-voyage-current, wiki-redwood-farming-current]"
+    },
+    "tools": [
+      {"item": "axe", "role": "Required chopping tool; tier and Woodcutting level affect success chance.", "source_ids": ["wiki-axes-current", "wiki-woodcutting-current"]},
+      {"item": "Forestry kit or Forestry basket", "role": "Optional Forestry equipment that can enable leaf/event-related outputs; not a requirement for ordinary log chopping.", "source_ids": ["wiki-woodcutting-current", "wiki-forestry-current"]},
+      {"item": "log basket", "role": "Optional capacity item that can carry 28 additional logs of any type, for 56 logs total, subject to its use rules.", "source_ids": ["wiki-woodcutting-current", "official-forestry-part-two-current"]}
+    ],
+    "locations": [
+      {"variant": "normal", "examples": ["common overworld trees"], "access": "No special skill or quest gate stated for the common tree variant.", "source_ids": ["wiki-woodcutting-current", "wiki-tree-cutting-guide-current"]},
+      {"variant": "oak", "examples": ["Varrock, Lumbridge, Falador, Port Sarim area examples"], "access": "Free-to-play locations exist; exact crowding and bank distance are player-observed.", "source_ids": ["wiki-tree-cutting-guide-current"]},
+      {"variant": "willow", "examples": ["Draynor Village and other listed willow locations"], "access": "A level-30 variant; location convenience and crowding are not universal mechanics.", "source_ids": ["wiki-willow-tree-current", "wiki-tree-cutting-guide-current"]},
+      {"variant": "teak", "examples": ["Fossil Island hardwood areas and other teak locations"], "access": "Fossil Island hardwood access is gated by Bone Voyage; other locations have their own access conditions.", "source_ids": ["wiki-bone-voyage-current", "wiki-woodcutting-current"]},
+      {"variant": "maple", "examples": ["Seers' Village, Corsair Cove Resource Area, and Woodcutting Guild"], "access": "Location, membership, diary bonus, and guild entry state must be observed separately.", "source_ids": ["wiki-woodcutting-current", "wiki-woodcutting-guild-current"]},
+      {"variant": "yew", "examples": ["Seers' Village, Catherby, Tree Gnome Stronghold, Prifddinas, and Woodcutting Guild"], "access": "Some listed locations are members-only or gated by separate content; do not infer access from level alone.", "source_ids": ["wiki-woodcutting-current", "wiki-tree-cutting-guide-current"]},
+      {"variant": "magic", "examples": ["Woodcutting Guild, Seers' Village/Sorcerer's Tower, Tree Gnome Stronghold, Hosidius, and other listed locations"], "access": "Location access is separate from the level-75 chopping requirement.", "source_ids": ["wiki-woodcutting-current", "wiki-tree-cutting-guide-current", "wiki-woodcutting-guild-current"]},
+      {"variant": "redwood-woodcutting-guild", "examples": ["two scaffolded trees in Woodcutting Guild"], "access": "Requires observed entry to the members-only guild and visible level sufficient for the level-90 tree; the guild's invisible +7 boost does not permit actions above visible level.", "source_ids": ["wiki-redwood-tree-current", "wiki-woodcutting-guild-current"]},
+      {"variant": "redwood-farming-guild", "examples": ["one player-grown redwood in the Farming Guild"], "access": "Requires an observed fully grown player tree and the relevant Farming Guild/redwood state; it lacks the Woodcutting Guild +7 boost.", "source_ids": ["wiki-redwood-farming-current"]}
+    ],
+    "transport_options": [
+      {"claim": "Transport is location-specific and may be by the player's available teleports, jewelry, minigame teleports, or ordinary travel.", "source_ids": ["wiki-tree-cutting-guide-current", "wiki-woodcutting-guild-current"]},
+      {"claim": "No route order or fastest transport is normalized by this package.", "source_ids": []}
+    ]
+  },
+  "preparation": {
+    "inventory_inputs": [
+      {"item": "selected axe", "quantity": 1, "source_ids": ["wiki-axes-current"]},
+      {"item": "optional Forestry kit/basket and optional log basket", "quantity": "player-selected", "source_ids": ["wiki-woodcutting-current", "official-forestry-part-two-current"]}
+    ],
+    "bank_inputs": [
+      {"item": "empty bank space for selected logs and incidental outputs", "quantity": "player-observed", "source_ids": ["wiki-woodcutting-current"]}
+    ],
+    "reusable_items": [
+      {"item": "axe", "source_ids": ["wiki-axes-current"]},
+      {"item": "log basket", "condition": "only if owned and usable", "source_ids": ["wiki-woodcutting-current", "official-forestry-part-two-current"]}
+    ],
+    "consumed_inputs": [
+      {"item": "Forester's rations", "condition": "only for a felling/two-handed axe setup; automatically consumed when applicable", "source_ids": ["official-forestry-part-two-current", "wiki-woodcutting-current"]}
+    ],
+    "capacity_constraints": [
+      {"claim": "Without a log basket, free inventory slots and the carried or worn axe determine how many logs can be held before banking, dropping, or another player-selected handling action.", "source_ids": ["wiki-woodcutting-current", "wiki-axes-current"]},
+      {"claim": "A log basket can add 28 log capacity, but the actual stop point remains dependent on the selected tree, incidental items, and player inventory state.", "source_ids": ["wiki-woodcutting-current"]}
+    ]
+  },
+  "attention_profile": {
+    "class": "mixed",
+    "interaction_cadence": [
+      {"claim": "Chopping rolls occur every four game ticks while the player is chopping.", "evidence_type": "source", "source_ids": ["wiki-woodcutting-current", "wiki-forestry-current"], "interval_seconds": {"game_ticks": 4, "seconds": 2.4}},
+      {"claim": "A depleted ordinary tree requires a player interaction with another available tree or the respawned tree; the next interaction interval is variable by variant, location, and player observation.", "evidence_type": "source", "source_ids": ["wiki-woodcutting-current"], "interval_seconds": {"value": "not guaranteed"}},
+      {"claim": "Forestry events, when present and eligible, can require active event interactions and therefore add attention beyond the chopping roll.", "evidence_type": "source", "source_ids": ["wiki-forestry-current", "official-forestry-part-two-current"]}
+    ],
+    "player_presence_required": true,
+    "unattended_safety_claim": "never_infer"
+  },
+  "session_mechanics": {
+    "entry_condition": "Player is logged in at an accessible selected tree variant with a usable axe and an inventory/banking plan. [source: wiki-axes-current, wiki-woodcutting-current]",
+    "duration_evidence": {
+      "timed_depletion_examples": [
+        {"variant": "willow", "despawn_seconds": 30, "respawn_seconds": 8.4, "source_ids": ["wiki-woodcutting-current", "wiki-willow-tree-current"]},
+        {"variant": "maple", "despawn_seconds": 60, "respawn_seconds": 35.4, "source_ids": ["wiki-woodcutting-current"]},
+        {"variant": "yew", "despawn_seconds": 114, "respawn_seconds": 59.4, "source_ids": ["wiki-woodcutting-current"]},
+        {"variant": "magic", "despawn_seconds": 234, "respawn_seconds": 119.4, "source_ids": ["wiki-woodcutting-current"]},
+        {"variant": "redwood-woodcutting-guild", "despawn_seconds": 264, "respawn_seconds": 119.4, "source_ids": ["wiki-redwood-tree-current"]}
+      ],
+      "regeneration": "For the standard timed tree mechanic, stopping before full depletion lets the tree regenerate according to its chopping time; exact player stop/restart behavior is not an AFK guarantee. [source: wiki-woodcutting-current]",
+      "short_tree_variants": "Normal and oak trees use their own short respawn/depletion behavior rather than the long redwood timer; use the selected tree page or player observation for the exact local cadence. [source: wiki-woodcutting-current, wiki-tree-cutting-guide-current]",
+      "player_grown_redwood": "Each of four choppable spaces has a 1/11 depletion chance per log and takes 200 ticks (120 seconds) to respawn when depleted. [source: wiki-redwood-farming-current]"
+    },
+    "session_end_events": [
+      "Inventory or log-basket capacity is reached and no player-selected banking/drop handling occurs. [source: wiki-woodcutting-current]",
+      "The selected tree depletes and no available tree interaction is performed. [source: wiki-woodcutting-current]",
+      "The player logs out, leaves the location, loses the selected tool, or encounters a location-specific interruption. [source: wiki-woodcutting-current]"
+    ],
+    "repeatable": true,
+    "offline_progression": false
+  },
+  "outputs": {
+    "deterministic": [
+      {"id": "woodcutting-success-log", "description": "When a chop succeeds, one log/resource item of the selected tree variant is received and its listed Woodcutting experience is awarded; this is conditional on a successful chop, not a session-total guarantee.", "source_ids": ["wiki-woodcutting-current", "wiki-tree-cutting-guide-current", "wiki-willow-tree-current", "wiki-redwood-tree-current"]},
+      {"id": "woodcutting-xp-by-variant", "description": "Base experience per received log is 25 normal, 37.5 oak, 67.5 willow, 85 teak, 100 maple, 175 yew, 250 magic, and 380 redwood.", "source_ids": ["wiki-woodcutting-current", "wiki-tree-cutting-guide-current", "wiki-willow-tree-current", "wiki-redwood-tree-current"]}
+    ],
+    "variable": [
+      {"id": "woodcutting-log-count", "description": "Total logs and total experience vary with Woodcutting level, axe, success rolls, tree depletion, tree availability, inventory handling, and session duration; no hourly value is guaranteed.", "source_ids": ["wiki-woodcutting-current", "wiki-tree-cutting-guide-current"]},
+      {"id": "woodcutting-bird-nests", "description": "Bird nests and their contents are possible conditional outputs, with rates and types varying by tree and relevant equipment; redwoods have a distinct clue-nest boundary.", "source_ids": ["wiki-woodcutting-current", "wiki-redwood-tree-current"]},
+      {"id": "forestry-event-outputs", "description": "Eligible Forestry events can produce event experience, Anima-infused bark, leaves, and event-specific rewards; event occurrence and rewards are variable and participation-dependent.", "source_ids": ["wiki-forestry-current", "official-forestry-part-two-current"]},
+      {"id": "felling-axe-output-tradeoff", "description": "With Forester's rations, a felling/two-handed axe gives 10% more Woodcutting experience and a 20% chance not to receive a log on a successful chop; ration supply and resulting logs are variable.", "source_ids": ["official-forestry-part-two-current", "wiki-woodcutting-current"]}
+    ],
+    "player_observed": [
+      {"id": "woodcutting-session-observation", "description": "Record selected variant, location, axe, Forestry equipment, start/end times, successful logs, total XP delta, bank/drop actions, event interruptions, and observed idle intervals; these are account/session observations and must not be synthesized from the plan.", "source_ids": ["wiki-woodcutting-current", "wiki-forestry-current"]}
+    ]
+  },
+  "safety_and_logout": {
+    "damage_sources": [
+      "Ordinary tree chopping has no generic damage step in the cited Woodcutting loop; monsters, Wilderness/PvP, random events, and location hazards remain location-specific and are not globally cleared by this package. [source: wiki-woodcutting-current, wiki-tree-cutting-guide-current]"
+    ],
+    "death_possible": "unknown",
+    "logout_behavior": [
+      "Logging out stops the player's active chopping/session state; no offline Woodcutting progression is asserted. [source: wiki-woodcutting-current]",
+      "Stopping before a standard tree fully depletes allows the tree's regeneration mechanic to apply; exact state after logout/re-entry must be observed for the selected location. [source: wiki-woodcutting-current]"
+    ],
+    "safe_boundary": "Only a player-confirmed location-specific boundary may be called safe. This package does not infer unattended safety, immunity from interruption, or survival from the absence of a generic damage step. [source: wiki-woodcutting-current]"
+  },
+  "stop_reentry_mechanics": {
+    "mechanical_stop_conditions": [
+      "Selected tree is depleted and no alternative tree is available or selected. [source: wiki-woodcutting-current]",
+      "Inventory/log-basket capacity or a player-selected bank/drop boundary is reached. [source: wiki-woodcutting-current]",
+      "A Forestry event appears and the player does not perform its required interaction; event-specific consequences are variable. [source: wiki-forestry-current, official-forestry-part-two-current]"
+    ],
+    "mechanical_reentry_conditions": [
+      "A selected tree or choppable section is available, the player is present, and a usable axe is carried or wielded. [source: wiki-axes-current, wiki-woodcutting-current]",
+      "For a depleted standard tree, its respawn has completed; for a player-grown redwood slot, its 200-tick respawn has completed. [source: wiki-woodcutting-current, wiki-redwood-farming-current]",
+      "For the Woodcutting Guild, the player still has observed access; for a Farming Guild redwood, the player-grown tree remains available. [source: wiki-woodcutting-guild-current, wiki-redwood-farming-current]"
+    ],
+    "reset_or_cleanup_requirements": [
+      "Bank, drop, or otherwise handle logs and incidental outputs before the next cycle when capacity is reached; the chosen handling is player-specific. [source: wiki-woodcutting-current]",
+      "Reacquire or re-equip an axe if it is no longer available, and reselect a tree if the prior tree or section has depleted. [source: wiki-axes-current, wiki-woodcutting-current]",
+      "Forestry event items, kit contents, and social-world choice require separate player-confirmed preparation; none is assumed by this package. [source: wiki-forestry-current, official-forestry-part-two-current]"
+    ]
+  },
+  "proposed_normalization": {
+    "facts": [
+      {"id": "fact:woodcutting-tree-variants", "source_ids": ["wiki-woodcutting-current", "wiki-tree-cutting-guide-current", "wiki-willow-tree-current", "wiki-redwood-tree-current"]},
+      {"id": "fact:woodcutting-timed-depletion", "source_ids": ["wiki-woodcutting-current", "wiki-redwood-farming-current"]},
+      {"id": "fact:woodcutting-axe-and-capacity", "source_ids": ["wiki-axes-current", "wiki-woodcutting-current"]},
+      {"id": "fact:forestry-location-and-eligibility", "source_ids": ["wiki-forestry-current", "official-forestry-part-two-current"]}
+    ],
+    "actions": [
+      {"id": "action:woodcutting", "kind": "skill", "requirements": ["observed usable axe", "observed selected tree access", "observed Woodcutting level meets selected variant"], "transition": "Chop the explicitly selected tree variant; record only observed logs, XP, events, capacity handling, and stop/re-entry state.", "source_ids": ["wiki-woodcutting-current", "wiki-axes-current"]}
+    ],
+    "nodes": [
+      {"id": "activity:woodcutting", "source_ids": ["wiki-woodcutting-current"]},
+      {"id": "condition:woodcutting-variant-access", "source_ids": ["wiki-woodcutting-current", "wiki-woodcutting-guild-current", "wiki-bone-voyage-current", "wiki-redwood-farming-current"]},
+      {"id": "resource:logs-by-selected-tree", "source_ids": ["wiki-woodcutting-current", "wiki-tree-cutting-guide-current"]},
+      {"id": "capability:woodcutting-log-capacity", "source_ids": ["wiki-woodcutting-current", "official-forestry-part-two-current"]},
+      {"id": "activity:forestry-event", "source_ids": ["wiki-forestry-current", "official-forestry-part-two-current"]}
+    ],
+    "edges": [
+      {"id": "edge:woodcutting-variant-access", "from": "condition:woodcutting-variant-access", "to": "activity:woodcutting", "relation": "requires", "source_ids": ["wiki-woodcutting-current", "wiki-axes-current"]},
+      {"id": "edge:woodcutting-log-output", "from": "activity:woodcutting", "to": "resource:logs-by-selected-tree", "relation": "produces_on_successful_roll", "source_ids": ["wiki-woodcutting-current"]},
+      {"id": "edge:woodcutting-capacity-constraint", "from": "capability:woodcutting-log-capacity", "to": "activity:woodcutting", "relation": "constrains_inventory", "source_ids": ["wiki-woodcutting-current"]},
+      {"id": "edge:woodcutting-forestry-event", "from": "activity:woodcutting", "to": "activity:forestry-event", "relation": "may_trigger_for_eligible_trees", "source_ids": ["wiki-forestry-current", "official-forestry-part-two-current"]}
+    ],
+    "observations": [
+      {"id": "observation:woodcutting-session", "shape": "selected variant, location, axe, Forestry equipment, start/end, logs, XP delta, bank/drop actions, event interactions, deaths, and observed idle intervals", "source_ids": ["wiki-woodcutting-current", "wiki-forestry-current"]},
+      {"id": "observation:woodcutting-safety", "shape": "player-confirmed location hazards, interruption, logout, and re-entry outcome; null when not observed", "source_ids": ["wiki-woodcutting-current"]}
+    ]
+  },
+  "conflicts_and_unknowns": [
+    {"id": "tree-page-coverage", "status": "source-qualified", "detail": "The general Woodcutting table supplies the normalized variant boundaries used here; individual tree pages can expose additional location, special-drop, or patch detail. Central integration should reconcile duplicate facts without assuming the guide's rate estimates.", "source_ids": ["wiki-woodcutting-current", "wiki-tree-cutting-guide-current"]},
+    {"id": "exact-short-tree-cadence", "status": "unknown", "detail": "Normal and oak interactions are not represented here as one universal AFK interval. Exact respawn, pathing, crowding, and available-tree behavior must be tied to a concrete location and player observation.", "source_ids": ["wiki-woodcutting-current", "wiki-tree-cutting-guide-current"]},
+    {"id": "forestry-social-world-choice", "status": "strategy-boundary", "detail": "Forestry events are location- and eligibility-dependent, and the cited Wiki notes that world hopping should not create an abnormal event amount. This package does not select a community world, social density, or event strategy.", "source_ids": ["wiki-forestry-current"]},
+    {"id": "tree-depletion-and-rng", "status": "intentional-separation", "detail": "Four-tick rolls, success chance, event occurrence, bird nests, and event rewards are variable or RNG. They must not be converted into deterministic logs, XP, event counts, or hourly guarantees.", "source_ids": ["wiki-woodcutting-current", "wiki-forestry-current", "official-forestry-part-two-current"]},
+    {"id": "location-safety", "status": "unknown", "detail": "The package does not establish unattended safety or universal death impossibility. Wilderness/PvP, monsters, random events, travel, and local interruptions need a location-specific check before any operational use.", "source_ids": ["wiki-woodcutting-current", "wiki-tree-cutting-guide-current"]},
+    {"id": "community-strategy-observations", "status": "not-normalized", "detail": "Crowding, world choice, tick manipulation, banking preference, and claimed attention intervals are player strategy observations, not sourced deterministic mechanics and are intentionally omitted from route scoring.", "source_ids": ["wiki-tree-cutting-guide-current", "wiki-forestry-current"]}
+  ],
+  "coverage": {
+    "access": true,
+    "preparation": true,
+    "attention": true,
+    "session": true,
+    "outputs": true,
+    "safety": true,
+    "stop_reentry": true,
+    "sources": true,
+    "normalization": true
+  }
+}
