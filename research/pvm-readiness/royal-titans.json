@@ -1,0 +1,198 @@
+{
+  "id": "pvm-readiness-royal-titans",
+  "title": "Royal Titans: factual readiness research package",
+  "package_version": "1.0.0",
+  "researched_at": "2026-08-24",
+  "scope": "Current mechanics, rewards, account-observable readiness inputs, and explicitly separated community strategy for Royal Titans. This package creates no action, graph edge, score, route position, assumed setup, expected kill count, or account-state conclusion.",
+  "source_metadata": [
+    {
+      "id": "wiki-royal-titans-current",
+      "publisher": "Old School RuneScape Wiki",
+      "source_kind": "community-maintained factual reference",
+      "url": "https://oldschool.runescape.wiki/w/Royal_Titans",
+      "accessed_at": "2026-08-24",
+      "claims_used": ["location and access", "instance and death handling", "loot options", "contribution", "reward table", "target-specific loot", "collection log", "post-release changes"],
+      "authority_boundary": "Used for current mechanics and item facts, not a route recommendation."
+    },
+    {
+      "id": "wiki-royal-titans-strategies-current",
+      "publisher": "Old School RuneScape Wiki",
+      "source_kind": "community-maintained strategy reference",
+      "url": "https://oldschool.runescape.wiki/w/Royal_Titans/Strategies",
+      "accessed_at": "2026-08-24",
+      "claims_used": ["no formal combat requirement", "multi-style encounter", "optional equipment/transport", "published recommendation bands"],
+      "authority_boundary": "Recommendations are practical strategy evidence, not enforced gates."
+    },
+    {
+      "id": "jagex-royal-titans-release-2025",
+      "publisher": "Jagex / Old School RuneScape",
+      "source_kind": "official release announcement, mirrored verbatim by the OSRS Wiki",
+      "url": "https://oldschool.runescape.wiki/w/Update:Royal_Titans",
+      "published_at": "2025-02-05",
+      "accessed_at": "2026-08-24",
+      "claims_used": ["encounter intent", "unique reward functions", "target-specific scroll allocation", "Twinflame staff function", "Giantsoul amulet charging", "page conversion"],
+      "authority_boundary": "Primary release source; later changes are checked against the current encounter page."
+    },
+    {
+      "id": "wiki-prayer-level-table-current",
+      "publisher": "Old School RuneScape Wiki",
+      "source_kind": "community-maintained factual reference",
+      "url": "https://oldschool.runescape.wiki/w/Prayer/Level_up_table",
+      "accessed_at": "2026-08-24",
+      "claims_used": ["Deadeye activation at 62 Prayer", "Mystic Vigour activation at 63 Prayer"],
+      "authority_boundary": "Activation levels only; it does not make receipt or timing deterministic."
+    },
+    {
+      "id": "youtube-karlsonsk-royal-titans-2025",
+      "publisher": "Karlsonsk",
+      "source_kind": "community video guide",
+      "url": "https://www.youtube.com/watch?v=KUyw0MzfHB8",
+      "published_at": "2025-06-20",
+      "accessed_at": "2026-08-24",
+      "claims_used": ["community evidence that gear, inventory, travel, duo coordination, mechanics, and advanced options are distinct concerns"],
+      "authority_boundary": "Strategy corroboration only; no loadout, supplies, or timing is adopted."
+    },
+    {
+      "id": "reddit-ironscape-royal-titans-duo-2026",
+      "publisher": "r/ironscape community discussion",
+      "source_kind": "community strategy anecdote",
+      "url": "https://www.reddit.com/r/ironscape/comments/1shikmh/anyone_fancy_duo_royal_titans/",
+      "published_at": "2026-04-10",
+      "accessed_at": "2026-08-24",
+      "claims_used": ["anecdotal official-world duo coordination and reset/elemental discussion"],
+      "authority_boundary": "Does not establish partner availability, a required method, or account readiness."
+    },
+    {
+      "id": "reddit-ironscape-deadeye-value-2025",
+      "publisher": "r/ironscape community discussion",
+      "source_kind": "community strategy anecdote",
+      "url": "https://www.reddit.com/r/ironscape/comments/1mbp0e9/is_it_worth_grinding-royal-titans-for-deadeye/",
+      "accessed_at": "2026-08-24",
+      "claims_used": ["community discussion of prayer-drain and target-grind tradeoffs"],
+      "authority_boundary": "Anecdotal value discussion only."
+    },
+    {
+      "id": "wiki-yazi-ironman-gear-2025",
+      "publisher": "Old School RuneScape Wiki / Yazi's Ironman Gear Progression",
+      "source_kind": "established community progression guide",
+      "url": "https://oldschool.runescape.wiki/w/Guide:Yazi%27s_Ironman_Gear_Progression_2025",
+      "accessed_at": "2026-08-24",
+      "claims_used": ["community placement of the content and Twinflame staff in mid-game progression discussion"],
+      "authority_boundary": "Comparison evidence only, not this project's route order."
+    }
+  ],
+  "factual_mechanics": {
+    "access": {
+      "membership": "Members-only content.",
+      "formal_quest_requirements": [],
+      "formal_skill_requirements": [],
+      "formal_combat_requirement": "None listed by the current strategy reference.",
+      "location": "A tunnel in the north-western Asgarnian Ice Dungeon.",
+      "access_paths": [
+        {"path": "Normal dungeon approach", "requirement": "No stated quest or skill requirement.", "boundary": "Traversal safety, run energy, and route-specific equipment are not inferred."},
+        {"path": "Dungeon shortcut", "requirement": "60 Agility.", "boundary": "Faster access only, not encounter eligibility."},
+        {"path": "Giantsoul amulet teleport", "requirement": "Observed possession of a charged Giantsoul amulet.", "boundary": "The drop is not assumed; one big bone and one law rune charge it once."}
+      ],
+      "source_ids": ["wiki-royal-titans-current", "wiki-royal-titans-strategies-current", "jagex-royal-titans-release-2025"]
+    },
+    "encounter": {
+      "format": "Instanced encounter against Eldric the Ice King and Branda the Fire Queen. It can be soloed or fought with other players and was designed around a duo.",
+      "bosses": [
+        {"name": "Eldric the Ice King", "combat_level": 350, "hitpoints": 600, "targeted_uniques": ["Deadeye prayer scroll", "ice element staff crown"]},
+        {"name": "Branda the Fire Queen", "combat_level": 350, "hitpoints": 600, "targeted_uniques": ["Mystic Vigour prayer scroll", "fire element staff crown"]}
+      ],
+      "readiness_relevant_mechanics": [
+        {
+          "id": "multiple-combat-style-responses",
+          "fact": "The current strategy reference describes the encounter as primarily melee, with Ranged used while Titans are out of melee range and Magic used for elementals and barriers.",
+          "account_boundary": "Weapons, spellbook, runes, switches, accuracy, damage, and ability to execute this are all unobserved until supplied by the account/player."
+        },
+        {
+          "id": "elemental-and-barrier-management",
+          "fact": "Fire and ice elementals plus corresponding barriers are encounter features. The strategy reference lists elemental spells/runes for barrier destruction and treats killing elementals as a tactical choice.",
+          "account_boundary": "No elemental plan, wall tanking, damage outcome, or supply consumption is presumed."
+        },
+        {
+          "id": "avoidable-damage-mechanics",
+          "fact": "Combat Achievement definitions identify avoidable melee, elemental explosion, icicle/fire-spawn, and ice/fire-pulse damage as encounter mechanics.",
+          "account_boundary": "This identifies mechanics to learn, not a claim that a player avoids them."
+        },
+        {
+          "id": "contribution",
+          "fact": "In a duo, normal-loot quantities and unique drop rates scale linearly with damage to Titans; elemental damage does not count. Tertiary clue and pet rolls do not depend on contribution.",
+          "account_boundary": "No partner, contribution share, loot quantity, or unique chance is assumed."
+        }
+      ],
+      "source_ids": ["wiki-royal-titans-current", "wiki-royal-titans-strategies-current"]
+    },
+    "death_and_recovery": {
+      "death": "Death in the instance moves unprotected items to a grave outside the entrance under standard death mechanics; ground items left in the instance are lost.",
+      "teleport_change": "The current encounter record states that teleporting out nullifies incoming arena damage after a 12 February 2025 update.",
+      "recovery_boundary": "A grave-recovery plan, exit option, cost, food, potions, and restoration access are account-specific observations, not baseline readiness facts.",
+      "source_ids": ["wiki-royal-titans-current"]
+    },
+    "rewards": {
+      "loot_selection": "After a kill, a player chooses one Titan to loot. Loot gives two primary-table rolls; sacrifice forfeits regular loot to double pet chance; Take pages grants desiccated pages while retaining tertiary pet/clue rolls. Unlooted Titan loot is lost after its respawn window.",
+      "deterministic_or_choice_based": [
+        {"item_or_outcome": "Choice of Eldric or Branda loot", "status": "deterministic player choice after a completed encounter", "boundary": "Does not guarantee a targeted unique."},
+        {"item_or_outcome": "Take pages", "status": "choice-based page acquisition in place of regular loot", "boundary": "Does not make a completed tome, charges, or future use certain."},
+        {"item_or_outcome": "Desiccated-page conversion", "status": "requires 50 Runecraft at a matching plinth", "boundary": "Pages and chosen tome remain unmodeled."}
+      ],
+      "rng_uniques": [
+        {"item": "Deadeye prayer scroll", "source": "Eldric", "published_full-contribution_rate": "1/75", "use_gate": "62 Prayer after reading", "effect": "+18% Ranged Attack, +18% Ranged Strength, +5% Defence while active", "status": "untradeable; receipt is RNG"},
+        {"item": "Mystic Vigour prayer scroll", "source": "Branda", "published_full-contribution_rate": "1/75", "use_gate": "63 Prayer after reading", "effect": "+18% Magic Attack, +3% Magic Damage, +5% Defence while active", "status": "untradeable; receipt is RNG"},
+        {"item": "Giantsoul amulet (uncharged)", "source": "either Titan", "published_full-contribution_rate": "1/16", "use": "charged teleport to Royal Titans, Obor, or Bryophyta", "status": "untradeable; receipt and charges are not assumed"},
+        {"item": "ice/fire element staff crowns", "source": "Eldric/Branda respectively", "published_full-contribution_rate": "1/75 each", "use": "combined with a battlestaff to make Twinflame staff", "status": "both components must actually be obtained by a self-sufficient Ironman"},
+        {"item": "Bran", "source": "either Titan", "published_rate": "1/3,000 when looting; 1/1,500 when sacrificing", "status": "pet; RNG and collection-log only unless observed"}
+      ],
+      "regular_loot_categories": ["runes and ammunition", "coal, gold ore, and elemental orbs", "grimy herbs", "tree seeds", "coins", "prayer potions", "desiccated pages", "hard/elite clues"],
+      "collection_log": "Seven entries: Bran, Deadeye prayer scroll, Mystic Vigour prayer scroll, Giantsoul amulet (uncharged), ice element staff crown, fire element staff crown, and desiccated page.",
+      "source_ids": ["wiki-royal-titans-current", "jagex-royal-titans-release-2025", "wiki-prayer-level-table-current"]
+    },
+    "ironman_relevance_and_bypass_boundary": {
+      "factual_value": [
+        "The two prayer scrolls are untradeable and target-specific, so normal Ironmen cannot buy a substitute.",
+        "A player may target Eldric or Branda at loot time but only claims one Titan's loot per completed encounter.",
+        "Giantsoul amulet is a reusable route option only after an observed drop and observed charges.",
+        "Twinflame staff requires two separate crowns and a battlestaff; no component or completed staff is assumed.",
+        "Regular drops can include farming inputs, runes, materials, coins, and prayer potions, but remain variable drops rather than modeled supplies."
+      ],
+      "non_bypasses": ["A duo does not remove the need to contribute damage for normal unique-rate/quantity scaling.", "Partner availability, performance, and contribution share are not guaranteed.", "A possible drop never replaces observing ownership."],
+      "source_ids": ["wiki-royal-titans-current", "jagex-royal-titans-release-2025"]
+    }
+  },
+  "practical_readiness_observations": {
+    "purpose": "Candidate observations for a future account-state contract. They are neither mandatory numeric gates nor claims about the baseline account.",
+    "candidates": [
+      {"id": "royal-titans-access-path-observed", "question": "Has the account selected and successfully traversed a current route to the entrance?", "does_not_infer": ["fairy-ring access", "Agility shortcut", "Giantsoul ownership", "travel safety", "run energy"]},
+      {"id": "royal-titans-multi-style-plan-observed", "question": "Does the player have an intentionally selected melee, Ranged, and Magic/barrier response plan their account can use?", "does_not_infer": ["specific weapons", "runes", "spellbook", "accuracy", "DPS", "gear quality"]},
+      {"id": "royal-titans-mechanics-familiarity-observed", "question": "Has the player reviewed or practiced elemental, barrier, movement, and avoidable-damage mechanics?", "does_not_infer": ["competence", "perfect execution", "survival", "a kill"]},
+      {"id": "royal-titans-recovery-plan-observed", "question": "Does the player have a personally acceptable death, exit, banking, and recovery plan?", "does_not_infer": ["teleport ownership", "grave cost", "food", "potions", "restoration access"]},
+      {"id": "royal-titans-objective-observed", "question": "Has the player selected a current reason, such as learning, an unowned reward, pages, or collection-log interest?", "does_not_infer": ["grind length", "drop receipt", "universal priority", "route timing"]},
+      {"id": "royal-titans-coordination-observed", "question": "If choosing a duo, is a compatible consenting partner currently available?", "does_not_infer": ["official-world availability", "partner gear", "partner skill", "contribution", "loot"]}
+    ],
+    "source_ids": ["wiki-royal-titans-current", "wiki-royal-titans-strategies-current"]
+  },
+  "stop_and_reentry_candidates": {
+    "boundary": "Candidate account-observable conditions for later strategy work; they do not direct the player to start, stop, or resume.",
+    "stop_candidates": ["The current objective changed or is satisfied by an observed reward.", "The player no longer wishes to commit the attention required for mechanics.", "The selected recovery or supply plan is no longer personally acceptable.", "A duo arrangement is no longer available or mutually suitable."],
+    "reentry_candidates": ["The account has a renewed objective for a still-unowned targeted reward or pages.", "The player wants to revisit mechanics after a relevant account or personal-readiness change.", "A selected access, recovery, or duo plan is currently available."],
+    "account_boundary": "No grind endpoint, quantity, supply threshold, kill count, drop target, or timing is set."
+  },
+  "community_strategy_evidence": {
+    "status": "Non-authoritative planning evidence. It must not become a requirement without a later strategy decision.",
+    "themes": [
+      {"theme": "Published moderate-stat and multi-style recommendations", "evidence": "The Wiki strategy page publishes 70+ recommendations for several combat skills, 75 Magic for one-shotting elementals with Fire/Water Wave, and 43 Prayer for protection prayers, alongside much higher-end setups.", "interpretation_boundary": "Comparative recommendations, not formal gates or proof of readiness."},
+      {"theme": "Duo coordination and reset habits", "evidence": "Community video and Reddit material discuss inventory, travel, finding duos, mechanics, and optional resets as distinct concerns.", "interpretation_boundary": "No partner, pool, teleport, reset method, supplies, or trip length is presumed."},
+      {"theme": "Targeted-prayer value and later PvM", "evidence": "Community guides/discussions place the prayers and Twinflame staff in mid-game progression conversations, sometimes mentioning later PvM.", "interpretation_boundary": "No downstream prerequisite or timing claim is accepted."}
+    ],
+    "source_ids": ["wiki-royal-titans-strategies-current", "youtube-karlsonsk-royal-titans-2025", "reddit-ironscape-royal-titans-duo-2026", "reddit-ironscape-deadeye-value-2025", "wiki-yazi-ironman-gear-2025"]
+  },
+  "uncertainties_and_change_watch": [
+    "There is no universal readiness threshold; performance depends on gear, supplies, switches, route, reaction, and tactics.",
+    "Drop rates/quantities are tied to contribution assumptions and can change; recheck current tables before numerical planning integration.",
+    "This package does not model individual spell requirements, damage breakpoints, inventory capacity, prayer drain, food consumption, travel time, death cost, or kill time.",
+    "Royal Titans received post-release changes in 2025; recheck mechanics, contribution, and recovery before generating any route or automated eligibility rule.",
+    "Community assertions about target order, resets, gear, and downstream value are intentionally unresolved."
+  ]
+}
