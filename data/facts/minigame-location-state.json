@@ -1,0 +1,109 @@
+{
+  "integration_wave": "W4-remaining-location-specific-facts",
+  "scope": "Verified access and live-state boundaries for location-specific minigames. These records describe what a player may observe; they do not start sessions, select teams, resolve hazards, grant diary credit, or produce rewards.",
+  "records": [
+    {
+      "id": "pyramid-plunder-live-entrance-and-run-state",
+      "name": "Pyramid Plunder live entrance and run state",
+      "category": "minigame",
+      "status": "verified",
+      "verified_at": "2026-08-22",
+      "static_requirements": {
+        "quest_state": "Icthlarin's Little Helper started",
+        "first_room_Thieving": 21,
+        "final_room_Thieving": 91,
+        "room_level_boostable": false,
+        "run_timer_minutes": 5
+      },
+      "live_state": "The correct Guardian mummy entrance is a short-lived shared world observation. Older roughly 15-minute rotation guidance is not safe to automate, and a prior observation does not predict the current door.",
+      "run_boundary": "Door attempts, room reached, object attempts, traps, poison, damage, survival, XP, loot, diary task credit, and exit state are player-reported events only.",
+      "canonical_references": ["desert-diary-pyramid-plunder-utility", "residual-transport-network"],
+      "source_ids": ["wiki-pyramid-plunder-current", "official-poll-80-pyramid-plunder-current"],
+      "confidence": "high"
+    },
+    {
+      "id": "rogues-den-live-maze-state",
+      "name": "Rogues' Den live maze and safe state",
+      "category": "minigame",
+      "status": "verified",
+      "verified_at": "2026-08-22",
+      "static_requirements": {
+        "Agility": 50,
+        "Thieving": 50,
+        "skill_boosts_allowed": false,
+        "entry_inventory": "No carried or equipped items; permitted exceptions remain governed by the current maze rules."
+      },
+      "live_state": "Maze position, disabled traps, failure, ejection, completion, the lobby safe, and the end safe are session observations. Rogues' Den is safe content, but an attempt is never inferred from skill eligibility.",
+      "reward_boundary": "A successful end-safe opening can offer a Rogue equipment crate or rogue kit path. Exact reward selection and outcome remain observed.",
+      "source_ids": ["wiki-rogues-den-current", "official-inferno-rogue-crate-2017"],
+      "confidence": "high"
+    },
+    {
+      "id": "shades-of-mortton-live-temple-state",
+      "name": "Shades of Mort'ton shared temple state",
+      "category": "minigame",
+      "status": "verified",
+      "verified_at": "2026-08-22",
+      "live_state": "Temple repair progress, sanctity, participating players, current shade remains, pyre state, keys, doors, and chest access are live or observed state. Temple condition is not a permanent account unlock and is not inferred from quest completion.",
+      "conversion_boundary": "Sacred oil and cremation are deterministic only after the player confirms the exact materials and interaction. Combat kills, remains, keys, chest loot, and recipe scrolls remain observed outcomes.",
+      "sailing_compatibility_boundary": "Sailing-era pyre-log compatibility is retained only where the current source catalog verifies it; no unsupported log/remains pairing is inferred.",
+      "source_ids": ["wiki-shades-minigame-current", "official-shades-rework-2021", "official-shades-qol-2024"],
+      "confidence": "high"
+    },
+    {
+      "id": "tempoross-session-and-local-supply-state",
+      "name": "Tempoross session and local supply state",
+      "category": "minigame",
+      "status": "verified",
+      "verified_at": "2026-08-22",
+      "static_requirements": {"Fishing": 35, "membership": true},
+      "live_state": "Solo or group mode, energy, essence, storm intensity, contribution, successful completion, permits, and temporary rope, bucket, hammer, harpoon, fish, and water supplies are observed session state.",
+      "failure_and_death": "A failed encounter loses that encounter's contribution and grants no permit. Ordinary attacks impede activity and can destroy listed local supplies rather than creating a normal grave or reclaim event.",
+      "reward_boundary": "Stored permits are observed balances capped at 8,000. Pool searches consume observed permits and record observed results; they do not expose a deterministic loot result.",
+      "canonical_references": ["utility-tempoross-reward-permits", "utility-tempoross-fish-barrel"],
+      "source_ids": ["wiki-tempoross", "wiki-tempoross-reward-pool-current"],
+      "confidence": "high"
+    },
+    {
+      "id": "fishing-trawler-session-and-diary-state",
+      "name": "Fishing Trawler session, contribution, and diary state",
+      "category": "minigame",
+      "status": "verified",
+      "verified_at": "2026-08-22",
+      "static_requirements": {"Fishing_for_fish_rewards": 15},
+      "live_state": "The current contribution meter is non-depleting from 0 to 255. A value of at least 50 is required for reward eligibility; contribution, team, leaks, net state, water, trip success, and sinking remain observations.",
+      "diary_boundary": "Starting a trip and the Port Khazard manta sequence are exact Ardougne task events. A trip, catch, cook, or reward does not infer task completion or a diary claim.",
+      "canonical_references": ["ardougne-diary-task-facts", "fishing-trawler-current-mechanics"],
+      "source_ids": ["wiki-fishing-trawler", "wiki-ardougne-diary"],
+      "confidence": "high"
+    },
+    {
+      "id": "pest-control-team-activity-and-diary-state",
+      "name": "Pest Control team, activity, and diary state",
+      "category": "minigame",
+      "status": "verified",
+      "verified_at": "2026-08-22",
+      "static_requirements": {"novice_combat": 40, "intermediate_combat": 70, "veteran_combat": 100},
+      "live_state": "Boat population, team availability, portals, Void Knight state, participation eligibility, victory, and commendation points are player observations. The internal activity-meter formula is not public enough to simulate.",
+      "failure_and_death": "Pest Control is safe combat. Death, game loss, inactivity, or leaving can prevent credit but does not establish a normal grave or item-reclaim transition.",
+      "diary_boundary": "Western Provinces diary credit and Elite Void upgrades require their exact confirmed conditions. Participation, points, equipment, or a win alone does not infer diary credit.",
+      "canonical_references": ["minigame-pest-control-static-access-and-shop", "diary-western-provinces-hard-elite-utility"],
+      "source_ids": ["wiki-pest-control", "wiki-void-reward-options-current", "wiki-elite-void"],
+      "confidence": "high"
+    },
+    {
+      "id": "nightmare-zone-safe-session-and-imbue-origin-state",
+      "name": "Nightmare Zone safe session and imbue-origin state",
+      "category": "minigame",
+      "status": "verified",
+      "verified_at": "2026-08-22",
+      "static_requirements": {"minimum_eligible_completed_quests": 5},
+      "live_state": "Dream mode, selected bosses, coffer cost, party, combat result, points, stored potion doses, and current Hard Combat Achievement discount state are observations. No boss roster or point rate is selected from account levels alone.",
+      "failure_and_death": "Nightmare Zone is safe combat; an observed defeat or exit ends the dream without creating a normal grave or item-reclaim transition.",
+      "diary_boundary": "Ardougne Elite accepts the Salve task only with confirmed Nightmare Zone imbue provenance. Ownership of another Salve imbue variant does not establish that origin.",
+      "canonical_references": ["minigame-nightmare-zone-static-access-and-shop", "ardougne-diary-task-facts"],
+      "source_ids": ["wiki-nightmare-zone", "wiki-nightmare-zone-upgrades-current", "wiki-salve-amulet-i-current", "wiki-ardougne-diary"],
+      "confidence": "high"
+    }
+  ]
+}

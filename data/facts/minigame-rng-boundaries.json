@@ -1,0 +1,86 @@
+{
+  "integration_wave": "W4-remaining-location-specific-facts",
+  "scope": "Verified random-reward and provenance boundaries. Rates and tables make outcomes obtainable; they never grant ownership, collection-log state, balances, XP, or expected completion time.",
+  "records": [
+    {
+      "id": "pyramid-plunder-sceptre-rng-boundary",
+      "name": "Pharaoh's sceptre random acquisition and charge capacity",
+      "category": "reward",
+      "status": "verified",
+      "verified_at": "2026-08-22",
+      "acquisition": "rng",
+      "room_rates": {"1": "1/4200", "2": "1/2800", "3": "1/1600", "4": "1/950", "5": "1/800", "6": "1/750", "7": "1/650", "8": "1/650"},
+      "roll_sources": ["Grand Gold Chest", "sarcophagus"],
+      "protection": "No pity, duplicate protection, or deterministic purchase path is documented. Since the August 2023 change, a failed chest or sarcophagus opening can still roll the sceptre.",
+      "charge_capacities": {"none": 3, "easy": 10, "medium": 25, "hard": 50, "elite": 100},
+      "boundary": "Room eligibility and an attempt create only makes_obtainable semantics. Ownership, current charges, capacity, recharge materials, teleport use, and collection-log state are separately observed.",
+      "source_ids": ["wiki-pyramid-plunder-current", "wiki-pharaohs-sceptre"],
+      "confidence": "high"
+    },
+    {
+      "id": "rogues-den-equipment-rng-boundary",
+      "name": "Rogues' Den equipment reward boundary",
+      "category": "reward",
+      "status": "verified",
+      "verified_at": "2026-08-22",
+      "acquisition": "rng",
+      "protection": "The current equipment-crate path selects from missing Rogue equipment pieces, preventing a completed-set duplicate from being treated as progress toward another missing piece.",
+      "rate_boundary": "Available current sources conflict on the exact end-safe reward rate. No exact rate, expected run count, or time estimate is encoded.",
+      "utility": "A complete worn Rogue set doubles most successful pickpocket and stall loot where the target method supports the outfit. Ownership and worn state remain observations.",
+      "source_ids": ["wiki-rogues-den-current", "wiki-rogue-equipment-current", "wiki-rogues-equipment-crate-current", "official-inferno-rogue-crate-2017"],
+      "confidence": "medium"
+    },
+    {
+      "id": "shades-of-mortton-key-and-chest-rng-boundary",
+      "name": "Shades of Mort'ton key and chest reward boundary",
+      "category": "reward",
+      "status": "verified",
+      "verified_at": "2026-08-22",
+      "acquisition": "mixed",
+      "boundary": "Confirmed remains, pyre logs, sacred oil, cremation, key colour, door access, and chest opening are distinct states. Shade combat drops, keys, chest loot, fine cloth, amulet of the damned, zealot pieces, and bark recipe scrolls are not guaranteed by access or a cremation plan.",
+      "graph_semantics": "Random shade and chest outcomes use makes_obtainable. Deterministic oil or cremation conversions may use produces only after exact confirmed inputs and interaction.",
+      "source_ids": ["wiki-shades-minigame-current", "wiki-shade-catacombs-current", "official-shades-rework-2021"],
+      "confidence": "high"
+    },
+    {
+      "id": "tempoross-reward-pool-rng-boundary",
+      "name": "Tempoross Reward pool random outcomes",
+      "category": "reward",
+      "status": "verified",
+      "verified_at": "2026-08-22",
+      "acquisition": "rng",
+      "selected_unique_rates": {"fish_barrel": "1/400", "tackle_box": "1/400", "tome_of_water": "1/1600", "dragon_harpoon": "1/8000"},
+      "duplicate_behavior": "A duplicate Fish Barrel or Tackle Box unique slot is replaced by 25 soaked pages rather than granting another copy.",
+      "boundary": "Each observed permit search is an independent random result. Stored permits, Fishing level at search, loot, pages, flakes, unique ownership, and collection-log entries are observations; no pity path is documented for the selected uniques.",
+      "canonical_references": ["utility-tempoross-fish-barrel", "utility-tempoross-reward-permits"],
+      "source_ids": ["wiki-tempoross-reward-pool-current", "wiki-fish-barrel", "wiki-tackle-box-current"],
+      "confidence": "high"
+    },
+    {
+      "id": "fishing-trawler-reward-rng-boundary",
+      "name": "Fishing Trawler reward and Angler outfit boundary",
+      "category": "reward",
+      "status": "verified",
+      "verified_at": "2026-08-22",
+      "acquisition": "rng",
+      "angler_missing_piece_rate": "1/12 per eligible successful trip",
+      "protection": "The Angler roll selects a missing outfit piece. A complete set therefore does not create another missing-piece progression path.",
+      "boundary": "Trip success and at least 50 observed contribution establish eligibility only. Fish quantity, junk, gloves, Angler piece, Heron, diary event, and collection-log result remain observed.",
+      "source_ids": ["wiki-fishing-trawler", "wiki-anglers-outfit-current"],
+      "confidence": "high"
+    },
+    {
+      "id": "nightmare-zone-reward-and-imbue-boundary",
+      "name": "Nightmare Zone reward and imbue provenance boundary",
+      "category": "reward",
+      "status": "verified",
+      "verified_at": "2026-08-22",
+      "acquisition": "mixed",
+      "deterministic_boundary": "A listed shop purchase or imbue is deterministic only after an observed point balance, selected exact item, eligible base item, current discount state, and confirmed transaction.",
+      "random_or_container_boundary": "Any container contents or combat-derived point production remain observed outcomes. The model does not derive points, herbs, supplies, or XP from dream settings.",
+      "provenance_boundary": "The Ardougne Elite Salve task requires a confirmed Nightmare Zone origin; an imbued Salve observed without origin is insufficient.",
+      "source_ids": ["wiki-nightmare-zone", "wiki-nightmare-zone-upgrades-current", "wiki-salve-amulet-i-current"],
+      "confidence": "high"
+    }
+  ]
+}
