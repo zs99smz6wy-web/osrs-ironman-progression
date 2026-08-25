@@ -49,7 +49,8 @@
 - Completed: added the partial-quest research contract and first Lumbridge-area dossiers/packages for Rune Mysteries, X Marks the Spot, and The Restless Ghost, preserving exact requirements, items, stable handoffs, hazards, completion, and RuneLite observation limits.
 - Completed: reconstructed the proven B0aty and BRUHsailer fresh-account openings through their first Varrock work, including bank cycles, item collection, shops, GP, mobile skilling, diary actions, transport, safety, partial quests, and deferred rewards. The earlier direct Lumbridge-to-Varrock candidate is an execution prototype, not an opening-guide candidate.
 - Completed: built and reviewed the bounded opening quest, supply/economy, travel/safety, diary, and reward-timing ledger identified in `research/opening-guides/fresh-start-comparison.md`; corrected the Children of the Sun/Quetzal unlock conflict during integration.
-- Pending: normalize the selected shared-core Varrock partial states and inventory/bank relay contract, then compare bounded B0aty-style and BRUHsailer-style opening bundles. Explain every material deviation before composing the first guide episode.
+- Completed: defined shared content-window states and synthesized quest/XP, utility-minigame, PvM/gear, passive/AFK, and economic timing into a milestone lattice. Proven guides are execution baselines rather than the route's boundaries.
+- Pending: define the minimum state-aware window evaluator and compare a small set of post-Tutorial opening bundles. Normalize exact inventory, banking, shops, and additional partial states only for the selected decision horizon; explain every material deviation before composing the first guide episode.
 
 ## Continuing validation queue
 
