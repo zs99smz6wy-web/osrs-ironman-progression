@@ -141,6 +141,7 @@ class EvaluateContentWindowsTests(unittest.TestCase):
         self.assertEqual("ideal_candidate", classifications["window:sailing-entry"])
         self.assertEqual("ready_candidate", classifications["window:restless-ghost"])
         self.assertEqual("accessible_not_ready", classifications["window:x-marks-the-spot"])
+        self.assertEqual("accessible_not_ready", classifications["window:daddys-home"])
         self.assertEqual("accessible_not_ready", classifications["window:poh-foundation"])
         self.assertEqual("blocked", classifications["window:chronicle"])
 

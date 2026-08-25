@@ -367,6 +367,32 @@ class ApplyActionTests(unittest.TestCase):
         self.assertEqual(300, result["next_state"]["skill_xp"]["Sailing"])
         self.assertEqual([], result["reported_effects"])
 
+    def test_daddys_home_surfaces_material_gate_and_applies_fresh_account_rewards(self) -> None:
+        blocked = apply_action(self.actions_document, self.state, "action:daddys-home")
+        self.assertEqual("not_eligible", blocked["status"])
+
+        self.state["items"].update(
+            {"plank": 10, "bolt_of_cloth": 5, "nails": 20, "hammer": 1, "saw": 1}
+        )
+        result = apply_action(self.actions_document, self.state, "action:daddys-home")
+        state = result["next_state"]
+
+        self.assertEqual("applied", result["status"])
+        self.assertIn("daddys_home_completed", state["milestones"])
+        self.assertIn("poh_owned", state["milestones"])
+        self.assertEqual(944, state["skill_xp"]["Construction"])
+        self.assertEqual(25, state["items"]["plank"])
+        self.assertEqual(8, state["items"]["bolt_of_cloth"])
+        self.assertEqual(4, state["items"]["nails"])
+        self.assertEqual(50, state["items"]["mithril_nails"])
+        self.assertEqual(5, state["items"]["steel_bar"])
+        self.assertEqual(10, state["items"]["oak_plank"])
+        self.assertEqual(5, state["items"]["teleport_to_house"])
+        self.assertEqual(1, state["items"]["falador_teleport"])
+        self.assertEqual(1, state["items"]["hammer"])
+        self.assertEqual(1, state["items"]["saw"])
+        self.assertEqual(2, len(result["reported_effects"]))
+
     def test_skiff_spends_its_verified_purchase_cost(self) -> None:
         self.state["quests_completed"].append("Pandemonium")
         self.state["resources"]["coins"] = 15000

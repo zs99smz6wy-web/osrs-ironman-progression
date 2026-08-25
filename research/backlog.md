@@ -53,7 +53,8 @@
 - Completed: compared lean shared-foundation, cash/transport, broad regional, and state-triggered hybrid opening shapes against one post-Tutorial-to-Varrock resume horizon. The candidates are objective-derived and retain proven-guide execution evidence without treating either guide as the route boundary.
 - Completed: encoded the default guide objective profile, bounded content-window catalog, planned-attention decision context, and state-aware evaluator. The first active fresh-account pass separates ideal, ready, preparation-blocked, and factually blocked objectives without selecting a route.
 - Completed: derived a provisional opening baseline and explicit cash, transport, regional, and quest-completion branches from the default profile. Natural History Quiz, Children of the Sun, and Pandemonium are ideal timing candidates; X Marks and POH remain preparation-bound; Restless Ghost completion is useful but not urgent.
-- Pending: normalize Daddy's Home and the selected durable Varrock handoffs, add the Port Sarim/Pandemonium handoff, and declare baseline cash deadlines. Then build exact inventory, banking, shops, and step ordering only for the selected episode and accepted branches.
+- Completed: normalized Daddy's Home, selected only the Rune Mysteries Aubury handoff plus Daddy's Home completion for first Varrock, bounded the Port Sarim/Pandemonium addition, and declared purchase deadlines without selecting speculative cash work.
+- Pending: build exact inventory, banking, shops, and concise step ordering for one selected bank-to-bank opening episode. Keep later branches at dependency resolution until their timing trigger is active.
 
 ## Continuing validation queue
 

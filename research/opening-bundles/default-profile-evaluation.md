@@ -17,7 +17,8 @@
 | Children of the Sun | Eligible | `ideal_candidate` | Shared first-Varrock candidate. Stop at Varlamore access; do not infer the internal Quetzal network. |
 | Pandemonium | Eligible | `ideal_candidate` | Strong Port Sarim candidate because the profile values current content access and variety. It remains separate from later Sailing training or Skiff funding. |
 | The Restless Ghost completion | Eligible | `ready_candidate` | Useful, but not urgent in this horizon. Both proven openings support preserving the partial state until a later return or Morytania dependency. |
-| Player-owned house foundation | Missing 1,000 coins or Daddy's Home completion | `accessible_not_ready` | Strong permanent-convenience candidate, but the preferred Daddy's Home path still lacks a normalized completion action. |
+| Daddy's Home | Missing 10 planks, 5 bolts of cloth, at least 16 nails, hammer, and saw | `accessible_not_ready` | Preferred first-Varrock POH path; fixed rewards and the variable-nail boundary are normalized. |
+| Player-owned house foundation | Missing 1,000 coins or Daddy's Home completion | `accessible_not_ready` | Direct purchase remains the explicit bypass; Daddy's Home completion now establishes ownership itself. |
 | Chronicle | Missing 300 coins | `blocked` | Conditional transport purchase. It must compete with other early cash deadlines and card costs. |
 | Tree Gnome Village | Eligible | `accessible_not_ready` | No declared opening purpose. Defer until its combat XP, spirit-tree access, or regional bundle has current value. |
 
@@ -33,7 +34,7 @@ The evidence currently supports these baseline components for the selected decis
 - Natural History Quiz;
 - Children of the Sun;
 - Pandemonium when the selected bundle reaches Port Sarim;
-- Daddy's Home start and likely completion, pending production normalization and exact episode evidence;
+- Daddy's Home completion when its material relay is ready, pending exact episode evidence;
 - a stable first-Varrock-follow-up bank checkpoint.
 
 This is not guide prose or final ordering.
@@ -53,10 +54,16 @@ This is not guide prose or final ordering.
 
 Exact banking, shop stock, temporary drops, inventory slots, and step ordering now need research only for the provisional baseline and any branch whose trigger is accepted. The full B0aty and BRUHsailer inventories do not need to be reconstructed first.
 
-## Remaining decision gaps
+## Next episode gap
 
-- Normalize Daddy's Home completion and its material/coin transition.
-- Add a bounded Pandemonium/Port Sarim execution handoff to the opening evidence.
-- Confirm which Varrock quest starts are durable enough to promote as partial state.
-- Define the baseline cash deadlines before deciding Chronicle or Stronghold.
-- Build exact inventory and bank relays only after those choices are fixed.
+The route-level choices for this horizon are bounded. The remaining work is
+execution resolution for one selected bank-to-bank episode:
+
+- exact inventory and bank relay;
+- selected local/free material sources and shop interactions;
+- concise step ordering and stable resume state;
+- live confirmation of Pandemonium's temporary items and end location;
+- live confirmation of Daddy's Home nail usage and material handoff.
+
+Chronicle, Stronghold cash, broad regional travel, and later Sailing remain
+triggered branches rather than episode assumptions.

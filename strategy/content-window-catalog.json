@@ -80,6 +80,17 @@
       "reentry_condition": "Re-enter the region for a separately named dependency or activity."
     },
     {
+      "window_id": "window:daddys-home",
+      "action_id": "action:daddys-home",
+      "domain": "opening_miniquest_utility",
+      "priority_tags": ["quest_xp_thresholds", "permanent_utility", "economic_deadlines", "timely_content_access"],
+      "purpose_ids": ["poh_foundation", "construction_access", "opening_supply_crate"],
+      "ideal_trigger_ids": ["first_varrock_followup", "construction_level_one", "named_poh_use"],
+      "attention_modes": ["active"],
+      "stop_condition": "Stop after Daddy's Home completion, fixed Construction XP, crate rewards, and POH ownership are confirmed.",
+      "reentry_condition": "Do not re-enter this one-time miniquest after completion."
+    },
+    {
       "window_id": "window:poh-foundation",
       "action_id": "action:establish-player-owned-house",
       "domain": "permanent_convenience",

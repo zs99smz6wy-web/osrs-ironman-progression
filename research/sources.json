@@ -1362,6 +1362,22 @@
       "use": "Initial 1,000-coin house purchase and Daddy's Home alternative"
     },
     {
+      "id": "wiki-daddys-home",
+      "publisher": "Old School RuneScape Wiki",
+      "url": "https://oldschool.runescape.wiki/w/Daddy%27s_Home",
+      "kind": "wiki",
+      "checked_at": "2026-08-25",
+      "use": "Daddy's Home requirements, materials, rewards, and first-house branch"
+    },
+    {
+      "id": "wiki-construction-training",
+      "publisher": "Old School RuneScape Wiki",
+      "url": "https://oldschool.runescape.wiki/w/Construction_training",
+      "kind": "community_guide",
+      "checked_at": "2026-08-25",
+      "use": "Daddy's Home furniture XP and low-level nail preparation context"
+    },
+    {
       "id": "wiki-sawmill",
       "publisher": "Old School RuneScape Wiki",
       "url": "https://oldschool.runescape.wiki/w/Sawmill",

@@ -1,0 +1,47 @@
+{
+  "records": [
+    {
+      "id": "daddys-home",
+      "name": "Daddy's Home",
+      "category": "quest",
+      "status": "verified",
+      "verified_at": "2026-08-25",
+      "scope": "Factual miniquest gates, fixed consumables, rewards, and POH ownership effect. It does not prescribe opening-route timing.",
+      "requirements": {
+        "skills": {},
+        "quests": [],
+        "combat": null,
+        "items": {
+          "plank": 10,
+          "bolt_of_cloth": 5,
+          "nails": 16,
+          "hammer": 1,
+          "saw": 1
+        },
+        "notes": "Any nail type works. Sixteen successful nails are required, but nails can bend; bringing additional nails is necessary at low Construction. The three waxwood logs and their free conversion are obtained during the miniquest."
+      },
+      "economic_gate": {
+        "bolt_of_cloth_shop_cost_each": 650,
+        "five_bolts_shop_cost": 3250,
+        "classification": "Acquisition cost only when the five bolts are bought from the sawmill; already-owned bolts satisfy the gate."
+      },
+      "rewards": {
+        "Construction_xp": 944,
+        "first_house_branch": "A Rimmington player-owned house when the account does not already own a house.",
+        "existing_house_branch": {"coins": 1000},
+        "marlos_crate": {
+          "plank": 25,
+          "mithril_nails": 50,
+          "steel_bar": 5,
+          "oak_plank": 10,
+          "bolt_of_cloth": 8,
+          "teleport_to_house": 5,
+          "falador_teleport": 1
+        }
+      },
+      "model_boundary": "The normalized fresh-account action consumes the 16 successful nails and reports additional bent nails as variable. It establishes POH ownership. The mutually exclusive 1,000-coin reward for an account that already owned a house is reported rather than automatically applied because the account predicate language has no negative pre-completion ownership test.",
+      "source_ids": ["wiki-daddys-home", "wiki-construction-training", "official-mahogany-homes-launch"],
+      "confidence": "high"
+    }
+  ]
+}

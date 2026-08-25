@@ -2632,6 +2632,19 @@
       "transition": {"effects": [{"op": "ensure_min", "state": "items", "key": "ash_sanctifier", "value": 1, "fact_id": "diary-kourend-kebos-hard-task-utility-branches"}], "options": [], "reported_effects": [{"type": "recorded_progress", "description": "The claim supplies the item only. Death-rune charging, random combat drops, automatic scattering, and fractional Prayer XP are not fabricated by this transition.", "fact_id": "diary-kourend-kebos-hard-task-utility-branches"}]}
     },
     {
+      "id": "action:daddys-home",
+      "name": "Complete Daddy's Home",
+      "kind": "unlock",
+      "status": "verified",
+      "fact_ids": ["daddys-home"],
+      "requirements": {"all": []},
+      "preparation": {"all": [{"type": "item_at_least", "key": "plank", "value": 10}, {"type": "item_at_least", "key": "bolt_of_cloth", "value": 5}, {"type": "item_at_least", "key": "nails", "value": 16}, {"type": "item_at_least", "key": "hammer", "value": 1}, {"type": "item_at_least", "key": "saw", "value": 1}]},
+      "completion": {"all": [{"type": "milestone", "key": "daddys_home_completed"}]},
+      "outcomes": [{"type": "milestone", "key": "daddys_home_completed"}, {"type": "milestone", "key": "poh_owned"}],
+      "repeatable": false,
+      "transition": {"effects": [{"op": "delta", "state": "items", "key": "plank", "amount": -10, "fact_id": "daddys-home"}, {"op": "delta", "state": "items", "key": "bolt_of_cloth", "amount": -5, "fact_id": "daddys-home"}, {"op": "delta", "state": "items", "key": "nails", "amount": -16, "fact_id": "daddys-home"}, {"op": "delta", "state": "items", "key": "plank", "amount": 25, "fact_id": "daddys-home"}, {"op": "delta", "state": "items", "key": "mithril_nails", "amount": 50, "fact_id": "daddys-home"}, {"op": "delta", "state": "items", "key": "steel_bar", "amount": 5, "fact_id": "daddys-home"}, {"op": "delta", "state": "items", "key": "oak_plank", "amount": 10, "fact_id": "daddys-home"}, {"op": "delta", "state": "items", "key": "bolt_of_cloth", "amount": 8, "fact_id": "daddys-home"}, {"op": "delta", "state": "items", "key": "teleport_to_house", "amount": 5, "fact_id": "daddys-home"}, {"op": "delta", "state": "items", "key": "falador_teleport", "amount": 1, "fact_id": "daddys-home"}, {"op": "set_add", "state": "milestones", "key": "daddys_home_completed", "fact_id": "daddys-home"}, {"op": "set_add", "state": "milestones", "key": "poh_owned", "fact_id": "daddys-home"}, {"op": "gain_xp", "state": "skill_xp", "key": "Construction", "amount": 944, "fact_id": "daddys-home"}], "options": [], "reported_effects": [{"type": "variable_activity_output", "description": "Bent nails can consume more than the 16 successful nails represented by this transition; use observed inventory for exact post-miniquest nail count.", "fact_id": "daddys-home"}, {"type": "claimable_reward", "description": "An account that already owned a house receives 1,000 coins instead of first-house ownership; this mutually exclusive branch is not applied to the fresh-account transition.", "fact_id": "daddys-home"}]}
+    },
+    {
       "id": "action:establish-player-owned-house",
       "name": "Establish a player-owned house",
       "kind": "unlock",

@@ -40,7 +40,7 @@ The project bears the burden of explaining a deviation from shared behavior. A g
 | Defer Rune Mysteries and Restless Ghost completion. | Unlock timing and geography matter more than finishing every started quest. | Rune handoffs are candidates for milestones; Restless Ghost remains execution-only. |
 | Complete X Marks early but delay its lamp use. | Quest completion and reward allocation are distinct decisions. | Package preserves this boundary; no lamp target is selected. |
 | Use first Varrock work to start many future dependencies. | Varrock is a dependency-collection bundle. | Most starts and handoffs are not represented as partial state. |
-| Finish Daddy's Home soon after its Varrock start. | Free initial-house path has early account value. | POH alternative is modeled; the quest's opening execution facts are not yet packaged. |
+| Finish Daddy's Home soon after its Varrock start. | Free initial-house path has early account value. | Materials, rewards, variable nails, and the fresh-account transition are normalized; exact opening inventory relay remains episode-level. |
 
 ## Same objective, different timing
 

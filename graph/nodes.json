@@ -503,6 +503,8 @@
     {"id": "item:ash-sanctifier", "kind": "item", "label": "Ash sanctifier"},
     {"id": "item:death-rune", "kind": "item", "label": "Death rune"},
     {"id": "capability:ash-sanctifier-passive-prayer", "kind": "capability", "label": "Charged Ash sanctifier: automatic demonic-ash scattering for half normal Prayer XP"},
+    {"id": "activity:daddys-home", "kind": "activity", "label": "Complete Daddy's Home"},
+    {"id": "milestone:daddys-home-completed", "kind": "milestone", "label": "Daddy's Home complete"},
     {"id": "activity:establish-player-owned-house", "kind": "activity", "label": "Establish a player-owned house"},
     {"id": "activity:relocate-player-owned-house", "kind": "activity", "label": "Relocate a player-owned house"},
     {"id": "state:poh-owned", "kind": "account_flag", "label": "Player-owned house owned"},
