@@ -47,7 +47,8 @@
 - Completed: compared current BRUHsailer and B0aty HCIM guide structure as community strategy evidence, preserving their useful episode, checkpoint, alternative, safety, and passive-trigger patterns without importing universal route assumptions.
 - Completed: added a research-only execution-segment contract and bounded Varrock Museum proof that separates sourced local instructions, normalized completion actions, and unresolved Rune Mysteries partial state.
 - Completed: added the partial-quest research contract and first Lumbridge-area dossiers/packages for Rune Mysteries, X Marks the Spot, and The Restless Ghost, preserving exact requirements, items, stable handoffs, hazards, completion, and RuneLite observation limits.
-- Pending: review which of those checkpoints are strategically useful enough to promote into durable milestones, then compose the first Lumbridge-to-Varrock execution episode. Do not attempt exhaustive quest-step normalization before the pilot demonstrates a decision need.
+- Completed: reconstructed the proven B0aty and BRUHsailer fresh-account openings through their first Varrock work, including bank cycles, item collection, shops, GP, mobile skilling, diary actions, transport, safety, partial quests, and deferred rewards. The earlier direct Lumbridge-to-Varrock candidate is an execution prototype, not an opening-guide candidate.
+- Pending: build the bounded opening supply, bank, travel, diary, reward, and selected partial-quest ledger identified in `research/opening-guides/fresh-start-comparison.md`. Treat both iterated routes as strong empirical baselines and explain every material deviation before composing the first guide episode.
 
 ## Continuing validation queue
 

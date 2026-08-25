@@ -1,6 +1,6 @@
 # Community Baselines
 
-Community guides are strategy sources. They do not establish mechanics, requirements, drop rates, or current costs without a primary or structured factual source.
+Community guides are strategy sources. Established routes such as BRUHsailer and B0aty are also field-tested implementations that players have followed and their authors have iterated when steps fail or create friction. That gives their sequencing strong empirical weight. They do not establish mechanics, requirements, drop rates, or current costs without a primary or structured factual source, and deviations still need explicit justification against their different goals and assumptions.
 
 ## BRUHsailer
 
