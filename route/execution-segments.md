@@ -2,6 +2,8 @@
 
 Execution segments are short, sourced itinerary fragments below the canonical normalized action layer. They preserve practical checkpoints such as where an interaction occurs, whether a bank interaction is required, exact carried and banked requirements, optional alternatives, and explicit player observations.
 
+Rendered instructions follow [Guide Writing Style](guide-writing-style.md): imperative first, one action per step, usually 3-12 words. Detailed rationale and source boundaries stay outside the main instruction.
+
 They are research artifacts, not route output. A segment cannot select itself, apply a normalized action, acquire an item or GP, declare a result, estimate time without a cited range, or treat a player plan as completion.
 
 Each segment also has a purpose section. It can explain the bounded utility of the fragment and the currently observed account facts that make it relevant to inspect. Its applicability and timing observation are explicitly not route selection, ranking, or an instruction to leave the player's present activity.

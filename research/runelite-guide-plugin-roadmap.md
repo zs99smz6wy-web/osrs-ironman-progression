@@ -12,6 +12,8 @@ The research pipeline generates a versioned guide JSON artifact from factual rec
 - progress persisted locally by guide ID and account identity, with an export/import or reset path;
 - links back to the cited Wiki, official source, or community guide and, where licensed and available, the relevant episode/video.
 
+The current-step instruction must follow the repository's concise [guide writing style](../route/guide-writing-style.md). Keep rationale, sources, and caveats available without placing them in the action sentence.
+
 The first inspectable artifact should be an HTML preview of the existing [post-Tutorial Varrock Museum proof segment](execution-segments/post-tutorial-varrock-museum-proof.json). It should render the same coarse steps and boundaries without pretending to be a final route. Generated JSON remains the portable source for the preview, local client, tests, and eventual Plugin Hub build.
 
 ## State and progress
