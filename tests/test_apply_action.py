@@ -79,6 +79,16 @@ class ApplyActionTests(unittest.TestCase):
         self.assertEqual(30, result["next_state"]["skills"]["Strength"])
         self.assertEqual([], result["reported_effects"])
 
+    def test_children_of_the_sun_grants_access_not_internal_quetzal_network(self) -> None:
+        result = apply_action(
+            self.actions_document, self.state, "action:children-of-the-sun"
+        )
+
+        self.assertEqual("applied", result["status"])
+        self.assertIn("Children of the Sun", result["next_state"]["quests_completed"])
+        self.assertIn("varlamore", result["next_state"]["transport_flags"])
+        self.assertNotIn("quetzal_transport", result["next_state"]["transport_flags"])
+
     def test_current_bone_voyage_transition_consumes_verified_items(self) -> None:
         state = load_json(REPOSITORY_ROOT / "tests" / "fixtures" / "fossil-island-ready.json")
 

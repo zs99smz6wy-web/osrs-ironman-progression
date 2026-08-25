@@ -63,11 +63,10 @@
       "completion": {"all": [{"type": "quest_completed", "key": "Children of the Sun"}]},
       "outcomes": [
         {"type": "quest_completed", "key": "Children of the Sun"},
-        {"type": "transport_flag", "key": "varlamore"},
-        {"type": "transport_flag", "key": "quetzal_transport"}
+        {"type": "transport_flag", "key": "varlamore"}
       ],
       "repeatable": false,
-      "transition": {"effects": [{"op": "set_add", "state": "quests_completed", "key": "Children of the Sun", "fact_id": "children-of-the-sun"}, {"op": "set_add", "state": "transport_flags", "key": "varlamore", "fact_id": "children-of-the-sun"}, {"op": "set_add", "state": "transport_flags", "key": "quetzal_transport", "fact_id": "children-of-the-sun"}], "options": [], "reported_effects": []}
+      "transition": {"effects": [{"op": "set_add", "state": "quests_completed", "key": "Children of the Sun", "fact_id": "children-of-the-sun"}, {"op": "set_add", "state": "transport_flags", "key": "varlamore", "fact_id": "children-of-the-sun"}], "options": [], "reported_effects": []}
     },
     {
       "id": "action:the-restless-ghost",

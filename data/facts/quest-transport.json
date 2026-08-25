@@ -37,9 +37,10 @@
       "name": "Children of the Sun",
       "category": "quest",
       "status": "verified",
-      "verified_at": "2026-08-20",
+      "verified_at": "2026-08-25",
       "requirements": {"skill_requirements": "None", "items_required": "None", "enemies": "None"},
-      "rewards": {"transport": ["Varlamore access", "Quetzal Transport System", "Varlamore fairy rings"]},
+      "rewards": {"transport": ["Varlamore access"]},
+      "notes": "This record does not grant the internal Quetzal Transport System. Twilight's Promise is the separate system unlock.",
       "source_ids": ["wiki-children-sun"],
       "confidence": "high"
     },

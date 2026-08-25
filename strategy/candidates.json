@@ -34,7 +34,7 @@
     {
       "action_id": "action:children-of-the-sun",
       "dimensions": {"lifetime_utility": 3, "content_unlock": 3, "economic_infrastructure": 1, "multi_output": 2, "diversity": 3, "afk_fit": 0, "detour_cost": 1, "burnout_risk": 0, "danger_risk": 0},
-      "stop_condition": "Stop after Varlamore and quetzal transport are unlocked.",
+      "stop_condition": "Stop after Varlamore access is unlocked.",
       "reentry_condition": "Do not re-enter; use the resulting access when Varlamore activities become eligible."
     },
     {
