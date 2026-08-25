@@ -1,0 +1,27 @@
+{
+  "attention_mode": "active",
+  "declared_purpose_ids": [
+    "opening_quest_foundation",
+    "x_marks_reward",
+    "morytania_quest_chain",
+    "hunter_slayer_xp",
+    "museum_kudos",
+    "fossil_island_path",
+    "early_transport",
+    "varlamore_access",
+    "first_varrock_dependencies",
+    "poh_foundation",
+    "construction_access",
+    "sailing_access",
+    "experience_sailing_content"
+  ],
+  "ideal_trigger_ids": [
+    "lumbridge_draynor_port_sarim_bundle",
+    "first_varrock_museum_bundle",
+    "first_varrock_bundle",
+    "first_varrock_followup",
+    "port_sarim_bundle"
+  ],
+  "prior_stop_window_ids": [],
+  "reentry_trigger_ids": []
+}

@@ -1,0 +1,125 @@
+{
+  "schema_version": 1,
+  "id": "default-new-ironman-guide",
+  "scope": "Strategy-only defaults for evaluating a new Ironman account. This profile does not establish factual eligibility, select route steps, or apply account changes.",
+  "weight_scale": {
+    "min": 0,
+    "max": 4,
+    "meaning": "Higher values indicate stronger default preference or greater acceptable cost when the named condition is met."
+  },
+  "universal_defaults": {
+    "priority_weights": {
+      "permanent_utility": 4,
+      "timely_content_access": 4,
+      "content_readiness": 4,
+      "content_diversity": 4,
+      "quest_xp_thresholds": 4,
+      "transport_networks": 3,
+      "passive_infrastructure": 3,
+      "economic_deadlines": 3,
+      "collection_log_utility": 2,
+      "route_compression": 1,
+      "unbounded_99_grinds": 0
+    },
+    "cost_tolerances": {
+      "single_output_detour": 1,
+      "multi_output_detour": 3,
+      "unplanned_cash_grind": 0,
+      "deadline_backed_cash_work": 3,
+      "repetition_without_named_target": 0,
+      "bounded_utility_grind": 3,
+      "risk_without_named_benefit": 0,
+      "ready_pvm_with_named_benefit": 3,
+      "attention_mismatch": 0
+    },
+    "quest_xp_policy": {
+      "use_as_timing_tool": true,
+      "require_all_blockers_accounted_for": true,
+      "allow_unallocated_player_choice_xp": true,
+      "treat_as_free_xp": false
+    },
+    "timing_defaults": {
+      "void": {
+        "regular_void_preference": "combat_level_100_or_later",
+        "require_declared_pvm_use": true,
+        "elite_void_policy": "align_with_credible_diary_path_and_declared_pvm_use",
+        "force_regular_void_before_elite_path": false
+      },
+      "mastering_mixology": {
+        "default": "defer_until_value_is_observed",
+        "require_named_durable_target": true,
+        "require_eligible_inputs_observed": true,
+        "require_ordinary_potion_reserve_review": true,
+        "prefer_higher_herblore_and_broader_herb_stock": true,
+        "stop_on_named_target_or_reserve_change": true
+      }
+    },
+    "permanent_utility_priorities": {
+      "rune_pouch": 4,
+      "herb_sack": 4,
+      "seed_box": 3,
+      "auto_weed": 3,
+      "coal_bag": 3,
+      "gem_bag": 3,
+      "mixology_durable_utilities": 3,
+      "fish_barrel": 2
+    },
+    "rng_policy": {
+      "assume_unobserved_rng": false,
+      "require_observed_account_state": true
+    },
+    "lane_expectations": {
+      "active_lane": {
+        "required": true,
+        "requires_named_purpose": true,
+        "requires_stop_and_reentry_conditions": true
+      },
+      "passive_lane": {
+        "required": true,
+        "player_present_only": true,
+        "setup_requires_observed_access_and_inputs": true,
+        "collection_requires_observed_ready_state": true,
+        "requires_stop_and_reentry_conditions": true
+      }
+    },
+    "opening_branch_policy": {
+      "baseline": "lean_shared_foundation",
+      "branching_mode": "state_triggered_hybrid",
+      "require_declared_benefit": true,
+      "require_factual_eligibility": true,
+      "require_stable_bank_resume_state": true,
+      "proven_guides_role": "execution_validation_only"
+    }
+  },
+  "account_observed_triggers": {
+    "useful_rng_drop_or_unlock": {
+      "requires": ["observed_item_or_unlock", "current_replacement_value"],
+      "allowed_effects": ["defer_conventional_path", "remove_conventional_path", "rerank_compatible_content"]
+    },
+    "purchase_deadline": {
+      "requires": ["identified_purchase_or_fee", "observed_shortfall"],
+      "allowed_effects": ["activate_cash_or_supply_branch"]
+    },
+    "repeat_travel_need": {
+      "requires": ["multiple_near_term_destinations_or_trips"],
+      "allowed_effects": ["activate_transport_branch"]
+    },
+    "retained_input_or_supply_pressure": {
+      "requires": ["observed_input_or_inventory_pressure", "named_current_use"],
+      "allowed_effects": ["activate_utility_or_regional_branch"]
+    },
+    "passive_window": {
+      "setup_requires": ["observed_access", "observed_inputs", "player_present_attention_window"],
+      "collection_requires": ["observed_ready_state", "player_present_attention_window"],
+      "allowed_effects": ["establish_passive_loop", "activate_passive_companion"]
+    },
+    "pvm_readiness": {
+      "requires": ["factual_access", "observed_supplies", "observed_mechanics_plan", "named_reward_or_learning_goal", "acceptable_risk_and_attention"],
+      "allowed_effects": ["activate_readiness_based_pvm_window"]
+    },
+    "xp_threshold": {
+      "requires": ["named_threshold", "all_factual_blockers_met"],
+      "allowed_effects": ["activate_fixed_xp_window", "surface_player_choice_xp_decision"]
+    }
+  }
+}

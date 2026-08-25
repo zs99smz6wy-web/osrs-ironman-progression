@@ -11,6 +11,19 @@ Domain files remain strategy research. They may reuse verified repository facts 
 - `pvm-and-gear.md`
 - `passive-afk-and-economy.md`
 - `milestone-skeleton.md` after domain review
+- `evaluator-slice.md`
+
+## Machine-readable slice
+
+`strategy/content-window-catalog.json` maps a bounded set of normalized actions to the default objective profile. `scripts/evaluate_content_windows.py` preserves factual action status while adding purpose, attention, ideal-trigger, stop, and re-entry classifications.
+
+Run the default active opening comparison with:
+
+```text
+python scripts/evaluate_content_windows.py tests/fixtures/fresh-account.json strategy/default-opening-decision-context.json
+```
+
+The output is comparison evidence. It never selects or applies a route.
 
 ## Scope rule
 

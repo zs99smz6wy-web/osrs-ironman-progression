@@ -1,0 +1,237 @@
+{
+  "schema_version": 1,
+  "scope": "Bounded strategy catalog for state-aware timing classification. It does not change factual action requirements or select a route.",
+  "windows": [
+    {
+      "window_id": "window:x-marks-the-spot",
+      "action_id": "action:x-marks-the-spot",
+      "domain": "opening_quest_reward",
+      "priority_tags": ["quest_xp_thresholds", "timely_content_access"],
+      "purpose_ids": ["opening_quest_foundation", "x_marks_reward"],
+      "ideal_trigger_ids": ["lumbridge_draynor_port_sarim_bundle", "named_choice_xp_threshold"],
+      "attention_modes": ["active", "semi_afk"],
+      "stop_condition": "Stop after quest completion and the fixed coin reward; keep choice XP unallocated until explicitly assigned.",
+      "reentry_condition": "Re-enter only to reclaim or allocate the separate choice-XP reward."
+    },
+    {
+      "window_id": "window:restless-ghost",
+      "action_id": "action:the-restless-ghost",
+      "domain": "opening_quest_reward",
+      "priority_tags": ["quest_xp_thresholds", "timely_content_access"],
+      "purpose_ids": ["prayer_xp", "ghostspeak_amulet", "morytania_quest_chain"],
+      "ideal_trigger_ids": ["lumbridge_wizards_tower_bundle", "named_morytania_dependency"],
+      "attention_modes": ["active"],
+      "stop_condition": "Stop after the quest, fixed Prayer XP, and Ghostspeak amulet are confirmed.",
+      "reentry_condition": "Re-enter ghost content only for a separately named quest or utility dependency."
+    },
+    {
+      "window_id": "window:natural-history-quiz",
+      "action_id": "action:natural-history-quiz",
+      "domain": "museum_xp_kudos",
+      "priority_tags": ["quest_xp_thresholds", "timely_content_access", "permanent_utility"],
+      "purpose_ids": ["hunter_slayer_xp", "museum_kudos", "fossil_island_path"],
+      "ideal_trigger_ids": ["first_varrock_museum_bundle", "kudos_100_plan"],
+      "attention_modes": ["active", "semi_afk"],
+      "stop_condition": "Stop after 1,000 Hunter XP, 1,000 Slayer XP, and 28 Kudos are confirmed.",
+      "reentry_condition": "Re-enter the Museum only for a separately named Kudos or quest objective."
+    },
+    {
+      "window_id": "window:chronicle",
+      "action_id": "action:buy-chronicle",
+      "domain": "transport",
+      "priority_tags": ["transport_networks", "permanent_utility"],
+      "purpose_ids": ["early_transport", "repeat_varrock_travel"],
+      "ideal_trigger_ids": ["first_varrock_bundle", "repeated_champions_guild_route"],
+      "attention_modes": ["active", "semi_afk", "low_attention"],
+      "stop_condition": "Stop after Chronicle ownership is confirmed; cards remain a separate consumable decision.",
+      "reentry_condition": "Re-enter for a named card purchase, replacement, or repeated teleport need."
+    },
+    {
+      "window_id": "window:varlamore-entry",
+      "action_id": "action:children-of-the-sun",
+      "domain": "regional_access",
+      "priority_tags": ["timely_content_access", "transport_networks", "content_diversity"],
+      "purpose_ids": ["varlamore_access", "first_varrock_dependencies"],
+      "ideal_trigger_ids": ["first_varrock_bundle", "named_varlamore_activity"],
+      "attention_modes": ["active", "semi_afk"],
+      "stop_condition": "Stop after Varlamore access is confirmed.",
+      "reentry_condition": "Re-enter for a separately named Varlamore quest, activity, or internal transport unlock."
+    },
+    {
+      "window_id": "window:spirit-trees",
+      "action_id": "action:tree-gnome-village",
+      "domain": "quest_transport_xp",
+      "priority_tags": ["transport_networks", "quest_xp_thresholds", "timely_content_access"],
+      "purpose_ids": ["spirit_tree_access", "early_combat_xp"],
+      "ideal_trigger_ids": ["gnome_region_bundle", "combat_xp_threshold"],
+      "attention_modes": ["active"],
+      "stop_condition": "Stop after spirit-tree access and the fixed quest reward are confirmed.",
+      "reentry_condition": "Re-enter the region only for another named quest, transport, or activity objective."
+    },
+    {
+      "window_id": "window:gnome-gliders",
+      "action_id": "action:grand-tree",
+      "domain": "quest_transport_xp",
+      "priority_tags": ["transport_networks", "quest_xp_thresholds", "timely_content_access"],
+      "purpose_ids": ["gnome_glider_access", "quest_xp_threshold"],
+      "ideal_trigger_ids": ["agility_25_reached", "gnome_region_bundle"],
+      "attention_modes": ["active"],
+      "stop_condition": "Stop after gnome-glider access and the fixed quest rewards are confirmed.",
+      "reentry_condition": "Re-enter the region for a separately named dependency or activity."
+    },
+    {
+      "window_id": "window:poh-foundation",
+      "action_id": "action:establish-player-owned-house",
+      "domain": "permanent_convenience",
+      "priority_tags": ["permanent_utility", "economic_deadlines", "timely_content_access"],
+      "purpose_ids": ["poh_foundation", "construction_access"],
+      "ideal_trigger_ids": ["first_varrock_followup", "daddys_home_completed", "named_poh_use"],
+      "attention_modes": ["active", "semi_afk"],
+      "stop_condition": "Stop after player-owned-house ownership is confirmed.",
+      "reentry_condition": "Re-enter for a named room, relocation, furniture, or teleport objective."
+    },
+    {
+      "window_id": "window:sailing-entry",
+      "action_id": "action:pandemonium",
+      "domain": "skill_access",
+      "priority_tags": ["timely_content_access", "content_diversity"],
+      "purpose_ids": ["sailing_access", "experience_sailing_content"],
+      "ideal_trigger_ids": ["port_sarim_bundle", "named_sailing_activity"],
+      "attention_modes": ["active", "semi_afk"],
+      "stop_condition": "Stop after Sailing access and Pandemonium's fixed rewards are confirmed.",
+      "reentry_condition": "Re-enter at a named Sailing activity, destination, or funded Skiff checkpoint."
+    },
+    {
+      "window_id": "window:passive-birdhouses",
+      "action_id": "action:birdhouse-loop",
+      "domain": "passive_infrastructure",
+      "priority_tags": ["passive_infrastructure", "permanent_utility"],
+      "purpose_ids": ["passive_hunter", "bird_nest_supply"],
+      "ideal_trigger_ids": ["fossil_island_bundle", "birdhouse_ready_observed"],
+      "attention_modes": ["active", "semi_afk", "low_attention"],
+      "stop_condition": "Stop after the current observed cycle is collected and reset, or its named supply target is met.",
+      "reentry_condition": "Re-enter when access, inputs, and a ready cycle are explicitly observed."
+    },
+    {
+      "window_id": "window:passive-giant-seaweed",
+      "action_id": "action:giant-seaweed-loop",
+      "domain": "passive_infrastructure",
+      "priority_tags": ["passive_infrastructure", "permanent_utility"],
+      "purpose_ids": ["crafting_supply", "giant_seaweed_supply"],
+      "ideal_trigger_ids": ["fossil_island_bundle", "seaweed_ready_observed", "named_glass_target"],
+      "attention_modes": ["active", "semi_afk", "low_attention"],
+      "stop_condition": "Stop after the current observed harvest/reset or declared seaweed target.",
+      "reentry_condition": "Re-enter when access, spores, tools, and a ready patch are explicitly observed."
+    },
+    {
+      "window_id": "window:seed-box",
+      "action_id": "action:buy-tithe-seed-box",
+      "domain": "durable_utility",
+      "priority_tags": ["permanent_utility", "passive_infrastructure"],
+      "purpose_ids": ["seed_storage"],
+      "ideal_trigger_ids": ["seed_inventory_pressure"],
+      "attention_modes": ["active"],
+      "stop_condition": "Stop after one Seed box purchase is confirmed.",
+      "reentry_condition": "Normally do not re-enter for this completed one-time utility."
+    },
+    {
+      "window_id": "window:herb-sack-tithe",
+      "action_id": "action:buy-tithe-herb-sack",
+      "domain": "durable_utility",
+      "priority_tags": ["permanent_utility", "passive_infrastructure"],
+      "purpose_ids": ["grimy_herb_storage"],
+      "ideal_trigger_ids": ["herb_inventory_pressure", "tithe_currency_preferred"],
+      "attention_modes": ["active"],
+      "stop_condition": "Stop after one Herb sack purchase is confirmed.",
+      "reentry_condition": "Consider the Silklined upgrade only after its separate drop is observed."
+    },
+    {
+      "window_id": "window:coal-bag",
+      "action_id": "action:buy-coal-bag",
+      "domain": "durable_utility",
+      "priority_tags": ["permanent_utility", "economic_deadlines"],
+      "purpose_ids": ["coal_storage", "smithing_pipeline"],
+      "ideal_trigger_ids": ["coal_heavy_smithing_plan", "foundry_pipeline"],
+      "attention_modes": ["active", "semi_afk", "low_attention"],
+      "stop_condition": "Stop after one Coal bag purchase is confirmed.",
+      "reentry_condition": "Re-enter Motherlode Mine only for another named objective."
+    },
+    {
+      "window_id": "window:gem-bag",
+      "action_id": "action:buy-gem-bag",
+      "domain": "durable_utility",
+      "priority_tags": ["permanent_utility"],
+      "purpose_ids": ["gem_storage"],
+      "ideal_trigger_ids": ["gem_inventory_pressure", "named_crafting_pipeline"],
+      "attention_modes": ["active", "semi_afk", "low_attention"],
+      "stop_condition": "Stop after one Gem bag purchase is confirmed.",
+      "reentry_condition": "Re-enter Motherlode Mine only for another named objective."
+    },
+    {
+      "window_id": "window:rune-pouch-mta",
+      "action_id": "action:buy-mta-rune-pouch",
+      "domain": "durable_utility",
+      "priority_tags": ["permanent_utility"],
+      "purpose_ids": ["rune_storage"],
+      "ideal_trigger_ids": ["three_rune_slot_pressure", "mta_path_preferred"],
+      "attention_modes": ["active"],
+      "stop_condition": "Stop after one Rune pouch purchase is confirmed.",
+      "reentry_condition": "Do not re-enter MTA for this objective after the pouch is owned."
+    },
+    {
+      "window_id": "window:tempoross",
+      "action_id": "action:tempoross",
+      "domain": "utility_minigame",
+      "priority_tags": ["content_diversity", "collection_log_utility"],
+      "purpose_ids": ["fishing_training", "food_supply", "fish_barrel_opportunity"],
+      "ideal_trigger_ids": ["named_fishing_target", "raw_fish_pipeline_planned"],
+      "attention_modes": ["active", "semi_afk"],
+      "stop_condition": "Stop at the named Fishing or permit target; stop on an observed Fish Barrel when it is the only target.",
+      "reentry_condition": "Re-enter for a new Fishing, food, permit, or enjoyment objective."
+    },
+    {
+      "window_id": "window:mixology",
+      "action_id": "action:enter-mastering-mixology-session",
+      "domain": "utility_minigame",
+      "priority_tags": ["permanent_utility", "content_readiness"],
+      "purpose_ids": ["mixology_durable_reward", "herblore_training"],
+      "ideal_trigger_ids": ["herblore_81", "eligible_inputs_observed", "potion_reserve_reviewed"],
+      "attention_modes": ["active"],
+      "stop_condition": "Stop on the named reward, input allocation boundary, or reserve-policy change.",
+      "reentry_condition": "Re-enter for a new named reward with fresh input and reserve observations."
+    },
+    {
+      "window_id": "window:barrows",
+      "action_id": "action:barrows",
+      "domain": "pvm",
+      "priority_tags": ["content_readiness", "content_diversity", "collection_log_utility"],
+      "purpose_ids": ["barrows_learning", "barrows_runes", "barrows_equipment"],
+      "ideal_trigger_ids": ["barrows_readiness_observed", "morytania_bundle"],
+      "attention_modes": ["active"],
+      "stop_condition": "Stop at the named learning, rune, equipment, diary, or session boundary.",
+      "reentry_condition": "Re-enter for a new named purpose with a current travel, supply, and recovery plan."
+    },
+    {
+      "window_id": "window:perilous-moons",
+      "action_id": "action:moons-of-peril",
+      "domain": "pvm",
+      "priority_tags": ["content_readiness", "content_diversity", "collection_log_utility"],
+      "purpose_ids": ["moons_learning", "moon_equipment", "moon_resources"],
+      "ideal_trigger_ids": ["moons_readiness_observed", "named_moon_reward"],
+      "attention_modes": ["active"],
+      "stop_condition": "Stop at the named practice, equipment, resource, collection, or session boundary.",
+      "reentry_condition": "Re-enter when a new objective and current combat/recovery observations exist."
+    },
+    {
+      "window_id": "window:corrupted-gauntlet",
+      "action_id": "action:corrupted-gauntlet",
+      "domain": "pvm",
+      "priority_tags": ["content_readiness", "content_diversity", "collection_log_utility"],
+      "purpose_ids": ["cg_learning", "crystal_resources", "cg_equipment"],
+      "ideal_trigger_ids": ["cg_readiness_observed", "high_attention_session"],
+      "attention_modes": ["active"],
+      "stop_condition": "Stop at the declared learning, attention, risk, resource, equipment, or collection boundary.",
+      "reentry_condition": "Re-enter with formal access, a fresh high-attention objective, and current readiness observations."
+    }
+  ]
+}
