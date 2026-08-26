@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "specialists": [
+    {
+      "id": "guide-specialist",
+      "thread_id": "replace-with-local-task-id",
+      "title": "Guide specialist task title",
+      "role": "Full-context B0aty and BRUHsailer source analyst",
+      "capabilities": [
+        "cross-guide comparison",
+        "downstream dependency tracing",
+        "source-route assumption analysis"
+      ],
+      "boundaries": [
+        "does not select the final route",
+        "does not establish current mechanics",
+        "does not replace repository memory"
+      ]
+    }
+  ]
+}
