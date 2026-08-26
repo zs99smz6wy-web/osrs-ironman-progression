@@ -8,7 +8,7 @@
       "B0aty Starting Out through Bank 4",
       "BRUHsailer Steps 1 through 14"
     ],
-    "detailed_actions": 7,
+    "detailed_actions": 16,
     "undecomposed_action_policy": "Every material source action remains protected_pending_trace until it receives its own ledger entry. Absence from the detailed action array is not permission to omit it."
   },
   "source_files": [
@@ -16,7 +16,8 @@
     "research/opening-guides/bruhsailer-fresh-start.md",
     "research/opening-guides/fresh-start-comparison.md",
     "research/opening-guides/source-action-index.md",
-    "research/opening-ledger/supply-economy.md"
+    "research/opening-ledger/supply-economy.md",
+    "coordination/consultations/opening-utility-pickups-tranche-01.md"
   ],
   "actions": [
     {
@@ -105,10 +106,146 @@
       "produced_or_preserved_state": ["Fletching experience", "arrowshaft stock", "travel time converted into progression"],
       "known_downstream_uses": [
         {"use": "BRUHsailer continuous movement skilling through first Varrock work", "trace_status": "named_in_guide_study"},
-        {"use": "B0aty 2,100-arrowshaft block during Daddy's Home material work", "trace_status": "named_in_guide_study"}
+        {"use": "B0aty 2,100-arrowshaft block during Daddy's Home material work", "trace_status": "named_in_guide_study"},
+        {"use": "Guide specialist traces BRUHsailer step-12 conversion of about 1,500 shafts with feathers before the Wintertodt route state", "trace_status": "specialist_trace_unverified_mechanics"}
       ],
       "decision_status": "protected_pending_trace",
       "unresolved": ["Merged arrowshaft target", "Attention cost of continuous Fletching", "Whether a shorter batch preserves later ammunition and level requirements"]
+    },
+    {
+      "id": "opening:starter-tool-purchase",
+      "action": "Acquire the opening spade, chisel, and hammer tool set in Lumbridge.",
+      "provenance": ["b0aty", "bruhsailer"],
+      "guide_locations": ["B0aty opening cycle 0", "BRUHsailer step 2"],
+      "produced_or_preserved_state": ["spade", "chisel", "hammer", "early three-tool utility set"],
+      "known_downstream_uses": [
+        {"use": "Spade is used for X Marks the Spot in both openings", "trace_status": "named_in_guide_study"},
+        {"use": "Guide specialist traces BRUHsailer step-7 spade use for clue-hunter gloves and boots", "trace_status": "specialist_trace_unverified_mechanics"},
+        {"use": "Hammer is carried into B0aty Bank 4 and BRUHsailer step 13-14 Daddy's Home work", "trace_status": "named_in_guide_study"},
+        {"use": "Chisel is acquired as a cheap general-purpose tool; no first-Varrock consumer is named in the opening studies", "trace_status": "unresolved"}
+      ],
+      "decision_status": "protected_pending_trace",
+      "unresolved": ["Whether Daddy's Home-provided hammer can replace the Lumbridge hammer without breaking earlier loadouts", "First named chisel consumer beyond the current opening horizon", "Exact merged stop condition for buying tools after starter sales and pickpocketing"]
+    },
+    {
+      "id": "opening:kitchen-utility-pickups",
+      "action": "Take and fill the opening kitchen utility items: jug, bowl, knife, and water-filled containers.",
+      "provenance": ["b0aty", "bruhsailer"],
+      "guide_locations": ["B0aty opening cycle 1", "BRUHsailer steps 1-2 and step 4"],
+      "produced_or_preserved_state": ["knife", "jug of water", "bowl of water", "portable utility containers"],
+      "known_downstream_uses": [
+        {"use": "B0aty labels jug and bowl as Monk's Friend items", "trace_status": "named_in_guide_study"},
+        {"use": "BRUHsailer carries jug of water through the Ferox/Soul Wars/Ardougne relay and into the Clock Tower/Monk's Friend/Hazeel Cult block", "trace_status": "named_in_guide_study"},
+        {"use": "Knife supports BRUHsailer mobile Fletching from step 2 onward and appears in later explicit loadouts", "trace_status": "named_in_guide_study"}
+      ],
+      "decision_status": "protected_pending_trace",
+      "unresolved": ["Whether the bowl is needed if the merged route does not follow B0aty's Monk's Friend timing", "Whether a later knife source can replace the starter pickup without disrupting mobile Fletching", "Capacity cost of carrying both water containers through the chosen regional loop"]
+    },
+    {
+      "id": "opening:early-wearable-utility",
+      "action": "Collect and equip early leather gloves and leather boots.",
+      "provenance": ["b0aty", "bruhsailer"],
+      "guide_locations": ["B0aty opening cycle 1", "BRUHsailer steps 1 and 3"],
+      "produced_or_preserved_state": ["leather gloves equipped", "leather boots equipped", "minor gear and inventory-slot relief"],
+      "known_downstream_uses": [
+        {"use": "BRUHsailer carries leather gloves into the Ferox/Soul Wars/Ardougne relay", "trace_status": "named_in_guide_study"},
+        {"use": "Guide specialist traces B0aty's first later leather-glove consumer to a nettle pickup before the route's next bank horizon", "trace_status": "specialist_trace_unverified_mechanics"},
+        {"use": "Guide specialist distinguishes ordinary leather gear from BRUHsailer's later clue-hunter warm-clothing setup", "trace_status": "specialist_trace_unverified_mechanics"},
+        {"use": "B0aty treats the items as pass-through gear during the Draynor/Wizards' Tower sweep", "trace_status": "named_in_guide_study"},
+        {"use": "No first-Varrock quest consumer is named for either worn item in the current source studies", "trace_status": "unresolved"}
+      ],
+      "decision_status": "protected_pending_trace",
+      "unresolved": ["Whether these are required for safety, warmth, diary, or only opportunistic gear in later guide context", "Whether replacing one pickup with Tutorial Island or later gear changes inventory pressure"]
+    },
+    {
+      "id": "opening:draynor-wine-food",
+      "action": "Buy opening jugs of wine from Fortunato as early food.",
+      "provenance": ["b0aty", "bruhsailer"],
+      "guide_locations": ["B0aty opening cycle 2", "BRUHsailer steps 3-4"],
+      "produced_or_preserved_state": ["opening wine food", "low-cost healing for early danger and thieving errors"],
+      "known_downstream_uses": [
+        {"use": "B0aty uses wine for Stronghold of Security floor-3 safety thresholds", "trace_status": "named_in_guide_study"},
+        {"use": "Guide specialist traces later B0aty wine use into Witch's House and other early dangerous questing", "trace_status": "specialist_trace_unverified_mechanics"},
+        {"use": "BRUHsailer exits Soul Wars to Edgeville with five wines before the Wilderness lever and Ardougne loop", "trace_status": "named_in_guide_study"},
+        {"use": "BRUHsailer step 7 separately preserves a larger cake/bread food stock after Ardougne thieving", "trace_status": "named_in_guide_study"}
+      ],
+      "decision_status": "protected_pending_trace",
+      "unresolved": ["Exact merged early food quantity", "Whether cakes or other food replace wines for the selected risk path", "Current stock and world-hop friction at route time"]
+    },
+    {
+      "id": "opening:beer-pickups",
+      "action": "Collect beer during opening regional travel.",
+      "provenance": ["b0aty", "bruhsailer"],
+      "guide_locations": ["B0aty opening cycle 2-3", "BRUHsailer steps 5, 11, and 13"],
+      "produced_or_preserved_state": ["beer for quest dialogue or future inputs", "minor food or stat-modifying item only if later facts support it"],
+      "known_downstream_uses": [
+        {"use": "B0aty takes beer in Shayzien and Longhall, then withdraws beer for Dr Harlow in the first Varrock cycle", "trace_status": "named_in_guide_study"},
+        {"use": "BRUHsailer starts Hazeel Cult/Monk's Friend after Ardougne travel and later advances Vampyre Slayer with Dr Harlow", "trace_status": "named_in_guide_study"},
+        {"use": "Guide specialist identifies Dr Harlow/Vampyre Slayer as the minimum beer comparison horizon in both guide families", "trace_status": "specialist_trace_unverified_mechanics"},
+        {"use": "BRUHsailer step 13 records two beers during Varrock follow-up work", "trace_status": "named_in_guide_study"}
+      ],
+      "decision_status": "protected_pending_trace",
+      "unresolved": ["Which beer pickup is the least disruptive source for the merged Vampyre Slayer handoff", "Whether any early beer is consumed by Hazeel/other dialogue versus merely staged", "Current quest-specific beer requirements"]
+    },
+    {
+      "id": "opening:draynor-cheese-and-garlic",
+      "action": "Take Draynor cheese and Morgan-house garlic during the Vampyre Slayer/X Marks sweep.",
+      "provenance": ["b0aty", "bruhsailer"],
+      "guide_locations": ["B0aty opening cycle 2", "BRUHsailer step 11"],
+      "produced_or_preserved_state": ["cheese", "garlic stack or multiple garlic items", "Vampyre Slayer and future quest-input staging"],
+      "known_downstream_uses": [
+        {"use": "B0aty labels cheese for Witch's House", "trace_status": "named_in_guide_study"},
+        {"use": "B0aty labels four garlic for Fishing Contest", "trace_status": "named_in_guide_study"},
+        {"use": "Guide specialist traces B0aty garlic later to a Vampyre Slayer handoff and BRUHsailer cheese to later Port Sarim purchases", "trace_status": "specialist_trace_unverified_mechanics"},
+        {"use": "BRUHsailer starts Vampyre Slayer and takes garlic during the Port Sarim/Falador supply run", "trace_status": "named_in_guide_study"}
+      ],
+      "decision_status": "protected_pending_trace",
+      "unresolved": ["Whether the merged route needs B0aty's four-garlic quantity before first Varrock follow-up", "Whether cheese has a deadline before a later easier source", "Exact current pickup behavior for multiple garlic"]
+    },
+    {
+      "id": "opening:chicken-and-rat-drops",
+      "action": "Kill the opening rat and chicken for low-level combat drops used as future quest inputs.",
+      "provenance": ["b0aty"],
+      "guide_locations": ["B0aty opening cycle 1"],
+      "produced_or_preserved_state": ["bones", "raw rat meat", "feather", "chicken drops", "early Magic combat practice"],
+      "known_downstream_uses": [
+        {"use": "B0aty labels bones and raw rat meat for Druidic Ritual", "trace_status": "named_in_guide_study"},
+        {"use": "B0aty labels feather for Client of Kourend", "trace_status": "named_in_guide_study"},
+        {"use": "Guide specialist traces B0aty's feather to the Client of Kourend enchanted-scroll interaction in the next Kourend leg", "trace_status": "specialist_trace_unverified_mechanics"},
+        {"use": "BRUHsailer buys feather packs and raw foods later instead of using this exact kill bundle", "trace_status": "named_in_guide_study"}
+      ],
+      "decision_status": "protected_pending_trace",
+      "unresolved": ["Whether buying later raw foods and feathers replaces the kill bundle more cleanly", "Current drop certainty and inventory cost", "Combat-rune consumption before the first rune purchase"]
+    },
+    {
+      "id": "opening:ashes-preservation",
+      "action": "Preserve early ashes rather than discarding them.",
+      "provenance": ["b0aty", "bruhsailer"],
+      "guide_locations": ["B0aty opening cycle 4", "BRUHsailer step 1"],
+      "produced_or_preserved_state": ["banked ashes", "Firemaking byproduct retained as quest or skilling input"],
+      "known_downstream_uses": [
+        {"use": "BRUHsailer step 1 banks five ashes during the opening Firemaking/log-stock block", "trace_status": "named_in_guide_study"},
+        {"use": "B0aty Bank 4 banks ashes generated during Daddy's Home follow-up work", "trace_status": "named_in_guide_study"},
+        {"use": "Guide specialist traces B0aty ashes to a later Prince Ali Rescue/dye-routing withdrawal around Bank 27", "trace_status": "specialist_trace_unverified_mechanics"},
+        {"use": "No first-Varrock consumer is named in the current source studies", "trace_status": "unresolved"}
+      ],
+      "decision_status": "protected_pending_trace",
+      "unresolved": ["First named consumer beyond the current opening horizon", "Whether ashes should be acquired deliberately or only preserved when produced by required fires", "Bank-space value versus later reacquisition"]
+    },
+    {
+      "id": "opening:early-aubury-rune-stock",
+      "action": "Buy the first deliberate rune stock from Aubury during Varrock follow-up work.",
+      "provenance": ["b0aty", "bruhsailer"],
+      "guide_locations": ["B0aty opening cycle 4", "BRUHsailer step 13"],
+      "produced_or_preserved_state": ["air rune stock", "mind rune stock", "elemental rune stock", "post-tutor Magic supply"],
+      "known_downstream_uses": [
+        {"use": "B0aty buys rune packs after Daddy's Home material work, creating a larger spell supply before later bank cycles", "trace_status": "named_in_guide_study"},
+        {"use": "BRUHsailer buys 100 mind, 100 air, 50 water, 50 earth, and 20 fire runes individually during first Varrock follow-up", "trace_status": "named_in_guide_study"},
+        {"use": "Guide specialist traces B0aty early rune demand through Wind Strike kills and later early safespot quest combat", "trace_status": "specialist_trace_unverified_mechanics"},
+        {"use": "Both openings consume or carry Wind Strike runes before this point", "trace_status": "named_in_guide_study"}
+      ],
+      "decision_status": "protected_pending_trace",
+      "unresolved": ["Whether packs or individual rune buys best match the merged GP and shop-stock state", "Exact rune demand before the next reliable shop access", "How much early Magic combat remains in the merged plan"]
     }
   ],
   "global_omission_gate": [
