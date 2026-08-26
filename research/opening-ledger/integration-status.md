@@ -11,7 +11,7 @@ The four dossiers are reviewed. They establish factual inputs and conflicts; the
 | Children of the Sun versus Quetzal network | `action:children-of-the-sun` grants Varlamore access only. The internal network remains reserved for a future *Twilight's Promise* action. |
 | Proven-guide evidence weight | Shared B0aty/BRUHsailer behavior remains a baseline candidate. A material deviation needs a factual, account-state, safety, or enjoyment reason. |
 | Concise guide language | No player-facing prose was added. Later instructions remain short imperatives under `route/guide-writing-style.md`. |
-| First inventory/bank relay | Episode 01 now closes Tutorial exit back at Lumbridge Castle bank with exact known possessions, tools, partial quest observations, and concise step order. Live shop, loot, and final-bank observations remain explicit. |
+| First inventory/bank relay | Episode 01 proves the execution contract and concise rendering only. It is not a route candidate because the short horizon omitted protected guide setup. |
 
 ## Ready for bounded normalization
 
@@ -35,8 +35,8 @@ The four dossiers are reviewed. They establish factual inputs and conflicts; the
 
 ## Next production order
 
-1. Live-validate the selected Lumbridge first relay.
-2. Define the Draynor/Wizards' Tower bank relay from its observed end state.
-3. Join X Marks completion to the bounded Port Sarim/Pandemonium handoff.
-4. Keep Stronghold and broader regional work triggered until a named cash or
-   content deadline activates them.
+1. Complete the B0aty/BRUHsailer action union through first Varrock follow-up.
+2. Trace each opening item, coin target, skill level, and partial state forward.
+3. Compare complete cash, log, quest, and transport pipelines.
+4. Record every retained, moved, replaced, optional, or omitted action.
+5. Build and live-validate the first merged playable bank cycle.

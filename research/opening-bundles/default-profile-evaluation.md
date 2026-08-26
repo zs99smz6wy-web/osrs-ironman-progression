@@ -1,5 +1,10 @@
 # Default Profile Opening Evaluation
 
+> **Superseded route-selection basis:** this evaluation remains useful for
+> content-window timing, but its short horizon cannot remove or defer proven-
+> guide setup. Re-evaluate it after the union ledger traces opening state through
+> the first Varrock follow-up and any named later consumption.
+
 ## Inputs
 
 - Fresh post-Tutorial account state.
@@ -20,7 +25,7 @@
 | Daddy's Home | Missing 10 planks, 5 bolts of cloth, at least 16 nails, hammer, and saw | `accessible_not_ready` | Preferred first-Varrock POH path; fixed rewards and the variable-nail boundary are normalized. |
 | Player-owned house foundation | Missing 1,000 coins or Daddy's Home completion | `accessible_not_ready` | Direct purchase remains the explicit bypass; Daddy's Home completion now establishes ownership itself. |
 | Chronicle | Missing 300 coins | `blocked` | Conditional transport purchase. It must compete with other early cash deadlines and card costs. |
-| Tree Gnome Village | Eligible | `accessible_not_ready` | No declared opening purpose. Defer until its combat XP, spirit-tree access, or regional bundle has current value. |
+| Tree Gnome Village | Eligible | `accessible_not_ready` | B0aty assigns opening logs to this later quest. Preserve that input until its exact consumption and any replacement stock are traced. |
 
 Later utility, passive, and PvM windows remain factually blocked on a fresh account. That is expected and does not lower their default account value.
 
@@ -50,20 +55,25 @@ This is not guide prose or final ordering.
 | Broad Ardougne/Karamja/Falador sweep | Regional branch | Several named timely outputs, accepted travel/Wilderness policy, and justified inventory burden |
 | Tree Gnome Village | Quest-XP/transport branch | Current combat-XP threshold, spirit-tree use, or Gnome-region bundle |
 
-## What this saves
+## Revised evidence requirement
 
-Exact banking, shop stock, temporary drops, inventory slots, and step ordering now need research only for the provisional baseline and any branch whose trigger is accepted. The full B0aty and BRUHsailer inventories do not need to be reconstructed first.
+Do not use this short content window to discard opening setup. Reconstruct the
+material state of both guides through the comparison horizon, including banking,
+temporary drops, inventory slots, purchases, pickups, skill targets, and mobile
+skilling. Normalize only decision-relevant state, but retain every source action
+in the union ledger until its downstream purpose is resolved.
 
-## Next episode gap
+## Next merge gap
 
-The route-level choices for this horizon are bounded. The remaining work is
-execution resolution for one selected bank-to-bank episode:
+The route-level choices are not yet bounded. The remaining work is to merge the
+two proven openings across a longer horizon:
 
-- exact inventory and bank relay;
-- selected local/free material sources and shop interactions;
-- concise step ordering and stable resume state;
-- live confirmation of Pandemonium's temporary items and end location;
-- live confirmation of Daddy's Home nail usage and material handoff.
+- import every material action from both guides;
+- trace opening supplies and levels to later uses;
+- compare complete cash, log, quest, and transport pipelines;
+- document every move, replacement, branch, and omission;
+- produce concise steps only after a merged bank cycle closes cleanly.
 
 Chronicle, Stronghold cash, broad regional travel, and later Sailing remain
-triggered branches rather than episode assumptions.
+comparison branches. They cannot be rejected merely because the shorter episode
+does not yet expose their purpose.

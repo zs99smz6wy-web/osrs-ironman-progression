@@ -6,6 +6,6 @@ The package does not copy guide ordering or prose. It uses factual source record
 
 The proof package is intentionally small: it distinguishes Varrock Museum quiz substeps from the existing coarse quiz action, and it keeps Rune Mysteries start/progress separate from both completion and the optional Museum claim.
 
-`lumbridge-first-relay.json` is the selected Episode 01 research candidate. It
-closes Tutorial exit back at Lumbridge Castle bank with exact known possessions,
-partial quest checkpoints, local diary observations, and live-state boundaries.
+`lumbridge-first-relay.json` proves the concise rendering and observation
+contract. It is not an approved route candidate. Its short horizon omitted
+protected setup whose value appears later in B0aty and BRUHsailer.

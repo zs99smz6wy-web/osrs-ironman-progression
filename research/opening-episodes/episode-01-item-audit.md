@@ -3,7 +3,8 @@
 ## Boundary
 
 Applies only to the Tutorial-exit -> Lumbridge local relay -> Lumbridge Castle
-bank candidate. It does not define later withdrawals or route order.
+bank interface prototype. It does not define later withdrawals or route order
+and is not an approved opening candidate.
 
 ## Starting state
 
@@ -35,11 +36,13 @@ account-wide coins; the factual baseline says they begin banked.
 
 - Use `spade` in canonical account state. `functional_spade` only distinguishes
   valid spades inside the partial-quest package.
-- Do not introduce `normal_logs` or `logs`; this episode acquires no logs.
+- This prototype acquired no logs. The merged opening must reconsider B0aty's
+  four-log pickup and BRUHsailer's larger log stock before defining its item
+  contract.
 - Do not introduce `nails`; Daddy's Home materials are outside this episode.
 - Do not convert either diary interaction into XP or fixed coins. Pickpocket
   loot is variable and both credits require player confirmation.
-- Do not model the four starter-gear sales. Their 38-coin total remains a
-  derived live-validation gap.
+- The prototype omitted the four starter-gear sales. They are now protected in
+  the union ledger; their 38-coin derived total remains a live-validation gap.
 - RuneLite can confirm point-in-time bank/inventory contents, not the dialogue
   or replacement events that produced the two partial quest states.

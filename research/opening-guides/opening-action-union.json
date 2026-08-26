@@ -1,0 +1,122 @@
+{
+  "ledger_schema_version": 1,
+  "status": "seed-in-progress",
+  "scope": "B0aty through Bank 4 and BRUHsailer through Step 14, extended to every first downstream use of opening state",
+  "method": "union-first; prune only after downstream trace and omission gates",
+  "coverage": {
+    "protected_source_sections": [
+      "B0aty Starting Out through Bank 4",
+      "BRUHsailer Steps 1 through 14"
+    ],
+    "detailed_actions": 7,
+    "undecomposed_action_policy": "Every material source action remains protected_pending_trace until it receives its own ledger entry. Absence from the detailed action array is not permission to omit it."
+  },
+  "source_files": [
+    "research/opening-guides/b0aty-fresh-start.md",
+    "research/opening-guides/bruhsailer-fresh-start.md",
+    "research/opening-guides/fresh-start-comparison.md",
+    "research/opening-guides/source-action-index.md",
+    "research/opening-ledger/supply-economy.md"
+  ],
+  "actions": [
+    {
+      "id": "opening:magic-tutor-rune-replacement",
+      "action": "Temporarily drop starter air and mind runes, claim tutor runes, then recover the starter stacks.",
+      "provenance": ["b0aty", "bruhsailer"],
+      "guide_locations": ["B0aty opening cycle 0", "BRUHsailer step 2"],
+      "produced_or_preserved_state": ["additional early air runes", "additional early mind runes", "recovered starter rune stacks"],
+      "known_downstream_uses": [
+        {"use": "B0aty early Wind Strike combat, including the Lumbridge rat and Wizards' Tower chicken", "trace_status": "named_in_guide_study"},
+        {"use": "BRUHsailer first Varrock follow-up carries Wind Strike runes and later purchases a calculated rune stock", "trace_status": "named_in_guide_study"}
+      ],
+      "decision_status": "protected_pending_trace",
+      "unresolved": ["Exact combined rune totals after the temporary-drop sequence", "Whether the merged combat plan consumes the same quantity before the first rune purchase"]
+    },
+    {
+      "id": "opening:starter-gear-sales",
+      "action": "Sell the bronze dagger, bronze sword, wooden shield, and shortbow at the Lumbridge General Store.",
+      "provenance": ["b0aty"],
+      "guide_locations": ["B0aty opening cycle 0"],
+      "produced_or_preserved_state": ["early coins", "four freed inventory slots"],
+      "known_downstream_uses": [
+        {"use": "B0aty buys the spade, chisel, and hammer in the same store visit", "trace_status": "named_in_guide_study"},
+        {"use": "Reduces inventory pressure before free log pickups and the first bank", "trace_status": "analyst_inference"}
+      ],
+      "decision_status": "protected_pending_trace",
+      "unresolved": ["Live sale proceeds", "Whether any sold combat item has a better use in the merged opening"]
+    },
+    {
+      "id": "opening:lumbridge-castle-four-logs",
+      "action": "Take four logs from Lumbridge Castle before the first bank.",
+      "provenance": ["b0aty"],
+      "guide_locations": ["B0aty opening cycle 0"],
+      "produced_or_preserved_state": ["four banked regular logs"],
+      "known_downstream_uses": [
+        {"use": "Tree Gnome Village log requirement within B0aty's later route", "trace_status": "named_in_guide_study"}
+      ],
+      "decision_status": "protected_pending_trace",
+      "unresolved": ["Exact consumption point", "Whether BRUHsailer's larger log stock fully replaces this pickup without added travel or inventory cost"]
+    },
+    {
+      "id": "opening:early-firemaking-and-log-stock",
+      "action": "Cut and burn to 15 Firemaking, then bank the BRUHsailer opening log stock.",
+      "provenance": ["bruhsailer"],
+      "guide_locations": ["BRUHsailer step 1"],
+      "produced_or_preserved_state": ["15 Firemaking", "five banked ashes", "110 banked regular logs"],
+      "known_downstream_uses": [
+        {"use": "Mobile Fletching from step 2 through first Varrock work", "trace_status": "named_in_guide_study"},
+        {"use": "Later quest logs and retained ten-log reserve", "trace_status": "named_in_guide_study"},
+        {"use": "Early Wintertodt-oriented preparation", "trace_status": "named_in_guide_study"}
+      ],
+      "decision_status": "protected_pending_trace",
+      "unresolved": ["Merged route log demand", "Whether 110 is the best quantity for this project's enjoyment and Wintertodt timing", "Which ashes are consumed later"]
+    },
+    {
+      "id": "opening:pickpocket-to-cash-target",
+      "action": "Pickpocket Lumbridge citizens until the opening purchase target is funded.",
+      "provenance": ["bruhsailer"],
+      "guide_locations": ["BRUHsailer step 2"],
+      "produced_or_preserved_state": ["235-coin guide target", "Lumbridge and Draynor Easy task credit after a successful pickpocket"],
+      "known_downstream_uses": [
+        {"use": "Funds the spade, hammer, chisel, and steel axe purchase bundle", "trace_status": "named_in_guide_study"}
+      ],
+      "decision_status": "protected_pending_trace",
+      "unresolved": ["Attempts and food needed on a standard Ironman", "Whether starter sales or another merged cash source reduce the pickpocket target", "Exact stop condition after live prices"]
+    },
+    {
+      "id": "opening:steel-axe-purchase",
+      "action": "Buy a steel axe from Bob's Brilliant Axes.",
+      "provenance": ["b0aty", "bruhsailer"],
+      "guide_locations": ["B0aty opening cycle 2", "BRUHsailer step 2"],
+      "produced_or_preserved_state": ["steel axe", "bronze axe retained as a second tool in BRUHsailer's regional relay"],
+      "known_downstream_uses": [
+        {"use": "BRUHsailer Woodcutting and Firemaking work through the Ardougne loop", "trace_status": "named_in_guide_study"},
+        {"use": "BRUHsailer first Varrock follow-up loadout", "trace_status": "named_in_guide_study"},
+        {"use": "B0aty acquires the same upgrade later before Stronghold and Varrock", "trace_status": "named_in_guide_study"}
+      ],
+      "decision_status": "protected_pending_trace",
+      "unresolved": ["Best purchase timing", "Whether 5 Attack is reached before equipping matters", "Cash opportunity cost against Chronicle, runes, and quest supplies"]
+    },
+    {
+      "id": "opening:mobile-fletching",
+      "action": "Fletch regular logs while travelling and during compatible quest waits.",
+      "provenance": ["b0aty", "bruhsailer"],
+      "guide_locations": ["B0aty later first-Varrock arrowshaft block", "BRUHsailer steps 2-14"],
+      "produced_or_preserved_state": ["Fletching experience", "arrowshaft stock", "travel time converted into progression"],
+      "known_downstream_uses": [
+        {"use": "BRUHsailer continuous movement skilling through first Varrock work", "trace_status": "named_in_guide_study"},
+        {"use": "B0aty 2,100-arrowshaft block during Daddy's Home material work", "trace_status": "named_in_guide_study"}
+      ],
+      "decision_status": "protected_pending_trace",
+      "unresolved": ["Merged arrowshaft target", "Attention cost of continuous Fletching", "Whether a shorter batch preserves later ammunition and level requirements"]
+    }
+  ],
+  "global_omission_gate": [
+    "all known downstream uses traced",
+    "required quantities and deadlines still satisfied",
+    "replacement or unnecessary-state reason recorded",
+    "coin, inventory, travel, risk, attention, and enjoyment effects compared",
+    "later bank cycles and multi-quest bundles remain executable",
+    "deviation and rationale exposed"
+  ]
+}

@@ -1,5 +1,11 @@
 # Opening Bundle Candidate Comparison
 
+> **Superseded route-selection basis:** these shapes remain useful as pressure
+> profiles, but they were built before the union-first rule. The lean and
+> triggered shapes cannot defer proven-guide setup merely because its use falls
+> outside the short decision window. Re-run this comparison after the opening
+> action union is complete.
+
 ## Decision Horizon
 
 **Start:** source-backed fresh post-Tutorial Island account.
@@ -18,8 +24,8 @@ All shapes retain the evidence-backed core:
 
 - start Rune Mysteries and The Restless Ghost, preserving partial state;
 - progress X Marks the Spot with a spade and defer its lamp allocation;
-- take local tools, pass-through diary credit, and inputs only when they serve a
-  named handoff;
+- protect local tools, pass-through diary credit, and inputs from either guide
+  until their downstream uses and replacements are traced;
 - use first Varrock work for bounded dependency starts, claims, or unlocks;
 - finish at a real bank/resume state rather than a presumed loadout.
 
@@ -30,7 +36,7 @@ Most opening quest starts are research-only partial states.
 
 ## Candidate Shapes
 
-### Lean shared foundation
+### Lean shared foundation (historical candidate)
 
 **Objectives:** shared local handoffs, timely X Marks completion, and a compact
 first-Varrock dependency pass. Optional additions need a current purpose, such
@@ -52,7 +58,7 @@ as Children of the Sun, a Museum action, or a selected future-quest start.
 - **Evidence if selected:** local purchases/pickups, slots, bank relay, chosen
   Varrock starts, and the observed resume state.
 
-### Cash/transport foundation
+### Cash/transport foundation (historical candidate)
 
 **Objectives:** add one early cash source and one transport asset only because a
 named purchase deadline or repeated trip makes them valuable. Stronghold,
@@ -74,7 +80,7 @@ Kourend staging, Count Check, and Chronicle are components, not requirements.
 - **Evidence if selected:** cash deadline, coins-at-stage ledger, cash-method
   safety, transport availability/charge/fallback, and bank resume proof.
 
-### Broad regional utility sweep
+### Broad regional utility sweep (historical candidate)
 
 **Objectives:** combine an Ardougne/Karamja/Port Sarim/Falador-style pass with
 several compatible quest handoffs, supplies, and optional cash. It is justified
@@ -97,7 +103,7 @@ by multiple timely outputs, not by completing every accessible quest.
   shops and alternatives; travel/PvP policy; bank/deposit relay; partial-state
   representation.
 
-### State-triggered hybrid
+### State-triggered hybrid (historical candidate)
 
 **Objectives:** complete the shared foundation, then add the cash/transport or
 regional component only when the observed account has a purchase deadline,
@@ -134,10 +140,9 @@ These are pressure profiles, not a score or final ranking.
 
 ## Selection Boundary
 
-Select no shape yet. Before one becomes an episode, record its exact end state,
-declared content-window benefit, candidate-specific factual gaps, and the
-proven-guide ordering being reused. Only then validate inventory, banking,
-shops, hazards, and player instructions.
+Select no shape from this document. First complete the source-action union and
+downstream trace. A later comparison may reuse these pressure dimensions, but
+every omission or replacement must pass the merge method's gates.
 
 ## Local Evidence
 

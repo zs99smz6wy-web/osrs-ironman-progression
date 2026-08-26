@@ -1,5 +1,10 @@
 # Provisional Opening Cash Deadlines
 
+> **Union-first correction:** this ledger establishes prices and deadlines, but
+> the former provisional baseline cannot remove a guide purchase. Tutor runes,
+> starter sales, the BRUHsailer cash target, and steel-axe timing remain
+> protected until their full downstream pipelines are compared.
+
 ## Scope
 
 This is a research ledger for the provisional fresh-account horizon. It records
@@ -49,11 +54,11 @@ The current evidence establishes only a small fixed baseline:
   and cooldown conditions are satisfied; do not silently budget a larger rune
   purchase.
 
-The provisional horizon does not require a steel axe purchase. If a selected
-execution episode needs one, the ledger records 200 gp at Bob's Brilliant Axes,
-with stock and an exact replacement path unresolved. Bronze and iron axes are
-available as cheaper alternatives, but the opening evidence does not establish
-that either substitutes for the selected handoff.
+The old provisional horizon did not expose a steel axe requirement. Both proven
+guides buy one at different times, and BRUHsailer carries its use through Step
+14. The ledger records 200 gp at Bob's Brilliant Axes. Bronze and iron axes are
+cheaper, but neither is an accepted replacement until every steel-axe use is
+traced and compared.
 
 ## Optional Branch Boundaries
 

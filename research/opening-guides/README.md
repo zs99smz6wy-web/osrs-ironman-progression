@@ -22,6 +22,13 @@ Every adopted step still needs:
 - a reason to do it now rather than later;
 - an alternative when the efficient method is brittle, unpleasant, or assumption-heavy.
 
+The merge process is defined in `merge-method.md`. Its controlling rule is
+union first: a step from either proven guide remains protected until its later
+uses have been traced and every omission gate has passed. The initial machine-
+readable set is `opening-action-union.json`. `source-action-index.md` protects
+the complete studied source horizon while those actions are decomposed and
+traced.
+
 A deviation from both guides must record at least one concrete reason: changed game mechanics, different account mode or risk policy, different downstream goal, better verified dependency coverage, lower inventory/GP pressure, or a deliberate enjoyment tradeoff. Unexplained simplification is not acceptable.
 
 The final player-facing wording follows `route/guide-writing-style.md`. Detailed analysis remains here and does not belong in step text.

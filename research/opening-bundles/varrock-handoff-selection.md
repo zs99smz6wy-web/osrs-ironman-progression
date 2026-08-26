@@ -1,5 +1,10 @@
 # First-Varrock Handoff Selection
 
+> **Model-promotion scope only:** `defer` below means do not add a durable
+> account-state milestone yet. It does not mean omit the source-guide action
+> from the merged route. Route inclusion is governed by the union ledger and
+> its downstream-use trace.
+
 Research decision record for the provisional baseline. It selects only durable
 quest states or bounded completion targets that are worth carrying across a
 bank break. It does not choose an order, create a production action, or make a
@@ -78,12 +83,11 @@ states:
 
 ## Consequence for Episode Design
 
-The provisional first-Varrock episode may carry the Rune Mysteries Aubury
-handoff and target Daddy's Home completion. It may record the other quest
-starts as execution-local convenience only after their selected episode has
-an independent reason to visit the relevant NPCs. No current guide state,
-account import, or evaluator output may infer any of those starts from items,
-quest rewards, or proximity.
+The provisional account model may carry the Rune Mysteries Aubury handoff and
+target Daddy's Home completion. Other quest starts can remain external partial
+states without being removed from the merged route. No guide state, account
+import, or evaluator output may infer those starts from items, quest rewards,
+or proximity.
 
 Before any promotion becomes production data, separately review the checkpoint
 schema, source-linked facts, RuneLite observability, account transition, and

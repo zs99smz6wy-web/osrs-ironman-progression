@@ -2,9 +2,11 @@
 
 ## Status
 
-Selected research candidate for execution validation. This defines one closed
-Lumbridge relay; it does not select the later route, assert live game state, or
-provide final player-facing prose.
+Interface and execution-contract prototype only. It is not an approved opening
+candidate and must not be extended as the route baseline. It omits protected
+setup from both proven guides because its original comparison horizon was too
+short. Rebuild the playable opening from the union ledger before live route
+validation.
 
 ## Start state
 

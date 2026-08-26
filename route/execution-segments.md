@@ -29,6 +29,7 @@ A passive or recurring check records its trigger, the current observation requir
 - Template: `research/execution-segments/template.json`
 - Manifest: `research/execution-segments/integration-manifest.json`
 - Proof: `research/execution-segments/post-tutorial-varrock-museum-proof.json`
-- Selected opening candidate: `research/execution-segments/lumbridge-first-relay.json`
+- Interface prototype: `research/execution-segments/lumbridge-first-relay.json`
+- Opening merge basis: `research/opening-guides/opening-action-union.json`
 
 Run `python scripts/validate_execution_segments.py` to validate the package. The validator cross-checks linked normalized action IDs, local source references, ordered mainline steps, exact requirement quantities, coverage boundaries, and the prohibition on modeling a partial quest checkpoint as a normalized action.
