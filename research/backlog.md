@@ -54,7 +54,8 @@
 - Completed: encoded the default guide objective profile, bounded content-window catalog, planned-attention decision context, and state-aware evaluator. The first active fresh-account pass separates ideal, ready, preparation-blocked, and factually blocked objectives without selecting a route.
 - Completed: derived a provisional opening baseline and explicit cash, transport, regional, and quest-completion branches from the default profile. Natural History Quiz, Children of the Sun, and Pandemonium are ideal timing candidates; X Marks and POH remain preparation-bound; Restless Ghost completion is useful but not urgent.
 - Completed: normalized Daddy's Home, selected only the Rune Mysteries Aubury handoff plus Daddy's Home completion for first Varrock, bounded the Port Sarim/Pandemonium addition, and declared purchase deadlines without selecting speculative cash work.
-- Pending: build exact inventory, banking, shops, and concise step ordering for one selected bank-to-bank opening episode. Keep later branches at dependency resolution until their timing trigger is active.
+- Completed: selected and normalized the first closed Lumbridge relay with exact starting possessions, five-coin tool baseline, three partial quest checkpoints, two diary observations, nine concise steps, and final-bank confirmation.
+- Pending: live-validate Episode 01's shop prices, movement/dialogue sequence, pickpocket result, and final bank snapshot; then define the Draynor/Wizards' Tower relay from that observed state.
 
 ## Continuing validation queue
 

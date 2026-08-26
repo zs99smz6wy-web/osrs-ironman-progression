@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>Post-Tutorial Lumbridge first relay | OSRS progression research</title>
+  <style>
+    :root { --page: #111619; --panel: #192125; --panel-alt: #151c20; --line: #37444a; --text: #e8ede8; --muted: #aab6b4; --accent: #d6b45d; --green: #89b56e; --amber: #e5af53; --red: #dc7777; --focus: #f2d77d; }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--page); color: var(--text); font: 15px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif; }
+    a { color: #a9d5e3; }
+    a:focus-visible, button:focus-visible, input:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+    code { color: #d9cb9b; overflow-wrap: anywhere; }
+    .shell { max-width: 1080px; margin: 0 auto; padding: 18px; display: grid; grid-template-columns: minmax(210px, 260px) minmax(0, 1fr); gap: 14px; }
+    .sidebar, .reader { border: 1px solid var(--line); border-radius: 6px; background: var(--panel); }
+    .sidebar { align-self: start; position: sticky; top: 14px; padding: 16px; }
+    .reader { overflow: hidden; }
+    .titlebar { padding: 18px 20px; background: #202a2f; border-bottom: 1px solid var(--line); }
+    .eyebrow { margin: 0 0 7px; color: var(--accent); font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+    h1, h2, h3 { margin: 0; line-height: 1.25; } h1 { font-size: 22px; } h2 { font-size: 16px; } h3 { font-size: 14px; }
+    .title-meta, .muted, small { color: var(--muted); } .title-meta { margin: 8px 0 0; font-size: 13px; }
+    .badge { display: inline-flex; align-items: center; min-height: 24px; padding: 2px 7px; border: 1px solid currentColor; border-radius: 4px; font-size: 12px; font-weight: 700; white-space: nowrap; }
+    .badge-normalized_action { color: var(--green); } .badge-sourced_unmodeled_substep { color: var(--accent); } .badge-unresolved { color: var(--amber); }
+    .status-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+    .nav-title { font-size: 12px; color: var(--muted); margin: 0 0 7px; text-transform: uppercase; letter-spacing: .06em; }
+    .sidebar nav a { display: block; padding: 5px 0; color: var(--text); text-decoration: none; } .sidebar nav a:hover { color: var(--accent); }
+    .reset { width: 100%; min-height: 36px; margin-top: 18px; border: 1px solid var(--line); border-radius: 4px; background: #263238; color: var(--text); font: inherit; cursor: pointer; } .reset:hover { border-color: var(--accent); }
+    .local-note { margin: 10px 0 0; font-size: 12px; color: var(--muted); }
+    .section, .branch { padding: 18px 20px; border-bottom: 1px solid var(--line); } .section:last-child { border-bottom: 0; }
+    .section-heading, .item-line { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+    .section-heading { margin-bottom: 10px; } .section p { margin: 7px 0; }
+    .plain-list, .checkpoints, .sources { margin: 10px 0 0; padding-left: 21px; } .plain-list li + li { margin-top: 6px; }
+    .requirements { display: grid; grid-template-columns: minmax(110px, 150px) minmax(0, 1fr); margin: 12px 0 0; border-top: 1px solid var(--line); } .requirements dt, .requirements dd { margin: 0; padding: 8px 0; border-bottom: 1px solid var(--line); } .requirements dt { color: var(--muted); }
+    .checkpoint-item { padding: 10px 0; border-bottom: 1px solid var(--line); } .checkpoint-item:last-child { border-bottom: 0; }
+    .boundary { color: var(--muted); font-size: 13px; } .boundary span { color: var(--amber); font-weight: 700; }
+    .steps { list-style: none; padding: 0; margin: 0; counter-reset: guide; } .step { display: grid; grid-template-columns: 22px minmax(0, 1fr) auto; column-gap: 10px; padding: 13px 0; border-top: 1px solid var(--line); }
+    .step-check { width: 18px; height: 18px; margin: 2px 0 0; accent-color: var(--green); } .step label { display: flex; gap: 9px; cursor: pointer; } .step-number { flex: 0 0 22px; color: var(--accent); font-weight: 700; } .step-text { min-width: 0; }
+    .step:has(.step-check:checked) .step-text { color: var(--muted); text-decoration: line-through; } .step:has(.step-check:checked) .step-number { color: var(--green); }
+    .step-meta { grid-column: 3; } .step > p { grid-column: 2 / -1; margin: 7px 0 0; } .action-ref, .checkpoint-ref { color: var(--muted); font-size: 13px; }
+    .branch { background: var(--panel-alt); } .when { margin: 0 0 10px; } .branch-steps .step { border-color: var(--line); }
+    .policy { margin: 8px 0 0; display: grid; grid-template-columns: 80px minmax(0, 1fr); gap: 6px 10px; } .policy dt { color: var(--muted); } .policy dd { margin: 0; }
+    .sources li { padding: 10px 0; border-bottom: 1px solid var(--line); } .sources li:last-child { border-bottom: 0; } .sources p { margin: 4px 0; }
+    .reader-footer { padding: 14px 20px; color: var(--muted); font-size: 13px; background: var(--panel-alt); }
+    @media (max-width: 760px) { .shell { display: block; padding: 10px; } .sidebar { position: static; margin-bottom: 10px; } .sidebar nav { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 14px; } .titlebar, .section, .branch { padding: 15px; } .step { grid-template-columns: 22px minmax(0, 1fr); } .step-meta { grid-column: 2; margin-top: 7px; } .requirements { grid-template-columns: 105px minmax(0, 1fr); } }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <aside class="sidebar" aria-label="Guide navigation">
+      <p class="nav-title">Research reader</p>
+      <nav>
+        <a href="#purpose">Purpose</a><a href="#preparation">Preparation</a><a href="#checkpoints">Checkpoints</a><a href="#steps">Steps</a><a href="#safety">Safety</a><a href="#sources">Sources</a>
+      </nav>
+      <button class="reset" type="button" id="reset-checks">Reset step checks</button>
+      <p class="local-note" id="storage-status">Step checks are stored only in this browser.</p>
+    </aside>
+    <article class="reader">
+      <header class="titlebar">
+        <p class="eyebrow">OSRS progression research</p>
+        <h1>Post-Tutorial Lumbridge first relay</h1>
+        <p class="title-meta"><code>segment:lumbridge-first-relay</code></p>
+        <div class="status-row"><span class="badge badge-unresolved">Research-only</span><span class="badge badge-unresolved">research-proof</span><span class="badge badge-unresolved">Not estimated</span></div>
+      </header>
+      <section class="section" id="purpose">
+        <div class="section-heading"><h2>Purpose and why now</h2><span class="badge badge-unresolved">Not route selection</span></div>
+        <h3>What this fragment documents</h3><ul class="plain-list"><li>Records the shared local quest starts, first X Marks dig, two pass-through diary tasks, and durable five-coin tool purchase before returning to Lumbridge Castle bank.</li></ul>
+        <h3>When it may be relevant</h3><ul class="plain-list"><li>The player confirms a new standard Ironman at the verified post-Tutorial Lumbridge arrival state.</li><li>The player selects this bounded local candidate for live execution validation.</li></ul>
+        <p class="boundary"><span>Timing boundary:</span> The default opening profile and both proven-guide studies make this relay worth validating; this package still does not select any later route.</p>
+      </section>
+      <section class="section" id="preparation">
+        <div class="section-heading"><h2>Preparation</h2><span class="badge badge-sourced_unmodeled_substep">Observed state</span></div>
+        <h3>Assumptions</h3><ul class="plain-list"><li>Standard Ironman mode was selected before leaving Tutorial Island.</li><li>No mainland action has occurred.</li><li>The listed physical Tutorial items are carried and the 25 coins are banked; generic axe and pickaxe capability keys are not additional physical items.</li></ul>
+        <dl class="requirements"><dt>Carried items</dt><dd>1 x bronze_axe, 1 x bronze_pickaxe, 1 x tinderbox, 1 x small_fishing_net, 2 x shrimps, 1 x bronze_dagger, 1 x bronze_sword, 1 x wooden_shield, 1 x shortbow, 25 x bronze_arrow, 25 x air_rune, 15 x mind_rune, 1 x bucket, 1 x pot, 1 x bread, 6 x water_rune, 4 x earth_rune, 2 x body_rune</dd><dt>Banked items</dt><dd>None recorded</dd><dt>Carried GP</dt><dd>0</dd><dt>Banked GP</dt><dd>25</dd></dl>
+      </section>
+      <section class="section" id="checkpoints">
+        <div class="section-heading"><h2>Checkpoints</h2><span class="badge badge-unresolved">Includes unresolved state</span></div>
+        <ul class="checkpoints"><li class="checkpoint-item"><div class="item-line"><strong>Lumbridge east of the castle immediately after Learning the Ropes.</strong><span class="badge badge-sourced_unmodeled_substep">Sourced substep</span></div><p class="boundary"><span>Boundary:</span> Arrival does not prove any mainland interaction or selected route.</p></li><li class="checkpoint-item"><div class="item-line"><strong>Lumbridge Castle bank contains the fixed 25-coin Tutorial reward before the first withdrawal.</strong><span class="badge badge-sourced_unmodeled_substep">Sourced substep</span></div><p class="boundary"><span>Boundary:</span> The account model stores coins account-wide; this bank placement is an execution checkpoint.</p></li><li class="checkpoint-item"><div class="item-line"><strong>Father Aereck accepted the quest start; no later Restless Ghost state is implied.</strong><span class="badge badge-sourced_unmodeled_substep">Sourced substep</span></div><p class="boundary"><span>Boundary:</span> Player confirmation is required because RuneLite completion import does not preserve this stage.</p></li><li class="checkpoint-item"><div class="item-line"><strong>Duke Horacio started Rune Mysteries and supplied one air talisman.</strong><span class="badge badge-sourced_unmodeled_substep">Sourced substep</span></div><p class="boundary"><span>Boundary:</span> Air-talisman presence alone does not prove the quest-start interaction.</p></li><li class="checkpoint-item"><div class="item-line"><strong>Veos started X Marks and the first Lumbridge dig replaced the first scroll with the second.</strong><span class="badge badge-sourced_unmodeled_substep">Sourced substep</span></div><p class="boundary"><span>Boundary:</span> The second scroll supports possession but does not independently prove the dialogue or dig event.</p></li><li class="checkpoint-item"><div class="item-line"><strong>The player observes Lumbridge &amp; Draynor Easy credit after asking Hans for the account&#x27;s age.</strong><span class="badge badge-sourced_unmodeled_substep">Sourced substep</span></div><p class="boundary"><span>Boundary:</span> Task credit does not prove easy-tier completion or reward claim.</p></li><li class="checkpoint-item"><div class="item-line"><strong>The player observes task credit after one successful Lumbridge citizen pickpocket.</strong><span class="badge badge-sourced_unmodeled_substep">Sourced substep</span></div><p class="boundary"><span>Boundary:</span> Loot and attempt count are variable and are not fixed outputs.</p></li><li class="checkpoint-item"><div class="item-line"><strong>Return to Lumbridge Castle bank, deposit all carried items, and record observed item and coin quantities.</strong><span class="badge badge-sourced_unmodeled_substep">Sourced substep</span></div><p class="boundary"><span>Boundary:</span> The checkpoint records observed state; it does not infer provenance, quest completion, diary tier, or route continuation.</p></li></ul>
+      </section>
+      <section class="section" id="steps">
+        <div class="section-heading"><h2>Steps</h2><span class="badge badge-unresolved">Manual confirmation</span></div>
+        <ol class="steps"><li class="step"><input class="step-check" type="checkbox" id="guide-segment-lumbridge-first-relay-step-open-lumbridge-bank" data-step-id="step:open-lumbridge-bank"><label for="guide-segment-lumbridge-first-relay-step-open-lumbridge-bank"><span class="step-number">1</span><span class="step-text">Open Lumbridge Castle bank; withdraw 5 coins.</span></label><div class="step-meta"><span class="badge badge-sourced_unmodeled_substep">Sourced substep</span></div><p class="checkpoint-ref">Checkpoint: <code>checkpoint:lumbridge-bank-initial-coins</code></p><p class="boundary"><span>Boundary:</span> Observe the withdrawal and inventory; no bank layout is inferred.</p></li><li class="step"><input class="step-check" type="checkbox" id="guide-segment-lumbridge-first-relay-step-start-rune-mysteries" data-step-id="step:start-rune-mysteries"><label for="guide-segment-lumbridge-first-relay-step-start-rune-mysteries"><span class="step-number">2</span><span class="step-text">Talk to Duke Horacio; start Rune Mysteries.</span></label><div class="step-meta"><span class="badge badge-sourced_unmodeled_substep">Sourced substep</span></div><p class="checkpoint-ref">Checkpoint: <code>external:rune-mysteries-started</code></p><p class="boundary"><span>Boundary:</span> Confirm the start and air talisman; do not record completion.</p></li><li class="step"><input class="step-check" type="checkbox" id="guide-segment-lumbridge-first-relay-step-ask-hans-age" data-step-id="step:ask-hans-age"><label for="guide-segment-lumbridge-first-relay-step-ask-hans-age"><span class="step-number">3</span><span class="step-text">Ask Hans for your age.</span></label><div class="step-meta"><span class="badge badge-sourced_unmodeled_substep">Sourced substep</span></div><p class="checkpoint-ref">Checkpoint: <code>checkpoint:hans-age-task</code></p><p class="boundary"><span>Boundary:</span> Confirm task credit only.</p></li><li class="step"><input class="step-check" type="checkbox" id="guide-segment-lumbridge-first-relay-step-start-restless-ghost" data-step-id="step:start-restless-ghost"><label for="guide-segment-lumbridge-first-relay-step-start-restless-ghost"><span class="step-number">4</span><span class="step-text">Talk to Father Aereck; start The Restless Ghost.</span></label><div class="step-meta"><span class="badge badge-sourced_unmodeled_substep">Sourced substep</span></div><p class="checkpoint-ref">Checkpoint: <code>external:restless-ghost-started</code></p><p class="boundary"><span>Boundary:</span> Do not infer any later quest checkpoint.</p></li><li class="step"><input class="step-check" type="checkbox" id="guide-segment-lumbridge-first-relay-step-pickpocket-citizen" data-step-id="step:pickpocket-citizen"><label for="guide-segment-lumbridge-first-relay-step-pickpocket-citizen"><span class="step-number">5</span><span class="step-text">Successfully pickpocket a Lumbridge citizen.</span></label><div class="step-meta"><span class="badge badge-sourced_unmodeled_substep">Sourced substep</span></div><p class="checkpoint-ref">Checkpoint: <code>checkpoint:pickpocket-citizen-task</code></p><p class="boundary"><span>Boundary:</span> Confirm task credit and observe variable loot.</p></li><li class="step"><input class="step-check" type="checkbox" id="guide-segment-lumbridge-first-relay-step-buy-lumbridge-tools" data-step-id="step:buy-lumbridge-tools"><label for="guide-segment-lumbridge-first-relay-step-buy-lumbridge-tools"><span class="step-number">6</span><span class="step-text">Buy one spade, hammer, and chisel.</span></label><div class="step-meta"><span class="badge badge-sourced_unmodeled_substep">Sourced substep</span></div><p class="boundary"><span>Boundary:</span> Observe live stock, displayed prices, and exact coin spend.</p></li><li class="step"><input class="step-check" type="checkbox" id="guide-segment-lumbridge-first-relay-step-start-x-marks" data-step-id="step:start-x-marks"><label for="guide-segment-lumbridge-first-relay-step-start-x-marks"><span class="step-number">7</span><span class="step-text">Talk to Veos; start X Marks the Spot.</span></label><div class="step-meta"><span class="badge badge-sourced_unmodeled_substep">Sourced substep</span></div><p class="boundary"><span>Boundary:</span> Confirm receipt of the first scroll; do not infer completion.</p></li><li class="step"><input class="step-check" type="checkbox" id="guide-segment-lumbridge-first-relay-step-first-x-marks-dig" data-step-id="step:first-x-marks-dig"><label for="guide-segment-lumbridge-first-relay-step-first-x-marks-dig"><span class="step-number">8</span><span class="step-text">Dig by Bob&#x27;s north-west window.</span></label><div class="step-meta"><span class="badge badge-sourced_unmodeled_substep">Sourced substep</span></div><p class="checkpoint-ref">Checkpoint: <code>external:x-marks-first-dig</code></p><p class="boundary"><span>Boundary:</span> Confirm the first scroll was replaced by the second and the spade remains.</p></li><li class="step"><input class="step-check" type="checkbox" id="guide-segment-lumbridge-first-relay-step-bank-first-relay" data-step-id="step:bank-first-relay"><label for="guide-segment-lumbridge-first-relay-step-bank-first-relay"><span class="step-number">9</span><span class="step-text">Return to Lumbridge Castle; bank everything.</span></label><div class="step-meta"><span class="badge badge-sourced_unmodeled_substep">Sourced substep</span></div><p class="checkpoint-ref">Checkpoint: <code>checkpoint:lumbridge-bank-first-relay-end</code></p><p class="boundary"><span>Boundary:</span> Record observed final bank contents and coins; do not infer provenance.</p></li></ol>
+      </section>
+      
+      <section class="section" id="safety">
+        <div class="section-heading"><h2>Safety and passive checks</h2><span class="badge badge-unresolved">Player judgment required</span></div>
+        <h3>Current observations</h3><ul class="plain-list"><li>Observe current Hitpoints and food before repeating a failed pickpocket.</li><li>Observe shop stock, carried coins, and free slots before purchasing.</li></ul>
+        <h3>Risk acceptance</h3><ul class="plain-list"><li>The player accepts repeated local pickpocket attempts or stops the optional task attempt before account safety becomes unacceptable.</li></ul>
+        <p class="boundary"><span>Survival boundary:</span> No death, escape, safe travel, or return is inferred.</p>
+        <h3>Passive-check policy</h3><ul class="plain-list"></ul>
+      </section>
+      <section class="section" id="stop-reentry">
+        <div class="section-heading"><h2>Stop and re-entry</h2><span class="badge badge-unresolved">No completion inferred</span></div>
+        <h3>Stop conditions</h3><ul class="plain-list"><li>Stop when any required quest start, item receipt, purchase, or diary credit differs from the documented checkpoint.</li><li>Stop before repeated pickpocket attempts when current Hitpoints or food is unacceptable.</li></ul>
+        <h3>Re-entry conditions</h3><ul class="plain-list"><li>Resume from the nearest player-confirmed partial quest or bank checkpoint after re-observing inventory, coins, Hitpoints, and location.</li></ul>
+      </section>
+      <section class="section" id="sources">
+        <div class="section-heading"><h2>Sources</h2><span class="badge badge-sourced_unmodeled_substep">Research evidence</span></div>
+        <ul class="sources"><li><a href="https://oldschool.runescape.wiki/w/Learning_the_Ropes" target="_blank" rel="noopener noreferrer">wiki-learning-the-ropes-current</a><p>Post-Tutorial location, fixed kit, and 25 banked coins.</p><small>Verified: 2026-08-24</small></li><li><a href="https://oldschool.runescape.wiki/w/The_Restless_Ghost" target="_blank" rel="noopener noreferrer">wiki-restless-ghost</a><p>Father Aereck quest start and non-completion boundary.</p><small>Verified: 2026-08-24</small></li><li><a href="https://oldschool.runescape.wiki/w/Rune_Mysteries/Quick_guide" target="_blank" rel="noopener noreferrer">wiki-rune-mysteries-current</a><p>Duke Horacio quest start and air-talisman receipt.</p><small>Verified: 2026-08-25</small></li><li><a href="https://oldschool.runescape.wiki/w/X_Marks_the_Spot" target="_blank" rel="noopener noreferrer">wiki-x-marks-the-spot</a><p>Veos start, spade gate, first dig, and second-scroll handoff.</p><small>Verified: 2026-08-24</small></li><li><a href="https://oldschool.runescape.wiki/w/Shop_keeper_(Lumbridge)" target="_blank" rel="noopener noreferrer">wiki-lumbridge-shopkeeper-current</a><p>Listed spade, hammer, and chisel prices and stock boundary.</p><small>Verified: 2026-08-25</small></li><li><a href="https://oldschool.runescape.wiki/w/Lumbridge_%26_Draynor_Diary" target="_blank" rel="noopener noreferrer">wiki-lumbridge-diary</a><p>Hans age and successful citizen-pickpocket easy-task conditions.</p><small>Verified: 2026-08-22</small></li></ul>
+      </section>
+      <footer class="reader-footer">This reader visualizes research evidence. It does not select a route, apply an action, claim items or GP, or infer completion, timing, combat success, travel, or safety.</footer>
+    </article>
+  </main>
+  <script>
+    (() => {
+      const storageKey = "osrs-progression-guide:segment:lumbridge-first-relay";
+      const checks = [...document.querySelectorAll(".step-check")];
+      const status = document.getElementById("storage-status");
+      let saved = {};
+      try { saved = JSON.parse(localStorage.getItem(storageKey) || "{}"); } catch (_) { status.textContent = "Local step storage is unavailable in this browser."; }
+      checks.forEach((check) => {
+        check.checked = saved[check.dataset.stepId] === true;
+        check.addEventListener("change", () => {
+          try {
+            const next = Object.fromEntries(checks.map((item) => [item.dataset.stepId, item.checked]));
+            localStorage.setItem(storageKey, JSON.stringify(next));
+          } catch (_) { status.textContent = "Local step storage is unavailable in this browser."; }
+        });
+      });
+      document.getElementById("reset-checks").addEventListener("click", () => {
+        checks.forEach((check) => { check.checked = false; });
+        try { localStorage.removeItem(storageKey); } catch (_) { status.textContent = "Local step storage is unavailable in this browser."; }
+      });
+    })();
+  </script>
+</body>
+</html>

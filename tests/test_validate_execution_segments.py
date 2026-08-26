@@ -13,6 +13,7 @@ from validate_execution_segments import _canonical_action_facts, _canonical_fact
 
 
 PROOF = ROOT / "research" / "execution-segments" / "post-tutorial-varrock-museum-proof.json"
+FIRST_RELAY = ROOT / "research" / "execution-segments" / "lumbridge-first-relay.json"
 
 
 class ExecutionSegmentValidationTests(unittest.TestCase):
@@ -28,14 +29,23 @@ class ExecutionSegmentValidationTests(unittest.TestCase):
         errors, report = validate()
 
         self.assertEqual([], errors)
-        self.assertEqual(1, report["segments"])
+        self.assertEqual(2, report["segments"])
         self.assertEqual(1, report["linked_normalized_actions"])
-        self.assertEqual(3, report["sourced_unmodeled_steps"])
+        self.assertEqual(12, report["sourced_unmodeled_steps"])
         self.assertEqual(1, report["unresolved_partial_quest_checkpoints"])
         partial = self.segment["checkpoints"][0]
         self.assertEqual("external_partial_quest", partial["kind"])
         self.assertEqual("unresolved", partial["coverage"]["status"])
         self.assertNotIn("normalized_action_id", partial["coverage"])
+
+    def test_first_relay_has_exact_start_and_concise_ordered_steps(self) -> None:
+        segment = load_json(FIRST_RELAY)
+
+        self.assertEqual([], validate_segment(segment, self.action_facts, self.fact_ids, "relay.json"))
+        self.assertEqual(25, segment["starting_state"]["requirements"]["banked_gp"])
+        self.assertEqual(18, len(segment["starting_state"]["requirements"]["carried_items"]))
+        self.assertEqual(list(range(1, 10)), [step["sequence"] for step in segment["execution_steps"]])
+        self.assertTrue(all(len(step["instruction"].split()) <= 9 for step in segment["execution_steps"]))
 
     def test_partial_quest_checkpoint_cannot_be_represented_as_normalized_completion(self) -> None:
         invalid = copy.deepcopy(self.segment)

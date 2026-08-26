@@ -1,7 +1,7 @@
 {
   "manifest_schema_version": 1,
   "package_type": "research-only-execution-segment",
-  "segments": ["post-tutorial-varrock-museum-proof.json"],
+  "segments": ["post-tutorial-varrock-museum-proof.json", "lumbridge-first-relay.json"],
   "template": "template.json",
   "boundary": "Listed packages describe factual itinerary fragments only. They are not route selections or executable account transitions."
 }

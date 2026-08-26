@@ -169,6 +169,22 @@
       "use": "Current tracked tutorial completion reward: mainland access, Home Teleport, fixed kit, 25 banked coins, and one quest point."
     },
     {
+      "id": "wiki-rune-mysteries-current",
+      "publisher": "Old School RuneScape Wiki",
+      "url": "https://oldschool.runescape.wiki/w/Rune_Mysteries/Quick_guide",
+      "kind": "wiki",
+      "checked_at": "2026-08-25",
+      "use": "Rune Mysteries start location, no formal gates, air-talisman receipt, and later handoff sequence."
+    },
+    {
+      "id": "wiki-lumbridge-shopkeeper-current",
+      "publisher": "Old School RuneScape Wiki",
+      "url": "https://oldschool.runescape.wiki/w/Shop_keeper_(Lumbridge)",
+      "kind": "wiki",
+      "checked_at": "2026-08-25",
+      "use": "Lumbridge General Store baseline stock and spade, hammer, and chisel prices."
+    },
+    {
       "id": "wiki-tutorial-island-current",
       "publisher": "Old School RuneScape Wiki",
       "url": "https://oldschool.runescape.wiki/w/Tutorial_Island",

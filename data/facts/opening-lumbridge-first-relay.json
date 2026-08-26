@@ -1,0 +1,31 @@
+{
+  "records": [
+    {
+      "id": "opening-lumbridge-first-relay",
+      "name": "Lumbridge first-relay factual mechanics",
+      "category": "quest",
+      "status": "verified",
+      "verified_at": "2026-08-25",
+      "scope": "Factual post-Tutorial arrival, local quest-start outputs, Lumbridge tool prices, first X Marks dig, and two diary task boundaries. It does not select an episode or later route.",
+      "arrival": {"location": "Lumbridge east of the castle", "banked_coins": 25, "fact_id": "new-ironman-post-tutorial-baseline"},
+      "tool_shop": {
+        "location": "Lumbridge General Store",
+        "listed_prices": {"spade": 3, "hammer": 1, "chisel": 1},
+        "boundary": "Shop stock and displayed price are live state. Five coins is the listed full-stock baseline, not a guaranteed observed transaction total."
+      },
+      "partial_quest_outputs": {
+        "the_restless_ghost_start": {"items": {}, "completion_not_implied": true},
+        "rune_mysteries_start": {"items_received": {"air_talisman": 1}, "completion_not_implied": true},
+        "x_marks_start": {"items_received": {"treasure_scroll_first_clue": 1}, "completion_not_implied": true},
+        "x_marks_first_dig": {"location": "north-west of the window at Bob's Brilliant Axes", "items_removed": {"treasure_scroll_first_clue": 1}, "items_received": {"treasure_scroll_second_clue": 1}, "reusable_items": {"spade": 1}, "completion_not_implied": true}
+      },
+      "diary_tasks": {
+        "hans_age": {"result": "Lumbridge & Draynor Easy task credit after asking Hans for the account's age", "fixed_output_items": {}},
+        "pickpocket_citizen": {"result": "Lumbridge & Draynor Easy task credit after one successful pickpocket of a man or woman in Lumbridge", "loot": "variable and not a fixed modeled output"}
+      },
+      "observation_boundary": "Quest starts, first-dig replacement, and diary task credits require player confirmation. Point-in-time item presence can support possession but cannot prove the interactions or provenance.",
+      "source_ids": ["wiki-learning-the-ropes-current", "wiki-restless-ghost", "wiki-rune-mysteries-current", "wiki-x-marks-the-spot", "wiki-lumbridge-shopkeeper-current", "wiki-lumbridge-diary"],
+      "confidence": "high"
+    }
+  ]
+}
