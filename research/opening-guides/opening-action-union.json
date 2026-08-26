@@ -8,7 +8,7 @@
       "B0aty Starting Out through Bank 4",
       "BRUHsailer Steps 1 through 14"
     ],
-    "detailed_actions": 16,
+    "detailed_actions": 29,
     "undecomposed_action_policy": "Every material source action remains protected_pending_trace until it receives its own ledger entry. Absence from the detailed action array is not permission to omit it."
   },
   "source_files": [
@@ -17,7 +17,9 @@
     "research/opening-guides/fresh-start-comparison.md",
     "research/opening-guides/source-action-index.md",
     "research/opening-ledger/supply-economy.md",
-    "coordination/consultations/opening-utility-pickups-tranche-01.md"
+    "coordination/consultations/opening-utility-pickups-tranche-01.md",
+    "research/opening-bundles/varrock-handoff-selection.md",
+    "coordination/consultations/opening-varrock-handoffs-tranche-02.md"
   ],
   "actions": [
     {
@@ -246,6 +248,200 @@
       ],
       "decision_status": "protected_pending_trace",
       "unresolved": ["Whether packs or individual rune buys best match the merged GP and shop-stock state", "Exact rune demand before the next reliable shop access", "How much early Magic combat remains in the merged plan"]
+    },
+    {
+      "id": "opening:children-of-the-sun-completion",
+      "action": "Complete Children of the Sun during first Varrock work.",
+      "provenance": ["b0aty", "bruhsailer"],
+      "guide_locations": ["B0aty opening cycle 3", "BRUHsailer step 12"],
+      "produced_or_preserved_state": ["Children of the Sun completed", "Varlamore access baseline candidate"],
+      "known_downstream_uses": [
+        {"use": "Both openings complete the quest during first Varrock work", "trace_status": "named_in_guide_study"},
+        {"use": "Existing handoff selection records Children of the Sun as an already-normalized regional-unlock completion, not a new partial state", "trace_status": "repo_record"},
+        {"use": "Guide specialist finds no explicit later guide dependency in the supplied context, making this a route-local completion opportunity until Varlamore consumers are traced", "trace_status": "specialist_trace_unverified_mechanics"},
+        {"use": "Future Varlamore travel and content remain separate from internal Quetzal network unlocks", "trace_status": "repo_record"}
+      ],
+      "decision_status": "protected_pending_trace",
+      "unresolved": ["Current route value of immediate Varlamore access versus first-Varrock inventory and travel cost", "Which later Varlamore destination first consumes this access"]
+    },
+    {
+      "id": "opening:demon-slayer-varrock-start",
+      "action": "Start Demon Slayer in Varrock and advance through the early palace and sewer key work recorded by the guides.",
+      "provenance": ["b0aty", "bruhsailer"],
+      "guide_locations": ["B0aty opening cycle 3", "BRUHsailer step 12"],
+      "produced_or_preserved_state": ["Demon Slayer started", "Sir Prysin handoff", "early Demon Slayer key progress"],
+      "known_downstream_uses": [
+        {"use": "B0aty defers completion until much later after repeated key and bone routing", "trace_status": "named_in_guide_study"},
+        {"use": "Guide specialist traces B0aty opportunistic Demon Slayer consumers to later geographically scattered bone/key actions before final completion", "trace_status": "specialist_trace_unverified_mechanics"},
+        {"use": "Varrock handoff selection links completion to Silverlight/Delrith, Shadow of the Storm, Defender of Varrock, and a Minas Kudos claim", "trace_status": "repo_record"},
+        {"use": "BRUHsailer starts and advances Demon Slayer during first Varrock arrival, then leaves completion for later route state", "trace_status": "named_in_guide_study"}
+      ],
+      "decision_status": "protected_pending_trace",
+      "unresolved": ["Whether key progress should be preserved as inventory state only or durable partial-state evidence", "First merged-route deadline for Silverlight or Demon Slayer completion", "Combat/readiness and quest-chain timing for completion"]
+    },
+    {
+      "id": "opening:vampyre-slayer-dr-harlow-handoff",
+      "action": "Advance Vampyre Slayer through the Dr Harlow beer handoff during Varrock work.",
+      "provenance": ["b0aty", "bruhsailer"],
+      "guide_locations": ["B0aty opening cycle 3", "BRUHsailer step 13"],
+      "produced_or_preserved_state": ["Vampyre Slayer started", "Dr Harlow handoff", "stake or equivalent route item if current mechanics confirm it"],
+      "known_downstream_uses": [
+        {"use": "B0aty starts Vampyre Slayer in Draynor, performs Dr Harlow dialogue in first Varrock work, and completes much later", "trace_status": "named_in_guide_study"},
+        {"use": "BRUHsailer starts Vampyre Slayer in its Port Sarim/Falador run and advances it with Dr Harlow during Varrock follow-up", "trace_status": "named_in_guide_study"},
+        {"use": "Varrock handoff selection links completion to Attack XP and later Sins of the Father prerequisite chain", "trace_status": "repo_record"}
+      ],
+      "decision_status": "protected_pending_trace",
+      "unresolved": ["Current item state from Dr Harlow must be verified before modeling inventory output", "Whether a merged route wants this handoff now or when Count Draynor combat readiness is active", "Beer source and quantity for the chosen path"]
+    },
+    {
+      "id": "opening:gertrudes-cat-handoff",
+      "action": "Start and progress Gertrude's Cat during first Varrock work; complete only where the source route does so inside the reviewed horizon.",
+      "provenance": ["b0aty", "bruhsailer"],
+      "guide_locations": ["B0aty opening cycle 2-3", "BRUHsailer steps 12 and 14"],
+      "produced_or_preserved_state": ["Gertrude's Cat started", "playground or child-location handoff", "kitten and quest completion only on the BRUHsailer step-14 path"],
+      "known_downstream_uses": [
+        {"use": "Both openings start or progress Gertrude's Cat around first Varrock work", "trace_status": "named_in_guide_study"},
+        {"use": "Guide specialist traces B0aty completion later than the reviewed Bank 4 horizon and identifies early completion as valuable because it starts the cat-growth clock", "trace_status": "specialist_trace_unverified_mechanics"},
+        {"use": "BRUHsailer completes Gertrude's Cat during step 14 while pairing it with Daddy's Home and Varrock/Varlamore movement", "trace_status": "named_in_guide_study"},
+        {"use": "Varrock handoff selection links completion to kitten/cat branches, Icthlarin's Little Helper, Evil Dave, and later diary or quest use", "trace_status": "repo_record"}
+      ],
+      "decision_status": "protected_pending_trace",
+      "unresolved": ["Whether B0aty completes Gertrude's Cat at a later point outside the preserved source trace", "Whether the merged route should complete it in the Daddy's Home follow-up or defer until cat growth has a named value", "Exact food/item relay for completion"]
+    },
+    {
+      "id": "opening:shield-of-arrav-start-branch",
+      "action": "Start Shield of Arrav and preserve faction-branch flexibility rather than forcing completion.",
+      "provenance": ["b0aty", "bruhsailer"],
+      "guide_locations": ["B0aty opening cycle 3", "BRUHsailer steps 12-13"],
+      "produced_or_preserved_state": ["Shield of Arrav started", "Reldo/book handoff", "possible faction branch state"],
+      "known_downstream_uses": [
+        {"use": "Both openings start Shield of Arrav during first Varrock work", "trace_status": "named_in_guide_study"},
+        {"use": "BRUHsailer explicitly records Phoenix completion as an alternate branch while normally delaying completion and preserving Black Arm flexibility", "trace_status": "named_in_guide_study"},
+        {"use": "Guide specialist warns that start state and faction commitment must be modeled separately because Heroes' Quest inherits the faction branch", "trace_status": "specialist_trace_unverified_mechanics"},
+        {"use": "Varrock handoff selection links completion to Heroes' Quest, Defender of Varrock, and a Minas Kudos/lamp claim, while rejecting brittle social dependency as a baseline", "trace_status": "repo_record"}
+      ],
+      "decision_status": "protected_pending_trace",
+      "unresolved": ["Non-brittle partner/faction fallback for a player-facing guide", "Whether any route segment should pick a faction before a confirmed partner or downstream deadline", "Which completion horizon first makes this worth resolving"]
+    },
+    {
+      "id": "opening:priest-in-peril-start",
+      "action": "Start Priest in Peril with King Roald during first Varrock work.",
+      "provenance": ["b0aty", "bruhsailer"],
+      "guide_locations": ["B0aty opening cycle 3", "BRUHsailer step 12"],
+      "produced_or_preserved_state": ["Priest in Peril started", "Morytania chain option opened as a journal state"],
+      "known_downstream_uses": [
+        {"use": "Both openings start Priest in Peril in first Varrock work and defer completion", "trace_status": "named_in_guide_study"},
+        {"use": "Guide specialist traces B0aty completion to the later Morytania/Nature Spirit opening window and treats the bare start as low immediate fragility", "trace_status": "specialist_trace_unverified_mechanics"},
+        {"use": "Varrock handoff selection links completion to Morytania, Nature Spirit, Ghosts Ahoy, Barrows access, Morytania transport, and Prayer XP", "trace_status": "repo_record"},
+        {"use": "Existing early-quest facts require 50 unnoted essence, a bucket, and combat/risk planning for completion", "trace_status": "repo_record"}
+      ],
+      "decision_status": "protected_pending_trace",
+      "unresolved": ["Whether a bare quest start should remain execution-only in the merged route", "First Morytania objective that makes completion timely", "Essence, bucket, combat, and inventory plan for the eventual completion segment"]
+    },
+    {
+      "id": "opening:daddys-home-start-and-completion",
+      "action": "Start Daddy's Home in Varrock and complete it during the immediate Varrock follow-up bundle.",
+      "provenance": ["b0aty", "bruhsailer"],
+      "guide_locations": ["B0aty opening cycles 3-4", "BRUHsailer steps 12-14"],
+      "produced_or_preserved_state": ["Daddy's Home started", "Daddy's Home completed", "first player-owned house branch", "Construction XP", "Marlo's crate"],
+      "known_downstream_uses": [
+        {"use": "Both openings start Daddy's Home during first Varrock work and complete it in the immediate follow-up", "trace_status": "named_in_guide_study"},
+        {"use": "Guide specialist confirms both guide families use early completion to support later Construction trajectory, with BRUHsailer's value amplified by its Wintertodt/construction plan", "trace_status": "specialist_trace_unverified_mechanics"},
+        {"use": "Varrock handoff selection promotes completion as a bounded follow-up target because it establishes early POH ownership", "trace_status": "repo_record"},
+        {"use": "Current Daddy's Home fact record preserves fixed materials, 944 Construction XP, first-house branch, and crate outputs while leaving bent nails variable", "trace_status": "repo_record"}
+      ],
+      "decision_status": "protected_pending_trace",
+      "unresolved": ["Exact merged material relay and cash deadline for cloth, planks, saw, hammer, and nails", "Whether Varlamore quetzal travel remains paired with completion", "How to expose bent-nail variance in eventual player steps"]
+    },
+    {
+      "id": "opening:romeo-and-juliet-handoff",
+      "action": "Start and progress Romeo & Juliet during first Varrock work where the source route includes it.",
+      "provenance": ["b0aty", "bruhsailer"],
+      "guide_locations": ["B0aty opening cycle 3", "BRUHsailer steps 12 and 14"],
+      "produced_or_preserved_state": ["Romeo & Juliet started or progressed", "Apothecary/cadava-berry handoff where reached"],
+      "known_downstream_uses": [
+        {"use": "B0aty starts and progresses Romeo & Juliet during first Varrock work", "trace_status": "named_in_guide_study"},
+        {"use": "BRUHsailer starts and progresses Romeo & Juliet across steps 12 and 14", "trace_status": "named_in_guide_study"},
+        {"use": "Guide specialist identifies B0aty's very late completion as evidence that early start and completion timing are mostly decoupled", "trace_status": "specialist_trace_unverified_mechanics"},
+        {"use": "Varrock handoff selection links completion to later Making Friends with My Arm and Defender of Varrock prerequisites, while noting no immediate skill XP or durable item", "trace_status": "repo_record"}
+      ],
+      "decision_status": "protected_pending_trace",
+      "unresolved": ["Whether the merged route should preserve only a convenient dialogue handoff or complete the quest in the same regional bundle", "Current cadava berry acquisition and inventory timing", "First route deadline for the later prerequisite chain"]
+    },
+    {
+      "id": "opening:knights-sword-reldo-handoff",
+      "action": "Start The Knight's Sword and progress the Reldo handoff in the broader first-Varrock route where the source includes it.",
+      "provenance": ["bruhsailer"],
+      "guide_locations": ["BRUHsailer steps 11-12"],
+      "produced_or_preserved_state": ["The Knight's Sword started", "Reldo-directed partial state", "future Smithing XP route anchor"],
+      "known_downstream_uses": [
+        {"use": "BRUHsailer starts The Knight's Sword before Varrock and progresses it with Reldo during first Varrock arrival", "trace_status": "named_in_guide_study"},
+        {"use": "Guide specialist distinguishes B0aty Bank 3 Reldo work for Shield of Arrav from B0aty's later Knight's Sword Reldo handoff after the Squire start", "trace_status": "specialist_trace_unverified_mechanics"},
+        {"use": "First-Varrock comparison records this as a BRUHsailer expansion beyond the shared B0aty core", "trace_status": "repo_record"},
+        {"use": "The quest is a known early Smithing XP candidate, but this ledger entry does not promote completion timing", "trace_status": "analyst_inference"}
+      ],
+      "decision_status": "protected_pending_trace",
+      "unresolved": ["Whether B0aty solves early Smithing differently enough to omit this handoff", "Current item, travel, and danger costs for completion", "Whether the merged route wants early Smithing XP before or after other convenience unlocks"]
+    },
+    {
+      "id": "opening:family-crest-start",
+      "action": "Start Family Crest during BRUHsailer's first Varrock follow-up work.",
+      "provenance": ["bruhsailer"],
+      "guide_locations": ["BRUHsailer step 13"],
+      "produced_or_preserved_state": ["Family Crest started", "later family-gauntlet quest-chain hook"],
+      "known_downstream_uses": [
+        {"use": "BRUHsailer starts Family Crest during the first Varrock follow-up after Aubury work", "trace_status": "named_in_guide_study"},
+        {"use": "Guide specialist traces B0aty's Family Crest start much later, showing the opening start is not required for B0aty-style early progression", "trace_status": "specialist_trace_unverified_mechanics"},
+        {"use": "First-Varrock comparison records Family Crest as a BRUHsailer-only expansion in this scope", "trace_status": "repo_record"},
+        {"use": "B0aty preserves shrimps at the first bank for Family Crest, indicating later quest-input awareness even though the start is outside the reviewed B0aty opening", "trace_status": "named_in_guide_study"}
+      ],
+      "decision_status": "protected_pending_trace",
+      "unresolved": ["First meaningful deadline for starting versus merely preserving Family Crest inputs", "Current combat, Cooking/Fishing/Mining/Magic gates and reward timing", "Whether this is an opening handoff or later quest-chain preparation under the project philosophy"]
+    },
+    {
+      "id": "opening:rag-and-bone-man-start",
+      "action": "Start Rag and Bone Man I during BRUHsailer's step-14 Varrock follow-up.",
+      "provenance": ["bruhsailer"],
+      "guide_locations": ["BRUHsailer step 14"],
+      "produced_or_preserved_state": ["Rag and Bone Man I started", "bone-collection side-channel opened"],
+      "known_downstream_uses": [
+        {"use": "BRUHsailer starts Rag and Bone Man I while pairing Gertrude's Cat and Daddy's Home completion with the Varrock follow-up", "trace_status": "named_in_guide_study"},
+        {"use": "Guide specialist identifies Rag and Bone Man I as a high-fragility BRUHsailer overlay if delayed past incidental bone-producing encounters", "trace_status": "specialist_trace_unverified_mechanics"},
+        {"use": "First-Varrock comparison records this as a BRUHsailer-only expansion in this scope", "trace_status": "repo_record"},
+        {"use": "Supply ledger records Draynor wine-shop vinegar as outside the current wine fact, gated by Rag and Bone Man I", "trace_status": "repo_record"}
+      ],
+      "decision_status": "protected_pending_trace",
+      "unresolved": ["Whether opening the bone list early creates useful passive collection value or distracting bank clutter", "Current vinegar, pot, and bone-cleaning requirements", "First consumer that makes this start worthwhile under the merged route"]
+    },
+    {
+      "id": "opening:natural-history-quiz",
+      "action": "Complete the Natural History Quiz during early Varrock museum work.",
+      "provenance": ["b0aty"],
+      "guide_locations": ["B0aty opening cycle 3"],
+      "produced_or_preserved_state": ["28 Kudos", "1000 Hunter XP", "1000 Slayer XP", "Natural History Quiz completed"],
+      "known_downstream_uses": [
+        {"use": "B0aty completes Natural History Quiz during its first early Varrock cycle", "trace_status": "named_in_guide_study"},
+        {"use": "Guide specialist treats Natural History Quiz as material early skill and Kudos state, not merely a Varrock micro-action", "trace_status": "specialist_trace_unverified_mechanics"},
+        {"use": "Varrock Museum fact record links the quiz to the pre-Bone Voyage Kudos path and fixed Hunter/Slayer XP", "trace_status": "repo_record"},
+        {"use": "Fresh-start comparison marks this as B0aty-only in the reviewed scope rather than shared-opening proof", "trace_status": "repo_record"}
+      ],
+      "decision_status": "protected_pending_trace",
+      "unresolved": ["Whether early fixed Slayer/Hunter XP and Kudos justify the Varrock basement time under the merged route", "How it interacts with 100-Kudos Bone Voyage timing", "Whether BRUHsailer omits or delays it for a specific later bundle"]
+    },
+    {
+      "id": "opening:varrock-diary-and-quest-microbundle",
+      "action": "Collect or perform low-cost Varrock pass-through micro-actions: clothing purchase/wear, stray-dog bones, bucket and pie-dish handling, and related palace errands.",
+      "provenance": ["b0aty", "bruhsailer"],
+      "guide_locations": ["B0aty opening cycle 3", "BRUHsailer steps 12-14"],
+      "produced_or_preserved_state": ["Varrock Easy clothing progress where applicable", "dog-bone pass-through action", "bucket of water", "pie dish", "Knight's Sword and other quest-input staging"],
+      "known_downstream_uses": [
+        {"use": "B0aty buys and wears pink skirt and brown apron, uses bones on a stray dog, and takes palace buckets and pie dish during first Varrock work", "trace_status": "named_in_guide_study"},
+        {"use": "BRUHsailer collects doogle leaves, pie dish, bucket of water, saw, and later exact step-14 Daddy's Home/Gertrude loadouts", "trace_status": "named_in_guide_study"},
+        {"use": "Guide specialist separates bucket/water/drain as Demon Slayer key progress from lower-fragility clothing, dog-bone, and pie-dish optimizations", "trace_status": "specialist_trace_unverified_mechanics"},
+        {"use": "Diary and museum factual records keep task credit, item fate, and player confirmation separate from route timing", "trace_status": "repo_record"}
+      ],
+      "decision_status": "protected_pending_trace",
+      "unresolved": ["Split this aggregate into individual entries only when a route candidate needs omission or movement", "Current diary task credit for clothing and dog-bone actions", "Capacity cost of carrying bucket/pie-dish inputs through the merged first-Varrock follow-up"]
     }
   ],
   "global_omission_gate": [
