@@ -13,6 +13,7 @@ The four dossiers are reviewed. They establish factual inputs and conflicts; the
 | Concise guide language | No player-facing prose was added. Later instructions remain short imperatives under `route/guide-writing-style.md`. |
 | First inventory/bank relay | Episode 01 proves the execution contract and concise rendering only. It is not a route candidate because the short horizon omitted protected guide setup. |
 | Opening default-route pressure | `research/opening-bundles/default-route-pressure.md` classifies traced union actions as default-anchor candidates, protected dependencies, soft handoffs, optional macro overlays, risk/intensity branches, or source conventions without pruning the union. |
+| Convenience versus macro follow-up | `research/opening-bundles/convenience-vs-macro-followup.md` compares a Daddy's Home/Gertrude/Natural History/Children anchor path against a broader BRUHsailer-style macro overlay while keeping every source action protected. |
 
 ## Ready for bounded normalization
 
@@ -34,6 +35,7 @@ The four dossiers are reviewed. They establish factual inputs and conflicts; the
 | Individual Quetzal nests | Unlocking the system does not prove every destination is available. | Normalize *Twilight's Promise* and nest discovery/construction independently when route-relevant. |
 | Guide-specific intensity assumptions | World hopping, long fletching blocks, thieving, Wintertodt setup, and Wilderness exposure affect enjoyment. | Compare with account preferences and attention budget in strategy, not facts. |
 | Convenience anchors versus macro overlays | Daddy's Home, Gertrude's Cat, Natural History Quiz, and Children of the Sun now have stronger default-route pressure than Rag and Bone Man I, large BRUHsailer log/Fletching blocks, or broad regional compression. | Build a capacity-aware comparison for a convenience-anchor follow-up versus a macro-overlay follow-up before any action is moved, branched, or omitted. |
+| Specialist check on macro deferral | The guide specialist has been asked whether treating Rag and Bone Man I, Family Crest start, large log/arrowshaft work, and broad BRUHsailer extras as optional/triggered creates concrete breaks before the first major regional sweep. | Record the answer in `coordination/consultations/opening-convenience-vs-macro-03.md` before changing any union action status away from `protected_pending_trace`. |
 
 ## Next production order
 
