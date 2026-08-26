@@ -17,19 +17,23 @@ class RenderExecutionSegmentTests(unittest.TestCase):
     def setUp(self) -> None:
         self.segment = load_json(DEFAULT_INPUT)
 
-    def test_renderer_includes_the_proof_content_and_research_boundaries(self) -> None:
+    def test_renderer_keeps_play_view_compact_and_research_collapsed(self) -> None:
         page = render_segment(self.segment)
 
         self.assertIn("Post-Tutorial Varrock Museum Natural History Quiz proof segment", page)
-        self.assertIn("Purpose and why now", page)
-        self.assertIn("Optional branch", page)
-        self.assertIn("Safety and passive checks", page)
-        self.assertIn("Reset step checks", page)
+        self.assertIn("Opening episode", page)
+        self.assertIn("Research details", page)
+        self.assertIn('<details class="research"', page)
+        self.assertIn("Optional", page)
+        self.assertIn(">Reset</button>", page)
         self.assertIn("localStorage", page)
-        self.assertIn("Research-only", page)
         self.assertIn("Unresolved", page)
         self.assertIn("https://oldschool.runescape.wiki/w/Kudos", page)
-        self.assertIn("does not select a route", page)
+        self.assertIn("Timing boundary:", page)
+        play_view = page.split('<details class="research"', 1)[0]
+        self.assertNotIn("Boundary:", play_view)
+        self.assertNotIn("Sourced substep", play_view)
+        self.assertNotIn("Checkpoint:", play_view)
 
     def test_command_writes_a_self_contained_preview(self) -> None:
         with tempfile.TemporaryDirectory() as directory:

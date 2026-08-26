@@ -74,25 +74,33 @@ def checkpoint_markup(checkpoint: dict[str, Any]) -> str:
 
 
 def step_markup(step: dict[str, Any], segment_id: str, *, branch: bool = False) -> str:
-    coverage = step.get("coverage", {})
     step_id = str(step.get("id", "step"))
     input_id = f"guide-{segment_id}-{step_id}".replace(":", "-")
     sequence = text(step.get("sequence", "?"))
-    action_id = coverage.get("normalized_action_id")
-    action = f'<p class="action-ref">Linked record: <code>{text(action_id)}</code></p>' if action_id else ""
-    checkpoint_ids = step.get("checkpoint_ids", [])
-    checkpoint_line = ""
-    if checkpoint_ids:
-        checkpoint_line = f'<p class="checkpoint-ref">Checkpoint: {", ".join(f"<code>{text(item)}</code>" for item in checkpoint_ids)}</p>'
     kind = " branch-step" if branch else ""
     return (
         f'<li class="step{kind}">'
         f'<input class="step-check" type="checkbox" id="{text(input_id)}" data-step-id="{text(step_id)}">'
         f'<label for="{text(input_id)}"><span class="step-number">{sequence}</span><span class="step-text">{text(step.get("instruction", ""))}</span></label>'
-        f'<div class="step-meta">{coverage_badge(coverage)}</div>'
-        f'{action}{checkpoint_line}'
-        f'<p class="boundary"><span>Boundary:</span> {text(coverage.get("boundary", "No boundary recorded."))}</p>'
         "</li>"
+    )
+
+
+def step_research_markup(step: dict[str, Any]) -> str:
+    coverage = step.get("coverage", {})
+    action_id = coverage.get("normalized_action_id")
+    checkpoint_ids = step.get("checkpoint_ids", [])
+    references = []
+    if action_id:
+        references.append(f"Action: {text(action_id)}")
+    if checkpoint_ids:
+        references.append("Checkpoint: " + ", ".join(text(item) for item in checkpoint_ids))
+    reference_line = f'<p class="muted">{"; ".join(references)}</p>' if references else ""
+    return (
+        '<li class="research-step">'
+        f'<div class="item-line"><strong>{text(step.get("sequence", "?"))}. {text(step.get("instruction", ""))}</strong>{coverage_badge(coverage)}</div>'
+        f'{reference_line}<p class="boundary"><span>Boundary:</span> {text(coverage.get("boundary", "No boundary recorded."))}</p>'
+        '</li>'
     )
 
 
@@ -105,6 +113,8 @@ def render_segment(segment: dict[str, Any]) -> str:
     requirements = starting.get("requirements", {})
     checkpoints = [starting.get("geographic_checkpoint", {}), starting.get("bank_checkpoint", {})] + list(segment.get("checkpoints", []))
     main_steps = "".join(step_markup(step, segment_id) for step in segment.get("execution_steps", []))
+    research_steps = "".join(step_research_markup(step) for step in segment.get("execution_steps", []))
+    end_checkpoint = next((item for item in reversed(checkpoints) if item), {})
     branches = segment.get("branches", [])
     branch_markup = ""
     for branch in branches:
@@ -112,10 +122,9 @@ def render_segment(segment: dict[str, Any]) -> str:
         heading_id = f"optional-{safe_dom_id(branch.get('id', 'branch'))}"
         branch_markup += (
             f'<section class="branch" aria-labelledby="{text(heading_id)}">'
-            f'<div class="section-heading"><h2 id="{text(heading_id)}">Optional branch</h2><span class="badge badge-unresolved">Player choice</span></div>'
+            f'<div class="section-heading"><h2 id="{text(heading_id)}">Optional</h2></div>'
             f'<p class="when"><strong>When:</strong> {text(branch.get("when", ""))}</p>'
             f'<ol class="steps branch-steps">{branch_steps}</ol>'
-            f'<p class="boundary"><span>Boundary:</span> {text(branch.get("coverage", {}).get("boundary", "No boundary recorded."))}</p>'
             "</section>"
         )
     sources = "".join(
@@ -129,6 +138,8 @@ def render_segment(segment: dict[str, Any]) -> str:
         for source in segment.get("source_catalog", [])
     )
     safety = segment.get("safety_hcim", {})
+    hazard_lines = [item.get("description", "") for item in safety.get("hazard_facts", []) if item.get("description")]
+    safety_lines = hazard_lines + list(safety.get("current_observations_required", []))
     passive = segment.get("passive_recurring_checks", [])
     passive_markup = "".join(
         '<li><strong>{identifier}</strong><dl class="policy">'
@@ -158,9 +169,9 @@ def render_segment(segment: dict[str, Any]) -> str:
     a {{ color: #a9d5e3; }}
     a:focus-visible, button:focus-visible, input:focus-visible {{ outline: 3px solid var(--focus); outline-offset: 2px; }}
     code {{ color: #d9cb9b; overflow-wrap: anywhere; }}
-    .shell {{ max-width: 1080px; margin: 0 auto; padding: 18px; display: grid; grid-template-columns: minmax(210px, 260px) minmax(0, 1fr); gap: 14px; }}
+    .shell {{ max-width: 760px; margin: 0 auto; padding: 18px; display: flex; flex-direction: column; gap: 10px; }}
     .sidebar, .reader {{ border: 1px solid var(--line); border-radius: 6px; background: var(--panel); }}
-    .sidebar {{ align-self: start; position: sticky; top: 14px; padding: 16px; }}
+    .sidebar {{ padding: 10px 14px; display: flex; align-items: center; gap: 14px; }}
     .reader {{ overflow: hidden; }}
     .titlebar {{ padding: 18px 20px; background: #202a2f; border-bottom: 1px solid var(--line); }}
     .eyebrow {{ margin: 0 0 7px; color: var(--accent); font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }}
@@ -169,10 +180,10 @@ def render_segment(segment: dict[str, Any]) -> str:
     .badge {{ display: inline-flex; align-items: center; min-height: 24px; padding: 2px 7px; border: 1px solid currentColor; border-radius: 4px; font-size: 12px; font-weight: 700; white-space: nowrap; }}
     .badge-normalized_action {{ color: var(--green); }} .badge-sourced_unmodeled_substep {{ color: var(--accent); }} .badge-unresolved {{ color: var(--amber); }}
     .status-row {{ display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }}
-    .nav-title {{ font-size: 12px; color: var(--muted); margin: 0 0 7px; text-transform: uppercase; letter-spacing: .06em; }}
-    .sidebar nav a {{ display: block; padding: 5px 0; color: var(--text); text-decoration: none; }} .sidebar nav a:hover {{ color: var(--accent); }}
-    .reset {{ width: 100%; min-height: 36px; margin-top: 18px; border: 1px solid var(--line); border-radius: 4px; background: #263238; color: var(--text); font: inherit; cursor: pointer; }} .reset:hover {{ border-color: var(--accent); }}
-    .local-note {{ margin: 10px 0 0; font-size: 12px; color: var(--muted); }}
+    .nav-title {{ font-size: 12px; color: var(--muted); margin: 0; text-transform: uppercase; letter-spacing: .06em; }}
+    .sidebar nav {{ display: flex; gap: 12px; }} .sidebar nav a {{ color: var(--text); text-decoration: none; }} .sidebar nav a:hover {{ color: var(--accent); }}
+    .reset {{ min-height: 34px; margin-left: auto; border: 1px solid var(--line); border-radius: 4px; background: #263238; color: var(--text); padding: 0 10px; font: inherit; cursor: pointer; }} .reset:hover {{ border-color: var(--accent); }}
+    .local-note {{ display: none; }}
     .section, .branch {{ padding: 18px 20px; border-bottom: 1px solid var(--line); }} .section:last-child {{ border-bottom: 0; }}
     .section-heading, .item-line {{ display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }}
     .section-heading {{ margin-bottom: 10px; }} .section p {{ margin: 7px 0; }}
@@ -180,71 +191,59 @@ def render_segment(segment: dict[str, Any]) -> str:
     .requirements {{ display: grid; grid-template-columns: minmax(110px, 150px) minmax(0, 1fr); margin: 12px 0 0; border-top: 1px solid var(--line); }} .requirements dt, .requirements dd {{ margin: 0; padding: 8px 0; border-bottom: 1px solid var(--line); }} .requirements dt {{ color: var(--muted); }}
     .checkpoint-item {{ padding: 10px 0; border-bottom: 1px solid var(--line); }} .checkpoint-item:last-child {{ border-bottom: 0; }}
     .boundary {{ color: var(--muted); font-size: 13px; }} .boundary span {{ color: var(--amber); font-weight: 700; }}
-    .steps {{ list-style: none; padding: 0; margin: 0; counter-reset: guide; }} .step {{ display: grid; grid-template-columns: 22px minmax(0, 1fr) auto; column-gap: 10px; padding: 13px 0; border-top: 1px solid var(--line); }}
+    .steps {{ list-style: none; padding: 0; margin: 0; counter-reset: guide; }} .step {{ display: grid; grid-template-columns: 22px minmax(0, 1fr); column-gap: 10px; padding: 13px 0; border-top: 1px solid var(--line); }}
     .step-check {{ width: 18px; height: 18px; margin: 2px 0 0; accent-color: var(--green); }} .step label {{ display: flex; gap: 9px; cursor: pointer; }} .step-number {{ flex: 0 0 22px; color: var(--accent); font-weight: 700; }} .step-text {{ min-width: 0; }}
     .step:has(.step-check:checked) .step-text {{ color: var(--muted); text-decoration: line-through; }} .step:has(.step-check:checked) .step-number {{ color: var(--green); }}
     .step-meta {{ grid-column: 3; }} .step > p {{ grid-column: 2 / -1; margin: 7px 0 0; }} .action-ref, .checkpoint-ref {{ color: var(--muted); font-size: 13px; }}
     .branch {{ background: var(--panel-alt); }} .when {{ margin: 0 0 10px; }} .branch-steps .step {{ border-color: var(--line); }}
     .policy {{ margin: 8px 0 0; display: grid; grid-template-columns: 80px minmax(0, 1fr); gap: 6px 10px; }} .policy dt {{ color: var(--muted); }} .policy dd {{ margin: 0; }}
     .sources li {{ padding: 10px 0; border-bottom: 1px solid var(--line); }} .sources li:last-child {{ border-bottom: 0; }} .sources p {{ margin: 4px 0; }}
+    details.research {{ border-bottom: 1px solid var(--line); }} details.research > summary {{ cursor: pointer; padding: 15px 20px; font-weight: 700; color: var(--accent); }} details.research[open] > summary {{ border-bottom: 1px solid var(--line); }}
+    .research-step {{ padding: 10px 0; border-bottom: 1px solid var(--line); }} .research-step:last-child {{ border-bottom: 0; }}
     .reader-footer {{ padding: 14px 20px; color: var(--muted); font-size: 13px; background: var(--panel-alt); }}
-    @media (max-width: 760px) {{ .shell {{ display: block; padding: 10px; }} .sidebar {{ position: static; margin-bottom: 10px; }} .sidebar nav {{ display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 14px; }} .titlebar, .section, .branch {{ padding: 15px; }} .step {{ grid-template-columns: 22px minmax(0, 1fr); }} .step-meta {{ grid-column: 2; margin-top: 7px; }} .requirements {{ grid-template-columns: 105px minmax(0, 1fr); }} }}
+    @media (max-width: 760px) {{ .shell {{ padding: 8px; }} .sidebar {{ gap: 10px; }} .nav-title {{ display: none; }} .sidebar nav {{ flex: 1; }} .titlebar, .section, .branch {{ padding: 15px; }} .requirements {{ grid-template-columns: 105px minmax(0, 1fr); }} }}
   </style>
 </head>
 <body>
   <main class="shell">
     <aside class="sidebar" aria-label="Guide navigation">
-      <p class="nav-title">Research reader</p>
+      <p class="nav-title">Episode</p>
       <nav>
-        <a href="#purpose">Purpose</a><a href="#preparation">Preparation</a><a href="#checkpoints">Checkpoints</a><a href="#steps">Steps</a><a href="#safety">Safety</a><a href="#sources">Sources</a>
+        <a href="#steps">Steps</a><a href="#research">Research</a>
       </nav>
-      <button class="reset" type="button" id="reset-checks">Reset step checks</button>
+      <button class="reset" type="button" id="reset-checks">Reset</button>
       <p class="local-note" id="storage-status">Step checks are stored only in this browser.</p>
     </aside>
     <article class="reader">
       <header class="titlebar">
-        <p class="eyebrow">OSRS progression research</p>
+        <p class="eyebrow">Opening episode</p>
         <h1>{text(name)}</h1>
-        <p class="title-meta"><code>{text(segment_id)}</code></p>
-        <div class="status-row"><span class="badge badge-unresolved">Research-only</span><span class="badge badge-unresolved">{text(segment.get("status", "unknown"))}</span><span class="badge badge-unresolved">{text(estimated_label)}</span></div>
       </header>
-      <section class="section" id="purpose">
-        <div class="section-heading"><h2>Purpose and why now</h2><span class="badge badge-unresolved">Not route selection</span></div>
-        <h3>What this fragment documents</h3>{list_items(list(purpose.get("accomplishes", [])))}
-        <h3>When it may be relevant</h3>{list_items(list(purpose.get("account_applicability", [])))}
-        <p class="boundary"><span>Timing boundary:</span> {text(purpose.get("timing_observation", "No timing observation recorded."))}</p>
-      </section>
-      <section class="section" id="preparation">
-        <div class="section-heading"><h2>Preparation</h2><span class="badge badge-sourced_unmodeled_substep">Observed state</span></div>
-        <h3>Assumptions</h3>{list_items(list(starting.get("assumptions", [])))}
-        {requirements_markup(requirements)}
-      </section>
-      <section class="section" id="checkpoints">
-        <div class="section-heading"><h2>Checkpoints</h2><span class="badge badge-unresolved">Includes unresolved state</span></div>
-        <ul class="checkpoints">{"".join(checkpoint_markup(item) for item in checkpoints if item)}</ul>
+      <section class="section">
+        <h2>Start</h2>
+        <p>{text(starting.get("geographic_checkpoint", {}).get("description", "Confirm the starting location."))}</p>
       </section>
       <section class="section" id="steps">
-        <div class="section-heading"><h2>Steps</h2><span class="badge badge-unresolved">Manual confirmation</span></div>
+        <div class="section-heading"><h2>Steps</h2></div>
         <ol class="steps">{main_steps}</ol>
       </section>
       {branch_markup}
-      <section class="section" id="safety">
-        <div class="section-heading"><h2>Safety and passive checks</h2><span class="badge badge-unresolved">Player judgment required</span></div>
-        <h3>Current observations</h3>{list_items(list(safety.get("current_observations_required", [])))}
-        <h3>Risk acceptance</h3>{list_items(list(safety.get("player_risk_requirements", [])))}
-        <p class="boundary"><span>Survival boundary:</span> No death, escape, safe travel, or return is inferred.</p>
-        <h3>Passive-check policy</h3><ul class="plain-list">{passive_markup}</ul>
+      <section class="section">
+        <h2>Finish</h2>
+        <p>{text(end_checkpoint.get("description", "Confirm the final checkpoint."))}</p>
       </section>
-      <section class="section" id="stop-reentry">
-        <div class="section-heading"><h2>Stop and re-entry</h2><span class="badge badge-unresolved">No completion inferred</span></div>
-        <h3>Stop conditions</h3>{list_items(list(stops.get("stop_conditions", [])))}
-        <h3>Re-entry conditions</h3>{list_items(list(stops.get("reentry_conditions", [])))}
-      </section>
-      <section class="section" id="sources">
-        <div class="section-heading"><h2>Sources</h2><span class="badge badge-sourced_unmodeled_substep">Research evidence</span></div>
-        <ul class="sources">{sources}</ul>
-      </section>
-      <footer class="reader-footer">This reader visualizes research evidence. It does not select a route, apply an action, claim items or GP, or infer completion, timing, combat success, travel, or safety.</footer>
+{f'      <section class="section"><h2>Watch</h2>{list_items(hazard_lines)}</section>' if hazard_lines else ''}
+      <details class="research" id="research">
+        <summary>Research details</summary>
+        <section class="section"><h2>Purpose</h2>{list_items(list(purpose.get("accomplishes", [])))}<p class="boundary"><span>Timing boundary:</span> {text(purpose.get("timing_observation", "No timing observation recorded."))}</p></section>
+        <section class="section"><h2>Starting state</h2>{list_items(list(starting.get("assumptions", [])))}{requirements_markup(requirements)}</section>
+        <section class="section"><h2>Checkpoints</h2><ul class="checkpoints">{"".join(checkpoint_markup(item) for item in checkpoints if item)}</ul></section>
+        <section class="section"><h2>Step evidence</h2><ol class="plain-list">{research_steps}</ol></section>
+        <section class="section"><h2>Safety</h2>{list_items(list(safety.get("current_observations_required", [])))}{list_items(list(safety.get("player_risk_requirements", [])))}</section>
+        <section class="section"><h2>Stop and resume</h2>{list_items(list(stops.get("stop_conditions", [])))}{list_items(list(stops.get("reentry_conditions", [])))}</section>
+        <section class="section"><h2>Sources</h2><ul class="sources">{sources}</ul></section>
+      </details>
+      <footer class="reader-footer">Research details are optional while playing.</footer>
     </article>
   </main>
   <script>
